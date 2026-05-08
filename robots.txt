@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /demos/
+Disallow: /build-your-demo
+Disallow: /api/
+
+Sitemap: https://www.upcoretech.com/sitemap.xml

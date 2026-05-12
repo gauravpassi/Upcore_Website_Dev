@@ -125,6 +125,53 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- P3 Pages — Content Expansion Batch 3 -->
+  <url>
+    <loc>https://www.upcoretech.com/learn/how-ai-agents-work</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/ai-agent-vs-llm</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/ai-agent-memory</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/ai-data-governance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/ai-in-banking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/hipaa-compliant-ai</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/ai-workforce-platform</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/top-ai-agent-platforms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/ai-agent-skills</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Industries -->
   <url>
     <loc>https://www.upcoretech.com/industries</loc>

@@ -9,6 +9,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Claude Code session files
+.claude/
+
 # Logs
 *.log
 npm-debug.log*

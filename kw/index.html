@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Enterprise AI Resources &amp; Guides | Upcore Technologies</title>
+<meta name="description" content="Deep guides, comparisons, and technical resources on custom AI agents, on-premise deployment, enterprise AI strategy, and industry-specific AI workforces. Built for CTOs and enterprise buyers."/>
+<link rel="canonical" href="https://www.upcoretech.com/kw"/>
+<link rel="alternate" hreflang="en" href="https://www.upcoretech.com/kw"/>
+<link rel="alternate" hreflang="x-default" href="https://www.upcoretech.com/kw"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Enterprise AI Resources &amp; Guides | Upcore Technologies"/>
+<meta property="og:description" content="Deep guides, comparisons, and technical resources on custom AI agents, on-premise deployment, and enterprise AI strategy. Built for CTOs and enterprise buyers."/>
+<meta property="og:url" content="https://www.upcoretech.com/kw"/>
+<meta property="og:image" content="https://www.upcoretech.com/upcore-logo.png"/>
+<meta property="og:site_name" content="Upcore Technologies"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Enterprise AI Resources &amp; Guides | Upcore Technologies"/>
+<meta name="twitter:description" content="Deep guides, comparisons, and technical resources on custom AI agents, on-premise deployment, and enterprise AI strategy."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Enterprise AI Resources & Guides",
+  "description": "A curated library of deep guides, comparisons, and technical resources on enterprise AI agents, on-premise deployment, and AI strategy for regulated industries.",
+  "url": "https://www.upcoretech.com/kw",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Upcore Technologies",
+    "url": "https://www.upcoretech.com"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#07101e;--bg2:#0a1628;--bg3:#0d1c34;--card:#0f2040;--card2:#0a1a32;--teal:#0abfcc;--mint:#3dddc4;--teal3:#0891b2;--txt:#ffffff;--txt2:#8bbed4;--txt3:#3a6080;--border:rgba(10,191,204,.13);--bh:rgba(10,191,204,.38);--glow:rgba(10,191,204,.08);--red:#f87171;--green:#4ade80;--grad:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);--ff:'Poppins',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}img{max-width:100%;}
+nav{width:100%;background:rgba(7,16,30,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,191,204,.13);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+.nav-logo a{display:flex;align-items:center;}.nav-logo img{height:68px;width:auto;}
+.nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
+.nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(139,190,212,1);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(10,191,204,.08);}
+.nav-links a.active{color:#0abfcc;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);color:#07101e;font-size:14px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
+
+/* Page layout */
+.pg-wrap{max-width:1200px;margin:0 auto;padding:0 48px;}
+@media(max-width:768px){.pg-wrap{padding:0 24px;}}
+
+/* Hero */
+.hub-hero{padding:72px 0 56px;border-bottom:1px solid var(--border);}
+.hub-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,191,204,.1);border:1px solid rgba(10,191,204,.25);color:#0abfcc;font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:.5px;text-transform:uppercase;}
+.hub-h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:20px;}
+.grad-text{background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hub-sub{font-size:1.1rem;color:var(--txt2);max-width:680px;margin-bottom:36px;line-height:1.75;}
+.hub-stats{display:flex;gap:40px;flex-wrap:wrap;}
+.hub-stat{display:flex;flex-direction:column;}
+.hub-stat-num{font-size:1.6rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;}
+.hub-stat-lbl{font-size:.8rem;color:var(--txt3);margin-top:2px;}
+
+/* Cluster sections */
+.cluster-section{padding:56px 0;}
+.cluster-section+.cluster-section{border-top:1px solid var(--border);}
+.cluster-header{display:flex;align-items:baseline;gap:16px;margin-bottom:32px;flex-wrap:wrap;}
+.cluster-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;}
+.cluster-h2{font-size:clamp(1.2rem,2vw,1.5rem);font-weight:700;line-height:1.3;}
+.cluster-desc{font-size:.9rem;color:var(--txt2);max-width:760px;margin-bottom:28px;line-height:1.7;}
+
+/* Resource cards */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .2s,transform .2s;position:relative;}
+.res-card:hover{border-color:rgba(10,191,204,.35);transform:translateY(-2px);}
+.res-card a.card-link{position:absolute;inset:0;z-index:1;border-radius:16px;}
+.res-meta{display:flex;align-items:center;gap:10px;}
+.res-cluster-tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:6px;}
+.tag-p0{background:rgba(248,113,113,.15);color:#f87171;}
+.tag-p1{background:rgba(251,146,60,.15);color:#fb923c;}
+.tag-p2{background:rgba(250,204,21,.12);color:#fbbf24;}
+.tag-p3{background:rgba(74,222,128,.12);color:#4ade80;}
+.res-status{font-size:.7rem;font-weight:600;padding:3px 8px;border-radius:6px;}
+.status-live{background:rgba(74,222,128,.12);color:#4ade80;}
+.status-soon{background:rgba(139,190,212,.1);color:var(--txt3);}
+.res-card h3{font-size:.95rem;font-weight:700;line-height:1.4;color:var(--txt);}
+.res-card p{font-size:.8rem;color:var(--txt2);line-height:1.6;flex:1;}
+.res-kw{font-size:.72rem;color:var(--txt3);font-weight:500;}
+.res-arr{color:var(--teal);font-size:.85rem;font-weight:600;align-self:flex-start;}
+
+/* CTA */
+.hub-cta{background:linear-gradient(135deg,rgba(8,145,178,.12),rgba(61,221,196,.07));border:1px solid rgba(10,191,204,.2);border-radius:24px;padding:64px 48px;text-align:center;margin:0 0 64px;}
+.hub-cta h2{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:800;margin-bottom:16px;}
+.hub-cta p{color:var(--txt2);max-width:540px;margin:0 auto 32px;line-height:1.75;}
+.hub-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#07101e;font-weight:700;padding:14px 28px;border-radius:10px;font-size:15px;transition:opacity .2s,transform .2s;}
+.btn-p:hover{opacity:.9;transform:translateY(-1px);}
+.btn-o{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(10,191,204,.4);color:var(--teal);padding:14px 28px;border-radius:10px;font-size:15px;transition:border-color .2s,background .2s;}
+.btn-o:hover{border-color:var(--teal);background:rgba(10,191,204,.06);}
+
+/* Footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 48px 0;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-logo-wrap{margin-bottom:16px;}.footer-logo-wrap img{height:60px;width:auto;}
+.footer-tagline{font-size:.85rem;color:var(--txt3);line-height:1.6;margin-bottom:16px;}
+.footer-col-title{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:.875rem;color:var(--txt2);transition:color .2s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:.8rem;color:var(--txt3);}
+.footer-copy a{color:var(--txt3);transition:color .2s;}
+.footer-copy a:hover{color:var(--teal);}
+.footer-social-row{display:flex;gap:12px;margin-bottom:16px;}
+.footer-soc-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:rgba(10,191,204,.08);color:var(--txt2);border:1px solid var(--border);transition:background .2s,color .2s;}
+.footer-soc-btn:hover{background:rgba(10,191,204,.16);color:#fff;}
+.footer-review-row{display:flex;gap:10px;flex-wrap:wrap;}
+.footer-review-btn{display:flex;align-items:center;gap:6px;font-size:.75rem;font-weight:600;color:var(--txt3);padding:6px 10px;border-radius:8px;border:1px solid var(--border);transition:color .2s,border-color .2s;}
+.footer-review-btn:hover{color:var(--txt);border-color:rgba(10,191,204,.3);}
+@media(max-width:1100px){.footer-grid{grid-template-columns:1fr 1fr 1fr;gap:32px;}}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:24px;}.hub-hero,.cluster-section{padding-left:0;padding-right:0;}.hub-cta{padding:40px 24px;margin:0 0 40px;}}
+@media(max-width:500px){.footer-grid{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;align-items:flex-start;}.res-grid{grid-template-columns:1fr;}}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
+  <ul class="nav-links">
+    <li><a href="/#solution">Solutions</a></li>
+    <li><a href="/#products">Products</a></li>
+    <li><a href="/industries">Industries</a></li>
+    <li><a href="/insights">Insights</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/#engage">How It Works</a></li>
+  </ul>
+  <a href="/assessment" class="nav-cta">Book a Discovery Call</a>
+</nav>
+
+<!-- HERO -->
+<div class="pg-wrap">
+  <div class="hub-hero">
+    <div class="hub-badge">Resource Library</div>
+    <h1 class="hub-h1">Enterprise AI Resources<br/><span class="grad-text">Built for Decision-Makers</span></h1>
+    <p class="hub-sub">Deep technical guides, side-by-side comparisons, and deployment playbooks for CTOs, CIOs, and product leaders evaluating enterprise AI. No vendor fluff — just the information you need to make the right call.</p>
+    <div class="hub-stats">
+      <div class="hub-stat">
+        <span class="hub-stat-num">23</span>
+        <span class="hub-stat-lbl">Resources planned</span>
+      </div>
+      <div class="hub-stat">
+        <span class="hub-stat-num">7</span>
+        <span class="hub-stat-lbl">Live now</span>
+      </div>
+      <div class="hub-stat">
+        <span class="hub-stat-num">5</span>
+        <span class="hub-stat-lbl">Topic clusters</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLUSTER 1: Product & Feature Pages (P0) -->
+<div class="pg-wrap">
+  <div class="cluster-section">
+    <div class="cluster-header">
+      <span class="cluster-label">Cluster 3</span>
+      <h2 class="cluster-h2">Product &amp; Platform Guides</h2>
+    </div>
+    <p class="cluster-desc">The foundational pages for understanding what Upcore builds, how it deploys, and how fast it gets live. These are the highest-priority resources — if you're evaluating Upcore, start here.</p>
+    <div class="res-grid">
+
+      <div class="res-card">
+        <a href="/platform/custom-ai-agents" class="card-link" aria-label="Custom AI Agents for Enterprise"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p0">P0 · Critical</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>Custom AI Agents for Enterprise</h3>
+        <p>What "custom" actually means: trained on your data, integrated with your systems, deployed on your infrastructure. The definitive guide to enterprise AI agent development.</p>
+        <span class="res-kw">Primary keyword: custom ai agents for enterprise</span>
+        <span class="res-arr">Read guide &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/platform/on-premise-deployment" class="card-link" aria-label="On-Premise AI Deployment"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p0">P0 · Critical</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>On-Premise AI Agent Deployment</h3>
+        <p>Why regulated industries cannot use cloud AI — and how on-premise deployment satisfies HIPAA, RBI, GDPR, and FCA requirements without sacrificing capability.</p>
+        <span class="res-kw">Primary keyword: on-premise ai deployment</span>
+        <span class="res-arr">Read guide &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/platform/30-day-deployment" class="card-link" aria-label="Deploy in 30 Days"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p0">P0 · Critical</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>Deploy a Custom AI Agent in 30 Days</h3>
+        <p>The phase-by-phase breakdown of Upcore's 30-day deployment model — from discovery to live agent. Every deliverable, every milestone, no hidden timelines.</p>
+        <span class="res-kw">Primary keyword: ai deployment in 30 days</span>
+        <span class="res-arr">Read guide &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/platform/ai-agent-builder" class="card-link" aria-label="No-Code AI Agent Builder"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>Build AI Agents Without Writing Code</h3>
+        <p>Studio by Upcore: no-code agent configuration on top of a properly engineered, compliant backbone. For business teams who want control without the engineering overhead.</p>
+        <span class="res-kw">Primary keyword: ai agent builder no code</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CLUSTER 2: BoFU Comparison Pages -->
+<div class="pg-wrap">
+  <div class="cluster-section">
+    <div class="cluster-header">
+      <span class="cluster-label">Cluster 2</span>
+      <h2 class="cluster-h2">Side-by-Side Comparisons</h2>
+    </div>
+    <p class="cluster-desc">Head-to-head analyses for enterprise buyers who have run pilots and found generic AI tools falling short. Built for the decision-maker comparing options — not reading marketing copy.</p>
+    <div class="res-grid">
+
+      <div class="res-card">
+        <a href="/compare/ai-agents-vs-copilot-financial-services" class="card-link" aria-label="AI Agents vs Copilot in Financial Services"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p1">P1 · High</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>AI Agents vs. Microsoft Copilot in Financial Services</h3>
+        <p>8-dimension comparison for the FS decision-maker whose Copilot pilot fell short. Data sovereignty, compliance auditability, AML/KYC coverage, and TCO — all in one table.</p>
+        <span class="res-kw">Primary keyword: ai agents vs copilot for financial services</span>
+        <span class="res-arr">Read comparison &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/compare/ai-workforce-vs-ai-tools" class="card-link" aria-label="AI Workforce vs AI Tools"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>AI Workforce vs. AI Tools: The Enterprise Verdict</h3>
+        <p>The average enterprise pays for 6–8 AI SaaS subscriptions at 30–40% utilisation. This comparison quantifies the "Generic AI Tax" and maps the consolidation path.</p>
+        <span class="res-kw">Primary keyword: ai workforce vs ai tools</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/solutions/consolidate-ai-tools" class="card-link" aria-label="Consolidate AI Tools"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>Stop the AI Tool Sprawl: Consolidate with Custom Agents</h3>
+        <p>A consolidation framework for IT and Ops heads drowning in overlapping SaaS tools. Audit, map, identify duplication, and replace with a unified custom agent stack.</p>
+        <span class="res-kw">Primary keyword: consolidate ai tools</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/solutions/build-ai-agent-no-code" class="card-link" aria-label="Build AI Agent Without Engineers"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>Build AI Agents Without a Dev Team</h3>
+        <p>Reframing the no-code AI conversation for the enterprise buyer: you don't need engineers on your side — Upcore handles the build. Your team handles the outcome.</p>
+        <span class="res-kw">Primary keyword: build ai agent without engineers</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CLUSTER 1: Industry Solution Pages -->
+<div class="pg-wrap">
+  <div class="cluster-section">
+    <div class="cluster-header">
+      <span class="cluster-label">Cluster 1</span>
+      <h2 class="cluster-h2">Industry Solution Guides</h2>
+    </div>
+    <p class="cluster-desc">Vertical-specific playbooks for regulated and complex industries where generic AI tools face structural limitations. Each guide addresses the real workflow problems, compliance constraints, and deployment architecture for that sector.</p>
+    <div class="res-grid">
+
+      <div class="res-card">
+        <a href="/kw/financial-services-ai-agents" class="card-link" aria-label="AI Agents for Banking and Financial Services"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p1">P1 · High</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>AI Agents for Banking &amp; Financial Services</h3>
+        <p>AML, KYC, credit underwriting, and customer service agents built inside your regulatory boundary. Why compliance-first deployment is the only option for BFSI.</p>
+        <span class="res-kw">Primary keyword: financial services ai agents</span>
+        <span class="res-arr">Read guide &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/kw/healthcare-ai-agents" class="card-link" aria-label="AI for Healthcare Operations"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p1">P1 · High</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>AI for Healthcare Operations</h3>
+        <p>HIPAA-compliant agents for prior auth, discharge planning, billing reconciliation, and clinical documentation — deployed on your EHR/EMR infrastructure.</p>
+        <span class="res-kw">Primary keyword: ai for healthcare operations</span>
+        <span class="res-arr">Read guide &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/industries/tech-sdlc" class="card-link" aria-label="SDLC AI Agent"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p1">P1 · High</span>
+          <span class="res-status status-live">Live</span>
+        </div>
+        <h3>SDLC Agent: Ship Software Without the Team Overhead</h3>
+        <p>A purpose-built SDLC agent that manages planning, code generation, testing, PR review, and deployment — trained on your codebase and conventions.</p>
+        <span class="res-kw">Primary keyword: sdlc agent</span>
+        <span class="res-arr">Read guide &#8594;</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/industries/real-estate" class="card-link" aria-label="AI Workforce for Real Estate"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>AI Workforce for Real Estate Firms</h3>
+        <p>Lease abstraction, tenant comms triage, maintenance dispatch, and deal pipeline management — the full ops loop for real estate teams, automated.</p>
+        <span class="res-kw">Primary keyword: ai workforce for real estate</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/industries/compliance-governance" class="card-link" aria-label="Enterprise AI Compliance"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>Enterprise AI Compliance &amp; Governance Guide</h3>
+        <p>For procurement and legal teams asking "can we put our data in this vendor's cloud?" — the definitive guide to AI governance for BFSI, healthcare, and government.</p>
+        <span class="res-kw">Primary keyword: ai compliance enterprise</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CLUSTER 4: MoFU Educational Content -->
+<div class="pg-wrap">
+  <div class="cluster-section">
+    <div class="cluster-header">
+      <span class="cluster-label">Cluster 4</span>
+      <h2 class="cluster-h2">Strategic &amp; Educational Guides</h2>
+    </div>
+    <p class="cluster-desc">Mid-funnel resources for enterprise buyers earlier in their AI evaluation journey. These build the conceptual foundation that helps teams ask better questions and avoid the most common implementation mistakes.</p>
+    <div class="res-grid">
+
+      <div class="res-card">
+        <a href="/learn/enterprise-ai-strategy" class="card-link" aria-label="Enterprise AI Strategy"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>Enterprise AI Strategy: A 2025 Framework for Leaders</h3>
+        <p>Five decisions every enterprise must make before deploying AI: build vs. buy, cloud vs. on-premise, point tools vs. unified workforce, generic vs. custom, fast vs. governed.</p>
+        <span class="res-kw">Primary keyword: enterprise ai strategy</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/ai-data-governance" class="card-link" aria-label="AI Data Governance"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p2">P2 · High</span>
+          <span class="res-status status-soon">Coming Q3 2026</span>
+        </div>
+        <h3>AI Data Governance for the Enterprise: 2025 Checklist</h3>
+        <p>A CTO/CIO checklist covering data residency, access controls, audit logging, model explainability, and incident response — with questions any AI vendor must answer.</p>
+        <span class="res-kw">Primary keyword: ai data governance and compliance</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/how-ai-agents-work" class="card-link" aria-label="How AI Agents Work"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>How AI Agents Work: A Plain-English Guide</h3>
+        <p>The perception-reasoning-action loop explained for technically curious executives. What agent memory means, and why this differs fundamentally from a chatbot or LLM wrapper.</p>
+        <span class="res-kw">Primary keyword: how ai agent works</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/ai-agent-vs-llm" class="card-link" aria-label="AI Agent vs LLM"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>AI Agent vs. LLM: What's the Real Difference?</h3>
+        <p>An LLM is a capability; an agent is a system that uses that capability to take autonomous action. The single most important distinction for enterprise AI buyers.</p>
+        <span class="res-kw">Primary keyword: how ai agent is different from llm</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/ai-agent-memory" class="card-link" aria-label="How AI Agent Memory Works"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>How AI Agent Memory Works (And Why It Matters)</h3>
+        <p>Episodic, semantic, and procedural memory in enterprise agents — and why a custom agent that remembers your client history and SOPs makes decisions a generic AI never can.</p>
+        <span class="res-kw">Primary keyword: how ai agent memory works</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CLUSTER 5: Supporting SEO Pages -->
+<div class="pg-wrap">
+  <div class="cluster-section">
+    <div class="cluster-header">
+      <span class="cluster-label">Cluster 5</span>
+      <h2 class="cluster-h2">AI Concepts &amp; Market Guides</h2>
+    </div>
+    <p class="cluster-desc">Top-of-funnel reference pages designed to capture researchers, evaluators, and market observers. These build topical authority across the AI agents landscape and feed traffic into the higher-intent pages above.</p>
+    <div class="res-grid">
+
+      <div class="res-card">
+        <a href="/learn/ai-in-banking" class="card-link" aria-label="AI in Banking"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>AI in Banking: Use Cases, Risks &amp; Compliance Guide</h3>
+        <p>Front, middle, and back office AI use cases for banking leaders — with a clear-eyed assessment of the compliance limitations that public AI platforms cannot overcome.</p>
+        <span class="res-kw">Primary keyword: ai in banking</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/hipaa-compliant-ai" class="card-link" aria-label="HIPAA Compliant AI"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>HIPAA-Compliant AI Agents: A Healthcare Leader's Guide</h3>
+        <p>What HIPAA compliance actually means for AI architecture: data localisation, no training on PHI, audit trails, and BAA requirements — and why most AI tools fail the test.</p>
+        <span class="res-kw">Primary keyword: hipaa compliant ai</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/ai-workforce-platform" class="card-link" aria-label="AI Workforce Platform"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>What Is an AI Workforce Platform? A Buyer's Guide</h3>
+        <p>Defining the emerging category of coordinated AI workforce platforms — and how a purpose-built workforce of specialised agents outperforms a single general-purpose AI.</p>
+        <span class="res-kw">Primary keyword: ai workforce platform</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/top-ai-agent-platforms" class="card-link" aria-label="Top AI Agent Platforms"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>The Big 4 AI Agent Platforms Compared — 2025</h3>
+        <p>AutoGen, LangChain, Vertex AI Agents, and Copilot Studio — an honest enterprise evaluation of where each shines, where each fails, and how to choose an implementation partner.</p>
+        <span class="res-kw">Primary keyword: who are the big 4 ai agents</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+      <div class="res-card">
+        <a href="/learn/ai-agent-skills" class="card-link" aria-label="What Are AI Agent Skills"></a>
+        <div class="res-meta">
+          <span class="res-cluster-tag tag-p3">P3</span>
+          <span class="res-status status-soon">Coming Q4 2026</span>
+        </div>
+        <h3>What Are AI Agent Skills? Capabilities Explained</h3>
+        <p>Tool use, web search, API calls, memory retrieval, form filling — each agent skill defined in plain English and mapped to a real enterprise use case. Built for PAA ranking.</p>
+        <span class="res-kw">Primary keyword: what are ai agent skills</span>
+        <span class="res-arr">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="pg-wrap">
+  <div class="hub-cta">
+    <h2>Ready to Move Beyond the Research Phase?</h2>
+    <p>Every guide on this page maps back to a deployment Upcore has scoped, built, or shipped. If you've read enough to know custom AI is the right path, the next step is a 45-minute scoping call.</p>
+    <div class="hub-cta-btns">
+      <a href="/assessment" class="btn-p">Book a Free Discovery Call &#8594;</a>
+      <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
+      <p class="footer-tagline">Your AI Partner. Not Just Another AI Tool.<br/>We build agents that actually run your business.</p>
+      <div class="footer-social-row">
+        <a href="https://linkedin.com/company/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.facebook.com/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/upcoretech/" target="_blank" rel="noopener" class="footer-soc-btn" title="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+      <div class="footer-review-row">
+        <a href="https://clutch.co/profile/upcore-technologies" target="_blank" rel="noopener" class="footer-review-btn" title="Clutch"><svg width="52" height="16" viewBox="0 0 130 40"><text x="0" y="30" font-family="Georgia,'Times New Roman',serif" font-size="32" font-weight="700" fill="#FF3D2E" letter-spacing="-1">clutch</text><circle cx="119" cy="10" r="6" fill="#FF3D2E"/></svg></a>
+        <a href="https://selectedfirms.co/agency/upcore-technologies" target="_blank" rel="noopener" class="footer-review-btn"><svg width="18" height="18" viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="#00b67a"/><path d="M11 20l6 6 12-12" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg> SelectedFirms</a>
+        <a href="https://www.upwork.com/agencies/upcore/" target="_blank" rel="noopener" class="footer-review-btn"><svg width="18" height="18" viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="#14a800"/><text x="20" y="26" font-family="Arial Black,Arial,sans-serif" font-size="13" font-weight="900" fill="#fff" text-anchor="middle">up</text></svg> Top Rated Plus</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="/about">About Upcore</a></li>
+        <li><a href="/platform">How It Works</a></li>
+        <li><a href="/agent-builder">Agent Builder</a></li>
+        <li><a href="/insights">Insights &amp; Blog</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/assessment">Book a Discovery Call</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Solutions</div>
+      <ul class="footer-links">
+        <li><a href="/platform">Upcore Studio</a></li>
+        <li><a href="/sdlc-agent">SDLC Agent</a></li>
+        <li><a href="/build-your-demo">Build a Free Demo</a></li>
+        <li><a href="/industries">All Industries</a></li>
+        <li><a href="/assessment">Free AI Assessment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Industries</div>
+      <ul class="footer-links">
+        <li><a href="/industries/manufacturing">Manufacturing</a></li>
+        <li><a href="/industries/retail-d2c">eCommerce / D2C</a></li>
+        <li><a href="/industries/banking-finance">Banking &amp; Finance</a></li>
+        <li><a href="/industries/nbfc-loans">NBFCs &amp; Loans</a></li>
+        <li><a href="/industries/healthcare">Healthcare</a></li>
+        <li><a href="/industries/saas-technology">SaaS &amp; Tech</a></li>
+        <li><a href="/industries">View All &#8594;</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="/kw">All Resources &#8594;</a></li>
+        <li><a href="/platform/custom-ai-agents">Custom AI Agents</a></li>
+        <li><a href="/platform/on-premise-deployment">On-Premise AI</a></li>
+        <li><a href="/platform/30-day-deployment">30-Day Deployment</a></li>
+        <li><a href="/compare/ai-agents-vs-copilot-financial-services">AI vs Copilot</a></li>
+        <li><a href="/kw/financial-services-ai-agents">AI for Banking</a></li>
+        <li><a href="/kw/healthcare-ai-agents">AI for Healthcare</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&#169; 2025 Upcore Technologies Pvt. Ltd. &#183; <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
+    <span class="footer-copy" style="font-style:italic;color:var(--txt3);">Your AI Partner. Not Just Another AI Tool.</span>
+  </div>
+</footer>
+
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

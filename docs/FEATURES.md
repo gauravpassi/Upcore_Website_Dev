@@ -61,6 +61,19 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Routing:** `/blog` and `/blog/:slug` redirect permanently to `/insights` and `/insights/:slug`.
 - **Extend by:** Drop new article HTML in `insights/`, link it from `insights/index.html`, optionally add a record to `ARTICLES-REFERENCE.md`.
 
+### A9. Learn hub — AI fundamentals education pages
+- **What:** Educational long-form pages targeting technical executives and enterprise AI buyers. Covers foundational AI agent concepts with PAA-optimised FAQ sections and Article + FAQPage JSON-LD. Each page is 50–55KB of substantive HTML.
+- **Where:** [`learn/`](../learn/) directory.
+  - `learn/enterprise-ai-strategy.html` — 5 strategic decisions framework
+  - `learn/how-ai-agents-work.html` — perception–reasoning–action architecture
+  - `learn/ai-agent-vs-llm.html` — LLM vs agent capability comparison
+  - `learn/ai-agent-memory.html` — 4 memory types (working, episodic, semantic, procedural)
+  - `learn/ai-in-banking.html` — banking AI use cases, compliance architecture, and generic vs custom AI comparison
+  - `learn/hipaa-compliant-ai.html` — HIPAA compliance for AI: architectural requirements, vendor evaluation checklist
+  - `learn/ai-workforce-platform.html` — AI workforce platform category definition, architecture, and buyer's guide
+- **Touches:** Standard nav, footer, chat widget. No API calls. Internal links to `/assessment`, `/platform/custom-ai-agents`, `/platform/on-premise-deployment`, `/kw`.
+- **Extend by:** Drop new article HTML in `learn/`, add JSON-LD Article + FAQPage schemas, include 8 FAQ items targeting PAA queries. Follow the CSS/nav/footer pattern exactly from an existing `learn/` page — do NOT copy from `insights/` (different CSS component set).
+
 ---
 
 ## B. Lead-capture features (forms / FormSubmit)

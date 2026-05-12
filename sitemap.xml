@@ -88,6 +88,43 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- P2 Pages — Content Expansion Batch 2 -->
+  <url>
+    <loc>https://www.upcoretech.com/platform/ai-agent-builder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/compare/ai-workforce-vs-ai-tools</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/solutions/consolidate-ai-tools</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/solutions/build-ai-agent-no-code</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/kw/real-estate-ai-workforce</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/industries/compliance-governance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/enterprise-ai-strategy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Industries -->
   <url>
     <loc>https://www.upcoretech.com/industries</loc>

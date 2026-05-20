@@ -500,12 +500,17 @@
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: messages })
     })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
+      .then(function (r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
+      .then(function (res) {
         hideTyping();
         isTyping = false;
         sendBtn.disabled = false;
 
+        var data = res.data;
+        // Log error detail to console for debugging
+        if (!data.reply && data.error) {
+          console.warn('[Kai] API error:', data.error, data.detail || '');
+        }
         var reply = data.reply || "I'm having trouble connecting. Please try again or email gaurav@upcoretechnologies.com";
         messages.push({ role: 'assistant', content: reply });
 

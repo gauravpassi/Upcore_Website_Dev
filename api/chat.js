@@ -115,6 +115,12 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
+  // Guard: env var must be present
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('Chat API: ANTHROPIC_API_KEY env var is not set');
+    return res.status(500).json({ error: 'config_missing', detail: 'ANTHROPIC_API_KEY not set' });
+  }
+
   try {
     const { messages } = req.body;
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
@@ -138,7 +144,16 @@ module.exports = async (req, res) => {
 
     if (!apiRes.ok) {
       const errText = await apiRes.text();
-      throw new Error('Anthropic API error ' + apiRes.status + ': ' + errText);
+      console.error('Anthropic API error', apiRes.status, errText);
+      // Surface the HTTP status and a safe summary to aid debugging without leaking keys
+      return res.status(502).json({
+        error: 'upstream_error',
+        status: apiRes.status,
+        detail: apiRes.status === 401 ? 'invalid_api_key'
+              : apiRes.status === 404 ? 'model_not_found'
+              : apiRes.status === 429 ? 'rate_limited'
+              : 'anthropic_error'
+      });
     }
 
     const data = await apiRes.json();
@@ -163,7 +178,7 @@ module.exports = async (req, res) => {
 
   } catch (err) {
     console.error('Chat API error:', err);
-    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
+    return res.status(500).json({ error: 'internal_error', detail: err.message });
   }
 };
 

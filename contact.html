@@ -286,20 +286,20 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
           <div class="form-row">
             <div>
               <label class="form-label">Your Name</label>
-              <input type="text" class="form-input" placeholder="Rahul Sharma" required/>
+              <input type="text" id="contact-name" class="form-input" placeholder="Rahul Sharma" required/>
             </div>
             <div>
               <label class="form-label">Company</label>
-              <input type="text" class="form-input" placeholder="Acme Industries Ltd." required/>
+              <input type="text" id="contact-company" class="form-input" placeholder="Acme Industries Ltd." required/>
             </div>
           </div>
           <div class="form-group">
             <label class="form-label">Work Email</label>
-            <input type="email" class="form-input" placeholder="rahul@company.com" required/>
+            <input type="email" id="contact-email" class="form-input" placeholder="rahul@company.com" required/>
           </div>
           <div class="form-group">
             <label class="form-label">Your Industry</label>
-            <select class="form-select form-input" required>
+            <select id="contact-industry" class="form-select form-input" required>
               <option value="" disabled selected>Select your industry</option>
               <option>Manufacturing</option>
               <option>Ecommerce / Retail</option>
@@ -318,7 +318,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
           </div>
           <div class="form-group">
             <label class="form-label">What's the problem you want to solve?</label>
-            <textarea class="form-textarea" placeholder="e.g. We spend 2 hours a day manually following up with customers who haven't paid. We want to automate this but need it to know when to escalate to a human..." required></textarea>
+            <textarea id="contact-message" class="form-textarea" placeholder="e.g. We spend 2 hours a day manually following up with customers who haven't paid. We want to automate this but need it to know when to escalate to a human..." required></textarea>
           </div>
           <button type="submit" class="form-submit" id="submitBtn">
             <span id="submitText">Send Message →</span>
@@ -512,18 +512,71 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 </footer>
 
 <script>
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
   const txt = document.getElementById('submitText');
+
+  const name     = document.getElementById('contact-name').value.trim();
+  const company  = document.getElementById('contact-company').value.trim();
+  const email    = document.getElementById('contact-email').value.trim();
+  const industry = document.getElementById('contact-industry').value;
+  const message  = document.getElementById('contact-message').value.trim();
+
   btn.style.opacity = '.7';
   btn.disabled = true;
   txt.textContent = 'Sending…';
-  setTimeout(() => {
-    txt.textContent = '✓ Message Sent. We\'ll reply within 4 hours';
+
+  const base = { _captcha: 'false', _template: 'table' };
+
+  try {
+    // 1 — Notify the Upcore team (both inboxes)
+    await fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        ...base,
+        _subject: `📩 New Contact Form — ${name} · ${company}`,
+        _cc: 'saswata@upcoretechnologies.com',
+        'Name':     name,
+        'Company':  company,
+        'Email':    email,
+        'Industry': industry,
+        'Message':  message,
+        'Source':   'Contact Page Form'
+      })
+    });
+
+    // 2 — Confirmation to the prospect
+    if (email.includes('@')) {
+      fetch(`https://formsubmit.co/${email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...base,
+          _subject: 'Your message to Upcore Technologies — we\'ll be in touch',
+          'Hi': name,
+          'What happens next': 'A member of our team will reply to this email within 4 hours (usually much faster on business days).',
+          'Your message': message,
+          'Company': company,
+          'Industry': industry,
+          'Questions?': 'You can also WhatsApp us directly at +91 99881 35327.',
+          'Team': 'Upcore Technologies — upcoretech.com'
+        })
+      }).catch(() => {});
+    }
+
+    // 3 — Show success
+    txt.textContent = '✓ Message sent! We\'ll reply within 4 hours.';
     btn.style.background = 'linear-gradient(135deg,#4ade80,#22d3ee)';
-  }, 1200);
-  // In production, replace with fetch() to your form handler / Formspree / EmailJS etc.
+    btn.style.opacity = '1';
+
+  } catch (err) {
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    txt.textContent = 'Send Message →';
+    alert('Something went wrong. Please email us directly at gaurav@upcoretechnologies.com');
+  }
 }
 </script>
 <script src="/chat-widget.js" defer></script>

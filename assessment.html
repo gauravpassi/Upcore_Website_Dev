@@ -282,9 +282,10 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
         <form id="assessment-form" action="https://formsubmit.co/gaurav@upcoretechnologies.com" method="POST">
           <!-- FormSubmit config -->
-          <input type="hidden" name="_subject" value="New AI Assessment Request via Upcore Website"/>
+          <input type="hidden" name="_subject" value="📋 New AI Assessment Request via Upcore Website"/>
           <input type="hidden" name="_template" value="table"/>
           <input type="hidden" name="_captcha" value="false"/>
+          <input type="hidden" name="_cc" value="saswata@upcoretechnologies.com"/>
           <input type="hidden" name="_next" value="https://www.upcoretech.com/assessment?submitted=true"/>
 
           <div class="form-row">
@@ -390,13 +391,41 @@ if(window.location.search.includes('submitted=true')){
   document.getElementById('success-msg').style.display = 'block';
 }
 
-// Client-side UX: show loading state on submit
+// On submit: fire confirmation email to prospect, then let native form POST proceed
 document.getElementById('assessment-form').addEventListener('submit', function(e){
-  var btn = document.getElementById('submit-btn');
-  var emailVal = document.getElementById('email').value;
-  document.getElementById('confirm-email').textContent = emailVal;
+  var btn    = document.getElementById('submit-btn');
+  var fname  = document.getElementById('fname').value.trim();
+  var lname  = document.getElementById('lname').value.trim();
+  var email  = document.getElementById('email').value.trim();
+  var company  = document.getElementById('company').value.trim();
+  var industry = document.getElementById('industry').value;
+  var challenge = document.getElementById('challenge').value.trim();
+
+  document.getElementById('confirm-email').textContent = email;
   btn.textContent = 'Submitting...';
   btn.disabled = true;
+
+  // Fire confirmation to prospect (fire-and-forget — don't block form POST)
+  if(email && email.includes('@')){
+    fetch('https://formsubmit.co/' + email, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _captcha: 'false',
+        _template: 'table',
+        _subject: 'Your Discovery Call Request — Upcore Technologies',
+        'Hi': fname + ' ' + lname,
+        'What happens next': "We'll reach out within 24 hours to confirm your session time.",
+        'Your session will cover': '1) Current AI Posture Audit  2) Top 3 Agent Opportunities  3) Draft Architecture Blueprint  4) ROI Estimate',
+        'Company': company,
+        'Industry': industry,
+        'Your challenge': challenge,
+        'Questions?': 'Reply to this email or WhatsApp Gaurav directly at +91 99881 35327.',
+        'Team': 'Upcore Technologies — upcoretech.com'
+      })
+    }).catch(function(){});
+  }
+  // Native form POST to FormSubmit.co (for the team notification) continues normally
 });
 </script>
 <footer>

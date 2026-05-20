@@ -170,13 +170,14 @@ module.exports = async (req, res) => {
 async function sendBookingEmails(data) {
   const base = { _captcha: 'false', _template: 'table' };
 
-  // Notification to Upcore
+  // Notification to Upcore (both inboxes via _cc)
   await fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
       ...base,
       _subject: `🤖 New Chat Lead — ${data.name} · ${data.company}`,
+      _cc: 'saswata@upcoretechnologies.com',
       'Name': data.name,
       'Email': data.email,
       'Phone': data.phone,

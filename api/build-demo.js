@@ -481,21 +481,23 @@ async function updateManifest(entry) {
 // No API keys needed. Already confirmed for gaurav@upcoretechnologies.com.
 
 const NOTIFY_TO = 'gaurav@upcoretechnologies.com';
+const NOTIFY_CC = 'saswata@upcoretechnologies.com';
 
 async function sendLeadNotification({ userName, email, phone, industry, companyName, agentName, painPoint, actions, demoUrl, slug }) {
   const cfg = INDUSTRY_CONFIG[industry] || {};
   const actionsStr = (actions || []).join(', ') || 'Not specified';
   const createdAt = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
 
-  // FormSubmit.co accepts JSON POST — formats it as a clean email table automatically
+  // 1 — Notify the Upcore team (both inboxes via _cc)
   const payload = {
     _subject:  `🤖 New Demo Lead — ${userName || email} · ${cfg.label || industry}`,
     _template: 'table',
     _captcha:  'false',
+    _cc:       NOTIFY_CC,
     // Contact fields
-    'Name':        userName  || 'Not provided',
-    'Email':       email     || 'Not provided',
-    'Phone':       phone     || 'Not provided',
+    'Name':        userName    || 'Not provided',
+    'Email':       email       || 'Not provided',
+    'Phone':       phone       || 'Not provided',
     'Company':     companyName || 'Not provided',
     // Demo fields
     'Industry':    `${cfg.emoji || ''} ${cfg.label || industry}`,
@@ -516,6 +518,28 @@ async function sendLeadNotification({ userName, email, phone, industry, companyN
   if (!res.ok) {
     const text = await res.text();
     throw new Error(`FormSubmit error ${res.status}: ${text}`);
+  }
+
+  // 2 — Confirmation email to the prospect
+  if (email && email.includes('@')) {
+    const confirmPayload = {
+      _subject:  'Your Upcore AI Agent Demo is Ready',
+      _template: 'table',
+      _captcha:  'false',
+      'Hi': userName || 'there',
+      'Your demo is live': demoUrl,
+      'Industry': `${cfg.emoji || ''} ${cfg.label || industry}`,
+      'Agent': agentName,
+      'What happens next': 'A member of our team will reach out within 24 hours to walk you through the demo and discuss how a custom agent could work for your business.',
+      'Questions?': 'Reply to this email or WhatsApp us at +91 99881 35327.',
+      'Team': 'Upcore Technologies — upcoretech.com'
+    };
+    // Fire-and-forget — don't let confirmation failure block the main notification
+    fetch(`https://formsubmit.co/${email}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(confirmPayload)
+    }).catch(err => console.error('Demo confirmation email failed:', err));
   }
 }
 

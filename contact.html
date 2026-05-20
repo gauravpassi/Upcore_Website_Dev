@@ -527,15 +527,46 @@ async function handleSubmit(e) {
   btn.disabled = true;
   txt.textContent = 'Sending…';
 
-  try {
-    const res = await fetch('/api/submit-contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, company, email, industry, message })
-    });
-    if (!res.ok) throw new Error('server error');
+  const base = { _captcha: 'false', _template: 'table' };
 
-    // Show success
+  try {
+    // 1 — Notify the Upcore team (both inboxes)
+    await fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        ...base,
+        _subject: `📩 New Contact Form — ${name} · ${company}`,
+        _cc: 'saswata@upcoretechnologies.com',
+        'Name':     name,
+        'Company':  company,
+        'Email':    email,
+        'Industry': industry,
+        'Message':  message,
+        'Source':   'Contact Page Form'
+      })
+    });
+
+    // 2 — Confirmation to the prospect
+    if (email.includes('@')) {
+      fetch(`https://formsubmit.co/${email}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...base,
+          _subject: 'Your message to Upcore Technologies — we\'ll be in touch',
+          'Hi': name,
+          'What happens next': 'A member of our team will reply to this email within 4 hours (usually much faster on business days).',
+          'Your message': message,
+          'Company': company,
+          'Industry': industry,
+          'Questions?': 'You can also WhatsApp us directly at +91 99881 35327.',
+          'Team': 'Upcore Technologies — upcoretech.com'
+        })
+      }).catch(() => {});
+    }
+
+    // 3 — Show success
     txt.textContent = '✓ Message sent! We\'ll reply within 4 hours.';
     btn.style.background = 'linear-gradient(135deg,#4ade80,#22d3ee)';
     btn.style.opacity = '1';

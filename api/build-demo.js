@@ -477,68 +477,100 @@ async function updateManifest(entry) {
 }
 
 // ─── EMAIL NOTIFICATION ───────────────────────────────────────────────────────
-// Uses FormSubmit.co — same service used by assessment.html.
-// No API keys needed. Already confirmed for gaurav@upcoretechnologies.com.
+// Uses Resend REST API via shared helper constants.
+// Requires RESEND_API_KEY env var in Vercel.
 
-const NOTIFY_TO = 'gaurav@upcoretechnologies.com';
-const NOTIFY_CC = 'saswata@upcoretechnologies.com';
+const RESEND_FROM    = 'Upcore Technologies <noreply@upcoretech.com>';
+const RESEND_TEAM    = ['gaurav@upcoretechnologies.com', 'saswata@upcoretechnologies.com'];
+const RESEND_REPLY   = 'gaurav@upcoretechnologies.com';
+
+async function resendSend({ to, subject, html }) {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error('RESEND_API_KEY env var is not set');
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${key}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      from: RESEND_FROM,
+      to: Array.isArray(to) ? to : [to],
+      reply_to: RESEND_REPLY,
+      subject,
+      html
+    })
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Resend error ${res.status}: ${err}`);
+  }
+  return res.json();
+}
 
 async function sendLeadNotification({ userName, email, phone, industry, companyName, agentName, painPoint, actions, demoUrl, slug }) {
   const cfg = INDUSTRY_CONFIG[industry] || {};
   const actionsStr = (actions || []).join(', ') || 'Not specified';
   const createdAt = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
 
-  // 1 — Notify the Upcore team (both inboxes via _cc)
-  const payload = {
-    _subject:  `🤖 New Demo Lead — ${userName || email} · ${cfg.label || industry}`,
-    _template: 'table',
-    _captcha:  'false',
-    _cc:       NOTIFY_CC,
-    // Contact fields
-    'Name':        userName    || 'Not provided',
-    'Email':       email       || 'Not provided',
-    'Phone':       phone       || 'Not provided',
-    'Company':     companyName || 'Not provided',
-    // Demo fields
-    'Industry':    `${cfg.emoji || ''} ${cfg.label || industry}`,
-    'Agent Name':  agentName,
-    'Actions':     actionsStr,
-    'Pain Point':  painPoint,
-    'Demo URL':    demoUrl,
-    'Demo ID':     slug,
-    'Created At':  `${createdAt} IST`,
+  const fields = {
+    'Name':       userName    || 'Not provided',
+    'Email':      email       || 'Not provided',
+    'Phone':      phone       || 'Not provided',
+    'Company':    companyName || 'Not provided',
+    'Industry':   `${cfg.emoji || ''} ${cfg.label || industry}`,
+    'Agent Name': agentName,
+    'Actions':    actionsStr,
+    'Pain Point': painPoint,
+    'Demo URL':   `<a href="${demoUrl}">${demoUrl}</a>`,
+    'Demo ID':    slug,
+    'Created At': `${createdAt} IST`
   };
 
-  const res = await fetch(`https://formsubmit.co/${NOTIFY_TO}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify(payload)
-  });
+  const rows = Object.entries(fields).map(([k, v]) => `
+    <tr>
+      <td style="padding:8px 12px;font-size:13px;color:#6b7280;width:35%;vertical-align:top;border-bottom:1px solid #f3f4f6;">${k}</td>
+      <td style="padding:8px 12px;font-size:13px;color:#111827;font-weight:600;border-bottom:1px solid #f3f4f6;">${v || '—'}</td>
+    </tr>`).join('');
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`FormSubmit error ${res.status}: ${text}`);
-  }
+  const subject = `🤖 New Demo Lead — ${userName || email} · ${cfg.label || industry}`;
+  const html = `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#111827;">
+      <div style="background:#07101e;padding:20px 24px;border-radius:8px 8px 0 0;">
+        <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#0abfcc;">Upcore Technologies</p>
+        <h2 style="margin:6px 0 0;font-size:18px;color:#ffffff;">${subject}</h2>
+      </div>
+      <div style="background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+        <table style="width:100%;border-collapse:collapse;">${rows}</table>
+      </div>
+      <p style="font-size:11px;color:#9ca3af;margin:12px 0 0;text-align:center;">${createdAt} IST · upcoretech.com</p>
+    </div>`;
 
-  // 2 — Confirmation email to the prospect
+  // 1 — Notify both team inboxes
+  await resendSend({ to: RESEND_TEAM, subject, html });
+
+  // 2 — Confirmation to the prospect (fire-and-forget)
   if (email && email.includes('@')) {
-    const confirmPayload = {
-      _subject:  'Your Upcore AI Agent Demo is Ready',
-      _template: 'table',
-      _captcha:  'false',
-      'Hi': userName || 'there',
-      'Your demo is live': demoUrl,
-      'Industry': `${cfg.emoji || ''} ${cfg.label || industry}`,
-      'Agent': agentName,
-      'What happens next': 'A member of our team will reach out within 24 hours to walk you through the demo and discuss how a custom agent could work for your business.',
-      'Questions?': 'Reply to this email or WhatsApp us at +91 99881 35327.',
-      'Team': 'Upcore Technologies — upcoretech.com'
-    };
-    // Fire-and-forget — don't let confirmation failure block the main notification
-    fetch(`https://formsubmit.co/${email}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(confirmPayload)
+    const firstName = (userName || 'there').split(' ')[0];
+    const confirmHtml = `
+      <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#111827;">
+        <div style="background:#07101e;padding:20px 24px;border-radius:8px 8px 0 0;">
+          <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#0abfcc;">Upcore Technologies</p>
+          <h2 style="margin:6px 0 0;font-size:18px;color:#ffffff;">Your Demo is Live ✓</h2>
+        </div>
+        <div style="background:#ffffff;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px;padding:24px;">
+          <p style="font-size:15px;margin:0 0 16px;">Hi ${firstName},</p>
+          <ul style="padding-left:20px;margin:0 0 24px;">
+            <li style="margin-bottom:8px;font-size:14px;color:#374151;">Your personalised agent demo is ready: <a href="${demoUrl}" style="color:#0abfcc;">${demoUrl}</a></li>
+            <li style="margin-bottom:8px;font-size:14px;color:#374151;">A member of our team will reach out within <strong>24 hours</strong> to walk you through the demo.</li>
+            <li style="margin-bottom:8px;font-size:14px;color:#374151;">We'll discuss how a custom agent can be deployed for <strong>${companyName || 'your business'}</strong> in 48 hours.</li>
+          </ul>
+          <p style="font-size:13px;color:#6b7280;margin:0;">Questions? Reply to this email or WhatsApp us at <strong>+91 99881 35327</strong>.</p>
+        </div>
+        <p style="font-size:11px;color:#9ca3af;margin:12px 0 0;text-align:center;">Upcore Technologies · <a href="https://www.upcoretech.com" style="color:#0abfcc;">upcoretech.com</a></p>
+      </div>`;
+
+    resendSend({
+      to: email,
+      subject: 'Your Upcore AI Agent Demo is Ready',
+      html: confirmHtml
     }).catch(err => console.error('Demo confirmation email failed:', err));
   }
 }

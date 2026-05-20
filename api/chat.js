@@ -183,42 +183,37 @@ module.exports = async (req, res) => {
 };
 
 async function sendBookingEmails(data) {
-  const base = { _captcha: 'false', _template: 'table' };
+  const { notifyTeam, confirmProspect } = require('./_email');
 
-  // Notification to Upcore (both inboxes via _cc)
-  await fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({
-      ...base,
-      _subject: `🤖 New Chat Lead — ${data.name} · ${data.company}`,
-      _cc: 'saswata@upcoretechnologies.com',
-      'Name': data.name,
-      'Email': data.email,
-      'Phone': data.phone,
-      'Company': data.company,
-      'Industry': data.industry,
+  // 1 — Notify the Upcore team (both inboxes)
+  await notifyTeam({
+    subject: `🤖 New Chat Lead — ${data.name} · ${data.company}`,
+    fields: {
+      'Name':      data.name,
+      'Email':     data.email,
+      'Phone':     data.phone      || '—',
+      'Company':   data.company    || '—',
+      'Industry':  data.industry   || '—',
       'Challenge': data.challenge,
-      'Source': 'Website Chat Widget (Kai)'
-    })
+      'Source':    'Website Chat Widget (Kai)'
+    }
   });
 
-  // Confirmation to prospect
+  // 2 — Confirmation to prospect (fire-and-forget)
   if (data.email && data.email.includes('@')) {
-    await fetch(`https://formsubmit.co/${data.email}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        ...base,
-        _subject: 'Your Discovery Call Request — Upcore Technologies',
-        'Hi': data.name,
-        'What happens next': "We'll reach out within 24 hours to confirm your session time.",
-        'Your session will cover': '1) Current AI Posture Audit  2) Top 3 Agent Opportunities  3) Draft Architecture Blueprint  4) ROI Estimate',
-        'Company': data.company,
-        'Industry': data.industry,
-        'Questions?': 'Reply to this email or WhatsApp Gaurav directly.',
-        'Team': 'Upcore Technologies — upcoretech.com'
-      })
-    });
+    confirmProspect({
+      to: data.email,
+      name: data.name,
+      subject: 'Your Discovery Call Request — Upcore Technologies',
+      heading: 'Discovery Call Requested ✓',
+      lines: [
+        "We'll reach out within <strong>24 hours</strong> to confirm your session time.",
+        'Your session will cover:',
+        '&nbsp;&nbsp;&nbsp;① Current AI posture audit',
+        '&nbsp;&nbsp;&nbsp;② Your top 3 agent opportunities',
+        '&nbsp;&nbsp;&nbsp;③ Draft architecture blueprint',
+        '&nbsp;&nbsp;&nbsp;④ ROI estimate'
+      ]
+    }).catch(err => console.error('Chat confirmation email failed:', err));
   }
 }

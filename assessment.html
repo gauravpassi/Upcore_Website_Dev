@@ -27,29 +27,44 @@
 <meta name="twitter:title" content="Free AI Readiness Assessment | Upcore Technologies"/>
 <meta name="twitter:description" content="Take Upcore's free AI readiness assessment. Get a personalised report identifying the highest-ROI AI automation opportunities for your business in under 10"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 /* ── Navigation ──────────────────────────────────────────────── */
-nav{width:100%;background:rgba(7,16,30,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,191,204,.13);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:68px;width:auto;}
+.nav-logo img{height:40px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
-.nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(139,190,212,1);transition:color .2s,background .2s;text-decoration:none;}
-.nav-links a:hover{color:#ffffff;background:rgba(10,191,204,.08);}
-.nav-links a.active{color:#0abfcc;}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);color:#07101e;font-size:14px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;}
-.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
+.nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
+.nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
 @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
 
 
-:root{
-  --bg:#07101e;--bg2:#0a1628;--bg3:#0d1c34;--card:#0f2040;
-  --teal:#0abfcc;--mint:#3dddc4;--teal3:#0891b2;
-  --txt:#ffffff;--txt2:#8bbed4;--txt3:#3a6080;
-  --border:rgba(10,191,204,.13);--bh:rgba(10,191,204,.38);
-  --glow:rgba(10,191,204,.08);
-  --grad:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);
-  --ff:'Poppins',sans-serif;
+:root {
+  --bg:     #ffffff;
+  --bg2:    #f7f8fa;
+  --bg3:    #f2f3f5;
+  --card:   #ffffff;
+  --card2:  #f7f8fa;
+  --teal:   #0ABFCC;
+  --teal2:  #089AAA;
+  --mint:   #0ABFCC;
+  --green:  #22C55E;
+  --red:    #EF4444;
+  --txt:    #0a0a0a;
+  --txt2:   #45515e;
+  --txt3:   #8e8e93;
+  --ink:    #0a0a0a;
+  --ink-press: #222222;
+  --border: #e5e7eb;
+  --bh:     #d1d5db;
+  --glow:   rgba(0,0,0,0.04);
+  --grad:   linear-gradient(135deg,#0891b2,#0ABFCC);
+  --ff:     "DM Sans", sans-serif;
+  --nav-h:  64px;
+  --max:    1240px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -142,9 +157,9 @@ img{display:block;max-width:100%;}
   width:100%;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;
   background:var(--grad);color:#07101e;font-family:var(--ff);
   font-size:16px;font-weight:700;transition:all .22s;margin-top:8px;
-  box-shadow:0 4px 28px rgba(10,191,204,.28);
+  ;
 }
-.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 44px rgba(10,191,204,.45);}
+.form-submit:hover{transform:translateY(-2px);}
 .form-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
 
 .form-privacy{font-size:12px;color:var(--txt3);margin-top:12px;text-align:center;}
@@ -166,27 +181,27 @@ img{display:block;max-width:100%;}
   .form-row{grid-template-columns:1fr;}
   
 }
-footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
 .footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:var(--txt3);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
-.footer-soc-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);text-decoration:none;transition:background .15s,border-color .15s,color .15s;}
-.footer-soc-btn:hover{background:rgba(0,212,180,0.12);border-color:rgba(0,212,180,0.35);color:#00d4b4;}
+.footer-soc-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);text-decoration:none;transition:background .15s,border-color .15s,color .15s;}
+.footer-soc-btn:hover{background:rgba(10,191,204,0.10);border-color:rgba(10,191,204,0.28);color:var(--teal);}
 .footer-review-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
 .footer-review-btn{display:flex;align-items:center;gap:7px;padding:7px 13px;border-radius:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);text-decoration:none;transition:background .15s,border-color .15s;font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);}
 .footer-review-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
 .footer-review-btn svg{flex-shrink:0;overflow:visible;}
-.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:16px;}
+.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
-.footer-links a{font-size:13px;color:var(--txt2);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:#00d4b4;}
-.footer-bottom{border-top:1px solid var(--border);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-copy{font-size:12px;color:var(--txt3);}
-.footer-copy a{color:var(--txt3);text-decoration:none;}
-.footer-copy a:hover{color:#00d4b4;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-copy a{color:rgba(255,255,255,.3);text-decoration:none;}
+.footer-copy a:hover{color:var(--teal);}
 @media(max-width:900px){footer{padding:48px 24px 0;}.footer-grid{grid-template-columns:1fr 1fr;gap:32px;}}
 @media(max-width:560px){.footer-grid{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}}
 </style>
@@ -219,14 +234,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/#solution">Solutions</a></li>
-    <li><a href="/#products">Products</a></li>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/platform">Products</a></li>
     <li><a href="/industries">Industries</a></li>
-    <li><a href="/insights">Insights</a></li>
+    <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
-    <li><a href="/#engage">How It Works</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Discovery Call</a>
+  <a href="/assessment" class="nav-cta">Book a Call</a>
 </nav>
 
 <div class="page-wrap">
@@ -237,32 +251,32 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <!-- LEFT: Info panel -->
     <div class="info-panel">
       <div class="info-eyebrow">Free AI Assessment</div>
-      <h1>Let's Map Your<br/><span class="grad-text">AI Opportunity</span></h1>
+      <h1>Let's Map Your<br/><strong>AI Opportunity</strong></h1>
       <p>In 45 minutes, we audit your operations, identify your top 3 agent opportunities, and hand you a written action plan. No pitch. No pressure. Just clarity.</p>
       <div class="info-includes">
         <div class="info-item">
-          <div class="info-icon">🔍</div>
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <div class="info-text">
             <h4>Current AI Posture Audit</h4>
             <p>We assess what you have, what's working, and where you're losing value today.</p>
           </div>
         </div>
         <div class="info-item">
-          <div class="info-icon">🎯</div>
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div class="info-text">
             <h4>Top 3 Agent Opportunities</h4>
             <p>Ranked by ROI potential and implementation speed for your specific business.</p>
           </div>
         </div>
         <div class="info-item">
-          <div class="info-icon">📐</div>
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
           <div class="info-text">
             <h4>Draft Architecture Blueprint</h4>
             <p>A practical sketch of how your first agent would work within your existing stack.</p>
           </div>
         </div>
         <div class="info-item">
-          <div class="info-icon">💰</div>
+          <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
           <div class="info-text">
             <h4>ROI Estimate Per Opportunity</h4>
             <p>Realistic numbers: time saved, cost reduced, and revenue unlocked.</p>
@@ -278,11 +292,15 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="form-panel">
       <div id="form-wrap">
         <h2>Book a Discovery Call</h2>
+        <div style="display:flex;align-items:center;gap:8px;margin:8px 0 12px;font-size:12px;color:var(--txt3);">
+          <span style="color:#f59e0b;">★★★★★</span>
+          <span><strong style="color:var(--txt2);">4.9</strong> on Clutch &nbsp;·&nbsp; ISO 27001 Certified &nbsp;·&nbsp; 50+ Enterprise Deployments</span>
+        </div>
         <p class="form-sub">Takes 2 minutes to fill out. We'll confirm within 24 hours.</p>
 
         <form id="assessment-form" action="https://formsubmit.co/gaurav@upcoretechnologies.com" method="POST">
           <!-- FormSubmit config -->
-          <input type="hidden" name="_subject" value="📋 New AI Assessment Request via Upcore Website"/>
+          <input type="hidden" name="_subject" value="New AI Assessment Request via Upcore Website"/>
           <input type="hidden" name="_template" value="table"/>
           <input type="hidden" name="_captcha" value="false"/>
           <input type="hidden" name="_cc" value="saswata@upcoretechnologies.com"/>
@@ -365,16 +383,16 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
             </select>
           </div>
 
+          <p class="form-privacy">We respond within 24 hours. No commitment required. Your details are kept private.</p>
           <button type="submit" class="form-submit" id="submit-btn">
-            Book a Discovery Call &#8594;
+            Schedule My Assessment &#8594;
           </button>
-          <p class="form-privacy">Your details are kept private and never shared. We respond within 24 hours.</p>
         </form>
       </div>
 
       <!-- Success message (shown after JS submit) -->
       <div id="success-msg">
-        <div class="success-icon">✅</div>
+        <div class="success-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
         <h3>You're on the list!</h3>
         <p>We've received your assessment request and will reach out within 24 hours to confirm your session time. Check your inbox at <strong id="confirm-email"></strong></p>
         <a href="/" class="btn-back">&#8592; Back to Home</a>
@@ -432,7 +450,7 @@ document.getElementById('assessment-form').addEventListener('submit', function(e
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Your AI Partner. Not Just Another AI Tool.<br/>We build agents that actually run your business.</p>
+      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
       <div class="footer-social-row">
         <a href="https://linkedin.com/company/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="LinkedIn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -507,7 +525,7 @@ document.getElementById('assessment-form').addEventListener('submit', function(e
   </div>
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Upcore Technologies Pvt. Ltd. · <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
-    <span class="footer-copy" style="font-style:italic;color:var(--txt3);">Your AI Partner. Not Just Another AI Tool.</span>
+    <span class="footer-copy" style="color:rgba(255,255,255,.2);letter-spacing:.3px;">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; ISO&nbsp;9001</span>
   </div>
 </footer>
 <script src="/chat-widget.js" defer></script>

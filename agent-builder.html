@@ -47,28 +47,43 @@
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 /* ── Navigation ──────────────────────────────────────────────── */
-nav{width:100%;background:rgba(7,16,30,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,191,204,.13);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:68px;width:auto;}
+.nav-logo img{height:40px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
-.nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(139,190,212,1);transition:color .2s,background .2s;text-decoration:none;}
-.nav-links a:hover{color:#ffffff;background:rgba(10,191,204,.08);}
-.nav-links a.active{color:#0abfcc;}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);color:#07101e;font-size:14px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;}
-.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
+.nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
+.nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
 @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
 
-:root{
-  --bg:#07101e;--bg2:#0a1628;--bg3:#0d1c34;--card:#0f2040;--card2:#0a1a32;
-  --teal:#0abfcc;--mint:#3dddc4;--teal3:#0891b2;
-  --txt:#ffffff;--txt2:#8bbed4;--txt3:#3a6080;
-  --border:rgba(10,191,204,.13);--bh:rgba(10,191,204,.38);
-  --glow:rgba(10,191,204,.08);--red:#f87171;--green:#4ade80;--amber:#fbbf24;
-  --grad:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);
-  --ff:'Poppins',sans-serif;
+:root {
+  --bg:     #ffffff;
+  --bg2:    #f7f8fa;
+  --bg3:    #f2f3f5;
+  --card:   #ffffff;
+  --card2:  #f7f8fa;
+  --teal:   #0ABFCC;
+  --teal2:  #089AAA;
+  --mint:   #0ABFCC;
+  --green:  #22C55E;
+  --red:    #EF4444;
+  --txt:    #0a0a0a;
+  --txt2:   #45515e;
+  --txt3:   #8e8e93;
+  --ink:    #0a0a0a;
+  --ink-press: #222222;
+  --border: #e5e7eb;
+  --bh:     #d1d5db;
+  --glow:   rgba(0,0,0,0.04);
+  --grad:   linear-gradient(135deg,#0891b2,#0ABFCC);
+  --ff:     "DM Sans", sans-serif;
+  --nav-h:  64px;
+  --max:    1240px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -98,7 +113,7 @@ a{text-decoration:none;color:inherit;}
 .hero-hook{font-size:15px;color:var(--teal);font-style:italic;padding:14px 18px;border-left:3px solid var(--teal);background:rgba(10,191,204,.05);border-radius:0 10px 10px 0;margin-bottom:36px;max-width:520px;}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;}
 .btn-hero-primary{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#07101e;font-family:var(--ff);font-size:15px;font-weight:700;padding:16px 32px;border-radius:100px;transition:all .2s;}
-.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(10,191,204,.4);}
+.btn-hero-primary:hover{transform:translateY(-2px);}
 .btn-hero-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-family:var(--ff);font-size:15px;font-weight:600;padding:14px 28px;border-radius:100px;border:1px solid var(--border);transition:all .2s;}
 .btn-hero-ghost:hover{border-color:var(--teal);background:rgba(10,191,204,.06);}
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
@@ -148,7 +163,7 @@ a{text-decoration:none;color:inherit;}
 .step-connector{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:20px;height:2px;background:var(--border);z-index:1;}
 .step-card:last-child .step-connector{display:none;}
 .who-badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:100px;padding:3px 10px;margin-top:10px;}
-.who-human{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:var(--amber);}
+.who-human{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);color:var(--teal2);}
 .who-agent{background:rgba(10,191,204,.08);border:1px solid var(--border);color:var(--teal);}
 
 /* INDUSTRY TABS */
@@ -194,7 +209,7 @@ a{text-decoration:none;color:inherit;}
 .compare-table td.feature{font-weight:600;color:var(--txt);}
 .compare-table td.check{color:var(--green);font-weight:700;}
 .compare-table td.cross{color:var(--red);}
-.compare-table td.partial{color:var(--amber);}
+.compare-table td.partial{color:var(--teal2);}
 .compare-wrap{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
 
 /* TRUST */
@@ -228,7 +243,7 @@ a{text-decoration:none;color:inherit;}
 .cta-sub{font-size:18px;color:var(--txt2);margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7;}
 .cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#07101e;font-family:var(--ff);font-size:15px;font-weight:700;padding:16px 32px;border-radius:100px;transition:all .2s;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(10,191,204,.4);}
+.btn-primary:hover{transform:translateY(-2px);}
 .btn-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-family:var(--ff);font-size:15px;font-weight:600;padding:15px 30px;border-radius:100px;border:1px solid var(--border);transition:all .2s;}
 .btn-ghost:hover{border-color:var(--teal);background:rgba(10,191,204,.06);}
 
@@ -254,21 +269,21 @@ footer p{font-size:12px;color:var(--txt3);}
 }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
 .footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:var(--txt3);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
 .footer-soc-btn{
   display:flex;align-items:center;justify-content:center;
-  width:38px;height:38px;border-radius:10px;
+  width:38px;height:38px;border-radius:50%;
   background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
   color:rgba(255,255,255,0.5);text-decoration:none;
   transition:background .15s,border-color .15s,color .15s;
 }
-.footer-soc-btn:hover{background:rgba(0,212,180,0.12);border-color:rgba(0,212,180,0.35);color:#00d4b4;}
+.footer-soc-btn:hover{background:rgba(10,191,204,0.10);border-color:rgba(10,191,204,0.28);color:var(--teal);}
 .footer-review-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
 .footer-review-btn{
   display:flex;align-items:center;gap:7px;
@@ -279,14 +294,14 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 }
 .footer-review-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
 .footer-review-btn svg{flex-shrink:0;overflow:visible;}
-.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:16px;}
+.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
-.footer-links a{font-size:13px;color:var(--txt2);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:#00d4b4;}
-.footer-bottom{border-top:1px solid var(--border);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-copy{font-size:12px;color:var(--txt3);}
-.footer-copy a{color:var(--txt3);text-decoration:none;}
-.footer-copy a:hover{color:#00d4b4;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-copy a{color:rgba(255,255,255,.3);text-decoration:none;}
+.footer-copy a:hover{color:var(--teal);}
 @media(max-width:900px){
   footer{padding:48px 24px 0;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
@@ -295,6 +310,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
   .footer-grid{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
 }
+.proof-strip{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.ps-item{font-size:12px;font-weight:600;color:var(--txt2);letter-spacing:.02em;}
+.ps-sep{color:var(--txt3);font-size:12px;}
 </style>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -307,14 +325,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/#solution">Solutions</a></li>
-    <li><a href="/#products">Products</a></li>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/platform">Products</a></li>
     <li><a href="/industries">Industries</a></li>
-    <li><a href="/insights">Insights</a></li>
+    <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
-    <li><a href="/#engage">How It Works</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Discovery Call</a>
+  <a href="/assessment" class="nav-cta">Book a Call</a>
 </nav>
 
 <!-- HERO -->
@@ -323,13 +340,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="hero-left">
       <div class="hero-badge">
         <span class="live-dot"></span>
-        🧠 Studio by Upcore. Agent Builder
+        Studio by Upcore. Agent Builder
       </div>
-      <h1>Your Workflows.<br/><span class="grad-text">Now Run Themselves.</span></h1>
+      <h1>Your Workflows.<br/><strong>Now Run Themselves.</strong></h1>
       <p class="hero-sub">Most AI tools are built for generic use. Studio builds agents that know your industry, speak your terminology, and automate workflows that are specific to <em>your</em> business. deployed in 48 hours.</p>
       <div class="hero-hook">"If you can describe what your team does every day, we can turn it into an agent."</div>
       <div class="hero-ctas">
-        <a href="/build-your-demo" class="btn-hero-primary">🤖 Build Your Agent Demo →</a>
+        <a href="/build-your-demo" class="btn btn-fill">Build Your Agent Demo →</a>
         <a href="/assessment" class="btn-hero-ghost">Book a Discovery Call</a>
       </div>
       <div class="hero-stats">
@@ -342,7 +359,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div style="display:flex;flex-direction:column;align-items:flex-end;">
       <div class="builder-window">
         <div class="builder-header">
-          <div class="bh-icon">🧠</div>
+          <div class="bh-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
           <div><div class="bh-title">Studio Agent Builder</div><div class="bh-sub">Describe → Configure → Deploy</div></div>
         </div>
         <div class="builder-body">
@@ -381,13 +398,24 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
   </div>
 </section>
 
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <span class="ps-item">★ 4.9 on Clutch</span>
+  <span class="ps-sep">·</span>
+  <span class="ps-item">ISO 27001 Certified</span>
+  <span class="ps-sep">·</span>
+  <span class="ps-item">CMMI Level 3</span>
+  <span class="ps-sep">·</span>
+  <span class="ps-item">Top AI Company 2025</span>
+</div>
+
 <div class="divider"></div>
 
 <!-- HOW IT WORKS -->
 <section class="section">
   <div class="section-inner">
-    <div class="eyebrow">⚡ How It Works</div>
-    <h2 class="section-title">From Description to <span class="grad-text">Live Agent in 4 Steps</span></h2>
+    <div class="eyebrow">How It Works</div>
+    <h2 class="section-title">From Description to <strong>Live Agent in 4 Steps</strong></h2>
     <p class="section-sub">No developers. No complex configuration. You describe, we build, you control.</p>
     <div class="steps-grid">
       <div class="step-card">
@@ -395,7 +423,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
         <div class="step-label">You Describe</div>
         <div class="step-title">Tell Studio What the Agent Should Do</div>
         <div class="step-desc">Plain English. No flowcharts, no API specs. "Handle customer returns via WhatsApp, issue refunds for orders under ₹2,000, escalate above that."</div>
-        <div class="who-badge who-human">👤 You</div>
+        <div class="who-badge who-human">You</div>
         <div class="step-connector"></div>
       </div>
       <div class="step-card">
@@ -403,7 +431,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
         <div class="step-label">Studio Configures</div>
         <div class="step-title">Agent is Designed Around Your Workflows</div>
         <div class="step-desc">Studio maps your description to logic, guardrails, escalation paths, and data sources. You review the configuration before anything goes live.</div>
-        <div class="who-badge who-agent">🤖 Studio</div>
+        <div class="who-badge who-agent">Studio</div>
         <div class="step-connector"></div>
       </div>
       <div class="step-card">
@@ -411,7 +439,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
         <div class="step-label">You Review & Approve</div>
         <div class="step-title">Nothing Ships Without Your Sign-Off</div>
         <div class="step-desc">See exactly how the agent will behave. tone, rules, escalation triggers. Adjust anything. Your approval is the gate before deployment.</div>
-        <div class="who-badge who-human">👤 You</div>
+        <div class="who-badge who-human">You</div>
         <div class="step-connector"></div>
       </div>
       <div class="step-card">
@@ -419,7 +447,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
         <div class="step-label">Agent Goes Live</div>
         <div class="step-title">Deployed to WhatsApp, Web, Slack, or API</div>
         <div class="step-desc">One click. The agent is live, handling real interactions, logging every action, and escalating to your team whenever it hits an edge case.</div>
-        <div class="who-badge who-agent">🤖 Studio</div>
+        <div class="who-badge who-agent">Studio</div>
       </div>
     </div>
   </div>
@@ -430,35 +458,35 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <!-- INDUSTRY SHOWCASE. THE STAR FEATURE -->
 <section class="industry-section section-bg2" id="industry-showcase">
   <div class="industry-inner">
-    <div class="eyebrow">🏭 Agents by Industry</div>
-    <h2 class="section-title">Pre-Built for <span class="grad-text">Your Industry</span></h2>
+    <div class="eyebrow">Agents by Industry</div>
+    <h2 class="section-title">Pre-Built for <strong>Your Industry</strong></h2>
     <p class="section-sub">Every industry has different workflows, terminology, and compliance needs. Studio agents are built from the ground up for each vertical, not adapted from a generic template.</p>
 
     <!-- TABS -->
     <div class="industry-tabs">
-      <button class="ind-tab active" onclick="showIndustry('manufacturing',this)">🏭 Manufacturing</button>
-      <button class="ind-tab" onclick="showIndustry('ecommerce',this)">🛒 Ecommerce</button>
-      <button class="ind-tab" onclick="showIndustry('edtech',this)">🎓 EdTech</button>
-      <button class="ind-tab" onclick="showIndustry('banking',this)">🏦 Banking & Finance</button>
-      <button class="ind-tab" onclick="showIndustry('realestate',this)">🏠 Real Estate</button>
-      <button class="ind-tab" onclick="showIndustry('nbfc',this)">💰 NBFCs</button>
-      <button class="ind-tab" onclick="showIndustry('govt',this)">🏛️ Government</button>
-      <button class="ind-tab" onclick="showIndustry('saas',this)">☁️ SaaS</button>
-      <button class="ind-tab" onclick="showIndustry('healthcare',this)">🏥 Healthcare</button>
-      <button class="ind-tab" onclick="showIndustry('logistics',this)">🚚 Logistics</button>
-      <button class="ind-tab" onclick="showIndustry('legal',this)">⚖️ Legal</button>
-      <button class="ind-tab" onclick="showIndustry('marketing',this)">📣 Marketing</button>
+      <button class="ind-tab active" onclick="showIndustry('manufacturing',this)">Manufacturing</button>
+      <button class="ind-tab" onclick="showIndustry('ecommerce',this)">Ecommerce</button>
+      <button class="ind-tab" onclick="showIndustry('edtech',this)">EdTech</button>
+      <button class="ind-tab" onclick="showIndustry('banking',this)">Banking & Finance</button>
+      <button class="ind-tab" onclick="showIndustry('realestate',this)">Real Estate</button>
+      <button class="ind-tab" onclick="showIndustry('nbfc',this)">NBFCs</button>
+      <button class="ind-tab" onclick="showIndustry('govt',this)">Government</button>
+      <button class="ind-tab" onclick="showIndustry('saas',this)">SaaS</button>
+      <button class="ind-tab" onclick="showIndustry('healthcare',this)">Healthcare</button>
+      <button class="ind-tab" onclick="showIndustry('logistics',this)">Logistics</button>
+      <button class="ind-tab" onclick="showIndustry('legal',this)">Legal</button>
+      <button class="ind-tab" onclick="showIndustry('marketing',this)">Marketing</button>
     </div>
 
     <!-- MANUFACTURING -->
     <div class="industry-panel active" id="panel-manufacturing">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🏭 Manufacturing</div>
-          <div class="ind-title">Catch Defects Early. Cut Procurement Costs. <span class="grad-text">Move Faster.</span></div>
+          <div class="ind-tag">Manufacturing</div>
+          <div class="ind-title">Catch Defects Early. Cut Procurement Costs. <strong>Move Faster.</strong></div>
           <div class="ind-desc">Manufacturing agents monitor quality, track procurement prices, accelerate feasibility studies, and keep your compliance certifications current. all running in the background while your team focuses on output.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/manufacturing" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/manufacturing" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -498,11 +526,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-ecommerce">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🛒 Ecommerce</div>
-          <div class="ind-title">Recover More Revenue. <span class="grad-text">Handle More Customers.</span></div>
+          <div class="ind-tag">Ecommerce</div>
+          <div class="ind-title">Recover More Revenue. <strong>Handle More Customers.</strong></div>
           <div class="ind-desc">Ecommerce agents handle the work that falls through the cracks. cart abandonment, returns, review responses, inventory alerts. Your team can focus on growth, not operations.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/retail-d2c" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/retail-d2c" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -542,11 +570,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-edtech">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🎓 EdTech</div>
-          <div class="ind-title">Higher Enrollment. Lower Dropout. <span class="grad-text">Better Outcomes.</span></div>
+          <div class="ind-tag">EdTech</div>
+          <div class="ind-title">Higher Enrollment. Lower Dropout. <strong>Better Outcomes.</strong></div>
           <div class="ind-desc">EdTech agents support students 24/7, nurture prospects from inquiry to admission, and identify at-risk learners before they quit. all without adding headcount to your academic ops team.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/edtech" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/edtech" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -586,11 +614,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-banking">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🏦 Banking & Finance</div>
-          <div class="ind-title">Faster Processing. Stronger Compliance. <span class="grad-text">24/7 Customer Service.</span></div>
+          <div class="ind-tag">Banking & Finance</div>
+          <div class="ind-title">Faster Processing. Stronger Compliance. <strong>24/7 Customer Service.</strong></div>
           <div class="ind-desc">Banking agents handle KYC reviews, loan pre-qualification, customer FAQs, and compliance monitoring, reducing manual workload while keeping human oversight exactly where regulations require it.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/banking-finance" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/banking-finance" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -630,11 +658,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-realestate">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🏠 Real Estate</div>
-          <div class="ind-title">Qualify More Leads. Chase Fewer Documents. <span class="grad-text">Close Faster.</span></div>
+          <div class="ind-tag">Real Estate</div>
+          <div class="ind-title">Qualify More Leads. Chase Fewer Documents. <strong>Close Faster.</strong></div>
           <div class="ind-desc">Real estate agents handle the repetitive work across the buyer journey. from lead qualification and site visit scheduling to document collection and post-booking engagement. Your sales team only talks to buyers who matter.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/real-estate" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/real-estate" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -674,11 +702,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-nbfc">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">💰 NBFCs</div>
-          <div class="ind-title">Process More Applications. Collect Better. <span class="grad-text">Stay Compliant.</span></div>
+          <div class="ind-tag">NBFCs</div>
+          <div class="ind-title">Process More Applications. Collect Better. <strong>Stay Compliant.</strong></div>
           <div class="ind-desc">NBFC agents handle the high-volume, high-stakes work across credit, collections, and compliance. operating within your risk policies while dramatically reducing manual effort per loan.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/nbfc-loans" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/nbfc-loans" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -718,11 +746,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-govt">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🏛️ Government</div>
-          <div class="ind-title">Serve More Citizens. <span class="grad-text">Reduce Grievance Backlogs.</span></div>
+          <div class="ind-tag">Government</div>
+          <div class="ind-title">Serve More Citizens. <strong>Reduce Grievance Backlogs.</strong></div>
           <div class="ind-desc">Government agents handle citizen queries, track grievances, verify documents, and communicate scheme updates at scale. improving service delivery without expanding the administrative headcount.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/government" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/government" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -762,11 +790,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-saas">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">☁️ SaaS</div>
-          <div class="ind-title">Retain More. Onboard Faster. <span class="grad-text">Grow Without Growing the Team.</span></div>
+          <div class="ind-tag">SaaS</div>
+          <div class="ind-title">Retain More. Onboard Faster. <strong>Grow Without Growing the Team.</strong></div>
           <div class="ind-desc">SaaS agents handle the touchpoints that determine whether a customer succeeds or churns. onboarding, feature adoption, churn signals, and renewal. running automatically across your entire user base.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/saas-technology" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/saas-technology" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -806,11 +834,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-healthcare">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🏥 Healthcare</div>
-          <div class="ind-title">Better Patient Experience. Less Admin Burden. <span class="grad-text">Zero Missed Follow-ups.</span></div>
+          <div class="ind-tag">Healthcare</div>
+          <div class="ind-title">Better Patient Experience. Less Admin Burden. <strong>Zero Missed Follow-ups.</strong></div>
           <div class="ind-desc">Healthcare agents handle the administrative layer of patient care. appointments, billing queries, pre-consultation triage, and medication reminders. freeing your clinical staff to focus on care.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/healthcare" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/healthcare" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -850,11 +878,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-logistics">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">🚚 Logistics</div>
-          <div class="ind-title">Fewer Customer Calls. Faster Ops. <span class="grad-text">Complete Visibility.</span></div>
+          <div class="ind-tag">Logistics</div>
+          <div class="ind-title">Fewer Customer Calls. Faster Ops. <strong>Complete Visibility.</strong></div>
           <div class="ind-desc">Logistics agents proactively communicate shipment status, catch delays before customers notice, reconcile invoices, and collect proof-of-delivery. eliminating the manual work that slows down your ops floor.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/logistics" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/logistics" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -894,11 +922,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-legal">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">⚖️ Legal</div>
-          <div class="ind-title">Faster Reviews. Fewer Missed Deadlines. <span class="grad-text">Better Client Communication.</span></div>
+          <div class="ind-tag">Legal</div>
+          <div class="ind-title">Faster Reviews. Fewer Missed Deadlines. <strong>Better Client Communication.</strong></div>
           <div class="ind-desc">Legal agents handle the labour-intensive, repetitive work. contract review, research, document intake, deadline tracking. Your lawyers spend time on the work that actually requires a lawyer.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/legal-compliance" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/legal-compliance" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -938,11 +966,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="industry-panel" id="panel-marketing">
       <div class="ind-panel-header">
         <div class="ind-meta">
-          <div class="ind-tag">📣 Marketing</div>
-          <div class="ind-title">More Leads Nurtured. Better Campaigns. <span class="grad-text">Less Repetitive Work.</span></div>
+          <div class="ind-tag">Marketing</div>
+          <div class="ind-title">More Leads Nurtured. Better Campaigns. <strong>Less Repetitive Work.</strong></div>
           <div class="ind-desc">Marketing agents automate the repetitive, high-volume work. lead nurturing sequences, campaign reporting, content briefs, event follow-ups. Your team focuses on strategy and creative, not execution.</div>
         </div>
-        <div class="ind-cta"><a href="/industries/marketing-agencies" class="btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a href="/industries/marketing-agencies" class="btn btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -986,37 +1014,37 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <!-- CAPABILITIES -->
 <section class="section">
   <div class="section-inner">
-    <div class="eyebrow">⚙️ What Every Agent Gets</div>
-    <h2 class="section-title">Built-in Capabilities. <span class="grad-text">Not Add-Ons.</span></h2>
+    <div class="eyebrow">What Every Agent Gets</div>
+    <h2 class="section-title">Built-in Capabilities. <strong>Not Add-Ons.</strong></h2>
     <p class="section-sub">Every agent built in Studio comes with the same enterprise-grade foundation, so you are not paying extra for security, audit trails, or multi-channel deployment.</p>
     <div class="caps-grid">
       <div class="cap-card">
-        <div class="cap-icon">🎯</div>
+        <div class="cap-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <div class="cap-title">Industry-Specific Training</div>
         <div class="cap-desc">Agents learn your industry's terminology, workflows, regulations, and edge cases, not a generic version that needs extensive prompting to understand what "DPD" or "CAPA" means.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">🔗</div>
+        <div class="cap-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
         <div class="cap-title">Deep System Integrations</div>
         <div class="cap-desc">Native connectors to your CRM, ERP, databases, and APIs. Agents read from and write to your systems, not just respond in a chat window disconnected from your data.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">📡</div>
+        <div class="cap-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></div>
         <div class="cap-title">Multi-Channel Deployment</div>
         <div class="cap-desc">Deploy to WhatsApp, Slack, web chat, email, or API. wherever your customers and team actually are. One agent, multiple surfaces, consistent behaviour.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">🛡️</div>
+        <div class="cap-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="cap-title">Guardrails & Escalation</div>
         <div class="cap-desc">Every agent knows its boundaries. When it hits an edge case, it escalates to the right human. with full context attached. instead of hallucinating an answer or dropping the conversation.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">📋</div>
+        <div class="cap-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <div class="cap-title">Full Audit Trail</div>
         <div class="cap-desc">Every interaction, decision, and escalation is logged. Compliance teams get full visibility. Managers can review agent behaviour and tune it without involving engineering.</div>
       </div>
       <div class="cap-card">
-        <div class="cap-icon">📈</div>
+        <div class="cap-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
         <div class="cap-title">Live Analytics Dashboard</div>
         <div class="cap-desc">Track resolution rates, escalation patterns, response times, and volume trends. by agent, by channel, by time period. Know what's working before your leadership asks.</div>
       </div>
@@ -1029,8 +1057,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <!-- COMPARISON -->
 <section class="section section-bg2">
   <div class="section-inner">
-    <div class="eyebrow">📊 How Studio Compares</div>
-    <h2 class="section-title">Not All AI Agents Are <span class="grad-text">Built the Same</span></h2>
+    <div class="eyebrow">How Studio Compares</div>
+    <h2 class="section-title">Not All AI Agents Are <strong>Built the Same</strong></h2>
     <p class="section-sub">Generic AI tools give you a starting point. Studio gives you agents that are ready for production on day one.</p>
     <div class="compare-wrap">
       <table class="compare-table">
@@ -1045,45 +1073,45 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
         <tbody>
           <tr>
             <td class="feature">Industry-specific training</td>
-            <td class="check">✅ Built-in</td>
-            <td class="cross">❌ Requires extensive prompting</td>
-            <td class="partial">⚠️ Months of data work</td>
+            <td class="check">Built-in</td>
+            <td class="cross">Requires extensive prompting</td>
+            <td class="partial">Months of data work</td>
           </tr>
           <tr>
             <td class="feature">Connects to your systems</td>
-            <td class="check">✅ Native CRM/ERP connectors</td>
-            <td class="cross">❌ No data access</td>
-            <td class="check">✅ But takes 6+ months</td>
+            <td class="check">Native CRM/ERP connectors</td>
+            <td class="cross">No data access</td>
+            <td class="check">But takes 6+ months</td>
           </tr>
           <tr>
             <td class="feature">No-code setup</td>
-            <td class="check">✅ Plain English description</td>
-            <td class="partial">⚠️ Still needs a developer</td>
-            <td class="cross">❌ Full dev team required</td>
+            <td class="check">Plain English description</td>
+            <td class="partial">Still needs a developer</td>
+            <td class="cross">Full dev team required</td>
           </tr>
           <tr>
             <td class="feature">WhatsApp deployment</td>
-            <td class="check">✅ Day 1</td>
-            <td class="cross">❌ Not supported</td>
-            <td class="partial">⚠️ Complex integration</td>
+            <td class="check">Day 1</td>
+            <td class="cross">Not supported</td>
+            <td class="partial">Complex integration</td>
           </tr>
           <tr>
             <td class="feature">Human escalation built-in</td>
-            <td class="check">✅ Configurable guardrails</td>
-            <td class="cross">❌ Manual prompting only</td>
-            <td class="partial">⚠️ Custom build required</td>
+            <td class="check">Configurable guardrails</td>
+            <td class="cross">Manual prompting only</td>
+            <td class="partial">Custom build required</td>
           </tr>
           <tr>
             <td class="feature">Audit trail & compliance</td>
-            <td class="check">✅ Every interaction logged</td>
-            <td class="cross">❌ No audit trail</td>
-            <td class="partial">⚠️ Extra dev work</td>
+            <td class="check">Every interaction logged</td>
+            <td class="cross">No audit trail</td>
+            <td class="partial">Extra dev work</td>
           </tr>
           <tr>
             <td class="feature">Time to deploy</td>
-            <td class="check">✅ 48 hours</td>
-            <td class="cross">❌ Weeks of prompting</td>
-            <td class="cross">❌ 3–9 months</td>
+            <td class="check">48 hours</td>
+            <td class="cross">Weeks of prompting</td>
+            <td class="cross">3–9 months</td>
           </tr>
         </tbody>
       </table>
@@ -1097,33 +1125,33 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <section class="section">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px;">
-      <div class="eyebrow" style="justify-content:center;">🔒 Trust & Governance</div>
-      <h2 class="section-title">Your Agents. <span class="grad-text">Your Rules. Always.</span></h2>
+      <div class="eyebrow" style="justify-content:center;">Trust & Governance</div>
+      <h2 class="section-title">Your Agents. <strong>Your Rules. Always.</strong></h2>
       <p class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center;">AI agents that work without human oversight aren't trusted. Ours are built with control at every layer.</p>
     </div>
     <div class="trust-grid">
       <div class="trust-card">
-        <div class="trust-icon">👤</div>
+        <div class="trust-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <div class="trust-title">Human-in-the-Loop</div>
         <div class="trust-desc">Agents escalate to humans for every edge case. You define the boundaries. They never exceed them.</div>
       </div>
       <div class="trust-card">
-        <div class="trust-icon">🎛️</div>
+        <div class="trust-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
         <div class="trust-title">Role-Based Access</div>
         <div class="trust-desc">Control who can see, configure, or modify agent behaviour. Managers and admins have separate permission levels.</div>
       </div>
       <div class="trust-card">
-        <div class="trust-icon">📜</div>
+        <div class="trust-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <div class="trust-title">Complete Audit Logs</div>
         <div class="trust-desc">Every agent action, decision, and handover is logged with timestamp, context, and outcome, ready for compliance review.</div>
       </div>
       <div class="trust-card">
-        <div class="trust-icon">🔐</div>
+        <div class="trust-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
         <div class="trust-title">Data Stays Yours</div>
         <div class="trust-desc">No customer data is used to train any shared model. Your data is isolated, encrypted, and never leaves your environment boundary.</div>
       </div>
       <div class="trust-card">
-        <div class="trust-icon">⚡</div>
+        <div class="trust-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <div class="trust-title">Instant Kill Switch</div>
         <div class="trust-desc">Pause or disable any agent instantly from your dashboard. No support ticket, no delay. You stay in control at all times.</div>
       </div>
@@ -1136,8 +1164,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <!-- INTEGRATIONS -->
 <section class="section section-bg2">
   <div class="section-inner">
-    <div class="eyebrow">🔌 Integrations</div>
-    <h2 class="section-title">Connects to the Tools <span class="grad-text">You Already Use</span></h2>
+    <div class="eyebrow">Integrations</div>
+    <h2 class="section-title">Connects to the Tools <strong>You Already Use</strong></h2>
     <p class="section-sub" style="margin-bottom:32px;">Studio agents plug into your existing stack. no rip and replace, no new infrastructure.</p>
     <div style="margin-bottom:28px;">
       <div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:12px;">Communication</div>
@@ -1191,8 +1219,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <section class="section" id="engage">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px;">
-      <div class="eyebrow" style="justify-content:center;">🗺️ How We Work</div>
-      <h2 class="section-title">A Clear Process.<br/><span class="grad-text">No Guesswork.</span></h2>
+      <div class="eyebrow" style="justify-content:center;">How We Work</div>
+      <h2 class="section-title">A Clear Process.<br/><strong>No Guesswork.</strong></h2>
       <p class="section-sub" style="margin-left:auto;margin-right:auto;text-align:center;">Every engagement follows the same phased approach — you always know what's happening, what comes next, and what you'll have at each stage.</p>
     </div>
     <div class="pricing-grid">
@@ -1206,7 +1234,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Written blueprint: what to build and expected outcomes</span></div>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Full sign-off before work starts</span></div>
         </div>
-        <a href="/assessment" class="btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Start Here →</a>
+        <a href="/assessment" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Start Here →</a>
       </div>
       <div class="pricing-card featured">
         <div class="pricing-badge">Phase 2</div>
@@ -1218,7 +1246,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Human review checkpoints at every key stage</span></div>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Team onboarding and go-live support included</span></div>
         </div>
-        <a href="/assessment" class="btn-primary" style="width:100%;justify-content:center;margin-top:24px;">See How It Works →</a>
+        <a href="/assessment" class="btn btn-fill" style="width:100%;justify-content:center;margin-top:24px;">See How It Works →</a>
       </div>
       <div class="pricing-card">
         <div class="pricing-badge">Phase 3</div>
@@ -1230,7 +1258,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>No lock-in — grow entirely at your own pace</span></div>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Dedicated support throughout the partnership</span></div>
         </div>
-        <a href="/assessment" class="btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Let's Talk →</a>
+        <a href="/assessment" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Let's Talk →</a>
       </div>
     </div>
   </div>
@@ -1238,12 +1266,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="eyebrow" style="justify-content:center;margin-bottom:20px;">🚀 Ready to Build?</div>
-  <h2 class="cta-title">Describe One Workflow.<br/><span class="grad-text">We'll Build You an Agent.</span></h2>
+  <div class="eyebrow" style="justify-content:center;margin-bottom:20px;">Ready to Build?</div>
+  <h2 class="cta-title">Describe One Workflow.<br/><strong>We'll Build You an Agent.</strong></h2>
   <p class="cta-sub">Book a 45-minute session. We identify your top agent opportunity, map the workflow, and give you a written plan you can act on.</p>
   <div class="cta-actions">
-    <a href="/assessment" class="btn-primary">Book a Discovery Call →</a>
-    <a href="/platform" class="btn-ghost">See Full Platform</a>
+    <a href="/assessment" class="btn btn-fill">Book a Discovery Call →</a>
+    <a href="/platform" class="btn btn-ghost">See Full Platform</a>
   </div>
   <div style="margin-top:28px;font-size:13px;color:var(--txt3);">No pitch. No pressure. Just a clear plan you can act on.</div>
 </section>
@@ -1254,7 +1282,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <!-- Brand col -->
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Your AI Partner. Not Just Another AI Tool.<br/>We build agents that actually run your business.</p>
+      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
 
       <!-- Social icons -->
       <div class="footer-social-row">
@@ -1355,7 +1383,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Upcore Technologies Pvt. Ltd. · <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
-    <span class="footer-copy" style="font-style:italic;color:var(--txt3);">Your AI Partner. Not Just Another AI Tool.</span>
+    <span class="footer-copy" style="color:rgba(255,255,255,.2);letter-spacing:.3px;">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; ISO&nbsp;9001</span>
   </div>
 </footer>
 

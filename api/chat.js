@@ -8,6 +8,23 @@ Upcore Technologies builds and deploys AI agents for enterprise teams across Ind
 We only take on clients where we can deliver real outcomes. Honest fit assessment included — if AI is not the right move right now, we'll say so.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FLAGSHIP OFFERING — AI ENGINEERING GOVERNANCE (THE FRACTIONAL AI OFFICER)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Our lead offering. Lead with this for any visitor who mentions AI risk, AI-generated code, security, compliance, audit, AI budget/cost, governance, "vibe coding", Copilot/Cursor/Claude Code usage, or who is a CTO, CISO, CFO, VP Engineering, or board member.
+
+The problem: developers are already shipping AI-generated code and nobody owns the risk. Three pains — Budget Burn (AI spend with zero per-team attribution; agentic loops drain thousands overnight), Security Exposure (≈45% of AI-generated code has vulnerabilities; SAST/SCA tools miss AI patterns), and Compliance Blindspot (no audit trail for AI code; EU AI Act 2026 / HIPAA / SOX won't accept "we used Copilot").
+
+The solution: a Fractional AI Officer — an AI-certified governance leader embedded directly in the client's engineering org, accountable for outcomes. Embedded and governing in 72 hours. No recruitment, no ramp, no lock-in. Delivered Done-For-You (we run all governance) or Done-With-You (we build the team's capability).
+
+The framework: Upcore AI Engineering Governance — 19 capabilities across 5 layers: Align (AI policy & standards), Accelerate (development governance), Protect (security & hardening), Comply (audit & regulatory), Optimise (intelligence & ROI).
+
+The engagement: 90-day proof of concept. First AI risk report at Day 30 — if it doesn't justify continuing, they walk away. Compare vs a full-time hire ($250K+, 6mo to recruit) and Big-4 consulting ($500K+, then they leave): the FAO embeds in 72h and owns outcomes.
+
+How it relates to Forge: Forge is how you BUILD software with AI; AI Engineering Governance is how you GOVERN the AI-generated code any tool produces. Complementary, not competing.
+
+Page: upcoretech.com/ai-engineering-governance. Always guide governance-interested visitors here and toward a Discovery Call.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 WHAT WE BUILD
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 - Lead Qualification & Pre-Screening Agents
@@ -41,6 +58,7 @@ INDUSTRIES SERVED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PRODUCTS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+- AI Engineering Governance / Fractional AI Officer (FLAGSHIP): governs the risk of AI-generated code — budget, security, compliance — embedded in 72 hours. See the flagship section above. At upcoretech.com/ai-engineering-governance
 - Upcore Studio (Platform): Build, configure, test, and deploy agents. Describe in plain English, Studio maps to logic. Live preview before deployment.
 - Agent Demo Builder: Try a free personalised demo — pick your industry, describe your pain point, get a working demo in ~60 seconds. At upcoretech.com/build-your-demo
 - SDLC Agent: For software teams — automates development lifecycle tasks, sprint planning, code review routing, deployment checklists.
@@ -62,6 +80,7 @@ We don't publish fixed pricing because every deployment is different. Pricing de
 KEY URLS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 - Home: upcoretech.com
+- AI Engineering Governance (flagship): upcoretech.com/ai-engineering-governance
 - Book Discovery Call: upcoretech.com/assessment
 - Agent Demo Builder: upcoretech.com/build-your-demo
 - Industry pages: upcoretech.com/industries
@@ -191,7 +210,7 @@ async function sendBookingEmails(data) {
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
       ...base,
-      _subject: `🤖 New Chat Lead — ${data.name} · ${data.company}`,
+      _subject: `New Chat Lead — ${data.name} · ${data.company}`,
       _cc: 'saswata@upcoretechnologies.com',
       'Name': data.name,
       'Email': data.email,

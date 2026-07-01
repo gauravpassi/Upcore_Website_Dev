@@ -25,7 +25,7 @@ const DAILY_MAX = 100;
 const INDUSTRY_CONFIG = {
   manufacturing: {
     label: 'Manufacturing',
-    emoji: '🏭',
+    emoji: '',
     entityName: 'Quality Alert',
     entityNamePlural: 'Quality Alerts',
     defaultAgentName: 'QualityBot',
@@ -41,7 +41,7 @@ const INDUSTRY_CONFIG = {
   },
   ecommerce: {
     label: 'eCommerce',
-    emoji: '🛒',
+    emoji: '',
     entityName: 'Order',
     entityNamePlural: 'Orders',
     defaultAgentName: 'OrderBot',
@@ -359,7 +359,7 @@ table{width:100%;border-collapse:collapse;min-width:800px;}
       <!-- CHAT -->
       <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;">
         <div style="background:var(--bg3);padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">🤖</div>
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><rect x="8" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><path d="M8 17h8"/><path d="M12 6V2"/><circle cx="12" cy="2" r="1"/></svg></div>
           <div>
             <div style="font-size:13px;font-weight:800;">${esc(agentName)}</div>
             <div style="font-size:10px;color:var(--green);display:flex;align-items:center;gap:4px;">● Online · Demo mode</div>
@@ -490,7 +490,7 @@ async function sendLeadNotification({ userName, email, phone, industry, companyN
 
   // 1 — Notify the Upcore team (both inboxes via _cc)
   const payload = {
-    _subject:  `🤖 New Demo Lead — ${userName || email} · ${cfg.label || industry}`,
+    _subject:  `New Demo Lead — ${userName || email} · ${cfg.label || industry}`,
     _template: 'table',
     _captcha:  'false',
     _cc:       NOTIFY_CC,

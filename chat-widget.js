@@ -5,11 +5,11 @@
   var API_URL = '/api/chat';
   var BOT_NAME = 'Kai';
   var BOT_SUBTITLE = 'Upcore AI Assistant';
-  var INITIAL_MESSAGE = "Hi there! 👋 I'm Kai, Upcore's AI assistant.\n\nI can help you understand how AI agents can transform your operations, answer any questions about Upcore, or help you get started.\n\nWhat brings you here today?";
+  var INITIAL_MESSAGE = "Hi there! I'm Kai, Upcore's AI assistant.\n\nI can help you understand how AI agents can transform your operations, answer any questions about Upcore, or help you get started.\n\nWhat brings you here today?";
   var SUGGESTED_PROMPTS = [
+    'Who governs our AI-generated code?',
     'How can AI agents help my business?',
     'What industries do you work with?',
-    'How long does deployment take?',
     'Book a Discovery Call'
   ];
 
@@ -27,23 +27,23 @@
       position: fixed;
       bottom: 28px;
       right: 28px;
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #00d4b4 0%, #0099cc 100%);
+      background: #0a0a0a;
       border: none;
       cursor: pointer;
       z-index: 9998;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 24px rgba(0,212,180,0.4);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       outline: none;
     }
     #upcore-chat-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 32px rgba(0,212,180,0.55);
+      transform: scale(1.06);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.36);
     }
     #upcore-chat-btn svg { transition: opacity 0.2s; }
     #upcore-chat-badge {
@@ -52,7 +52,7 @@
       right: -4px;
       width: 20px;
       height: 20px;
-      background: #ff4d6d;
+      background: #0ABFCC;
       border-radius: 50%;
       font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
       font-size: 11px;
@@ -61,23 +61,23 @@
       display: none;
       align-items: center;
       justify-content: center;
-      border: 2px solid #07101e;
+      border: 2px solid #ffffff;
     }
     #upcore-chat-window {
       position: fixed;
-      bottom: 100px;
+      bottom: 96px;
       right: 28px;
       width: 380px;
       max-width: calc(100vw - 40px);
       height: 560px;
       max-height: calc(100vh - 120px);
-      background: #07101e;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
       border-radius: 20px;
       z-index: 9999;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,180,0.15);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
       transform: translateY(16px) scale(0.97);
       opacity: 0;
       pointer-events: none;
@@ -91,55 +91,55 @@
       pointer-events: all;
     }
     #upcore-chat-header {
-      padding: 16px 18px;
-      background: linear-gradient(135deg, rgba(0,212,180,0.12) 0%, rgba(0,153,204,0.08) 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 16px;
+      background: #0a0a0a;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       gap: 12px;
       flex-shrink: 0;
     }
     #upcore-chat-avatar {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #00d4b4, #0099cc);
+      background: #0ABFCC;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
       flex-shrink: 0;
     }
     #upcore-chat-info { flex: 1; min-width: 0; }
     #upcore-chat-name {
       font-size: 14px;
       font-weight: 700;
-      color: #f0f4f8;
+      color: #ffffff;
       letter-spacing: -0.2px;
     }
     #upcore-chat-status {
       font-size: 11px;
-      color: #00d4b4;
+      color: #0ABFCC;
       display: flex;
       align-items: center;
       gap: 5px;
-      margin-top: 1px;
+      margin-top: 2px;
     }
     #upcore-chat-status::before {
       content: '';
-      width: 6px;
-      height: 6px;
-      background: #00d4b4;
+      width: 5px;
+      height: 5px;
+      background: #0ABFCC;
       border-radius: 50%;
       display: inline-block;
     }
     #upcore-chat-close {
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.08);
       border: none;
       color: rgba(255,255,255,0.5);
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -148,7 +148,7 @@
       flex-shrink: 0;
       outline: none;
     }
-    #upcore-chat-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    #upcore-chat-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
     #upcore-chat-messages {
       flex: 1;
       overflow-y: auto;
@@ -157,10 +157,11 @@
       flex-direction: column;
       gap: 12px;
       scroll-behavior: smooth;
+      background: #ffffff;
     }
     #upcore-chat-messages::-webkit-scrollbar { width: 4px; }
     #upcore-chat-messages::-webkit-scrollbar-track { background: transparent; }
-    #upcore-chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+    #upcore-chat-messages::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 2px; }
     .uc-msg-wrap { display: flex; flex-direction: column; gap: 2px; }
     .uc-msg-wrap.user { align-items: flex-end; }
     .uc-msg-wrap.bot { align-items: flex-start; }
@@ -173,18 +174,18 @@
       word-wrap: break-word;
     }
     .uc-msg.user {
-      background: linear-gradient(135deg, #00d4b4, #0099cc);
-      color: #07101e;
+      background: #0a0a0a;
+      color: #ffffff;
       font-weight: 500;
       border-bottom-right-radius: 4px;
     }
     .uc-msg.bot {
-      background: rgba(255,255,255,0.06);
-      color: #e8edf2;
+      background: #f7f8fa;
+      color: #2d3748;
       border-bottom-left-radius: 4px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid #e5e7eb;
     }
-    .uc-msg a { color: #00d4b4; text-decoration: underline; }
+    .uc-msg a { color: #0ABFCC; text-decoration: underline; }
     #upcore-typing {
       display: none;
       align-items: flex-start;
@@ -193,8 +194,8 @@
     }
     #upcore-typing.show { display: flex; }
     .uc-typing-dots {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.06);
+      background: #f7f8fa;
+      border: 1px solid #e5e7eb;
       border-radius: 16px;
       border-bottom-left-radius: 4px;
       padding: 12px 16px;
@@ -205,96 +206,99 @@
     .uc-dot {
       width: 6px;
       height: 6px;
-      background: rgba(255,255,255,0.3);
+      background: #c4c9d4;
       border-radius: 50%;
       animation: ucPulse 1.2s ease-in-out infinite;
     }
     .uc-dot:nth-child(2) { animation-delay: 0.2s; }
     .uc-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes ucPulse { 0%,60%,100% { opacity:0.3; transform:scale(1); } 30% { opacity:1; transform:scale(1.2); } }
+    @keyframes ucPulse { 0%,60%,100% { opacity:0.4; transform:scale(1); } 30% { opacity:1; transform:scale(1.2); } }
     #upcore-suggestions {
-      padding: 0 16px 10px;
+      padding: 6px 16px 12px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
+      background: #ffffff;
+      border-top: 1px solid #f2f3f5;
     }
     .uc-suggestion {
-      background: rgba(0,212,180,0.08);
-      border: 1px solid rgba(0,212,180,0.25);
-      color: #00d4b4;
+      background: #f7f8fa;
+      border: 1px solid #e5e7eb;
+      color: #45515e;
       font-size: 12px;
       font-family: inherit;
       padding: 6px 12px;
-      border-radius: 100px;
+      border-radius: 9999px;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
       white-space: nowrap;
       outline: none;
     }
-    .uc-suggestion:hover { background: rgba(0,212,180,0.16); border-color: rgba(0,212,180,0.5); }
+    .uc-suggestion:hover { background: #0a0a0a; border-color: #0a0a0a; color: #ffffff; }
     #upcore-chat-input-area {
-      padding: 12px 16px 14px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 14px 12px;
+      border-top: 1px solid #e5e7eb;
       display: flex;
       gap: 8px;
       align-items: flex-end;
-      background: rgba(255,255,255,0.02);
+      background: #ffffff;
       flex-shrink: 0;
     }
     #upcore-chat-input {
       flex: 1;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #f7f8fa;
+      border: 1px solid #e5e7eb;
       border-radius: 12px;
       padding: 10px 14px;
-      color: #f0f4f8;
+      color: #0a0a0a;
       font-size: 13.5px;
       font-family: inherit;
       resize: none;
       outline: none;
       line-height: 1.5;
       max-height: 100px;
-      transition: border-color 0.15s;
+      transition: border-color 0.15s, background 0.15s;
     }
-    #upcore-chat-input::placeholder { color: rgba(255,255,255,0.25); }
-    #upcore-chat-input:focus { border-color: rgba(0,212,180,0.4); }
+    #upcore-chat-input::placeholder { color: #8e8e93; }
+    #upcore-chat-input:focus { border-color: #0ABFCC; background: #ffffff; }
     #upcore-chat-send {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 10px;
-      background: linear-gradient(135deg, #00d4b4, #0099cc);
+      background: #0a0a0a;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: opacity 0.15s, transform 0.15s;
+      transition: background 0.15s, transform 0.15s;
       outline: none;
     }
-    #upcore-chat-send:hover { opacity: 0.9; transform: scale(1.05); }
-    #upcore-chat-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    #upcore-chat-send:hover { background: #222222; transform: scale(1.05); }
+    #upcore-chat-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
     #upcore-chat-footer {
       text-align: center;
       font-size: 10px;
-      color: rgba(255,255,255,0.18);
+      color: #c4c9d4;
       padding: 0 16px 10px;
+      background: #ffffff;
       flex-shrink: 0;
     }
-    #upcore-chat-footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+    #upcore-chat-footer a { color: #c4c9d4; text-decoration: none; }
     .uc-booked-banner {
-      background: linear-gradient(135deg, rgba(0,212,180,0.15), rgba(0,153,204,0.1));
-      border: 1px solid rgba(0,212,180,0.3);
+      background: rgba(10,191,204,0.06);
+      border: 1px solid rgba(10,191,204,0.2);
       border-radius: 12px;
       padding: 14px;
       text-align: center;
       margin: 4px 0;
     }
     .uc-booked-banner .uc-booked-icon { font-size: 28px; margin-bottom: 6px; }
-    .uc-booked-banner .uc-booked-title { font-size: 14px; font-weight: 700; color: #00d4b4; margin-bottom: 4px; }
-    .uc-booked-banner .uc-booked-sub { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .uc-booked-banner .uc-booked-title { font-size: 14px; font-weight: 700; color: #0ABFCC; margin-bottom: 4px; }
+    .uc-booked-banner .uc-booked-sub { font-size: 12px; color: #45515e; line-height: 1.5; }
     @media (max-width: 440px) {
-      #upcore-chat-window { right: 16px; left: 16px; width: auto; bottom: 90px; }
+      #upcore-chat-window { right: 16px; left: 16px; width: auto; bottom: 88px; }
       #upcore-chat-btn { right: 20px; bottom: 20px; }
     }
   `;
@@ -346,7 +350,7 @@
 
     // Header
     var header = el('div', { id: 'upcore-chat-header' });
-    header.appendChild(el('div', { id: 'upcore-chat-avatar', html: '🤖' }));
+    header.appendChild(el('div', { id: 'upcore-chat-avatar', html: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><rect x="8" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><path d="M8 17h8"/><path d="M12 6V2"/><circle cx="12" cy="2" r="1"/></svg>' }));
     var info = el('div', { id: 'upcore-chat-info' });
     info.appendChild(el('div', { id: 'upcore-chat-name', text: BOT_NAME }));
     info.appendChild(el('div', { id: 'upcore-chat-status', text: BOT_SUBTITLE }));
@@ -382,7 +386,7 @@
     });
     sendBtn = el('button', {
       id: 'upcore-chat-send', 'aria-label': 'Send',
-      html: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="#07101e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      html: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
       onclick: sendMessage
     });
     var inputArea = el('div', { id: 'upcore-chat-input-area' });
@@ -403,7 +407,7 @@
   }
 
   function chatIcon() {
-    return '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" fill="#07101e" stroke="#07101e" stroke-width="0"/><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="#07101e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/><circle cx="8.5" cy="10" r="1.2" fill="#07101e"/><circle cx="12" cy="10" r="1.2" fill="#07101e"/><circle cx="15.5" cy="10" r="1.2" fill="#07101e"/></svg>';
+    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/><circle cx="8.5" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/><circle cx="12" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/><circle cx="15.5" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/></svg>';
   }
 
   function renderSuggestions(prompts) {

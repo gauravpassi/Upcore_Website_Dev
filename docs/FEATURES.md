@@ -27,9 +27,15 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Extend by:** Inline edits.
 
 ### A3. Platform overview
-- **What:** "Three Products. One AI Partner." — index page that introduces Studio, Forge, and the broader platform.
+- **What:** "Four Products. One AI Partner." — index page that introduces AI Engineering Governance, Studio, Forge, and the broader platform (tabbed).
 - **Where:** [`platform.html`](../platform.html)
-- **Touches:** Cross-links to `agent-builder.html` (Studio) and `sdlc-agent.html` (Forge). If the product lineup changes, update this page **and** Kai's `SYSTEM_PROMPT` in `api/chat.js` together.
+- **Touches:** Cross-links to `ai-engineering-governance.html`, `agent-builder.html` (Studio) and `sdlc-agent.html` (Forge). If the product lineup changes, update this page **and** Kai's `SYSTEM_PROMPT` in `api/chat.js` together.
+
+### A3b. AI Engineering Governance (FLAGSHIP)
+- **What:** Flagship offering page — "The AI Code Crisis Is Already Inside Your Enterprise." Sells **AI Engineering Governance** delivered via a **Fractional AI Officer (FAO)**: governs the risk of AI-generated code (budget, security, compliance). Sections: crisis stats, documented incidents, the-gap comparison, FAO solution, 5-layer/19-capability framework, hire-vs-Big4-vs-FAO economics, 90-day journey, FAQ. Source of truth = the FAO decks.
+- **Where:** [`ai-engineering-governance.html`](../ai-engineering-governance.html) (URL `/ai-engineering-governance`; redirects: `/fractional-ai-officer`, `/aigov`, `/ai-governance`)
+- **Touches:** Standard nav (has its own top-level "AI Governance" link), chat widget, Service + FAQPage JSON-LD. No API calls. Featured as #1 product on `index.html` and first tab on `platform.html`; cross-linked from `sdlc-agent.html`, `industries/compliance-governance.html`, `learn/ai-data-governance.html`.
+- **Extend by:** Inline edits. Buyers = CTO/CISO/CFO/Board. Keep stats' cited sources; keep pricing unpublished. If the offering changes, update Kai's `SYSTEM_PROMPT` too. "AIGOV" = internal shorthand only.
 
 ### A4. Studio (Agent Builder marketing)
 - **What:** Marketing page for Upcore Studio — "Your Workflows. Now Run Themselves." Describes the plain-English-to-agent-logic flow.

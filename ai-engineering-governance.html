@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4WFSX3C90"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T4WFSX3C90');
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI Engineering Governance | The Fractional AI Officer | Upcore</title>
+<meta name="description" content="Your developers are already shipping AI-generated code. Nobody is governing it. An AI-certified Fractional AI Officer embeds in your engineering org in 72 hours and owns AI code risk — budget, security, and compliance — from the first prompt to the last deployment."/>
+<link rel="canonical" href="https://www.upcoretech.com/ai-engineering-governance"/>
+<link rel="alternate" hreflang="en" href="https://www.upcoretech.com/ai-engineering-governance"/>
+<link rel="alternate" hreflang="x-default" href="https://www.upcoretech.com/ai-engineering-governance"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="AI Engineering Governance | The Fractional AI Officer | Upcore"/>
+<meta property="og:description" content="AI is shipping inside your org and nobody is governing it. An AI-certified Fractional AI Officer embeds in 72 hours and owns AI code risk — budget burn, security exposure, compliance blindspots — across your entire SDLC."/>
+<meta property="og:url" content="https://www.upcoretech.com/ai-engineering-governance"/>
+<meta property="og:image" content="https://www.upcoretech.com/upcore-logo.png"/>
+<meta property="og:site_name" content="Upcore Technologies"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="AI Engineering Governance | The Fractional AI Officer | Upcore"/>
+<meta name="twitter:description" content="AI is shipping inside your org and nobody is governing it. A Fractional AI Officer embeds in 72 hours and owns AI code risk across your SDLC."/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AI Engineering Governance",
+  "name": "Upcore AI Engineering Governance — Fractional AI Officer",
+  "description": "An AI-certified Fractional AI Officer embedded in your engineering organisation, accountable for the risk created by AI-generated code: budget burn, security exposure, and compliance blindspots. Delivered Done-For-You or Done-With-You, embedded within 72 hours, across a 5-layer AI engineering governance framework.",
+  "url": "https://www.upcoretech.com/ai-engineering-governance",
+  "provider": {"@type": "Organization", "name": "Upcore Technologies", "url": "https://www.upcoretech.com"},
+  "areaServed": "Worldwide",
+  "audience": {"@type": "Audience", "audienceType": "CTO, CISO, CFO, Engineering Leadership, Board"},
+  "offers": {"@type": "Offer", "url": "https://www.upcoretech.com/assessment"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is a Fractional AI Officer?","acceptedAnswer":{"@type":"Answer","text":"An AI-certified governance leader embedded directly in your engineering organisation, accountable for the risk created by AI-generated code. Unlike a generalist consultant, a Fractional AI Officer is certified across prompt engineering, code security, regulatory compliance, and AI cost management. They attend standups, review PRs, author policies, and own outcomes — Done-For-You or Done-With-You — without the cost or timeline of a full-time hire."}},
+    {"@type":"Question","name":"How fast can a Fractional AI Officer start?","acceptedAnswer":{"@type":"Answer","text":"72 hours. No recruitment cycle, no ramp period. Connect your repository and your FAO is embedded and governing within three days. No sprint allocated, no infrastructure change, no vendor lock-in. Results in week one."}},
+    {"@type":"Question","name":"What does the 90-day proof of concept include?","acceptedAnswer":{"@type":"Answer","text":"By Day 30 your FAO delivers your first AI risk report — your actual AI risk, quantified and mapped. By Day 60 all integrations are live (IDE, Git, CI/CD, production monitoring) in observe mode with a baseline established. By Day 90 policy gates are live, AI code is risk-scored and reviewed on every commit, and you receive a full ROI model. If the Day 30 findings do not justify continuing, you walk away."}},
+    {"@type":"Question","name":"How is this different from hiring a full-time AI lead or a Big-4 consultancy?","acceptedAnswer":{"@type":"Answer","text":"A full-time hire costs $250K+ per year plus 6 months to recruit and 12 months to ramp. A Big-4 engagement costs $500K+ per project, delivers a report, and then leaves with no ongoing accountability. A Fractional AI Officer embeds in 72 hours, is AI-certified in engineering governance, stays embedded in your context, and owns outcomes — not just deliverables."}},
+    {"@type":"Question","name":"What is the difference between Done-For-You and Done-With-You?","acceptedAnswer":{"@type":"Answer","text":"Done-For-You: you provide repository access, CI/CD, your AI tool list, and compliance obligations, and your FAO handles everything else — independent audit, governance architecture, installation, baseline data, and weekly reports. Done-With-You: your team leads while your FAO guides, trains, and strategises — joint discovery, co-designed policy, guided implementation, and full knowledge transfer so your team owns it long term."}}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  --bg:     #ffffff;
+  --bg2:    #f7f8fa;
+  --bg3:    #f2f3f5;
+  --card:   #ffffff;
+  --card2:  #f7f8fa;
+  --teal:   #0ABFCC;
+  --teal2:  #089AAA;
+  --mint:   #0ABFCC;
+  --green:  #22C55E;
+  --red:    #EF4444;
+  --txt:    #0a0a0a;
+  --txt2:   #45515e;
+  --txt3:   #8e8e93;
+  --ink:    #0a0a0a;
+  --ink-press: #222222;
+  --border: #e5e7eb;
+  --bh:     #d1d5db;
+  --glow:   rgba(0,0,0,0.04);
+  --grad:   linear-gradient(135deg,#0891b2,#0ABFCC);
+  --ff:     "DM Sans", sans-serif;
+  --nav-h:  64px;
+  --max:    1240px;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--ff); background:var(--bg); color:var(--txt); line-height:1.6; overflow-x:hidden; }
+img { display:block; max-width:100%; }
+a { text-decoration:none; color:inherit; }
+
+/* ── NAV ───────────────────────────────────────────────────── */
+nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+.nav-logo a{display:flex;align-items:center;}
+.nav-logo img{height:40px;width:auto;}
+.nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
+.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
+.nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
+.nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
+@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
+
+/* ── BUTTONS ───────────────────────────────────────────────── */
+.btn { display:inline-flex; align-items:center; gap:8px; font:600 15px/1 var(--ff); padding:12px 26px; border-radius:9999px; cursor:pointer; transition:all .2s; border:none; text-decoration:none; }
+.btn-fill { background:#0a0a0a; color:#ffffff; }
+.btn-fill:hover { background:#222222; transform:translateY(-1px); }
+.btn-ghost { background:transparent; color:#0a0a0a; border:1px solid #0a0a0a; }
+.btn-ghost:hover { background:rgba(0,0,0,.04); border-color:#222222; }
+.btn-teal { background:var(--teal); color:#070B10; border-radius:9999px; }
+.btn-teal:hover { background:var(--teal2); transform:translateY(-1px); }
+
+/* ── HERO ──────────────────────────────────────────────────── */
+#hero {
+  min-height:100vh; padding:90px 48px 72px;
+  display:flex; align-items:center;
+  background:var(--bg); position:relative; overflow:hidden;
+}
+#hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 55% 50% at 15% 50%,rgba(10,191,204,.05),transparent 55%);
+}
+.hero-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; width:100%; position:relative; z-index:2; max-width:1240px; margin:0 auto; }
+.hero-left { max-width:580px; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:.5px; text-transform:uppercase; color:var(--teal); background:rgba(10,191,204,.1); border:1px solid rgba(10,191,204,.2); border-radius:9999px; padding:4px 14px; margin-bottom:28px; }
+.hero-eyebrow-dot { width:7px; height:7px; border-radius:50%; background:var(--teal); animation:pulse 2s ease-in-out infinite; flex-shrink:0; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+.hero-h1 { font-size:clamp(36px,4.8vw,60px); font-weight:300; letter-spacing:-2.5px; line-height:1.05; color:var(--txt); margin-bottom:24px; }
+.hero-h1 strong { font-weight:700; color:var(--txt); }
+.hero-sub { font-size:17px; color:var(--txt2); line-height:1.8; margin-bottom:16px; max-width:500px; }
+.hero-hook { font-size:14px; color:var(--teal); font-style:italic; padding:14px 18px; border-left:2px solid var(--teal); background:rgba(10,191,204,.05); border-radius:0 8px 8px 0; margin-bottom:32px; max-width:500px; line-height:1.7; }
+.hero-ctas { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px; }
+.hero-stats { display:flex; gap:0; border-top:1px solid var(--border); padding-top:32px; }
+.h-stat { flex:1; padding-right:24px; border-right:1px solid var(--border); margin-right:24px; }
+.h-stat:last-child { border-right:none; padding-right:0; margin-right:0; }
+.h-stat-num { font-size:22px; font-weight:800; letter-spacing:-1px; line-height:1; margin-bottom:4px; color:var(--teal); }
+.h-stat-lbl { font-size:10px; color:var(--txt2); line-height:1.5; }
+
+/* ── GOVERNANCE DASHBOARD (right column) ── */
+.hero-right { display:flex; align-items:center; justify-content:flex-end; }
+.gov-dash {
+  width:100%; max-width:440px;
+  background:var(--card); border:1px solid var(--border);
+  border-radius:16px; overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.08), 0 1px 3px rgba(0,0,0,.04);
+}
+.gd-header {
+  background:#0a0a0a; padding:13px 18px;
+  display:flex; align-items:center; gap:9px;
+  font-size:10px; font-weight:700; color:rgba(255,255,255,.6);
+  letter-spacing:.1em; text-transform:uppercase;
+}
+.gd-live-dot {
+  width:7px; height:7px; border-radius:50%; background:#22c55e;
+  box-shadow:0 0 0 2px rgba(34,197,94,.25); animation:blink 2s ease infinite;
+}
+.gd-body { padding:12px; display:flex; flex-direction:column; gap:6px; }
+.gd-layer {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 12px; border-radius:8px; border:1px solid; gap:8px;
+}
+.gd-layer.ok  { background:var(--bg2); border-color:var(--border); }
+.gd-layer.alert { background:rgba(239,68,68,.04); border-color:rgba(239,68,68,.18); }
+.gd-layer-left { display:flex; align-items:center; gap:10px; }
+.gd-icon { font-size:14px; line-height:1; flex-shrink:0; }
+.gd-layer-name { font-size:12px; font-weight:700; color:var(--txt); }
+.gd-layer-detail { font-size:10px; color:var(--txt3); margin-top:1px; }
+.gd-status {
+  font-size:9px; font-weight:800; letter-spacing:.1em;
+  text-transform:uppercase; padding:3px 8px; border-radius:9999px; flex-shrink:0;
+}
+.gd-status.ok { background:rgba(34,197,94,.1); color:#16a34a; }
+.gd-status.alert { background:rgba(239,68,68,.1); color:#dc2626; }
+.gd-footer {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px; border-top:1px solid var(--border); background:var(--bg2);
+}
+.gd-stat { font-size:12px; color:var(--txt2); }
+.gd-stat strong { color:var(--txt); font-weight:700; }
+.gd-badge {
+  font-size:10px; font-weight:700;
+  background:rgba(10,191,204,.1); color:var(--teal2);
+  padding:3px 10px; border-radius:9999px;
+}
+
+/* ── SECTION COMMONS ───────────────────────────────────────── */
+.section { width:100%; padding:100px 0; }
+.section-inner { width:100%; max-width:1240px; margin:0 auto; padding:0 48px; }
+.eyebrow { display:inline-block; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
+.eyebrow-teal { color:var(--teal); }
+.section-title { font-size:clamp(28px,3.8vw,48px); font-weight:700; letter-spacing:-1px; line-height:1.1; color:var(--txt); margin-bottom:16px; }
+.section-sub { font-size:16px; color:var(--txt2); line-height:1.8; max-width:620px; margin-bottom:48px; }
+.src-note { font-size:11px; color:var(--txt3); margin-top:24px; line-height:1.6; }
+
+/* ── PROBLEM / STAT BAND ───────────────────────────────────── */
+#problem { background:var(--bg3); }
+.prob-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-bottom:60px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.prob-stat { padding:32px 28px; border-right:1px solid var(--border); }
+.prob-stat:last-child { border-right:none; }
+.prob-stat-num { font-size:clamp(36px,4vw,52px); font-weight:800; letter-spacing:-2px; line-height:1; margin-bottom:8px; color:var(--teal); }
+.prob-stat-num.teal { color:var(--teal); }
+.prob-stat-lbl { font-size:12px; color:var(--txt2); line-height:1.6; }
+.prob-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.prob-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px 26px; position:relative; overflow:hidden; transition:border-color .2s; }
+.prob-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--grad); }
+.prob-card:hover { border-color:rgba(10,191,204,.3); }
+.prob-card h3 { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:10px; }
+.prob-card p { font-size:13px; color:var(--txt2); line-height:1.65; }
+.prob-quote { font-size:12px; font-style:italic; color:rgba(10,191,204,.7); padding:10px 14px; background:rgba(10,191,204,.06); border-left:2px solid rgba(10,191,204,.3); border-radius:0 6px 6px 0; margin-top:14px; }
+
+/* ── INCIDENTS ─────────────────────────────────────────────── */
+#incidents { background:var(--bg); }
+.inc-timeline { display:flex; flex-direction:column; gap:0; border-left:2px solid var(--teal2); padding-left:36px; margin-top:48px; max-width:860px; }
+.inc-entry { position:relative; padding:0 0 44px; }
+.inc-entry:last-child { padding-bottom:0; }
+.inc-entry::before { content:''; position:absolute; left:-43px; top:6px; width:14px; height:14px; border-radius:50%; background:var(--teal); border:2px solid var(--bg); }
+.inc-num-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:6px; }
+.inc-title { font-size:19px; font-weight:700; color:var(--txt); margin-bottom:8px; letter-spacing:-.3px; }
+.inc-body { font-size:14px; color:var(--txt2); line-height:1.7; margin-bottom:10px; }
+.inc-src { font-size:11px; color:var(--txt3); }
+
+/* ── THE GAP ───────────────────────────────────────────────── */
+#gap { background:var(--bg3); }
+.gap-cols { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.gap-col { border-radius:10px; padding:32px; border:1px solid var(--border); }
+.gap-col.today { background:var(--card); }
+.gap-col.fao { background:var(--card); border-color:rgba(10,191,204,.35); }
+.gap-col h3 { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:22px; }
+.gap-col.today h3 { color:var(--txt3); }
+.gap-col.fao h3 { color:var(--teal); }
+.gap-item { display:flex; align-items:flex-start; gap:12px; font-size:13.5px; color:var(--txt2); line-height:1.6; padding:12px 0; border-bottom:1px solid var(--border); }
+.gap-item:last-child { border-bottom:none; }
+.gap-mark { flex-shrink:0; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; margin-top:2px; }
+.gap-mark.x { background:rgba(239,68,68,.08); color:var(--rose); border:1px solid rgba(239,68,68,.2); }
+.gap-mark.c { background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.3); }
+.gap-item b { color:var(--txt); }
+
+/* ── SOLUTION PILLARS ──────────────────────────────────────── */
+#solution { background:var(--bg); text-align:center; }
+.solution-inner { max-width:1240px; margin:0 auto; padding:0 48px; }
+.solution-title { font-size:clamp(26px,3.5vw,44px); font-weight:700; letter-spacing:-1px; line-height:1.1; color:var(--txt); margin-bottom:16px; }
+.solution-sub { font-size:17px; color:var(--txt2); max-width:660px; margin:0 auto 52px; line-height:1.8; }
+.pillars { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; max-width:960px; margin:0 auto 40px; }
+.pillar { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:28px 24px; text-align:left; transition:border-color .2s; }
+.pillar:hover { border-color:var(--bh); }
+.pillar-icon { font-size:26px; margin-bottom:12px; }
+.pillar h4 { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:8px; }
+.pillar p { font-size:13px; color:var(--txt2); line-height:1.65; }
+.intersect { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--txt3); margin-top:8px; }
+.intersect b { color:var(--teal); }
+
+/* ── FRAMEWORK ─────────────────────────────────────────────── */
+#framework { background:var(--bg3); }
+.fw-list { display:flex; flex-direction:column; gap:10px; }
+.fw-item { background:var(--card); border:1px solid var(--border); border-radius:10px; overflow:hidden; position:relative; }
+.fw-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--grad); }
+.fw-btn { width:100%; text-align:left; background:none; border:none; color:var(--txt); font-family:var(--ff); font-size:15px; font-weight:700; padding:22px 28px 22px 32px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; transition:background .15s; }
+.fw-btn:hover { background:var(--glow); }
+.fw-btn-left { display:flex; align-items:center; gap:16px; }
+.fw-layer-name { font-size:16px; font-weight:700; color:var(--txt); }
+.fw-layer-tag { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--teal); }
+.fw-ico { color:var(--teal); font-size:18px; flex-shrink:0; transition:transform .2s; }
+.fw-item.open .fw-ico { transform:rotate(45deg); }
+.fw-body { max-height:0; overflow:hidden; transition:max-height .3s ease; }
+.fw-body-inner { display:grid; grid-template-columns:repeat(2,1fr); gap:12px 32px; padding:0 32px 24px; }
+.fw-cap { display:flex; align-items:flex-start; gap:9px; font-size:13px; color:var(--txt2); line-height:1.55; }
+.fw-cap b { color:var(--txt); font-weight:700; }
+.fw-dot { flex-shrink:0; width:5px; height:5px; border-radius:50%; background:var(--teal); margin-top:8px; }
+
+/* ── ECONOMICS ─────────────────────────────────────────────── */
+#economics { background:var(--bg); }
+.econ-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.econ-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:32px 28px; display:flex; flex-direction:column; gap:0; }
+.econ-card.featured { border-color:rgba(10,191,204,.45); background:var(--card2); position:relative; }
+.econ-card.featured::before { content:'BEST VALUE'; position:absolute; top:16px; right:16px; font-size:9px; font-weight:700; letter-spacing:2px; color:var(--teal); background:rgba(10,191,204,.1); border:1px solid rgba(10,191,204,.3); border-radius:4px; padding:3px 8px; }
+.econ-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--txt3); margin-bottom:12px; }
+.econ-label.featured-lbl { color:var(--teal); }
+.econ-price { font-size:40px; font-weight:800; letter-spacing:-2px; color:var(--txt2); line-height:1; margin-bottom:20px; }
+.econ-price.amber { color:var(--teal); }
+.econ-rows { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border); }
+.econ-row { display:flex; flex-direction:column; gap:3px; padding:12px 0; border-bottom:1px solid var(--border); }
+.econ-row:last-child { border-bottom:none; }
+.econ-row-lbl { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--txt3); }
+.econ-row-val { font-size:13px; color:var(--txt2); line-height:1.55; }
+.econ-row-val.good { color:var(--teal); font-weight:600; }
+
+/* ── ENGAGEMENT MODEL ──────────────────────────────────────── */
+#engagement { background:var(--bg3); }
+.eng-cols { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.eng-col { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:32px; }
+.eng-col.featured { border-color:rgba(10,191,204,.35); }
+.eng-tag { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--txt3); margin-bottom:10px; }
+.eng-tag.amber { color:var(--teal); }
+.eng-col h3 { font-size:20px; font-weight:700; letter-spacing:-.3px; margin-bottom:8px; color:var(--txt); }
+.eng-lede { font-size:13px; color:var(--txt2); line-height:1.65; margin-bottom:24px; }
+.eng-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--txt2); margin-bottom:12px; line-height:1.55; }
+.eng-check { width:18px; height:18px; border-radius:50%; background:rgba(10,191,204,.08); border:1px solid rgba(10,191,204,.25); display:flex; align-items:center; justify-content:center; font-size:9px; color:var(--teal); flex-shrink:0; margin-top:1px; font-weight:800; }
+
+/* ── 90-DAY JOURNEY ────────────────────────────────────────── */
+#journey { background:var(--bg); }
+.journey-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:52px; }
+.jstep { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:30px 26px; position:relative; overflow:hidden; transition:border-color .2s; }
+.jstep::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--grad); }
+.jstep:hover { border-color:var(--bh); }
+.jday { font-size:42px; font-weight:800; letter-spacing:-2px; color:var(--teal); line-height:1; margin-bottom:4px; }
+.jday span { font-size:13px; font-weight:600; letter-spacing:2px; color:var(--txt3); }
+.jstep h4 { font-size:15px; font-weight:700; color:var(--txt); margin:12px 0 14px; }
+.jitem { display:flex; align-items:flex-start; gap:8px; font-size:13px; color:var(--txt2); line-height:1.55; margin-bottom:10px; }
+.jdot { flex-shrink:0; width:5px; height:5px; border-radius:50%; background:var(--teal); margin-top:8px; }
+.jitem b { color:var(--txt); }
+
+/* ── FAQ ───────────────────────────────────────────────────── */
+#faq { background:var(--bg3); }
+.faq-list { max-width:840px; margin:40px auto 0; display:flex; flex-direction:column; gap:10px; }
+.faq-item { border:1px solid var(--border); border-radius:10px; background:var(--card); overflow:hidden; }
+.faq-q { width:100%; text-align:left; background:none; border:none; color:var(--txt); font-family:var(--ff); font-size:14px; font-weight:700; padding:18px 24px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; transition:background .15s; }
+.faq-q:hover { background:var(--glow); }
+.faq-ico { color:var(--teal); font-size:18px; flex-shrink:0; transition:transform .2s; }
+.faq-item.open .faq-ico { transform:rotate(45deg); }
+.faq-a { max-height:0; overflow:hidden; transition:max-height .28s ease; }
+.faq-a p { padding:0 24px 20px; font-size:13.5px; color:var(--txt2); line-height:1.75; }
+.faq-a a { color:var(--teal); }
+
+/* ── CTA ───────────────────────────────────────────────────── */
+#cta { background:var(--bg); border-top:1px solid var(--border); }
+.cta-inner { max-width:1240px; margin:0 auto; padding:0 48px; text-align:center; }
+.cta-title { font-size:clamp(28px,4vw,52px); font-weight:700; letter-spacing:-1.5px; color:var(--txt); margin-bottom:16px; }
+.cta-sub { font-size:17px; color:var(--txt2); line-height:1.75; max-width:580px; margin:0 auto 40px; }
+.cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+.cta-note { font-size:12px; color:var(--txt3); }
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding:60px 48px 0; }
+.footer-grid { display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr 1fr; gap:40px; margin-bottom:48px; }
+.footer-logo-wrap a { display:inline-block; }
+.footer-logo-wrap img { height:52px; width:auto; opacity:.8; }
+.footer-tagline { font-size:13px; color:rgba(255,255,255,.4); line-height:1.7; margin-top:12px; max-width:200px; }
+.footer-social-row { display:flex; gap:8px; margin-top:18px; }
+.footer-soc-btn { display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.55); transition:background .15s,border-color .15s,color .15s; }
+.footer-soc-btn:hover { background:rgba(10,191,204,.1); border-color:rgba(10,191,204,.3); color:var(--teal); }
+.footer-review-row { display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+.footer-review-btn { display:flex; align-items:center; gap:6px; padding:6px 12px; border-radius:6px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.1); font-size:11px; font-weight:600; color:rgba(255,255,255,.45); transition:background .15s,border-color .15s,color .15s; }
+.footer-review-btn:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.22); color:rgba(255,255,255,.85); }
+.footer-review-btn svg { flex-shrink:0; overflow:visible; }
+.footer-col-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:16px; }
+.footer-links { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.footer-links a { font-size:13px; color:rgba(255,255,255,.55); transition:color .15s; }
+.footer-links a:hover { color:var(--teal); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,.09); padding:20px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+.footer-copy { font-size:12px; color:rgba(255,255,255,.3); }
+.footer-copy a { color:rgba(255,255,255,.3); }
+.footer-copy a:hover { color:var(--teal); }
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-inner { grid-template-columns:1fr; gap:48px; }
+  .hero-left { max-width:100%; }
+  .hero-right { justify-content:flex-start; }
+  .gov-dash { max-width:480px; }
+  .prob-stats { grid-template-columns:repeat(2,1fr); }
+  .prob-cards,.pillars,.journey-grid { grid-template-columns:1fr; }
+  .gap-cols,.eng-cols,.econ-cards { grid-template-columns:1fr; }
+  .fw-body-inner { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
+}
+@media(max-width:768px){
+  .hero-inner,.section-inner,.solution-inner,.cta-inner { padding-left:24px; padding-right:24px; }
+  .hero-inner { padding-top:80px; padding-bottom:60px; }
+  #hero { min-height:auto; }
+  .hero-h1 { font-size:clamp(38px,9vw,56px); letter-spacing:-1.5px; }
+  .hero-right { display:none; }
+  .hero-stats { flex-direction:column; gap:0; max-width:100%; }
+  .h-stat { border-right:none; padding-right:0; margin-right:0; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--border); }
+  .h-stat:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
+  .inc-timeline { padding-left:24px; }
+  footer { padding:48px 24px 0; }
+  .footer-grid { grid-template-columns:1fr; gap:28px; }
+}
+@media(max-width:560px){
+  .footer-bottom { flex-direction:column; align-items:flex-start; }
+}
+.proof-strip{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.ps-item{font-size:12px;font-weight:600;color:var(--txt2);letter-spacing:.02em;}
+.ps-sep{color:var(--txt3);font-size:12px;}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
+  <ul class="nav-links">
+    <li><a href="/ai-engineering-governance" class="active">AI Governance</a></li>
+    <li><a href="/platform">Products</a></li>
+    <li><a href="/industries">Industries</a></li>
+    <li><a href="/insights">Resources</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <a href="/assessment" class="nav-cta">Book a Call</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <!-- LEFT: copy -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        AI Engineering Governance &nbsp;&middot;&nbsp; Fractional AI Officer
+      </div>
+      <h1 class="hero-h1">
+        The AI Code Crisis<br />Is Already Inside<br /><strong>Your Enterprise.</strong>
+      </h1>
+      <p class="hero-sub">
+        Your developers are already shipping AI-generated code. Nobody is governing it.
+        An AI-certified Fractional AI Officer embeds in your engineering org in 72&nbsp;hours —
+        and owns the risk from the first prompt to the last deployment.
+      </p>
+      <div class="hero-hook">"Most production vulnerabilities now trace back to AI-generated commits that were never reviewed by a human governance officer. We fix that on day one."</div>
+      <div class="hero-ctas">
+        <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
+        <a href="#framework" class="btn btn-ghost">See the Framework</a>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat">
+          <div class="h-stat-num">72h</div>
+          <div class="h-stat-lbl">To embed. No recruiting. No ramp.</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-num">5</div>
+          <div class="h-stat-lbl">Governance layers across the full SDLC</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-num">Day 30</div>
+          <div class="h-stat-lbl">First risk report delivered</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-num">90d</div>
+          <div class="h-stat-lbl">Walk away if ROI isn't there</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: governance dashboard -->
+    <div class="hero-right">
+      <div class="gov-dash">
+        <div class="gd-header">
+          <span class="gd-live-dot"></span>
+          FAO Governance Dashboard — Live
+        </div>
+        <div class="gd-body">
+          <div class="gd-layer ok">
+            <div class="gd-layer-left">
+              <div class="gd-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div>
+                <div class="gd-layer-name">L1 · Prompt Audit</div>
+                <div class="gd-layer-detail">23 prompts scanned · 0 high-risk</div>
+              </div>
+            </div>
+            <div class="gd-status ok">CLEAR</div>
+          </div>
+          <div class="gd-layer ok">
+            <div class="gd-layer-left">
+              <div class="gd-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div>
+                <div class="gd-layer-name">L2 · Code Review</div>
+                <div class="gd-layer-detail">847 lines AI-generated · 1 flagged</div>
+              </div>
+            </div>
+            <div class="gd-status ok">CLEAR</div>
+          </div>
+          <div class="gd-layer alert">
+            <div class="gd-layer-left">
+              <div class="gd-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+              <div>
+                <div class="gd-layer-name">L3 · Dependency Check</div>
+                <div class="gd-layer-detail">2 hallucinated packages blocked</div>
+              </div>
+            </div>
+            <div class="gd-status alert">BLOCKED</div>
+          </div>
+          <div class="gd-layer ok">
+            <div class="gd-layer-left">
+              <div class="gd-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div>
+                <div class="gd-layer-name">L4 · CI/CD Gate</div>
+                <div class="gd-layer-detail">Policy enforced on all PRs</div>
+              </div>
+            </div>
+            <div class="gd-status ok">LIVE</div>
+          </div>
+          <div class="gd-layer ok">
+            <div class="gd-layer-left">
+              <div class="gd-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
+              <div>
+                <div class="gd-layer-name">L5 · Production Monitor</div>
+                <div class="gd-layer-detail">0 incidents · 100% attribution</div>
+              </div>
+            </div>
+            <div class="gd-status ok">LIVE</div>
+          </div>
+        </div>
+        <div class="gd-footer">
+          <div class="gd-stat">Risks blocked today: <strong>23</strong></div>
+          <div class="gd-badge">All 5 layers active</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <span class="ps-item">★ 4.9 on Clutch</span>
+  <span class="ps-sep">·</span>
+  <span class="ps-item">ISO 27001 Certified</span>
+  <span class="ps-sep">·</span>
+  <span class="ps-item">CMMI Level 3</span>
+  <span class="ps-sep">·</span>
+  <span class="ps-item">Top AI Company 2025</span>
+</div>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="section-inner">
+    <span class="eyebrow">The Real Problem</span>
+    <h2 class="section-title">AI Is Shipping Inside Your Org.<br />Nobody Is Governing It.</h2>
+    <p class="section-sub">Your developers are already vibe coding. The question isn't <em>if</em> — it's how much, and at what risk. Budget disappears, vulnerabilities ship, and the audit trail simply doesn't exist.</p>
+    <div class="prob-stats">
+      <div class="prob-stat">
+        <div class="prob-stat-num">$3.2B</div>
+        <div class="prob-stat-lbl">Yearly enterprise AI budget consumed in four months — zero team-level visibility</div>
+      </div>
+      <div class="prob-stat">
+        <div class="prob-stat-num teal">45%</div>
+        <div class="prob-stat-lbl">Of AI-generated code contains active security vulnerabilities</div>
+      </div>
+      <div class="prob-stat">
+        <div class="prob-stat-num">63%</div>
+        <div class="prob-stat-lbl">Of developers spend more time debugging AI output than writing code</div>
+      </div>
+      <div class="prob-stat">
+        <div class="prob-stat-num teal">10&times;</div>
+        <div class="prob-stat-lbl">Increase in monthly security findings at Fortune 50 firms using AI tools</div>
+      </div>
+    </div>
+    <div class="prob-cards">
+      <div class="prob-card">
+        <h3>Budget Burn</h3>
+        <p>You see the total AI API bill. You have zero visibility into which team, developer, or prompt pattern is burning 80% of it. Agentic loops can drain tens of thousands overnight — no alert, no breakpoint, no shutdown.</p>
+        <div class="prob-quote">"We know the total. We have no idea where it goes."</div>
+      </div>
+      <div class="prob-card">
+        <h3>Security Exposure</h3>
+        <p>Your scanners miss what AI ships. SAST and SCA tools were built for human-authored code. Hallucinated packages, injection patterns, and hardcoded credentials reach production undetected.</p>
+        <div class="prob-quote">"45% of AI code has vulnerabilities. Our tools weren't built to catch them."</div>
+      </div>
+      <div class="prob-card">
+        <h3>Compliance Blindspot</h3>
+        <p>When auditors ask, you have nothing. No audit trail for AI-generated code, no record of which tool produced which output. EU AI Act 2026, HIPAA, SOX — none will accept "we used Copilot" as a compliance position.</p>
+        <div class="prob-quote">"The board asks who owns AI risk. The room goes quiet."</div>
+      </div>
+    </div>
+    <p class="src-note">Sources: Gartner AI Spending Report 2025 &middot; Veracode GenAI Code Security Report 2025 &middot; CodeRabbit 8.1M PR Study &middot; Fortune 50 AppSec Benchmarks.</p>
+  </div>
+</section>
+
+<!-- INCIDENTS -->
+<section class="section" id="incidents">
+  <div class="section-inner">
+    <span class="eyebrow">The Burning Platform</span>
+    <h2 class="section-title">These Are Not Hypotheticals.</h2>
+    <p class="section-sub">AI-generated code reached production in every case below. Security teams missed them. Customers found them.</p>
+    <div class="inc-timeline">
+      <div class="inc-entry">
+        <div class="inc-num-label">Incident 01 &middot; Security</div>
+        <div class="inc-title">Moltbook &nbsp;&middot;&nbsp; 1.5M API Keys Exposed</div>
+        <p class="inc-body">A vibe-coded SaaS platform leaked 1.5 million customer API keys to the public internet. Root cause: AI-generated credential handling with no governance review. No security gate triggered before production.</p>
+        <div class="inc-src">Source: Cloud Security Alliance</div>
+      </div>
+      <div class="inc-entry">
+        <div class="inc-num-label">Incident 02 &middot; Auth Failure &middot; CVE-2025-48757</div>
+        <div class="inc-title">Lovable.dev &nbsp;&middot;&nbsp; 170 Live Apps: Auth Inverted</div>
+        <p class="inc-body">AI inverted authentication logic across 170 production apps simultaneously — authenticated users blocked, anonymous visitors granted full data access. Official CVE assigned. The identical bug replicated before a customer reported it.</p>
+        <div class="inc-src">Source: CVE-2025-48757 &middot; Autonoma AI Research</div>
+      </div>
+      <div class="inc-entry">
+        <div class="inc-num-label">Incident 03 &middot; Enterprise Sev-1</div>
+        <div class="inc-title">Amazon &nbsp;&middot;&nbsp; 4 Sev-1s in 90 Days</div>
+        <p class="inc-body">Vibe-coding adoption caused four Sev-1 production failures in 90 days, including a six-hour outage. Root cause: teams had no mental model of AI-generated systems, no observability, and could not hotfix code they had not authored.</p>
+        <div class="inc-src">Source: Stack Overflow Blog</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section class="section" id="gap">
+  <div class="section-inner">
+    <span class="eyebrow">The Gap</span>
+    <h2 class="section-title">Nobody in Your Org Owns<br />AI Engineering Governance.</h2>
+    <p class="section-sub">Every leader is doing their job. The intersection where AI risk actually lives has no owner.</p>
+    <div class="gap-cols">
+      <div class="gap-col today">
+        <h3>Today — No Single Owner</h3>
+        <div class="gap-item"><span class="gap-mark x">&times;</span><span><b>CTO</b> — building product, not governing AI risk or prompt safety.</span></div>
+        <div class="gap-item"><span class="gap-mark x">&times;</span><span><b>CISO</b> — scanning the perimeter, missing AI-generated vulnerability patterns entirely.</span></div>
+        <div class="gap-item"><span class="gap-mark x">&times;</span><span><b>CFO</b> — budgeting tools, with zero visibility into per-team token burn.</span></div>
+        <div class="gap-item"><span class="gap-mark x">&times;</span><span><b>Compliance</b> — filing reports, with no AI audit trail to show regulators.</span></div>
+        <div class="gap-item"><span class="gap-mark x">&times;</span><span><b>Engineering</b> — using AI daily, with no approved patterns, no harness, no guardrails.</span></div>
+        <div class="gap-item"><span class="gap-mark x">&times;</span><span><b>The Board</b> — asks who's accountable for AI risk. The room goes quiet.</span></div>
+      </div>
+      <div class="gap-col fao">
+        <h3>With Your Fractional AI Officer</h3>
+        <div class="gap-item"><span class="gap-mark c">&#10003;</span><span>One accountable leader embedded in your org — owns every AI risk, end to end.</span></div>
+        <div class="gap-item"><span class="gap-mark c">&#10003;</span><span>Prompt governance from day one — no unvalidated AI inputs reach production.</span></div>
+        <div class="gap-item"><span class="gap-mark c">&#10003;</span><span>Security gates on every AI-generated commit before it reaches main.</span></div>
+        <div class="gap-item"><span class="gap-mark c">&#10003;</span><span>Token budgets enforced per team — your CFO finally sees the AI spend breakdown.</span></div>
+        <div class="gap-item"><span class="gap-mark c">&#10003;</span><span>Full AI audit trail — board-ready, regulator-ready, updated continuously.</span></div>
+        <div class="gap-item"><span class="gap-mark c">&#10003;</span><span>When the board asks who owns AI risk — you have a name, a dashboard, and a report.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section" id="solution">
+  <div class="solution-inner">
+    <span class="eyebrow" style="display:block;text-align:center;">The Solution</span>
+    <h2 class="solution-title">Introducing the Fractional AI Officer.</h2>
+    <p class="solution-sub">An AI-certified governance leader embedded in your engineering organisation — accountable for outcomes, not deliverables. Not a generalist consultant. Not a junior hire. Someone who has built this before.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h4>Who They Are</h4>
+        <p>AI-certified. Engineering-native. Governance-specialist. Certified across prompt engineering, code security, regulatory compliance, and AI cost management.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>How They Engage</h4>
+        <p>Embedded and accountable. Attends standups, reviews PRs, authors policies. <b style="color:var(--teal)">Done For You</b> — we run all governance. Or <b style="color:var(--teal)">Done With You</b> — we build your team's capability. Outcomes owned either way.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h4>When They Start</h4>
+        <p>72 hours. No recruitment cycle. No ramp period. Connect your repository and your FAO is embedded and governing — no infrastructure change, no vendor lock-in, results in week one.</p>
+      </div>
+    </div>
+    <div class="intersect">Your FAO sits at the intersection of &nbsp;&middot;&nbsp; <b>CTO</b> &nbsp;&middot;&nbsp; <b>CISO</b> &nbsp;&middot;&nbsp; <b>CFO</b> &nbsp;&middot;&nbsp; <b>Engineering Leadership</b></div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="section" id="framework">
+  <div class="section-inner">
+    <span class="eyebrow">The Framework</span>
+    <h2 class="section-title">Every Phase. Every Risk.<br />One Governance Layer.</h2>
+    <p class="section-sub">Upcore AI Engineering Governance — 19 integrated capabilities across 5 layers, covering every phase of your AI development lifecycle.</p>
+    <div class="fw-list">
+
+      <div class="fw-item">
+        <button class="fw-btn" onclick="toggleFw(this)">
+          <div class="fw-btn-left"><div><div class="fw-layer-name">Align</div><div class="fw-layer-tag">AI Policy &amp; Standards</div></div></div>
+          <span class="fw-ico">+</span>
+        </button>
+        <div class="fw-body">
+          <div class="fw-body-inner">
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Spec &amp; Goals Engine.</b> Requirement validation vs. what AI actually builds.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Context Engineering.</b> CLAUDE.md, AGENT.md, project rules — what the AI knows about your codebase.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Agent Memory Design.</b> Memory patterns, context-window strategy, session continuity.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Optimal Model Selection.</b> Right model per task. Cost-vs-capability matrix. Avoid overkill.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-item">
+        <button class="fw-btn" onclick="toggleFw(this)">
+          <div class="fw-btn-left"><div><div class="fw-layer-name">Accelerate</div><div class="fw-layer-tag">Development Governance</div></div></div>
+          <span class="fw-ico">+</span>
+        </button>
+        <div class="fw-body">
+          <div class="fw-body-inner">
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Prompt Engineering.</b> Prompt quality scoring, pattern library, anti-pattern alerts.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Harnessing Engine.</b> Directing raw AI output through structure, constraints &amp; quality gates.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Workflow Orchestration.</b> Multi-agent chains, human checkpoints, iterative refinement.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Code Review Automation.</b> Logic inversion, hallucinated API, auth-bypass detection on every PR.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-item">
+        <button class="fw-btn" onclick="toggleFw(this)">
+          <div class="fw-btn-left"><div><div class="fw-layer-name">Protect</div><div class="fw-layer-tag">Security &amp; Hardening</div></div></div>
+          <span class="fw-ico">+</span>
+        </button>
+        <div class="fw-body">
+          <div class="fw-body-inner">
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>AI-Aware Security Scanner.</b> SAST/DAST rebuilt for AI patterns — XSS, credential sprawl, SQL injection per commit.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Supply Chain Guardian.</b> Package-hallucination detection. Slopsquatting defense. SBOM generation.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>IaC Governance.</b> Terraform/K8s/CloudFormation scanning. Flags insecure defaults before apply.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Red Teaming Layer.</b> Continuous adversarial testing of AI-generated code for attack vectors.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-item">
+        <button class="fw-btn" onclick="toggleFw(this)">
+          <div class="fw-btn-left"><div><div class="fw-layer-name">Comply</div><div class="fw-layer-tag">Audit &amp; Regulatory</div></div></div>
+          <span class="fw-ico">+</span>
+        </button>
+        <div class="fw-body">
+          <div class="fw-body-inner">
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Compliance Autopilot.</b> SOC 1/2, HIPAA, GDPR by geography, PCI-DSS, EU AI Act 2026 — injected at generation time.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Versioning &amp; Audit Trail.</b> Prompt-to-deploy traceability. Every AI decision logged for regulators and board.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>CI/CD Quality Gates.</b> Zero-new-issues policy. AI-aware SAST enforced at pipeline. No bypass.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fw-item">
+        <button class="fw-btn" onclick="toggleFw(this)">
+          <div class="fw-btn-left"><div><div class="fw-layer-name">Optimise</div><div class="fw-layer-tag">Intelligence &amp; ROI</div></div></div>
+          <span class="fw-ico">+</span>
+        </button>
+        <div class="fw-body">
+          <div class="fw-body-inner">
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Token Intelligence.</b> Per-developer spend, burn-rate alerts, prompt-efficiency scoring, budget forecasting.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Risk &amp; Observability.</b> CTO/CISO live dashboard. AI code % by team. Tech-debt exposure in $.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Evaluation &amp; Metrics.</b> AI-vs-human PR quality delta, bug rate by code origin, cycle time.</span></div>
+            <div class="fw-cap"><span class="fw-dot"></span><span><b>Production Monitor.</b> Prompt-to-incident linkage. AI runtime tagging. Incident runbooks.</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMICS -->
+<section class="section" id="economics">
+  <div class="section-inner">
+    <span class="eyebrow">The Business Case</span>
+    <h2 class="section-title">The Role Your Org Is Missing —<br />Without the Cost or the Timeline.</h2>
+    <p class="section-sub">An AI-certified Fractional AI Officer owns your AI engineering governance — strategy to compliance — without the cost or timeline of a full-time hire or a Big-4 engagement.</p>
+    <div class="econ-cards">
+      <div class="econ-card">
+        <div class="econ-label">Full-Time Hire</div>
+        <div class="econ-price">$250K+</div>
+        <div class="econ-rows">
+          <div class="econ-row"><div class="econ-row-lbl">Time to Value</div><div class="econ-row-val">6 months to recruit &middot; 12 months to ramp</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">Accountability</div><div class="econ-row-val">One org, one context only</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">Longevity</div><div class="econ-row-val">Benefits, equity &amp; onboarding overhead</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">AI Certification</div><div class="econ-row-val">Rare on the market &middot; hard to vet</div></div>
+        </div>
+      </div>
+      <div class="econ-card">
+        <div class="econ-label">Big-4 Consulting</div>
+        <div class="econ-price">$500K+</div>
+        <div class="econ-rows">
+          <div class="econ-row"><div class="econ-row-lbl">Time to Value</div><div class="econ-row-val">Report delivered, then they leave</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">Accountability</div><div class="econ-row-val">Resets with every engagement</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">Longevity</div><div class="econ-row-val">Governance dies when the contract ends</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">AI Certification</div><div class="econ-row-val">Generalist advisory, not engineering-native</div></div>
+        </div>
+      </div>
+      <div class="econ-card featured">
+        <div class="econ-label featured-lbl">Fractional AI Officer</div>
+        <div class="econ-price amber">Fractional</div>
+        <div class="econ-rows">
+          <div class="econ-row"><div class="econ-row-lbl">Time to Value</div><div class="econ-row-val good">Embedded &amp; governing in 72 hours</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">Accountability</div><div class="econ-row-val good">Owns outcomes, not deliverables</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">Longevity</div><div class="econ-row-val good">Embedded in your org, not parachuted in</div></div>
+          <div class="econ-row"><div class="econ-row-lbl">AI Certification</div><div class="econ-row-val good">AI-certified in engineering governance</div></div>
+        </div>
+      </div>
+    </div>
+    <p class="src-note">Your FAO owns: AI Policy &amp; Standards &middot; Code Governance &middot; Security Enforcement &middot; Compliance Reporting &middot; Spend Control.</p>
+  </div>
+</section>
+
+<!-- ENGAGEMENT MODEL -->
+<section class="section" id="engagement">
+  <div class="section-inner">
+    <span class="eyebrow">Engagement Model</span>
+    <h2 class="section-title">Two Ways to Engage.<br />Your FAO Leads From Day One.</h2>
+    <p class="section-sub">Same six stages. Choose how hands-on your team is — your Fractional AI Officer is accountable in both.</p>
+    <div class="eng-cols">
+      <div class="eng-col">
+        <div class="eng-tag">Done With You</div>
+        <h3>Your Team Leads</h3>
+        <p class="eng-lede">Your FAO guides, trains &amp; strategizes while your team builds internal capability.</p>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Define scope, stakeholders &amp; success metrics together.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Joint discovery — audit AI usage and map your risk surface as a team.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Co-design governance rules for your compliance context.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Guided implementation — your team builds, your FAO guides every step.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Calibrate together in observe mode; remove false positives.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Enforce &amp; advise — gates live, your team owns it, FAO as strategic advisor.</span></div>
+      </div>
+      <div class="eng-col featured">
+        <div class="eng-tag amber">Done For You</div>
+        <h3>Your FAO Handles It All</h3>
+        <p class="eng-lede">You provide access. Your Fractional AI Officer handles everything else.</p>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Provide repo access, CI/CD, AI tool list &amp; compliance obligations.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Upcore discovery — your FAO independently audits and designs the architecture.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Implementation — your FAO installs everything. Zero dev-team involvement.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Acceptance — live governance layer demoed; reporting cadence agreed.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Observe — baseline data captured; you receive your first governance report.</span></div>
+        <div class="eng-item"><span class="eng-check">&#10003;</span><span>Enforce &amp; report — gates live, incidents attributed, weekly reports delivered.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 90-DAY JOURNEY -->
+<section class="section" id="journey">
+  <div class="section-inner">
+    <span class="eyebrow">The 90-Day Journey</span>
+    <h2 class="section-title">A Proof of Concept Your Board,<br />Auditor, and CTO Can Stand Behind.</h2>
+    <p class="section-sub">Six stages. Two models. One FAO. AI development you can defend to anyone who asks.</p>
+    <div class="journey-grid">
+      <div class="jstep">
+        <div class="jday">30 <span>DAYS</span></div>
+        <h4>Align &amp; Discover</h4>
+        <div class="jitem"><span class="jdot"></span>Stakeholders aligned, AI tools audited, risk surface mapped across your org.</div>
+        <div class="jitem"><span class="jdot"></span>Compliance obligations identified — policy requirements defined for your context.</div>
+        <div class="jitem"><span class="jdot"></span><b>First AI risk report delivered</b> — your actual AI risk, quantified and mapped.</div>
+      </div>
+      <div class="jstep">
+        <div class="jday">60 <span>DAYS</span></div>
+        <h4>Implement &amp; Calibrate</h4>
+        <div class="jitem"><span class="jdot"></span>All integrations live — IDE, Git, CI/CD, and production monitoring connected.</div>
+        <div class="jitem"><span class="jdot"></span>Governance in observe mode — baseline established, policies tuned, no blocking yet.</div>
+        <div class="jitem"><span class="jdot"></span>First real catches — hallucinated packages blocked, high-risk commits flagged.</div>
+      </div>
+      <div class="jstep">
+        <div class="jday">90 <span>DAYS</span></div>
+        <h4>Enforce &amp; Operate</h4>
+        <div class="jitem"><span class="jdot"></span>Policy gates live — AI code risk-scored and reviewed on every PR, every commit.</div>
+        <div class="jitem"><span class="jdot"></span>Incidents attributed — prompt-to-incident linkage in production.</div>
+        <div class="jitem"><span class="jdot"></span><b>Full ROI model</b> — incidents avoided, compliance posture, time saved. You have the data.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POST-JOURNEY CTA -->
+<section class="section" style="padding:56px 0;background:var(--bg2);">
+  <div class="section-inner" style="text-align:center;max-width:600px;">
+    <span class="eyebrow" style="display:block;margin-bottom:16px;">Ready to Start?</span>
+    <h2 class="section-title" style="margin-bottom:16px;">Your Governance Review Starts in 72 Hours.</h2>
+    <p style="color:var(--txt2);margin-bottom:32px;line-height:1.7;">Most teams see their first blocked vulnerability within the first week. Setup is done for you — no internal resources required.</p>
+    <a href="/assessment" class="btn btn-fill">Start Your 72-Hour Onboarding →</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner" style="text-align:center;">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="section-title">Questions Leaders Ask.</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What is a Fractional AI Officer?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>An AI-certified governance leader embedded directly in your engineering organisation, accountable for the risk created by AI-generated code. Unlike a generalist consultant, a Fractional AI Officer is certified across prompt engineering, code security, regulatory compliance, and AI cost management. They attend standups, review PRs, author policies, and own outcomes — Done-For-You or Done-With-You — without the cost or timeline of a full-time hire.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How fast can a Fractional AI Officer start?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>72 hours. No recruitment cycle, no ramp period. Connect your repository and your FAO is embedded and governing within three days. No sprint allocated, no infrastructure change, no vendor lock-in. Results in week one.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What does the 90-day proof of concept include?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>By Day 30 your FAO delivers your first AI risk report — your actual AI risk, quantified and mapped. By Day 60 all integrations are live (IDE, Git, CI/CD, production monitoring) in observe mode with a baseline established. By Day 90 policy gates are live, AI code is risk-scored and reviewed on every commit, and you receive a full ROI model. If the Day 30 findings do not justify continuing, you walk away.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How is this different from a full-time hire or a Big-4 consultancy?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>A full-time hire costs $250K+ per year plus 6 months to recruit and 12 months to ramp. A Big-4 engagement costs $500K+ per project, delivers a report, and then leaves with no ongoing accountability. A Fractional AI Officer embeds in 72 hours, is AI-certified in engineering governance, stays embedded in your context, and owns outcomes — not just deliverables.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What's the difference between Done-For-You and Done-With-You?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>Done-For-You: you provide repository access, CI/CD, your AI tool list, and compliance obligations, and your FAO handles everything else — independent audit, governance architecture, installation, baseline data, and weekly reports. Done-With-You: your team leads while your FAO guides, trains, and strategises — joint discovery, co-designed policy, guided implementation, and full knowledge transfer so your team owns it long term.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How does this relate to Forge, your SDLC agent?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p><a href="/sdlc-agent">Forge</a> is how you <em>build</em> software with AI. AI Engineering Governance is how you <em>govern</em> the AI-generated code that Forge — and any AI coding tool your team uses — produces. They're complementary: Forge ships features, your Fractional AI Officer makes sure everything shipped is secure, compliant, and cost-controlled.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" id="cta">
+  <div class="cta-inner">
+    <span class="eyebrow" style="display:block;text-align:center;">The Ask</span>
+    <h2 class="cta-title">The Window to Govern AI Code<br />Is Closing Fast.</h2>
+    <p class="cta-sub">90-day proof of concept. Your dedicated Fractional AI Officer embeds, audits your full AI risk surface, and delivers a governance blueprint with a board-ready ROI model. At Day 30 you get your first AI risk report — if it doesn't justify continuing, you walk away.</p>
+    <div class="cta-btns">
+      <a href="/assessment" class="btn btn-teal">Book a Discovery Call &rarr;</a>
+      <a href="/sdlc-agent" class="btn btn-ghost">Explore Forge (SDLC Agent)</a>
+    </div>
+    <div class="cta-note">One person. Four hours of onboarding. No infrastructure changes. No lock-in during the pilot.</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
+      <p class="footer-tagline">Govern Your AI. Then Build With It.</p>
+      <div class="footer-social-row">
+        <a href="https://linkedin.com/company/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="LinkedIn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://www.facebook.com/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="Facebook">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/upcoretech/" target="_blank" rel="noopener" class="footer-soc-btn" title="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+      <div class="footer-review-row">
+        <a href="https://clutch.co/profile/upcore-technologies" target="_blank" rel="noopener" class="footer-review-btn">
+          <svg width="46" height="14" viewBox="0 0 130 40" xmlns="http://www.w3.org/2000/svg"><text x="0" y="30" font-family="Georgia,'Times New Roman',serif" font-size="32" font-weight="700" fill="#FF3D2E" letter-spacing="-1">clutch</text><circle cx="119" cy="10" r="6" fill="#FF3D2E"/></svg>
+        </a>
+        <a href="https://selectedfirms.co/agency/upcore-technologies" target="_blank" rel="noopener" class="footer-review-btn">
+          <svg width="16" height="16" viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="#00b67a"/><path d="M11 20l6 6 12-12" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          SelectedFirms
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="/about">About Upcore</a></li>
+        <li><a href="/platform">How It Works</a></li>
+        <li><a href="/agent-builder">Agent Builder</a></li>
+        <li><a href="/insights">Insights &amp; Blog</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/assessment">Book a Discovery Call</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Solutions</div>
+      <ul class="footer-links">
+        <li><a href="/ai-engineering-governance">AI Engineering Governance</a></li>
+        <li><a href="/sdlc-agent">Forge &middot; SDLC Agent</a></li>
+        <li><a href="/platform">Upcore Studio</a></li>
+        <li><a href="/build-your-demo">Build a Free Demo</a></li>
+        <li><a href="/assessment">Free AI Assessment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Industries</div>
+      <ul class="footer-links">
+        <li><a href="/industries/manufacturing">Manufacturing</a></li>
+        <li><a href="/industries/saas-technology">SaaS &amp; Technology</a></li>
+        <li><a href="/industries/retail-d2c">Ecommerce &amp; D2C</a></li>
+        <li><a href="/industries/banking-finance">Banking &amp; Finance</a></li>
+        <li><a href="/industries/healthcare">Healthcare</a></li>
+        <li><a href="/industries">View All &rarr;</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="/insights">Insights &amp; Blog</a></li>
+        <li><a href="/kw">All Resources &rarr;</a></li>
+        <li><a href="/platform/custom-ai-agents">Custom AI Agents</a></li>
+        <li><a href="/platform/on-premise-deployment">On-Premise AI</a></li>
+        <li><a href="/platform/30-day-deployment">30-Day Deployment</a></li>
+        <li><a href="/kw/manufacturing-ai-agents">AI for Manufacturing</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2025 Upcore Technologies Pvt. Ltd. &middot; <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
+    <span class="footer-copy" style="font-style:italic">Govern Your AI. Then Build With It.</span>
+  </div>
+</footer>
+
+<script>
+function toggleFw(btn) {
+  var item = btn.closest('.fw-item');
+  var body = item.querySelector('.fw-body');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.fw-item.open').forEach(function(el) {
+    el.classList.remove('open');
+    el.querySelector('.fw-body').style.maxHeight = null;
+  });
+  if (!isOpen) { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+}
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var ans = btn.nextElementSibling;
+  var isOpen = item.classList.contains('open');
+  if (isOpen) { item.classList.remove('open'); ans.style.maxHeight = null; }
+  else { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+}
+</script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 # Design System
 
-> **Canonical source:** the `:root` block and the `<nav>` block in [`index.html`](../index.html). Every other page **must** mirror these byte-for-byte. This document records the values; if you change them, update `index.html` first, then every other page, then this file.
+> **Canonical source:** the `:root` block and the `<nav>` block in [`index.html`](../index.html). Every other page **must** mirror these byte-for-byte. This document records the values; if you change them, update `index.html` first, then every other page via `apply_minimax.py`, then this file.
+>
+> **Current design system: MiniMax white-canvas** — applied 2026-07-01. Previous system was dark charcoal; see CHANGELOG for history.
 
 ## 1. Color tokens
 
@@ -8,165 +10,276 @@ Every page declares the same `:root`:
 
 ```css
 :root {
-  --bg:    #07101e;     /* page background (deepest) */
-  --bg2:   #0a1628;     /* section break / trust strip */
-  --bg3:   #0d1c34;     /* layered surface */
-  --card:  #0f2040;     /* card / panel surface */
+  /* Backgrounds — white canvas */
+  --bg:     #ffffff;   /* Page background */
+  --bg2:    #f7f8fa;   /* Lifted surface / secondary sections */
+  --bg3:    #f2f3f5;   /* Deliberate section break */
+  --card:   #ffffff;   /* Card background */
+  --card2:  #f7f8fa;   /* Elevated / featured card */
 
-  --teal:  #0abfcc;     /* primary brand */
-  --mint:  #3dddc4;     /* highlight / success accent */
-  --teal3: #0891b2;     /* gradient start */
-  --green: #4ade80;     /* "live" / status dot */
+  /* Brand teal — used selectively for accents */
+  --teal:   #0ABFCC;
+  --teal2:  #089AAA;
+  --mint:   #0ABFCC;   /* alias */
 
-  --txt:   #ffffff;     /* primary text */
-  --txt2:  #8bbed4;     /* secondary text (body) */
-  --txt3:  #3a6080;     /* tertiary text (labels, captions) */
+  /* Removed: amber accent tokens — replaced with teal site-wide (2025-07) */
 
-  --border: rgba(10, 191, 204, 0.13);   /* default border */
-  --bh:     rgba(10, 191, 204, 0.38);   /* hover/active border */
-  --glow:   rgba(10, 191, 204, 0.08);   /* hover background tint */
+  /* Status */
+  --green:  #22C55E;
+  --red:    #EF4444;
 
-  --grad:  linear-gradient(135deg, #0891b2, #0abfcc, #3dddc4);  /* THE brand gradient */
-  --ff:    "Poppins", sans-serif;
+  /* Text — dark on white */
+  --txt:    #0a0a0a;   /* Near-black — primary headings */
+  --txt2:   #45515e;   /* Muted — body / secondary */
+  --txt3:   #8e8e93;   /* Dimmer tertiary */
+  --ink:    #0a0a0a;   /* Alias for button fill */
+  --ink-press: #222222;
+
+  /* Borders — light hairline */
+  --border: #e5e7eb;
+  --bh:     #d1d5db;
+  --glow:   rgba(0,0,0,0.04);
+
+  /* Gradients — for accents only, not buttons */
+  --grad:       linear-gradient(135deg,#0891b2,#0ABFCC);
+  /* --grad-amber removed (2025-07); use --grad for teal gradient */
+
+  /* Layout */
+  --ff:    "DM Sans", sans-serif;
+  --nav-h: 64px;
+  --max:   1240px;
 }
 ```
 
 **Rules**
-- Don't introduce new hex values. Either use a token or extend `:root` (and propagate to every page).
-- `--grad` is the only gradient that appears on primary CTAs and gradient text. Don't invent alt gradients.
-- Status colors used in cards/visualizations: `#ff6b6b` (red dot), `#fbbf24` (amber dot), `#4ade80` (green dot / `--green`). These are the only allowed semantic accents outside the teal palette.
+- Don't introduce new hex values. Use a token or extend `:root` (propagate via `apply_minimax.py`).
+- Backgrounds are white-canvas — never add dark/navy backgrounds to content sections.
+- Borders use solid light hairlines (`#e5e7eb`), not white-alpha. White-alpha borders are only appropriate on the dark footer.
+- **No amber tokens.** Amber was removed site-wide (2025-07); use `--teal` / `--teal2` for all accents.
+- **Footer** is always dark (`background:#0a0a0a`) — MiniMax footer-region token. Footer text uses explicit `rgba(255,255,255,…)` overrides since `--txt` is now dark.
 
 ## 2. Typography
 
-- Family: **Poppins** loaded once per page from Google Fonts, weights `300;400;500;600;700;800;900`. Use `var(--ff)` everywhere — never raw `font-family`.
-- Body: `font-size: 16px` implicit, `line-height: 1.6`, `color: var(--txt)` on `var(--bg)`.
-- Heading scale (extracted from index hero + section heads):
+**Rules**
 
-| Use | Size | Weight | Letter-spacing | Notes |
-|---|---|---|---|---|
-| Hero H1 | `clamp(44px, 5.8vw, 76px)` | 800 | `-2px` | `line-height: 1.04` |
-| Section H2 | `clamp(32px, 4vw, 52px)` | 800 | — | — |
-| Card / sub-section | 18px–24px | 600–700 | — | — |
-| Body | 17–18px | 400 | — | `color: var(--txt2)`, `line-height: 1.78` for hero sub |
-| Eyebrow / label | 11–13px | 600–700 | `0.3–2px` | `text-transform: uppercase` for trust headers |
-| Stat number | 36px | 800 | — | `color: var(--teal)` |
+1. **Hero H1**: thin weight (`300–400`) + `<strong>` for emphasis. Large, spare. No gradient text.
+2. **Hero H1 `<strong>`**: `font-weight:700; color:var(--txt)` — do NOT use `color:#fff` (page bg is now white).
+3. **Section H2**: weight `600–700`, `letter-spacing:-0.5px`, color `var(--txt)`.
+4. **Gradient text** (`.grad-text`): **BANNED** on headings.
+5. **Body**: `17px`, weight `400`, `line-height: 1.75`, color `var(--txt2)`.
+6. **Eyebrows**: `10–12px`, weight `600`, `letter-spacing: 0.5px`, uppercase. Shape: **9999px pill** (not 6px sharp).
+7. **Stat numbers**: weight `700–800`, color `var(--teal)`. No gradient on numbers.
 
-- Gradient text uses `.grad-text` (background-clip pattern). Don't reinvent it.
+**Font loading:**
+- Family: **DM Sans** from Google Fonts: `family=DM+Sans:wght@300;400;500;600;700`
+- Use `var(--ff)` everywhere — never raw `font-family`.
+
+**WCAG note:** `--txt2` (`#64748B`) on `--bg` (`#070B10`) yields contrast ratio ≈ 4.52:1 — passes WCAG AA (4.5:1 threshold). If lightened, keep above 4.5:1.
 
 ## 3. Spacing & layout
 
 - Page horizontal padding: **48px desktop, 20px mobile** (≤768px). The nav uses the same.
-- Hero inner: `padding: 100px 48px 80px`.
-- Standard section padding lives inline per page; common pattern is `80–120px` vertical, `48px` horizontal.
-- Border-radius scale: `8` (small chip) · `10` (CTA pill) · `12` (button) · `14` (large button) · `16` (card row) · `20` (hero card) · `100px` (full pill).
-- Box-shadows for primary CTA: `0 4px 28px rgba(10,191,204,0.3)` resting → `0 8px 44px rgba(10,191,204,0.48)` hover.
+- Standard section padding: `100px 48px` vertical/horizontal.
+- Max content width: `var(--max)` = `1240px`, centered with `margin: 0 auto`.
+- Border-radius scale: **`9999px`** (badge/pill/button CTA) · `16px` (card, panel) · `8px` (nav link hover, small chip).
+- Cards: `box-shadow: rgba(0,0,0,.06) 0 4px 8px` on hover (replaces teal glow). No teal border accent on standard cards.
 
 ## 4. Components
 
-### 4.1 Nav (most sensitive — pixel-perfect across all 37 pages)
+### 4.1 Nav (most sensitive — pixel-perfect across all 65 pages)
 
-Recent commits in this repo had to repair nav damage caused by per-page edits. **Do not edit one page's nav in isolation.** Locked specs:
+This is the canonical nav. **Do not edit one page's nav in isolation.** Propagate via script.
+
+**Nav is dark (`#0a0a0a`)** — the logo was designed for dark backgrounds; a white nav made logo elements invisible. The dark nav also reads as more authoritative for an enterprise governance product.
 
 ```css
-nav {
-  width: 100%;
-  background: rgba(7, 16, 30, 0.96);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(10, 191, 204, 0.13);
-  padding: 0 48px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 99;
-}
-.nav-logo img { height: 68px; width: auto; }
-.nav-links     { display: flex; gap: 4px; list-style: none; }
-.nav-links a   { padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; color: rgba(139,190,212,1); }
-.nav-links a:hover  { color: #fff; background: rgba(10,191,204,0.08); }
-.nav-links a.active { color: #0abfcc; }
-.nav-cta {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: linear-gradient(135deg, #0891b2, #0abfcc, #3dddc4);
-  color: #07101e; font-size: 14px; font-weight: 700;
-  padding: 10px 22px; border-radius: 10px;
-}
-@media (max-width: 768px) {
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }   /* mobile: hide link list */
-}
+nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+.nav-logo a{display:flex;align-items:center;}
+.nav-logo img{height:40px;width:auto;}
+.nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
+.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
+.nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
+.nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
+@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
 ```
+
+```html
+<!-- Canonical 5-link nav — active class varies per page -->
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
+  <ul class="nav-links">
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/platform">Products</a></li>
+    <li><a href="/industries">Industries</a></li>
+    <li><a href="/insights">Resources</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <a href="/assessment" class="nav-cta">Book a Call</a>
+</nav>
+```
+
+**Active class mapping:**
+| URL prefix | Active link |
+|---|---|
+| `/ai-engineering-governance` | AI Governance |
+| `/platform` | Products |
+| `/industries` | Industries |
+| `/insights` | Resources |
+| `/kw/` | Resources |
+| `/about` | About |
 
 **When editing the nav:**
 1. Edit `index.html` first.
-2. Diff every other page's `<nav>` block against the new one. (Quick check: `grep -A 30 '<nav' *.html industries/*.html insights/*.html` and compare.)
-3. Add the active-state highlight on the page that owns it: `<a href="..." class="active">`.
-4. Update this section if the spec changes.
+2. Run `python propagate_design.py` from `upcore-website/` to propagate to all 65 pages.
+3. Update this section if the spec changes.
 
-### 4.2 Buttons
+### 4.2 Buttons — 3 classes
 
 ```css
-.btn      { padding: 15px 30px; border-radius: 12px; font-size: 15px; font-weight: 600; gap: 8px; transition: all 0.22s; font-family: var(--ff); }
-.btn-lg   { padding: 17px 38px; font-size: 16px; border-radius: 14px; }
-.btn-primary { background: var(--grad); color: #07101e; box-shadow: 0 4px 28px rgba(10,191,204,0.3); }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 44px rgba(10,191,204,0.48); }
-.btn-outline { background: transparent; color: var(--txt); border: 1.5px solid var(--bh); }
-.btn-outline:hover { background: var(--glow); border-color: var(--teal); }
+/* Base — pill shape */
+.btn       { font: 600 15px/1 var(--ff); padding: 12px 26px; border-radius: 9999px;
+             cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; border: none; }
+/* Primary — black pill */
+.btn-fill  { background: #0a0a0a; color: #ffffff; }
+.btn-fill:hover  { background: #222222; transform: translateY(-1px); }
+/* Secondary — ink outline pill */
+.btn-ghost { background: transparent; color: #0a0a0a; border: 1px solid #0a0a0a; }
+.btn-ghost:hover { background: rgba(0,0,0,.04); border-color: #222222; }
+/* Teal accent */
+.btn-teal { background: var(--teal); color: #070B10; border-radius: 9999px; }
+.btn-teal:hover { background: var(--teal2); transform: translateY(-1px); }
 ```
 
-- Primary CTAs use `.btn-primary` with the brand gradient. Outline buttons are the secondary action.
-- The chat widget overrides these with its own scoped CSS — that's intentional, don't unify.
+Usage:
+- `.btn.btn-fill` — primary CTA (black pill). Used everywhere for the main action.
+- `.btn.btn-ghost` — secondary action (ink outline pill).
+- `.btn.btn-teal` — teal accent CTA, available site-wide.
+- **Never use teal fills on buttons** — black pill is the MiniMax CTA pattern.
+- The nav CTA (`.nav-cta`) keeps its own scoped CSS and is NOT part of the `.btn` system.
 
 ### 4.3 Cards / surfaces
 
 ```css
-.card-like {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px;
-}
-```
-Hover state: bump border to `var(--bh)` and add `box-shadow: 0 4px 28px rgba(10,191,204,0.18)` if interactive.
+/* Standard card */
+background: var(--card);      /* #ffffff */
+border: 1px solid var(--border);   /* #e5e7eb */
+border-radius: 16px;
+padding: 24px 28px;
+transition: border-color 0.2s, box-shadow 0.2s;
 
-### 4.4 Tag / pill (eyebrow above hero)
+/* Hover */
+border-color: var(--bh);     /* #d1d5db */
+box-shadow: rgba(0,0,0,.06) 0 4px 8px;
+```
+
+**Removed patterns — do not re-introduce:**
+- Teal left-border accent on standard cards (`.hub-card`, `.uc-card`) — removed in MiniMax pass
+- Gradient top-bar on hover (`::before` with gradient background)
+- Teal glow `box-shadow`: `0 4px 28px rgba(10,191,204,0.3)` — BANNED
+- Small border-radius (6–10px) on cards — use 16px
+- `transform: translateY(-4px)` on card hover — too dramatic; use `-1px` max
+
+### 4.4 Eyebrow / badge tag
 
 ```css
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: linear-gradient(135deg, rgba(10,191,204,0.15), rgba(61,221,196,0.10));
-  border: 1px solid rgba(10,191,204,0.35);
-  border-radius: 100px; padding: 10px 22px;
-  font-size: 13px; font-weight: 700; letter-spacing: 0.3px;
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(10,191,204,0.1);
+  border: 1px solid rgba(10,191,204,0.2);
+  border-radius: 9999px;              /* pill — MiniMax style */
+  padding: 4px 14px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--teal);
 }
-.tag-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); animation: pulse 2s infinite; }
 ```
+
+Eyebrow/badge tags are **always pill-shaped** (`9999px`). The old sharp `6px` badges have been replaced site-wide.
 
 ### 4.5 Stat / proof row
 
-3-column grid, 1px borders between cells, 16px outer radius. Stat number = 36px / 800 / `--teal`; label = 12px / `--txt3`.
+Number: `font-size: clamp(32px,4vw,48px)`, weight `800`, color `var(--teal)`.
+Label: `12–13px`, color `var(--txt3)`.
+No card border around individual stats — use whitespace separation only.
 
-### 4.6 Background atmospherics
+### 4.6 Hero sections
 
-- `.hero-glow` — two stacked `radial-gradient` ellipses on `pointer-events: none`. Subtle teal/mint glows at low opacity (4–7%).
-- `.hero-grid` — 60×60 grid drawn with two crossed `linear-gradient`s at `rgba(10,191,204,0.04)`.
-- Trust strip uses `keyframes marquee` (28s linear infinite) on a doubled track. `:hover` pauses it.
+**Removed:**
+- Radial-gradient grid overlay `::before` on every hero — banned
+- `backdrop-filter: blur(20px)` on nav — replaced with solid rgba background
+- Animated pulse on every badge dot — keep only on the homepage hero badge
 
-## 5. Chat widget styling
+**New hero pattern:**
+```css
+.hero { padding: 100px 48px 80px; background: var(--bg); }
+.hero h1 { font-size: clamp(48px,6vw,80px); font-weight: 300; color: var(--txt); }
+.hero h1 strong { font-weight: 700; }
+```
 
-The chat widget (`/chat-widget.js`) ships its own scoped CSS prefixed with `#upcore-chat-*`. It echoes the brand gradient (`#00d4b4 → #0099cc` — note: a **different** gradient from `--grad`). When updating widget colors, edit them in [chat-widget.js](../chat-widget.js); they intentionally don't read CSS variables (the widget must work even on pages that didn't load `:root`).
+### 4.7 Insights article pages
 
-## 6. Do / don't
+Article pages under `insights/` use the `ARTICLE_BASE_CSS` canonical stylesheet injected via `fix_all.py`. Key elements:
+
+```css
+body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--txt2); }
+h1 { font-size: clamp(28px,5vw,42px); font-weight: 300; color: var(--txt); }
+h1 strong { font-weight: 700; }
+.category-badge { background: rgba(10,191,204,0.10); color: var(--teal); border-radius: 6px; }
+.agent-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; }
+.article-cta .btn-cta { background: var(--teal); color: #070B10; border-radius: 8px; }
+```
+
+## 5. Footer
+
+**Background:** `#0a0a0a` (always dark — footer is a deliberate dark region on the white-canvas body)
+**Top accent:** `border-top: 3px solid rgba(10,191,204,.2)` — thin teal line separates footer from content
+**Canonical tagline:** `Govern Your AI. Then Build With It.` — `font-weight:600; color:rgba(255,255,255,.75)`
+**Sub-line:** `Enterprise AI governance and agents, built for your org.` — `color:rgba(255,255,255,.35)`
+
+**Key rule: never use `var(--txt)`, `var(--txt2)`, or `var(--txt3)` inside footer CSS.** These are now light-canvas values (`#0a0a0a`, `#45515e`, `#8e8e93`) — all invisible on the dark footer. Always use explicit `rgba(255,255,255,…)` values.
+
+Footer color scale:
+- Link text: `rgba(255,255,255,.52)` → hover `#ffffff`
+- Social icon buttons: circular (`border-radius:50%`), `color:rgba(255,255,255,.55)` → hover `#ffffff`
+- Review badges: `color:rgba(255,255,255,.45)` → hover `rgba(255,255,255,.85)`
+- Column titles: `rgba(255,255,255,.4)`, `letter-spacing:2px`, uppercase, 10px
+- Tagline: `rgba(255,255,255,.75)`, weight 600
+- Sub-tagline: `rgba(255,255,255,.35)`
+- Cert strip (footer-bottom left): `rgba(255,255,255,.28)`
+- Copyright (footer-bottom right): `rgba(255,255,255,.25)`
+- Divider (footer-bottom border-top): `rgba(255,255,255,.09)`
+
+**Footer bottom** shows certifications on the left (`CMMI Level 3 · ISO 27001 · ISO 9001 · Nasscom Member`) and copyright on the right. No italic tagline.
+
+## 6. Chat widget styling
+
+The chat widget (`/chat-widget.js`) ships its own scoped CSS prefixed with `#upcore-chat-*`. It uses its own hardcoded colors intentionally — the widget must work even on pages that haven't loaded `:root`. When updating widget colors, edit `chat-widget.js` directly.
+
+## 7. Propagation scripts
+
+Two Python scripts in `upcore-website/`:
+
+- **`propagate_design.py`** — replaces `:root`, nav CSS, and nav HTML on all 65 pages. Run after any change to the canonical nav or root tokens. SKIP set: `index.html`, `ai-engineering-governance.html`, `sdlc-agent.html`, `platform.html`, `about.html` (manually redesigned).
+- **`fix_all.py`** — comprehensive fix pass: footer tagline/hover, grad-text → `<strong>`, button class migration, insights article CSS injection.
+
+## 8. Do / don't
 
 **Do**
-- Use existing tokens. Reach for `var(--card)` before typing `#0f2040`.
-- Mirror nav/`:root`/font-load changes across every page in the same commit.
+- Use existing tokens. Reach for `var(--card)` before typing `#171E2B`.
+- Mirror nav/`:root` changes across every page via `propagate_design.py` in the same pass.
 - Keep page-specific styles inline in that page's `<style>` block — that's the architecture.
+- Use `border-left: 3px solid var(--teal)` for semantic accent on cards (not gradient top-bars).
+- Use `<strong>` for emphasis in headings (not `.grad-text`).
 
 **Don't**
-- Introduce a CSS framework, preprocessor, or shared stylesheet. The trade-off (duplication for zero build complexity) is intentional — see [ARCHITECTURE.md](ARCHITECTURE.md).
-- Add new colors without extending `:root` everywhere.
-- Edit one page's `<nav>` to "fix" it locally. That's how the previous nav damage happened.
-- Change Poppins to a different family without updating every `<link>` and the `--ff` token.
+- Introduce `.grad-text` spans in H1/H2 elements — banned. One-time exception allowed only for a single stat number on a flagship page if critically needed.
+- Add teal glow box-shadows to cards or interactive elements.
+- Use large border-radius (>10px on cards, >8px on buttons).
+- Use `backdrop-filter: blur()` on the nav — replaced with solid background.
+- Edit one page's `<nav>` or `:root` locally. Run the propagation script.
+- Introduce a CSS framework, preprocessor, or shared stylesheet.
+- Add new colors without extending `:root` everywhere (and updating this doc).

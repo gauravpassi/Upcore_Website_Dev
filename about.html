@@ -27,28 +27,43 @@
 <meta name="twitter:title" content="About Upcore Technologies | Agentic AI Built for Enterprise"/>
 <meta name="twitter:description" content="We build AI workforces for enterprises, not generic chatbots, but agents that know your domain, your workflows, and your data."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 /* ── Navigation ──────────────────────────────────────────────── */
-nav{width:100%;background:rgba(7,16,30,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,191,204,.13);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:68px;width:auto;}
+.nav-logo img{height:40px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
-.nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(139,190,212,1);transition:color .2s,background .2s;text-decoration:none;}
-.nav-links a:hover{color:#ffffff;background:rgba(10,191,204,.08);}
-.nav-links a.active{color:#0abfcc;}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);color:#07101e;font-size:14px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;}
-.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
+.nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
+.nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
 @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
 
-:root{
-  --bg:#07101e;--bg2:#0a1628;--bg3:#0d1c34;--card:#0f2040;
-  --teal:#0abfcc;--mint:#3dddc4;--teal3:#0891b2;
-  --txt:#ffffff;--txt2:#8bbed4;--txt3:#3a6080;
-  --border:rgba(10,191,204,.13);--bh:rgba(10,191,204,.38);
-  --glow:rgba(10,191,204,.08);--green:#4ade80;--amber:#fbbf24;
-  --grad:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);
-  --ff:'Poppins',sans-serif;
+:root {
+  --bg:     #ffffff;
+  --bg2:    #f7f8fa;
+  --bg3:    #f2f3f5;
+  --card:   #ffffff;
+  --card2:  #f7f8fa;
+  --teal:   #0ABFCC;
+  --teal2:  #089AAA;
+  --mint:   #0ABFCC;
+  --green:  #22C55E;
+  --red:    #EF4444;
+  --txt:    #0a0a0a;
+  --txt2:   #45515e;
+  --txt3:   #8e8e93;
+  --ink:    #0a0a0a;
+  --ink-press: #222222;
+  --border: #e5e7eb;
+  --bh:     #d1d5db;
+  --glow:   rgba(0,0,0,0.04);
+  --grad:   linear-gradient(135deg,#0891b2,#0ABFCC);
+  --ff:     "DM Sans", sans-serif;
+  --nav-h:  64px;
+  --max:    1240px;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -57,22 +72,24 @@ a{text-decoration:none;color:inherit;}
 .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
 /* HERO */
-.hero{padding:100px 48px 80px;text-align:center;position:relative;overflow:hidden;
-  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(10,191,204,.08),transparent 60%),var(--bg);}
-.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,191,204,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(10,191,204,.025) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;}
-.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:2;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.1);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;}
-.hero h1{font-size:clamp(32px,5vw,62px);font-weight:900;letter-spacing:-3px;line-height:1.04;margin-bottom:24px;}
-.hero-sub{font-size:19px;color:var(--txt2);line-height:1.8;max-width:640px;margin:0 auto 40px;}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#07101e;font-family:var(--ff);font-size:15px;font-weight:700;padding:16px 32px;border-radius:100px;transition:all .2s;}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(10,191,204,.4);}
-.btn-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-family:var(--ff);font-size:15px;font-weight:600;padding:15px 30px;border-radius:100px;border:1px solid var(--border);transition:all .2s;margin-left:12px;}
-.btn-ghost:hover{border-color:var(--teal);background:rgba(10,191,204,.06);}
+.hero{padding:80px 48px 64px;text-align:center;background:var(--bg);}
+.hero-inner{max-width:800px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.1);border:1px solid rgba(10,191,204,.2);border-radius:9999px;padding:4px 14px;margin-bottom:24px;}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.hero h1{font-size:clamp(32px,4.5vw,56px);font-weight:300;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px;}
+.hero h1 strong{font-weight:700;}
+.hero-sub{font-size:17px;color:var(--txt2);line-height:1.75;max-width:580px;margin:0 auto 36px;}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--ff);font-size:15px;font-weight:600;padding:12px 26px;border-radius:9999px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;}
+.btn-fill{background:#0a0a0a;color:#ffffff;font-weight:600;}
+.btn-fill:hover{background:#222222;transform:translateY(-1px);}
+.btn-ghost{background:transparent;color:#0a0a0a;border:1px solid #0a0a0a;}
+.btn-ghost:hover{background:rgba(0,0,0,.04);border-color:#222222;}
 
 /* STATS STRIP */
 .stats-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px 48px;}
 .stats-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
-.stat-num{font-size:42px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-2px;line-height:1;}
+.stat-num{font-size:42px;font-weight:800;color:var(--teal);letter-spacing:-2px;line-height:1;}
 .stat-lbl{font-size:13px;color:var(--txt3);font-weight:500;margin-top:6px;}
 
 /* SECTIONS */
@@ -97,20 +114,21 @@ a{text-decoration:none;color:inherit;}
 
 /* BELIEFS */
 .beliefs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
-.belief-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px 28px;position:relative;overflow:hidden;}
-.belief-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
-.belief-num{font-size:48px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-3px;line-height:1;margin-bottom:16px;opacity:.4;}
+.belief-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:32px 28px;transition:border-color .2s;}
+.belief-card:hover{border-color:var(--bh);border-left-color:var(--teal);}
+.belief-num{font-size:48px;font-weight:800;color:var(--teal);letter-spacing:-3px;line-height:1;margin-bottom:16px;opacity:.3;}
 .belief-title{font-size:19px;font-weight:800;margin-bottom:10px;}
 .belief-desc{font-size:14px;color:var(--txt2);line-height:1.75;}
 
 
 /* APPROACH */
 .approach-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-.apstep{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 22px;position:relative;}
-.apstep-num{font-size:36px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-2px;line-height:1;margin-bottom:14px;}
+.apstep{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px 22px;position:relative;transition:border-color .2s;}
+.apstep:hover{border-color:var(--bh);}
+.apstep-num{font-size:36px;font-weight:800;color:var(--teal);letter-spacing:-2px;line-height:1;margin-bottom:14px;}
 .apstep-title{font-size:15px;font-weight:800;margin-bottom:8px;}
 .apstep-desc{font-size:12px;color:var(--txt2);line-height:1.65;}
-.apstep-time{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);background:rgba(61,221,196,.08);border:1px solid rgba(61,221,196,.2);border-radius:100px;padding:3px 10px;margin-top:12px;}
+.apstep-time{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.2);border-radius:6px;padding:3px 10px;margin-top:12px;}
 .connector{position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--txt3);z-index:1;}
 .apstep:last-child .connector{display:none;}
 
@@ -119,14 +137,14 @@ a{text-decoration:none;color:inherit;}
 .ind-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(10,191,204,.06);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--txt2);}
 
 /* CTA */
-.cta-section{padding:100px 48px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(10,191,204,.08),transparent 60%),var(--bg);}
-.cta-title{font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-2.5px;line-height:1.1;margin-bottom:18px;}
+.cta-section{padding:100px 48px;text-align:center;background:var(--bg3);}
+.cta-title{font-size:clamp(28px,4vw,52px);font-weight:700;line-height:1.1;margin-bottom:18px;}
 .cta-sub{font-size:17px;color:var(--txt2);margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;}
 
 
 footer p{font-size:12px;color:var(--txt3);}
 .footer-links{display:flex;gap:20px;}
-.footer-links a{font-size:12px;color:var(--txt3);}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.52);}
 
 @media(max-width:1024px){
   .problem-grid{grid-template-columns:1fr;}
@@ -142,21 +160,21 @@ footer p{font-size:12px;color:var(--txt3);}
 }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
 .footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:var(--txt3);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
 .footer-soc-btn{
   display:flex;align-items:center;justify-content:center;
-  width:38px;height:38px;border-radius:10px;
+  width:38px;height:38px;border-radius:50%;
   background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
   color:rgba(255,255,255,0.5);text-decoration:none;
   transition:background .15s,border-color .15s,color .15s;
 }
-.footer-soc-btn:hover{background:rgba(0,212,180,0.12);border-color:rgba(0,212,180,0.35);color:#00d4b4;}
+.footer-soc-btn:hover{background:rgba(10,191,204,0.10);border-color:rgba(10,191,204,0.28);color:var(--teal);}
 .footer-review-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
 .footer-review-btn{
   display:flex;align-items:center;gap:7px;
@@ -167,14 +185,14 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 }
 .footer-review-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
 .footer-review-btn svg{flex-shrink:0;overflow:visible;}
-.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:16px;}
+.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
-.footer-links a{font-size:13px;color:var(--txt2);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:#00d4b4;}
-.footer-bottom{border-top:1px solid var(--border);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-copy{font-size:12px;color:var(--txt3);}
-.footer-copy a{color:var(--txt3);text-decoration:none;}
-.footer-copy a:hover{color:#00d4b4;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-copy a{color:rgba(255,255,255,.3);text-decoration:none;}
+.footer-copy a:hover{color:var(--teal);}
 @media(max-width:900px){
   footer{padding:48px 24px 0;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
@@ -213,24 +231,25 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/#solution">Solutions</a></li>
-    <li><a href="/#products">Products</a></li>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/platform">Products</a></li>
     <li><a href="/industries">Industries</a></li>
-    <li><a href="/insights">Insights</a></li>
+    <li><a href="/insights">Resources</a></li>
     <li><a href="/about" class="active">About</a></li>
-    <li><a href="/#engage">How It Works</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Discovery Call</a>
+  <a href="/assessment" class="nav-cta">Book a Call</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-badge">🏢 Our Story</div>
-    <h1>We Believe Every Business Deserves an <span class="grad-text">AI Workforce</span></h1>
-    <p class="hero-sub">Not the businesses with 50-person engineering teams. Not just the ones who can afford months of custom development. Every business. with real workflows, real constraints, and real work to be done.</p>
-    <a href="/assessment" class="btn-primary">Work With Us →</a>
-    <a href="/contact" class="btn-ghost">Get in Touch</a>
+    <div class="hero-badge"><span class="dot"></span>Our Story</div>
+    <h1>We Believe Every Business Deserves an <strong>AI Workforce</strong></h1>
+    <p class="hero-sub">Not the businesses with 50-person engineering teams. Not just the ones who can afford months of custom development. Every business — with real workflows, real constraints, and real work to be done.</p>
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+      <a href="/assessment" class="btn btn-fill">Work With Us →</a>
+      <a href="/contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
   </div>
 </section>
 
@@ -251,36 +270,36 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
   <div class="section-inner">
     <div class="problem-grid">
       <div class="problem-text">
-        <div class="eyebrow">💡 Why We Started</div>
-        <h2 class="section-title">The <span class="grad-text">Gap</span> No One Was Filling</h2>
+        <div class="eyebrow">Why We Started</div>
+        <h2 class="section-title">The <strong>Gap</strong> No One Was Filling</h2>
         <p>Most AI tools are built for developers. ChatGPT, Copilot, and the thousands of AI products that followed. powerful in a vacuum, but generic. They don't know what a CAPA is. They don't know why DPD buckets matter. They don't understand the difference between how a loan gets qualified at an NBFC versus a bank.</p>
         <p>Industry operators. the people running manufacturing plants, growing edtech platforms, managing NBFC loan books. know their workflows in extraordinary detail. They know exactly which problems cost the most, which tasks eat the most hours, and where the biggest inefficiencies hide. <strong>What they lack is a way to turn that knowledge into working AI, without hiring an ML team or waiting 9 months for a custom build.</strong></p>
         <p>That's the gap Upcore fills. We translate operational expertise into deployed AI agents. domain-trained, human-supervised, and live in days rather than quarters.</p>
       </div>
       <div class="problem-visual">
         <div class="pv-card">
-          <div class="pv-icon">🔴</div>
+          <div class="pv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
           <div>
             <div class="pv-title">Generic AI tools</div>
             <div class="pv-desc">Powerful but context-blind. Requires months of prompting and domain knowledge transfer that most teams don't have the bandwidth for.</div>
           </div>
         </div>
         <div class="pv-card">
-          <div class="pv-icon">🔴</div>
+          <div class="pv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
           <div>
             <div class="pv-title">Custom ML development</div>
             <div class="pv-desc">Full control but 6–18 month timelines, significant budgets, and a dependency on an engineering team to maintain it indefinitely.</div>
           </div>
         </div>
         <div class="pv-card">
-          <div class="pv-icon">🔴</div>
+          <div class="pv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
           <div>
             <div class="pv-title">Industry-agnostic SaaS</div>
             <div class="pv-desc">Fast to set up, but built for the median customer, not for your specific workflows, terminology, or compliance requirements.</div>
           </div>
         </div>
         <div class="pv-card" style="border-color:rgba(61,221,196,.3);background:rgba(61,221,196,.04);">
-          <div class="pv-icon">🟢</div>
+          <div class="pv-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
           <div>
             <div class="pv-title" style="color:var(--mint);">Upcore. industry-specific agents</div>
             <div class="pv-desc">Built for your vertical, trained on your workflows, deployed in 48 hours, operated within your approval boundaries.</div>
@@ -296,13 +315,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <!-- WHAT WE BUILT -->
 <section class="section section-bg2">
   <div class="section-inner" style="text-align:center;">
-    <div class="eyebrow" style="justify-content:center;">🛠️ What We Built</div>
-    <h2 class="section-title" style="max-width:700px;margin:0 auto 20px;">Three Products. <span class="grad-text">One Philosophy.</span></h2>
+    <div class="eyebrow" style="justify-content:center;">What We Built</div>
+    <h2 class="section-title" style="max-width:700px;margin:0 auto 20px;">Three Products. <strong>One Philosophy.</strong></h2>
     <p class="section-sub" style="max-width:620px;margin:0 auto 48px;">AI that understands your industry, operates within your rules, and never acts without your approval where it matters.</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto;">
       <a href="/sdlc-agent" style="display:block;">
         <div class="pv-card" style="flex-direction:column;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='rgba(10,191,204,.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(10,191,204,.13)';this.style.transform='translateY(0)'">
-          <div style="font-size:32px;margin-bottom:14px;">⚡</div>
+          <div style="margin-bottom:14px;color:var(--teal);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;">Forge</div>
           <div style="font-size:17px;font-weight:800;margin-bottom:8px;">SDLC Agent</div>
           <div style="font-size:13px;color:var(--txt2);line-height:1.65;">End-to-end software delivery without a dev team. You describe, Forge builds, you approve, it ships.</div>
@@ -310,7 +329,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
       </a>
       <a href="/agent-builder" style="display:block;">
         <div class="pv-card" style="flex-direction:column;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='rgba(10,191,204,.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(10,191,204,.13)';this.style.transform='translateY(0)'">
-          <div style="font-size:32px;margin-bottom:14px;">🧠</div>
+          <div style="margin-bottom:14px;color:var(--teal);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
           <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;">Studio</div>
           <div style="font-size:17px;font-weight:800;margin-bottom:8px;">Agent Builder</div>
           <div style="font-size:13px;color:var(--txt2);line-height:1.65;">60+ agent templates across 12 industries. Describe a workflow in plain English. deployed in 48 hours.</div>
@@ -318,7 +337,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
       </a>
       <a href="/industries" style="display:block;">
         <div class="pv-card" style="flex-direction:column;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s;" onmouseover="this.style.borderColor='rgba(10,191,204,.4)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(10,191,204,.13)';this.style.transform='translateY(0)'">
-          <div style="font-size:32px;margin-bottom:14px;">👥</div>
+          <div style="margin-bottom:14px;color:var(--teal);"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;">AI Workforce</div>
           <div style="font-size:17px;font-weight:800;margin-bottom:8px;">Industry Workforces</div>
           <div style="font-size:13px;color:var(--txt2);line-height:1.65;">A coordinated team of specialised agents. each trained for your vertical, working 24/7 without downtime.</div>
@@ -334,8 +353,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <section class="section">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px;">
-      <div class="eyebrow" style="justify-content:center;">🎯 What We Believe</div>
-      <h2 class="section-title">The Convictions We <span class="grad-text">Build By</span></h2>
+      <div class="eyebrow" style="justify-content:center;">What We Believe</div>
+      <h2 class="section-title">The Convictions We <strong>Build By</strong></h2>
     </div>
     <div class="beliefs-grid">
       <div class="belief-card">
@@ -366,8 +385,8 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <section class="section">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px;">
-      <div class="eyebrow" style="justify-content:center;">🗺️ How We Work</div>
-      <h2 class="section-title">From First Conversation to <span class="grad-text">Live Agent</span></h2>
+      <div class="eyebrow" style="justify-content:center;">How We Work</div>
+      <h2 class="section-title">From First Conversation to <strong>Live Agent</strong></h2>
       <p class="section-sub" style="max-width:560px;margin:14px auto 0;">Every engagement follows the same four-step process. designed to be fast, transparent, and low-risk for you.</p>
     </div>
     <div class="approach-steps">
@@ -401,20 +420,20 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     </div>
 
     <div style="margin-top:56px;">
-      <div class="eyebrow">🏭 Industries We Serve</div>
+      <div class="eyebrow">Industries We Serve</div>
       <div class="ind-strip">
-        <a href="/industries/manufacturing" class="ind-pill">🏭 Manufacturing</a>
-        <a href="/industries/retail-d2c" class="ind-pill">🛒 Ecommerce</a>
-        <a href="/industries/edtech" class="ind-pill">🎓 EdTech</a>
-        <a href="/industries/banking-finance" class="ind-pill">🏦 Banking & Finance</a>
-        <a href="/industries/real-estate" class="ind-pill">🏠 Real Estate</a>
-        <a href="/industries/nbfc-loans" class="ind-pill">💰 NBFCs</a>
-        <a href="/industries/government" class="ind-pill">🏛️ Government</a>
-        <a href="/industries/saas-technology" class="ind-pill">☁️ SaaS</a>
-        <a href="/industries/healthcare" class="ind-pill">🏥 Healthcare</a>
-        <a href="/industries/logistics" class="ind-pill">🚚 Logistics</a>
-        <a href="/industries/legal-compliance" class="ind-pill">⚖️ Legal</a>
-        <a href="/industries/marketing-agencies" class="ind-pill">📣 Marketing</a>
+        <a href="/industries/manufacturing" class="ind-pill">Manufacturing</a>
+        <a href="/industries/retail-d2c" class="ind-pill">Ecommerce</a>
+        <a href="/industries/edtech" class="ind-pill">EdTech</a>
+        <a href="/industries/banking-finance" class="ind-pill">Banking &amp; Finance</a>
+        <a href="/industries/real-estate" class="ind-pill">Real Estate</a>
+        <a href="/industries/nbfc-loans" class="ind-pill">NBFCs</a>
+        <a href="/industries/government" class="ind-pill">Government</a>
+        <a href="/industries/saas-technology" class="ind-pill">SaaS</a>
+        <a href="/industries/healthcare" class="ind-pill">Healthcare</a>
+        <a href="/industries/logistics" class="ind-pill">Logistics</a>
+        <a href="/industries/legal-compliance" class="ind-pill">Legal</a>
+        <a href="/industries/marketing-agencies" class="ind-pill">Marketing</a>
       </div>
     </div>
   </div>
@@ -422,12 +441,12 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="eyebrow" style="justify-content:center;margin-bottom:20px;">🚀 Work With Us</div>
-  <h2 class="cta-title">Describe Your Biggest<br/><span class="grad-text">Operational Problem.</span></h2>
+  <div class="eyebrow" style="justify-content:center;margin-bottom:20px;">Work With Us</div>
+  <h2 class="cta-title">Describe Your Biggest<br/><strong>Operational Problem.</strong></h2>
   <p class="cta-sub">We'll tell you whether an agent can solve it, and exactly how, in a free 45-minute session.</p>
   <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
-    <a href="/assessment" class="btn-primary">Book a Discovery Call →</a>
-    <a href="/contact" class="btn-ghost">Just Say Hello</a>
+    <a href="/assessment" class="btn btn-fill">Book a Discovery Call →</a>
+    <a href="/contact" class="btn btn-ghost">Just Say Hello</a>
   </div>
 </section>
 
@@ -437,7 +456,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <!-- Brand col -->
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Your AI Partner. Not Just Another AI Tool.<br/>We build agents that actually run your business.</p>
+      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
 
       <!-- Social icons -->
       <div class="footer-social-row">
@@ -538,7 +557,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Upcore Technologies Pvt. Ltd. · <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
-    <span class="footer-copy" style="font-style:italic;color:var(--txt3);">Your AI Partner. Not Just Another AI Tool.</span>
+    <span class="footer-copy" style="color:rgba(255,255,255,.2);letter-spacing:.3px;">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; ISO&nbsp;9001</span>
   </div>
 </footer>
 

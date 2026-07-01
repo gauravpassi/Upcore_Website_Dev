@@ -29,7 +29,8 @@ upcore-website/
 │
 ├── index.html                         # Homepage — CANONICAL :root + nav block
 ├── about.html                         # About
-├── platform.html                      # "Three Products. One AI Partner." overview
+├── ai-engineering-governance.html     # FLAGSHIP — AI Engineering Governance / Fractional AI Officer
+├── platform.html                      # "Four Products. One AI Partner." overview (incl. AI Governance)
 ├── agent-builder.html                 # Studio — agent builder marketing page
 ├── sdlc-agent.html                    # Forge — software-without-a-dev-team page
 ├── build-your-demo.html               # Interactive UI → POSTs to /api/build-demo

@@ -29,36 +29,59 @@
 <meta name="twitter:description" content="AI agents for admissions follow-up, course recommendations, attendance monitoring, and student support — built for EdTech platforms."/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 /* ── Navigation ──────────────────────────────────────────────── */
-nav{width:100%;background:rgba(7,16,30,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(10,191,204,.13);padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:68px;width:auto;}
+.nav-logo img{height:40px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
-.nav-links a{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(139,190,212,1);transition:color .2s,background .2s;text-decoration:none;}
-.nav-links a:hover{color:#ffffff;background:rgba(10,191,204,.08);}
-.nav-links a.active{color:#0abfcc;}
-.nav-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);color:#07101e;font-size:14px;font-weight:700;padding:10px 22px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:opacity .2s,transform .2s;}
-.nav-cta:hover{opacity:.9;transform:translateY(-1px);}
+.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
+.nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
+.nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
 @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
 
-:root{--bg:#07101e;--bg2:#0a1628;--card:#0f2040;--teal:#0abfcc;--mint:#3dddc4;--txt:#ffffff;--txt2:#8bbed4;--txt3:#3a6080;--border:rgba(10,191,204,.13);--bh:rgba(10,191,204,.38);--grad:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);--ff:'Poppins',sans-serif;}
+:root {
+  --bg:     #ffffff;
+  --bg2:    #f7f8fa;
+  --bg3:    #f2f3f5;
+  --card:   #ffffff;
+  --card2:  #f7f8fa;
+  --teal:   #0ABFCC;
+  --teal2:  #089AAA;
+  --mint:   #0ABFCC;
+  --green:  #22C55E;
+  --red:    #EF4444;
+  --txt:    #0a0a0a;
+  --txt2:   #45515e;
+  --txt3:   #8e8e93;
+  --ink:    #0a0a0a;
+  --ink-press: #222222;
+  --border: #e5e7eb;
+  --bh:     #d1d5db;
+  --glow:   rgba(0,0,0,0.04);
+  --grad:   linear-gradient(135deg,#0891b2,#0ABFCC);
+  --ff:     "DM Sans", sans-serif;
+  --nav-h:  64px;
+  --max:    1240px;
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 .grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hub-hero{padding:80px 48px 64px;background:radial-gradient(ellipse 80% 55% at 30% 0%,rgba(10,191,204,.08),transparent 65%),var(--bg);position:relative;overflow:hidden;}
-.hub-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(10,191,204,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(10,191,204,.03) 1px,transparent 1px);background-size:60px 60px;}
+.hub-hero{padding:80px 48px 64px;background:var(--bg);}
+
 .hub-hero-inner{position:relative;z-index:2;max-width:700px;}
-.hub-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.1);border:1px solid var(--border);border-radius:100px;padding:6px 14px;margin-bottom:16px;}
-.hub-status-live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:100px;padding:5px 14px;margin-bottom:20px;}
-.hub-status-ready{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid var(--border);border-radius:100px;padding:5px 14px;margin-bottom:20px;}
+.hub-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.18);border-radius:6px;padding:4px 12px;margin-bottom:16px;}
+.hub-status-live{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:6px;padding:4px 12px;margin-bottom:20px;}
+.hub-status-ready{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.18);border-radius:6px;padding:4px 12px;margin-bottom:20px;}
 .sdot{width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 .hub-icon{font-size:48px;margin-bottom:16px;}
-.hub-hero h1{font-size:clamp(28px,4vw,48px);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:16px;}
+.hub-hero h1{font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:-1px;line-height:1.15;margin-bottom:16px;}
 .hub-hero p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:32px;max-width:580px;}
 .hub-meta{display:flex;gap:32px;flex-wrap:wrap;}
 .meta-item{font-size:13px;color:var(--txt2);}
@@ -68,10 +91,10 @@ a{text-decoration:none;color:inherit;}
 .breadcrumb a:hover{color:var(--teal);}
 .section{padding:64px 48px 80px;}
 .section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--txt3);margin-bottom:8px;}
-.section-title{font-size:clamp(22px,3vw,32px);font-weight:800;letter-spacing:-1px;margin-bottom:40px;}
+.section-title{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.5px;margin-bottom:40px;}
 .usecases-grid{display:flex;flex-direction:column;gap:28px;}
-.uc-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;overflow:hidden;}
-.uc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+.uc-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:32px;}
+
 .uc-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--txt3);margin-bottom:8px;}
 .uc-title{font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:16px;}
 .uc-pain{font-size:15px;font-style:italic;color:var(--teal);line-height:1.6;padding-left:16px;border-left:3px solid var(--teal);margin-bottom:16px;}
@@ -83,17 +106,17 @@ a{text-decoration:none;color:inherit;}
 .uc-check{width:18px;height:18px;border-radius:50%;background:rgba(61,221,196,.15);border:1px solid var(--mint);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mint);flex-shrink:0;margin-top:1px;}
 .agents-section{padding:0 48px 80px;}
 .agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
-.agent-pill-card{background:rgba(10,191,204,.04);border:1px solid var(--border);border-radius:14px;padding:20px 24px;}
-.agent-tag{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mint);background:rgba(61,221,196,.08);border:1px solid rgba(61,221,196,.2);border-radius:100px;padding:3px 10px;margin-bottom:10px;}
+.agent-pill-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 24px;transition:border-color .2s;}
+.agent-tag{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.18);border-radius:6px;padding:3px 10px;margin-bottom:10px;}
 .agent-pill-card h4{font-size:15px;font-weight:700;margin-bottom:6px;}
 .agent-pill-card p{font-size:12px;color:var(--txt2);line-height:1.6;}
 .cta-section{padding:64px 48px;background:var(--bg2);border-top:1px solid var(--border);text-align:center;}
 .cta-section h2{font-size:clamp(20px,2.5vw,32px);font-weight:800;letter-spacing:-1px;margin-bottom:12px;}
 .cta-section p{font-size:15px;color:var(--txt2);margin-bottom:32px;max-width:540px;margin-left:auto;margin-right:auto;}
-.btn-cta{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:#07101e;font-family:var(--ff);font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;transition:all .2s;}
-.btn-cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(10,191,204,.4);}
-.btn-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-family:var(--ff);font-size:14px;font-weight:600;padding:14px 28px;border-radius:100px;border:1px solid var(--border);transition:all .2s;margin-left:16px;}
-.btn-ghost:hover{border-color:var(--teal);background:rgba(10,191,204,.05);}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#070B10;font-family:var(--ff);font-size:15px;font-weight:700;padding:13px 28px;border-radius:8px;transition:background .2s,transform .2s;}
+.btn-cta:hover{background:#222222;transform:translateY(-1px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:var(--txt);font-family:var(--ff);font-size:14px;font-weight:600;padding:13px 28px;border-radius:8px;border:1px solid var(--bh);transition:border-color .2s,background .2s;margin-left:16px;}
+.btn-ghost:hover{background:rgba(0,0,0,.04);border-color:#222222;}
 
 
 
@@ -101,21 +124,21 @@ a{text-decoration:none;color:inherit;}
 @media(max-width:768px){.hub-hero,.section,.agents-section,.cta-section,.agents-grid{grid-template-columns:1fr;}.hub-meta{gap:16px;}.btn-ghost{margin-left:0;margin-top:12px;}}
 
 /* ── Footer ─────────────────────────────────────────────────────── */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
 .footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:var(--txt3);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
 .footer-soc-btn{
   display:flex;align-items:center;justify-content:center;
-  width:38px;height:38px;border-radius:10px;
+  width:38px;height:38px;border-radius:50%;
   background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
   color:rgba(255,255,255,0.5);text-decoration:none;
   transition:background .15s,border-color .15s,color .15s;
 }
-.footer-soc-btn:hover{background:rgba(0,212,180,0.12);border-color:rgba(0,212,180,0.35);color:#00d4b4;}
+.footer-soc-btn:hover{background:rgba(10,191,204,0.10);border-color:rgba(10,191,204,0.28);color:var(--teal);}
 .footer-review-row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
 .footer-review-btn{
   display:flex;align-items:center;gap:7px;
@@ -126,14 +149,14 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 }
 .footer-review-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff;}
 .footer-review-btn svg{flex-shrink:0;overflow:visible;}
-.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--txt3);margin-bottom:16px;}
+.footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
-.footer-links a{font-size:13px;color:var(--txt2);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:#00d4b4;}
-.footer-bottom{border-top:1px solid var(--border);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
-.footer-copy{font-size:12px;color:var(--txt3);}
-.footer-copy a{color:var(--txt3);text-decoration:none;}
-.footer-copy a:hover{color:#00d4b4;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
+.footer-links a:hover{color:var(--teal);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);}
+.footer-copy a{color:rgba(255,255,255,.3);text-decoration:none;}
+.footer-copy a:hover{color:var(--teal);}
 @media(max-width:900px){
   footer{padding:48px 24px 0;}
   .footer-grid{grid-template-columns:1fr 1fr;gap:32px;}
@@ -177,14 +200,13 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/#solution">Solutions</a></li>
-    <li><a href="/#products">Products</a></li>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/platform">Products</a></li>
     <li><a href="/industries" class="active">Industries</a></li>
-    <li><a href="/insights">Insights</a></li>
+    <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
-    <li><a href="/#engage">How It Works</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Discovery Call</a>
+  <a href="/assessment" class="nav-cta">Book a Call</a>
 </nav>
 
 <div class="hub-hero">
@@ -192,9 +214,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <div class="breadcrumb"><a href="/industries">Industries</a> / EdTech</div>
     <div class="hub-eyebrow">Industry AI Workforce</div>
     <div class="hub-status-ready"><span class="sdot"></span>Ready to Build</div>
-    <div class="hub-icon">🎓</div>
-    <h1>EdTech<br/><span class="grad-text">AI Workforce</span></h1>
-    <p>Agents that answer 24/7, onboard students properly, and keep parents informed. Your platform scales without your support headcount scaling with it.</p>
+    <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+    <h1>EdTech<br/><strong>AI Workforce</strong></h1>
+    <p>Reduces student drop-off by 40%. 24/7 counsellor cover — without adding a single headcount.</p>
     <div class="hub-meta">
       <div class="meta-item">Agents: <span>5 Specialities</span></div>
       <div class="meta-item">Human in the Loop: <span>Mandatory</span></div>
@@ -205,7 +227,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
 <div class="section">
   <div class="section-label">Real Pain Points. Real Solutions.</div>
-  <div class="section-title">3 Problems Your <span class="grad-text">EdTech AI Team</span> Solves From Day One</div>
+  <div class="section-title">3 Problems Your <strong>EdTech AI Team</strong> Solves From Day One</div>
   <div class="usecases-grid">
     <div class="uc-card">
       <div class="uc-num">Use Case 01</div>
@@ -250,7 +272,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
 <div class="agents-section">
   <div class="section-label">Agent Specialities</div>
-  <div class="section-title" style="margin-bottom:24px;">Your <span class="grad-text">AI Workforce</span> for EdTech</div>
+  <div class="section-title" style="margin-bottom:24px;">Your <strong>AI Workforce</strong> for EdTech</div>
   <div class="agents-grid">
     <div class="agent-pill-card">
       <div class="agent-tag">Agent 01</div>
@@ -281,10 +303,10 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 </div>
 
 <div class="cta-section">
-  <h2>Ready to build your <span class="grad-text">EdTech AI team?</span></h2>
+  <h2>Ready to build your <strong>EdTech AI team?</strong></h2>
   <p>45-minute discovery session. We map your top 3 agent opportunities, identify the highest-impact workflow to automate, and hand you a written action plan.</p>
   <a href="/assessment" class="btn-cta">Book a Discovery Call &#8594;</a>
-  <a href="/industries" class="btn-ghost">&#8592; All Industries</a>
+  <a href="/industries" class="btn btn-ghost">&#8592; All Industries</a>
 </div>
 
 <footer>
@@ -293,7 +315,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
     <!-- Brand col -->
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Your AI Partner. Not Just Another AI Tool.<br/>We build agents that actually run your business.</p>
+      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
 
       <!-- Social icons -->
       <div class="footer-social-row">
@@ -394,7 +416,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px 48px
 
   <div class="footer-bottom">
     <span class="footer-copy">© 2025 Upcore Technologies Pvt. Ltd. · <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
-    <span class="footer-copy" style="font-style:italic;color:var(--txt3);">Your AI Partner. Not Just Another AI Tool.</span>
+    <span class="footer-copy" style="color:rgba(255,255,255,.2);letter-spacing:.3px;">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; ISO&nbsp;9001</span>
   </div>
 </footer>
 <script src="/chat-widget.js" defer></script>

@@ -75,6 +75,21 @@
       "source": "/about-us",
       "destination": "/about",
       "permanent": true
+    },
+    {
+      "source": "/fractional-ai-officer",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/aigov",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/ai-governance",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
     }
   ]
 }

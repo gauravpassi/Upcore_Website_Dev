@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-02 — Full-site consistency audit: governance cross-links, content fixes, CTA standardization
+**Type:** fix | content
+**Files:** `about.html`, `platform.html`, `sdlc-agent.html`, `assessment.html`, `contact.html`, `kw/manufacturing-ai-agents.html`, `kw/index.html`, `platform/ai-agent-builder.html`, `platform/custom-ai-agents.html`, `platform/30-day-deployment.html`, `platform/on-premise-deployment.html`, `insights/banking-ai-customer-service.html`, `learn/enterprise-ai-strategy.html`, `learn/ai-data-governance.html`, all 12 `industries/*.html` pages
+Multi-pass site-wide consistency audit. Key changes: (1) **about.html** — governance-first hero H1, added FAO as 4th product card in 2×2 grid, stats updated ("48hrs"→"72h", "3 Core Products"→"4 Products"), hero CTA "Work With Us"→"Book a Discovery Call", meta/schema updated. (2) **platform.html** — hero H1 updated to governance framing, Studio tab now has booking CTA. (3) **Governance cross-links** — teal callout box added before CTA on all 12 industry pages and 3 platform sub-pages; Decision 5 in enterprise-ai-strategy.html and ai-data-governance.html both now link to /ai-engineering-governance. (4) **CTA fixes** — manufacturing KW page CTAs changed /contact→/assessment; assessment.html button "Schedule My Assessment"→"Book My Discovery Call"; success message "You're on the list!"→"Request received."; placeholder names Rahul/Sharma→Alex/Smith; Studio Templates CTA label fixed. (5) **SEO** — banking article canonical URL changed from upcore.tech/insights/banking/ to upcoretech.com/insights/; ai-agent-builder meta description completed. (6) **Content fixes** — "48 hours"→"72 hours" throughout about.html; sdlc-agent "0 Developers Needed"→"0 Dev Handover Cycles"; sdlc schema offers.url /contact→/assessment; artefacts→artifacts in on-premise and ai-data-governance; contact response time inconsistency fixed; kw/index.html planning stats removed. (7) **Copyright** — 41 files updated 2025→2026.
+
+---
+
 ## 2026-07-01 — Full design overhaul: MiniMax white-canvas system (65 pages)
 **Type:** feature | fix
 **Files:** all 65 HTML pages, `apply_minimax.py` (new), `fix_flagships.py` (new), `docs/DESIGN-SYSTEM.md`

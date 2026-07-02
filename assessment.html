@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -32,7 +32,7 @@
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:40px;width:auto;}
+.nav-logo img{height:48px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -101,7 +101,7 @@ img{display:block;max-width:100%;}
 /* Left info panel */
 .info-panel{
   padding:72px 64px 72px 64px;
-  background:rgba(10,19,40,.4);border-right:1px solid var(--border);
+  background:var(--bg3);border-right:1px solid var(--border);
   display:flex;flex-direction:column;justify-content:center;
 }
 .info-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
@@ -150,12 +150,12 @@ img{display:block;max-width:100%;}
   box-shadow:0 0 0 3px rgba(10,191,204,.12);
 }
 .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238bbed4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer;}
-.form-group select option{background:#0d1c34;color:#fff;}
+.form-group select option{background:var(--bg);color:var(--txt);}
 .form-group textarea{resize:vertical;min-height:100px;line-height:1.6;}
 
 .form-submit{
   width:100%;padding:16px 32px;border-radius:12px;border:none;cursor:pointer;
-  background:var(--grad);color:#07101e;font-family:var(--ff);
+  background:var(--grad);color:#ffffff;font-family:var(--ff);
   font-size:16px;font-weight:700;transition:all .22s;margin-top:8px;
   ;
 }
@@ -171,7 +171,7 @@ img{display:block;max-width:100%;}
 #success-msg .success-icon{font-size:56px;margin-bottom:20px;}
 #success-msg h3{font-size:26px;font-weight:800;margin-bottom:12px;}
 #success-msg p{font-size:15px;color:var(--txt2);line-height:1.7;max-width:400px;margin:0 auto 28px;}
-.btn-back{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#07101e;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;transition:all .2s;}
+.btn-back{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:#ffffff;padding:13px 28px;border-radius:10px;font-size:14px;font-weight:700;transition:all .2s;}
 .btn-back:hover{transform:translateY(-2px);}
 
 @media(max-width:900px){
@@ -309,11 +309,11 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <div class="form-row">
             <div class="form-group">
               <label for="fname">First Name *</label>
-              <input type="text" id="fname" name="First Name" placeholder="Rahul" required/>
+              <input type="text" id="fname" name="First Name" placeholder="Alex" required/>
             </div>
             <div class="form-group">
               <label for="lname">Last Name *</label>
-              <input type="text" id="lname" name="Last Name" placeholder="Sharma" required/>
+              <input type="text" id="lname" name="Last Name" placeholder="Smith" required/>
             </div>
           </div>
 
@@ -385,7 +385,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
 
           <p class="form-privacy">We respond within 24 hours. No commitment required. Your details are kept private.</p>
           <button type="submit" class="form-submit" id="submit-btn">
-            Schedule My Assessment &#8594;
+            Book My Discovery Call &#8594;
           </button>
         </form>
       </div>
@@ -393,8 +393,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <!-- Success message (shown after JS submit) -->
       <div id="success-msg">
         <div class="success-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
-        <h3>You're on the list!</h3>
-        <p>We've received your assessment request and will reach out within 24 hours to confirm your session time. Check your inbox at <strong id="confirm-email"></strong></p>
+        <h3>Request received.</h3>
+        <p>We'll be in touch within 24 hours to confirm your session time. Check your inbox at <strong id="confirm-email"></strong></p>
         <a href="/" class="btn-back">&#8592; Back to Home</a>
       </div>
     </div>
@@ -524,7 +524,7 @@ document.getElementById('assessment-form').addEventListener('submit', function(e
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Upcore Technologies Pvt. Ltd. · <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
+    <span class="footer-copy">© 2026 Upcore Technologies Pvt. Ltd. · <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
     <span class="footer-copy" style="color:rgba(255,255,255,.2);letter-spacing:.3px;">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; ISO&nbsp;9001</span>
   </div>
 </footer>

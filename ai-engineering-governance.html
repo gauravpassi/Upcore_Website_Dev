@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -89,7 +89,7 @@ a { text-decoration:none; color:inherit; }
 /* ── NAV ───────────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:40px;width:auto;}
+.nav-logo img{height:48px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -379,6 +379,36 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
 .proof-strip{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 24px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .ps-item{font-size:12px;font-weight:600;color:var(--txt2);letter-spacing:.02em;}
 .ps-sep{color:var(--txt3);font-size:12px;}
+
+/* ── FORGE CALLOUT ─────────────────────────────────────────── */
+.forge-callout { display:flex; align-items:center; gap:32px; padding:24px 28px; background:rgba(10,191,204,.05); border:1px solid rgba(10,191,204,.2); border-radius:10px; margin-top:40px; }
+.forge-callout-left { flex:1; }
+.forge-callout-badge { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+.forge-callout-body { font-size:14px; color:var(--txt2); line-height:1.65; }
+
+/* ── ECONOMICS ANCHOR ──────────────────────────────────────── */
+.econ-price-note { font-size:14px; color:var(--teal); font-weight:600; margin-bottom:20px; line-height:1.5; margin-top:4px; }
+.econ-price-sub { font-size:11px; color:var(--txt3); font-weight:400; display:block; margin-top:4px; }
+.econ-anchor { font-size:14px; color:var(--txt2); line-height:1.7; text-align:center; margin-top:28px; padding:16px 20px; background:rgba(10,191,204,.04); border-radius:8px; border:1px solid rgba(10,191,204,.12); }
+
+/* ── JOURNEY CONTINUATION ──────────────────────────────────── */
+.journey-continuation { margin-top:40px; padding:32px 36px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; max-width:760px; }
+.jc-body { font-size:15px; color:var(--txt2); line-height:1.8; margin-bottom:20px; }
+.jc-reassurance { font-size:12px; color:var(--txt3); margin-top:12px; }
+
+/* ── CTA REASSURANCE ───────────────────────────────────────── */
+.cta-reassurance { font-size:12px; color:var(--txt3); margin-top:12px; }
+
+/* ── MOBILE GOVERNANCE DASHBOARD ───────────────────────────── */
+.gov-dashboard-mobile { display:none; }
+@media(max-width:768px){
+  .gov-dashboard-mobile { display:block; margin-top:28px; padding:18px 20px; background:rgba(10,191,204,.05); border:1px solid rgba(10,191,204,.2); border-radius:10px; border-left:3px solid var(--teal); }
+  .gdm-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+  .gdm-stats { font-size:13px; font-weight:600; color:var(--txt); margin-bottom:4px; line-height:1.7; }
+  .gdm-status { font-size:11px; color:var(--teal); }
+}
+@media(max-width:768px){ .forge-callout { flex-direction:column; align-items:flex-start; } }
+@media(max-width:1024px){ .econ-cards { grid-template-columns:1fr; } }
 </style>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -423,6 +453,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
         <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
         <a href="#framework" class="btn btn-ghost">See the Framework</a>
       </div>
+      <p class="cta-reassurance" style="margin-bottom:20px">We respond within 24 hours. One call. No commitment required.</p>
       <div class="hero-stats">
         <div class="h-stat">
           <div class="h-stat-num">72h</div>
@@ -440,6 +471,11 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
           <div class="h-stat-num">90d</div>
           <div class="h-stat-lbl">Walk away if ROI isn't there</div>
         </div>
+      </div>
+      <div class="gov-dashboard-mobile">
+        <div class="gdm-label">FAO Risk Monitor &mdash; Live</div>
+        <div class="gdm-stats">23 risks blocked today &nbsp;&middot;&nbsp; 847 lines reviewed &nbsp;&middot;&nbsp; 2 hallucinated packages caught</div>
+        <div class="gdm-status">All 5 governance layers active</div>
       </div>
     </div>
 
@@ -583,8 +619,8 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       </div>
       <div class="inc-entry">
         <div class="inc-num-label">Incident 02 &middot; Auth Failure &middot; CVE-2025-48757</div>
-        <div class="inc-title">Lovable.dev &nbsp;&middot;&nbsp; 170 Live Apps: Auth Inverted</div>
-        <p class="inc-body">AI inverted authentication logic across 170 production apps simultaneously — authenticated users blocked, anonymous visitors granted full data access. Official CVE assigned. The identical bug replicated before a customer reported it.</p>
+        <div class="inc-title">Lovable.dev &nbsp;&middot;&nbsp; Auth Bypass Shipped Silently</div>
+        <p class="inc-body">AI inverted authentication logic — authenticated users blocked, anonymous visitors granted full data access. Official CVE assigned (CVE-2025-48757). The bug replicated across production before a customer reported it.</p>
         <div class="inc-src">Source: CVE-2025-48757 &middot; Autonoma AI Research</div>
       </div>
       <div class="inc-entry">
@@ -736,6 +772,47 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       </div>
 
     </div>
+    <div class="forge-callout">
+      <div class="forge-callout-left">
+        <div class="forge-callout-badge">Forge &middot; SDLC Agent</div>
+        <p class="forge-callout-body"><strong>Forge</strong> works alongside governance — it ships AI-assisted software while your FAO ensures every commit is reviewed, governed, and attributed. Deploy together or start with governance alone.</p>
+      </div>
+      <a href="/sdlc-agent" class="btn btn-ghost" style="font-size:13px;padding:10px 20px;white-space:nowrap;flex-shrink:0">Explore Forge &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ (moved before economics for CRO) -->
+<section class="section" id="faq" style="background:var(--bg);">
+  <div class="section-inner" style="text-align:center;">
+    <span class="eyebrow">FAQ</span>
+    <h2 class="section-title">Questions Leaders Ask.</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What is a Fractional AI Officer?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>An AI-certified governance leader embedded directly in your engineering organisation, accountable for the risk created by AI-generated code. Unlike a generalist consultant, a Fractional AI Officer is certified across prompt engineering, code security, regulatory compliance, and AI cost management. They attend standups, review PRs, author policies, and own outcomes — Done-For-You or Done-With-You — without the cost or timeline of a full-time hire.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How fast can a Fractional AI Officer start?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>72 hours. No recruitment cycle, no ramp period. Connect your repository and your FAO is embedded and governing within three days. No sprint allocated, no infrastructure change, no vendor lock-in. Results in week one.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What does the 90-day proof of concept include?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>By Day 30 your FAO delivers your first AI risk report — your actual AI risk, quantified and mapped. By Day 60 all integrations are live (IDE, Git, CI/CD, production monitoring) in observe mode with a baseline established. By Day 90 policy gates are live, AI code is risk-scored and reviewed on every commit, and you receive a full ROI model. If the Day 30 findings do not justify continuing, you walk away.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How is this different from a full-time hire or a Big-4 consultancy?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>A full-time hire costs $250K+ per year plus 6 months to recruit and 12 months to ramp. A Big-4 engagement costs $500K+ per project, delivers a report, and then leaves with no ongoing accountability. A Fractional AI Officer embeds in 72 hours, is AI-certified in engineering governance, stays embedded in your context, and owns outcomes — not just deliverables.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">What's the difference between Done-For-You and Done-With-You?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p>Done-For-You: you provide repository access, CI/CD, your AI tool list, and compliance obligations, and your FAO handles everything else — independent audit, governance architecture, installation, baseline data, and weekly reports. Done-With-You: your team leads while your FAO guides, trains, and strategises — joint discovery, co-designed policy, guided implementation, and full knowledge transfer so your team owns it long term.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">How does this relate to Forge, your SDLC agent?<span class="faq-ico">+</span></button>
+      <div class="faq-a"><p><a href="/sdlc-agent">Forge</a> is how you <em>build</em> software with AI. AI Engineering Governance is how you <em>govern</em> the AI-generated code that Forge — and any AI coding tool your team uses — produces. They're complementary: Forge ships features, your Fractional AI Officer makes sure everything shipped is secure, compliant, and cost-controlled.</p></div>
+    </div>
   </div>
 </section>
 
@@ -769,6 +846,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       <div class="econ-card featured">
         <div class="econ-label featured-lbl">Fractional AI Officer</div>
         <div class="econ-price amber">Fractional</div>
+        <div class="econ-price-note">Significantly less than a full-time hire.<span class="econ-price-sub">Exact pricing based on org size and engagement model — provided in your discovery call.</span></div>
         <div class="econ-rows">
           <div class="econ-row"><div class="econ-row-lbl">Time to Value</div><div class="econ-row-val good">Embedded &amp; governing in 72 hours</div></div>
           <div class="econ-row"><div class="econ-row-lbl">Accountability</div><div class="econ-row-val good">Owns outcomes, not deliverables</div></div>
@@ -777,6 +855,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
         </div>
       </div>
     </div>
+    <p class="econ-anchor">Most teams find FAO engagement costs 70–80% less than the equivalent full-time role, with results visible at Day 30 — not month 12.</p>
     <p class="src-note">Your FAO owns: AI Policy &amp; Standards &middot; Code Governance &middot; Security Enforcement &middot; Compliance Reporting &middot; Spend Control.</p>
   </div>
 </section>
@@ -843,6 +922,11 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
         <div class="jitem"><span class="jdot"></span><b>Full ROI model</b> — incidents avoided, compliance posture, time saved. You have the data.</div>
       </div>
     </div>
+    <div class="journey-continuation">
+      <p class="jc-body">After Day 90, your FAO continues embedded on a monthly basis — shifting from implementation to oversight. New AI tool approvals, quarterly compliance reports, incident attribution, and board-ready AI governance summaries. Most teams renew. You decide with data in hand.</p>
+      <a href="/assessment" class="btn btn-teal" style="display:inline-flex;margin-top:4px">Start Your 72-Hour Onboarding &rarr;</a>
+      <p class="jc-reassurance">We respond within 24 hours. No commitment required.</p>
+    </div>
   </div>
 </section>
 
@@ -853,40 +937,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     <h2 class="section-title" style="margin-bottom:16px;">Your Governance Review Starts in 72 Hours.</h2>
     <p style="color:var(--txt2);margin-bottom:32px;line-height:1.7;">Most teams see their first blocked vulnerability within the first week. Setup is done for you — no internal resources required.</p>
     <a href="/assessment" class="btn btn-fill">Start Your 72-Hour Onboarding →</a>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" id="faq">
-  <div class="section-inner" style="text-align:center;">
-    <span class="eyebrow">FAQ</span>
-    <h2 class="section-title">Questions Leaders Ask.</h2>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What is a Fractional AI Officer?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p>An AI-certified governance leader embedded directly in your engineering organisation, accountable for the risk created by AI-generated code. Unlike a generalist consultant, a Fractional AI Officer is certified across prompt engineering, code security, regulatory compliance, and AI cost management. They attend standups, review PRs, author policies, and own outcomes — Done-For-You or Done-With-You — without the cost or timeline of a full-time hire.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How fast can a Fractional AI Officer start?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p>72 hours. No recruitment cycle, no ramp period. Connect your repository and your FAO is embedded and governing within three days. No sprint allocated, no infrastructure change, no vendor lock-in. Results in week one.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What does the 90-day proof of concept include?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p>By Day 30 your FAO delivers your first AI risk report — your actual AI risk, quantified and mapped. By Day 60 all integrations are live (IDE, Git, CI/CD, production monitoring) in observe mode with a baseline established. By Day 90 policy gates are live, AI code is risk-scored and reviewed on every commit, and you receive a full ROI model. If the Day 30 findings do not justify continuing, you walk away.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How is this different from a full-time hire or a Big-4 consultancy?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p>A full-time hire costs $250K+ per year plus 6 months to recruit and 12 months to ramp. A Big-4 engagement costs $500K+ per project, delivers a report, and then leaves with no ongoing accountability. A Fractional AI Officer embeds in 72 hours, is AI-certified in engineering governance, stays embedded in your context, and owns outcomes — not just deliverables.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">What's the difference between Done-For-You and Done-With-You?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p>Done-For-You: you provide repository access, CI/CD, your AI tool list, and compliance obligations, and your FAO handles everything else — independent audit, governance architecture, installation, baseline data, and weekly reports. Done-With-You: your team leads while your FAO guides, trains, and strategises — joint discovery, co-designed policy, guided implementation, and full knowledge transfer so your team owns it long term.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">How does this relate to Forge, your SDLC agent?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p><a href="/sdlc-agent">Forge</a> is how you <em>build</em> software with AI. AI Engineering Governance is how you <em>govern</em> the AI-generated code that Forge — and any AI coding tool your team uses — produces. They're complementary: Forge ships features, your Fractional AI Officer makes sure everything shipped is secure, compliant, and cost-controlled.</p></div>
-    </div>
+    <p class="cta-reassurance" style="margin-top:16px">We respond within 24 hours. No commitment required.</p>
   </div>
 </section>
 
@@ -900,7 +951,8 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       <a href="/assessment" class="btn btn-teal">Book a Discovery Call &rarr;</a>
       <a href="/sdlc-agent" class="btn btn-ghost">Explore Forge (SDLC Agent)</a>
     </div>
-    <div class="cta-note">One person. Four hours of onboarding. No infrastructure changes. No lock-in during the pilot.</div>
+    <p class="cta-reassurance">We respond within 24 hours. One call. No commitment required.</p>
+    <div class="cta-note" style="margin-top:8px">One person. Four hours of onboarding. No infrastructure changes. No lock-in during the pilot.</div>
   </div>
 </section>
 
@@ -975,7 +1027,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2025 Upcore Technologies Pvt. Ltd. &middot; <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
+    <span class="footer-copy">&copy; 2026 Upcore Technologies Pvt. Ltd. &middot; <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a></span>
     <span class="footer-copy" style="font-style:italic">Govern Your AI. Then Build With It.</span>
   </div>
 </footer>

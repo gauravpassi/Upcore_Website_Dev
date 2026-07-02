@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -96,7 +96,7 @@ a { text-decoration:none; color:inherit; }
 /* ── NAV ───────────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:40px;width:auto;}
+.nav-logo img{height:48px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -515,6 +515,67 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 @media(max-width:560px){
   .footer-bottom { flex-direction:column; align-items:flex-start; }
 }
+
+/* ── PERSONA CARDS (problem section) ───────────────────────── */
+.persona-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+.persona-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px 28px; position:relative; overflow:hidden; }
+.persona-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad); }
+.persona-role { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin-bottom:14px; }
+.persona-pain { font-size:15px; font-weight:600; color:var(--txt); line-height:1.5; margin-bottom:16px; }
+.persona-quote { font-size:13px; color:var(--txt2); line-height:1.7; font-style:italic; padding:12px 16px; background:var(--bg3); border-radius:8px; border-left:2px solid var(--teal); }
+.persona-unifier { text-align:center; margin-top:48px; font-size:22px; font-weight:700; color:var(--txt); letter-spacing:-0.5px; }
+.persona-cta { display:flex; justify-content:center; margin-top:24px; }
+
+/* ── FAO STANDALONE SECTION ─────────────────────────────────── */
+#fao-section { background:var(--bg); }
+.fao-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:56px; }
+.fao-desc { font-size:16px; color:var(--txt2); line-height:1.8; margin-bottom:28px; }
+.fao-layers { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+.layer-pill { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.25); padding:5px 14px; border-radius:9999px; }
+.fao-feats { display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+.fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
+.fao-reassurance { font-size:12px; color:var(--txt3); margin-top:4px; }
+.fao-stat-box { background:var(--card2); border:1px solid var(--border); border-radius:12px; padding:36px 32px; display:flex; flex-direction:column; gap:0; }
+.fsb-row { padding:20px 0; }
+.fsb-row:first-child { padding-top:0; }
+.fsb-row:last-child { padding-bottom:0; }
+.fsb-num { font-size:36px; font-weight:800; letter-spacing:-2px; color:var(--teal); line-height:1; margin-bottom:8px; }
+.fsb-lbl { font-size:13px; color:var(--txt2); line-height:1.5; }
+.fsb-div { height:1px; background:var(--border); }
+
+/* ── BRIDGE SECTION ─────────────────────────────────────────── */
+#bridge { background:var(--bg3); }
+.bridge-body { font-size:16px; color:var(--txt2); line-height:1.8; max-width:680px; margin-bottom:48px; }
+.agent-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.agent-mini { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px 24px; transition:border-color .2s; }
+.agent-mini:hover { border-color:var(--bh); }
+.am-badge { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
+.am-title { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:8px; }
+.am-desc { font-size:13px; color:var(--txt2); line-height:1.65; margin-bottom:16px; }
+.am-link { font-size:13px; font-weight:600; color:var(--teal); display:inline-flex; align-items:center; gap:6px; transition:gap .2s; }
+.am-link:hover { gap:10px; }
+
+/* ── HOW IT WORKS (Timeline Cards) ─────────────────────────── */
+#how-we-work { background:var(--bg); }
+.tl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; }
+.tl-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px 28px; position:relative; overflow:hidden; transition:border-color .2s; }
+.tl-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad); border-radius:12px 12px 0 0; }
+.tl-card:hover { border-color:rgba(10,191,204,.3); }
+.tl-day { display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.2); padding:4px 12px; border-radius:9999px; margin-bottom:20px; }
+.tl-ghost { font-size:72px; font-weight:800; color:var(--teal); opacity:.06; position:absolute; top:8px; right:20px; letter-spacing:-4px; line-height:1; pointer-events:none; user-select:none; }
+.tl-head { font-size:16px; font-weight:700; color:var(--txt); margin-bottom:12px; line-height:1.35; }
+.tl-body { font-size:13px; color:var(--txt2); line-height:1.7; }
+.tl-cta { margin-top:40px; }
+
+/* ── CTA RISK REVERSAL ──────────────────────────────────────── */
+.cta-reversal { font-size:12px; color:var(--txt3); margin-top:20px; }
+
+@media(max-width:1024px){
+  .fao-layout { grid-template-columns:1fr; gap:40px; }
+}
+@media(max-width:768px){
+  .persona-cards,.agent-mini-cards,.tl-grid { grid-template-columns:1fr; }
+}
 </style>
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -560,7 +621,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       </div>
       <div class="hero-trust">
         <span class="stars">★★★★★</span>
-        <span>4.9 on Clutch &nbsp;·&nbsp; ISO 27001 &nbsp;·&nbsp; 50+ enterprise teams</span>
+        <span>4.9 on Clutch &nbsp;·&nbsp; ISO 27001 &nbsp;·&nbsp; 50+ enterprise teams &nbsp;·&nbsp; Walk away at Day&nbsp;30</span>
       </div>
     </div>
 
@@ -652,131 +713,133 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   <div class="section-inner">
     <span class="eyebrow eyebrow-teal">The AI Code Crisis</span>
     <h2 class="section-title">AI Is Shipping Inside Your Org.<br />Nobody Is Governing It.</h2>
-    <div class="prob-layout">
-      <div class="stat-stack">
-        <div class="stat-row">
-          <div class="stat-big amber">$3.2B</div>
-          <div class="stat-label">Budget Burn</div>
-          <div class="stat-note">AI budgets evaporate in 4 months. No per-dev, per-team, or per-PR attribution. Agentic loops drain thousands overnight. — Gartner 2025</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-big">45%</div>
-          <div class="stat-label">Security Exposure</div>
-          <div class="stat-note">45% of AI-generated code has exploitable vulnerabilities. SAST/SCA built for human code misses AI-specific patterns — hallucinated packages, injection, hardcoded credentials. — Veracode 2025</div>
-        </div>
-        <div class="stat-row">
-          <div class="stat-big amber">63%</div>
-          <div class="stat-label">Compliance Blindspot</div>
-          <div class="stat-note">No audit trail. EU AI Act 2026, HIPAA, and SOX won't accept "we used Copilot." 63% of developers spend more time debugging AI code than human code. — GitClear 2025</div>
-        </div>
+    <div class="persona-cards">
+      <div class="persona-card">
+        <div class="persona-role">For the CTO</div>
+        <div class="persona-pain">You see the total AI tool spend. Zero visibility into which team, which PR, or which prompt caused it.</div>
+        <div class="persona-quote">"I know we're burning budget on AI. I can't tell you where."<br />&mdash; CTO, $80M SaaS company</div>
       </div>
-      <div class="prob-right">
-        <div>
-          <p class="prob-pull">"Nobody in your org owns AI engineering governance. CTO builds product. CISO scans the perimeter. CFO budgets tools. Compliance files audits. Everyone's problem = nobody's job."</p>
-          <p class="prob-attr" style="margin-top:12px">— The gap every engineering org faces in 2026</p>
-        </div>
-        <div class="prob-incidents">
-          <div class="inc-row">
-            <div class="inc-n">01</div>
-            <div>
-              <div class="inc-name">Moltbook &nbsp;·&nbsp; 1.5M API keys exposed</div>
-              <div class="inc-desc">AI code auto-committed credentials to a public repo. No governance layer. No review gate.</div>
-            </div>
-          </div>
-          <div class="inc-row">
-            <div class="inc-n">02</div>
-            <div>
-              <div class="inc-name">Lovable.dev &nbsp;·&nbsp; CVE-2025-48757</div>
-              <div class="inc-desc">Authentication logic inverted across 170 apps. AI-generated auth bypass shipped silently to production.</div>
-            </div>
-          </div>
-          <div class="inc-row">
-            <div class="inc-n">03</div>
-            <div>
-              <div class="inc-name">Amazon &nbsp;·&nbsp; 4 Sev-1 incidents in 90 days</div>
-              <div class="inc-desc">AI-assisted code shipped without review gates. Four critical outages in one quarter.</div>
-            </div>
-          </div>
-        </div>
-        <a href="/ai-engineering-governance" class="btn btn-ghost" style="align-self:flex-start;font-size:13px;padding:11px 22px">See how the FAO fixes this &rarr;</a>
+      <div class="persona-card">
+        <div class="persona-role">For the CISO</div>
+        <div class="persona-pain">Your scanners miss AI-generated vulnerabilities. They were built for human code — hallucinated packages, inverted auth, injected credentials all slip through.</div>
+        <div class="persona-quote">"45% of AI code has exploits. Our tools catch 0% of them."<br />&mdash; CISO, Series B fintech</div>
       </div>
+      <div class="persona-card">
+        <div class="persona-role">For the CFO / Board</div>
+        <div class="persona-pain">When the auditor asks who owns AI risk, the room goes quiet. No audit trail. No policy. No one accountable.</div>
+        <div class="persona-quote">"EU AI Act 2026 goes live in six months. We have no position."<br />&mdash; CFO, healthcare enterprise</div>
+      </div>
+    </div>
+    <div class="persona-unifier">Everyone's problem. Nobody's job. Until now.</div>
+    <div class="persona-cta">
+      <a href="/ai-engineering-governance" class="btn btn-ghost" style="font-size:13px;padding:11px 22px">See how the FAO fixes this &rarr;</a>
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section class="section" id="products">
+<!-- THE SOLUTION: FAO -->
+<section class="section" id="fao-section">
   <div class="section-inner">
-    <span class="eyebrow">What We Build</span>
-    <h2 class="section-title">Govern Your AI.<br />Then Build With It.</h2>
-    <div class="products-list">
-
-      <!-- AI Engineering Governance — flagship -->
-      <div class="prod-gov">
-        <div>
-          <div class="prod-gov-badge">&#9889; Flagship &nbsp;·&nbsp; AI Engineering Governance</div>
-          <div class="prod-gov-title">Fractional AI Officer</div>
-          <p class="prod-gov-desc">An AI-certified governance leader embedded in your engineering org in 72&nbsp;hours. Done-For-You or Done-With-You. Owns the risk of every line of AI-generated code — budget burn, security exposure, compliance blindspot — from first commit to production.</p>
-          <div class="prod-gov-feats">
-            <div class="prod-feat"><div class="pf-check">&#10003;</div>5-Layer ALIGN &middot; ACCELERATE &middot; PROTECT &middot; COMPLY &middot; OPTIMISE framework</div>
-            <div class="prod-feat"><div class="pf-check">&#10003;</div>First AI Risk Report at Day&nbsp;30 — walk away if ROI doesn't justify</div>
-            <div class="prod-feat"><div class="pf-check">&#10003;</div>EU AI Act 2026, HIPAA, SOX, ISO 27001 audit trail built in</div>
-            <div class="prod-feat"><div class="pf-check">&#10003;</div>Embedded in 72&nbsp;h vs. 6-month hire or $500K Big-4 engagement</div>
-          </div>
-          <a href="/ai-engineering-governance" class="btn btn-teal">See AI Governance &rarr;</a>
+    <span class="eyebrow">The Solution</span>
+    <h2 class="section-title">Introducing the<br /><strong>Fractional AI Officer.</strong></h2>
+    <div class="fao-layout">
+      <div>
+        <p class="fao-desc">An AI-certified governance leader embedded in your engineering org in 72&nbsp;hours — done-for-you or done-with-you. Owns every AI risk from first commit to production.</p>
+        <div class="fao-layers">
+          <span class="layer-pill">Align</span>
+          <span class="layer-pill">Accelerate</span>
+          <span class="layer-pill">Protect</span>
+          <span class="layer-pill">Comply</span>
+          <span class="layer-pill">Optimise</span>
         </div>
-        <div class="prod-gov-stat-box">
-          <div class="prod-gov-stat">72h</div>
-          <div class="prod-gov-stat-lbl">From first call to<br />FAO embedded</div>
-          <a href="/assessment" class="btn btn-ghost" style="font-size:13px;padding:10px 20px">Book a Call</a>
+        <div class="fao-feats">
+          <div class="prod-feat"><div class="pf-check">&#10003;</div>5-Layer framework &mdash; 19 integrated capabilities across the full SDLC</div>
+          <div class="prod-feat"><div class="pf-check">&#10003;</div>First AI Risk Report at Day&nbsp;30 &mdash; walk away if ROI doesn't justify</div>
+          <div class="prod-feat"><div class="pf-check">&#10003;</div>EU AI Act 2026, HIPAA, SOX, ISO 27001 audit trail built in</div>
+          <div class="prod-feat"><div class="pf-check">&#10003;</div>Embedded in 72&nbsp;h vs. 6-month hire or $500K Big-4 engagement</div>
         </div>
+        <div class="fao-btns">
+          <a href="/ai-engineering-governance" class="btn btn-teal">See the Full Framework &rarr;</a>
+          <a href="/assessment" class="btn btn-ghost">Book a Governance Call</a>
+        </div>
+        <p class="fao-reassurance">We respond within 24 hours. No commitment required.</p>
       </div>
-
-      <!-- Forge + Studio -->
-      <div class="prod-row">
-        <div class="prod-card">
-          <div class="prod-badge">&#128296; Forge &nbsp;·&nbsp; SDLC Agent</div>
-          <div class="prod-title">Software Without a Dev Team</div>
-          <p class="prod-desc">Instruct Forge in plain language. It analyzes, plans, gets your approval, then ships production-ready code into your existing stack. Feature dev, bug fixing, testing, CI/CD — all in a message.</p>
-          <a href="/sdlc-agent" class="prod-link">Explore Forge &rarr;</a>
+      <div class="fao-stat-box">
+        <div class="fsb-row">
+          <div class="fsb-num">72h</div>
+          <div class="fsb-lbl">From first call to<br />FAO embedded &amp; governing</div>
         </div>
-        <div class="prod-card">
-          <div class="prod-badge">&#129302; Upcore Studio &nbsp;·&nbsp; Agent Builder</div>
-          <div class="prod-title">Custom AI Agents for Your Operations</div>
-          <p class="prod-desc">We identify your highest-ROI automation, build the agents, integrate them into your existing systems, and stay until results are measurable. Live in 30&nbsp;days. Manufacturing, SaaS, Ecommerce.</p>
-          <a href="/agent-builder" class="prod-link">See how it works &rarr;</a>
+        <div class="fsb-div"></div>
+        <div class="fsb-row">
+          <div class="fsb-num">Day 30</div>
+          <div class="fsb-lbl">First AI risk report delivered.<br />Walk away if it doesn't justify.</div>
+        </div>
+        <div class="fsb-div"></div>
+        <div class="fsb-row">
+          <div class="fsb-num">Day 90</div>
+          <div class="fsb-lbl">Full ROI model. Board-ready.<br />Compliance posture verified.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW WE WORK WITH YOU -->
+<!-- BRIDGE: ONCE GOVERNED, BUILD -->
+<section class="section" id="bridge">
+  <div class="section-inner">
+    <span class="eyebrow eyebrow-teal">Then Build</span>
+    <h2 class="section-title">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
+    <p class="bridge-body">Governance removes the risk of AI-generated code. Agents remove the manual work. Once your engineering org is governed, Upcore deploys custom AI agents that automate your highest-cost workflows — built for your industry, integrated into your existing systems.</p>
+    <div class="agent-mini-cards">
+      <div class="agent-mini">
+        <div class="am-badge">Forge &middot; SDLC Agent</div>
+        <div class="am-title">Software Without a Dev Team</div>
+        <p class="am-desc">AI-driven software delivery. Instruct in plain language &mdash; Forge plans, builds, tests, and deploys into your existing stack.</p>
+        <a href="/sdlc-agent" class="am-link">Explore Forge &rarr;</a>
+      </div>
+      <div class="agent-mini">
+        <div class="am-badge">Upcore Studio &middot; Agent Builder</div>
+        <div class="am-title">Custom Agents for Your Workflows</div>
+        <p class="am-desc">Build agents in a visual canvas or natural language. No code required. Live in 30 days, integrated into your existing systems.</p>
+        <a href="/agent-builder" class="am-link">Build a Demo &rarr;</a>
+      </div>
+      <div class="agent-mini">
+        <div class="am-badge">AI Workforce</div>
+        <div class="am-title">Pre-Built Agent Teams</div>
+        <p class="am-desc">Replace manual operations end-to-end. Pre-built agent teams for manufacturing, SaaS, ecommerce, healthcare, and finance.</p>
+        <a href="/industries" class="am-link">See by Industry &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS: TIMELINE -->
 <section class="section" id="how-we-work">
   <div class="section-inner">
-    <span class="eyebrow">Our Process</span>
-    <h2 class="section-title">We Come to You.<br />We Stay Until It Works.</h2>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">Step 01</div>
-        <div class="step-title">We Come to You</div>
-        <p class="step-desc">Discovery session in your environment. We audit your AI code footprint, your stack, your risk surface. No decks. No slides.</p>
+    <span class="eyebrow">How It Works</span>
+    <h2 class="section-title">From First Call to<br />Full Operation in 90 Days.</h2>
+    <div class="tl-grid">
+      <div class="tl-card">
+        <span class="tl-ghost">01</span>
+        <div class="tl-day">Week 1</div>
+        <div class="tl-head">Govern from Day One</div>
+        <p class="tl-body">Your FAO embeds. AI risk surface mapped across your org. Governance layer active on your first PR within 72 hours of the first call.</p>
       </div>
-      <div class="step-card">
-        <div class="step-num">Step 02</div>
-        <div class="step-title">We Build and Integrate</div>
-        <p class="step-desc">We build the governance layer or the agents into your existing systems. Nothing generic — your processes, your data, your controls.</p>
+      <div class="tl-card">
+        <span class="tl-ghost">30</span>
+        <div class="tl-day">Day 30</div>
+        <div class="tl-head">First Risk Report — Walk-Away Clause</div>
+        <p class="tl-body">First AI Risk Report delivered. Vulnerabilities blocked. Budget attribution live. ROI data in hand — walk away if it doesn't justify continuing.</p>
       </div>
-      <div class="step-card">
-        <div class="step-num">Step 03</div>
-        <div class="step-title">We Train Your Team</div>
-        <p class="step-desc">Your team runs it. We document every decision. Knowledge transfer is part of the engagement, not an upsell.</p>
+      <div class="tl-card">
+        <span class="tl-ghost">90</span>
+        <div class="tl-day">Day 90</div>
+        <div class="tl-head">Agents Deployed, Fully Governed</div>
+        <p class="tl-body">First custom AI agents deployed for your highest-ROI workflows. Governed from day one, built for your specific systems. Full ROI model delivered.</p>
       </div>
-      <div class="step-card">
-        <div class="step-num">Step 04</div>
-        <div class="step-title">We Review Results With You</div>
-        <p class="step-desc">Monthly reviews. ROI tracked against baselines set on Day&nbsp;1. We don't leave until the numbers justify it.</p>
-      </div>
+    </div>
+    <div class="tl-cta">
+      <a href="/ai-engineering-governance#journey" class="btn btn-ghost" style="font-size:13px;padding:11px 22px">See the Full 90-Day Journey &rarr;</a>
     </div>
   </div>
 </section>
@@ -784,9 +847,9 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 <!-- INDUSTRIES -->
 <section class="section" id="industries">
   <div class="section-inner">
-    <span class="eyebrow">Industries</span>
-    <h2 class="section-title">We Go Deep on Three Verticals.</h2>
-    <p class="section-sub">Manufacturing, SaaS, and Ecommerce. Depth over breadth — if your business is in one of these, we know your pain points better than your current software vendors do.</p>
+    <span class="eyebrow">In Your Industry</span>
+    <h2 class="section-title">Governance and Agents,<br />Applied to Your Industry.</h2>
+    <p class="section-sub">Manufacturing, SaaS, and Ecommerce. Every tab shows the governance win and the agent win — because we deliver both.</p>
     <div class="ind-tabs" id="ind-tabs"></div>
     <div class="ind-cases" id="ind-cases"></div>
     <div class="ind-cta-row">
@@ -801,12 +864,13 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   <div class="cta-inner">
     <span class="eyebrow eyebrow-teal">Ready to Start</span>
     <h2 class="cta-title">The Window to Govern<br />AI Code Is Closing.</h2>
-    <p class="cta-sub">Every week you wait, more ungoverned AI code ships into your systems. A Fractional AI Officer can be embedded in 72&nbsp;hours. Thirty-day proof of concept. Walk away if the ROI doesn't justify it.</p>
+    <p class="cta-sub">EU AI Act 2026. SOX. HIPAA. The audit trail requirements don't wait — and neither does the risk already inside your engineering org.</p>
     <div class="cta-btns">
-      <a href="/assessment" class="btn btn-teal">Book a Governance Call &rarr;</a>
-      <a href="/ai-engineering-governance" class="btn btn-ghost">Learn About the FAO</a>
+      <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
+      <a href="/industries" class="btn btn-ghost">See It In Your Industry &rarr;</a>
     </div>
-    <div class="cta-proof">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; 30-Day POC with Walk-Away Clause</div>
+    <div class="cta-reversal">72h to embed &nbsp;&middot;&nbsp; Day 30 risk report &nbsp;&middot;&nbsp; Walk away if ROI isn't there</div>
+    <div class="cta-proof" style="margin-top:8px">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; 30-Day POC with Walk-Away Clause</div>
   </div>
 </section>
 
@@ -895,24 +959,24 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       <span class="footer-cert-dot">&middot;</span>
       <span>Nasscom Member</span>
     </div>
-    <span class="footer-copy">&copy; 2025 Upcore Technologies Pvt. Ltd.</span>
+    <span class="footer-copy">&copy; 2026 Upcore Technologies Pvt. Ltd.</span>
   </div>
 </footer>
 
 <script>
 const INDUSTRIES=[
   {id:"manufacturing",name:"Manufacturing",icon:"",slug:"manufacturing",live:true,ctaLabel:"See Full Manufacturing Agent Suite",usecases:[
-    {title:"Defects Found Too Late",pain:"We find defect patterns 3 months after they start. By then, we've shipped bad product to 40 clients.",cost:"A single quality recall costs more than an entire AI workforce implementation.",solution:"The Quality Control Agent processes inspection data in real-time, surfaces defect patterns by batch, shift, and supplier, and generates CAPA suggestions. Human review and approval required before any corrective action.",outcomes:["Defects caught at source, not at client site","CAPA actions generated automatically, reviewed and approved by your team","Supplier quality scores tracked continuously, not quarterly"]},
+    {title:"AI Code Governance",pain:"Your developers are shipping AI-generated MES integrations and control logic. Nobody is reviewing them before they reach the shop floor.",cost:"One ungoverned AI commit in a production control system can trigger a Sev-1 and a line stoppage.",solution:"Your Fractional AI Officer reviews every AI-generated commit before it reaches your shop floor. Security gates, hallucination detection, and a full audit trail on every PR.",outcomes:["Zero unreviewed AI commits in production systems","Vulnerability patterns caught at commit, not at incident","Full audit trail for ISO and regulatory requirements"]},
     {title:"Commodity Price Blindness",pain:"Our procurement team doesn't know input prices moved until the invoice arrives.",cost:"A 5% move in a key commodity can wipe out your quarter's margin if you're not hedged.",solution:"The Procurement Intelligence Agent tracks commodity prices daily, scores supplier reliability based on delivery and quality data, and flags single-source dependency risks before they become emergencies.",outcomes:["Price alerts before commitments are made","Proactive supplier diversification before disruptions hit","Margin protection built into the procurement cycle"]},
     {title:"Production Downtime Nobody Predicted",pain:"Last month we lost 18 hours of production. The machine gave signals for 3 days before it failed. Nobody was watching.",cost:"One unplanned stoppage on a high-output line costs ₹5–50 lakhs depending on production volume and shift scheduling.",solution:"The Predictive Maintenance Agent monitors your equipment sensor data continuously, detects anomaly patterns before failure, raises a maintenance ticket automatically, and notifies the responsible team — before the line goes down.",outcomes:["Failures predicted before they happen, not diagnosed after","Maintenance scheduled during planned downtime, not unplanned","Machine health score tracked daily, reported weekly"]}
   ]},
   {id:"saas",name:"SaaS & Technology",icon:"",slug:"saas-technology",live:true,ctaLabel:"See Full SaaS Agent Suite",usecases:[
-    {title:"Support Tickets Are Eating Our Engineering Time",pain:"Our engineers spend 30% of their week answering the same 40 questions. Every new feature we ship creates 200 new support threads.",cost:"An engineer answering support tickets costs 3x what a support agent costs, and slows your product roadmap by months.",solution:"The Customer Support Agent is trained on your product documentation, your changelog, your help articles, and your past resolved tickets. It handles Tier-1 support autonomously and escalates only what it cannot resolve.",outcomes:["60–80% of Tier-1 tickets resolved without human intervention","Escalations handed off with full context, not cold transfers","Agent knowledge base updated automatically when docs change"]},
+    {title:"AI Development Governance",pain:"Your developers ship 3x faster with Copilot. You have zero visibility into what they're shipping, what it costs, or whether it's safe.",cost:"One hallucinated package or inverted auth logic reaches a customer before your security team knows it exists.",solution:"Your Fractional AI Officer owns every AI-generated commit review. Token budget tracked per developer. EU AI Act compliance built in from the first PR.",outcomes:["Per-developer and per-feature AI spend visibility","Every AI-generated auth, payment, or data-handling code reviewed","Compliance audit trail updated continuously, not at quarter end"]},
     {title:"Our Trial-to-Paid Conversion Is Stuck",pain:"We get signups. Then silence. Our onboarding sequence is the same for everyone and nobody reads it.",cost:"A 5% improvement in trial conversion at 500 signups/month is worth more than most marketing campaigns.",solution:"The Onboarding Intelligence Agent monitors new user behaviour inside your product — what they click, where they drop off, what they never find. It sends personalised nudges at the right moment and alerts your sales team when a trial user shows high-intent signals.",outcomes:["Personalised onboarding paths based on actual user behaviour","High-intent trial users surfaced to sales automatically","Drop-off patterns identified and reported weekly"]},
     {title:"Our Churn Is a Mystery Until It's Too Late",pain:"We find out a customer is unhappy when they cancel. By then there is nothing to save.",cost:"Losing one ₹5L/year customer costs you ₹5L in ARR plus 6–9 months of CAC to replace them.",solution:"The Churn Intelligence Agent monitors product usage, support ticket frequency, NPS responses, and payment history to generate a real-time health score for every account. Accounts trending negative trigger an automatic alert to the CSM.",outcomes:["At-risk accounts flagged 30–60 days before cancellation signals appear","CSM outreach triggered automatically with full account context","Health score tracked weekly, not quarterly"]}
   ]},
   {id:"ecommerce",name:"Ecommerce & D2C",icon:"",slug:"retail-d2c",live:true,ctaLabel:"See Full Ecommerce Agent Suite",usecases:[
-    {title:"Our Customer Support Volume Doubles Every Sale Season",pain:"During Diwali we get 8,000 messages in 72 hours. Our 4-person support team cannot cope. WISMO queries alone take 60% of their time.",cost:"Unanswered support during peak season costs you repeat orders, reviews, and referrals — permanently.",solution:"The Ecommerce Support Agent handles order status queries, return initiation, refund status, delivery escalations, and product questions automatically via WhatsApp, email, and chat — in Hindi and English.",outcomes:["WISMO queries resolved in under 60 seconds, 24/7","Return requests processed automatically within your policy rules","Human agents only handle what genuinely needs judgement"]},
+    {title:"AI Spend Governance",pain:"You have 14 AI tools across marketing, support, and ops. You don't know which one is driving results and which is burning budget.",cost:"Ungoverned AI tool spend in a 50-person ecommerce team averages $8,000–$24,000 per month with no attribution.",solution:"Your Fractional AI Officer maps every AI tool to a workflow and outcome. Token budgets enforced per team. Monthly ROI report shows exactly what's generating return.",outcomes:["Every AI tool budget attributed to a workflow and outcome","Agentic loop spend alerts before overnight burns happen","Monthly AI ROI report: cost vs. conversions, returns, and support deflection"]},
     {title:"Our Return Rate Is 22% and We Don't Know Why",pain:"We have the data somewhere. Nobody has time to look at it and nobody knows what to do with what they find.",cost:"A 3% reduction in return rate on ₹10Cr of GMV saves ₹30 lakhs in reverse logistics and restocking.",solution:"The Returns Intelligence Agent analyses return reasons, SKU-level patterns, customer segments, and logistics partner data to surface the actual root causes driving returns.",outcomes:["Top 5 return drivers identified and quantified every week","SKUs with abnormal return rates flagged for review","Supplier and logistics data cross-referenced automatically"]},
     {title:"We Are Sitting on Dead Inventory and Nobody Flagged It",pain:"₹40 lakhs of slow-moving stock is tying up our working capital. We only find out at quarter end.",cost:"Dead inventory is not just a write-off risk — it is working capital locked away from growing categories.",solution:"The Inventory Intelligence Agent monitors sell-through rates daily, flags SKUs trending toward dead stock before they become a problem, and suggests reorder quantities based on demand patterns and supplier lead times.",outcomes:["Slow-moving SKUs flagged 30 days before they become a working capital problem","Reorder suggestions generated automatically, approved by your team","Seasonal demand patterns built into forecasting automatically"]}
   ]}

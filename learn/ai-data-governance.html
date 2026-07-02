@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -107,7 +107,7 @@
             "name": "How do I ensure AI decisions are explainable for regulatory purposes?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Ensuring AI explainability for regulatory purposes requires design decisions at the architecture level — it cannot be retrofitted after deployment. Three approaches provide different levels of explainability. First, structured reasoning logs: the AI agent records the inputs it considered, the rules or policies it applied, and the factors that determined its output — in a structured, auditable format. This is the most practical approach for regulatory compliance in BFSI and healthcare. Second, model-level interpretability: using AI architectures designed for explainability (decision trees, rule-based systems, attention mechanism analysis) rather than black-box models. This limits model capability but maximises interpretability. Third, post-hoc explanation methods: tools like SHAP values or LIME that provide feature attribution analysis for neural network outputs — acceptable in some regulatory contexts but increasingly challenged by regulators who prefer native explainability. For regulated decisions (credit, insurance, clinical), Upcore designs agents with structured reasoning logs that produce regulatory-ready explanation artefacts as a standard output."
+              "text": "Ensuring AI explainability for regulatory purposes requires design decisions at the architecture level — it cannot be retrofitted after deployment. Three approaches provide different levels of explainability. First, structured reasoning logs: the AI agent records the inputs it considered, the rules or policies it applied, and the factors that determined its output — in a structured, auditable format. This is the most practical approach for regulatory compliance in BFSI and healthcare. Second, model-level interpretability: using AI architectures designed for explainability (decision trees, rule-based systems, attention mechanism analysis) rather than black-box models. This limits model capability but maximises interpretability. Third, post-hoc explanation methods: tools like SHAP values or LIME that provide feature attribution analysis for neural network outputs — acceptable in some regulatory contexts but increasingly challenged by regulators who prefer native explainability. For regulated decisions (credit, insurance, clinical), Upcore designs agents with structured reasoning logs that produce regulatory-ready explanation artifacts as a standard output."
             }
           },
           {
@@ -157,7 +157,7 @@ a{text-decoration:none;color:inherit;}img{max-width:100%;}
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:40px;width:auto;}
+.nav-logo img{height:48px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -473,7 +473,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="insight-block">
         <p>On-premise deployment eliminates the most difficult category of data governance question — what happens to data when it leaves your environment — by ensuring it never leaves. When the AI model runs on your servers, processes queries on your infrastructure, and writes results to your databases, the data flow diagram is architecturally simple: data enters your AI system, processing happens within your existing security perimeter, output is returned. No third-party cloud processes your customer data. No vendor sub-processor agreement covers what happens if that cloud has a breach. Your existing network monitoring, SIEM, access controls, and DLP tools extend naturally to the AI layer without requiring new integrations or trust relationships.</p>
         <p>This governance simplification has downstream compliance benefits. SOC 2 and ISO 27001 auditors can include the AI system in scope without requiring separate vendor attestations for the AI vendor's cloud infrastructure. RBI and FCA data localisation requirements are satisfied by the deployment architecture itself rather than by contractual commitments that are difficult to verify. HIPAA on-site risk assessments are straightforward: the AI system is just another server in the data centre, subject to the same physical and technical safeguards that already govern your PHI systems. The certification work you have already done extends to AI rather than requiring a parallel certification track for cloud AI components.</p>
-        <p>Upcore delivers on-premise AI agent deployments for regulated enterprises as part of its standard 30-day deployment model. The deployment includes model hosting on customer infrastructure, a vector database instance within the customer perimeter, all integration tooling running on customer servers, and comprehensive governance tooling including audit logging, access control, and explainability artefacts. Customers retain complete control over every component: the model weights, the knowledge base, the conversation history, and the audit logs. Nothing is shared with Upcore's infrastructure unless explicitly requested for support purposes under a documented data processing agreement. For organisations that need to demonstrate data sovereignty to regulators, auditors, or their own board, this is the architecture that makes the conversation simple.</p>
+        <p>Upcore delivers on-premise AI agent deployments for regulated enterprises as part of its standard 30-day deployment model. The deployment includes model hosting on customer infrastructure, a vector database instance within the customer perimeter, all integration tooling running on customer servers, and comprehensive governance tooling including audit logging, access control, and explainability artifacts. Customers retain complete control over every component: the model weights, the knowledge base, the conversation history, and the audit logs. Nothing is shared with Upcore's infrastructure unless explicitly requested for support purposes under a documented data processing agreement. For organisations that need to demonstrate data sovereignty to regulators, auditors, or their own board, this is the architecture that makes the conversation simple.</p>
       </div>
 
       <div style="margin-top:32px;text-align:center;">
@@ -512,7 +512,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How do I ensure AI decisions are explainable for regulatory purposes?<span class="faq-icon">+</span></button>
-          <div class="faq-a"><p>Ensuring AI explainability for regulatory purposes requires design decisions at the architecture level — it cannot be retrofitted after deployment. Three approaches provide different levels of explainability. Structured reasoning logs: the AI agent records the inputs it considered, the rules or policies applied, and the factors that determined its output in an auditable format — the most practical approach for regulatory compliance. Model-level interpretability: using architectures designed for explainability (decision trees, rule-based systems) rather than black-box neural networks. Post-hoc explanation methods: tools like SHAP values that provide feature attribution analysis — acceptable in some regulatory contexts but increasingly challenged. For regulated decisions, <a href="/platform/custom-ai-agents" style="color:var(--teal);">Upcore designs agents</a> with structured reasoning logs that produce regulatory-ready explanation artefacts as a standard output.</p></div>
+          <div class="faq-a"><p>Ensuring AI explainability for regulatory purposes requires design decisions at the architecture level — it cannot be retrofitted after deployment. Three approaches provide different levels of explainability. Structured reasoning logs: the AI agent records the inputs it considered, the rules or policies applied, and the factors that determined its output in an auditable format — the most practical approach for regulatory compliance. Model-level interpretability: using architectures designed for explainability (decision trees, rule-based systems) rather than black-box neural networks. Post-hoc explanation methods: tools like SHAP values that provide feature attribution analysis — acceptable in some regulatory contexts but increasingly challenged. For regulated decisions, <a href="/platform/custom-ai-agents" style="color:var(--teal);">Upcore designs agents</a> with structured reasoning logs that produce regulatory-ready explanation artifacts as a standard output.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What is "data lineage" in the context of AI governance?<span class="faq-icon">+</span></button>
@@ -553,10 +553,18 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       </div>
     </section>
 
+    <!-- GOVERNANCE CROSS-LINK -->
+    <div style="background:#f7f8fa;border:1px solid rgba(10,191,204,.25);border-left:3px solid #0ABFCC;border-radius:12px;padding:24px 28px;margin:0 0 32px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#0ABFCC;margin-bottom:10px;">AI Engineering Governance</div>
+      <p style="font-size:15px;font-weight:700;color:#0a0a0a;margin:0 0 8px;line-height:1.4;">Data governance and AI governance are not the same thing — and you need both.</p>
+      <p style="font-size:13px;color:#6b7280;margin:0 0 14px;line-height:1.7;">Data governance covers what data AI can access. AI Engineering Governance covers how AI uses it — who owns the risk of AI-generated decisions, how AI spend is attributed, and whether every AI action has a defensible audit trail. Upcore's Fractional AI Officer covers both layers, embedded in 72 hours.</p>
+      <a href="/ai-engineering-governance" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#0ABFCC;text-decoration:none;">See AI Engineering Governance <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+
     <!-- CTA -->
     <div class="pg-cta">
       <h2>Ready to Deploy AI That Passes Regulatory Scrutiny?</h2>
-      <p>Upcore builds governance-ready AI agents for regulated enterprises — with on-premise deployment, built-in audit logging, explainability artefacts, and dedicated compliance support from day one.</p>
+      <p>Upcore builds governance-ready AI agents for regulated enterprises — with on-premise deployment, built-in audit logging, explainability artifacts, and dedicated compliance support from day one.</p>
       <div class="pg-cta-btns">
         <a href="/assessment" class="btn-p">Book a Governance Consultation &#8594;</a>
         <a href="/platform/on-premise-deployment" class="btn-o">On-Premise Deployment</a>

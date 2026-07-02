@@ -110,11 +110,10 @@ a{text-decoration:none;color:inherit;}
 
 .hub-card{
   background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:28px;cursor:pointer;transition:border-color .2s,box-shadow .2s;
+  padding:28px;transition:border-color .2s,box-shadow .2s;
   display:flex;flex-direction:column;
 }
 .hub-card:hover{border-color:var(--bh);box-shadow:rgba(0,0,0,.06) 0 4px 8px;}
-.hub-link{position:absolute;inset:0;z-index:2;}
 .hub-icon{font-size:32px;margin-bottom:14px;color:var(--teal);display:flex;align-items:center;}
 .hub-status{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;border-radius:9999px;padding:4px 12px;margin-bottom:12px;}
 .hub-status.live{color:#1ba673;background:#e8ffea;border:1px solid rgba(27,166,115,.2);}
@@ -125,10 +124,7 @@ a{text-decoration:none;color:inherit;}
 .hub-card p{font-size:13px;color:var(--txt2);line-height:1.6;margin-bottom:16px;flex:1;}
 .hub-pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
 .hub-pill{font-size:10px;font-weight:500;color:var(--txt2);background:var(--bg2);border:1px solid var(--border);border-radius:9999px;padding:3px 10px;}
-.hub-arrow{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--teal);}
-.hub-arrow svg{width:14px;height:14px;transition:transform .2s;}
-.hub-card:hover .hub-arrow svg{transform:translateX(3px);}
-
+.hub-card:hover 
 /* CTA */
 .page-cta{padding:64px 48px;background:var(--bg3);border-top:1px solid var(--border);text-align:center;}
 .page-cta h2{font-size:clamp(22px,3vw,34px);font-weight:600;letter-spacing:-1px;margin-bottom:12px;}
@@ -267,7 +263,6 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <div class="hubs-grid" id="hubs-grid">
 
     <div class="hub-card" data-cat="operations live">
-      <a class="hub-link" href="/industries/manufacturing"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>Manufacturing</h3>
@@ -276,11 +271,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Hydrogen Feasibility</span><span class="hub-pill">Quality Control</span><span class="hub-pill">Procurement Intel</span><span class="hub-pill">Supply Chain</span><span class="hub-pill">Predictive Maint.</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="growth live">
-      <a class="hub-link" href="/industries/retail-d2c"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>Ecommerce</h3>
@@ -289,11 +282,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Customer Service</span><span class="hub-pill">Product Recommender</span><span class="hub-pill">Returns Agent</span><span class="hub-pill">Inventory Intel</span><span class="hub-pill">Campaign AI</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="growth">
-      <a class="hub-link" href="/industries/edtech"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
       <span class="hub-status ready"><span class="sdot"></span>Ready to Build</span>
       <h3>EdTech</h3>
@@ -302,11 +293,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Student Support</span><span class="hub-pill">Course Recommender</span><span class="hub-pill">Assessment Agent</span><span class="hub-pill">Parent Comms</span><span class="hub-pill">Admissions</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="finance live">
-      <a class="hub-link" href="/industries/banking-finance"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>Banking &amp; Finance</h3>
@@ -315,11 +304,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Loan Processing</span><span class="hub-pill">KYC Onboarding</span><span class="hub-pill">Credit Risk</span><span class="hub-pill">Collections</span><span class="hub-pill">Compliance Monitor</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="operations live">
-      <a class="hub-link" href="/industries/real-estate"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>Real Estate</h3>
@@ -328,11 +315,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Voice Lead Agent</span><span class="hub-pill">Property Matching</span><span class="hub-pill">Site Visit Coord.</span><span class="hub-pill">Document Agent</span><span class="hub-pill">Post-Sale CX</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="finance live">
-      <a class="hub-link" href="/industries/nbfc-loans"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>Vehicle Loans / NBFCs</h3>
@@ -341,11 +326,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Lead Qualification</span><span class="hub-pill">Doc Collection</span><span class="hub-pill">Bureau Check</span><span class="hub-pill">EMI Reminders</span><span class="hub-pill">FI Coordinator</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="operations live">
-      <a class="hub-link" href="/industries/government"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9V5a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v4"/><path d="M21 22V11a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11"/><line x1="2" y1="22" x2="22" y2="22"/><polyline points="5 8 12 2 19 8"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>Government / Public Sector</h3>
@@ -354,11 +337,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">IAS Exam Prep</span><span class="hub-pill">Citizen Grievance</span><span class="hub-pill">Policy Research</span><span class="hub-pill">RTI Processing</span><span class="hub-pill">Scheme Eligibility</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="growth live">
-      <a class="hub-link" href="/industries/saas-technology"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
       <span class="hub-status live"><span class="sdot"></span>Live Deployment</span>
       <h3>SaaS / Technology</h3>
@@ -367,11 +348,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">SDLC Agent</span><span class="hub-pill">Agent Creator</span><span class="hub-pill">Support Tickets</span><span class="hub-pill">Onboarding</span><span class="hub-pill">Code Review</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="operations">
-      <a class="hub-link" href="/industries/healthcare"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
       <span class="hub-status ready"><span class="sdot"></span>Ready to Build</span>
       <h3>Healthcare</h3>
@@ -380,11 +359,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Appointment Scheduling</span><span class="hub-pill">Insurance Pre-Auth</span><span class="hub-pill">Patient Intake</span><span class="hub-pill">Clinical Docs</span><span class="hub-pill">Follow-up Agent</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="operations">
-      <a class="hub-link" href="/industries/logistics"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
       <span class="hub-status ready"><span class="sdot"></span>Ready to Build</span>
       <h3>Logistics &amp; Supply Chain</h3>
@@ -393,11 +370,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Shipment Tracker</span><span class="hub-pill">Route Optimiser</span><span class="hub-pill">Exception Handler</span><span class="hub-pill">Invoice Processor</span><span class="hub-pill">Vendor Comms</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="finance">
-      <a class="hub-link" href="/industries/legal-compliance"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
       <span class="hub-status ready"><span class="sdot"></span>Ready to Build</span>
       <h3>Legal &amp; Compliance</h3>
@@ -406,11 +381,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Contract Review</span><span class="hub-pill">Due Diligence</span><span class="hub-pill">Regulatory Monitor</span><span class="hub-pill">Legal Research</span><span class="hub-pill">Doc Drafting</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
     <div class="hub-card" data-cat="growth">
-      <a class="hub-link" href="/industries/marketing-agencies"></a>
       <div class="hub-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h5l5 5V0l-5 5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
       <span class="hub-status ready"><span class="sdot"></span>Ready to Build</span>
       <h3>Marketing &amp; Agencies</h3>
@@ -419,7 +392,6 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hub-pills">
         <span class="hub-pill">Content Creator</span><span class="hub-pill">SEO Research</span><span class="hub-pill">Campaign Analytics</span><span class="hub-pill">Client Reports</span><span class="hub-pill">Lead Scoring</span>
       </div>
-      <div class="hub-arrow">Explore Workforce <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     </div>
 
   </div>

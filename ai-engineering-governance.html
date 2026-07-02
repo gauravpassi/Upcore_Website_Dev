@@ -363,11 +363,13 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
 @media(max-width:768px){
   .hero-inner,.section-inner,.solution-inner,.cta-inner { padding-left:24px; padding-right:24px; }
   .hero-inner { padding-top:80px; padding-bottom:60px; }
-  #hero { min-height:auto; }
+  #hero { min-height:auto; padding:0; }
   .hero-h1 { font-size:clamp(38px,9vw,56px); letter-spacing:-1.5px; }
   .hero-right { display:none; }
-  .hero-stats { flex-direction:column; gap:0; max-width:100%; }
-  .h-stat { border-right:none; padding-right:0; margin-right:0; padding-bottom:20px; margin-bottom:20px; border-bottom:1px solid var(--border); }
+  .hero-stats { flex-wrap:wrap; flex-direction:row; gap:0; max-width:100%; }
+  .h-stat { flex:0 0 50%; border-right:none; padding-right:12px; margin-right:0; padding-bottom:16px; margin-bottom:16px; border-bottom:1px solid var(--border); }
+  .h-stat:nth-child(odd) { padding-right:12px; }
+  .h-stat:nth-last-child(-n+2) { border-bottom:none; padding-bottom:0; margin-bottom:0; }
   .h-stat:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
   .inc-timeline { padding-left:24px; }
   footer { padding:48px 24px 0; }

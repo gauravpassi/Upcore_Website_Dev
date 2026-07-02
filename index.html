@@ -395,46 +395,20 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .step-title { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:8px; }
 .step-desc { font-size:13px; color:var(--txt2); line-height:1.65; }
 
-/* ── INDUSTRIES ────────────────────────────────────────────── */
-#industries { background:var(--bg); }
-.ind-tabs { display:flex; gap:6px; flex-wrap:wrap; margin-top:44px; margin-bottom:24px; }
-.ind-tab {
-  display:flex; align-items:center; gap:6px;
-  font-family:var(--ff); font-size:13px; font-weight:600;
-  padding:9px 18px; border-radius:6px;
-  border:1px solid var(--border); background:transparent; color:var(--txt2);
-  cursor:pointer; transition:all .2s; white-space:nowrap;
-}
-.ind-tab:hover { border-color:var(--bh); color:var(--txt); background:var(--glow); }
-.ind-tab.active { background:var(--teal); color:#070B10; border-color:transparent; }
-.ind-cases { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
-.usecase-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:10px; padding:24px 26px;
-  display:flex; flex-direction:column; gap:12px; transition:border-color .2s;
-}
-.usecase-card:hover { border-color:var(--bh); }
-.uc-num { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--txt3); }
-.uc-title { font-size:14px; font-weight:700; color:var(--txt); }
-.uc-pain {
-  font-size:13px; font-style:italic; color:var(--txt2); line-height:1.6;
-  padding:10px 14px; background:rgba(255,255,255,.03);
-  border-left:2px solid var(--teal); border-radius:0 6px 6px 0;
-}
-.uc-cost-lbl { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--rose); margin-bottom:2px; }
-.uc-cost { font-size:12px; color:rgba(248,113,113,.75); line-height:1.55; }
-.uc-sol-lbl { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--txt3); margin-bottom:2px; }
-.uc-solution { font-size:12px; color:var(--txt2); line-height:1.65; }
-.uc-outcomes { display:flex; flex-direction:column; gap:5px; }
-.uc-out { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--txt2); line-height:1.45; }
-.uc-check {
-  width:14px; height:14px; border-radius:50%;
-  background:rgba(10,191,204,.08); border:1px solid rgba(10,191,204,.25);
-  display:flex; align-items:center; justify-content:center;
-  flex-shrink:0; margin-top:1px; font-size:8px; color:var(--teal); font-weight:800;
-}
-.ind-cta-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-.ind-live-dot { width:6px; height:6px; border-radius:50%; background:var(--green); display:inline-block; margin-right:2px; }
+/* ── WHO WE GOVERN ─────────────────────────────────────────── */
+#who-we-govern { background:var(--bg); }
+.gov-type-pills { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:32px 0 20px; }
+.gov-pill { background:rgba(10,191,204,.08); border:1px solid rgba(10,191,204,.25); color:var(--teal); padding:6px 18px; border-radius:9999px; font-size:13px; font-weight:600; letter-spacing:.02em; }
+.gov-type-line { font-size:16px; font-style:italic; color:var(--txt2); text-align:center; margin-top:4px; }
+
+/* ── AGENT ADD-ONS ─────────────────────────────────────────── */
+#industries { background:var(--bg3); }
+.addon-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin:48px 0 36px; }
+.addon-card { background:#fff; border:1px solid var(--border); border-radius:16px; padding:32px 28px; display:flex; flex-direction:column; gap:14px; transition:border-color .2s; }
+.addon-card:hover { border-color:var(--teal); }
+.addon-label { font-size:17px; font-weight:700; color:var(--txt); }
+.addon-desc { font-size:14px; color:var(--txt2); line-height:1.65; flex:1; }
+.ind-cta-row { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
 
 /* ── CTA ───────────────────────────────────────────────────── */
 #cta { background:var(--bg3); }
@@ -494,7 +468,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   .prod-gov-stat-box { text-align:left; }
   .steps-grid { grid-template-columns:repeat(2,1fr); }
   .steps-grid::before { display:none; }
-  .ind-cases { grid-template-columns:1fr; }
+  .addon-cards { grid-template-columns:1fr; }
   .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
 }
 @media(max-width:768px){
@@ -844,17 +818,49 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   </div>
 </section>
 
-<!-- INDUSTRIES -->
+<!-- WHO IT'S FOR -->
+<section class="section" id="who-we-govern">
+  <div class="section-inner" style="text-align:center">
+    <span class="eyebrow">Who It's For</span>
+    <h2 class="section-title">AI Governance for Any<br />Technical Company.</h2>
+    <p class="section-sub">If your engineers ship code — and AI writes some of it — you need an FAO. We've governed SaaS startups, fintech scale-ups, healthtech platforms, enterprise IT teams, and dev agencies.</p>
+    <div class="gov-type-pills">
+      <span class="gov-pill">SaaS &amp; Product</span>
+      <span class="gov-pill">Fintech</span>
+      <span class="gov-pill">Healthtech</span>
+      <span class="gov-pill">Enterprise IT</span>
+      <span class="gov-pill">Dev Agencies</span>
+      <span class="gov-pill">Manufacturing</span>
+    </div>
+    <p class="gov-type-line">Industry doesn't determine risk. Using AI to write code does.</p>
+  </div>
+</section>
+
+<!-- AGENT ADD-ONS -->
 <section class="section" id="industries">
   <div class="section-inner">
-    <span class="eyebrow">In Your Industry</span>
-    <h2 class="section-title">Governance and Agents,<br />Applied to Your Industry.</h2>
-    <p class="section-sub">Manufacturing, SaaS, and Ecommerce. Every tab shows the governance win and the agent win — because we deliver both.</p>
-    <div class="ind-tabs" id="ind-tabs"></div>
-    <div class="ind-cases" id="ind-cases"></div>
+    <span class="eyebrow">Also Available</span>
+    <h2 class="section-title">Industry-Specific<br />AI Agent Suites</h2>
+    <p class="section-sub">Once your AI code is governed, Upcore deploys purpose-built agent teams for your vertical. Optional add-ons — you can start with governance alone and add agents when you're ready.</p>
+    <div class="addon-cards">
+      <div class="addon-card">
+        <div class="addon-label">Manufacturing</div>
+        <p class="addon-desc">Predictive maintenance, procurement intelligence, and quality escalation agents — built for shop-floor workflows and OT/IT integration.</p>
+        <a href="/industries/manufacturing" class="btn btn-ghost">See Manufacturing Suite &rarr;</a>
+      </div>
+      <div class="addon-card">
+        <div class="addon-label">SaaS &amp; Technology</div>
+        <p class="addon-desc">Onboarding intelligence, churn prediction, and AI cost attribution agents — built for product-led SaaS teams shipping fast.</p>
+        <a href="/industries/saas-technology" class="btn btn-ghost">See SaaS Suite &rarr;</a>
+      </div>
+      <div class="addon-card">
+        <div class="addon-label">Ecommerce &amp; D2C</div>
+        <p class="addon-desc">Returns intelligence, inventory forecasting, and AI spend governance agents — built for high-SKU, high-velocity operations.</p>
+        <a href="/industries/retail-d2c" class="btn btn-ghost">See Ecommerce Suite &rarr;</a>
+      </div>
+    </div>
     <div class="ind-cta-row">
-      <a id="ind-cta-primary" href="/industries/manufacturing" class="btn btn-fill">See Full Manufacturing Agent Suite &rarr;</a>
-      <a href="/industries" class="btn btn-ghost">All Industries &rarr;</a>
+      <a href="/industries" class="btn btn-fill">Explore All Agent Suites &rarr;</a>
     </div>
   </div>
 </section>
@@ -963,49 +969,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   </div>
 </footer>
 
-<script>
-const INDUSTRIES=[
-  {id:"manufacturing",name:"Manufacturing",icon:"",slug:"manufacturing",live:true,ctaLabel:"See Full Manufacturing Agent Suite",usecases:[
-    {title:"AI Code Governance",pain:"Your developers are shipping AI-generated MES integrations and control logic. Nobody is reviewing them before they reach the shop floor.",cost:"One ungoverned AI commit in a production control system can trigger a Sev-1 and a line stoppage.",solution:"Your Fractional AI Officer reviews every AI-generated commit before it reaches your shop floor. Security gates, hallucination detection, and a full audit trail on every PR.",outcomes:["Zero unreviewed AI commits in production systems","Vulnerability patterns caught at commit, not at incident","Full audit trail for ISO and regulatory requirements"]},
-    {title:"Commodity Price Blindness",pain:"Our procurement team doesn't know input prices moved until the invoice arrives.",cost:"A 5% move in a key commodity can wipe out your quarter's margin if you're not hedged.",solution:"The Procurement Intelligence Agent tracks commodity prices daily, scores supplier reliability based on delivery and quality data, and flags single-source dependency risks before they become emergencies.",outcomes:["Price alerts before commitments are made","Proactive supplier diversification before disruptions hit","Margin protection built into the procurement cycle"]},
-    {title:"Production Downtime Nobody Predicted",pain:"Last month we lost 18 hours of production. The machine gave signals for 3 days before it failed. Nobody was watching.",cost:"One unplanned stoppage on a high-output line costs ₹5–50 lakhs depending on production volume and shift scheduling.",solution:"The Predictive Maintenance Agent monitors your equipment sensor data continuously, detects anomaly patterns before failure, raises a maintenance ticket automatically, and notifies the responsible team — before the line goes down.",outcomes:["Failures predicted before they happen, not diagnosed after","Maintenance scheduled during planned downtime, not unplanned","Machine health score tracked daily, reported weekly"]}
-  ]},
-  {id:"saas",name:"SaaS & Technology",icon:"",slug:"saas-technology",live:true,ctaLabel:"See Full SaaS Agent Suite",usecases:[
-    {title:"AI Development Governance",pain:"Your developers ship 3x faster with Copilot. You have zero visibility into what they're shipping, what it costs, or whether it's safe.",cost:"One hallucinated package or inverted auth logic reaches a customer before your security team knows it exists.",solution:"Your Fractional AI Officer owns every AI-generated commit review. Token budget tracked per developer. EU AI Act compliance built in from the first PR.",outcomes:["Per-developer and per-feature AI spend visibility","Every AI-generated auth, payment, or data-handling code reviewed","Compliance audit trail updated continuously, not at quarter end"]},
-    {title:"Our Trial-to-Paid Conversion Is Stuck",pain:"We get signups. Then silence. Our onboarding sequence is the same for everyone and nobody reads it.",cost:"A 5% improvement in trial conversion at 500 signups/month is worth more than most marketing campaigns.",solution:"The Onboarding Intelligence Agent monitors new user behaviour inside your product — what they click, where they drop off, what they never find. It sends personalised nudges at the right moment and alerts your sales team when a trial user shows high-intent signals.",outcomes:["Personalised onboarding paths based on actual user behaviour","High-intent trial users surfaced to sales automatically","Drop-off patterns identified and reported weekly"]},
-    {title:"Our Churn Is a Mystery Until It's Too Late",pain:"We find out a customer is unhappy when they cancel. By then there is nothing to save.",cost:"Losing one ₹5L/year customer costs you ₹5L in ARR plus 6–9 months of CAC to replace them.",solution:"The Churn Intelligence Agent monitors product usage, support ticket frequency, NPS responses, and payment history to generate a real-time health score for every account. Accounts trending negative trigger an automatic alert to the CSM.",outcomes:["At-risk accounts flagged 30–60 days before cancellation signals appear","CSM outreach triggered automatically with full account context","Health score tracked weekly, not quarterly"]}
-  ]},
-  {id:"ecommerce",name:"Ecommerce & D2C",icon:"",slug:"retail-d2c",live:true,ctaLabel:"See Full Ecommerce Agent Suite",usecases:[
-    {title:"AI Spend Governance",pain:"You have 14 AI tools across marketing, support, and ops. You don't know which one is driving results and which is burning budget.",cost:"Ungoverned AI tool spend in a 50-person ecommerce team averages $8,000–$24,000 per month with no attribution.",solution:"Your Fractional AI Officer maps every AI tool to a workflow and outcome. Token budgets enforced per team. Monthly ROI report shows exactly what's generating return.",outcomes:["Every AI tool budget attributed to a workflow and outcome","Agentic loop spend alerts before overnight burns happen","Monthly AI ROI report: cost vs. conversions, returns, and support deflection"]},
-    {title:"Our Return Rate Is 22% and We Don't Know Why",pain:"We have the data somewhere. Nobody has time to look at it and nobody knows what to do with what they find.",cost:"A 3% reduction in return rate on ₹10Cr of GMV saves ₹30 lakhs in reverse logistics and restocking.",solution:"The Returns Intelligence Agent analyses return reasons, SKU-level patterns, customer segments, and logistics partner data to surface the actual root causes driving returns.",outcomes:["Top 5 return drivers identified and quantified every week","SKUs with abnormal return rates flagged for review","Supplier and logistics data cross-referenced automatically"]},
-    {title:"We Are Sitting on Dead Inventory and Nobody Flagged It",pain:"₹40 lakhs of slow-moving stock is tying up our working capital. We only find out at quarter end.",cost:"Dead inventory is not just a write-off risk — it is working capital locked away from growing categories.",solution:"The Inventory Intelligence Agent monitors sell-through rates daily, flags SKUs trending toward dead stock before they become a problem, and suggests reorder quantities based on demand patterns and supplier lead times.",outcomes:["Slow-moving SKUs flagged 30 days before they become a working capital problem","Reorder suggestions generated automatically, approved by your team","Seasonal demand patterns built into forecasting automatically"]}
-  ]}
-];
-let activeInd=0;
-function renderTabs(){
-  document.getElementById('ind-tabs').innerHTML=INDUSTRIES.map((ind,i)=>
-    `<button class="ind-tab${i===activeInd?' active':''}" onclick="selectInd(${i})">${ind.live?'<span class="ind-live-dot"></span>':''}${ind.name}</button>`
-  ).join('');
-}
-function renderCases(){
-  const ind=INDUSTRIES[activeInd];
-  document.getElementById('ind-cases').innerHTML=ind.usecases.map((uc,i)=>
-    `<div class="usecase-card">
-      <div class="uc-num">Use Case ${String(i+1).padStart(2,'0')}</div>
-      <div class="uc-title">${uc.title}</div>
-      <div class="uc-pain">${uc.pain}</div>
-      <div><div class="uc-cost-lbl">The Cost</div><div class="uc-cost">${uc.cost}</div></div>
-      <div><div class="uc-sol-lbl">What We Build For You</div><div class="uc-solution">${uc.solution}</div></div>
-      <div class="uc-outcomes">${uc.outcomes.map(o=>`<div class="uc-out"><div class="uc-check">&#10003;</div>${o}</div>`).join('')}</div>
-    </div>`
-  ).join('');
-  const cta=document.getElementById('ind-cta-primary');
-  cta.textContent=`${ind.ctaLabel} →`;
-  cta.href=`/industries/${ind.slug}`;
-}
-function selectInd(i){activeInd=i;renderTabs();renderCases();}
-renderTabs();renderCases();
-</script>
 <script src="/chat-widget.js" defer></script>
 </body>
 </html>

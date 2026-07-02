@@ -1,329 +1,345 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Core Pages -->
   <url>
     <loc>https://www.upcoretech.com/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.0</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/ai-engineering-governance</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/about</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/platform</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/sdlc-agent</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/agent-builder</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/contact</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/assessment</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
   <!-- Resource Hub -->
   <url>
     <loc>https://www.upcoretech.com/kw</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
   <!-- Platform / Product Pages (P0) -->
   <url>
     <loc>https://www.upcoretech.com/platform/custom-ai-agents</loc>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.0</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/platform/on-premise-deployment</loc>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.0</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/platform/30-day-deployment</loc>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.0</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
   <!-- Comparison Pages (P1) -->
   <url>
     <loc>https://www.upcoretech.com/compare/ai-agents-vs-copilot-financial-services</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
-  <!-- Industry Pages — new (P1) -->
+  <!-- Industry Pages â€” new (P1) -->
   <url>
     <loc>https://www.upcoretech.com/industries/tech-sdlc</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
-  <!-- Keyword Pages — Financial Services & Healthcare (P1) -->
+  <!-- Keyword Pages (P1) -->
   <url>
     <loc>https://www.upcoretech.com/kw/financial-services-ai-agents</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/kw/healthcare-ai-agents</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.9</priority>`n    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/kw/ecommerce-ai-agents</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/kw/manufacturing-ai-agents</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/kw/saas-ai-agents</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
-  <!-- P2 Pages — Content Expansion Batch 2 -->
+  <!-- P2 Pages â€” Content Expansion Batch 2 -->
   <url>
     <loc>https://www.upcoretech.com/platform/ai-agent-builder</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/compare/ai-workforce-vs-ai-tools</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/solutions/consolidate-ai-tools</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/solutions/build-ai-agent-no-code</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/kw/real-estate-ai-workforce</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/compliance-governance</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/enterprise-ai-strategy</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
-  <!-- P3 Pages — Content Expansion Batch 3 -->
+  <!-- P3 Pages â€” Content Expansion Batch 3 -->
   <url>
     <loc>https://www.upcoretech.com/learn/how-ai-agents-work</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-agent-vs-llm</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-agent-memory</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-data-governance</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-in-banking</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/hipaa-compliant-ai</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-workforce-platform</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/top-ai-agent-platforms</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-agent-skills</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
   <!-- Industries -->
   <url>
     <loc>https://www.upcoretech.com/industries</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/manufacturing</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/retail-d2c</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/banking-finance</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/healthcare</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/edtech</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/logistics</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/real-estate</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/nbfc-loans</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/government</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/saas-technology</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/legal-compliance</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/industries/marketing-agencies</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.7</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
   <!-- Insights -->
   <url>
     <loc>https://www.upcoretech.com/insights</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.8</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/choosing-first-ai-agent</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/manufacturing-ai-quality-control</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/human-in-the-loop</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/government-ai-citizen-services</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/logistics-wismo-ai-agents</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/banking-ai-customer-service</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/real-estate-lead-conversion</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/saas-churn-ai-early-warning</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/edtech-enrollment-ai</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/nbfc-kyc-automation</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/ecommerce-cart-recovery-whatsapp</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/legal-ai-contract-review</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/healthcare-patient-no-show-ai</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/roi-business-case-ai-agents</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/marketing-ai-execution-vs-strategy</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.6</priority>`n    <lastmod>2026-07-02</lastmod>
   </url>
 
 </urlset>
+

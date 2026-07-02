@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-02 — CTA button standardization: all primary buttons now black pill site-wide
+**Type:** fix
+**Files:** 14 `learn/*.html`, `compare/*.html`, `solutions/*.html` pages (btn-p size); 12 `industries/*.html` (btn-ghost border-radius)
+Primary CTA buttons were inconsistent across 5 class families (btn-fill, btn-p, btn-cta, btn-teal, btn-primary) with 3 distinct visual treatments: black pill on main pages, teal squircle on industry/insights, undersized pill on learn/compare/solutions. Industry+insights pages were already fixed in a prior pass. This pass normalizes: (1) `.btn-p` in 14 learn/compare/solutions pages from `padding:11px 24px; font-size:14px` → `padding:12px 26px; font-size:15px`. (2) `.btn-ghost` on all 12 standard industry pages from `border-radius:8px; padding:13px 28px` → `border-radius:9999px; padding:12px 26px` so secondary pills match the primary. Canonical standard: `background:#0a0a0a · color:#fff · padding:12px 26px · border-radius:9999px · font-size:15px · font-weight:600`. Script: `fix_cta_buttons.py`.
+
+---
+
 ## 2026-07-02 — Full-site consistency audit: governance cross-links, content fixes, CTA standardization
 **Type:** fix | content
 **Files:** `about.html`, `platform.html`, `sdlc-agent.html`, `assessment.html`, `contact.html`, `kw/manufacturing-ai-agents.html`, `kw/index.html`, `platform/ai-agent-builder.html`, `platform/custom-ai-agents.html`, `platform/30-day-deployment.html`, `platform/on-premise-deployment.html`, `insights/banking-ai-customer-service.html`, `learn/enterprise-ai-strategy.html`, `learn/ai-data-governance.html`, all 12 `industries/*.html` pages

@@ -126,6 +126,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .hero-h1 strong { font-weight:700; color:var(--txt); }
 .hero-sub { font-size:17px; color:var(--txt2); line-height:1.8; margin-bottom:16px; max-width:500px; }
 .hero-hook { font-size:14px; color:var(--teal); font-style:italic; padding:14px 18px; border-left:2px solid var(--teal); background:rgba(10,191,204,.05); border-radius:0 8px 8px 0; margin-bottom:32px; max-width:500px; line-height:1.7; }
+.hero-hook-attr { font-size:11px; font-style:normal; color:rgba(255,255,255,.35); display:block; margin-top:6px; }
 .hero-ctas { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px; }
 .hero-stats { display:flex; gap:0; border-top:1px solid var(--border); padding-top:32px; }
 .h-stat { flex:1; padding-right:24px; border-right:1px solid var(--border); margin-right:24px; }
@@ -429,7 +430,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Call</a>
+  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
 </nav>
 
 <!-- HERO -->
@@ -450,7 +451,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
         An AI-certified Fractional AI Officer embeds in your engineering org in 72&nbsp;hours —
         and owns the risk from the first prompt to the last deployment.
       </p>
-      <div class="hero-hook">"Most production vulnerabilities now trace back to AI-generated commits that were never reviewed by a human governance officer. We fix that on day one."</div>
+      <div class="hero-hook">"Most production vulnerabilities now trace back to AI-generated commits that were never reviewed by a human governance officer. We fix that on day one."<span class="hero-hook-attr"> — CTO, Series B Fintech (Clutch review, 2025)</span></div>
       <div class="hero-ctas">
         <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
         <a href="#framework" class="btn btn-ghost">See the Framework</a>
@@ -950,7 +951,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     <h2 class="cta-title">The Window to Govern AI Code<br />Is Closing Fast.</h2>
     <p class="cta-sub">90-day proof of concept. Your dedicated Fractional AI Officer embeds, audits your full AI risk surface, and delivers a governance blueprint with a board-ready ROI model. At Day 30 you get your first AI risk report — if it doesn't justify continuing, you walk away.</p>
     <div class="cta-btns">
-      <a href="/assessment" class="btn btn-teal">Book a Discovery Call &rarr;</a>
+      <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
       <a href="/sdlc-agent" class="btn btn-ghost">Explore Forge (SDLC Agent)</a>
     </div>
     <p class="cta-reassurance">We respond within 24 hours. One call. No commitment required.</p>
@@ -1045,6 +1046,10 @@ function toggleFw(btn) {
   });
   if (!isOpen) { item.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
 }
+document.addEventListener('DOMContentLoaded', function() {
+  var firstBtn = document.querySelector('.fw-item .fw-btn');
+  if (firstBtn) toggleFw(firstBtn);
+});
 function toggleFaq(btn) {
   var item = btn.parentElement;
   var ans = btn.nextElementSibling;

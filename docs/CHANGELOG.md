@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — UI/UX audit quick wins — CTA standardization + design system fixes
+**Type:** fix
+**Files:** `index.html`, `about.html`, `contact.html`, `ai-engineering-governance.html`, 61 subdirectory pages
+Implemented all 8 quick wins from the PART 4 UI/UX audit: (1) nav CTA standardized to "Book a Governance Review" across all 65 pages; (2) index.html hero primary CTA now "Book a Governance Review →" → /assessment; secondary becomes "See the Framework →"; (3) auto-expands first framework layer (Align) on governance page load; (4) removed banned `.grad-text` CSS and fixed `font-weight:900→700` in about.html; (5) added "See X Suite →" links to all 3 industry addon cards; (6) de-risking copy already present under governance page CTAs; (7) added attribution to hero hook quote — CTO, Series B Fintech; (8) added "–73% risk exposure" outcome label to ribbon SVG chart at Day 90 endpoint.
+
+---
+
 ## 2026-07-03 — FAO section proper redesign — two-column accordion layout (homepage)
 **Type:** feature
 **Files:** `index.html`

@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — FAO section visual framework redesign (homepage)
+**Type:** feature
+**Files:** `index.html`
+Replaced the plain 3-stat card in the FAO section right column with a dark "FAO Governance Pipeline" widget — 5 connected layer nodes (L1–L5) with status badges, L3 Protect in active SCANNING state. Replaced 4 text bullets on the left with a 2×2 teal stat grid (5 / 72h / Day 30 / 19). Added vanilla JS: hovering a layer pill highlights the matching pipeline node. No new hex values; reuses `#0a0a0a` and `blink` keyframe from existing tokens.
+
+---
+
 ## 2026-07-02 — CTA button standardization: all primary buttons now black pill site-wide
 **Type:** fix
 **Files:** 14 `learn/*.html`, `compare/*.html`, `solutions/*.html` pages (btn-p size); 12 `industries/*.html` (btn-ghost border-radius)

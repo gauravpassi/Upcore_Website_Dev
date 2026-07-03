@@ -506,17 +506,39 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fao-layout { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:56px; }
 .fao-desc { font-size:16px; color:var(--txt2); line-height:1.8; margin-bottom:28px; }
 .fao-layers { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
-.layer-pill { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.25); padding:5px 14px; border-radius:9999px; }
-.fao-feats { display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+.layer-pill { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.25); padding:5px 14px; border-radius:9999px; cursor:default; transition:background .15s, border-color .15s; }
+.layer-pill:hover { background:rgba(10,191,204,.18); border-color:rgba(10,191,204,.45); }
 .fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
 .fao-reassurance { font-size:12px; color:var(--txt3); margin-top:4px; }
-.fao-stat-box { background:var(--card2); border:1px solid var(--border); border-radius:12px; padding:36px 32px; display:flex; flex-direction:column; gap:0; }
-.fsb-row { padding:20px 0; }
-.fsb-row:first-child { padding-top:0; }
-.fsb-row:last-child { padding-bottom:0; }
-.fsb-num { font-size:36px; font-weight:800; letter-spacing:-2px; color:var(--teal); line-height:1; margin-bottom:8px; }
-.fsb-lbl { font-size:13px; color:var(--txt2); line-height:1.5; }
-.fsb-div { height:1px; background:var(--border); }
+
+/* ── FAO FEATURE GRID (left column) ─────────────────────────── */
+.fao-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:32px; }
+.fao-grid-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+.fao-grid-num { font-size:26px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; margin-bottom:6px; }
+.fao-grid-lbl { font-size:12px; color:var(--txt2); line-height:1.55; }
+
+/* ── FAO PIPELINE WIDGET (right column) ─────────────────────── */
+.fao-pipeline { background:#0a0a0a; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); box-shadow:0 24px 64px rgba(0,0,0,.12); }
+.fp-header { padding:12px 18px; display:flex; align-items:center; gap:9px; font-size:10px; font-weight:700; color:rgba(255,255,255,.45); letter-spacing:.1em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.07); }
+.fp-live { width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 3px rgba(34,197,94,.2); animation:blink 2s ease infinite; flex-shrink:0; }
+.fp-layers { padding:14px; display:flex; flex-direction:column; }
+.fp-node { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 13px; border-radius:8px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); transition:background .2s, border-color .2s; }
+.fp-node.fp-highlight { background:rgba(10,191,204,.07); border-color:rgba(10,191,204,.22); }
+.fp-node-alert { background:rgba(239,68,68,.04); border-color:rgba(239,68,68,.13); }
+.fp-connector { width:1px; height:9px; background:rgba(255,255,255,.1); margin:0 0 0 31px; }
+.fp-left { display:flex; align-items:center; gap:12px; }
+.fp-badge { font-size:9px; font-weight:800; color:var(--teal); letter-spacing:.05em; background:rgba(10,191,204,.12); padding:3px 7px; border-radius:4px; flex-shrink:0; }
+.fp-node-alert .fp-badge { color:#f87171; background:rgba(239,68,68,.12); }
+.fp-name { font-size:12px; font-weight:700; color:rgba(255,255,255,.88); line-height:1.2; }
+.fp-sublabel { font-size:10px; color:rgba(255,255,255,.35); margin-top:2px; }
+.fp-status { font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; padding:3px 9px; border-radius:9999px; flex-shrink:0; }
+.fp-ok { background:rgba(34,197,94,.1); color:#4ade80; }
+.fp-scan { background:rgba(239,68,68,.1); color:#f87171; }
+.fp-footer { padding:14px 18px; border-top:1px solid rgba(255,255,255,.07); display:flex; justify-content:space-around; }
+.fp-fstat { text-align:center; }
+.fp-fnum { font-size:17px; font-weight:800; color:var(--teal); letter-spacing:-.5px; line-height:1; }
+.fp-flbl { font-size:9px; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:.05em; margin-top:3px; }
+@media(max-width:1024px){ .fao-pipeline { display:none; } }
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
 #bridge { background:var(--bg3); }
@@ -719,17 +741,29 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       <div>
         <p class="fao-desc">An AI-certified governance leader embedded in your engineering org in 72&nbsp;hours — done-for-you or done-with-you. Owns every AI risk from first commit to production.</p>
         <div class="fao-layers">
-          <span class="layer-pill">Align</span>
-          <span class="layer-pill">Accelerate</span>
-          <span class="layer-pill">Protect</span>
-          <span class="layer-pill">Comply</span>
-          <span class="layer-pill">Optimise</span>
+          <span class="layer-pill" data-layer="0">Align</span>
+          <span class="layer-pill" data-layer="1">Accelerate</span>
+          <span class="layer-pill" data-layer="2">Protect</span>
+          <span class="layer-pill" data-layer="3">Comply</span>
+          <span class="layer-pill" data-layer="4">Optimise</span>
         </div>
-        <div class="fao-feats">
-          <div class="prod-feat"><div class="pf-check">&#10003;</div>5-Layer framework &mdash; 19 integrated capabilities across the full SDLC</div>
-          <div class="prod-feat"><div class="pf-check">&#10003;</div>First AI Risk Report at Day&nbsp;30 &mdash; walk away if ROI doesn't justify</div>
-          <div class="prod-feat"><div class="pf-check">&#10003;</div>EU AI Act 2026, HIPAA, SOX, ISO 27001 audit trail built in</div>
-          <div class="prod-feat"><div class="pf-check">&#10003;</div>Embedded in 72&nbsp;h vs. 6-month hire or $500K Big-4 engagement</div>
+        <div class="fao-grid">
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">5</div>
+            <div class="fao-grid-lbl">Governance layers across the full SDLC</div>
+          </div>
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">72h</div>
+            <div class="fao-grid-lbl">To embed. No recruiting. No ramp period.</div>
+          </div>
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">Day&nbsp;30</div>
+            <div class="fao-grid-lbl">First AI risk report. Walk away if ROI doesn't justify.</div>
+          </div>
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">19</div>
+            <div class="fao-grid-lbl">Integrated capabilities. EU AI Act, HIPAA, SOX, ISO&nbsp;27001.</div>
+          </div>
         </div>
         <div class="fao-btns">
           <a href="/ai-engineering-governance" class="btn btn-teal">See the Full Framework &rarr;</a>
@@ -737,20 +771,77 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
         </div>
         <p class="fao-reassurance">We respond within 24 hours. No commitment required.</p>
       </div>
-      <div class="fao-stat-box">
-        <div class="fsb-row">
-          <div class="fsb-num">72h</div>
-          <div class="fsb-lbl">From first call to<br />FAO embedded &amp; governing</div>
+      <div class="fao-pipeline">
+        <div class="fp-header">
+          <span class="fp-live"></span>
+          FAO Governance Pipeline &mdash; Active
         </div>
-        <div class="fsb-div"></div>
-        <div class="fsb-row">
-          <div class="fsb-num">Day 30</div>
-          <div class="fsb-lbl">First AI risk report delivered.<br />Walk away if it doesn't justify.</div>
+        <div class="fp-layers">
+
+          <div class="fp-node" data-fp="0">
+            <div class="fp-left">
+              <span class="fp-badge">L1</span>
+              <div>
+                <div class="fp-name">Align</div>
+                <div class="fp-sublabel">AI Policy &amp; Standards &middot; 4 cap</div>
+              </div>
+            </div>
+            <span class="fp-status fp-ok">ACTIVE</span>
+          </div>
+          <div class="fp-connector"></div>
+
+          <div class="fp-node" data-fp="1">
+            <div class="fp-left">
+              <span class="fp-badge">L2</span>
+              <div>
+                <div class="fp-name">Accelerate</div>
+                <div class="fp-sublabel">Development Governance &middot; 4 cap</div>
+              </div>
+            </div>
+            <span class="fp-status fp-ok">ACTIVE</span>
+          </div>
+          <div class="fp-connector"></div>
+
+          <div class="fp-node fp-node-alert" data-fp="2">
+            <div class="fp-left">
+              <span class="fp-badge">L3</span>
+              <div>
+                <div class="fp-name">Protect</div>
+                <div class="fp-sublabel">Security &amp; Hardening &middot; 2 blocked today</div>
+              </div>
+            </div>
+            <span class="fp-status fp-scan">SCANNING</span>
+          </div>
+          <div class="fp-connector"></div>
+
+          <div class="fp-node" data-fp="3">
+            <div class="fp-left">
+              <span class="fp-badge">L4</span>
+              <div>
+                <div class="fp-name">Comply</div>
+                <div class="fp-sublabel">Audit &amp; Regulatory &middot; 3 cap</div>
+              </div>
+            </div>
+            <span class="fp-status fp-ok">ACTIVE</span>
+          </div>
+          <div class="fp-connector"></div>
+
+          <div class="fp-node" data-fp="4">
+            <div class="fp-left">
+              <span class="fp-badge">L5</span>
+              <div>
+                <div class="fp-name">Optimise</div>
+                <div class="fp-sublabel">Intelligence &amp; ROI &middot; 4 cap</div>
+              </div>
+            </div>
+            <span class="fp-status fp-ok">ACTIVE</span>
+          </div>
+
         </div>
-        <div class="fsb-div"></div>
-        <div class="fsb-row">
-          <div class="fsb-num">Day 90</div>
-          <div class="fsb-lbl">Full ROI model. Board-ready.<br />Compliance posture verified.</div>
+        <div class="fp-footer">
+          <div class="fp-fstat"><div class="fp-fnum">72h</div><div class="fp-flbl">To embed</div></div>
+          <div class="fp-fstat"><div class="fp-fnum">Day&nbsp;30</div><div class="fp-flbl">First report</div></div>
+          <div class="fp-fstat"><div class="fp-fnum">19</div><div class="fp-flbl">Capabilities</div></div>
         </div>
       </div>
     </div>
@@ -951,5 +1042,22 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 </footer>
 
 <script src="/chat-widget.js" defer></script>
+<script>
+// FAO section: hovering a layer pill highlights the matching pipeline node
+(function(){
+  var pills=document.querySelectorAll('.layer-pill[data-layer]');
+  var nodes=document.querySelectorAll('.fp-node[data-fp]');
+  pills.forEach(function(pill){
+    pill.addEventListener('mouseenter',function(){
+      nodes.forEach(function(n){n.classList.remove('fp-highlight');});
+      var t=document.querySelector('.fp-node[data-fp="'+pill.dataset.layer+'"]');
+      if(t)t.classList.add('fp-highlight');
+    });
+    pill.addEventListener('mouseleave',function(){
+      nodes.forEach(function(n){n.classList.remove('fp-highlight');});
+    });
+  });
+})();
+</script>
 </body>
 </html>

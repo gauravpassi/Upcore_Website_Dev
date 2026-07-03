@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — FAO "Governance Intelligence Dashboard" full redesign (homepage)
+**Type:** feature
+**Files:** `index.html`
+Replaced the entire FAO section with a 3-layer visual dashboard. (1) Intro row: text/pills/CTAs left + dark governance score ring card right (CSS `@property` conic-gradient, animates to 94/100 on scroll, with 3 mini progress bars). (2) Full-width 3-pane dark command widget: layer coverage bars with IntersectionObserver fill animation; SVG architecture diagram with 5 nodes (L3 pulsing red via SMIL `<animate>`, 3 animated packets via `@keyframes`, scan sweep line); auto-scrolling live activity feed (CSS `feed-scroll` animation, 12 entries × 2 duplicated sets for seamless loop). (3) Dark ribbon: 4 stats (72h / Day 30 / 19 / 5, two count-up on scroll) + SVG risk-decline curve (stroke-dashoffset draw on scroll). Subtle teal dot-grid `::before` on section background. Zero console errors; all brand tokens preserved.
+
+---
+
 ## 2026-07-03 — FAO section visual framework redesign (homepage)
 **Type:** feature
 **Files:** `index.html`

@@ -520,14 +520,12 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
 #bridge { background:var(--bg3); }
-.bridge-body { font-size:16px; color:var(--txt2); line-height:1.8; max-width:680px; margin-bottom:48px; }
-.agent-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.agent-mini { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px 24px; transition:border-color .2s; }
-.agent-mini:hover { border-color:var(--bh); }
-.am-badge { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
-.am-title { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:8px; }
-.am-desc { font-size:13px; color:var(--txt2); line-height:1.65; margin-bottom:16px; }
-.am-link { font-size:13px; font-weight:600; color:var(--teal); display:inline-flex; align-items:center; gap:6px; transition:gap .2s; }
+.bridge-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.bridge-left .section-title { margin-bottom:0; }
+.bridge-right { border-left:3px solid var(--teal); padding-left:36px; }
+.bridge-body { font-size:17px; color:var(--txt2); line-height:1.85; margin-bottom:24px; }
+.bridge-accent { font-size:15px; font-weight:600; color:var(--txt); line-height:1.7; }
+@media(max-width:768px){ .bridge-inner { grid-template-columns:1fr; gap:32px; } .bridge-right { border-left:none; border-top:3px solid var(--teal); padding-left:0; padding-top:28px; } }
 .am-link:hover { gap:10px; }
 
 /* ── HOW IT WORKS (Timeline Cards) ─────────────────────────── */
@@ -762,27 +760,15 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 <!-- BRIDGE: ONCE GOVERNED, BUILD -->
 <section class="section" id="bridge">
   <div class="section-inner">
-    <span class="eyebrow eyebrow-teal">Then Build</span>
-    <h2 class="section-title">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
-    <p class="bridge-body">These aren't standalone products. Each one runs inside your FAO governance framework — so every agent that ships, every line of code Forge proposes, every workflow deployed through Studio has already been reviewed, attributed, and approved. Governance is Step 1. Everything below is what becomes possible in Step 2.</p>
-    <div class="agent-mini-cards">
-      <div class="agent-mini">
-        <div class="am-badge">Forge &middot; SDLC Agent</div>
-        <div class="am-title">Software Without a Dev Team</div>
-        <p class="am-desc">AI-driven software delivery. Instruct in plain language &mdash; Forge plans, builds, tests, and deploys into your existing stack. Every commit it proposes is reviewed by your FAO before it ships.</p>
-        <a href="/sdlc-agent" class="am-link">Explore Forge &rarr;</a>
+    <div class="bridge-inner">
+      <div class="bridge-left">
+        <span class="eyebrow eyebrow-teal">Then Build</span>
+        <h2 class="section-title">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
       </div>
-      <div class="agent-mini">
-        <div class="am-badge">Upcore Studio &middot; Agent Builder</div>
-        <div class="am-title">Custom Agents for Your Workflows</div>
-        <p class="am-desc">Build agents in a visual canvas or natural language. No code required. Live in 30 days &mdash; and every agent you deploy runs inside your governance layer, not outside it.</p>
-        <a href="/agent-builder" class="am-link">Build a Demo &rarr;</a>
-      </div>
-      <div class="agent-mini">
-        <div class="am-badge">AI Workforce</div>
-        <div class="am-title">Pre-Built Agent Teams</div>
-        <p class="am-desc">Purpose-built agent teams for manufacturing, SaaS, ecommerce, healthcare, and finance &mdash; deployed inside your compliance boundary, audited by the same FAO that governs your code.</p>
-        <a href="/industries" class="am-link">See by Industry &rarr;</a>
+      <div class="bridge-right">
+        <p class="bridge-body">Most engineering teams are already shipping AI-generated code. The question is whether anyone is reviewing it.</p>
+        <p class="bridge-body">Your FAO changes that. With governance in place, every AI-written commit is tracked, every risk is caught before it reaches production, and every deployment is audit-ready. Your engineers stop second-guessing AI output &mdash; and start shipping with it confidently.</p>
+        <p class="bridge-accent">Governance isn't a gate. It's what makes speed safe.</p>
       </div>
     </div>
   </div>

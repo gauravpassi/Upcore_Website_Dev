@@ -562,14 +562,15 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 @media(max-width:1024px){ .fao-explorer { display:none; } }
 
 /* ── FAO RIBBON ──────────────────────────────────────────────── */
-.fao-ribbon { background:#0a0a0a; border-radius:14px; margin-top:40px; padding:32px 40px; display:grid; grid-template-columns:1fr 1.6fr; gap:48px; align-items:center; border:1px solid rgba(255,255,255,.06); }
-.fao-ribbon-stats { display:flex; gap:36px; flex-wrap:wrap; }
-.fao-rstat { flex:1; min-width:72px; }
-.fao-rnum { font-size:28px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; }
-.fao-rlbl { font-size:10px; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:.07em; margin-top:5px; line-height:1.4; }
-.fao-chart-title { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.22); margin-bottom:10px; }
-@media(max-width:1024px){ .fao-ribbon { grid-template-columns:1fr; } }
-@media(max-width:768px){ .fao-ribbon { padding:24px; } .fao-ribbon-stats { gap:24px; } }
+.fao-ribbon { background:#0a0a0a; border-radius:14px; margin-top:40px; padding:40px 48px; border:1px solid rgba(255,255,255,.06); }
+.fao-ribbon-stats { display:grid; grid-template-columns:repeat(4,1fr); padding-bottom:32px; margin-bottom:28px; border-bottom:1px solid rgba(255,255,255,.07); }
+.fao-rstat { padding:0 32px; border-right:1px solid rgba(255,255,255,.07); }
+.fao-rstat:first-child { padding-left:0; }
+.fao-rstat:last-child { border-right:none; }
+.fao-rnum { font-size:40px; font-weight:800; color:var(--teal); letter-spacing:-2px; line-height:1; }
+.fao-rlbl { font-size:11px; color:rgba(255,255,255,.32); text-transform:uppercase; letter-spacing:.07em; margin-top:8px; line-height:1.4; }
+.fao-chart-title { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:12px; }
+@media(max-width:768px){ .fao-ribbon { padding:28px; } .fao-ribbon-stats { grid-template-columns:1fr 1fr; gap:24px 0; } .fao-rstat { padding:0 20px; } .fao-rstat:nth-child(2) { border-right:none; } .fao-rstat:nth-child(3) { padding-left:0; border-right:1px solid rgba(255,255,255,.07); } .fao-rnum { font-size:28px; } }
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
 #bridge { background:var(--bg3); }
@@ -878,27 +879,24 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       </div>
       <div>
         <div class="fao-chart-title">AI Risk Exposure Over 90 Days</div>
-        <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block">
+        <svg viewBox="0 0 800 72" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block">
           <defs>
             <linearGradient id="riskGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#0ABFCC" stop-opacity="0.18"/>
+              <stop offset="0%" stop-color="#0ABFCC" stop-opacity="0.16"/>
               <stop offset="100%" stop-color="#0ABFCC" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <path d="M 0,10 C 60,12 90,45 150,62 C 200,74 240,88 300,96 L 300,110 L 0,110 Z" fill="url(#riskGrad)"/>
-          <path class="fao-risk-line" d="M 0,10 C 60,12 90,45 150,62 C 200,74 240,88 300,96" fill="none" stroke="#0ABFCC" stroke-width="2" stroke-linecap="round" stroke-dasharray="400" stroke-dashoffset="400"/>
-          <text x="2" y="13" font-size="7" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">HIGH</text>
-          <text x="2" y="65" font-size="7" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">MED</text>
-          <text x="2" y="100" font-size="7" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">LOW</text>
-          <circle cx="0" cy="10" r="3.5" fill="#0ABFCC"/>
-          <circle cx="150" cy="62" r="3.5" fill="#0ABFCC"/>
-          <circle cx="300" cy="96" r="3.5" fill="#22c55e"/>
-          <line x1="0" y1="10" x2="0" y2="104" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
-          <line x1="150" y1="62" x2="150" y2="104" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
-          <line x1="300" y1="96" x2="300" y2="104" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="0" y="110" font-size="7.5" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 0</text>
-          <text x="138" y="110" font-size="7.5" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 30</text>
-          <text x="280" y="110" font-size="7.5" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 90</text>
+          <path d="M 0,6 C 160,8 240,32 400,46 C 530,58 660,64 800,68 L 800,72 L 0,72 Z" fill="url(#riskGrad)"/>
+          <path class="fao-risk-line" d="M 0,6 C 160,8 240,32 400,46 C 530,58 660,64 800,68" fill="none" stroke="#0ABFCC" stroke-width="2" stroke-linecap="round" stroke-dasharray="1100" stroke-dashoffset="1100"/>
+          <line x1="0" y1="6" x2="0" y2="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,4"/>
+          <line x1="400" y1="46" x2="400" y2="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,4"/>
+          <line x1="800" y1="68" x2="800" y2="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,4"/>
+          <circle cx="0" cy="6" r="4" fill="#0ABFCC"/>
+          <circle cx="400" cy="46" r="4" fill="#0ABFCC"/>
+          <circle cx="800" cy="68" r="4.5" fill="#22c55e"/>
+          <text x="2" y="72" font-size="11" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 0</text>
+          <text x="362" y="72" font-size="11" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 30</text>
+          <text x="740" y="72" font-size="11" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 90</text>
         </svg>
       </div>
     </div>

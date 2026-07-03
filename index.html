@@ -504,14 +504,14 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 /* ── FAO STANDALONE SECTION ─────────────────────────────────── */
 #fao-section { background:#070B10; }
-#fao-section .section { background:#070B10; }
-.fao-layout { display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:start; }
+#fao-section.section { background:#070B10; padding:80px 0; }
+.fao-layout { display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center; }
 @media(max-width:1024px){ .fao-layout { grid-template-columns:1fr; gap:40px; } }
 .fao-eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin-bottom:20px; }
 .fao-eyebrow-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; display:inline-block; }
-.fao-h2 { font-size:clamp(36px,4.2vw,56px); font-weight:700; letter-spacing:-2.5px; line-height:1.06; margin-bottom:20px; color:#ffffff; }
-.fao-h2 strong { font-weight:800; color:#ffffff; }
-.fao-desc { font-size:15px; color:rgba(255,255,255,.48); line-height:1.85; margin-bottom:30px; }
+.fao-h2 { font-size:clamp(32px,3.6vw,50px); font-weight:700; letter-spacing:-1.5px; line-height:1.08; margin-bottom:18px; color:rgba(255,255,255,.93); }
+.fao-h2 strong { font-weight:800; color:rgba(255,255,255,.96); }
+.fao-desc { font-size:14px; color:rgba(255,255,255,.52); line-height:1.8; margin-bottom:24px; }
 .fao-wins { display:flex; flex-direction:column; margin-bottom:30px; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; }
 .fao-win { display:flex; gap:14px; align-items:flex-start; padding:15px 18px; background:rgba(255,255,255,.02); border-bottom:1px solid rgba(255,255,255,.07); transition:background .15s; }
 .fao-win:last-child { border-bottom:none; }
@@ -572,16 +572,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fao-exp-row.fao-exp-review .fao-exp-tag { color:rgba(251,191,36,.7); background:rgba(245,158,11,.06); border-color:rgba(245,158,11,.12); }
 @media(max-width:1024px){ .fao-explorer { display:none; } }
 
-/* ── FAO RIBBON ──────────────────────────────────────────────── */
-.fao-ribbon { background:#0a0a0a; border-radius:14px; margin-top:40px; padding:40px 48px; border:1px solid rgba(255,255,255,.06); }
-.fao-ribbon-stats { display:grid; grid-template-columns:repeat(4,1fr); padding-bottom:32px; margin-bottom:28px; border-bottom:1px solid rgba(255,255,255,.07); }
-.fao-rstat { padding:0 32px; border-right:1px solid rgba(255,255,255,.07); }
-.fao-rstat:first-child { padding-left:0; }
-.fao-rstat:last-child { border-right:none; }
-.fao-rnum { font-size:40px; font-weight:800; color:var(--teal); letter-spacing:-2px; line-height:1; }
-.fao-rlbl { font-size:11px; color:rgba(255,255,255,.32); text-transform:uppercase; letter-spacing:.07em; margin-top:8px; line-height:1.4; }
-.fao-chart-title { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:12px; }
-@media(max-width:768px){ .fao-ribbon { padding:28px; } .fao-ribbon-stats { grid-template-columns:1fr 1fr; gap:24px 0; } .fao-rstat { padding:0 20px; } .fao-rstat:nth-child(2) { border-right:none; } .fao-rstat:nth-child(3) { padding-left:0; border-right:1px solid rgba(255,255,255,.07); } .fao-rnum { font-size:28px; } }
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
 #bridge { background:var(--bg3); }
@@ -798,13 +788,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
             <div><div class="fao-win-title">EU AI Act &amp; HIPAA ready</div><div class="fao-win-sub">19 capabilities across ISO&nbsp;27001, SOX, HIPAA, and EU AI Act.</div></div>
           </div>
         </div>
-        <div class="fao-layers">
-          <span class="layer-pill" data-layer="0">Align</span>
-          <span class="layer-pill" data-layer="1">Accelerate</span>
-          <span class="layer-pill" data-layer="2">Protect</span>
-          <span class="layer-pill" data-layer="3">Comply</span>
-          <span class="layer-pill" data-layer="4">Optimise</span>
-        </div>
         <div class="fao-btns">
           <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
           <a href="/ai-engineering-governance" class="btn btn-ghost">See the Framework &rarr;</a>
@@ -876,39 +859,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
           </div>
 
         </div>
-      </div>
-    </div>
-
-    <!-- RIBBON: 4 stats + SVG risk-decline chart -->
-    <div class="fao-ribbon">
-      <div class="fao-ribbon-stats">
-        <div class="fao-rstat"><div class="fao-rnum">72h</div><div class="fao-rlbl">To embed</div></div>
-        <div class="fao-rstat"><div class="fao-rnum">Day&nbsp;30</div><div class="fao-rlbl">First risk report</div></div>
-        <div class="fao-rstat"><div class="fao-rnum" data-target="19">0</div><div class="fao-rlbl">Integrated capabilities</div></div>
-        <div class="fao-rstat"><div class="fao-rnum" data-target="5">0</div><div class="fao-rlbl">Governance layers</div></div>
-      </div>
-      <div>
-        <div class="fao-chart-title">AI Risk Exposure Over 90 Days</div>
-        <svg viewBox="0 0 800 72" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block">
-          <defs>
-            <linearGradient id="riskGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#0ABFCC" stop-opacity="0.16"/>
-              <stop offset="100%" stop-color="#0ABFCC" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path d="M 0,6 C 160,8 240,32 400,46 C 530,58 660,64 800,68 L 800,72 L 0,72 Z" fill="url(#riskGrad)"/>
-          <path class="fao-risk-line" d="M 0,6 C 160,8 240,32 400,46 C 530,58 660,64 800,68" fill="none" stroke="#0ABFCC" stroke-width="2" stroke-linecap="round" stroke-dasharray="1100" stroke-dashoffset="1100"/>
-          <line x1="0" y1="6" x2="0" y2="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,4"/>
-          <line x1="400" y1="46" x2="400" y2="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,4"/>
-          <line x1="800" y1="68" x2="800" y2="65" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="3,4"/>
-          <circle cx="0" cy="6" r="4" fill="#0ABFCC"/>
-          <circle cx="400" cy="46" r="4" fill="#0ABFCC"/>
-          <circle cx="800" cy="68" r="4.5" fill="#22c55e"/>
-          <text x="2" y="72" font-size="11" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 0</text>
-          <text x="362" y="72" font-size="11" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 30</text>
-          <text x="740" y="72" font-size="11" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 90</text>
-          <text x="630" y="56" font-size="10" fill="#22c55e" font-weight="700" font-family="DM Sans,sans-serif">&minus;73% risk exposure</text>
-        </svg>
       </div>
     </div>
 
@@ -1148,33 +1098,6 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 })();
 
-// Ribbon: count-up stats + SVG risk line draw when ribbon enters viewport
-(function(){
-  var ribbon=document.querySelector('.fao-ribbon');
-  if(!ribbon)return;
-  var done=false;
-  var obs=new IntersectionObserver(function(entries){
-    if(done||!entries[0].isIntersecting)return;
-    done=true;
-    document.querySelectorAll('.fao-rnum[data-target]').forEach(function(el){
-      var end=+el.dataset.target;
-      var t0=performance.now();
-      (function tick(now){
-        var pct=Math.min((now-t0)/1100,1);
-        var ease=1-Math.pow(1-pct,3);
-        el.textContent=Math.round(ease*end);
-        if(pct<1)requestAnimationFrame(tick);
-      })(performance.now());
-    });
-    var line=document.querySelector('.fao-risk-line');
-    if(line){
-      line.style.transition='stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .2s';
-      line.style.strokeDashoffset='0';
-    }
-    obs.disconnect();
-  },{threshold:.35});
-  obs.observe(ribbon);
-})();
 </script>
 </body>
 </html>

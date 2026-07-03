@@ -221,7 +221,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   grid-column:1 / -1;
   display:flex; gap:0;
   border-top:1px solid var(--border);
-  padding-top:40px; max-width:700px;
+  padding-top:40px; max-width:480px;
 }
 .h-metric {
   flex:1; padding-right:36px;
@@ -538,6 +538,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fp-fstat { text-align:center; }
 .fp-fnum { font-size:17px; font-weight:800; color:var(--teal); letter-spacing:-.5px; line-height:1; }
 .fp-flbl { font-size:9px; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:.05em; margin-top:3px; }
+.fp-compliance { font-size:10px; font-weight:600; color:rgba(255,255,255,.28); letter-spacing:.04em; }
 @media(max-width:1024px){ .fao-pipeline { display:none; } }
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
@@ -608,7 +609,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
         AI Writes<br />Your Code.<br /><strong>Who Reviews<br />the Risk?</strong>
       </h1>
       <p class="hero-sub">
-        Upcore embeds a certified Fractional AI Officer into your engineering org within 72&nbsp;hours — auditing every AI-generated commit, blocking vulnerabilities, and keeping you compliant as you scale.
+        Upcore embeds a certified Fractional AI Officer into your engineering org — auditing every AI-generated commit, blocking vulnerabilities, and keeping you compliant as you scale.
       </p>
       <div class="hero-btns">
         <a href="/ai-engineering-governance" class="btn btn-teal">Get a Governance Review &rarr;</a>
@@ -653,10 +654,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       <div class="h-metric">
         <div class="h-metric-num"><span class="accent">$3.2B</span></div>
         <div class="h-metric-lbl">AI budgets misallocated annually with no attribution</div>
-      </div>
-      <div class="h-metric">
-        <div class="h-metric-num"><span class="accent">45%</span></div>
-        <div class="h-metric-lbl">of AI-generated code ships with known vulnerabilities</div>
       </div>
       <div class="h-metric">
         <div class="h-metric-num">72<span class="accent">h</span></div>
@@ -739,7 +736,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
     <h2 class="section-title">Introducing the<br /><strong>Fractional AI Officer.</strong></h2>
     <div class="fao-layout">
       <div>
-        <p class="fao-desc">An AI-certified governance leader embedded in your engineering org in 72&nbsp;hours — done-for-you or done-with-you. Owns every AI risk from first commit to production.</p>
+        <p class="fao-desc">An AI-certified governance leader embedded in your engineering org — done-for-you or done-with-you. Owns every AI risk from first commit to production.</p>
         <div class="fao-layers">
           <span class="layer-pill" data-layer="0">Align</span>
           <span class="layer-pill" data-layer="1">Accelerate</span>
@@ -838,10 +835,8 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
           </div>
 
         </div>
-        <div class="fp-footer">
-          <div class="fp-fstat"><div class="fp-fnum">72h</div><div class="fp-flbl">To embed</div></div>
-          <div class="fp-fstat"><div class="fp-fnum">Day&nbsp;30</div><div class="fp-flbl">First report</div></div>
-          <div class="fp-fstat"><div class="fp-fnum">19</div><div class="fp-flbl">Capabilities</div></div>
+        <div class="fp-footer" style="justify-content:center">
+          <span class="fp-compliance">EU AI Act &nbsp;&middot;&nbsp; HIPAA &nbsp;&middot;&nbsp; SOX &nbsp;&middot;&nbsp; ISO&nbsp;27001</span>
         </div>
       </div>
     </div>
@@ -857,7 +852,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
         <h2 class="section-title">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
       </div>
       <div class="bridge-right">
-        <p class="bridge-body">Most engineering teams are already shipping AI-generated code. The question is whether anyone is reviewing it.</p>
         <p class="bridge-body">Your FAO changes that. With governance in place, every AI-written commit is tracked, every risk is caught before it reaches production, and every deployment is audit-ready. Your engineers stop second-guessing AI output &mdash; and start shipping with it confidently.</p>
         <p class="bridge-accent">Governance isn't a gate. It's what makes speed safe.</p>
       </div>

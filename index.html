@@ -865,6 +865,222 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   </div>
 </section>
 
+<!-- AIGOV GAUNTLET: 5-gate governance pipeline simulation -->
+<section class="section" id="aigov-framework-section">
+<style>
+#aigov-framework-section{background:#070B10;padding:88px 24px;color:#e2e8f0;font-family:'DM Sans',sans-serif;overflow:hidden;position:relative}
+#aigov-framework-section *{box-sizing:border-box}
+.agv-inner{max-width:1180px;margin:0 auto;position:relative}
+.agv-head{text-align:center;max-width:720px;margin:0 auto 40px}
+.agv-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#0ABFCC;font-weight:700;margin-bottom:18px}
+.agv-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:agvPulse 2.2s infinite}
+@keyframes agvPulse{0%,100%{opacity:1}50%{opacity:.35}}
+.agv-h2{font-size:clamp(28px,3.8vw,44px);line-height:1.12;font-weight:300;margin:0 0 16px;color:rgba(255,255,255,.92);letter-spacing:-.015em}
+.agv-h2 strong{font-weight:800;color:#0ABFCC}
+.agv-sub{font-size:15px;line-height:1.7;color:rgba(255,255,255,.42);margin:0}
+.agv-stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.agv-stat{background:#0a0a0a;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 22px;min-width:150px;text-align:center;transition:border-color .3s}
+.agv-stat b{display:block;font-size:26px;font-weight:800;color:rgba(255,255,255,.9);letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.agv-stat span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);font-weight:700}
+.agv-stat.tick{border-color:rgba(10,191,204,.45)}
+.agv-stat.tick-red{border-color:rgba(248,113,113,.5)}
+.agv-stat b.teal{color:#0ABFCC}.agv-stat b.amber{color:#fbbf24}.agv-stat b.red{color:#f87171}
+.agv-stage-wrap{overflow-x:auto;margin:0 -24px;padding:0 24px;scrollbar-width:none}
+.agv-stage-wrap::-webkit-scrollbar{display:none}
+.agv-stage{position:relative;height:300px;min-width:880px;
+ background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 44px),repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 1px,transparent 1px 44px);
+ border:1px solid rgba(255,255,255,.07);border-radius:16px}
+.agv-track{position:absolute;left:3%;right:3%;top:128px;height:2px;background:rgba(255,255,255,.09)}
+.agv-flow{position:absolute;left:3%;right:3%;top:128px;height:2px;overflow:hidden;pointer-events:none}
+.agv-flow i{position:absolute;top:0;width:70px;height:2px;background:linear-gradient(90deg,transparent,#0ABFCC,transparent);animation:agvFlow 3.2s linear infinite}
+@keyframes agvFlow{from{left:-80px}to{left:104%}}
+.agv-endcap{position:absolute;top:96px;width:120px;text-align:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.22);font-weight:600;line-height:1.5}
+.agv-endcap i{display:block;font-style:normal;font-size:17px;margin-bottom:2px}
+.agv-endcap.in{left:8px}.agv-endcap.out{right:8px}
+.agv-endcap.out i{color:#0ABFCC}
+.agv-gate{position:absolute;top:70px;transform:translateX(-50%);text-align:center;cursor:pointer;width:150px;user-select:none;-webkit-tap-highlight-color:transparent}
+.agv-node{position:relative;width:76px;height:76px;margin:20px auto 12px;border-radius:22px;background:#0a0a0a;border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;transition:border-color .3s,background .3s;transform:rotate(45deg)}
+.agv-node span{transform:rotate(-45deg);font-size:16px;font-weight:800;color:#0ABFCC;letter-spacing:.02em}
+.agv-gate:hover .agv-node{border-color:rgba(10,191,204,.4)}
+.agv-gate.active .agv-node{border-color:#0ABFCC}
+.agv-gate.scanning .agv-node{border-color:#0ABFCC;background:#0c1b24}
+.agv-gate.scanning .agv-ring{opacity:1;animation:agvRing 1s ease-out infinite}
+.agv-gate.alerting .agv-node{border-color:#f87171}
+.agv-gate.warning .agv-node{border-color:#fbbf24}
+.agv-ring{position:absolute;inset:-9px;border-radius:26px;border:1px solid #0ABFCC;opacity:0;pointer-events:none}
+@keyframes agvRing{from{transform:scale(.85);opacity:.9}to{transform:scale(1.25);opacity:0}}
+.agv-gname{font-size:14px;font-weight:700;color:rgba(255,255,255,.82)}
+.agv-gsub{font-size:10px;color:rgba(255,255,255,.28);margin-top:2px;line-height:1.4}
+.agv-verdict{position:absolute;left:50%;transform:translateX(-50%);top:-12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;white-space:nowrap;opacity:0;transition:opacity .25s;pointer-events:none}
+.agv-verdict.show{opacity:1}
+.agv-verdict.ok{background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.28)}
+.agv-verdict.warn{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.32)}
+.agv-verdict.bad{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.32)}
+.agv-chip{position:absolute;top:88px;left:-6%;transform:translateX(-50%);display:flex;align-items:center;gap:7px;background:#0a0a0a;border:1px solid rgba(10,191,204,.4);color:rgba(255,255,255,.78);font-size:11px;font-weight:600;padding:6px 12px;border-radius:99px;white-space:nowrap;transition:left 1.15s cubic-bezier(.45,.05,.25,1),opacity .45s,transform .5s,border-color .3s,color .3s;z-index:5}
+.agv-chip::before{content:'';width:7px;height:7px;border-radius:50%;background:#0ABFCC;flex:none}
+.agv-chip.amber{border-color:rgba(251,191,36,.45)}.agv-chip.amber::before{background:#fbbf24}
+.agv-chip.red{border-color:rgba(248,113,113,.5)}.agv-chip.red::before{background:#f87171}
+.agv-chip.drop{transform:translate(-50%,118px) scale(.85);opacity:0}
+.agv-chip.gone{opacity:0}
+.agv-quarantine{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;border:1px dashed rgba(248,113,113,.38);background:rgba(248,113,113,.04);border-radius:10px;padding:7px 16px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fca5a5;font-weight:700;transition:border-color .3s}
+.agv-quarantine b{font-size:16px;color:#f87171}
+.agv-quarantine.flash{border-color:rgba(248,113,113,.7)}
+.agv-dossier{margin-top:24px;background:#0a0a0a;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px 28px;display:grid;grid-template-columns:200px 1fr 1fr;gap:24px;align-items:start;min-height:160px}
+.agv-d-id .agv-d-badge{display:inline-block;font-size:11px;font-weight:800;color:#0ABFCC;background:rgba(10,191,204,.1);border:1px solid rgba(10,191,204,.2);border-radius:6px;padding:3px 9px;margin-bottom:10px;letter-spacing:.04em}
+.agv-d-id h3{margin:0 0 4px;font-size:20px;font-weight:700;color:rgba(255,255,255,.9)}
+.agv-d-id p{margin:0;font-size:12px;color:rgba(255,255,255,.28)}
+.agv-d-caps h4,.agv-d-log h4{margin:0 0 10px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);font-weight:700}
+.agv-d-caps ul{margin:0;padding:0;list-style:none}
+.agv-d-caps li{position:relative;padding:0 0 9px 16px;font-size:13px;color:rgba(255,255,255,.58);line-height:1.5}
+.agv-d-caps li::before{content:'';position:absolute;left:0;top:7px;width:6px;height:6px;border-radius:2px;background:#0ABFCC;transform:rotate(45deg)}
+.agv-d-quote{background:rgba(255,255,255,.03);border-left:2px solid #0ABFCC;border-radius:0 8px 8px 0;padding:11px 14px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:10px;font-family:monospace}
+.agv-d-quote small{display:block;margin-top:5px;color:rgba(255,255,255,.2);font-size:10px;font-family:'DM Sans',sans-serif}
+.agv-d-tags{display:flex;flex-wrap:wrap;gap:6px}
+.agv-d-tag{font-size:9px;font-weight:700;color:rgba(10,191,204,.65);border:1px solid rgba(10,191,204,.15);border-radius:3px;padding:3px 8px;letter-spacing:.04em;background:rgba(10,191,204,.05)}
+.agv-ticker{margin-top:16px;display:flex;align-items:center;gap:10px;font-size:11px;color:rgba(10,191,204,.65);font-family:monospace;padding:0 4px;min-height:20px}
+.agv-ticker-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;flex:none;animation:agvPulse 1.6s infinite}
+#agvTicker{opacity:.9;transition:opacity .4s}
+.agv-hint{text-align:center;font-size:11px;color:rgba(255,255,255,.18);margin-top:12px}
+@media(max-width:900px){.agv-dossier{grid-template-columns:1fr;gap:18px;padding:20px}#aigov-framework-section{padding:64px 18px}}
+@media(prefers-reduced-motion:reduce){.agv-flow i,.agv-eyebrow-dot,.agv-ticker-dot{animation:none}.agv-chip{transition:none}}
+</style>
+
+<div class="agv-inner">
+  <div class="agv-head">
+    <div class="agv-eyebrow"><span class="agv-eyebrow-dot"></span>The Framework</div>
+    <h2 class="agv-h2">Every AI commit runs <strong>the gauntlet.</strong></h2>
+    <p class="agv-sub">Five governance gates stand between the first AI prompt and production. Watch the AIGOV pipeline live — clean code ships, risky code gets remediated, hallucinated packages never make it through.</p>
+  </div>
+
+  <div class="agv-stats">
+    <div class="agv-stat" id="agvStatR"><b class="teal" id="agvNumR">1,284</b><span>Commits reviewed</span></div>
+    <div class="agv-stat" id="agvStatF"><b class="amber" id="agvNumF">96</b><span>Remediated pre-merge</span></div>
+    <div class="agv-stat" id="agvStatB"><b class="red" id="agvNumB">37</b><span>Threats blocked</span></div>
+    <div class="agv-stat"><b class="teal">0</b><span>Ungoverned merges</span></div>
+  </div>
+
+  <div class="agv-stage-wrap"><div class="agv-stage" id="agvStage">
+    <div class="agv-track"></div>
+    <div class="agv-flow"><i></i></div>
+    <div class="agv-endcap in"><i>&#8961;</i>AI-generated<br>commit</div>
+    <div class="agv-endcap out"><i>&#9650;</i>Ships to<br>production</div>
+    <div class="agv-gate" data-g="0" style="left:13%">
+      <div class="agv-verdict" id="agvV0"></div>
+      <div class="agv-node"><span class="agv-ring"></span><span>L1</span></div>
+      <div class="agv-gname">Align</div><div class="agv-gsub">Policy &amp; standards</div>
+    </div>
+    <div class="agv-gate" data-g="1" style="left:31.5%">
+      <div class="agv-verdict" id="agvV1"></div>
+      <div class="agv-node"><span class="agv-ring"></span><span>L2</span></div>
+      <div class="agv-gname">Accelerate</div><div class="agv-gsub">Dev governance</div>
+    </div>
+    <div class="agv-gate" data-g="2" style="left:50%">
+      <div class="agv-verdict" id="agvV2"></div>
+      <div class="agv-node"><span class="agv-ring"></span><span>L3</span></div>
+      <div class="agv-gname">Protect</div><div class="agv-gsub">Security &amp; hardening</div>
+    </div>
+    <div class="agv-gate" data-g="3" style="left:68.5%">
+      <div class="agv-verdict" id="agvV3"></div>
+      <div class="agv-node"><span class="agv-ring"></span><span>L4</span></div>
+      <div class="agv-gname">Comply</div><div class="agv-gsub">Audit &amp; regulatory</div>
+    </div>
+    <div class="agv-gate" data-g="4" style="left:87%">
+      <div class="agv-verdict" id="agvV4"></div>
+      <div class="agv-node"><span class="agv-ring"></span><span>L5</span></div>
+      <div class="agv-gname">Optimise</div><div class="agv-gsub">Intelligence &amp; ROI</div>
+    </div>
+    <div class="agv-chip" id="agvChip">PR #851 &middot; Copilot refactor</div>
+    <div class="agv-quarantine" id="agvQ">Quarantine <b id="agvQN">37</b></div>
+  </div></div>
+  <div class="agv-hint">Click any gate to open its dossier</div>
+  <div class="agv-dossier" id="agvDossier"></div>
+  <div class="agv-ticker"><span class="agv-ticker-dot"></span><span id="agvTicker">AIGOV pipeline active &mdash; monitoring all AI-assisted development</span></div>
+</div>
+
+<script>
+(function(){
+var GATES=[
+ {b:'L1',name:'Align',role:'AI policy & standards',caps:['AI tool inventory & risk classification','Acceptable use policy drafting','Risk appetite framework for AI decisions'],quote:'"Undocumented GPT-4 integration found in payments module — flagged before board audit"',ts:'3 hr ago',tags:['EU AI Act Art. 9','ISO 27001']},
+ {b:'L2',name:'Accelerate',role:'Dev governance',caps:['PR-level AI code review gates','Prompt library governance & versioning','AI tool vetting & approved stack management'],quote:'"Copilot-generated auth helper — 2 issues flagged, pending remediation before merge"',ts:'14 min ago',tags:['OWASP LLM Top 10','SOX']},
+ {b:'L3',name:'Protect',role:'Security & hardening',caps:['AI hallucination detection in production paths','Supply chain scanning for AI-suggested packages','Prompt injection safeguards & sandboxing'],quote:"\"npm pkg 'ai-helpers@3.2.1' blocked — Copilot-suggested, no security review, 0 downloads\"",ts:'just now',tags:['CVE Monitoring','HIPAA §164.312']},
+ {b:'L4',name:'Comply',role:'Audit & regulatory',caps:['EU AI Act high-risk system classification & mapping','HIPAA, SOX, ISO 27001 audit trail generation','Board-ready AI governance reporting'],quote:'"SOX attestation gap identified and closed 48h before board review — zero findings"',ts:'yesterday',tags:['EU AI Act','SOX','HIPAA']},
+ {b:'L5',name:'Optimise',role:'Intelligence & ROI',caps:['AI budget attribution & cost-per-feature reporting','Model benchmarking & vendor evaluation','Quarterly AI ROI dashboards for leadership'],quote:'"LLM API spend reduced 31% via intelligent model routing — $18k saved in Q3"',ts:'2 days ago',tags:['ROI Reporting','ISO 42001']}
+];
+var STOPS=[13,31.5,50,68.5,87];
+var SCEN=[
+ {label:'PR #851 · Copilot refactor',type:'clean',tick:'PR #851 passed all 5 gates — merged to main'},
+ {label:'PR #852 · GPT-4 auth helper',type:'flag',gate:1,note:'2 issues — remediated',tick:'PR #852: auth bypass pattern remediated at L2 before merge'},
+ {label:'PR #853 · Claude test suite',type:'clean',tick:'PR #853 passed all 5 gates — merged to main'},
+ {label:"npm 'ai-helpers@3.2.1'",type:'block',gate:2,note:'Hallucinated pkg — blocked',tick:"L3 blocked 'ai-helpers@3.2.1' — hallucinated package, 0 downloads, quarantined"},
+ {label:'PR #854 · prompt v2 rollout',type:'flag',gate:3,note:'Audit trail added',tick:'PR #854: missing audit trail auto-logged at L4 — EU AI Act Art. 12'},
+ {label:'PR #855 · Copilot API client',type:'clean',tick:'PR #855 passed all 5 gates — merged to main'}
+];
+var chip=document.getElementById('agvChip'),ticker=document.getElementById('agvTicker');
+var gates=[].slice.call(document.querySelectorAll('#agvStage .agv-gate'));
+var counts={r:1284,f:96,b:37};
+var userPinned=false;
+function fmt(n){return n.toLocaleString('en-US')}
+function bump(id,statId,key,cls){counts[key]++;document.getElementById(id).textContent=fmt(counts[key]);var s=document.getElementById(statId);s.classList.add(cls);setTimeout(function(){s.classList.remove(cls)},700)}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function verdict(i,txt,cls){var v=document.getElementById('agvV'+i);v.textContent=txt;v.className='agv-verdict show '+cls;setTimeout(function(){v.classList.remove('show')},1900)}
+function setTick(t){ticker.style.opacity=0;setTimeout(function(){ticker.textContent=t;ticker.style.opacity=.9},400)}
+function renderDossier(i){
+ var g=GATES[i];
+ gates.forEach(function(el,j){el.classList.toggle('active',j===i)});
+ document.getElementById('agvDossier').innerHTML=
+  '<div class="agv-d-id"><span class="agv-d-badge">'+g.b+' · Gate '+(i+1)+' of 5</span><h3>'+g.name+'</h3><p>'+g.role+'</p></div>'+
+  '<div class="agv-d-caps"><h4>What this gate enforces</h4><ul>'+g.caps.map(function(c){return '<li>'+c+'</li>'}).join('')+'</ul></div>'+
+  '<div class="agv-d-log"><h4>Latest intercept</h4><div class="agv-d-quote">'+g.quote+'<small>'+g.ts+'</small></div><div class="agv-d-tags">'+g.tags.map(function(t){return '<span class="agv-d-tag">'+t+'</span>'}).join('')+'</div></div>';
+}
+gates.forEach(function(el){el.addEventListener('click',function(){userPinned=true;renderDossier(+el.dataset.g)})});
+renderDossier(2);
+var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+async function runCommit(s){
+ chip.className='agv-chip';chip.textContent=s.label;chip.style.left='-6%';
+ await sleep(600);
+ for(var i=0;i<5;i++){
+  chip.style.left=STOPS[i]+'%';
+  await sleep(1200);
+  var g=gates[i];
+  if(!userPinned)renderDossier(i);
+  if(s.type==='block'&&s.gate===i){
+   g.classList.add('scanning');await sleep(700);g.classList.remove('scanning');
+   g.classList.add('alerting');chip.classList.add('red');
+   verdict(i,'⛔ '+s.note,'bad');
+   await sleep(900);
+   chip.classList.add('drop');
+   var q=document.getElementById('agvQ');q.classList.add('flash');
+   bump('agvQN','agvStatB','b','tick-red');
+   await sleep(900);q.classList.remove('flash');g.classList.remove('alerting');
+   setTick(s.tick);return;
+  }
+  if(s.type==='flag'&&s.gate===i){
+   g.classList.add('scanning');await sleep(700);g.classList.remove('scanning');
+   g.classList.add('warning');chip.classList.add('amber');
+   verdict(i,'⚠ '+s.note,'warn');
+   await sleep(1500);g.classList.remove('warning');chip.classList.remove('amber');
+   bump('agvNumF','agvStatF','f','tick');
+  }else{
+   g.classList.add('scanning');await sleep(800);g.classList.remove('scanning');
+   verdict(i,'Clear','ok');
+  }
+ }
+ chip.style.left='103%';await sleep(1100);chip.classList.add('gone');
+ bump('agvNumR','agvStatR','r','tick');setTick(s.tick);
+}
+async function loop(){
+ if(reduced){gates.forEach(function(g){g.classList.add('active')});renderDossier(2);chip.style.display='none';return}
+ var k=0;for(;;){await runCommit(SCEN[k%SCEN.length]);k++;await sleep(1400)}
+}
+var started=false;
+function start(){if(started)return;started=true;loop()}
+if('IntersectionObserver' in window){
+ new IntersectionObserver(function(e,o){if(e[0].isIntersecting){start();o.disconnect()}},{threshold:.25}).observe(document.getElementById('agvStage'));
+}else{start()}
+})();
+</script>
+</section>
+
 <!-- BRIDGE: ONCE GOVERNED, BUILD -->
 <section class="section" id="bridge">
   <div class="section-inner">

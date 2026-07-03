@@ -503,19 +503,29 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .persona-cta { display:flex; justify-content:center; margin-top:24px; }
 
 /* ── FAO STANDALONE SECTION ─────────────────────────────────── */
-#fao-section { background:var(--bg); }
-.fao-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; margin-top:56px; }
-@media(max-width:1024px){ .fao-layout { grid-template-columns:1fr; } }
-.fao-desc { font-size:16px; color:var(--txt2); line-height:1.8; margin-bottom:28px; }
-.fao-layers { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
-.layer-pill { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.25); padding:5px 14px; border-radius:9999px; cursor:default; transition:background .15s,border-color .15s; }
-.layer-pill:hover { background:rgba(10,191,204,.18); border-color:rgba(10,191,204,.45); }
-.fao-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
-.fao-grid-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
-.fao-grid-num { font-size:24px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; margin-bottom:5px; }
-.fao-grid-lbl { font-size:11px; color:var(--txt2); line-height:1.5; }
-.fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
-.fao-reassurance { font-size:12px; color:var(--txt3); margin-top:4px; }
+#fao-section { background:#070B10; }
+#fao-section .section { background:#070B10; }
+.fao-layout { display:grid; grid-template-columns:1fr 1.1fr; gap:60px; align-items:start; }
+@media(max-width:1024px){ .fao-layout { grid-template-columns:1fr; gap:40px; } }
+.fao-eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin-bottom:20px; }
+.fao-eyebrow-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; display:inline-block; }
+.fao-h2 { font-size:clamp(36px,4.2vw,56px); font-weight:700; letter-spacing:-2.5px; line-height:1.06; margin-bottom:20px; color:#ffffff; }
+.fao-h2 strong { font-weight:800; color:#ffffff; }
+.fao-desc { font-size:15px; color:rgba(255,255,255,.48); line-height:1.85; margin-bottom:30px; }
+.fao-wins { display:flex; flex-direction:column; margin-bottom:30px; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; }
+.fao-win { display:flex; gap:14px; align-items:flex-start; padding:15px 18px; background:rgba(255,255,255,.02); border-bottom:1px solid rgba(255,255,255,.07); transition:background .15s; }
+.fao-win:last-child { border-bottom:none; }
+.fao-win:hover { background:rgba(10,191,204,.05); }
+.fao-win-icon { width:26px; height:26px; border-radius:6px; background:rgba(10,191,204,.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:13px; font-weight:800; color:var(--teal); line-height:1; margin-top:2px; }
+.fao-win-title { font-size:13px; font-weight:700; color:rgba(255,255,255,.85); margin-bottom:3px; }
+.fao-win-sub { font-size:11px; color:rgba(255,255,255,.38); line-height:1.6; }
+.fao-layers { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:26px; }
+.layer-pill { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.08); color:rgba(10,191,204,.85); border:1px solid rgba(10,191,204,.2); padding:5px 13px; border-radius:9999px; cursor:default; transition:background .15s,border-color .15s; }
+.layer-pill:hover { background:rgba(10,191,204,.18); border-color:rgba(10,191,204,.5); }
+.fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
+.fao-btns .btn-ghost { color:rgba(255,255,255,.65); border-color:rgba(255,255,255,.15); }
+.fao-btns .btn-ghost:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.32); color:#fff; }
+.fao-reassurance { font-size:12px; color:rgba(255,255,255,.25); margin-top:4px; }
 
 /* ── FAO EXPLORER (right column accordion) ───────────────────── */
 .fao-explorer { background:#0a0a0a; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
@@ -764,13 +774,30 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 <!-- THE SOLUTION: FAO -->
 <section class="section" id="fao-section">
   <div class="section-inner">
-    <span class="eyebrow">The Solution</span>
-    <h2 class="section-title">Introducing the<br /><strong>Fractional AI Officer.</strong></h2>
-
-    <!-- LEFT: prose + stat cards | RIGHT: interactive governance explorer -->
+    <!-- LEFT: eyebrow, headline, outcome bullets | RIGHT: interactive governance explorer -->
     <div class="fao-layout">
       <div>
-        <p class="fao-desc">An AI-certified governance leader embedded in your engineering org — done-for-you or done-with-you. Owns every AI risk from first commit to production.</p>
+        <div class="fao-eyebrow"><span class="fao-eyebrow-dot"></span>The Solution</div>
+        <h2 class="fao-h2">Introducing the<br /><strong>Fractional AI Officer.</strong></h2>
+        <p class="fao-desc">Your developers ship AI-generated code every day. Nobody reviews it for vulnerabilities, compliance gaps, or hallucinated packages. The FAO embeds in 72 hours and owns every line — from the first AI prompt to your next board report.</p>
+        <div class="fao-wins">
+          <div class="fao-win">
+            <div class="fao-win-icon">72h</div>
+            <div><div class="fao-win-title">Embedded in 72 hours</div><div class="fao-win-sub">No recruiting, no ramp. Active before your next sprint ends.</div></div>
+          </div>
+          <div class="fao-win">
+            <div class="fao-win-icon">L3</div>
+            <div><div class="fao-win-title">Every AI commit reviewed</div><div class="fao-win-sub">Hallucinated packages, prompt injection, auth bypass — caught before merge.</div></div>
+          </div>
+          <div class="fao-win">
+            <div class="fao-win-icon">30</div>
+            <div><div class="fao-win-title">Day 30 walk-away clause</div><div class="fao-win-sub">First risk report at Day 30. Exit at no obligation if ROI isn't clear.</div></div>
+          </div>
+          <div class="fao-win">
+            <div class="fao-win-icon">&#10003;</div>
+            <div><div class="fao-win-title">EU AI Act &amp; HIPAA ready</div><div class="fao-win-sub">19 capabilities across ISO&nbsp;27001, SOX, HIPAA, and EU AI Act.</div></div>
+          </div>
+        </div>
         <div class="fao-layers">
           <span class="layer-pill" data-layer="0">Align</span>
           <span class="layer-pill" data-layer="1">Accelerate</span>
@@ -778,27 +805,9 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
           <span class="layer-pill" data-layer="3">Comply</span>
           <span class="layer-pill" data-layer="4">Optimise</span>
         </div>
-        <div class="fao-grid">
-          <div class="fao-grid-card">
-            <div class="fao-grid-num">5</div>
-            <div class="fao-grid-lbl">Governance layers across the full SDLC</div>
-          </div>
-          <div class="fao-grid-card">
-            <div class="fao-grid-num">72h</div>
-            <div class="fao-grid-lbl">To embed. No recruiting. No ramp period.</div>
-          </div>
-          <div class="fao-grid-card">
-            <div class="fao-grid-num">Day&nbsp;30</div>
-            <div class="fao-grid-lbl">First AI risk report. Walk away if ROI doesn't justify.</div>
-          </div>
-          <div class="fao-grid-card">
-            <div class="fao-grid-num">19</div>
-            <div class="fao-grid-lbl">Integrated capabilities. EU AI Act, HIPAA, SOX, ISO&nbsp;27001.</div>
-          </div>
-        </div>
         <div class="fao-btns">
-          <a href="/ai-engineering-governance" class="btn btn-teal">See the Full Framework &rarr;</a>
-          <a href="/assessment" class="btn btn-ghost">Book a Governance Call</a>
+          <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
+          <a href="/ai-engineering-governance" class="btn btn-ghost">See the Framework &rarr;</a>
         </div>
         <p class="fao-reassurance">We respond within 24 hours. No commitment required.</p>
       </div>

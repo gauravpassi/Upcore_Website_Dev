@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — FAO section redesign — dark theme, outcome bullets, 2-col layout
+**Type:** fix
+**Files:** `index.html`
+Replaced the white "cutout" FAO section with a full dark `#070B10` treatment. Moved eyebrow + H2 inside the layout grid column (eliminated standalone section-title above the grid). Removed the generic 2×2 stat card grid and replaced with 4 outcome-specific bullet rows (fao-wins). Updated left-column CTA to "Book a Governance Review →" (primary, /assessment) and "See the Framework →" (ghost). New description copy focuses on the concrete problem: AI-generated code shipping unreviewed. Section is visually cohesive with the FAO Explorer accordion and ribbon already in place.
+
+---
+
 ## 2026-07-03 — UI/UX audit quick wins — CTA standardization + design system fixes
 **Type:** fix
 **Files:** `index.html`, `about.html`, `contact.html`, `ai-engineering-governance.html`, 61 subdirectory pages

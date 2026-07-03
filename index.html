@@ -502,97 +502,74 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .persona-cta { display:flex; justify-content:center; margin-top:24px; }
 
 /* ── FAO STANDALONE SECTION ─────────────────────────────────── */
-#fao-section { background:var(--bg); position:relative; }
-#fao-section::before { content:''; position:absolute; inset:0; background-image:radial-gradient(rgba(10,191,204,.055) 1px,transparent 1px); background-size:28px 28px; pointer-events:none; }
+#fao-section { background:var(--bg); }
+.fao-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; margin-top:56px; }
+@media(max-width:1024px){ .fao-layout { grid-template-columns:1fr; } }
 .fao-desc { font-size:16px; color:var(--txt2); line-height:1.8; margin-bottom:28px; }
 .fao-layers { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
 .layer-pill { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.25); padding:5px 14px; border-radius:9999px; cursor:default; transition:background .15s,border-color .15s; }
 .layer-pill:hover { background:rgba(10,191,204,.18); border-color:rgba(10,191,204,.45); }
+.fao-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+.fao-grid-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.fao-grid-num { font-size:24px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; margin-bottom:5px; }
+.fao-grid-lbl { font-size:11px; color:var(--txt2); line-height:1.5; }
 .fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px; }
 .fao-reassurance { font-size:12px; color:var(--txt3); margin-top:4px; }
 
-/* ── FAO INTRO ROW ───────────────────────────────────────────── */
-.fao-intro { display:grid; grid-template-columns:1fr 300px; gap:48px; align-items:center; margin-top:56px; margin-bottom:40px; }
-@media(max-width:1024px){ .fao-intro { grid-template-columns:1fr; } .fao-score-card { display:none; } }
-
-/* ── GOVERNANCE SCORE CARD ───────────────────────────────────── */
-.fao-score-card { background:#0a0a0a; border-radius:18px; border:1px solid rgba(255,255,255,.07); padding:22px 20px; display:flex; flex-direction:column; align-items:center; gap:14px; }
-.fao-sc-hdr { width:100%; display:flex; align-items:center; gap:7px; font-size:8.5px; font-weight:700; color:rgba(255,255,255,.28); letter-spacing:.12em; text-transform:uppercase; }
-@property --score-pct { syntax:'<percentage>'; initial-value:0%; inherits:false; }
-@keyframes score-fill { to { --score-pct:94%; } }
-.fao-ring-wrap { position:relative; width:132px; height:132px; }
-.fao-ring-dial { width:132px; height:132px; border-radius:50%; background:radial-gradient(closest-side,#0a0a0a 71%,transparent 72%),conic-gradient(var(--teal) var(--score-pct),rgba(255,255,255,.07) 0); }
-.fao-ring-dial.animate { animation:score-fill 1.9s cubic-bezier(.4,0,.2,1) forwards; }
-.fao-ring-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.fao-ring-num { font-size:30px; font-weight:800; color:var(--teal); letter-spacing:-2px; line-height:1; }
-.fao-ring-denom { font-size:9px; font-weight:600; color:rgba(255,255,255,.2); }
-.fao-score-lbl { font-size:9px; font-weight:600; color:rgba(255,255,255,.3); letter-spacing:.04em; }
-.fao-mini-bars { width:100%; display:flex; flex-direction:column; gap:8px; }
-.fao-mb-row { display:flex; align-items:center; gap:7px; }
-.fao-mb-lbl { font-size:8.5px; color:rgba(255,255,255,.25); width:66px; flex-shrink:0; }
-.fao-mb-track { flex:1; height:3px; background:rgba(255,255,255,.07); border-radius:2px; overflow:hidden; }
-.fao-mb-fill { height:100%; background:var(--teal); border-radius:2px; width:0%; transition:width 1.3s cubic-bezier(.4,0,.2,1) .5s; }
-.fao-mb-fill.animate { width:var(--pct); }
-.fao-mb-val { font-size:8.5px; font-weight:700; color:rgba(10,191,204,.65); width:24px; text-align:right; flex-shrink:0; }
-
-/* ── COMMAND WIDGET (3-pane dark card) ───────────────────────── */
-.fao-command { display:grid; grid-template-columns:1fr 1.1fr .9fr; background:#0a0a0a; border-radius:16px; border:1px solid rgba(255,255,255,.07); overflow:hidden; margin-bottom:32px; }
-@media(max-width:1024px){ .fao-command { grid-template-columns:1fr; } .fao-arch-pane { display:none; } }
-.fao-pane { padding:20px 18px; border-right:1px solid rgba(255,255,255,.055); }
-.fao-pane:last-child { border-right:none; }
-.fao-pane-hdr { display:flex; align-items:center; gap:7px; font-size:8px; font-weight:700; color:rgba(255,255,255,.27); letter-spacing:.12em; text-transform:uppercase; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,.055); margin-bottom:15px; }
-.fao-live { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; }
-.fao-lvs { display:flex; flex-direction:column; gap:9px; margin-bottom:16px; }
-.fao-lv { display:grid; grid-template-columns:19px 1fr 1fr 24px; align-items:center; gap:6px; border-radius:3px; transition:opacity .2s; }
-.fao-lv-badge { font-size:6.5px; font-weight:800; color:var(--teal); background:rgba(10,191,204,.1); border-radius:3px; padding:2px 3px; text-align:center; letter-spacing:.03em; }
-.fao-lv.alert .fao-lv-badge { color:#f87171; background:rgba(239,68,68,.1); }
-.fao-lv-name { font-size:10px; font-weight:600; color:rgba(255,255,255,.58); }
-.fao-lv-track { height:3px; background:rgba(255,255,255,.07); border-radius:2px; overflow:hidden; }
-.fao-lv-fill { height:100%; background:var(--teal); border-radius:2px; width:0%; transition:width 1.1s cubic-bezier(.4,0,.2,1); }
-.fao-lv.alert .fao-lv-fill { background:#ef4444; }
-.fao-lv-pct { font-size:7.5px; font-weight:700; color:rgba(255,255,255,.24); text-align:right; }
-.fao-lv.alert .fao-lv-pct { color:rgba(248,113,113,.4); }
-.fao-fw-badges { display:flex; flex-wrap:wrap; gap:4px; }
-.fao-fw-b { font-size:7px; font-weight:700; color:rgba(10,191,204,.5); background:rgba(10,191,204,.05); border:1px solid rgba(10,191,204,.1); padding:2px 6px; border-radius:3px; letter-spacing:.04em; }
-
-/* ── ARCH SVG pane ────────────────────────────────────────────── */
-.fao-arch-pane { position:relative; }
-.fao-arch-svg { width:100%; display:block; overflow:visible; }
-.fao-scan-rect { animation:fao-scan 4s ease-in-out infinite; }
-@keyframes fao-scan { 0%,100%{transform:translateY(-4px);opacity:0;} 8%{opacity:.8;} 90%{opacity:.15;} 96%{transform:translateY(196px);opacity:0;} }
-.fao-flow-ln { stroke-dasharray:5 5; animation:fao-flow 1.8s linear infinite; }
-@keyframes fao-flow { to{stroke-dashoffset:-20;} }
-.fao-pkt { animation:fao-pkt-go 5.5s linear infinite; }
-.fao-pkt:nth-child(2){ animation-delay:-2.5s; animation-duration:6.2s; }
-.fao-pkt-blk { animation:fao-pkt-blk 8.5s linear infinite; }
-@keyframes fao-pkt-go { 0%,5%{transform:translateX(0);opacity:0;} 9%{opacity:1;} 83%{transform:translateX(244px);opacity:1;} 87%{transform:translateX(244px);opacity:0;} 100%{transform:translateX(0);opacity:0;} }
-@keyframes fao-pkt-blk { 0%,6%{transform:translateX(0);opacity:0;fill:#0ABFCC;} 11%{opacity:1;fill:#0ABFCC;} 44%{transform:translateX(98px);fill:#0ABFCC;} 49%{transform:translateX(102px);fill:#ef4444;} 62%{transform:translateX(102px);fill:#ef4444;opacity:1;} 72%{transform:translateX(16px);opacity:0;} 100%{transform:translateX(0);opacity:0;} }
-
-/* ── LIVE FEED pane ───────────────────────────────────────────── */
-.fao-feed-wrap { height:186px; overflow:hidden; position:relative; }
-.fao-feed-wrap::after { content:''; position:absolute; bottom:0; left:0; right:0; height:40px; background:linear-gradient(transparent,#0a0a0a); pointer-events:none; z-index:1; }
-.fao-feed-inner { display:flex; flex-direction:column; gap:5px; animation:fao-feed-scroll 24s linear infinite; }
-.fao-feed-inner:hover { animation-play-state:paused; }
-@keyframes fao-feed-scroll { to{transform:translateY(-50%);} }
-.fao-fe { display:flex; align-items:flex-start; gap:7px; background:rgba(255,255,255,.022); border:1px solid rgba(255,255,255,.04); border-radius:6px; padding:8px 9px; flex-shrink:0; }
-.fao-fe-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; margin-top:2px; }
-.fao-fe.ok .fao-fe-dot { background:#22c55e; }
-.fao-fe.block .fao-fe-dot { background:#ef4444; }
-.fao-fe.amber .fao-fe-dot { background:#f59e0b; }
-.fao-fe-text { font-size:9px; color:rgba(255,255,255,.42); line-height:1.45; font-family:monospace; }
-.fao-fe.block .fao-fe-text { color:rgba(248,113,113,.6); }
-.fao-fe.ok .fao-fe-text { color:rgba(74,222,128,.48); }
-.fao-fe-meta { font-size:7px; color:rgba(255,255,255,.14); margin-top:3px; letter-spacing:.04em; }
+/* ── FAO EXPLORER (right column accordion) ───────────────────── */
+.fao-explorer { background:#0a0a0a; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+.fao-exp-header { padding:12px 18px; display:flex; align-items:center; gap:9px; font-size:10px; font-weight:700; color:rgba(255,255,255,.4); letter-spacing:.1em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.07); }
+.fao-exp-live { width:7px; height:7px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; }
+.fao-exp-rows { padding:10px; display:flex; flex-direction:column; gap:4px; }
+.fao-exp-row { border-radius:8px; border:1px solid rgba(255,255,255,.06); overflow:hidden; cursor:pointer; transition:border-color .2s; }
+.fao-exp-row:hover,.fao-exp-row.fao-exp-open { border-color:rgba(10,191,204,.22); }
+.fao-exp-row.fao-exp-alert { border-color:rgba(239,68,68,.13); }
+.fao-exp-row.fao-exp-alert:hover,.fao-exp-row.fao-exp-alert.fao-exp-open { border-color:rgba(239,68,68,.3); }
+.fao-exp-row.fao-exp-review { border-color:rgba(245,158,11,.13); }
+.fao-exp-row.fao-exp-review:hover,.fao-exp-row.fao-exp-review.fao-exp-open { border-color:rgba(245,158,11,.28); }
+.fao-exp-trigger { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 13px; background:rgba(255,255,255,.025); user-select:none; }
+.fao-exp-row.fao-exp-open .fao-exp-trigger { background:rgba(10,191,204,.05); }
+.fao-exp-row.fao-exp-alert.fao-exp-open .fao-exp-trigger { background:rgba(239,68,68,.04); }
+.fao-exp-row.fao-exp-review.fao-exp-open .fao-exp-trigger { background:rgba(245,158,11,.04); }
+.fao-exp-left { display:flex; align-items:center; gap:11px; }
+.fao-exp-badge { font-size:9px; font-weight:800; color:var(--teal); background:rgba(10,191,204,.12); padding:2px 7px; border-radius:4px; letter-spacing:.05em; flex-shrink:0; }
+.fao-exp-row.fao-exp-alert .fao-exp-badge { color:#f87171; background:rgba(239,68,68,.12); }
+.fao-exp-row.fao-exp-review .fao-exp-badge { color:#fbbf24; background:rgba(245,158,11,.12); }
+.fao-exp-name { font-size:12px; font-weight:700; color:rgba(255,255,255,.88); }
+.fao-exp-sub { font-size:10px; color:rgba(255,255,255,.32); margin-top:2px; }
+.fao-exp-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.fao-exp-status { font-size:9px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; padding:2px 9px; border-radius:9999px; }
+.fao-exp-status.ok { background:rgba(34,197,94,.1); color:#4ade80; }
+.fao-exp-status.review { background:rgba(245,158,11,.1); color:#fbbf24; }
+.fao-exp-status.scanning { background:rgba(239,68,68,.1); color:#f87171; }
+.fao-exp-chevron { font-size:10px; color:rgba(255,255,255,.25); transition:transform .25s; display:inline-block; }
+.fao-exp-row.fao-exp-open .fao-exp-chevron { transform:rotate(180deg); }
+.fao-exp-panel { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+.fao-exp-panel-inner { padding:14px 14px 14px 43px; border-top:1px solid rgba(255,255,255,.05); }
+.fao-exp-caps { list-style:none; padding:0; margin:0 0 12px; display:flex; flex-direction:column; gap:5px; }
+.fao-exp-caps li { font-size:11px; color:rgba(255,255,255,.58); display:flex; align-items:flex-start; gap:7px; line-height:1.5; }
+.fao-exp-caps li::before { content:'✓'; color:var(--teal); font-weight:700; font-size:10px; flex-shrink:0; margin-top:1px; }
+.fao-exp-row.fao-exp-alert .fao-exp-caps li::before { color:#f87171; }
+.fao-exp-row.fao-exp-review .fao-exp-caps li::before { color:#fbbf24; }
+.fao-exp-log { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:6px; padding:10px 12px; margin-bottom:10px; }
+.fao-exp-log-label { font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:5px; }
+.fao-exp-log-text { font-size:10px; color:rgba(255,255,255,.48); line-height:1.55; font-family:monospace; }
+.fao-exp-log-ts { font-size:8px; color:rgba(255,255,255,.18); margin-top:4px; }
+.fao-exp-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.fao-exp-tag { font-size:8px; font-weight:700; color:rgba(10,191,204,.7); background:rgba(10,191,204,.06); border:1px solid rgba(10,191,204,.12); padding:2px 7px; border-radius:3px; letter-spacing:.04em; }
+.fao-exp-row.fao-exp-alert .fao-exp-tag { color:rgba(248,113,113,.7); background:rgba(239,68,68,.06); border-color:rgba(239,68,68,.12); }
+.fao-exp-row.fao-exp-review .fao-exp-tag { color:rgba(251,191,36,.7); background:rgba(245,158,11,.06); border-color:rgba(245,158,11,.12); }
+@media(max-width:1024px){ .fao-explorer { display:none; } }
 
 /* ── FAO RIBBON ──────────────────────────────────────────────── */
-.fao-ribbon { background:#0a0a0a; border-radius:14px; padding:28px 36px; display:grid; grid-template-columns:1fr 1.65fr; gap:44px; align-items:center; border:1px solid rgba(255,255,255,.06); }
-.fao-ribbon-stats { display:flex; gap:28px; flex-wrap:wrap; }
-.fao-rstat { flex:1; min-width:60px; }
-.fao-rnum { font-size:24px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; }
-.fao-rlbl { font-size:9px; color:rgba(255,255,255,.27); text-transform:uppercase; letter-spacing:.07em; margin-top:5px; line-height:1.4; }
-.fao-chart-title { font-size:8px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:8px; }
+.fao-ribbon { background:#0a0a0a; border-radius:14px; margin-top:40px; padding:32px 40px; display:grid; grid-template-columns:1fr 1.6fr; gap:48px; align-items:center; border:1px solid rgba(255,255,255,.06); }
+.fao-ribbon-stats { display:flex; gap:36px; flex-wrap:wrap; }
+.fao-rstat { flex:1; min-width:72px; }
+.fao-rnum { font-size:28px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; }
+.fao-rlbl { font-size:10px; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:.07em; margin-top:5px; line-height:1.4; }
+.fao-chart-title { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.22); margin-bottom:10px; }
 @media(max-width:1024px){ .fao-ribbon { grid-template-columns:1fr; } }
-@media(max-width:768px){ .fao-ribbon { padding:20px; } .fao-ribbon-stats { gap:16px; } }
+@media(max-width:768px){ .fao-ribbon { padding:24px; } .fao-ribbon-stats { gap:24px; } }
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
 #bridge { background:var(--bg3); }
@@ -788,8 +765,8 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
     <span class="eyebrow">The Solution</span>
     <h2 class="section-title">Introducing the<br /><strong>Fractional AI Officer.</strong></h2>
 
-    <!-- INTRO ROW: text left, governance score card right -->
-    <div class="fao-intro">
+    <!-- LEFT: prose + stat cards | RIGHT: interactive governance explorer -->
+    <div class="fao-layout">
       <div>
         <p class="fao-desc">An AI-certified governance leader embedded in your engineering org — done-for-you or done-with-you. Owns every AI risk from first commit to production.</p>
         <div class="fao-layers">
@@ -799,243 +776,96 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
           <span class="layer-pill" data-layer="3">Comply</span>
           <span class="layer-pill" data-layer="4">Optimise</span>
         </div>
+        <div class="fao-grid">
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">5</div>
+            <div class="fao-grid-lbl">Governance layers across the full SDLC</div>
+          </div>
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">72h</div>
+            <div class="fao-grid-lbl">To embed. No recruiting. No ramp period.</div>
+          </div>
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">Day&nbsp;30</div>
+            <div class="fao-grid-lbl">First AI risk report. Walk away if ROI doesn't justify.</div>
+          </div>
+          <div class="fao-grid-card">
+            <div class="fao-grid-num">19</div>
+            <div class="fao-grid-lbl">Integrated capabilities. EU AI Act, HIPAA, SOX, ISO&nbsp;27001.</div>
+          </div>
+        </div>
         <div class="fao-btns">
           <a href="/ai-engineering-governance" class="btn btn-teal">See the Full Framework &rarr;</a>
           <a href="/assessment" class="btn btn-ghost">Book a Governance Call</a>
         </div>
         <p class="fao-reassurance">We respond within 24 hours. No commitment required.</p>
       </div>
-      <div class="fao-score-card" id="faoScoreCard">
-        <div class="fao-sc-hdr"><span class="fao-live"></span>AI Governance Score</div>
-        <div class="fao-ring-wrap">
-          <div class="fao-ring-dial" id="faoRingDial"></div>
-          <div class="fao-ring-center">
-            <span class="fao-ring-num" id="faoRingNum">0</span>
-            <span class="fao-ring-denom">/ 100</span>
-          </div>
-        </div>
-        <div class="fao-score-lbl">Governance Posture Score</div>
-        <div class="fao-mini-bars">
-          <div class="fao-mb-row">
-            <span class="fao-mb-lbl">Security</span>
-            <div class="fao-mb-track"><div class="fao-mb-fill" style="--pct:91%"></div></div>
-            <span class="fao-mb-val">91%</span>
-          </div>
-          <div class="fao-mb-row">
-            <span class="fao-mb-lbl">Compliance</span>
-            <div class="fao-mb-track"><div class="fao-mb-fill" style="--pct:96%"></div></div>
-            <span class="fao-mb-val">96%</span>
-          </div>
-          <div class="fao-mb-row">
-            <span class="fao-mb-lbl">Cost Control</span>
-            <div class="fao-mb-track"><div class="fao-mb-fill" style="--pct:88%"></div></div>
-            <span class="fao-mb-val">88%</span>
-          </div>
-        </div>
-      </div>
-    </div>
+      <div class="fao-explorer">
+        <div class="fao-exp-header"><span class="fao-exp-live"></span>FAO Governance Explorer &mdash; Active</div>
+        <div class="fao-exp-rows">
 
-    <!-- COMMAND WIDGET: 3-pane dark dashboard -->
-    <div class="fao-command">
+          <div class="fao-exp-row" onclick="toggleLayer(this)">
+            <div class="fao-exp-trigger">
+              <div class="fao-exp-left"><span class="fao-exp-badge">L1</span><div><div class="fao-exp-name">Align</div><div class="fao-exp-sub">AI Policy &amp; Standards</div></div></div>
+              <div class="fao-exp-right"><span class="fao-exp-status ok">ACTIVE</span><span class="fao-exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
+              <ul class="fao-exp-caps"><li>AI tool inventory &amp; risk classification</li><li>Acceptable use policy drafting</li><li>Risk appetite framework for AI decisions</li></ul>
+              <div class="fao-exp-log"><div class="fao-exp-log-label">Flagged this quarter</div><div class="fao-exp-log-text">"Undocumented GPT-4 integration found in payments module &mdash; flagged before board audit"</div><div class="fao-exp-log-ts">3 hr ago</div></div>
+              <div class="fao-exp-tags"><span class="fao-exp-tag">EU AI Act Art.&nbsp;9</span><span class="fao-exp-tag">ISO&nbsp;27001</span></div>
+            </div></div>
+          </div>
 
-      <!-- PANE A: Layer coverage bars -->
-      <div class="fao-pane" id="faoLvPane">
-        <div class="fao-pane-hdr"><span class="fao-live"></span>Layer Coverage</div>
-        <div class="fao-lvs">
-          <div class="fao-lv" data-pct="98%">
-            <span class="fao-lv-badge">L1</span>
-            <span class="fao-lv-name">Align</span>
-            <div class="fao-lv-track"><div class="fao-lv-fill"></div></div>
-            <span class="fao-lv-pct">98%</span>
+          <div class="fao-exp-row fao-exp-review" onclick="toggleLayer(this)">
+            <div class="fao-exp-trigger">
+              <div class="fao-exp-left"><span class="fao-exp-badge">L2</span><div><div class="fao-exp-name">Accelerate</div><div class="fao-exp-sub">Dev Governance &middot; reviewing PR&nbsp;#847</div></div></div>
+              <div class="fao-exp-right"><span class="fao-exp-status review">REVIEW</span><span class="fao-exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
+              <ul class="fao-exp-caps"><li>PR-level AI code review gates</li><li>Prompt library governance &amp; versioning</li><li>AI tool vetting &amp; approved stack management</li></ul>
+              <div class="fao-exp-log"><div class="fao-exp-log-label">Under review</div><div class="fao-exp-log-text">"Copilot-generated auth helper &mdash; 2 issues flagged, pending remediation before merge"</div><div class="fao-exp-log-ts">14 min ago</div></div>
+              <div class="fao-exp-tags"><span class="fao-exp-tag">OWASP LLM Top&nbsp;10</span><span class="fao-exp-tag">SOX</span></div>
+            </div></div>
           </div>
-          <div class="fao-lv" data-pct="94%">
-            <span class="fao-lv-badge">L2</span>
-            <span class="fao-lv-name">Accelerate</span>
-            <div class="fao-lv-track"><div class="fao-lv-fill"></div></div>
-            <span class="fao-lv-pct">94%</span>
+
+          <div class="fao-exp-row fao-exp-alert" onclick="toggleLayer(this)">
+            <div class="fao-exp-trigger">
+              <div class="fao-exp-left"><span class="fao-exp-badge">L3</span><div><div class="fao-exp-name">Protect</div><div class="fao-exp-sub">Security &amp; Hardening &middot; 2 blocked today</div></div></div>
+              <div class="fao-exp-right"><span class="fao-exp-status scanning">SCANNING</span><span class="fao-exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
+              <ul class="fao-exp-caps"><li>AI hallucination detection in production paths</li><li>Supply chain scanning for AI-suggested packages</li><li>Prompt injection safeguards &amp; sandboxing</li></ul>
+              <div class="fao-exp-log"><div class="fao-exp-log-label">Blocked today</div><div class="fao-exp-log-text">"npm pkg 'ai-helpers@3.2.1' blocked &mdash; Copilot-suggested, no security review, 0 downloads"</div><div class="fao-exp-log-ts">just now</div></div>
+              <div class="fao-exp-tags"><span class="fao-exp-tag">CVE Monitoring</span><span class="fao-exp-tag">HIPAA &sect;164.312</span></div>
+            </div></div>
           </div>
-          <div class="fao-lv alert" data-pct="100%">
-            <span class="fao-lv-badge">L3</span>
-            <span class="fao-lv-name">Protect</span>
-            <div class="fao-lv-track"><div class="fao-lv-fill"></div></div>
-            <span class="fao-lv-pct">100%</span>
+
+          <div class="fao-exp-row" onclick="toggleLayer(this)">
+            <div class="fao-exp-trigger">
+              <div class="fao-exp-left"><span class="fao-exp-badge">L4</span><div><div class="fao-exp-name">Comply</div><div class="fao-exp-sub">Audit &amp; Regulatory</div></div></div>
+              <div class="fao-exp-right"><span class="fao-exp-status ok">ACTIVE</span><span class="fao-exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
+              <ul class="fao-exp-caps"><li>EU AI Act high-risk system classification &amp; mapping</li><li>HIPAA, SOX, ISO&nbsp;27001 audit trail generation</li><li>Board-ready AI governance reporting</li></ul>
+              <div class="fao-exp-log"><div class="fao-exp-log-label">Recent action</div><div class="fao-exp-log-text">"SOX attestation gap identified and closed 48h before board review &mdash; zero findings"</div><div class="fao-exp-log-ts">yesterday</div></div>
+              <div class="fao-exp-tags"><span class="fao-exp-tag">EU AI Act</span><span class="fao-exp-tag">SOX</span><span class="fao-exp-tag">HIPAA</span></div>
+            </div></div>
           </div>
-          <div class="fao-lv" data-pct="96%">
-            <span class="fao-lv-badge">L4</span>
-            <span class="fao-lv-name">Comply</span>
-            <div class="fao-lv-track"><div class="fao-lv-fill"></div></div>
-            <span class="fao-lv-pct">96%</span>
+
+          <div class="fao-exp-row" onclick="toggleLayer(this)">
+            <div class="fao-exp-trigger">
+              <div class="fao-exp-left"><span class="fao-exp-badge">L5</span><div><div class="fao-exp-name">Optimise</div><div class="fao-exp-sub">Intelligence &amp; ROI</div></div></div>
+              <div class="fao-exp-right"><span class="fao-exp-status ok">ACTIVE</span><span class="fao-exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
+              <ul class="fao-exp-caps"><li>AI budget attribution &amp; cost-per-feature reporting</li><li>Model benchmarking &amp; vendor evaluation</li><li>Quarterly AI ROI dashboards for leadership</li></ul>
+              <div class="fao-exp-log"><div class="fao-exp-log-label">Recent win</div><div class="fao-exp-log-text">"LLM API spend reduced 31% via intelligent model routing &mdash; $18k saved in Q3"</div><div class="fao-exp-log-ts">2 days ago</div></div>
+              <div class="fao-exp-tags"><span class="fao-exp-tag">ROI Reporting</span><span class="fao-exp-tag">ISO&nbsp;42001</span></div>
+            </div></div>
           </div>
-          <div class="fao-lv" data-pct="89%">
-            <span class="fao-lv-badge">L5</span>
-            <span class="fao-lv-name">Optimise</span>
-            <div class="fao-lv-track"><div class="fao-lv-fill"></div></div>
-            <span class="fao-lv-pct">89%</span>
-          </div>
-        </div>
-        <div class="fao-fw-badges">
-          <span class="fao-fw-b">EU AI Act</span>
-          <span class="fao-fw-b">ISO 27001</span>
-          <span class="fao-fw-b">ISO 42001</span>
-          <span class="fao-fw-b">HIPAA</span>
-          <span class="fao-fw-b">SOX</span>
+
         </div>
       </div>
-
-      <!-- PANE B: Architecture flow diagram -->
-      <div class="fao-pane fao-arch-pane">
-        <div class="fao-pane-hdr">Governance Pipeline</div>
-        <svg class="fao-arch-svg" viewBox="0 0 290 130" xmlns="http://www.w3.org/2000/svg">
-          <!-- Scan sweep -->
-          <rect class="fao-scan-rect" x="0" y="0" width="290" height="1.5" rx="1" fill="rgba(10,191,204,.28)"/>
-          <!-- Spine -->
-          <line x1="22" y1="60" x2="268" y2="60" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-          <!-- Flow lines (animated dashes) -->
-          <line class="fao-flow-ln" x1="52" y1="60" x2="74" y2="60" stroke="rgba(10,191,204,.35)" stroke-width="1.5"/>
-          <line class="fao-flow-ln" x1="100" y1="60" x2="120" y2="60" stroke="rgba(10,191,204,.35)" stroke-width="1.5" style="animation-delay:-.45s"/>
-          <line class="fao-flow-ln" x1="148" y1="60" x2="168" y2="60" stroke="rgba(10,191,204,.25)" stroke-width="1.5" style="animation-delay:-.9s"/>
-          <line class="fao-flow-ln" x1="196" y1="60" x2="216" y2="60" stroke="rgba(10,191,204,.35)" stroke-width="1.5" style="animation-delay:-1.35s"/>
-          <line class="fao-flow-ln" x1="244" y1="60" x2="256" y2="60" stroke="rgba(34,197,94,.35)" stroke-width="1.5" style="animation-delay:-1.8s"/>
-          <!-- Input -->
-          <rect x="0" y="48" width="22" height="24" rx="4" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
-          <text x="11" y="58" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,.28)" font-family="DM Sans,sans-serif">AI</text>
-          <text x="11" y="66" text-anchor="middle" font-size="5.5" fill="rgba(255,255,255,.28)" font-family="DM Sans,sans-serif">Code</text>
-          <!-- L1 -->
-          <circle cx="38" cy="60" r="14" fill="rgba(10,191,204,.06)" stroke="rgba(10,191,204,.24)" stroke-width="1.5"/>
-          <text x="38" y="64" text-anchor="middle" font-size="8" font-weight="800" fill="rgba(10,191,204,.85)" font-family="DM Sans,sans-serif">L1</text>
-          <text x="38" y="86" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.2)" font-family="DM Sans,sans-serif">Align</text>
-          <!-- L2 -->
-          <circle cx="86" cy="60" r="14" fill="rgba(10,191,204,.06)" stroke="rgba(10,191,204,.24)" stroke-width="1.5"/>
-          <text x="86" y="64" text-anchor="middle" font-size="8" font-weight="800" fill="rgba(10,191,204,.85)" font-family="DM Sans,sans-serif">L2</text>
-          <text x="86" y="86" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.2)" font-family="DM Sans,sans-serif">Accel.</text>
-          <!-- L3 (alert/pulse) -->
-          <circle cx="134" cy="60" r="20" fill="rgba(239,68,68,.03)" stroke="rgba(239,68,68,.18)" stroke-width="1.5" opacity=".7">
-            <animate attributeName="r" values="20;24;20" dur="2.2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values=".7;.12;.7" dur="2.2s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="134" cy="60" r="14" fill="rgba(239,68,68,.09)" stroke="rgba(239,68,68,.48)" stroke-width="1.5"/>
-          <text x="134" y="64" text-anchor="middle" font-size="8" font-weight="800" fill="#f87171" font-family="DM Sans,sans-serif">L3</text>
-          <text x="134" y="86" text-anchor="middle" font-size="6.5" fill="rgba(248,113,113,.5)" font-family="DM Sans,sans-serif">Protect</text>
-          <!-- "2 blocked" badge above L3 -->
-          <rect x="110" y="28" width="48" height="16" rx="3" fill="rgba(239,68,68,.11)" stroke="rgba(239,68,68,.22)" stroke-width="1"/>
-          <text x="134" y="39" text-anchor="middle" font-size="7" font-weight="700" fill="#f87171" font-family="DM Sans,sans-serif">&#9679; 2 blocked</text>
-          <line x1="134" y1="44" x2="134" y2="46" stroke="rgba(239,68,68,.25)" stroke-width="1"/>
-          <!-- L4 -->
-          <circle cx="182" cy="60" r="14" fill="rgba(10,191,204,.06)" stroke="rgba(10,191,204,.24)" stroke-width="1.5"/>
-          <text x="182" y="64" text-anchor="middle" font-size="8" font-weight="800" fill="rgba(10,191,204,.85)" font-family="DM Sans,sans-serif">L4</text>
-          <text x="182" y="86" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.2)" font-family="DM Sans,sans-serif">Comply</text>
-          <!-- L5 -->
-          <circle cx="230" cy="60" r="14" fill="rgba(10,191,204,.06)" stroke="rgba(10,191,204,.24)" stroke-width="1.5"/>
-          <text x="230" y="64" text-anchor="middle" font-size="8" font-weight="800" fill="rgba(10,191,204,.85)" font-family="DM Sans,sans-serif">L5</text>
-          <text x="230" y="86" text-anchor="middle" font-size="6.5" fill="rgba(255,255,255,.2)" font-family="DM Sans,sans-serif">Optimise</text>
-          <!-- Output -->
-          <circle cx="268" cy="60" r="12" fill="rgba(34,197,94,.07)" stroke="rgba(34,197,94,.3)" stroke-width="1.5"/>
-          <text x="268" y="58" text-anchor="middle" font-size="11" fill="rgba(34,197,94,.78)" font-family="DM Sans,sans-serif">&#10003;</text>
-          <text x="268" y="86" text-anchor="middle" font-size="6.5" fill="rgba(34,197,94,.4)" font-family="DM Sans,sans-serif">Safe</text>
-          <!-- Animated packets (teal, travel L1→L5) -->
-          <circle class="fao-pkt" cx="0" cy="57" r="4" fill="#0ABFCC" opacity="0"/>
-          <circle class="fao-pkt" cx="0" cy="63" r="3.5" fill="#0ABFCC" opacity="0"/>
-          <!-- Blocked packet (turns red at L3) -->
-          <circle class="fao-pkt-blk" cx="0" cy="60" r="4" fill="#0ABFCC" opacity="0"/>
-          <!-- Framework labels -->
-          <text x="0" y="115" font-size="7" fill="rgba(255,255,255,.12)" font-family="DM Sans,sans-serif">EU AI Act &nbsp;&#183;&nbsp; ISO 42001 &nbsp;&#183;&nbsp; NIST AI RMF &nbsp;&#183;&nbsp; HIPAA &nbsp;&#183;&nbsp; SOX</text>
-        </svg>
-      </div>
-
-      <!-- PANE C: Auto-scrolling live activity feed -->
-      <div class="fao-pane">
-        <div class="fao-pane-hdr"><span class="fao-live"></span>Live Activity</div>
-        <div class="fao-feed-wrap">
-          <div class="fao-feed-inner">
-            <div class="fao-fe block">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">pkg 'ai-helpers@3.2.1' blocked &mdash; 0 downloads, no review</div>
-                <div class="fao-fe-meta">just now &middot; L3 PROTECT</div>
-              </div>
-            </div>
-            <div class="fao-fe ok">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">SOX attestation gap closed &mdash; 48h before board review</div>
-                <div class="fao-fe-meta">3 min ago &middot; L4 COMPLY</div>
-              </div>
-            </div>
-            <div class="fao-fe amber">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">Copilot auth helper: 2 issues flagged in PR #847</div>
-                <div class="fao-fe-meta">14 min ago &middot; L2 ACCELERATE</div>
-              </div>
-            </div>
-            <div class="fao-fe ok">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">LLM routing optimised &mdash; $18k saved in Q3</div>
-                <div class="fao-fe-meta">1 hr ago &middot; L5 OPTIMISE</div>
-              </div>
-            </div>
-            <div class="fao-fe block">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">Undocumented GPT-4 in payments &mdash; flagged before audit</div>
-                <div class="fao-fe-meta">3 hr ago &middot; L1 ALIGN</div>
-              </div>
-            </div>
-            <div class="fao-fe ok">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">EU AI Act Art.&nbsp;9: 3 compliance gaps remediated</div>
-                <div class="fao-fe-meta">yesterday &middot; L4 COMPLY</div>
-              </div>
-            </div>
-            <!-- Duplicate set for seamless infinite scroll -->
-            <div class="fao-fe block">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">pkg 'ai-helpers@3.2.1' blocked &mdash; 0 downloads, no review</div>
-                <div class="fao-fe-meta">just now &middot; L3 PROTECT</div>
-              </div>
-            </div>
-            <div class="fao-fe ok">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">SOX attestation gap closed &mdash; 48h before board review</div>
-                <div class="fao-fe-meta">3 min ago &middot; L4 COMPLY</div>
-              </div>
-            </div>
-            <div class="fao-fe amber">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">Copilot auth helper: 2 issues flagged in PR #847</div>
-                <div class="fao-fe-meta">14 min ago &middot; L2 ACCELERATE</div>
-              </div>
-            </div>
-            <div class="fao-fe ok">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">LLM routing optimised &mdash; $18k saved in Q3</div>
-                <div class="fao-fe-meta">1 hr ago &middot; L5 OPTIMISE</div>
-              </div>
-            </div>
-            <div class="fao-fe block">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">Undocumented GPT-4 in payments &mdash; flagged before audit</div>
-                <div class="fao-fe-meta">3 hr ago &middot; L1 ALIGN</div>
-              </div>
-            </div>
-            <div class="fao-fe ok">
-              <span class="fao-fe-dot"></span>
-              <div>
-                <div class="fao-fe-text">EU AI Act Art.&nbsp;9: 3 compliance gaps remediated</div>
-                <div class="fao-fe-meta">yesterday &middot; L4 COMPLY</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
 
     <!-- RIBBON: 4 stats + SVG risk-decline chart -->
@@ -1270,60 +1100,39 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 <script src="/chat-widget.js" defer></script>
 <script>
-// Layer pill hover → dim other layer bars, highlight the hovered one
+// FAO Explorer: accordion toggle
+function toggleLayer(row){
+  var panel=row.querySelector('.fao-exp-panel');
+  var isOpen=row.classList.contains('fao-exp-open');
+  document.querySelectorAll('.fao-exp-row').forEach(function(r){
+    r.classList.remove('fao-exp-open');
+    r.querySelector('.fao-exp-panel').style.maxHeight='0px';
+  });
+  if(!isOpen){
+    row.classList.add('fao-exp-open');
+    panel.style.maxHeight=panel.scrollHeight+'px';
+  }
+}
+// Pre-open L3 on load
+document.addEventListener('DOMContentLoaded',function(){
+  var rows=document.querySelectorAll('.fao-exp-row');
+  if(rows[2])toggleLayer(rows[2]);
+});
+
+// Layer pill hover → highlight matching explorer row
 (function(){
   var pills=document.querySelectorAll('.layer-pill[data-layer]');
-  var rows=document.querySelectorAll('.fao-lv');
+  var rows=document.querySelectorAll('.fao-exp-row');
   pills.forEach(function(pill){
     pill.addEventListener('mouseenter',function(){
+      rows.forEach(function(r){r.style.outline='';});
       var idx=+pill.dataset.layer;
-      rows.forEach(function(r,i){r.style.opacity=i===idx?'1':'.35';});
+      if(rows[idx])rows[idx].style.outline='1px solid rgba(10,191,204,.35)';
     });
     pill.addEventListener('mouseleave',function(){
-      rows.forEach(function(r){r.style.opacity='';});
+      rows.forEach(function(r){r.style.outline='';});
     });
   });
-})();
-
-// Score ring: animate conic gradient + count-up when card enters viewport
-(function(){
-  var sc=document.getElementById('faoScoreCard');
-  if(!sc)return;
-  var obs=new IntersectionObserver(function(entries){
-    if(!entries[0].isIntersecting)return;
-    // Trigger CSS @property animation
-    document.getElementById('faoRingDial').classList.add('animate');
-    // Animate mini progress bars
-    document.querySelectorAll('.fao-mb-fill').forEach(function(el){el.classList.add('animate');});
-    // Count-up the score number
-    var numEl=document.getElementById('faoRingNum');
-    var t0=performance.now();
-    (function tick(now){
-      var pct=Math.min((now-t0)/1900,1);
-      var ease=1-Math.pow(1-pct,3);
-      numEl.textContent=Math.round(ease*94);
-      if(pct<1)requestAnimationFrame(tick);
-    })(performance.now());
-    obs.disconnect();
-  },{threshold:.4});
-  obs.observe(sc);
-})();
-
-// Layer bars: animate fill widths when pane enters viewport
-(function(){
-  var pane=document.getElementById('faoLvPane');
-  if(!pane)return;
-  var obs=new IntersectionObserver(function(entries){
-    if(!entries[0].isIntersecting)return;
-    document.querySelectorAll('.fao-lv').forEach(function(lv,i){
-      var fill=lv.querySelector('.fao-lv-fill');
-      if(!fill)return;
-      fill.style.transitionDelay=(i*0.1)+'s';
-      fill.style.width=lv.dataset.pct;
-    });
-    obs.disconnect();
-  },{threshold:.3});
-  obs.observe(pane);
 })();
 
 // Ribbon: count-up stats + SVG risk line draw when ribbon enters viewport

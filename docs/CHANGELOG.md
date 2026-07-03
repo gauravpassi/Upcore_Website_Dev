@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — FAO section proper redesign — two-column accordion layout (homepage)
+**Type:** feature
+**Files:** `index.html`
+Replaced the 3-dark-block "Governance Intelligence Dashboard" (score ring + 3-pane command widget) with the site's canonical two-column layout. Left: prose + 5 layer pills + 4 stat cards (`var(--bg2)` light style, matching site) + CTAs. Right: `.fao-explorer` dark accordion with 5 expandable rows (L1–L5), each revealing capability bullets + timestamped log entry + compliance tags; L3 pre-opens on load; L2 amber REVIEW state; L3 red SCANNING/alert state. Pills on hover highlight matching accordion row via teal outline. Ribbon below unchanged (4 stats + SVG risk-decline chart). Removed all score-ring, layer-bar, and packet-animation JS; replaced with `toggleLayer()` accordion function + DOMContentLoaded pre-open + new pill hover. Zero console errors.
+
+---
+
 ## 2026-07-03 — FAO "Governance Intelligence Dashboard" full redesign (homepage)
 **Type:** feature
 **Files:** `index.html`

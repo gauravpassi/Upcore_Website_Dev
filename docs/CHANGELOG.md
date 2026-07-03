@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — Homepage design improvements — proof stats, Bridge CTA, connectors, addon icons
+**Type:** feature
+**Files:** `index.html`
+Added 3-column crisis proof stats block to Problem section (45% exploitable / $4.7M breach cost / 0 named owners). Added "Book a Governance Review →" CTA with reassurance copy to Bridge section. Added teal `→` step connectors to How It Works cards (desktop only, inside top-right of each non-last card). Added emoji icons to agent add-on cards. Converted Gauntlet section to light theme (`var(--bg2)`) and added AIGOV Gauntlet section between FAO and Bridge.
+
+---
+
 ## 2026-07-03 — FAO section redesign — dark theme, outcome bullets, 2-col layout
 **Type:** fix
 **Files:** `index.html`

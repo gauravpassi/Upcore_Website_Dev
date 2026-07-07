@@ -13,12 +13,12 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>On-Premise AI Agent Deployment | Upcore Technologies</title>
-  <meta name="description" content="Deploy production-grade AI agents on your own infrastructure. Upcore's on-premise AI deployment model keeps your data inside your perimeter — required for…"/>
+  <meta name="description" content="Deploy production-grade AI agents on your own infrastructure. Upcore's on-premise AI deployment model keeps your data inside your perimeter - required for…"/>
   <link rel="canonical" href="https://www.upcoretech.com/platform/on-premise-deployment"/>
   <link rel="alternate" hreflang="en" href="https://www.upcoretech.com/platform/on-premise-deployment"/>
   <link rel="alternate" hreflang="x-default" href="https://www.upcoretech.com/platform/on-premise-deployment"/>
   <meta property="og:title" content="On-Premise AI Agent Deployment | Upcore Technologies"/>
-  <meta property="og:description" content="Deploy production-grade AI agents on your own infrastructure. Upcore's on-premise AI deployment model keeps your data inside your perimeter — required…"/>
+  <meta property="og:description" content="Deploy production-grade AI agents on your own infrastructure. Upcore's on-premise AI deployment model keeps your data inside your perimeter - required…"/>
   <meta property="og:url" content="https://www.upcoretech.com/platform/on-premise-deployment"/>
   <meta property="og:site_name" content="Upcore Technologies"/>
   <meta property="og:image" content="https://www.upcoretech.com/images/og-default.png"/>
@@ -39,7 +39,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "On-Premise AI Agent Deployment",
-    "description": "Upcore Technologies deploys production-grade AI agents on the client's own infrastructure — physical servers or private cloud — keeping all data inside the client's network perimeter.",
+    "description": "Upcore Technologies deploys production-grade AI agents on the client's own infrastructure - physical servers or private cloud - keeping all data inside the client's network perimeter.",
     "provider": {
       "@type": "Organization",
       "name": "Upcore Technologies",
@@ -61,7 +61,7 @@
         "name": "What does 'on-premise AI deployment' actually mean?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "On-premise AI deployment means the AI model, all inference processing, and all associated data handling run inside your own infrastructure rather than on a third-party cloud service. This can mean physical servers in your data centre, a private cloud environment in your own AWS, Azure, or GCP tenant, or an air-gapped network with no external connectivity. The defining characteristic is that your data never travels to a vendor's shared infrastructure for processing — all computation happens within your network boundary."
+          "text": "On-premise AI deployment means the AI model, all inference processing, and all associated data handling run inside your own infrastructure rather than on a third-party cloud service. This can mean physical servers in your data centre, a private cloud environment in your own AWS, Azure, or GCP tenant, or an air-gapped network with no external connectivity. The defining characteristic is that your data never travels to a vendor's shared infrastructure for processing - all computation happens within your network boundary."
         }
       },
       {
@@ -69,7 +69,7 @@
         "name": "Do we need specialised hardware to run an on-premise AI agent?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For most enterprise use cases, no specialised hardware is required. Upcore optimises models to run efficiently on standard enterprise server configurations, including CPU-only environments where GPU infrastructure is not available. For high-throughput use cases — such as real-time document processing at scale or low-latency inference for customer-facing applications — we will specify minimum hardware requirements during the Discovery phase. We work with your existing infrastructure inventory first and only recommend hardware upgrades when genuinely necessary."
+          "text": "For most enterprise use cases, no specialised hardware is required. Upcore optimises models to run efficiently on standard enterprise server configurations, including CPU-only environments where GPU infrastructure is not available. For high-throughput use cases - such as real-time document processing at scale or low-latency inference for customer-facing applications - we will specify minimum hardware requirements during the Discovery phase. We work with your existing infrastructure inventory first and only recommend hardware upgrades when genuinely necessary."
         }
       },
       {
@@ -77,7 +77,7 @@
         "name": "Can on-premise AI work inside our existing cloud infrastructure (AWS, Azure, GCP)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Cloud-native on-premise deployment — sometimes called private cloud deployment — means the AI agent is deployed inside your own virtual private cloud (VPC) on AWS, Azure, or GCP. You get the operational flexibility of cloud infrastructure without the compliance risk of shared services. Your data stays within your VPC, your organisation's cloud account, and your cloud region. This is the most common on-premise deployment pattern for enterprises that have already migrated to cloud but need to maintain data residency controls."
+          "text": "Yes. Cloud-native on-premise deployment - sometimes called private cloud deployment - means the AI agent is deployed inside your own virtual private cloud (VPC) on AWS, Azure, or GCP. You get the operational flexibility of cloud infrastructure without the compliance risk of shared services. Your data stays within your VPC, your organisation's cloud account, and your cloud region. This is the most common on-premise deployment pattern for enterprises that have already migrated to cloud but need to maintain data residency controls."
         }
       },
       {
@@ -85,15 +85,15 @@
         "name": "How does on-premise deployment satisfy HIPAA requirements?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "HIPAA requires that covered entities and their business associates implement technical safeguards to protect the confidentiality, integrity, and availability of ePHI. When an AI agent processes patient data on shared cloud infrastructure owned by a vendor, that vendor becomes a business associate and their infrastructure becomes part of your compliance scope. On-premise deployment removes this exposure — the agent processes ePHI exclusively within your HIPAA-compliant environment. No ePHI is transmitted to external endpoints, no third-party cloud service receives patient data, and your existing BAA framework is not extended. Every inference call, action, and output is logged in your own SIEM infrastructure."
+          "text": "HIPAA requires that covered entities and their business associates implement technical safeguards to protect the confidentiality, integrity, and availability of ePHI. When an AI agent processes patient data on shared cloud infrastructure owned by a vendor, that vendor becomes a business associate and their infrastructure becomes part of your compliance scope. On-premise deployment removes this exposure - the agent processes ePHI exclusively within your HIPAA-compliant environment. No ePHI is transmitted to external endpoints, no third-party cloud service receives patient data, and your existing BAA framework is not extended. Every inference call, action, and output is logged in your own SIEM infrastructure."
         }
       },
       {
         "@type": "Question",
-        "name": "What happens if our infrastructure changes — does the agent need to be rebuilt?",
+        "name": "What happens if our infrastructure changes - does the agent need to be rebuilt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. Upcore agents are deployed using containerised images (Docker/Kubernetes-compatible) that are infrastructure-agnostic. If you migrate from on-premise physical servers to a private cloud, or from one cloud provider to another, the agent container can be redeployed to the new environment without rebuilding the model or retraining on your data. Integration connectors may need endpoint configuration updates if the underlying system URLs or credentials change, but the agent's intelligence — the trained model and workflow logic — travels with the container."
+          "text": "No. Upcore agents are deployed using containerised images (Docker/Kubernetes-compatible) that are infrastructure-agnostic. If you migrate from on-premise physical servers to a private cloud, or from one cloud provider to another, the agent container can be redeployed to the new environment without rebuilding the model or retraining on your data. Integration connectors may need endpoint configuration updates if the underlying system URLs or credentials change, but the agent's intelligence - the trained model and workflow logic - travels with the container."
         }
       },
       {
@@ -101,7 +101,7 @@
         "name": "How does Upcore handle model updates without sending data to the cloud?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Model updates are delivered as new containerised image versions, which are transferred to your environment through your standard software delivery process — either via a private container registry you control or as offline packages for air-gapped environments. The update process does not require any of your data to leave your environment. For models that use retrieval-augmented generation, the knowledge base update process runs entirely within your infrastructure. Upcore never requires direct access to your production environment for routine updates — all changes are delivered as deployable artefacts."
+          "text": "Model updates are delivered as new containerised image versions, which are transferred to your environment through your standard software delivery process - either via a private container registry you control or as offline packages for air-gapped environments. The update process does not require any of your data to leave your environment. For models that use retrieval-augmented generation, the knowledge base update process runs entirely within your infrastructure. Upcore never requires direct access to your production environment for routine updates - all changes are delivered as deployable artefacts."
         }
       },
       {
@@ -117,7 +117,7 @@
         "name": "How does on-premise AI compare to a private cloud or hybrid deployment?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "On-premise and private cloud deployments differ primarily in where the physical infrastructure sits. On-premise means your own data centre hardware; private cloud means infrastructure managed in a cloud provider's data centre but dedicated to your organisation (your VPC). Both keep your data within your control and out of shared multi-tenant environments. Hybrid deployments use a combination — for example, processing sensitive data on-premise while running non-sensitive workloads on public cloud. Upcore supports all three patterns. The right choice depends on your data classification requirements, existing infrastructure investment, and operational preferences."
+          "text": "On-premise and private cloud deployments differ primarily in where the physical infrastructure sits. On-premise means your own data centre hardware; private cloud means infrastructure managed in a cloud provider's data centre but dedicated to your organisation (your VPC). Both keep your data within your control and out of shared multi-tenant environments. Hybrid deployments use a combination - for example, processing sensitive data on-premise while running non-sensitive workloads on public cloud. Upcore supports all three patterns. The right choice depends on your data classification requirements, existing infrastructure investment, and operational preferences."
         }
       }
     ]
@@ -155,7 +155,7 @@
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:48px;width:auto;}
+.nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -283,16 +283,16 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
+  <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="nav-cta">Book a Governance Review</a>
 </nav>
 <div class="pg-wrap">
   <!-- HERO -->
   <section class="pg-hero">
       <div class="pg-badge">Platform &middot; Deployment</div>
       <h1 class="pg-h1">Your AI. Your Infrastructure.<br/><strong>Your Data Never Leaves.</strong></h1>
-      <p class="pg-sub">Most enterprise AI tools route your data — your customers' records, your financial transactions, your patients' information — through a vendor's shared cloud infrastructure for processing. Upcore's on-premise deployment model eliminates that exposure entirely. Your AI agent runs inside your own environment: your servers, your private cloud, your network boundary. No data egress. No shared tenancy. No compliance compromises.</p>
+      <p class="pg-sub">Most enterprise AI tools route your data - your customers' records, your financial transactions, your patients' information - through a vendor's shared cloud infrastructure for processing. Upcore's on-premise deployment model eliminates that exposure entirely. Your AI agent runs inside your own environment: your servers, your private cloud, your network boundary. No data egress. No shared tenancy. No compliance compromises.</p>
       <div class="pg-btns">
-        <a href="/assessment" class="btn-p">Book a Technical Call &#8594;</a>
+        <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Technical Call &#8594;</a>
         <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
       </div>
   </section>
@@ -302,7 +302,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
       <div class="sec-label">The Problem with Cloud AI</div>
       <h2 class="sec-h2">Why On-Premise Deployment Is Non-Negotiable for Enterprise AI</h2>
 
-      <p class="sec-p">The convenience of cloud AI comes with a cost that most vendors bury in their terms of service: your data — the inputs you send to the model, the outputs it generates, and often the training signals it learns from — passes through infrastructure you do not own or control. For consumer applications, this is a reasonable trade-off. For enterprises operating under regulatory frameworks, it is not.</p>
+      <p class="sec-p">The convenience of cloud AI comes with a cost that most vendors bury in their terms of service: your data - the inputs you send to the model, the outputs it generates, and often the training signals it learns from - passes through infrastructure you do not own or control. For consumer applications, this is a reasonable trade-off. For enterprises operating under regulatory frameworks, it is not.</p>
 
       <p class="sec-p">Consider what "sending data to a cloud AI" actually means in practice for a regulated business. A healthcare provider asking an AI to assist with prior authorisation is sending protected health information to a third-party cloud service. A bank using AI for AML screening is sending transaction data outside its network perimeter. A government department using AI for document analysis is externalising content that may be subject to sovereignty requirements. In each case, the business has created a compliance exposure that most generic AI vendors cannot adequately remediate.</p>
 
@@ -311,21 +311,21 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <div class="concern-icon">&#128203;</div>
           <div class="concern-body">
             <h3>Data Residency Regulations</h3>
-            <p>GDPR requires that personal data of EU residents be processed in jurisdictions with adequate protections. HIPAA requires covered entities to implement technical safeguards for ePHI. RBI's data localisation guidelines require that payment system data be stored only in India. DPDP (India's Digital Personal Data Protection Act) adds further restrictions on cross-border data transfers. Most cloud AI services cannot satisfy these requirements without custom legal arrangements that take months to negotiate — if they are achievable at all.</p>
+            <p>GDPR requires that personal data of EU residents be processed in jurisdictions with adequate protections. HIPAA requires covered entities to implement technical safeguards for ePHI. RBI's data localisation guidelines require that payment system data be stored only in India. DPDP (India's Digital Personal Data Protection Act) adds further restrictions on cross-border data transfers. Most cloud AI services cannot satisfy these requirements without custom legal arrangements that take months to negotiate - if they are achievable at all.</p>
           </div>
         </div>
         <div class="concern-item">
           <div class="concern-icon">&#128272;</div>
           <div class="concern-body">
             <h3>Competitive Sensitivity</h3>
-            <p>Beyond regulatory compliance, there is the question of competitive intelligence. When you send your pricing models, your customer acquisition data, your proprietary research, or your strategic plans to a shared cloud AI service, you are creating a data trail outside your control. Even if the vendor's terms prohibit them from using your data for model training, the data has left your perimeter — and your legal remedies if something goes wrong are limited to contractual claims, not technical prevention.</p>
+            <p>Beyond regulatory compliance, there is the question of competitive intelligence. When you send your pricing models, your customer acquisition data, your proprietary research, or your strategic plans to a shared cloud AI service, you are creating a data trail outside your control. Even if the vendor's terms prohibit them from using your data for model training, the data has left your perimeter - and your legal remedies if something goes wrong are limited to contractual claims, not technical prevention.</p>
           </div>
         </div>
         <div class="concern-item">
           <div class="concern-icon">&#128269;</div>
           <div class="concern-body">
             <h3>Auditability Requirements</h3>
-            <p>Regulated industries are required to maintain comprehensive audit trails of decisions made using automated systems. When your AI runs on a vendor's infrastructure, your ability to produce the full audit record for a regulator is dependent on the vendor's logging capabilities, their data retention policies, and their willingness to produce logs on demand. On-premise deployment puts the full audit infrastructure within your own SIEM or logging stack — under your control, in your format, with your retention schedule.</p>
+            <p>Regulated industries are required to maintain comprehensive audit trails of decisions made using automated systems. When your AI runs on a vendor's infrastructure, your ability to produce the full audit record for a regulator is dependent on the vendor's logging capabilities, their data retention policies, and their willingness to produce logs on demand. On-premise deployment puts the full audit infrastructure within your own SIEM or logging stack - under your control, in your format, with your retention schedule.</p>
           </div>
         </div>
       </div>
@@ -335,13 +335,13 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   <section class="pg-section">
       <div class="sec-label">Deployment Patterns</div>
       <h2 class="sec-h2">What On-Premise Actually Means</h2>
-      <p class="sec-p">On-premise is not a single deployment pattern — it is a family of approaches united by the principle that your data does not leave your control. Upcore supports all four primary on-premise deployment models and will recommend the right pattern based on your infrastructure, regulatory requirements, and operational constraints.</p>
+      <p class="sec-p">On-premise is not a single deployment pattern - it is a family of approaches united by the principle that your data does not leave your control. Upcore supports all four primary on-premise deployment models and will recommend the right pattern based on your infrastructure, regulatory requirements, and operational constraints.</p>
 
       <div class="card-grid">
         <div class="pg-card">
           <div class="pg-card-icon">&#127968;</div>
           <h3>Data Residency</h3>
-          <p>Your training data, inference calls, and model outputs stay within your network boundary — physically or logically isolated from external services. Every request the agent processes, every document it reads, and every action it records stays inside your environment. There is no data egress path to an external AI service.</p>
+          <p>Your training data, inference calls, and model outputs stay within your network boundary - physically or logically isolated from external services. Every request the agent processes, every document it reads, and every action it records stays inside your environment. There is no data egress path to an external AI service.</p>
         </div>
         <div class="pg-card">
           <div class="pg-card-icon">&#9992;</div>
@@ -351,12 +351,12 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <div class="pg-card">
           <div class="pg-card-icon">&#9728;</div>
           <h3>Cloud-Native On-Premise</h3>
-          <p>Deployed inside your private AWS, Azure, or GCP instance using your VPC — giving you the operational convenience of cloud infrastructure (elastic scaling, managed Kubernetes, built-in monitoring) without the compliance risk of shared multi-tenant infrastructure. Your data stays in your cloud account and your chosen geographic region.</p>
+          <p>Deployed inside your private AWS, Azure, or GCP instance using your VPC - giving you the operational convenience of cloud infrastructure (elastic scaling, managed Kubernetes, built-in monitoring) without the compliance risk of shared multi-tenant infrastructure. Your data stays in your cloud account and your chosen geographic region.</p>
         </div>
         <div class="pg-card">
           <div class="pg-card-icon">&#128202;</div>
           <h3>Full Audit Capability</h3>
-          <p>Every inference call, action taken, approval requested, and decision logged in your own SIEM or logging infrastructure — not in a vendor-controlled dashboard. You can query the complete operational history of the agent, produce audit reports on demand, and retain logs according to your own data governance policies.</p>
+          <p>Every inference call, action taken, approval requested, and decision logged in your own SIEM or logging infrastructure - not in a vendor-controlled dashboard. You can query the complete operational history of the agent, produce audit reports on demand, and retain logs according to your own data governance policies.</p>
         </div>
       </div>
   </section>
@@ -365,24 +365,24 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   <section class="pg-section">
       <div class="sec-label">Regulated Sectors</div>
       <h2 class="sec-h2">Industries That Require On-Premise AI</h2>
-      <p class="sec-p">Three sectors consistently require on-premise AI deployment as a baseline compliance requirement — not as a preference. Upcore has designed its deployment model specifically to serve these industries without compromising on capability or deployment speed.</p>
+      <p class="sec-p">Three sectors consistently require on-premise AI deployment as a baseline compliance requirement - not as a preference. Upcore has designed its deployment model specifically to serve these industries without compromising on capability or deployment speed.</p>
 
       <div class="industry-deep">
         <div class="ind-deep-item">
           <h3>Banking, Financial Services &amp; Insurance (BFSI)</h3>
-          <p>Financial institutions processing AI-assisted decisions on credit, fraud, AML, and KYC operate under frameworks — RBI's master directions, SEBI guidelines, IRDAI regulations, and internationally GDPR and SOX — that create explicit obligations around how personal and financial data is processed and stored. RBI's 2018 circular on data localisation requires that all payment system data be stored exclusively in India, with no exceptions for cloud processing by foreign vendors.</p>
-          <p>On-premise AI deployment for BFSI means that the AI agent assisting your credit underwriting team reads applicant data from your internal systems, processes it on your infrastructure, and writes its analysis back to your CRM or loan origination system — without the data ever touching an external endpoint. This eliminates the data residency compliance question entirely and simplifies your regulatory reporting obligations.</p>
+          <p>Financial institutions processing AI-assisted decisions on credit, fraud, AML, and KYC operate under frameworks - RBI's master directions, SEBI guidelines, IRDAI regulations, and internationally GDPR and SOX - that create explicit obligations around how personal and financial data is processed and stored. RBI's 2018 circular on data localisation requires that all payment system data be stored exclusively in India, with no exceptions for cloud processing by foreign vendors.</p>
+          <p>On-premise AI deployment for BFSI means that the AI agent assisting your credit underwriting team reads applicant data from your internal systems, processes it on your infrastructure, and writes its analysis back to your CRM or loan origination system - without the data ever touching an external endpoint. This eliminates the data residency compliance question entirely and simplifies your regulatory reporting obligations.</p>
           <p>For AML and fraud detection specifically, on-premise deployment also provides a speed advantage: inference on local infrastructure eliminates round-trip latency to external APIs, enabling real-time transaction screening at volumes that cloud-dependent approaches cannot match reliably.</p>
         </div>
         <div class="ind-deep-item">
           <h3>Healthcare &amp; Life Sciences</h3>
-          <p>HIPAA's minimum necessary standard, data residency requirements, and Business Associate Agreement framework create a complex compliance environment for any technology vendor that processes patient data. When a clinical AI agent reviews a patient chart, processes a prior authorisation request, or assists with discharge planning, it is handling ePHI — and the system that processes that ePHI must be HIPAA-compliant.</p>
+          <p>HIPAA's minimum necessary standard, data residency requirements, and Business Associate Agreement framework create a complex compliance environment for any technology vendor that processes patient data. When a clinical AI agent reviews a patient chart, processes a prior authorisation request, or assists with discharge planning, it is handling ePHI - and the system that processes that ePHI must be HIPAA-compliant.</p>
           <p>On-premise deployment resolves this cleanly. The agent runs inside the hospital's or clinic's own infrastructure (or their HIPAA-compliant cloud environment), processes patient data without external transmission, and logs every action within the organisation's own audit system. There is no need to extend your BAA framework to a new cloud AI vendor, no need to conduct vendor security assessments for external AI services, and no risk of a data breach at a third-party AI provider triggering your incident response obligations.</p>
           <p>For pharmaceutical and life sciences companies handling clinical trial data, on-premise deployment similarly satisfies FDA 21 CFR Part 11 requirements for electronic records and enables the full audit trail required for regulatory submissions.</p>
         </div>
         <div class="ind-deep-item">
           <h3>Government &amp; Public Sector</h3>
-          <p>Government agencies at national, state, and municipal levels increasingly deploy AI for document processing, citizen service automation, and internal workflow management. Sovereign data requirements — the principle that government data must remain under national control — make cloud AI from foreign vendors legally problematic in most jurisdictions, and practically unacceptable for national security adjacent use cases.</p>
+          <p>Government agencies at national, state, and municipal levels increasingly deploy AI for document processing, citizen service automation, and internal workflow management. Sovereign data requirements - the principle that government data must remain under national control - make cloud AI from foreign vendors legally problematic in most jurisdictions, and practically unacceptable for national security adjacent use cases.</p>
           <p>Upcore's air-gap compatible deployment model is designed specifically for this environment. The agent can be deployed on a fully disconnected network with no dependency on external services, updates can be delivered as vetted offline packages through your existing IT supply chain, and the complete operational architecture can be reviewed and approved by your security and compliance teams before any data is processed.</p>
         </div>
       </div>
@@ -437,7 +437,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
             <tr>
               <td>Data residency compliance</td>
               <td class="no">Dependent on vendor region selection</td>
-              <td class="yes">Guaranteed — data never leaves your perimeter</td>
+              <td class="yes">Guaranteed - data never leaves your perimeter</td>
             </tr>
             <tr>
               <td>Integration with legacy internal systems</td>
@@ -458,7 +458,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
       <div class="arch-grid">
         <div class="arch-card">
           <h3>Agent Container</h3>
-          <p>The core AI model and inference engine packaged as a Docker image. Runs on Kubernetes or Docker Compose depending on your environment. The container is stateless — all persistent data lives in your own storage layer, not inside the container.</p>
+          <p>The core AI model and inference engine packaged as a Docker image. Runs on Kubernetes or Docker Compose depending on your environment. The container is stateless - all persistent data lives in your own storage layer, not inside the container.</p>
         </div>
         <div class="arch-card">
           <h3>Knowledge Base Layer</h3>
@@ -466,7 +466,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         </div>
         <div class="arch-card">
           <h3>Integration Connectors</h3>
-          <p>Lightweight adapter services that translate between the agent's internal API and your external systems (ERP, CRM, databases). Connectors run inside your network and use your internal service credentials — no outbound API calls are required for integration.</p>
+          <p>Lightweight adapter services that translate between the agent's internal API and your external systems (ERP, CRM, databases). Connectors run inside your network and use your internal service credentials - no outbound API calls are required for integration.</p>
         </div>
         <div class="arch-card">
           <h3>Audit &amp; Logging Bus</h3>
@@ -474,7 +474,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         </div>
         <div class="arch-card">
           <h3>Human-in-the-Loop Interface</h3>
-          <p>A lightweight web UI (deployable on your intranet) through which designated staff review and approve agent actions that exceed autonomous thresholds. The UI connects to the agent via your internal network — no external access required.</p>
+          <p>A lightweight web UI (deployable on your intranet) through which designated staff review and approve agent actions that exceed autonomous thresholds. The UI connects to the agent via your internal network - no external access required.</p>
         </div>
         <div class="arch-card">
           <h3>Update Delivery</h3>
@@ -506,7 +506,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <a href="/platform/custom-ai-agents" class="rel-card">
           <div class="rel-card-tag">Platform</div>
           <h4>Custom AI Agents</h4>
-          <p>Understand what makes an AI agent genuinely custom — domain training, system integration, and what the build process looks like from day one.</p>
+          <p>Understand what makes an AI agent genuinely custom - domain training, system integration, and what the build process looks like from day one.</p>
           <span class="rel-card-arr">&#8594;</span>
         </a>
         <a href="/kw/healthcare-ai-agents" class="rel-card">
@@ -537,7 +537,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           </button>
           <div class="faq-a">
             <p>On-premise AI deployment means the AI model, all inference processing, and all associated data handling run inside your own infrastructure rather than on a third-party cloud service. This can mean physical servers in your data centre, a private cloud environment in your own AWS, Azure, or GCP tenant, or an air-gapped network with no external connectivity.</p>
-            <p>The defining characteristic is that your data never travels to a vendor's shared infrastructure for processing — all computation happens within your network boundary. Your AI agent reads from your systems, reasons using your data, and writes outputs back to your systems, entirely within your perimeter.</p>
+            <p>The defining characteristic is that your data never travels to a vendor's shared infrastructure for processing - all computation happens within your network boundary. Your AI agent reads from your systems, reasons using your data, and writes outputs back to your systems, entirely within your perimeter.</p>
           </div>
         </div>
 
@@ -548,7 +548,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           </button>
           <div class="faq-a">
             <p>For most enterprise use cases, no specialised hardware is required. Upcore optimises models to run efficiently on standard enterprise server configurations, including CPU-only environments where GPU infrastructure is not available. We use model quantisation and efficient inference techniques to reduce hardware requirements without meaningfully compromising output quality.</p>
-            <p>For high-throughput use cases — real-time document processing at scale, low-latency customer-facing applications — we will specify minimum hardware requirements during the Discovery phase. We review your existing infrastructure inventory first and only recommend hardware investment when it is genuinely necessary for your target use case.</p>
+            <p>For high-throughput use cases - real-time document processing at scale, low-latency customer-facing applications - we will specify minimum hardware requirements during the Discovery phase. We review your existing infrastructure inventory first and only recommend hardware investment when it is genuinely necessary for your target use case.</p>
           </div>
         </div>
 
@@ -559,7 +559,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           </button>
           <div class="faq-a">
             <p>Yes. Cloud-native on-premise deployment means the AI agent is deployed inside your own virtual private cloud (VPC) on AWS, Azure, or GCP. You get the operational flexibility of cloud infrastructure without the compliance risk of shared services. Your data stays within your VPC, your organisation's cloud account, and your chosen geographic region.</p>
-            <p>This is the most common on-premise deployment pattern for enterprises that have already migrated to cloud but need to maintain data residency controls. Upcore deploys the agent as a containerised workload that runs on EKS, AKS, or GKE — fully managed by your team using your existing cloud operations tooling.</p>
+            <p>This is the most common on-premise deployment pattern for enterprises that have already migrated to cloud but need to maintain data residency controls. Upcore deploys the agent as a containerised workload that runs on EKS, AKS, or GKE - fully managed by your team using your existing cloud operations tooling.</p>
           </div>
         </div>
 
@@ -576,12 +576,12 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
-            What happens if our infrastructure changes — does the agent need to be rebuilt?
+            What happens if our infrastructure changes - does the agent need to be rebuilt?
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-a">
             <p>No. Upcore agents are deployed using containerised images that are infrastructure-agnostic. If you migrate from on-premise physical servers to a private cloud, or from one cloud provider to another, the agent container can be redeployed to the new environment without rebuilding the model or retraining on your data.</p>
-            <p>Integration connectors may need endpoint configuration updates if the underlying system URLs or credentials change, but the agent's intelligence — the trained model and workflow logic — travels with the container. This portability also protects you from vendor lock-in: you own the containerised agent and can redeploy it independently of Upcore if you choose to manage it internally.</p>
+            <p>Integration connectors may need endpoint configuration updates if the underlying system URLs or credentials change, but the agent's intelligence - the trained model and workflow logic - travels with the container. This portability also protects you from vendor lock-in: you own the containerised agent and can redeploy it independently of Upcore if you choose to manage it internally.</p>
           </div>
         </div>
 
@@ -591,8 +591,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-a">
-            <p>Model updates are delivered as new containerised image versions, transferred to your environment through your standard software delivery process — either via a private container registry you control or as offline packages for air-gapped environments. The update process does not require any of your data to leave your environment.</p>
-            <p>For models that use retrieval-augmented generation, the knowledge base update process runs entirely within your infrastructure — new documents are indexed locally using your running knowledge base service, with no external transmission. Upcore never requires direct access to your production environment for routine updates; all changes are delivered as deployable artifacts that your team deploys on your schedule.</p>
+            <p>Model updates are delivered as new containerised image versions, transferred to your environment through your standard software delivery process - either via a private container registry you control or as offline packages for air-gapped environments. The update process does not require any of your data to leave your environment.</p>
+            <p>For models that use retrieval-augmented generation, the knowledge base update process runs entirely within your infrastructure - new documents are indexed locally using your running knowledge base service, with no external transmission. Upcore never requires direct access to your production environment for routine updates; all changes are delivered as deployable artifacts that your team deploys on your schedule.</p>
           </div>
         </div>
 
@@ -614,7 +614,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           </button>
           <div class="faq-a">
             <p>On-premise and private cloud deployments differ primarily in where the physical infrastructure sits. On-premise means your own data centre hardware; private cloud means infrastructure managed in a cloud provider's data centre but dedicated to your organisation through your own VPC. Both keep your data within your control and out of shared multi-tenant environments.</p>
-            <p>Hybrid deployments use a combination — for example, processing sensitive data on-premise while running non-sensitive workloads in the public cloud for cost efficiency. Upcore supports all three patterns. The right choice depends on your data classification requirements, existing infrastructure investment, operational team capabilities, and regulatory obligations. We will recommend the appropriate pattern during the Discovery phase after reviewing your specific constraints.</p>
+            <p>Hybrid deployments use a combination - for example, processing sensitive data on-premise while running non-sensitive workloads in the public cloud for cost efficiency. Upcore supports all three patterns. The right choice depends on your data classification requirements, existing infrastructure investment, operational team capabilities, and regulatory obligations. We will recommend the appropriate pattern during the Discovery phase after reviewing your specific constraints.</p>
           </div>
         </div>
 
@@ -626,7 +626,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     <div style="background:#f7f8fa;border:1px solid #e5e7eb;border-left:3px solid #0ABFCC;border-radius:12px;padding:24px 28px;max-width:760px;margin:0 auto;text-align:left;">
       <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#0ABFCC;margin-bottom:10px;">AI Governance</div>
       <p style="font-size:15px;font-weight:700;color:#0a0a0a;margin:0 0 8px;line-height:1.4;">On-premise solves the data residency question. Governance solves everything else.</p>
-      <p style="font-size:13px;color:#6b7280;margin:0 0 14px;line-height:1.7;">Keeping data on-premise is necessary but not sufficient. Every AI decision still needs an audit trail, a human override path, and budget attribution. A Fractional AI Officer governs all of it — embedded in 72 hours, operating within your environment.</p>
+      <p style="font-size:13px;color:#6b7280;margin:0 0 14px;line-height:1.7;">Keeping data on-premise is necessary but not sufficient. Every AI decision still needs an audit trail, a human override path, and budget attribution. A Fractional AI Officer governs all of it - embedded in 72 hours, operating within your environment.</p>
       <a href="/ai-engineering-governance" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#0ABFCC;text-decoration:none;">Explore AI Engineering Governance <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </section>
@@ -635,9 +635,9 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   <section class="pg-section">
       <div class="pg-cta">
         <h2>Keep Your Data. <strong>Deploy Your AI.</strong></h2>
-        <p>For regulated enterprises, on-premise is not a preference — it is a requirement. Book a technical architecture call and let's map your deployment path.</p>
+        <p>For regulated enterprises, on-premise is not a preference - it is a requirement. Book a technical architecture call and let's map your deployment path.</p>
         <div class="pg-cta-btns">
-          <a href="/assessment" class="btn-p">Book a Technical Call &#8594;</a>
+          <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Technical Call &#8594;</a>
           <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
         </div>
       </div>
@@ -668,7 +668,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <li><a href="/agent-builder">Agent Builder</a></li>
         <li><a href="/insights">Insights &amp; Blog</a></li>
         <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/assessment">Book a Discovery Call</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Book a Discovery Call</a></li>
       </ul>
     </div>
     <div>
@@ -678,7 +678,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>

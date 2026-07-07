@@ -59,7 +59,7 @@
         "name": "Can't Microsoft Copilot be configured to stay within our data boundary?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Microsoft offers several data residency configurations for Copilot — including EU Data Boundary and options to restrict data processing locations. However, these configurations do not prevent data from leaving your internal network entirely. Inference still occurs on Microsoft's Azure infrastructure, which means your prompts, queries, and the data Copilot accesses to answer those queries travel outside your perimeter. For regulated financial institutions, this architecture is typically inconsistent with RBI Master Direction requirements on data localisation, FCA operational resilience rules, and internal data governance policies that prohibit customer financial data from being processed on third-party infrastructure. 'Staying within Azure' is not the same as staying within your organisation's own infrastructure — and regulators increasingly treat this distinction as material."
+          "text": "Microsoft offers several data residency configurations for Copilot - including EU Data Boundary and options to restrict data processing locations. However, these configurations do not prevent data from leaving your internal network entirely. Inference still occurs on Microsoft's Azure infrastructure, which means your prompts, queries, and the data Copilot accesses to answer those queries travel outside your perimeter. For regulated financial institutions, this architecture is typically inconsistent with RBI Master Direction requirements on data localisation, FCA operational resilience rules, and internal data governance policies that prohibit customer financial data from being processed on third-party infrastructure. 'Staying within Azure' is not the same as staying within your organisation's own infrastructure - and regulators increasingly treat this distinction as material."
         }
       },
       {
@@ -67,7 +67,7 @@
         "name": "What's the difference between Copilot and a custom AI agent in practical terms?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Microsoft Copilot is a general-purpose AI assistant that surfaces across Microsoft 365 applications. It is optimised for productivity tasks — summarising emails, drafting documents, searching SharePoint — and its underlying model was trained on general internet data and Microsoft product data. A custom AI agent built for financial services, by contrast, is trained specifically on your institution's data: your typology libraries, your product terms and conditions, your historical credit decisions, your regulatory filings. It integrates natively with your core banking system, your loan origination system, and your CRM. It runs on your infrastructure, so no data leaves your perimeter. And it is designed with compliance auditability as a first-class requirement — every decision the agent makes is logged with a full reasoning chain. These are fundamentally different architectures solving fundamentally different problems."
+          "text": "Microsoft Copilot is a general-purpose AI assistant that surfaces across Microsoft 365 applications. It is optimised for productivity tasks - summarising emails, drafting documents, searching SharePoint - and its underlying model was trained on general internet data and Microsoft product data. A custom AI agent built for financial services, by contrast, is trained specifically on your institution's data: your typology libraries, your product terms and conditions, your historical credit decisions, your regulatory filings. It integrates natively with your core banking system, your loan origination system, and your CRM. It runs on your infrastructure, so no data leaves your perimeter. And it is designed with compliance auditability as a first-class requirement - every decision the agent makes is logged with a full reasoning chain. These are fundamentally different architectures solving fundamentally different problems."
         }
       },
       {
@@ -75,7 +75,7 @@
         "name": "How does a custom AI agent handle AML and fraud detection differently?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "AML and fraud detection are domain-specific disciplines that require training on patterns, typologies, and red-flag indicators specific to the institution. A generic AI model has no knowledge of your customer base composition, your geography-specific transaction patterns, or the specific typologies your compliance team has documented over years of case investigation. Upcore's custom AML agents are trained on your own typology library, your historical SAR filings (anonymised for training), and your transaction data patterns. The agent learns what 'normal' looks like for your specific customer segments and flags deviations that are meaningful to your risk appetite — not generic statistical anomalies that generate high false-positive rates. The agent also integrates with your case management system, so when it flags a transaction it creates a pre-populated investigation record rather than generating a PDF report that someone needs to manually enter."
+          "text": "AML and fraud detection are domain-specific disciplines that require training on patterns, typologies, and red-flag indicators specific to the institution. A generic AI model has no knowledge of your customer base composition, your geography-specific transaction patterns, or the specific typologies your compliance team has documented over years of case investigation. Upcore's custom AML agents are trained on your own typology library, your historical SAR filings (anonymised for training), and your transaction data patterns. The agent learns what 'normal' looks like for your specific customer segments and flags deviations that are meaningful to your risk appetite - not generic statistical anomalies that generate high false-positive rates. The agent also integrates with your case management system, so when it flags a transaction it creates a pre-populated investigation record rather than generating a PDF report that someone needs to manually enter."
         }
       },
       {
@@ -83,7 +83,7 @@
         "name": "Does a custom agent require the same level of compliance certification as our core banking systems?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "This is a critical and frequently misunderstood point. A custom AI agent deployed on your infrastructure is subject to your existing IT governance and change management processes — the same framework that governs any new system integrated with your core banking environment. It does not require separate financial services licensing (the agent is a software tool, not a regulated entity). However, the outputs of the agent — particularly in credit underwriting or AML — must satisfy the same explainability and auditability requirements as any other decision-support tool. Upcore designs every agent with this in mind: full decision logging, explainable scoring, and audit trail exports compatible with your existing SIEM and audit management systems. Our implementation teams work directly with your compliance and technology risk teams to satisfy internal governance requirements before go-live."
+          "text": "This is a critical and frequently misunderstood point. A custom AI agent deployed on your infrastructure is subject to your existing IT governance and change management processes - the same framework that governs any new system integrated with your core banking environment. It does not require separate financial services licensing (the agent is a software tool, not a regulated entity). However, the outputs of the agent - particularly in credit underwriting or AML - must satisfy the same explainability and auditability requirements as any other decision-support tool. Upcore designs every agent with this in mind: full decision logging, explainable scoring, and audit trail exports compatible with your existing SIEM and audit management systems. Our implementation teams work directly with your compliance and technology risk teams to satisfy internal governance requirements before go-live."
         }
       },
       {
@@ -91,7 +91,7 @@
         "name": "What does the total cost comparison look like over 3 years?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Microsoft Copilot is licensed on a per-seat basis — currently at approximately $30 per user per month for Copilot for Microsoft 365. For a 500-person financial institution, this is $180,000 per year, or $540,000 over three years, before consultant fees to configure and integrate the tool. This cost scales linearly with headcount. A custom AI agent from Upcore involves a one-time build cost scoped to your specific use case, plus an annual maintenance and support fee. There is no per-seat scaling — the same agent can serve the entire organisation regardless of user count. In most mid-size financial institutions, the break-even point against a Copilot per-seat model is reached within 12 to 18 months. Beyond that point, the custom agent represents a lower total cost of ownership. More importantly, the custom agent is actually solving the financial-services-specific workflows; Copilot, in most FS pilots, ends up being used primarily for email drafting — which is a poor return on $540,000 over three years."
+          "text": "Microsoft Copilot is licensed on a per-seat basis - currently at approximately $30 per user per month for Copilot for Microsoft 365. For a 500-person financial institution, this is $180,000 per year, or $540,000 over three years, before consultant fees to configure and integrate the tool. This cost scales linearly with headcount. A custom AI agent from Upcore involves a one-time build cost scoped to your specific use case, plus an annual maintenance and support fee. There is no per-seat scaling - the same agent can serve the entire organisation regardless of user count. In most mid-size financial institutions, the break-even point against a Copilot per-seat model is reached within 12 to 18 months. Beyond that point, the custom agent represents a lower total cost of ownership. More importantly, the custom agent is actually solving the financial-services-specific workflows; Copilot, in most FS pilots, ends up being used primarily for email drafting - which is a poor return on $540,000 over three years."
         }
       },
       {
@@ -99,7 +99,7 @@
         "name": "How long does it take to deploy a custom AI agent for a bank vs. rolling out Copilot?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A Microsoft Copilot rollout in an enterprise environment typically takes 4 to 8 weeks for licensing, IT configuration, and basic training — but this timeline excludes the months of integration work needed to connect it meaningfully to financial workflows, and many organisations find that after rollout the tool is not substantively used for core banking work. Upcore's custom AI agents are deployed in 30 days for standard use cases, following a structured process: week one is integration mapping and data preparation; week two is model training and initial configuration; week three is testing with your team and compliance review; week four is production deployment with monitoring. For more complex deployments involving multiple systems or highly customised workflows, the timeline extends to 60 to 90 days, but the output is a production-ready agent actually integrated with your core systems — not a chat interface sitting alongside your existing tools."
+          "text": "A Microsoft Copilot rollout in an enterprise environment typically takes 4 to 8 weeks for licensing, IT configuration, and basic training - but this timeline excludes the months of integration work needed to connect it meaningfully to financial workflows, and many organisations find that after rollout the tool is not substantively used for core banking work. Upcore's custom AI agents are deployed in 30 days for standard use cases, following a structured process: week one is integration mapping and data preparation; week two is model training and initial configuration; week three is testing with your team and compliance review; week four is production deployment with monitoring. For more complex deployments involving multiple systems or highly customised workflows, the timeline extends to 60 to 90 days, but the output is a production-ready agent actually integrated with your core systems - not a chat interface sitting alongside your existing tools."
         }
       },
       {
@@ -107,15 +107,15 @@
         "name": "Can a custom agent work alongside Copilot for non-sensitive workflows?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. These are not mutually exclusive choices. Many financial institutions use Microsoft 365 and Copilot for general productivity workflows — email drafting, document summarisation, meeting notes — where the data involved is not sensitive customer financial data. A custom AI agent from Upcore can coexist in this environment, operating on a separate infrastructure layer and handling the workflows that involve sensitive data, core banking integration, and regulatory requirements. The two systems serve different purposes and different data layers. The important principle is that the custom agent must be the only system that touches PHI, PII, transactional data, or anything covered by your data classification policy. Copilot can operate freely on the productivity layer — Teams messages, SharePoint documents, calendar data — without triggering compliance concerns."
+          "text": "Yes. These are not mutually exclusive choices. Many financial institutions use Microsoft 365 and Copilot for general productivity workflows - email drafting, document summarisation, meeting notes - where the data involved is not sensitive customer financial data. A custom AI agent from Upcore can coexist in this environment, operating on a separate infrastructure layer and handling the workflows that involve sensitive data, core banking integration, and regulatory requirements. The two systems serve different purposes and different data layers. The important principle is that the custom agent must be the only system that touches PHI, PII, transactional data, or anything covered by your data classification policy. Copilot can operate freely on the productivity layer - Teams messages, SharePoint documents, calendar data - without triggering compliance concerns."
         }
       },
       {
         "@type": "Question",
-        "name": "What happens when regulations change — how does the custom agent adapt?",
+        "name": "What happens when regulations change - how does the custom agent adapt?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Regulatory change management is one of the most important differentiators between a custom agent and a generic AI tool. When the RBI issues a new Master Direction, or when the FCA updates its operational resilience guidelines, or when a new AML typology emerges from FATF, a generic AI tool has no mechanism to incorporate this change except through a general model update that happens on the vendor's timeline. A custom AI agent has a structured update process: your compliance team identifies the regulatory change, documents the policy delta, and Upcore's team updates the relevant training data, rules, or workflow logic. This can happen in days for minor updates, or weeks for major regulatory overhauls. The agent has a version-controlled deployment model so updates can be tested in a staging environment before being promoted to production — the same change management process you apply to any regulated system."
+          "text": "Regulatory change management is one of the most important differentiators between a custom agent and a generic AI tool. When the RBI issues a new Master Direction, or when the FCA updates its operational resilience guidelines, or when a new AML typology emerges from FATF, a generic AI tool has no mechanism to incorporate this change except through a general model update that happens on the vendor's timeline. A custom AI agent has a structured update process: your compliance team identifies the regulatory change, documents the policy delta, and Upcore's team updates the relevant training data, rules, or workflow logic. This can happen in days for minor updates, or weeks for major regulatory overhauls. The agent has a version-controlled deployment model so updates can be tested in a staging environment before being promoted to production - the same change management process you apply to any regulated system."
         }
       }
     ]
@@ -152,7 +152,7 @@
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:48px;width:auto;}
+.nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -259,7 +259,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
+  <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="nav-cta">Book a Governance Review</a>
 </nav>
 
 <div class="pg-wrap">
@@ -268,9 +268,9 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   <section class="pg-hero">
     <div class="pg-badge">Comparison &middot; Financial Services AI</div>
     <h1 class="pg-h1">AI Agents vs. Microsoft Copilot:<br/><strong>The Financial Services Verdict</strong></h1>
-    <p class="pg-sub">If you have run a Copilot pilot in financial services and found it falling short of expectations, you are not alone. This comparison explores exactly why generic AI assistants struggle at the enterprise FS layer — and what custom AI agents do differently.</p>
+    <p class="pg-sub">If you have run a Copilot pilot in financial services and found it falling short of expectations, you are not alone. This comparison explores exactly why generic AI assistants struggle at the enterprise FS layer - and what custom AI agents do differently.</p>
     <div class="pg-btns">
-      <a href="/assessment" class="btn-p">Book a FS Discovery Call &#8594;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a FS Discovery Call &#8594;</a>
       <a href="/platform/on-premise-deployment" class="btn-o">See On-Premise Deployment</a>
     </div>
   </section>
@@ -280,18 +280,18 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     <div class="sec-label">The Core Problem</div>
     <h2 class="sec-h2">Why Copilot Pilots Fail in Financial Services</h2>
 
-    <p class="sec-p">The first and most fundamental issue is data sovereignty. When you use Microsoft Copilot — even in its enterprise configuration — your queries, the documents Copilot accesses, and the context it processes travel to Microsoft's Azure infrastructure for inference. For a retail bank, an NBFC, or a capital markets firm, this creates an immediate and material compliance problem. The RBI's Master Direction on outsourcing of financial services explicitly requires that data pertaining to Indian financial services customers be stored and processed within India, on infrastructure that the regulated entity controls. The FCA's operational resilience rules require financial institutions to demonstrate control over their critical systems and data. GDPR Article 25 mandates data protection by design and by default — which is difficult to satisfy when inference happens on a cloud vendor's infrastructure that you do not fully control. Dozens of Copilot pilots in FS have quietly ended for exactly this reason: the information security and compliance teams reviewed the architecture and could not sign off.</p>
+    <p class="sec-p">The first and most fundamental issue is data sovereignty. When you use Microsoft Copilot - even in its enterprise configuration - your queries, the documents Copilot accesses, and the context it processes travel to Microsoft's Azure infrastructure for inference. For a retail bank, an NBFC, or a capital markets firm, this creates an immediate and material compliance problem. The RBI's Master Direction on outsourcing of financial services explicitly requires that data pertaining to Indian financial services customers be stored and processed within India, on infrastructure that the regulated entity controls. The FCA's operational resilience rules require financial institutions to demonstrate control over their critical systems and data. GDPR Article 25 mandates data protection by design and by default - which is difficult to satisfy when inference happens on a cloud vendor's infrastructure that you do not fully control. Dozens of Copilot pilots in FS have quietly ended for exactly this reason: the information security and compliance teams reviewed the architecture and could not sign off.</p>
 
-    <p class="sec-p">The second dimension is domain knowledge. Microsoft Copilot was trained on general data — web text, code, and Microsoft's own product ecosystem. It has no meaningful understanding of AML typologies, KYC workflow requirements, credit underwriting criteria, regulatory capital calculations, or the specific language and logic of financial services compliance. When a compliance analyst asks Copilot to help review a transaction for AML red flags, the model responds with generic guidance that any financial journalist could have written. It does not know your institution's typology library. It does not understand the specific risk profile of your customer segments. It does not know which of your product types are higher risk or what patterns have historically triggered SARs at your institution. This is not a failure of Microsoft — Copilot was not designed for this use case. But it means that the productivity gains FS institutions hope for simply do not materialise in compliance and risk workflows.</p>
+    <p class="sec-p">The second dimension is domain knowledge. Microsoft Copilot was trained on general data - web text, code, and Microsoft's own product ecosystem. It has no meaningful understanding of AML typologies, KYC workflow requirements, credit underwriting criteria, regulatory capital calculations, or the specific language and logic of financial services compliance. When a compliance analyst asks Copilot to help review a transaction for AML red flags, the model responds with generic guidance that any financial journalist could have written. It does not know your institution's typology library. It does not understand the specific risk profile of your customer segments. It does not know which of your product types are higher risk or what patterns have historically triggered SARs at your institution. This is not a failure of Microsoft - Copilot was not designed for this use case. But it means that the productivity gains FS institutions hope for simply do not materialise in compliance and risk workflows.</p>
 
-    <p class="sec-p">The third dimension is auditability, and it may be the most important from a regulatory perspective. When a financial institution makes a decision — a credit decision, a KYC pass or fail, an AML escalation — regulators require that the institution be able to produce a clear explanation of the logic chain that led to that decision. This is a core requirement of the RBI's Fair Practices Code, the FCA's Consumer Duty, and Basel III's requirements for model risk management. Copilot's outputs are, by design, conversational. There is no structured audit log of what data the model accessed, what reasoning it applied, or why it produced a given output. If a regulator asks why a customer was flagged or declined, "the AI assistant said so" is not an acceptable answer. Custom AI agents deployed for FS workflows produce structured, auditable decision records with full reasoning chains — because they were designed to satisfy this requirement from the start.</p>
+    <p class="sec-p">The third dimension is auditability, and it may be the most important from a regulatory perspective. When a financial institution makes a decision - a credit decision, a KYC pass or fail, an AML escalation - regulators require that the institution be able to produce a clear explanation of the logic chain that led to that decision. This is a core requirement of the RBI's Fair Practices Code, the FCA's Consumer Duty, and Basel III's requirements for model risk management. Copilot's outputs are, by design, conversational. There is no structured audit log of what data the model accessed, what reasoning it applied, or why it produced a given output. If a regulator asks why a customer was flagged or declined, "the AI assistant said so" is not an acceptable answer. Custom AI agents deployed for FS workflows produce structured, auditable decision records with full reasoning chains - because they were designed to satisfy this requirement from the start.</p>
   </section>
 
   <!-- SECTION 2: COMPARISON TABLE -->
   <section class="pg-section">
     <div class="sec-label">Side-by-Side Analysis</div>
     <h2 class="sec-h2">How They Compare Across 8 Dimensions</h2>
-    <p class="sec-p">The following comparison covers the dimensions that matter most in a regulated financial services environment. These are not feature preferences — in most cases, they are compliance requirements.</p>
+    <p class="sec-p">The following comparison covers the dimensions that matter most in a regulated financial services environment. These are not feature preferences - in most cases, they are compliance requirements.</p>
 
     <div class="cmp-wrap">
       <table class="cmp-table">
@@ -305,28 +305,28 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <tbody>
           <tr>
             <td><strong>Data leaves your network</strong></td>
-            <td class="no">Yes — processed in Microsoft Azure</td>
-            <td class="yes">Never — deployed on your infrastructure</td>
+            <td class="no">Yes - processed in Microsoft Azure</td>
+            <td class="yes">Never - deployed on your infrastructure</td>
           </tr>
           <tr>
             <td><strong>Trained on your data (KYC / AML / credit rules)</strong></td>
-            <td class="no">No — general training only</td>
-            <td class="yes">Yes — trained on your domain data and policies</td>
+            <td class="no">No - general training only</td>
+            <td class="yes">Yes - trained on your domain data and policies</td>
           </tr>
           <tr>
             <td><strong>Compliance auditability</strong></td>
-            <td class="no">Limited — no decision logic trail</td>
-            <td class="yes">Full — every decision logged with reasoning chain</td>
+            <td class="no">Limited - no decision logic trail</td>
+            <td class="yes">Full - every decision logged with reasoning chain</td>
           </tr>
           <tr>
             <td><strong>Core banking integration</strong></td>
-            <td class="partial">Via plugins only — limited depth</td>
+            <td class="partial">Via plugins only - limited depth</td>
             <td class="yes">Native API integration with CBS, LOS, CRM</td>
           </tr>
           <tr>
             <td><strong>Regulatory compliance (RBI / FCA / GDPR)</strong></td>
-            <td class="partial">Partial — not designed for regulated sectors</td>
-            <td class="yes">Full — on-premise deployment satisfies all regimes</td>
+            <td class="partial">Partial - not designed for regulated sectors</td>
+            <td class="yes">Full - on-premise deployment satisfies all regimes</td>
           </tr>
           <tr>
             <td><strong>AML / fraud detection</strong></td>
@@ -336,7 +336,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <tr>
             <td><strong>Total cost of ownership (3-year)</strong></td>
             <td class="no">Per-seat licence &times; employees + consultant fees</td>
-            <td class="yes">One-time build + maintenance — no per-seat scaling cost</td>
+            <td class="yes">One-time build + maintenance - no per-seat scaling cost</td>
           </tr>
           <tr>
             <td><strong>Customisation depth</strong></td>
@@ -353,9 +353,9 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     <div class="sec-label">Regulatory Architecture</div>
     <h2 class="sec-h2">The Data Sovereignty Gap: Why This Is Not Negotiable in BFSI</h2>
 
-    <p class="sec-p">Data sovereignty in financial services means more than just knowing where your data is stored — it means retaining direct, auditable control over where data is processed and who has access to it. For a bank or NBFC, the practical implication is clear: customer financial data, transaction records, KYC documents, and credit histories must remain within the institution's own controlled infrastructure. Any architecture that requires this data to leave the institution's network — even temporarily, even under encryption, even with contractual protections — creates a regulatory exposure. This is not a theoretical risk. The RBI's 2023 guidelines on cloud adoption for regulated entities require institutions to assess third-party cloud providers against a detailed set of controls and to obtain explicit regulatory approval for certain data categories. SEBI has issued similar guidance for securities market participants. In practice, most compliance and IT risk teams at regulated financial institutions have concluded that sending sensitive customer data to a third-party inference endpoint — even a well-governed one like Azure — does not satisfy these requirements.</p>
+    <p class="sec-p">Data sovereignty in financial services means more than just knowing where your data is stored - it means retaining direct, auditable control over where data is processed and who has access to it. For a bank or NBFC, the practical implication is clear: customer financial data, transaction records, KYC documents, and credit histories must remain within the institution's own controlled infrastructure. Any architecture that requires this data to leave the institution's network - even temporarily, even under encryption, even with contractual protections - creates a regulatory exposure. This is not a theoretical risk. The RBI's 2023 guidelines on cloud adoption for regulated entities require institutions to assess third-party cloud providers against a detailed set of controls and to obtain explicit regulatory approval for certain data categories. SEBI has issued similar guidance for securities market participants. In practice, most compliance and IT risk teams at regulated financial institutions have concluded that sending sensitive customer data to a third-party inference endpoint - even a well-governed one like Azure - does not satisfy these requirements.</p>
 
-    <p class="sec-p">On-premise deployment is the only architecturally sound answer to this problem. It means the AI model itself — the weights, the inference engine, and all the logic — runs on servers that are owned and operated by the institution, inside its own data centre or private cloud environment. No query leaves the building. No output returns from an external service. The institution retains the same level of control over the AI system that it has over its core banking platform. For Upcore's financial services deployments, this is the default architecture — not an add-on or a premium tier. The FCA's SS1/21 outsourcing rules, GDPR Article 32's requirements for appropriate technical measures, and the RBI's data localisation requirements are all satisfied by this architecture because the institution never outsources the processing of sensitive data to a third party. The AI is just another internal system, governed by the same policies as the CBS.</p>
+    <p class="sec-p">On-premise deployment is the only architecturally sound answer to this problem. It means the AI model itself - the weights, the inference engine, and all the logic - runs on servers that are owned and operated by the institution, inside its own data centre or private cloud environment. No query leaves the building. No output returns from an external service. The institution retains the same level of control over the AI system that it has over its core banking platform. For Upcore's financial services deployments, this is the default architecture - not an add-on or a premium tier. The FCA's SS1/21 outsourcing rules, GDPR Article 32's requirements for appropriate technical measures, and the RBI's data localisation requirements are all satisfied by this architecture because the institution never outsources the processing of sensitive data to a third party. The AI is just another internal system, governed by the same policies as the CBS.</p>
   </section>
 
   <!-- SECTION 4: WHAT AGENTS DO IN FS -->
@@ -367,22 +367,22 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
       <div class="pg-card">
         <div class="pg-card-icon">&#128269;</div>
         <h3>AML Transaction Monitoring</h3>
-        <p>Custom AML agents are trained on the institution's own typology library — not generic financial crime patterns from public datasets. The agent learns what normal transaction behaviour looks like for the specific customer segments the institution serves, and flags deviations that are statistically and contextually meaningful to the institution's risk appetite. When it flags a transaction, it creates a pre-populated case record with its reasoning chain, ready for analyst review — dramatically reducing the false positive rate that plagues generic rule-based systems and cutting investigation time per case.</p>
+        <p>Custom AML agents are trained on the institution's own typology library - not generic financial crime patterns from public datasets. The agent learns what normal transaction behaviour looks like for the specific customer segments the institution serves, and flags deviations that are statistically and contextually meaningful to the institution's risk appetite. When it flags a transaction, it creates a pre-populated case record with its reasoning chain, ready for analyst review - dramatically reducing the false positive rate that plagues generic rule-based systems and cutting investigation time per case.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128196;</div>
         <h3>KYC Automation</h3>
-        <p>The KYC agent ingests customer-submitted documents, runs OCR and validation against the institution's accepted identity document formats and country-specific rules, applies the institution's risk tier criteria, and produces a structured output ready for human review — or straight-through processing for low-risk cases. The agent understands the difference between a PAN card and an Aadhaar, knows which document types are acceptable for NRE customers versus resident individuals, and flags cases where the documents submitted do not match the declared risk profile.</p>
+        <p>The KYC agent ingests customer-submitted documents, runs OCR and validation against the institution's accepted identity document formats and country-specific rules, applies the institution's risk tier criteria, and produces a structured output ready for human review - or straight-through processing for low-risk cases. The agent understands the difference between a PAN card and an Aadhaar, knows which document types are acceptable for NRE customers versus resident individuals, and flags cases where the documents submitted do not match the declared risk profile.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128200;</div>
         <h3>Credit Underwriting Assistance</h3>
-        <p>Credit agents are trained on the institution's historical approval and rejection data, making them sensitive to the specific risk factors and policy criteria the institution actually uses — not generic industry benchmarks. The agent integrates with credit bureau APIs to pull live scores, analyses the application data against the institution's lending policy, and generates an explainable recommendation with the specific factors supporting its assessment. The output satisfies the RBI's Fair Practices Code requirement for communicating the reasons for credit decisions.</p>
+        <p>Credit agents are trained on the institution's historical approval and rejection data, making them sensitive to the specific risk factors and policy criteria the institution actually uses - not generic industry benchmarks. The agent integrates with credit bureau APIs to pull live scores, analyses the application data against the institution's lending policy, and generates an explainable recommendation with the specific factors supporting its assessment. The output satisfies the RBI's Fair Practices Code requirement for communicating the reasons for credit decisions.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128172;</div>
         <h3>Customer Service Automation</h3>
-        <p>Customer service agents are trained on the institution's product terms and conditions, regulatory disclosures, fee schedules, and escalation protocols. They can handle tier-1 queries about account balances, loan status, and product features without exposing sensitive account data to any external infrastructure. When the query requires account-level data, the agent retrieves it via a secure internal API call — the data never leaves the institution's environment. Complex or sensitive queries are escalated to human agents with full context, reducing handling time and improving resolution quality.</p>
+        <p>Customer service agents are trained on the institution's product terms and conditions, regulatory disclosures, fee schedules, and escalation protocols. They can handle tier-1 queries about account balances, loan status, and product features without exposing sensitive account data to any external infrastructure. When the query requires account-level data, the agent retrieves it via a secure internal API call - the data never leaves the institution's environment. Complex or sensitive queries are escalated to human agents with full context, reducing handling time and improving resolution quality.</p>
       </div>
     </div>
   </section>
@@ -416,7 +416,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   <!-- FAQ -->
   <section class="pg-section">
     <div class="sec-label">Frequently Asked Questions</div>
-    <h2 class="sec-h2">AI Agents vs. Copilot for Financial Services — FAQ</h2>
+    <h2 class="sec-h2">AI Agents vs. Copilot for Financial Services - FAQ</h2>
     <div class="faq-list">
 
       <div class="faq-item">
@@ -425,8 +425,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Microsoft offers several data residency configurations for Copilot — including EU Data Boundary and options to restrict data processing locations. However, these configurations do not prevent data from leaving your internal network entirely. Inference still occurs on Microsoft's Azure infrastructure, which means your prompts, queries, and the data Copilot accesses to answer those queries travel outside your perimeter.</p>
-          <p>For regulated financial institutions, this architecture is typically inconsistent with RBI Master Direction requirements on data localisation, FCA operational resilience rules, and internal data governance policies that prohibit customer financial data from being processed on third-party infrastructure. "Staying within Azure" is not the same as staying within your organisation's own infrastructure — and regulators increasingly treat this distinction as material.</p>
+          <p>Microsoft offers several data residency configurations for Copilot - including EU Data Boundary and options to restrict data processing locations. However, these configurations do not prevent data from leaving your internal network entirely. Inference still occurs on Microsoft's Azure infrastructure, which means your prompts, queries, and the data Copilot accesses to answer those queries travel outside your perimeter.</p>
+          <p>For regulated financial institutions, this architecture is typically inconsistent with RBI Master Direction requirements on data localisation, FCA operational resilience rules, and internal data governance policies that prohibit customer financial data from being processed on third-party infrastructure. "Staying within Azure" is not the same as staying within your organisation's own infrastructure - and regulators increasingly treat this distinction as material.</p>
         </div>
       </div>
 
@@ -436,8 +436,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Microsoft Copilot is a general-purpose AI assistant optimised for productivity tasks — summarising emails, drafting documents, searching SharePoint — and its underlying model was trained on general internet data and Microsoft product data.</p>
-          <p>A custom AI agent built for financial services is trained specifically on your institution's data: your typology libraries, your product terms and conditions, your historical credit decisions, your regulatory filings. It integrates natively with your core banking system, your loan origination system, and your CRM. It runs on your infrastructure so no data leaves your perimeter. And it is designed with compliance auditability as a first-class requirement — every decision the agent makes is logged with a full reasoning chain. These are fundamentally different architectures solving fundamentally different problems.</p>
+          <p>Microsoft Copilot is a general-purpose AI assistant optimised for productivity tasks - summarising emails, drafting documents, searching SharePoint - and its underlying model was trained on general internet data and Microsoft product data.</p>
+          <p>A custom AI agent built for financial services is trained specifically on your institution's data: your typology libraries, your product terms and conditions, your historical credit decisions, your regulatory filings. It integrates natively with your core banking system, your loan origination system, and your CRM. It runs on your infrastructure so no data leaves your perimeter. And it is designed with compliance auditability as a first-class requirement - every decision the agent makes is logged with a full reasoning chain. These are fundamentally different architectures solving fundamentally different problems.</p>
         </div>
       </div>
 
@@ -448,7 +448,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         </button>
         <div class="faq-a">
           <p>AML and fraud detection are domain-specific disciplines that require training on patterns, typologies, and red-flag indicators specific to the institution. A generic AI model has no knowledge of your customer base composition, your geography-specific transaction patterns, or the specific typologies your compliance team has documented over years of case investigation.</p>
-          <p>Upcore's custom AML agents are trained on your own typology library, your historical SAR filings (anonymised for training), and your transaction data patterns. The agent learns what "normal" looks like for your specific customer segments and flags deviations that are meaningful to your risk appetite — not generic statistical anomalies that generate high false-positive rates. The agent also integrates with your case management system so when it flags a transaction it creates a pre-populated investigation record rather than a PDF report that someone needs to manually enter.</p>
+          <p>Upcore's custom AML agents are trained on your own typology library, your historical SAR filings (anonymised for training), and your transaction data patterns. The agent learns what "normal" looks like for your specific customer segments and flags deviations that are meaningful to your risk appetite - not generic statistical anomalies that generate high false-positive rates. The agent also integrates with your case management system so when it flags a transaction it creates a pre-populated investigation record rather than a PDF report that someone needs to manually enter.</p>
         </div>
       </div>
 
@@ -458,8 +458,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>A custom AI agent deployed on your infrastructure is subject to your existing IT governance and change management processes — the same framework that governs any new system integrated with your core banking environment. It does not require separate financial services licensing (the agent is a software tool, not a regulated entity).</p>
-          <p>However, the outputs of the agent — particularly in credit underwriting or AML — must satisfy the same explainability and auditability requirements as any other decision-support tool. Upcore designs every agent with this in mind: full decision logging, explainable scoring, and audit trail exports compatible with your existing SIEM and audit management systems. Our implementation teams work directly with your compliance and technology risk teams to satisfy internal governance requirements before go-live.</p>
+          <p>A custom AI agent deployed on your infrastructure is subject to your existing IT governance and change management processes - the same framework that governs any new system integrated with your core banking environment. It does not require separate financial services licensing (the agent is a software tool, not a regulated entity).</p>
+          <p>However, the outputs of the agent - particularly in credit underwriting or AML - must satisfy the same explainability and auditability requirements as any other decision-support tool. Upcore designs every agent with this in mind: full decision logging, explainable scoring, and audit trail exports compatible with your existing SIEM and audit management systems. Our implementation teams work directly with your compliance and technology risk teams to satisfy internal governance requirements before go-live.</p>
         </div>
       </div>
 
@@ -469,8 +469,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Microsoft Copilot is licensed on a per-seat basis — approximately $30 per user per month for Copilot for Microsoft 365. For a 500-person financial institution, this is $180,000 per year, or $540,000 over three years, before consultant fees to configure and integrate the tool. This cost scales linearly with headcount.</p>
-          <p>A custom AI agent from Upcore involves a one-time build cost scoped to your specific use case, plus an annual maintenance and support fee. There is no per-seat scaling — the same agent can serve the entire organisation regardless of user count. In most mid-size financial institutions, the break-even point against a Copilot per-seat model is reached within 12 to 18 months. Beyond that point, the custom agent represents a lower total cost of ownership. More critically, the custom agent is actually solving the financial-services-specific workflows — Copilot in most FS pilots ends up being used primarily for email drafting, which is a poor return on $540,000.</p>
+          <p>Microsoft Copilot is licensed on a per-seat basis - approximately $30 per user per month for Copilot for Microsoft 365. For a 500-person financial institution, this is $180,000 per year, or $540,000 over three years, before consultant fees to configure and integrate the tool. This cost scales linearly with headcount.</p>
+          <p>A custom AI agent from Upcore involves a one-time build cost scoped to your specific use case, plus an annual maintenance and support fee. There is no per-seat scaling - the same agent can serve the entire organisation regardless of user count. In most mid-size financial institutions, the break-even point against a Copilot per-seat model is reached within 12 to 18 months. Beyond that point, the custom agent represents a lower total cost of ownership. More critically, the custom agent is actually solving the financial-services-specific workflows - Copilot in most FS pilots ends up being used primarily for email drafting, which is a poor return on $540,000.</p>
         </div>
       </div>
 
@@ -480,8 +480,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>A Microsoft Copilot rollout in an enterprise environment typically takes 4 to 8 weeks for licensing, IT configuration, and basic training — but this timeline excludes months of integration work needed to connect it meaningfully to financial workflows, and many organisations find after rollout that the tool is not substantively used for core banking work.</p>
-          <p>Upcore's custom AI agents are deployed in 30 days for standard use cases: week one is integration mapping and data preparation; week two is model training and initial configuration; week three is testing with your team and compliance review; week four is production deployment with monitoring. For more complex deployments involving multiple systems or highly customised workflows, the timeline extends to 60–90 days — but the output is a production-ready agent actually integrated with your core systems, not a chat interface sitting alongside your existing tools.</p>
+          <p>A Microsoft Copilot rollout in an enterprise environment typically takes 4 to 8 weeks for licensing, IT configuration, and basic training - but this timeline excludes months of integration work needed to connect it meaningfully to financial workflows, and many organisations find after rollout that the tool is not substantively used for core banking work.</p>
+          <p>Upcore's custom AI agents are deployed in 30 days for standard use cases: week one is integration mapping and data preparation; week two is model training and initial configuration; week three is testing with your team and compliance review; week four is production deployment with monitoring. For more complex deployments involving multiple systems or highly customised workflows, the timeline extends to 60–90 days - but the output is a production-ready agent actually integrated with your core systems, not a chat interface sitting alongside your existing tools.</p>
         </div>
       </div>
 
@@ -491,19 +491,19 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Yes. These are not mutually exclusive choices. Many financial institutions use Microsoft 365 and Copilot for general productivity workflows — email drafting, document summarisation, meeting notes — where the data involved is not sensitive customer financial data. A custom AI agent from Upcore can coexist in this environment, operating on a separate infrastructure layer and handling the workflows that involve sensitive data, core banking integration, and regulatory requirements.</p>
-          <p>The important principle is that the custom agent must be the only system that touches PHI, PII, transactional data, or anything covered by your data classification policy. Copilot can operate freely on the productivity layer — Teams messages, SharePoint documents, calendar data — without triggering compliance concerns. The two systems serve different purposes and different data layers.</p>
+          <p>Yes. These are not mutually exclusive choices. Many financial institutions use Microsoft 365 and Copilot for general productivity workflows - email drafting, document summarisation, meeting notes - where the data involved is not sensitive customer financial data. A custom AI agent from Upcore can coexist in this environment, operating on a separate infrastructure layer and handling the workflows that involve sensitive data, core banking integration, and regulatory requirements.</p>
+          <p>The important principle is that the custom agent must be the only system that touches PHI, PII, transactional data, or anything covered by your data classification policy. Copilot can operate freely on the productivity layer - Teams messages, SharePoint documents, calendar data - without triggering compliance concerns. The two systems serve different purposes and different data layers.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          What happens when regulations change — how does the custom agent adapt?
+          What happens when regulations change - how does the custom agent adapt?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
           <p>Regulatory change management is one of the most important differentiators between a custom agent and a generic AI tool. When the RBI issues a new Master Direction, or the FCA updates its operational resilience guidelines, or a new AML typology emerges from FATF, a generic AI tool has no mechanism to incorporate this change except through a general model update on the vendor's timeline.</p>
-          <p>A custom AI agent has a structured update process: your compliance team identifies the regulatory change, documents the policy delta, and Upcore's team updates the relevant training data, rules, or workflow logic. This can happen in days for minor updates, or weeks for major regulatory overhauls. The agent has a version-controlled deployment model so updates can be tested in a staging environment before being promoted to production — the same change management process you apply to any regulated system.</p>
+          <p>A custom AI agent has a structured update process: your compliance team identifies the regulatory change, documents the policy delta, and Upcore's team updates the relevant training data, rules, or workflow logic. This can happen in days for minor updates, or weeks for major regulatory overhauls. The agent has a version-controlled deployment model so updates can be tested in a staging environment before being promoted to production - the same change management process you apply to any regulated system.</p>
         </div>
       </div>
 
@@ -515,7 +515,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     <h2>Your Data Should Never Leave Your Building.</h2>
     <p>Custom AI agents are the only architecturally sound choice for financial services AI. Let's scope what yours looks like.</p>
     <div class="pg-cta-btns">
-      <a href="/assessment" class="btn-p">Book a FS Discovery Call &#8594;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a FS Discovery Call &#8594;</a>
       <a href="/platform/on-premise-deployment" class="btn-o">See On-Premise Deployment &#8594;</a>
     </div>
   </div>
@@ -546,7 +546,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <li><a href="/agent-builder">Agent Builder</a></li>
         <li><a href="/insights">Insights &amp; Blog</a></li>
         <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/assessment">Book a Discovery Call</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Book a Discovery Call</a></li>
       </ul>
     </div>
     <div>
@@ -556,7 +556,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>

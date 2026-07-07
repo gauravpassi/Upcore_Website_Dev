@@ -13,7 +13,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>How AI Agent Memory Works: Types & Architecture | Upcore</title>
-  <meta name="description" content="Episodic, semantic, and procedural memory in enterprise AI agents — and why a custom agent that remembers your client history and SOPs makes decisions a…"/>
+  <meta name="description" content="Episodic, semantic, and procedural memory in enterprise AI agents - and why a custom agent that remembers your client history and SOPs makes decisions a…"/>
   <link rel="canonical" href="https://www.upcoretech.com/learn/ai-agent-memory"/>
   <link rel="alternate" hreflang="en" href="https://www.upcoretech.com/learn/ai-agent-memory"/>
   <link rel="alternate" hreflang="x-default" href="https://www.upcoretech.com/learn/ai-agent-memory"/>
@@ -24,14 +24,14 @@
   <!-- OG -->
   <meta property="og:type" content="article"/>
   <meta property="og:title" content="How AI Agent Memory Works: Types & Architecture | Upcore"/>
-  <meta property="og:description" content="Episodic, semantic, and procedural memory in enterprise AI agents — and why a custom agent that remembers your client history and SOPs makes decisions a…"/>
+  <meta property="og:description" content="Episodic, semantic, and procedural memory in enterprise AI agents - and why a custom agent that remembers your client history and SOPs makes decisions a…"/>
   <meta property="og:url" content="https://www.upcoretech.com/learn/ai-agent-memory"/>
   <meta property="og:site_name" content="Upcore Technologies"/>
   <meta property="og:image" content="https://www.upcoretech.com/images/og-default.png"/>
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="How AI Agent Memory Works: Types & Architecture | Upcore"/>
-  <meta name="twitter:description" content="Memory is what transforms a stateless language model into an enterprise-grade AI agent. Episodic, semantic, procedural, and working memory — explained clearly."/>
+  <meta name="twitter:description" content="Memory is what transforms a stateless language model into an enterprise-grade AI agent. Episodic, semantic, procedural, and working memory - explained clearly."/>
   <meta name="twitter:image" content="https://www.upcoretech.com/images/og-default.png"/>
   <!-- JSON-LD -->
   <script type="application/ld+json">
@@ -41,7 +41,7 @@
       {
         "@type": "Article",
         "headline": "How AI Agent Memory Works: Episodic, Semantic &amp; Procedural",
-        "description": "Episodic, semantic, and procedural memory in enterprise AI agents — and why a custom agent that remembers your client history and SOPs makes decisions a generic AI never can.",
+        "description": "Episodic, semantic, and procedural memory in enterprise AI agents - and why a custom agent that remembers your client history and SOPs makes decisions a generic AI never can.",
         "url": "https://www.upcoretech.com/learn/ai-agent-memory",
         "publisher": {
           "@type": "Organization",
@@ -59,7 +59,7 @@
             "name": "Does ChatGPT have memory?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChatGPT has a limited memory feature in some paid tiers that allows it to retain certain facts across separate conversations — but this is a thin layer of user preference storage, not a full agent memory architecture. Within a single conversation, ChatGPT maintains context via its context window (working memory). Across separate conversations, it typically starts fresh with no recollection of previous interactions unless the memory feature has been explicitly enabled and has stored specific information. Enterprise AI agents, by contrast, maintain full episodic memory of every interaction with every entity, semantic memory of proprietary domain knowledge, and procedural memory of learned workflows — across unlimited sessions and accessible programmatically. The difference in memory capability between ChatGPT and a custom enterprise agent is not marginal; it is architectural."
+              "text": "ChatGPT has a limited memory feature in some paid tiers that allows it to retain certain facts across separate conversations - but this is a thin layer of user preference storage, not a full agent memory architecture. Within a single conversation, ChatGPT maintains context via its context window (working memory). Across separate conversations, it typically starts fresh with no recollection of previous interactions unless the memory feature has been explicitly enabled and has stored specific information. Enterprise AI agents, by contrast, maintain full episodic memory of every interaction with every entity, semantic memory of proprietary domain knowledge, and procedural memory of learned workflows - across unlimited sessions and accessible programmatically. The difference in memory capability between ChatGPT and a custom enterprise agent is not marginal; it is architectural."
             }
           },
           {
@@ -67,7 +67,7 @@
             "name": "How does an AI agent remember previous conversations?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "An AI agent stores previous conversations in a persistent memory store — typically a combination of a vector database (for semantic retrieval) and a structured database (for structured records like customer IDs, case numbers, and timestamps). When a new interaction begins with a known entity (a customer, a loan application, a support ticket), the agent retrieves the relevant conversation history and injects it into the LLM's context window at the start of the reasoning loop. The LLM then reasons with full awareness of the previous interaction. This retrieval process happens automatically and at sub-second latency, giving the agent the ability to reference previous conversations as naturally as a human account manager reviewing their notes before a call."
+              "text": "An AI agent stores previous conversations in a persistent memory store - typically a combination of a vector database (for semantic retrieval) and a structured database (for structured records like customer IDs, case numbers, and timestamps). When a new interaction begins with a known entity (a customer, a loan application, a support ticket), the agent retrieves the relevant conversation history and injects it into the LLM's context window at the start of the reasoning loop. The LLM then reasons with full awareness of the previous interaction. This retrieval process happens automatically and at sub-second latency, giving the agent the ability to reference previous conversations as naturally as a human account manager reviewing their notes before a call."
             }
           },
           {
@@ -75,7 +75,7 @@
             "name": "What is a vector database and why do AI agents use it?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A vector database stores data as dense numerical vectors (embeddings) rather than rows and columns. When a document, conversation, or knowledge item is ingested into the memory layer, it is converted into a high-dimensional numerical representation that captures its semantic meaning. When the agent needs to retrieve relevant memory, it converts the current query into the same numerical representation and searches for the stored vectors closest to it — this is semantic search: finding relevant content even when the exact words don't match. Vector databases are used for agent memory because enterprise knowledge is messy, varied in format, and stored in natural language — and semantic search dramatically outperforms keyword matching for finding the right policy document, the right case history, or the right SOP for any given situation."
+              "text": "A vector database stores data as dense numerical vectors (embeddings) rather than rows and columns. When a document, conversation, or knowledge item is ingested into the memory layer, it is converted into a high-dimensional numerical representation that captures its semantic meaning. When the agent needs to retrieve relevant memory, it converts the current query into the same numerical representation and searches for the stored vectors closest to it - this is semantic search: finding relevant content even when the exact words don't match. Vector databases are used for agent memory because enterprise knowledge is messy, varied in format, and stored in natural language - and semantic search dramatically outperforms keyword matching for finding the right policy document, the right case history, or the right SOP for any given situation."
             }
           },
           {
@@ -83,7 +83,7 @@
             "name": "Can an AI agent forget information?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes — enterprise AI agents can be configured to expire or delete memory in compliance with data retention policies. Episodic memory (conversation history) is typically subject to retention schedules: a customer support agent might retain interaction history for 24 months and then automatically purge it, in line with GDPR or internal data minimisation policies. Semantic memory (knowledge documents) can be updated or removed when the underlying source document changes — an outdated pricing policy, for example, can be removed from the knowledge layer and replaced with the current version. Working memory (the current task context) is naturally ephemeral — it persists only for the duration of the active task and is not retained once the task is complete. The ability to deliberately forget is a compliance feature, not a limitation."
+              "text": "Yes - enterprise AI agents can be configured to expire or delete memory in compliance with data retention policies. Episodic memory (conversation history) is typically subject to retention schedules: a customer support agent might retain interaction history for 24 months and then automatically purge it, in line with GDPR or internal data minimisation policies. Semantic memory (knowledge documents) can be updated or removed when the underlying source document changes - an outdated pricing policy, for example, can be removed from the knowledge layer and replaced with the current version. Working memory (the current task context) is naturally ephemeral - it persists only for the duration of the active task and is not retained once the task is complete. The ability to deliberately forget is a compliance feature, not a limitation."
             }
           },
           {
@@ -99,7 +99,7 @@
             "name": "What is the difference between working memory and long-term memory in an AI agent?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Working memory is the agent's active context — everything it is currently reasoning about for the task at hand. It is fast, temporary, and scoped to the active interaction. It lives in the LLM's context window and disappears when the task is complete. Long-term memory encompasses everything the agent retains across sessions: episodic memory of past interactions, semantic memory of domain knowledge, and procedural memory of learned workflows. Long-term memory is stored in persistent databases outside the LLM and retrieved on demand. The relationship between working memory and long-term memory in an AI agent mirrors the cognitive science distinction: working memory is what you are thinking about right now; long-term memory is everything you know and have experienced that can be recalled when relevant."
+              "text": "Working memory is the agent's active context - everything it is currently reasoning about for the task at hand. It is fast, temporary, and scoped to the active interaction. It lives in the LLM's context window and disappears when the task is complete. Long-term memory encompasses everything the agent retains across sessions: episodic memory of past interactions, semantic memory of domain knowledge, and procedural memory of learned workflows. Long-term memory is stored in persistent databases outside the LLM and retrieved on demand. The relationship between working memory and long-term memory in an AI agent mirrors the cognitive science distinction: working memory is what you are thinking about right now; long-term memory is everything you know and have experienced that can be recalled when relevant."
             }
           },
           {
@@ -107,7 +107,7 @@
             "name": "Can an AI agent be trained on my company's internal documents?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes — and this is one of the primary ways a custom enterprise AI agent delivers better accuracy than a generic AI tool. Your internal documents — SOPs, product catalogues, pricing tables, compliance policies, client contracts, historical case records — are ingested into the agent's semantic memory layer. They are processed, chunked, embedded as dense vectors, and stored in a vector database. When the agent encounters a question or task that is relevant to those documents, it retrieves the most pertinent excerpts and injects them into its reasoning context. The agent does not need to be fine-tuned or retrained on your documents — it reads and reasons over them at inference time, which means updates to your documents are reflected immediately without any retraining process."
+              "text": "Yes - and this is one of the primary ways a custom enterprise AI agent delivers better accuracy than a generic AI tool. Your internal documents - SOPs, product catalogues, pricing tables, compliance policies, client contracts, historical case records - are ingested into the agent's semantic memory layer. They are processed, chunked, embedded as dense vectors, and stored in a vector database. When the agent encounters a question or task that is relevant to those documents, it retrieves the most pertinent excerpts and injects them into its reasoning context. The agent does not need to be fine-tuned or retrained on your documents - it reads and reasons over them at inference time, which means updates to your documents are reflected immediately without any retraining process."
             }
           },
           {
@@ -115,7 +115,7 @@
             "name": "How much memory can an enterprise AI agent have?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The practical limits of an enterprise AI agent's memory are determined by storage capacity and retrieval latency, not by any inherent architectural constraint. Vector databases can store hundreds of millions of document chunks at production scale — the entire documentation library of a large enterprise, all historical customer interactions, every version of every policy document, can be stored and made retrievable in milliseconds. The real constraint is retrieval precision: as the memory store grows, the quality of the semantic search — how reliably the most relevant content is retrieved for any given query — becomes increasingly important. Well-tuned retrieval pipelines with filtering, reranking, and context-aware retrieval strategies maintain high precision at very large scale. There is no practical ceiling on how much an enterprise agent can know."
+              "text": "The practical limits of an enterprise AI agent's memory are determined by storage capacity and retrieval latency, not by any inherent architectural constraint. Vector databases can store hundreds of millions of document chunks at production scale - the entire documentation library of a large enterprise, all historical customer interactions, every version of every policy document, can be stored and made retrievable in milliseconds. The real constraint is retrieval precision: as the memory store grows, the quality of the semantic search - how reliably the most relevant content is retrieved for any given query - becomes increasingly important. Well-tuned retrieval pipelines with filtering, reranking, and context-aware retrieval strategies maintain high precision at very large scale. There is no practical ceiling on how much an enterprise agent can know."
             }
           }
         ]
@@ -157,7 +157,7 @@ a{text-decoration:none;color:inherit;}img{max-width:100%;}
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:48px;width:auto;}
+.nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -270,7 +270,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
+  <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="nav-cta">Book a Governance Review</a>
 </nav>
 
 <div class="pg-wrap">
@@ -279,9 +279,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-hero">
     <div class="pg-badge">AI Fundamentals &middot; Architecture</div>
     <h1 class="pg-h1">How AI Agent Memory Works: <strong>Episodic, Semantic &amp; Procedural</strong></h1>
-    <p class="pg-sub">Memory is what transforms a stateless language model into an enterprise-grade AI agent. The difference between an agent that gives generic answers and one that gives answers calibrated to your specific client, your specific SOPs, and your specific compliance requirements &mdash; is entirely a function of memory architecture.</p>
+    <p class="pg-sub">Memory is what transforms a stateless language model into an enterprise-grade AI agent. The difference between an agent that gives generic answers and one that gives answers calibrated to your specific client, your specific SOPs, and your specific compliance requirements - is entirely a function of memory architecture.</p>
     <div class="pg-btns">
-      <a href="/assessment" class="btn-p">Talk to an AI Architect &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Talk to an AI Architect &rarr;</a>
       <a href="/platform/custom-ai-agents" class="btn-o">See How We Build Agents</a>
     </div>
     <div class="stats-row">
@@ -305,39 +305,39 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <div class="sec-label">The Foundation</div>
     <h2 class="sec-h2">Why Memory Matters for Enterprise AI</h2>
     <p class="sec-p">Without memory, every AI interaction starts from zero. The agent doesn't know the customer's history. It doesn't know whether this is the first contact or the fifth escalation. It doesn't know what was agreed in the last call, what was promised in the resolution email, or what exception was granted three months ago. Every interaction is treated as a first meeting. This is why generic chatbots frustrate users and fail to deliver measurable customer satisfaction improvement: not because the language model is bad, but because without memory, good reasoning cannot produce context-appropriate answers.</p>
-    <p class="sec-p">Enterprise AI memory changes this fundamentally. When a customer contacts an agent for the fourth time about the same unresolved issue, an agent with episodic memory surfaces that history immediately. When a loan officer asks the agent to assess a borderline application, an agent with semantic memory of your specific risk policies gives an answer grounded in your actual policy — not a generic answer about loan underwriting. When a maintenance request arrives for a piece of equipment that has been flagged three times this quarter, an agent with procedural memory knows to trigger the escalation workflow rather than the standard response. Memory is what makes the difference between AI that impresses in a demo and AI that delivers outcomes in production.</p>
-    <p class="sec-p">The business case for memory-rich agents is straightforward: the decisions that create the most value and require the most accurate AI reasoning are by definition context-dependent. Escalation decisions depend on history. Policy decisions depend on domain knowledge. Workflow routing depends on learned procedures. All three require memory. A memory-poor agent handles the simple, context-free cases well — but those are the cases that need the least intelligence. The high-value cases, the complex cases, the exceptions — all require memory to handle correctly.</p>
+    <p class="sec-p">Enterprise AI memory changes this fundamentally. When a customer contacts an agent for the fourth time about the same unresolved issue, an agent with episodic memory surfaces that history immediately. When a loan officer asks the agent to assess a borderline application, an agent with semantic memory of your specific risk policies gives an answer grounded in your actual policy - not a generic answer about loan underwriting. When a maintenance request arrives for a piece of equipment that has been flagged three times this quarter, an agent with procedural memory knows to trigger the escalation workflow rather than the standard response. Memory is what makes the difference between AI that impresses in a demo and AI that delivers outcomes in production.</p>
+    <p class="sec-p">The business case for memory-rich agents is straightforward: the decisions that create the most value and require the most accurate AI reasoning are by definition context-dependent. Escalation decisions depend on history. Policy decisions depend on domain knowledge. Workflow routing depends on learned procedures. All three require memory. A memory-poor agent handles the simple, context-free cases well - but those are the cases that need the least intelligence. The high-value cases, the complex cases, the exceptions - all require memory to handle correctly.</p>
   </section>
 
   <!-- SECTION 2: Four Memory Types -->
   <section class="pg-section">
     <div class="sec-label">Memory Architecture</div>
     <h2 class="sec-h2">The Four Memory Types in a Production Enterprise Agent</h2>
-    <p class="sec-p">Production enterprise agents operate with four distinct memory types simultaneously, each serving a different function in the reasoning loop. Understanding each type — what it stores, how it is retrieved, and what decisions it enables — is essential for understanding why custom agents outperform generic AI on every business task that matters.</p>
+    <p class="sec-p">Production enterprise agents operate with four distinct memory types simultaneously, each serving a different function in the reasoning loop. Understanding each type - what it stores, how it is retrieved, and what decisions it enables - is essential for understanding why custom agents outperform generic AI on every business task that matters.</p>
 
     <div class="card-grid">
       <div class="mem-card">
         <div class="mem-card-type">Working Memory</div>
         <h3>Active Task Context</h3>
-        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">The current task context. What the agent is working on right now — the current customer's ticket, the current loan application, the current maintenance request. Working memory is the context window: fast, temporary, and scoped to the active task. It holds the incoming request, retrieved facts, tool call results, and intermediate reasoning conclusions. When the task is complete, working memory clears.</p>
+        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">The current task context. What the agent is working on right now - the current customer's ticket, the current loan application, the current maintenance request. Working memory is the context window: fast, temporary, and scoped to the active task. It holds the incoming request, retrieved facts, tool call results, and intermediate reasoning conclusions. When the task is complete, working memory clears.</p>
         <div class="mem-example"><strong>Example:</strong> An insurance claims agent is processing Claim #48291. Working memory holds the claim details, the claimant's policy number, the three documents retrieved from the knowledge base, and the preliminary assessment from the previous reasoning step.</div>
       </div>
       <div class="mem-card">
         <div class="mem-card-type">Episodic Memory</div>
         <h3>Interaction History</h3>
-        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">History of past interactions. Every conversation, decision, and action the agent has taken with this specific customer, case, or entity. Episodic memory is how an agent knows "this customer has contacted us three times about the same issue" — enabling escalation logic that a stateless system cannot execute. It is typically stored in a vector database or structured interaction log and retrieved at the start of each new interaction with a known entity.</p>
+        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">History of past interactions. Every conversation, decision, and action the agent has taken with this specific customer, case, or entity. Episodic memory is how an agent knows "this customer has contacted us three times about the same issue" - enabling escalation logic that a stateless system cannot execute. It is typically stored in a vector database or structured interaction log and retrieved at the start of each new interaction with a known entity.</p>
         <div class="mem-example"><strong>Example:</strong> A customer support agent recalls that this customer escalated twice in the last 30 days over the same billing discrepancy, both times resolving without full closure. The agent flags this interaction for priority handling and routes to a senior tier automatically.</div>
       </div>
       <div class="mem-card">
         <div class="mem-card-type">Semantic Memory</div>
         <h3>Domain Knowledge</h3>
-        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">Knowledge about your domain. Your product catalogue, your pricing, your SOPs, your compliance policies, your client contracts. This is the proprietary knowledge layer that makes a custom agent more accurate than a generic AI — it literally knows more about your business than any off-the-shelf model can. Semantic memory is stored as dense vector embeddings and retrieved via semantic search, allowing the agent to find relevant knowledge even when the query doesn't use the exact language of the source document.</p>
-        <div class="mem-example"><strong>Example:</strong> A loan processing agent retrieves the current NBFC lending policy for self-employed applicants from semantic memory — including the specific income verification requirements added in the last quarterly update — and applies them to the current application assessment.</div>
+        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">Knowledge about your domain. Your product catalogue, your pricing, your SOPs, your compliance policies, your client contracts. This is the proprietary knowledge layer that makes a custom agent more accurate than a generic AI - it literally knows more about your business than any off-the-shelf model can. Semantic memory is stored as dense vector embeddings and retrieved via semantic search, allowing the agent to find relevant knowledge even when the query doesn't use the exact language of the source document.</p>
+        <div class="mem-example"><strong>Example:</strong> A loan processing agent retrieves the current NBFC lending policy for self-employed applicants from semantic memory - including the specific income verification requirements added in the last quarterly update - and applies them to the current application assessment.</div>
       </div>
       <div class="mem-card">
         <div class="mem-card-type">Procedural Memory</div>
         <h3>Learned Workflows</h3>
-        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">Learned skills — not just facts, but processes. How to handle a SWIFT payment exception. How to score a loan application against your specific risk policy. How to route a maintenance request based on asset type, priority, and contractor availability. Procedural memory encodes your workflows as agent capabilities. When a new case arrives, the agent retrieves the appropriate procedure and executes it, adapting to the specifics of the current situation while following the defined process.</p>
+        <p style="font-size:.875rem;color:var(--txt2);line-height:1.65;margin-bottom:0;">Learned skills - not just facts, but processes. How to handle a SWIFT payment exception. How to score a loan application against your specific risk policy. How to route a maintenance request based on asset type, priority, and contractor availability. Procedural memory encodes your workflows as agent capabilities. When a new case arrives, the agent retrieves the appropriate procedure and executes it, adapting to the specifics of the current situation while following the defined process.</p>
         <div class="mem-example"><strong>Example:</strong> A manufacturing maintenance agent identifies the incoming request as a Category 2 hydraulic fault on a production-critical asset, retrieves the corresponding escalation procedure from procedural memory, and immediately initiates the contractor dispatch workflow rather than the standard maintenance queue.</div>
       </div>
     </div>
@@ -347,23 +347,23 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Technical Implementation</div>
     <h2 class="sec-h2">How Memory Is Implemented Technically</h2>
-    <p class="sec-p">The four memory types described above are not abstract concepts — they map to specific technical components in the agent's infrastructure. Understanding the implementation helps enterprise architects make informed decisions about infrastructure requirements, latency characteristics, and data governance during the deployment planning phase.</p>
-    <p class="sec-p">The critical implementation principle is in-context injection: at each reasoning step, the agent does not "have" its memory the way a human brain holds memories. Instead, it actively retrieves relevant subsets of each memory type and injects them into the LLM's context window alongside the current task. The LLM then reasons over the injected context — treating retrieved episodic history, semantic knowledge, and procedural steps as input just as it treats the current user message. This retrieval-augmented approach is what allows agents to work with arbitrarily large memory stores without the context window length limitations that would otherwise constrain them.</p>
+    <p class="sec-p">The four memory types described above are not abstract concepts - they map to specific technical components in the agent's infrastructure. Understanding the implementation helps enterprise architects make informed decisions about infrastructure requirements, latency characteristics, and data governance during the deployment planning phase.</p>
+    <p class="sec-p">The critical implementation principle is in-context injection: at each reasoning step, the agent does not "have" its memory the way a human brain holds memories. Instead, it actively retrieves relevant subsets of each memory type and injects them into the LLM's context window alongside the current task. The LLM then reasons over the injected context - treating retrieved episodic history, semantic knowledge, and procedural steps as input just as it treats the current user message. This retrieval-augmented approach is what allows agents to work with arbitrarily large memory stores without the context window length limitations that would otherwise constrain them.</p>
     <div class="card-grid">
       <div class="impl-card">
         <div class="impl-tag">Semantic + Episodic</div>
         <h3>Vector Databases</h3>
-        <p>Semantic search over dense embeddings — how semantic memory (policy documents, SOPs, product knowledge) and episodic memory (past conversation history) are typically stored and retrieved. Content is chunked, embedded using an embedding model, and stored as high-dimensional vectors. At inference time, the current query is embedded and the most semantically similar stored vectors are retrieved. Latency is typically sub-50ms for well-indexed stores at enterprise scale.</p>
+        <p>Semantic search over dense embeddings - how semantic memory (policy documents, SOPs, product knowledge) and episodic memory (past conversation history) are typically stored and retrieved. Content is chunked, embedded using an embedding model, and stored as high-dimensional vectors. At inference time, the current query is embedded and the most semantically similar stored vectors are retrieved. Latency is typically sub-50ms for well-indexed stores at enterprise scale.</p>
       </div>
       <div class="impl-card">
         <div class="impl-tag">Episodic + Procedural</div>
         <h3>Structured Databases</h3>
-        <p>SQL and NoSQL stores for structured facts — customer records, transaction history, case status, workflow state, audit logs. Structured databases complement vector databases by storing the precise, queryable data that semantic search is not designed for. Agent action logs, escalation records, and interaction outcomes are typically stored in structured databases to support audit trail requirements and enable precise lookups by entity ID, timestamp, or case number.</p>
+        <p>SQL and NoSQL stores for structured facts - customer records, transaction history, case status, workflow state, audit logs. Structured databases complement vector databases by storing the precise, queryable data that semantic search is not designed for. Agent action logs, escalation records, and interaction outcomes are typically stored in structured databases to support audit trail requirements and enable precise lookups by entity ID, timestamp, or case number.</p>
       </div>
       <div class="impl-card">
         <div class="impl-tag">All Memory Types</div>
         <h3>In-Context Injection</h3>
-        <p>Retrieving the relevant subset of memory and injecting it into the LLM's context window at inference time — the bridge between stored memory and active reasoning. At each step of the reasoning loop, the agent constructs a retrieval query based on the current task, retrieves the most relevant chunks from vector and structured databases, and assembles them into the prompt alongside the current input. Retrieval precision — how reliably the right content is retrieved — is the primary determinant of agent answer quality.</p>
+        <p>Retrieving the relevant subset of memory and injecting it into the LLM's context window at inference time - the bridge between stored memory and active reasoning. At each step of the reasoning loop, the agent constructs a retrieval query based on the current task, retrieves the most relevant chunks from vector and structured databases, and assembles them into the prompt alongside the current input. Retrieval precision - how reliably the right content is retrieved - is the primary determinant of agent answer quality.</p>
       </div>
     </div>
   </section>
@@ -372,13 +372,13 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Compliance &amp; Governance</div>
     <h2 class="sec-h2">Memory, Data Governance, and Compliance</h2>
-    <p class="sec-p">For enterprises in regulated industries — banking, insurance, healthcare, NBFCs — the memory architecture of an AI agent is not just a capability decision; it is a compliance decision. The question is not simply "what can the agent remember?" but "what is the agent allowed to remember, where is that memory stored, how long is it retained, who can access it, and what controls govern modification and deletion?"</p>
-    <p class="sec-p">These are not questions to address after deployment. They are architectural decisions that must be made upfront, because retrofitting data governance controls onto a live agent memory system is significantly harder and more expensive than building them in from the start. On-premise deployment is the most direct solution for enterprises with strict data sovereignty requirements: all memory stores — vector databases, structured databases, interaction logs — live within the enterprise infrastructure perimeter, with no data leaving to external cloud services. Audit logs of every memory read and write are a compliance requirement in BFSI and healthcare, and must be implemented as a first-class feature of the memory architecture, not an afterthought.</p>
+    <p class="sec-p">For enterprises in regulated industries - banking, insurance, healthcare, NBFCs - the memory architecture of an AI agent is not just a capability decision; it is a compliance decision. The question is not simply "what can the agent remember?" but "what is the agent allowed to remember, where is that memory stored, how long is it retained, who can access it, and what controls govern modification and deletion?"</p>
+    <p class="sec-p">These are not questions to address after deployment. They are architectural decisions that must be made upfront, because retrofitting data governance controls onto a live agent memory system is significantly harder and more expensive than building them in from the start. On-premise deployment is the most direct solution for enterprises with strict data sovereignty requirements: all memory stores - vector databases, structured databases, interaction logs - live within the enterprise infrastructure perimeter, with no data leaving to external cloud services. Audit logs of every memory read and write are a compliance requirement in BFSI and healthcare, and must be implemented as a first-class feature of the memory architecture, not an afterthought.</p>
 
     <div class="compliance-block">
       <h3>Memory governance checklist for regulated enterprises</h3>
       <p>Every enterprise agent memory architecture deployed in a regulated environment should address the following: configurable retention periods per memory category (episodic history may have a different retention schedule than semantic knowledge documents); right-to-erasure support for episodic memory in GDPR-applicable jurisdictions; access controls governing which agents, services, and human users can read and write each category of memory; tamper-evident audit logs of all memory access and modification events; data classification of memory content with appropriate controls for each classification level; and incident response procedures for memory data breaches, including scope identification and notification timelines.</p>
-      <p>Upcore's enterprise agent deployments include all of the above as standard features, not optional add-ons. See our <a href="/platform/on-premise-deployment" style="color:var(--teal);">on-premise deployment offering</a> for the full data governance framework, or <a href="/assessment" style="color:var(--teal);">book a free assessment</a> to discuss your specific compliance requirements.</p>
+      <p>Upcore's enterprise agent deployments include all of the above as standard features, not optional add-ons. See our <a href="/platform/on-premise-deployment" style="color:var(--teal);">on-premise deployment offering</a> for the full data governance framework, or <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" style="color:var(--teal);">book a free assessment</a> to discuss your specific compliance requirements.</p>
     </div>
   </section>
 
@@ -395,8 +395,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>ChatGPT has a limited memory feature in some paid tiers that allows it to retain certain facts across separate conversations — but this is a thin layer of user preference storage, not a full agent memory architecture. Within a single conversation, ChatGPT maintains context via its context window (working memory). Across separate conversations, it typically starts fresh with no recollection of previous interactions unless the memory feature has been explicitly enabled.</p>
-          <p>Enterprise AI agents, by contrast, maintain full episodic memory of every interaction with every entity, semantic memory of proprietary domain knowledge, and procedural memory of learned workflows — all accessible programmatically across unlimited sessions. The difference in memory capability between ChatGPT and a custom enterprise agent is not marginal; it is architectural. ChatGPT is designed for individual users having discrete conversations; an enterprise agent is designed for organisations managing thousands of concurrent, long-running entity relationships.</p>
+          <p>ChatGPT has a limited memory feature in some paid tiers that allows it to retain certain facts across separate conversations - but this is a thin layer of user preference storage, not a full agent memory architecture. Within a single conversation, ChatGPT maintains context via its context window (working memory). Across separate conversations, it typically starts fresh with no recollection of previous interactions unless the memory feature has been explicitly enabled.</p>
+          <p>Enterprise AI agents, by contrast, maintain full episodic memory of every interaction with every entity, semantic memory of proprietary domain knowledge, and procedural memory of learned workflows - all accessible programmatically across unlimited sessions. The difference in memory capability between ChatGPT and a custom enterprise agent is not marginal; it is architectural. ChatGPT is designed for individual users having discrete conversations; an enterprise agent is designed for organisations managing thousands of concurrent, long-running entity relationships.</p>
         </div>
       </div>
 
@@ -406,8 +406,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>An AI agent stores previous conversations in a persistent memory store — typically a combination of a vector database for semantic retrieval and a structured database for precise record lookups. When a new interaction begins with a known entity (a customer, a loan application, a support ticket), the agent retrieves the relevant conversation history from the episodic memory store and injects it into the LLM's context window at the start of the reasoning loop.</p>
-          <p>The LLM then reasons with full awareness of the previous interaction — including what was said, what was decided, what actions were taken, and what was left unresolved. This retrieval process happens automatically at sub-second latency, giving the agent the ability to reference previous conversations as naturally as a human account manager reviewing their notes before a client call.</p>
+          <p>An AI agent stores previous conversations in a persistent memory store - typically a combination of a vector database for semantic retrieval and a structured database for precise record lookups. When a new interaction begins with a known entity (a customer, a loan application, a support ticket), the agent retrieves the relevant conversation history from the episodic memory store and injects it into the LLM's context window at the start of the reasoning loop.</p>
+          <p>The LLM then reasons with full awareness of the previous interaction - including what was said, what was decided, what actions were taken, and what was left unresolved. This retrieval process happens automatically at sub-second latency, giving the agent the ability to reference previous conversations as naturally as a human account manager reviewing their notes before a client call.</p>
         </div>
       </div>
 
@@ -417,7 +417,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>A vector database stores data as dense numerical vectors (embeddings) rather than rows and columns. When a document, conversation, or knowledge item is ingested into the agent's memory layer, an embedding model converts it into a high-dimensional numerical representation that captures its semantic meaning. When the agent needs to retrieve relevant memory, it converts the current query into the same numerical representation and searches for the stored vectors with the closest semantic similarity — this is semantic search: finding relevant content even when the exact words don't match the query.</p>
+          <p>A vector database stores data as dense numerical vectors (embeddings) rather than rows and columns. When a document, conversation, or knowledge item is ingested into the agent's memory layer, an embedding model converts it into a high-dimensional numerical representation that captures its semantic meaning. When the agent needs to retrieve relevant memory, it converts the current query into the same numerical representation and searches for the stored vectors with the closest semantic similarity - this is semantic search: finding relevant content even when the exact words don't match the query.</p>
           <p>Vector databases are used for agent memory because enterprise knowledge is varied, unstructured, and expressed in natural language. A loan officer's query about "income documentation requirements for gig economy applicants" should retrieve the relevant SOP section even if that section uses the phrase "self-employed income verification for platform workers." Semantic search via vector embeddings makes this possible; keyword search does not.</p>
         </div>
       </div>
@@ -428,8 +428,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Yes — and in regulated industries, the ability to deliberately delete memory is a compliance requirement, not a nice-to-have. Enterprise agent memory architectures are designed with configurable retention schedules: episodic memory (conversation history) can be set to expire after a defined period, in line with GDPR data minimisation and right-to-erasure requirements. Individual customer records can be deleted programmatically in response to a subject erasure request.</p>
-          <p>Semantic memory (knowledge documents) can be updated or removed when the underlying source changes — an outdated compliance policy, a superseded pricing document, or a retired product can be removed from the knowledge layer and replaced with the current version. Working memory is inherently ephemeral — it exists only for the duration of the active task. The ability to control what the agent remembers, for how long, and who can access that memory is a core governance requirement for enterprise deployment.</p>
+          <p>Yes - and in regulated industries, the ability to deliberately delete memory is a compliance requirement, not a nice-to-have. Enterprise agent memory architectures are designed with configurable retention schedules: episodic memory (conversation history) can be set to expire after a defined period, in line with GDPR data minimisation and right-to-erasure requirements. Individual customer records can be deleted programmatically in response to a subject erasure request.</p>
+          <p>Semantic memory (knowledge documents) can be updated or removed when the underlying source changes - an outdated compliance policy, a superseded pricing document, or a retired product can be removed from the knowledge layer and replaced with the current version. Working memory is inherently ephemeral - it exists only for the duration of the active task. The ability to control what the agent remembers, for how long, and who can access that memory is a core governance requirement for enterprise deployment.</p>
         </div>
       </div>
 
@@ -440,7 +440,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>Agent memory architectures designed for GDPR compliance treat the memory store as a data processor subject to the same requirements as any other customer data system. The architecture must support: configurable retention periods per data category, programmatic deletion of a specific individual's data (right to erasure), audit logs of all memory reads and writes, data classification with appropriate access controls, and documentation for ROPA (Records of Processing Activities) purposes.</p>
-          <p>On-premise deployment eliminates cross-border data transfer concerns by ensuring all memory stores remain within the enterprise's infrastructure perimeter. This is particularly important for BFSI and healthcare organisations where data sovereignty requirements may prohibit customer data from leaving a specific geographic jurisdiction. The memory governance framework should be designed before deployment, not retrofitted — it is an architectural decision that affects the choice of database technology, storage topology, and access control model.</p>
+          <p>On-premise deployment eliminates cross-border data transfer concerns by ensuring all memory stores remain within the enterprise's infrastructure perimeter. This is particularly important for BFSI and healthcare organisations where data sovereignty requirements may prohibit customer data from leaving a specific geographic jurisdiction. The memory governance framework should be designed before deployment, not retrofitted - it is an architectural decision that affects the choice of database technology, storage topology, and access control model.</p>
         </div>
       </div>
 
@@ -450,8 +450,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Working memory is the agent's active context — everything it is currently reasoning about for the task at hand. It lives in the LLM's context window and disappears when the task is complete. It is fast, temporary, and scoped entirely to the active interaction. Long-term memory encompasses everything the agent retains across sessions: episodic memory of past interactions, semantic memory of domain knowledge, and procedural memory of learned workflows. Long-term memory is stored in persistent external databases and retrieved on demand.</p>
-          <p>The relationship mirrors the cognitive science distinction: working memory is what you are thinking about right now; long-term memory is everything you know and have experienced that can be recalled when relevant. The practical implication for enterprise deployments is that the quality of the long-term memory architecture determines the quality of what gets loaded into working memory at each reasoning step — and therefore the quality of every decision the agent makes.</p>
+          <p>Working memory is the agent's active context - everything it is currently reasoning about for the task at hand. It lives in the LLM's context window and disappears when the task is complete. It is fast, temporary, and scoped entirely to the active interaction. Long-term memory encompasses everything the agent retains across sessions: episodic memory of past interactions, semantic memory of domain knowledge, and procedural memory of learned workflows. Long-term memory is stored in persistent external databases and retrieved on demand.</p>
+          <p>The relationship mirrors the cognitive science distinction: working memory is what you are thinking about right now; long-term memory is everything you know and have experienced that can be recalled when relevant. The practical implication for enterprise deployments is that the quality of the long-term memory architecture determines the quality of what gets loaded into working memory at each reasoning step - and therefore the quality of every decision the agent makes.</p>
         </div>
       </div>
 
@@ -461,8 +461,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Yes — and this is one of the primary mechanisms by which a custom enterprise AI agent delivers better accuracy than a generic AI tool on business tasks. Your internal documents — SOPs, product catalogues, pricing tables, compliance policies, client contracts, historical case records — are ingested into the agent's semantic memory layer as part of the deployment setup. They are processed, chunked, embedded as dense vectors, and stored in the vector database.</p>
-          <p>Critically, this ingestion process does not require retraining the underlying language model. The agent reads and reasons over your documents at inference time, via retrieval-augmented generation (RAG). This means updates to your documents are reflected in agent responses immediately after re-ingestion — no retraining cycle, no deployment downtime. It also means the proprietary knowledge in your documents never leaves your infrastructure to train an external model.</p>
+          <p>Yes - and this is one of the primary mechanisms by which a custom enterprise AI agent delivers better accuracy than a generic AI tool on business tasks. Your internal documents - SOPs, product catalogues, pricing tables, compliance policies, client contracts, historical case records - are ingested into the agent's semantic memory layer as part of the deployment setup. They are processed, chunked, embedded as dense vectors, and stored in the vector database.</p>
+          <p>Critically, this ingestion process does not require retraining the underlying language model. The agent reads and reasons over your documents at inference time, via retrieval-augmented generation (RAG). This means updates to your documents are reflected in agent responses immediately after re-ingestion - no retraining cycle, no deployment downtime. It also means the proprietary knowledge in your documents never leaves your infrastructure to train an external model.</p>
         </div>
       </div>
 
@@ -472,8 +472,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>The practical limits of an enterprise AI agent's memory are determined by storage capacity and retrieval precision, not by any inherent architectural constraint. Vector databases can store hundreds of millions of document chunks at production scale — the entire documentation library of a large enterprise, all historical customer interaction records, every version of every compliance policy can be stored and made retrievable in milliseconds. The storage cost of a well-designed enterprise memory layer is typically a small fraction of the overall agent infrastructure cost.</p>
-          <p>The real design challenge at scale is retrieval precision: as the memory store grows, ensuring that the most relevant content is reliably retrieved for any given query becomes increasingly important. Well-tuned retrieval pipelines with query expansion, document filtering, metadata-based pre-filtering, and reranking models maintain high precision even at very large scale. There is no practical ceiling on how much an enterprise agent can know — the engineering challenge is making sure it retrieves the right knowledge at the right moment.</p>
+          <p>The practical limits of an enterprise AI agent's memory are determined by storage capacity and retrieval precision, not by any inherent architectural constraint. Vector databases can store hundreds of millions of document chunks at production scale - the entire documentation library of a large enterprise, all historical customer interaction records, every version of every compliance policy can be stored and made retrievable in milliseconds. The storage cost of a well-designed enterprise memory layer is typically a small fraction of the overall agent infrastructure cost.</p>
+          <p>The real design challenge at scale is retrieval precision: as the memory store grows, ensuring that the most relevant content is reliably retrieved for any given query becomes increasingly important. Well-tuned retrieval pipelines with query expansion, document filtering, metadata-based pre-filtering, and reranking models maintain high precision even at very large scale. There is no practical ceiling on how much an enterprise agent can know - the engineering challenge is making sure it retrieves the right knowledge at the right moment.</p>
         </div>
       </div>
 
@@ -488,7 +488,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <a href="/learn/how-ai-agents-work" class="rel-card">
         <div class="rel-card-tag">AI Fundamentals</div>
         <h4>How AI Agents Work</h4>
-        <p>The complete architecture of a production AI agent — perception, reasoning, and action layers explained for enterprise leaders.</p>
+        <p>The complete architecture of a production AI agent - perception, reasoning, and action layers explained for enterprise leaders.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
       <a href="/learn/ai-agent-vs-llm" class="rel-card">
@@ -500,13 +500,13 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <a href="/platform/on-premise-deployment" class="rel-card">
         <div class="rel-card-tag">Product</div>
         <h4>On-Premise AI Deployment</h4>
-        <p>Keep all agent memory, knowledge, and data within your own infrastructure — the full data sovereignty deployment model for regulated enterprises.</p>
+        <p>Keep all agent memory, knowledge, and data within your own infrastructure - the full data sovereignty deployment model for regulated enterprises.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
       <a href="/platform/custom-ai-agents" class="rel-card">
         <div class="rel-card-tag">Product</div>
         <h4>Custom AI Agent Development</h4>
-        <p>How Upcore designs and deploys memory-rich enterprise agents — from knowledge ingestion and episodic memory setup through to compliance-ready production.</p>
+        <p>How Upcore designs and deploys memory-rich enterprise agents - from knowledge ingestion and episodic memory setup through to compliance-ready production.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
     </div>
@@ -515,9 +515,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- CTA -->
   <div class="pg-cta">
     <h2>Build an agent that actually knows your business</h2>
-    <p>A custom enterprise AI agent trained on your SOPs, your client data, and your policies — deployed in your infrastructure in 30 days. Book a free assessment to start the conversation.</p>
+    <p>A custom enterprise AI agent trained on your SOPs, your client data, and your policies - deployed in your infrastructure in 30 days. Book a free assessment to start the conversation.</p>
     <div class="pg-cta-btns">
-      <a href="/assessment" class="btn-p">Book a Free Assessment &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Free Assessment &rarr;</a>
       <a href="/kw" class="btn-o">Explore All Resources</a>
     </div>
   </div>
@@ -548,7 +548,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/agent-builder">Agent Builder</a></li>
         <li><a href="/insights">Insights &amp; Blog</a></li>
         <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/assessment">Book a Discovery Call</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Book a Discovery Call</a></li>
       </ul>
     </div>
     <div>
@@ -558,7 +558,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>

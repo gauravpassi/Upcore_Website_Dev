@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — No em dashes, calendar CTAs, bigger logo (site-wide)
+**Type:** fix
+**Files:** all `.html` files (67+)
+Removed all em dashes site-wide (replaced with ` - ` inline or `- ` for attributions). Changed all `href="/assessment"` CTA links (319 instances) to point directly to the Google Calendar booking link. Enlarged nav logo from 48px to 60px height across all pages.
+
+---
+
 ## 2026-07-03 — Homepage design improvements — proof stats, Bridge CTA, connectors, addon icons
 **Type:** feature
 **Files:** `index.html`

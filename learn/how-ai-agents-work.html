@@ -59,7 +59,7 @@
             "name": "What is the difference between an AI agent and a chatbot?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A chatbot is a conversational interface that responds to user inputs, typically following a predefined script or using a language model to generate replies. It is reactive: it waits for a user to say something and responds. An AI agent, by contrast, is a goal-directed system that can perceive inputs from multiple sources, reason over those inputs to form a plan, and then take autonomous actions in the world — writing records to a CRM, triggering a workflow, querying a database, sending a notification, or escalating to a human. A chatbot produces text output; an AI agent produces outcomes. The difference is not one of degree but of architecture: agents have memory, tools, and orchestration logic that chatbots fundamentally lack."
+              "text": "A chatbot is a conversational interface that responds to user inputs, typically following a predefined script or using a language model to generate replies. It is reactive: it waits for a user to say something and responds. An AI agent, by contrast, is a goal-directed system that can perceive inputs from multiple sources, reason over those inputs to form a plan, and then take autonomous actions in the world - writing records to a CRM, triggering a workflow, querying a database, sending a notification, or escalating to a human. A chatbot produces text output; an AI agent produces outcomes. The difference is not one of degree but of architecture: agents have memory, tools, and orchestration logic that chatbots fundamentally lack."
             }
           },
           {
@@ -67,7 +67,7 @@
             "name": "Does an AI agent need its own infrastructure to run?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "An enterprise AI agent requires infrastructure at three levels: a model hosting layer (the LLM that powers reasoning, which can be cloud-hosted or deployed on-premise), a memory layer (vector databases and structured data stores where the agent's knowledge and history live), and a tool integration layer (APIs and connectors to your internal systems — ERP, CRM, databases, communication tools). The total infrastructure footprint depends on your deployment model. Cloud deployments can be stood up relatively quickly using managed services. On-premise deployments require dedicated GPU or CPU resources for model inference, database infrastructure for memory, and a network integration layer — but keep all data within your enterprise perimeter, which is a requirement in regulated industries."
+              "text": "An enterprise AI agent requires infrastructure at three levels: a model hosting layer (the LLM that powers reasoning, which can be cloud-hosted or deployed on-premise), a memory layer (vector databases and structured data stores where the agent's knowledge and history live), and a tool integration layer (APIs and connectors to your internal systems - ERP, CRM, databases, communication tools). The total infrastructure footprint depends on your deployment model. Cloud deployments can be stood up relatively quickly using managed services. On-premise deployments require dedicated GPU or CPU resources for model inference, database infrastructure for memory, and a network integration layer - but keep all data within your enterprise perimeter, which is a requirement in regulated industries."
             }
           },
           {
@@ -75,7 +75,7 @@
             "name": "How does an AI agent make decisions?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "An AI agent makes decisions through a reasoning loop: it receives an input or goal, retrieves relevant context from memory, uses the LLM to decompose the task and identify the best next action, executes that action via a tool call, observes the result, and then reasons again about what to do next. This loop continues until the task is complete or a human escalation is triggered. The LLM in an agent is not generating conversational text — it is performing structured reasoning: classifying inputs, evaluating options against a defined policy, selecting tools, and determining when a decision is outside its authority. Well-designed agents also maintain an audit trail of every reasoning step and action, making the decision process transparent and reviewable."
+              "text": "An AI agent makes decisions through a reasoning loop: it receives an input or goal, retrieves relevant context from memory, uses the LLM to decompose the task and identify the best next action, executes that action via a tool call, observes the result, and then reasons again about what to do next. This loop continues until the task is complete or a human escalation is triggered. The LLM in an agent is not generating conversational text - it is performing structured reasoning: classifying inputs, evaluating options against a defined policy, selecting tools, and determining when a decision is outside its authority. Well-designed agents also maintain an audit trail of every reasoning step and action, making the decision process transparent and reviewable."
             }
           },
           {
@@ -91,7 +91,7 @@
             "name": "Can an AI agent take actions without human approval?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes — within the boundaries defined during deployment. Every enterprise agent deployment includes a human-in-the-loop policy that specifies which action types can be executed autonomously and which require approval. For example, an agent might autonomously update a customer record, send a standard notification, or route a ticket — but require human approval to issue a refund, modify a contract, or cancel an order. These policies are configurable and can be adjusted over time as confidence in the agent's accuracy increases. Regulated industries typically start with narrower autonomy boundaries and expand them incrementally as audit results validate agent performance."
+              "text": "Yes - within the boundaries defined during deployment. Every enterprise agent deployment includes a human-in-the-loop policy that specifies which action types can be executed autonomously and which require approval. For example, an agent might autonomously update a customer record, send a standard notification, or route a ticket - but require human approval to issue a refund, modify a contract, or cancel an order. These policies are configurable and can be adjusted over time as confidence in the agent's accuracy increases. Regulated industries typically start with narrower autonomy boundaries and expand them incrementally as audit results validate agent performance."
             }
           },
           {
@@ -99,7 +99,7 @@
             "name": "How long does it take to build an enterprise AI agent?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A production-ready enterprise AI agent for a well-defined use case can be deployed in 30–90 days. The timeline depends on the complexity of the integrations required (connecting to your ERP, CRM, or data warehouse), the volume and readiness of proprietary knowledge that needs to be ingested into the memory layer, the number of decision types the agent needs to handle, and the governance and testing requirements specific to your industry. Simple agents with one or two integrations and a narrow task scope can reach production in 30 days. Complex multi-system agents with compliance requirements in regulated industries typically require 60–90 days. The constraint is rarely the AI itself — it is data readiness and integration work."
+              "text": "A production-ready enterprise AI agent for a well-defined use case can be deployed in 30–90 days. The timeline depends on the complexity of the integrations required (connecting to your ERP, CRM, or data warehouse), the volume and readiness of proprietary knowledge that needs to be ingested into the memory layer, the number of decision types the agent needs to handle, and the governance and testing requirements specific to your industry. Simple agents with one or two integrations and a narrow task scope can reach production in 30 days. Complex multi-system agents with compliance requirements in regulated industries typically require 60–90 days. The constraint is rarely the AI itself - it is data readiness and integration work."
             }
           },
           {
@@ -115,7 +115,7 @@
             "name": "Is an AI agent the same as an RPA bot?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "No — they solve different problems. RPA (Robotic Process Automation) bots execute deterministic, rule-based workflows: they follow a fixed script to perform repetitive tasks like copying data between systems, filling forms, or running reports. RPA breaks when the process changes, when an exception occurs, or when input data is unstructured. An AI agent, by contrast, can handle unstructured inputs, reason about exceptions, adapt to process variations, and make judgment calls. An AI agent can do everything an RPA bot can do plus handle the 20–30% of cases that fall outside the script. Many enterprises deploy AI agents to replace or augment RPA workflows, capturing the value of automation for complex, variable processes that RPA cannot reliably handle."
+              "text": "No - they solve different problems. RPA (Robotic Process Automation) bots execute deterministic, rule-based workflows: they follow a fixed script to perform repetitive tasks like copying data between systems, filling forms, or running reports. RPA breaks when the process changes, when an exception occurs, or when input data is unstructured. An AI agent, by contrast, can handle unstructured inputs, reason about exceptions, adapt to process variations, and make judgment calls. An AI agent can do everything an RPA bot can do plus handle the 20–30% of cases that fall outside the script. Many enterprises deploy AI agents to replace or augment RPA workflows, capturing the value of automation for complex, variable processes that RPA cannot reliably handle."
             }
           }
         ]
@@ -157,7 +157,7 @@ a{text-decoration:none;color:inherit;}img{max-width:100%;}
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:48px;width:auto;}
+.nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -259,7 +259,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
+  <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="nav-cta">Book a Governance Review</a>
 </nav>
 
 <div class="pg-wrap">
@@ -268,9 +268,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-hero">
     <div class="pg-badge">AI Fundamentals &middot; Education</div>
     <h1 class="pg-h1">How AI Agents Work: <strong>A Plain-English Technical Guide</strong></h1>
-    <p class="pg-sub">The perception&ndash;reasoning&ndash;action loop explained for technically curious executives. Understand why an AI agent is architecturally different from a chatbot, an LLM, and a workflow automation tool &mdash; and why those differences matter for enterprise deployment.</p>
+    <p class="pg-sub">The perception&ndash;reasoning&ndash;action loop explained for technically curious executives. Understand why an AI agent is architecturally different from a chatbot, an LLM, and a workflow automation tool - and why those differences matter for enterprise deployment.</p>
     <div class="pg-btns">
-      <a href="/assessment" class="btn-p">Talk to an AI Architect &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Talk to an AI Architect &rarr;</a>
       <a href="/platform/custom-ai-agents" class="btn-o">See How We Build Agents</a>
     </div>
     <div class="stats-row">
@@ -293,8 +293,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">How It Works</div>
     <h2 class="sec-h2">The Core Architecture: Three Layers Every Agent Has</h2>
-    <p class="sec-p">Every enterprise AI agent — regardless of the domain it operates in, the LLM powering it, or the systems it connects to — is built on the same three-layer architecture: Perception, Reasoning, and Action. Understanding these three layers is the foundation for understanding why agents are categorically different from simpler AI tools.</p>
-    <p class="sec-p">The loop is continuous: the agent perceives a new input, reasons about what it means and what to do, takes an action, observes the result of that action, and then perceives the updated state of the world and begins again. This loop runs at machine speed — sub-second for simple decisions, a few seconds for complex multi-step tasks that require chaining multiple tool calls and reasoning steps.</p>
+    <p class="sec-p">Every enterprise AI agent - regardless of the domain it operates in, the LLM powering it, or the systems it connects to - is built on the same three-layer architecture: Perception, Reasoning, and Action. Understanding these three layers is the foundation for understanding why agents are categorically different from simpler AI tools.</p>
+    <p class="sec-p">The loop is continuous: the agent perceives a new input, reasons about what it means and what to do, takes an action, observes the result of that action, and then perceives the updated state of the world and begins again. This loop runs at machine speed - sub-second for simple decisions, a few seconds for complex multi-step tasks that require chaining multiple tool calls and reasoning steps.</p>
     <p class="sec-p">What makes enterprise agents powerful is not any one of these layers in isolation but the combination. A language model alone gives you perception and some reasoning, but no action. An RPA bot gives you action, but no real perception or adaptive reasoning. An agent combines all three, which is why it can handle both the routine and the exceptional.</p>
     <div class="card-grid">
       <div class="pg-card">
@@ -305,12 +305,12 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="pg-card">
         <div class="pg-card-icon">&#129504;</div>
         <h3>Layer 2: Reasoning</h3>
-        <p>The agent uses the LLM as a reasoning engine — not for conversation, but for structured decision-making and task decomposition. Given the perceived inputs and the available context, the reasoning layer determines: what category of task is this, what information is still missing, which tool should be called next, is this within my authority to decide autonomously, and what is the best action to take toward the defined goal. This reasoning is often multi-step and recursive, with the agent revising its plan as new information arrives.</p>
+        <p>The agent uses the LLM as a reasoning engine - not for conversation, but for structured decision-making and task decomposition. Given the perceived inputs and the available context, the reasoning layer determines: what category of task is this, what information is still missing, which tool should be called next, is this within my authority to decide autonomously, and what is the best action to take toward the defined goal. This reasoning is often multi-step and recursive, with the agent revising its plan as new information arrives.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#9889;</div>
         <h3>Layer 3: Action</h3>
-        <p>The agent takes concrete actions in the world through tool calls: writing a record to a CRM, triggering a downstream workflow, querying a live database, sending a notification or email, updating a case status, creating a calendar entry, or escalating to a human reviewer. Actions are the point where AI transitions from producing text to producing outcomes. Every action is logged, auditable, and bounded by the permission policies defined at deployment — the agent cannot take actions outside its defined scope.</p>
+        <p>The agent takes concrete actions in the world through tool calls: writing a record to a CRM, triggering a downstream workflow, querying a live database, sending a notification or email, updating a case status, creating a calendar entry, or escalating to a human reviewer. Actions are the point where AI transitions from producing text to producing outcomes. Every action is logged, auditable, and bounded by the permission policies defined at deployment - the agent cannot take actions outside its defined scope.</p>
       </div>
     </div>
   </section>
@@ -319,7 +319,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Comparison</div>
     <h2 class="sec-h2">Agent vs. Chatbot vs. Workflow Automation</h2>
-    <p class="sec-p">These three categories are frequently conflated in vendor marketing. The distinctions below are architectural, not marketing claims. Understanding them helps you evaluate which category of tool is actually right for the problem you are trying to solve — and avoid paying for agent capabilities when you only need a chatbot, or limiting yourself to a chatbot when you need an agent.</p>
+    <p class="sec-p">These three categories are frequently conflated in vendor marketing. The distinctions below are architectural, not marketing claims. Understanding them helps you evaluate which category of tool is actually right for the problem you are trying to solve - and avoid paying for agent capabilities when you only need a chatbot, or limiting yourself to a chatbot when you need an agent.</p>
     <div class="cmp-wrap">
       <table class="cmp-table">
         <thead>
@@ -388,13 +388,13 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Memory Architecture</div>
     <h2 class="sec-h2">The Four Types of Agent Memory</h2>
-    <p class="sec-p">Memory is what separates an AI agent from a stateless language model call. A model without memory answers every question the same way regardless of who is asking or what has happened before. An enterprise agent with well-designed memory gives answers that are calibrated to the specific customer, case, domain, and learned procedure — which is why custom agents consistently outperform generic AI on business tasks.</p>
+    <p class="sec-p">Memory is what separates an AI agent from a stateless language model call. A model without memory answers every question the same way regardless of who is asking or what has happened before. An enterprise agent with well-designed memory gives answers that are calibrated to the specific customer, case, domain, and learned procedure - which is why custom agents consistently outperform generic AI on business tasks.</p>
     <p class="sec-p">The four memory types work together. A production agent simultaneously draws on its working memory (what is happening right now), episodic memory (what happened before with this entity), semantic memory (what it knows about the domain), and procedural memory (how it should handle this class of situation). The richness of this combined context is what makes agent reasoning qualitatively different from a single LLM API call.</p>
     <div class="card-grid">
       <div class="pg-card">
         <div class="pg-card-icon">&#9889;</div>
         <h3>Working Memory</h3>
-        <p>The current task context — everything the agent is aware of right now. The current customer's ticket, the active loan application, the maintenance request in progress. Working memory is the agent's context window: fast, temporary, and scoped to the active task. When the task is complete, working memory clears. It is the most computationally active memory type and directly shapes every reasoning step the agent takes in real time.</p>
+        <p>The current task context - everything the agent is aware of right now. The current customer's ticket, the active loan application, the maintenance request in progress. Working memory is the agent's context window: fast, temporary, and scoped to the active task. When the task is complete, working memory clears. It is the most computationally active memory type and directly shapes every reasoning step the agent takes in real time.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128196;</div>
@@ -404,12 +404,12 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="pg-card">
         <div class="pg-card-icon">&#128218;</div>
         <h3>Semantic Memory</h3>
-        <p>Knowledge about your domain. Your product catalogue, your pricing, your SOPs, your compliance policies, your client contracts. This is the proprietary knowledge layer that makes a custom agent more accurate than a generic AI — it literally knows more about your business than any off-the-shelf model trained on public data can. Semantic memory is stored as dense vector embeddings and retrieved via semantic search, allowing the agent to find relevant knowledge even when the query doesn't match the exact language of the source document.</p>
+        <p>Knowledge about your domain. Your product catalogue, your pricing, your SOPs, your compliance policies, your client contracts. This is the proprietary knowledge layer that makes a custom agent more accurate than a generic AI - it literally knows more about your business than any off-the-shelf model trained on public data can. Semantic memory is stored as dense vector embeddings and retrieved via semantic search, allowing the agent to find relevant knowledge even when the query doesn't match the exact language of the source document.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#9881;</div>
         <h3>Procedural Memory</h3>
-        <p>Learned skills — not just facts, but processes. How to handle a SWIFT payment exception. How to score a loan application against your specific risk policy. How to route a maintenance request based on asset type, priority, and contractor availability. Procedural memory encodes your workflows as agent capabilities. When a new case arrives, the agent doesn't just retrieve information — it retrieves the appropriate procedure and executes it, step by step, adapting to the specific details of the current situation.</p>
+        <p>Learned skills - not just facts, but processes. How to handle a SWIFT payment exception. How to score a loan application against your specific risk policy. How to route a maintenance request based on asset type, priority, and contractor availability. Procedural memory encodes your workflows as agent capabilities. When a new case arrives, the agent doesn't just retrieve information - it retrieves the appropriate procedure and executes it, step by step, adapting to the specific details of the current situation.</p>
       </div>
     </div>
     <p class="sec-p" style="margin-top:32px;">To go deeper on memory architecture, see our dedicated guide: <a href="/learn/ai-agent-memory" style="color:var(--teal);">How AI Agent Memory Works</a>.</p>
@@ -419,14 +419,14 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Deployment</div>
     <h2 class="sec-h2">How Enterprise Agents Are Deployed</h2>
-    <p class="sec-p">Building an enterprise AI agent is an integration and systems engineering project as much as it is an AI project. The model is the reasoning engine, but the majority of deployment work is connecting the agent to your existing systems, loading it with your proprietary knowledge, and defining the decision logic that governs its behaviour. These three layers — integration, knowledge, and orchestration — must all be well-designed for the agent to perform reliably in production.</p>
+    <p class="sec-p">Building an enterprise AI agent is an integration and systems engineering project as much as it is an AI project. The model is the reasoning engine, but the majority of deployment work is connecting the agent to your existing systems, loading it with your proprietary knowledge, and defining the decision logic that governs its behaviour. These three layers - integration, knowledge, and orchestration - must all be well-designed for the agent to perform reliably in production.</p>
     <p class="sec-p">At Upcore, we structure every enterprise agent deployment around these three layers in sequence. Integration first, because the agent cannot act without access to the systems where outcomes are recorded. Knowledge second, because the agent cannot reason accurately without access to your proprietary domain knowledge. Orchestration third, because the decision logic and human-in-the-loop policies must reflect your specific operational requirements and risk tolerance.</p>
 
     <div class="step-block">
       <div class="step-num">1</div>
       <div class="step-body">
         <h3>Integration Layer</h3>
-        <p>Connect the agent to your internal systems: ERP, CRM, ticketing systems, databases, communication tools, and third-party APIs. The integration layer determines what data the agent can read and what systems it can write to. Every integration is governed by an access control policy — the agent is given the minimum permissions required to perform its defined tasks, nothing more. Standard REST API integrations, database connectors, and webhook handlers cover the vast majority of enterprise system connections.</p>
+        <p>Connect the agent to your internal systems: ERP, CRM, ticketing systems, databases, communication tools, and third-party APIs. The integration layer determines what data the agent can read and what systems it can write to. Every integration is governed by an access control policy - the agent is given the minimum permissions required to perform its defined tasks, nothing more. Standard REST API integrations, database connectors, and webhook handlers cover the vast majority of enterprise system connections.</p>
       </div>
     </div>
 
@@ -442,11 +442,11 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="step-num">3</div>
       <div class="step-body">
         <h3>Orchestration Layer</h3>
-        <p>Define the decision logic, escalation paths, and human override mechanisms. The orchestration layer specifies: what task categories does this agent handle, what is the decision sequence for each task type, at what confidence threshold does the agent act autonomously versus escalate to a human, how are edge cases handled, and what is the audit logging requirement. This is the layer that makes the agent's behaviour predictable, compliant, and aligned with your operational policies — and it is the layer most often underestimated in enterprise AI deployments.</p>
+        <p>Define the decision logic, escalation paths, and human override mechanisms. The orchestration layer specifies: what task categories does this agent handle, what is the decision sequence for each task type, at what confidence threshold does the agent act autonomously versus escalate to a human, how are edge cases handled, and what is the audit logging requirement. This is the layer that makes the agent's behaviour predictable, compliant, and aligned with your operational policies - and it is the layer most often underestimated in enterprise AI deployments.</p>
       </div>
     </div>
 
-    <p class="sec-p">Ready to see this in practice? <a href="/assessment" style="color:var(--teal);">Book a free AI assessment</a> and we will map your target workflow to an agent architecture in a 30-minute session. Or explore our <a href="/platform/custom-ai-agents" style="color:var(--teal);">Custom AI Agent development model</a> to understand how we handle the full deployment pipeline.</p>
+    <p class="sec-p">Ready to see this in practice? <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" style="color:var(--teal);">Book a free AI assessment</a> and we will map your target workflow to an agent architecture in a 30-minute session. Or explore our <a href="/platform/custom-ai-agents" style="color:var(--teal);">Custom AI Agent development model</a> to understand how we handle the full deployment pipeline.</p>
   </section>
 
   <!-- FAQ -->
@@ -462,7 +462,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>A chatbot is a conversational interface that responds to user inputs, typically following a predefined script or using a language model to generate replies. It is reactive: it waits for a user to say something and responds. An AI agent, by contrast, is a goal-directed system that can perceive inputs from multiple sources, reason over those inputs to form a plan, and then take autonomous actions in the world — writing records to a CRM, triggering a workflow, querying a database, sending a notification, or escalating to a human.</p>
+          <p>A chatbot is a conversational interface that responds to user inputs, typically following a predefined script or using a language model to generate replies. It is reactive: it waits for a user to say something and responds. An AI agent, by contrast, is a goal-directed system that can perceive inputs from multiple sources, reason over those inputs to form a plan, and then take autonomous actions in the world - writing records to a CRM, triggering a workflow, querying a database, sending a notification, or escalating to a human.</p>
           <p>A chatbot produces text output; an AI agent produces outcomes. The difference is not one of degree but of architecture: agents have memory, tools, and orchestration logic that chatbots fundamentally lack. A sophisticated chatbot can simulate some agent-like behaviours, but without persistent memory and the ability to take actions in external systems, it remains a conversational interface rather than an autonomous system.</p>
         </div>
       </div>
@@ -473,8 +473,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>An enterprise AI agent requires infrastructure at three levels: a model hosting layer (the LLM that powers reasoning, which can be cloud-hosted or deployed on-premise), a memory layer (vector databases and structured data stores where the agent's knowledge and history live), and a tool integration layer (APIs and connectors to your internal systems — ERP, CRM, databases, communication tools).</p>
-          <p>The total infrastructure footprint depends on your deployment model. Cloud deployments can be stood up quickly using managed services. On-premise deployments require dedicated compute resources for model inference, database infrastructure for memory, and a network integration layer — but keep all data within your enterprise perimeter, which is a hard requirement in regulated industries like banking, insurance, and healthcare.</p>
+          <p>An enterprise AI agent requires infrastructure at three levels: a model hosting layer (the LLM that powers reasoning, which can be cloud-hosted or deployed on-premise), a memory layer (vector databases and structured data stores where the agent's knowledge and history live), and a tool integration layer (APIs and connectors to your internal systems - ERP, CRM, databases, communication tools).</p>
+          <p>The total infrastructure footprint depends on your deployment model. Cloud deployments can be stood up quickly using managed services. On-premise deployments require dedicated compute resources for model inference, database infrastructure for memory, and a network integration layer - but keep all data within your enterprise perimeter, which is a hard requirement in regulated industries like banking, insurance, and healthcare.</p>
         </div>
       </div>
 
@@ -485,7 +485,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>An AI agent makes decisions through a reasoning loop: it receives an input or goal, retrieves relevant context from memory, uses the LLM to decompose the task and identify the best next action, executes that action via a tool call, observes the result, and then reasons again about what to do next. This loop continues until the task is complete or a human escalation is triggered.</p>
-          <p>The LLM in an agent is not generating conversational text — it is performing structured reasoning: classifying inputs, evaluating options against a defined policy, selecting tools, and determining when a decision is outside its authority. Well-designed agents also maintain an audit trail of every reasoning step and action taken, making the decision process transparent and reviewable by compliance teams.</p>
+          <p>The LLM in an agent is not generating conversational text - it is performing structured reasoning: classifying inputs, evaluating options against a defined policy, selecting tools, and determining when a decision is outside its authority. Well-designed agents also maintain an audit trail of every reasoning step and action taken, making the decision process transparent and reviewable by compliance teams.</p>
         </div>
       </div>
 
@@ -506,7 +506,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Yes — within the boundaries defined during deployment. Every enterprise agent deployment includes a human-in-the-loop policy that specifies which action types can be executed autonomously and which require approval. For example, an agent might autonomously update a customer record, send a standard notification, or route a ticket — but require human approval to issue a refund, modify a contract, or cancel an order above a value threshold.</p>
+          <p>Yes - within the boundaries defined during deployment. Every enterprise agent deployment includes a human-in-the-loop policy that specifies which action types can be executed autonomously and which require approval. For example, an agent might autonomously update a customer record, send a standard notification, or route a ticket - but require human approval to issue a refund, modify a contract, or cancel an order above a value threshold.</p>
           <p>These policies are configurable and can be adjusted over time as confidence in the agent's accuracy increases. Regulated industries typically start with narrower autonomy boundaries and expand them incrementally as audit results validate agent performance against the defined accuracy and compliance requirements.</p>
         </div>
       </div>
@@ -518,7 +518,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>A production-ready enterprise AI agent for a well-defined use case can be deployed in 30–90 days. The timeline depends on the complexity of the integrations required, the volume and readiness of proprietary knowledge that needs to be ingested, the number of decision types the agent needs to handle, and the governance and testing requirements specific to your industry.</p>
-          <p>Simple agents with one or two integrations and a narrow task scope can reach production in 30 days. Complex multi-system agents with compliance requirements in regulated industries typically require 60–90 days. The constraint is rarely the AI model itself — it is data readiness, integration engineering, and the accuracy testing required before the agent can take autonomous actions on live data. Upcore's <a href="/platform/30-day-deployment" style="color:var(--teal);">30-Day Deployment</a> programme is designed for well-scoped, high-confidence use cases.</p>
+          <p>Simple agents with one or two integrations and a narrow task scope can reach production in 30 days. Complex multi-system agents with compliance requirements in regulated industries typically require 60–90 days. The constraint is rarely the AI model itself - it is data readiness, integration engineering, and the accuracy testing required before the agent can take autonomous actions on live data. Upcore's <a href="/platform/30-day-deployment" style="color:var(--teal);">30-Day Deployment</a> programme is designed for well-scoped, high-confidence use cases.</p>
         </div>
       </div>
 
@@ -539,7 +539,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>No — they solve different problems. RPA (Robotic Process Automation) bots execute deterministic, rule-based workflows: they follow a fixed script to perform repetitive tasks like copying data between systems, filling forms, or running reports. RPA breaks when the process changes, when an exception occurs, or when input data is unstructured. An AI agent, by contrast, can handle unstructured inputs, reason about exceptions, adapt to process variations, and make judgment calls.</p>
+          <p>No - they solve different problems. RPA (Robotic Process Automation) bots execute deterministic, rule-based workflows: they follow a fixed script to perform repetitive tasks like copying data between systems, filling forms, or running reports. RPA breaks when the process changes, when an exception occurs, or when input data is unstructured. An AI agent, by contrast, can handle unstructured inputs, reason about exceptions, adapt to process variations, and make judgment calls.</p>
           <p>An AI agent can do everything an RPA bot can do, plus handle the 20–30% of cases that fall outside the predefined script. Many enterprises deploy AI agents to replace or augment RPA workflows, capturing the value of automation for complex, variable processes that RPA cannot reliably handle. If your process is 100% deterministic with no exceptions and no unstructured inputs, RPA may be sufficient. If it has variability, judgment, or unstructured data anywhere in the workflow, you likely need an agent.</p>
         </div>
       </div>
@@ -555,25 +555,25 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <a href="/learn/ai-agent-vs-llm" class="rel-card">
         <div class="rel-card-tag">AI Fundamentals</div>
         <h4>AI Agent vs. LLM: The Real Difference</h4>
-        <p>Why an LLM and an AI agent are fundamentally different — and which one you actually need for your use case.</p>
+        <p>Why an LLM and an AI agent are fundamentally different - and which one you actually need for your use case.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
       <a href="/learn/ai-agent-memory" class="rel-card">
         <div class="rel-card-tag">Architecture</div>
         <h4>How AI Agent Memory Works</h4>
-        <p>Episodic, semantic, procedural, and working memory — and why memory is the difference between generic and enterprise-grade AI.</p>
+        <p>Episodic, semantic, procedural, and working memory - and why memory is the difference between generic and enterprise-grade AI.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
       <a href="/platform/custom-ai-agents" class="rel-card">
         <div class="rel-card-tag">Product</div>
         <h4>Custom AI Agent Development</h4>
-        <p>How Upcore builds production-ready enterprise agents — from integration design through to go-live and ongoing optimisation.</p>
+        <p>How Upcore builds production-ready enterprise agents - from integration design through to go-live and ongoing optimisation.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
       <a href="/learn/enterprise-ai-strategy" class="rel-card">
         <div class="rel-card-tag">Strategy</div>
         <h4>Enterprise AI Strategy Framework</h4>
-        <p>The five decisions every enterprise must make before committing to an AI deployment — a structured framework for leaders.</p>
+        <p>The five decisions every enterprise must make before committing to an AI deployment - a structured framework for leaders.</p>
         <span class="rel-card-arr">&#8594;</span>
       </a>
     </div>
@@ -582,9 +582,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- CTA -->
   <div class="pg-cta">
     <h2>Ready to see an agent in action for your workflow?</h2>
-    <p>Book a free AI assessment and we will map your highest-value workflow to an agent architecture — with a working proof of concept delivered in 30 days.</p>
+    <p>Book a free AI assessment and we will map your highest-value workflow to an agent architecture - with a working proof of concept delivered in 30 days.</p>
     <div class="pg-cta-btns">
-      <a href="/assessment" class="btn-p">Book a Free Assessment &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Free Assessment &rarr;</a>
       <a href="/build-your-demo" class="btn-o">Build a Free Demo</a>
     </div>
   </div>
@@ -615,7 +615,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/agent-builder">Agent Builder</a></li>
         <li><a href="/insights">Insights &amp; Blog</a></li>
         <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/assessment">Book a Discovery Call</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Book a Discovery Call</a></li>
       </ul>
     </div>
     <div>
@@ -625,7 +625,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>

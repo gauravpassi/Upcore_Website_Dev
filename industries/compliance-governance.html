@@ -34,7 +34,7 @@
   <meta property="og:image" content="https://www.upcoretech.com/upcore-logo.png"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="AI Compliance & Governance for Enterprise | Upcore"/>
-  <meta name="twitter:description" content="The definitive guide for enterprise procurement and legal teams asking &quot;can we put our data in this AI vendor's cloud?&quot; Covers BFSI, healthcare, and government AI compliance requirements — with on-premise deployment as the answer."/>
+  <meta name="twitter:description" content="The definitive guide for enterprise procurement and legal teams asking &quot;can we put our data in this AI vendor's cloud?&quot; Covers BFSI, healthcare, and government AI compliance requirements - with on-premise deployment as the answer."/>
   <meta name="twitter:image" content="https://www.upcoretech.com/upcore-logo.png"/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -48,7 +48,7 @@
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": "Enterprise AI Compliance & Governance: Why \"We Can't Put Our Data in the Cloud\" Is the Right Instinct",
-    "description": "The definitive guide for enterprise procurement and legal teams navigating AI compliance requirements across BFSI, healthcare, and government — with on-premise deployment as the architectural answer.",
+    "description": "The definitive guide for enterprise procurement and legal teams navigating AI compliance requirements across BFSI, healthcare, and government - with on-premise deployment as the architectural answer.",
     "author": {
       "@type": "Organization",
       "name": "Upcore Technologies",
@@ -77,7 +77,7 @@
         "name": "What is the difference between a Data Processing Agreement and a data residency guarantee?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A Data Processing Agreement (DPA) is a contract between a data controller and a data processor that establishes obligations around how data is handled. It specifies purposes of processing, security measures, sub-processor obligations, and data subject rights. A DPA is a legal instrument. A data residency guarantee, by contrast, is an architectural commitment — a promise that data will never be processed outside a defined geographic or network boundary. The critical difference is enforceability. A DPA can be breached; an architectural constraint cannot. If a vendor's infrastructure processes your data in a US data centre and your DPA says it should not leave India, you have a contractual remedy after the breach — but the breach still occurred. On-premise deployment eliminates this class of risk entirely: if the model runs on your hardware inside your network, there is no possible jurisdiction issue regardless of what any contract does or does not say."
+          "text": "A Data Processing Agreement (DPA) is a contract between a data controller and a data processor that establishes obligations around how data is handled. It specifies purposes of processing, security measures, sub-processor obligations, and data subject rights. A DPA is a legal instrument. A data residency guarantee, by contrast, is an architectural commitment - a promise that data will never be processed outside a defined geographic or network boundary. The critical difference is enforceability. A DPA can be breached; an architectural constraint cannot. If a vendor's infrastructure processes your data in a US data centre and your DPA says it should not leave India, you have a contractual remedy after the breach - but the breach still occurred. On-premise deployment eliminates this class of risk entirely: if the model runs on your hardware inside your network, there is no possible jurisdiction issue regardless of what any contract does or does not say."
         }
       },
       {
@@ -85,7 +85,7 @@
         "name": "Can we use a private cloud deployment (e.g., AWS GovCloud) instead of on-premise?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Private cloud deployments such as AWS GovCloud, Azure Government, or Google Cloud's assured workloads offering address some compliance concerns but not all. These environments restrict data processing to specific geographic regions and limit access to US-cleared personnel (in the case of US government workloads) or equivalent in other jurisdictions. They satisfy data residency requirements in many cases. However, they do not satisfy all enterprise and regulatory requirements. The infrastructure is still managed by a third party — which means the hypervisor, the storage layer, and the networking infrastructure are outside your direct control. For regulated entities under RBI outsourcing guidelines or UK FCA SYSC 8, the question is not just where the data is, but who has administrative access to the underlying infrastructure. For the most stringent compliance requirements — particularly in defence, central banking, and tier-1 healthcare — on-premise deployment on institution-owned or institution-operated hardware remains the only fully compliant option."
+          "text": "Private cloud deployments such as AWS GovCloud, Azure Government, or Google Cloud's assured workloads offering address some compliance concerns but not all. These environments restrict data processing to specific geographic regions and limit access to US-cleared personnel (in the case of US government workloads) or equivalent in other jurisdictions. They satisfy data residency requirements in many cases. However, they do not satisfy all enterprise and regulatory requirements. The infrastructure is still managed by a third party - which means the hypervisor, the storage layer, and the networking infrastructure are outside your direct control. For regulated entities under RBI outsourcing guidelines or UK FCA SYSC 8, the question is not just where the data is, but who has administrative access to the underlying infrastructure. For the most stringent compliance requirements - particularly in defence, central banking, and tier-1 healthcare - on-premise deployment on institution-owned or institution-operated hardware remains the only fully compliant option."
         }
       },
       {
@@ -93,7 +93,7 @@
         "name": "What does GDPR Article 25 require for AI deployments?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "GDPR Article 25 establishes the principle of data protection by design and by default. For AI deployments, this means: first, that data minimisation must be built into the system architecture — the AI should process only the minimum personal data necessary for the specified purpose, not broad data sets because they might be useful. Second, that technical and organisational measures to protect personal data must be implemented from the outset of system design, not bolted on afterward. Third, that by default the system should process the least personal data necessary. In practice, Article 25 compliance for AI requires documented decisions about what data is processed, why, and what technical controls prevent over-processing. It also interacts with Article 22, which requires that individuals not be subject to solely automated decisions with significant effects without human oversight — highly relevant for credit, insurance, and HR AI applications. Cloud AI systems that process personal data at inference time without documenting the minimum necessary standard or the automated decision-making logic create significant Article 25 exposure."
+          "text": "GDPR Article 25 establishes the principle of data protection by design and by default. For AI deployments, this means: first, that data minimisation must be built into the system architecture - the AI should process only the minimum personal data necessary for the specified purpose, not broad data sets because they might be useful. Second, that technical and organisational measures to protect personal data must be implemented from the outset of system design, not bolted on afterward. Third, that by default the system should process the least personal data necessary. In practice, Article 25 compliance for AI requires documented decisions about what data is processed, why, and what technical controls prevent over-processing. It also interacts with Article 22, which requires that individuals not be subject to solely automated decisions with significant effects without human oversight - highly relevant for credit, insurance, and HR AI applications. Cloud AI systems that process personal data at inference time without documenting the minimum necessary standard or the automated decision-making logic create significant Article 25 exposure."
         }
       },
       {
@@ -106,10 +106,10 @@
       },
       {
         "@type": "Question",
-        "name": "What does HIPAA require from an AI vendor — and what most vendors miss?",
+        "name": "What does HIPAA require from an AI vendor - and what most vendors miss?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "HIPAA requires that any entity processing Protected Health Information (PHI) on behalf of a covered entity must sign a Business Associate Agreement (BAA) and implement technical safeguards at least equivalent to those required of the covered entity itself. Most AI vendors satisfy the BAA requirement contractually — they will sign a BAA. What most vendors miss is the Minimum Necessary Standard: HIPAA requires that PHI shared with a business associate be limited to the minimum necessary to accomplish the intended purpose. When a covered entity sends patient records to a cloud AI endpoint for processing, the question is whether the full record is the minimum necessary. In most cases, the answer is no — but the system architecture doesn't enforce this constraint. Additionally, the HIPAA Security Rule's technical safeguard requirements include audit controls (logging access to PHI), integrity controls (preventing improper alteration or destruction of PHI), and transmission security (protecting PHI in transit). Cloud AI endpoints that process PHI in a shared multi-tenant environment create audit and integrity control challenges that on-premise deployment eliminates."
+          "text": "HIPAA requires that any entity processing Protected Health Information (PHI) on behalf of a covered entity must sign a Business Associate Agreement (BAA) and implement technical safeguards at least equivalent to those required of the covered entity itself. Most AI vendors satisfy the BAA requirement contractually - they will sign a BAA. What most vendors miss is the Minimum Necessary Standard: HIPAA requires that PHI shared with a business associate be limited to the minimum necessary to accomplish the intended purpose. When a covered entity sends patient records to a cloud AI endpoint for processing, the question is whether the full record is the minimum necessary. In most cases, the answer is no - but the system architecture doesn't enforce this constraint. Additionally, the HIPAA Security Rule's technical safeguard requirements include audit controls (logging access to PHI), integrity controls (preventing improper alteration or destruction of PHI), and transmission security (protecting PHI in transit). Cloud AI endpoints that process PHI in a shared multi-tenant environment create audit and integrity control challenges that on-premise deployment eliminates."
         }
       },
       {
@@ -117,7 +117,7 @@
         "name": "What is model explainability and when is it a regulatory requirement?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Model explainability refers to the ability to produce a human-understandable account of why an AI model reached a particular output or decision. It exists on a spectrum from simple feature importance (this input was the biggest driver of this output) to full counterfactual reasoning (the decision would have been different if X had been Y). Regulatory requirements for explainability have expanded significantly. Under GDPR Article 22, individuals subject to solely automated decisions with significant effects have the right to obtain a meaningful explanation of the decision logic. Under the EU AI Act (fully applicable from 2026), high-risk AI systems — including those used for credit scoring, employment decisions, and healthcare — must provide documentation of model logic adequate for oversight by competent authorities. The RBI's guidance on responsible AI in banking requires that credit and risk AI decisions be explainable to the regulator and to affected customers. In healthcare, HIPAA-covered AI systems making clinical decisions face state-level regulations requiring explainability. For enterprise AI compliance purposes, the safe position is to require explainability capability for any AI system touching credit, insurance, employment, healthcare, or law enforcement decisions."
+          "text": "Model explainability refers to the ability to produce a human-understandable account of why an AI model reached a particular output or decision. It exists on a spectrum from simple feature importance (this input was the biggest driver of this output) to full counterfactual reasoning (the decision would have been different if X had been Y). Regulatory requirements for explainability have expanded significantly. Under GDPR Article 22, individuals subject to solely automated decisions with significant effects have the right to obtain a meaningful explanation of the decision logic. Under the EU AI Act (fully applicable from 2026), high-risk AI systems - including those used for credit scoring, employment decisions, and healthcare - must provide documentation of model logic adequate for oversight by competent authorities. The RBI's guidance on responsible AI in banking requires that credit and risk AI decisions be explainable to the regulator and to affected customers. In healthcare, HIPAA-covered AI systems making clinical decisions face state-level regulations requiring explainability. For enterprise AI compliance purposes, the safe position is to require explainability capability for any AI system touching credit, insurance, employment, healthcare, or law enforcement decisions."
         }
       },
       {
@@ -125,7 +125,7 @@
         "name": "How do we handle AI compliance when we operate in multiple jurisdictions?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Multi-jurisdiction AI compliance requires a layered approach. The foundational principle is that the most restrictive applicable jurisdiction governs — if your deployment must satisfy both GDPR and RBI requirements, the architecture must satisfy both simultaneously. The practical approach is to identify the compliance requirements that apply to each jurisdiction where you operate, create a compliance matrix that maps each requirement to an architectural control, and then design the AI deployment to satisfy all controls simultaneously. In practice, this often means: separate on-premise deployments for each major regulatory jurisdiction (an India deployment under RBI rules, a UK deployment under FCA rules); a central governance framework that applies across all deployments (audit logging standards, change management, incident response); and documented data flows that demonstrate no cross-jurisdiction data transfer occurs. Where a single deployment must serve multiple jurisdictions, the architecture should implement the union of all requirements — the strictest data residency rule, the most complete audit logging, the highest explainability standard."
+          "text": "Multi-jurisdiction AI compliance requires a layered approach. The foundational principle is that the most restrictive applicable jurisdiction governs - if your deployment must satisfy both GDPR and RBI requirements, the architecture must satisfy both simultaneously. The practical approach is to identify the compliance requirements that apply to each jurisdiction where you operate, create a compliance matrix that maps each requirement to an architectural control, and then design the AI deployment to satisfy all controls simultaneously. In practice, this often means: separate on-premise deployments for each major regulatory jurisdiction (an India deployment under RBI rules, a UK deployment under FCA rules); a central governance framework that applies across all deployments (audit logging standards, change management, incident response); and documented data flows that demonstrate no cross-jurisdiction data transfer occurs. Where a single deployment must serve multiple jurisdictions, the architecture should implement the union of all requirements - the strictest data residency rule, the most complete audit logging, the highest explainability standard."
         }
       },
       {
@@ -133,7 +133,7 @@
         "name": "Can Upcore help us produce documentation for a regulatory AI audit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. As part of every enterprise AI deployment, Upcore produces a standard documentation package that includes: system architecture diagrams showing data flows, processing locations, and access control boundaries; data processing records meeting GDPR Article 30 requirements; model cards documenting training data sources, performance metrics, known limitations, and intended use cases; integration specifications for all system connections; audit log formats and retention configurations; incident response procedures specific to the AI system; and a risk assessment covering the AI-specific risks relevant to the deployment. For regulated entities facing formal AI audits — from the RBI, FCA, HIPAA auditors, or internal audit functions — this documentation package provides the starting point for demonstrating compliant deployment. For deployments subject to the EU AI Act's high-risk AI system requirements, Upcore's documentation package is structured to align with the technical documentation requirements of Article 11. Additional audit support, including evidence gathering and auditor response preparation, is available as a professional services engagement."
+          "text": "Yes. As part of every enterprise AI deployment, Upcore produces a standard documentation package that includes: system architecture diagrams showing data flows, processing locations, and access control boundaries; data processing records meeting GDPR Article 30 requirements; model cards documenting training data sources, performance metrics, known limitations, and intended use cases; integration specifications for all system connections; audit log formats and retention configurations; incident response procedures specific to the AI system; and a risk assessment covering the AI-specific risks relevant to the deployment. For regulated entities facing formal AI audits - from the RBI, FCA, HIPAA auditors, or internal audit functions - this documentation package provides the starting point for demonstrating compliant deployment. For deployments subject to the EU AI Act's high-risk AI system requirements, Upcore's documentation package is structured to align with the technical documentation requirements of Article 11. Additional audit support, including evidence gathering and auditor response preparation, is available as a professional services engagement."
         }
       }
     ]
@@ -170,7 +170,7 @@ a{text-decoration:none;color:inherit;}img{max-width:100%;}
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:48px;width:auto;}
+.nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -272,7 +272,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
+  <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="nav-cta">Book a Governance Review</a>
 </nav>
 
 <div class="pg-wrap">
@@ -288,9 +288,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-hero">
     <div class="pg-badge">Compliance &middot; Enterprise AI</div>
     <h1 class="pg-h1">Enterprise AI Compliance &amp; Governance:<br/><strong>Why "We Can't Put Our Data in the Cloud" Is the Right Instinct</strong></h1>
-    <p class="pg-sub">The most common reason enterprise AI projects stall is a one-line objection from legal or procurement: "We can't put our data in a vendor's cloud." This instinct is correct. This guide explains exactly why, what the compliance requirements actually are across BFSI, healthcare, and government, and how on-premise AI deployment resolves every objection — architecturally, not just contractually.</p>
+    <p class="pg-sub">The most common reason enterprise AI projects stall is a one-line objection from legal or procurement: "We can't put our data in a vendor's cloud." This instinct is correct. This guide explains exactly why, what the compliance requirements actually are across BFSI, healthcare, and government, and how on-premise AI deployment resolves every objection - architecturally, not just contractually.</p>
     <div class="pg-btns">
-      <a href="/assessment" class="btn-p">Book a Compliance Call &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Compliance Call &rarr;</a>
       <a href="/platform/on-premise-deployment" class="btn-o">See On-Premise Deployment</a>
       <a href="/ai-engineering-governance" class="btn-o">AI Engineering Governance &rarr;</a>
     </div>
@@ -314,26 +314,26 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- SECTION 1: The Compliance Objection Is Justified -->
   <section class="pg-section">
     <div class="sec-label">The Risk Is Real</div>
-    <h2 class="sec-h2">The Compliance Objection Is Not FUD — It's Justified</h2>
+    <h2 class="sec-h2">The Compliance Objection Is Not FUD - It's Justified</h2>
 
-    <p class="sec-p">When your legal team says "we can't put our data in a vendor's cloud," they are identifying a genuine architectural risk, not an irrational fear of new technology. Here is what actually happens when an enterprise sends data to a cloud AI endpoint: inference calls contain your data in plaintext at the moment of processing. The vendor's servers — not your servers — perform the computation. If those servers are in a different jurisdiction, your data has crossed a border. If the vendor's infrastructure is multi-tenant (as virtually all SaaS AI platforms are), your data co-exists on physical infrastructure with other customers' data. The vendor's security posture, access control practices, breach history, and sub-processor relationships all become your compliance risk the moment data leaves your perimeter. None of this is mitigated by an enterprise licence agreement or a security questionnaire.</p>
+    <p class="sec-p">When your legal team says "we can't put our data in a vendor's cloud," they are identifying a genuine architectural risk, not an irrational fear of new technology. Here is what actually happens when an enterprise sends data to a cloud AI endpoint: inference calls contain your data in plaintext at the moment of processing. The vendor's servers - not your servers - perform the computation. If those servers are in a different jurisdiction, your data has crossed a border. If the vendor's infrastructure is multi-tenant (as virtually all SaaS AI platforms are), your data co-exists on physical infrastructure with other customers' data. The vendor's security posture, access control practices, breach history, and sub-processor relationships all become your compliance risk the moment data leaves your perimeter. None of this is mitigated by an enterprise licence agreement or a security questionnaire.</p>
 
-    <p class="sec-p">The specific regulatory frameworks that create this problem are not vague or aspirational — they are specific, binding obligations with enforcement teeth. RBI Master Directions on Outsourcing of IT Services require that regulated entities maintain control over data and that vendors permit RBI inspection at any time. GDPR Article 25 requires data protection by design, meaning technical measures — not just contractual ones — must prevent over-processing and data exposure. HIPAA's Minimum Necessary Standard requires that PHI shared with any vendor be limited to the absolute minimum required for the stated purpose — not "whatever the AI model needs to work." The UK FCA's SYSC 8 operational resilience rules require firms to demonstrate they can maintain critical business functions even in scenarios involving third-party failure. Each of these frameworks draws a meaningful distinction between where your data lives legally (governed by a contract) and where it lives architecturally (governed by physics).</p>
+    <p class="sec-p">The specific regulatory frameworks that create this problem are not vague or aspirational - they are specific, binding obligations with enforcement teeth. RBI Master Directions on Outsourcing of IT Services require that regulated entities maintain control over data and that vendors permit RBI inspection at any time. GDPR Article 25 requires data protection by design, meaning technical measures - not just contractual ones - must prevent over-processing and data exposure. HIPAA's Minimum Necessary Standard requires that PHI shared with any vendor be limited to the absolute minimum required for the stated purpose - not "whatever the AI model needs to work." The UK FCA's SYSC 8 operational resilience rules require firms to demonstrate they can maintain critical business functions even in scenarios involving third-party failure. Each of these frameworks draws a meaningful distinction between where your data lives legally (governed by a contract) and where it lives architecturally (governed by physics).</p>
 
-    <p class="sec-p">This is why "we have a DPA" is not a compliance answer — it is a legal remedy after a compliance failure. A Data Processing Agreement is a contract. It specifies what a vendor is obligated to do with your data; it does not prevent the vendor from being technically capable of doing the wrong thing. Data residency requirements in RBI guidelines, GDPR, and HIPAA demand that data never leave a specific jurisdiction or network perimeter — regardless of what contracts say, because a court order, a subpoena, or a security breach can override any contract. The only architecturally sound answer to data residency requirements is a deployment model where data never leaves your controlled environment in the first place. That means on-premise AI deployment — not better contracts with cloud vendors.</p>
+    <p class="sec-p">This is why "we have a DPA" is not a compliance answer - it is a legal remedy after a compliance failure. A Data Processing Agreement is a contract. It specifies what a vendor is obligated to do with your data; it does not prevent the vendor from being technically capable of doing the wrong thing. Data residency requirements in RBI guidelines, GDPR, and HIPAA demand that data never leave a specific jurisdiction or network perimeter - regardless of what contracts say, because a court order, a subpoena, or a security breach can override any contract. The only architecturally sound answer to data residency requirements is a deployment model where data never leaves your controlled environment in the first place. That means on-premise AI deployment - not better contracts with cloud vendors.</p>
   </section>
 
   <!-- SECTION 2: The Compliance Checklist -->
   <section class="pg-section">
     <div class="sec-label">Compliance Dimensions</div>
     <h2 class="sec-h2">The Enterprise AI Compliance Checklist</h2>
-    <p class="sec-p">Before any enterprise AI vendor reaches procurement approval, six compliance dimensions must be evaluated. These are not boxes to tick — each one represents a distinct class of regulatory risk.</p>
+    <p class="sec-p">Before any enterprise AI vendor reaches procurement approval, six compliance dimensions must be evaluated. These are not boxes to tick - each one represents a distinct class of regulatory risk.</p>
 
     <div class="card-grid">
       <div class="pg-card">
         <div class="pg-card-icon">&#127759;</div>
         <h3>Data Residency</h3>
-        <p>Where does model inference happen? Where is training data stored? Does data cross jurisdictional borders during processing? Can the vendor provide an architectural diagram showing where every byte of your data is processed? A contractual statement is not sufficient — require a network diagram.</p>
+        <p>Where does model inference happen? Where is training data stored? Does data cross jurisdictional borders during processing? Can the vendor provide an architectural diagram showing where every byte of your data is processed? A contractual statement is not sufficient - require a network diagram.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128274;</div>
@@ -343,22 +343,22 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="pg-card">
         <div class="pg-card-icon">&#128196;</div>
         <h3>Audit Logging</h3>
-        <p>Is every inference call logged with timestamp, input data hash, output, and requesting system? Can you produce a complete, tamper-evident audit trail for a regulatory review? Who owns the logs — you or the vendor? What are the retention policies and can you enforce your own?</p>
+        <p>Is every inference call logged with timestamp, input data hash, output, and requesting system? Can you produce a complete, tamper-evident audit trail for a regulatory review? Who owns the logs - you or the vendor? What are the retention policies and can you enforce your own?</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128269;</div>
         <h3>Model Explainability</h3>
-        <p>Can the AI system explain the reasoning chain behind a specific decision in terms a regulator will accept? For credit, insurance, healthcare, and employment AI, explainability is not optional — it is a regulatory requirement under GDPR, the EU AI Act, and RBI guidance on responsible AI.</p>
+        <p>Can the AI system explain the reasoning chain behind a specific decision in terms a regulator will accept? For credit, insurance, healthcare, and employment AI, explainability is not optional - it is a regulatory requirement under GDPR, the EU AI Act, and RBI guidance on responsible AI.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128680;</div>
         <h3>Incident Response</h3>
-        <p>What is the vendor's documented response procedure when a security incident affects your data? What is the notification timeline — 24 hours, 72 hours? Who bears liability for regulatory penalties triggered by a vendor breach? What is the SLA for remediation and evidence provision?</p>
+        <p>What is the vendor's documented response procedure when a security incident affects your data? What is the notification timeline - 24 hours, 72 hours? Who bears liability for regulatory penalties triggered by a vendor breach? What is the SLA for remediation and evidence provision?</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128465;</div>
         <h3>Data Deletion</h3>
-        <p>When you terminate the relationship, can you verify that your data has been deleted from the vendor's infrastructure — including backups, training datasets, and model weights? Do you have contractual and architectural guarantees, or only contractual? An architectural guarantee means your data was never there to delete.</p>
+        <p>When you terminate the relationship, can you verify that your data has been deleted from the vendor's infrastructure - including backups, training datasets, and model weights? Do you have contractual and architectural guarantees, or only contractual? An architectural guarantee means your data was never there to delete.</p>
       </div>
     </div>
   </section>
@@ -371,21 +371,21 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
 
     <div class="sector-block">
       <h3>BFSI: RBI, SEBI, and FCA Requirements</h3>
-      <p>The Reserve Bank of India's outsourcing guidelines require that banks and NBFCs maintain control over their data and can retrieve it at any time, irrespective of the outsourcing arrangement. More specifically, any IT service provider — and an AI vendor is an IT service provider — must agree to permit RBI inspection and must not impede the regulator's ability to supervise the institution. Data localisation for financial data is not a recommendation under these guidelines; it is a condition of compliance.</p>
-      <p>SEBI's circular on cloud adoption for regulated entities (2023) requires data localisation for sensitive financial data and mandates that regulated entities conduct due diligence on cloud service providers before onboarding. Critically, SEBI requires that regulated entities maintain the ability to switch service providers without disruption — a requirement that most AI SaaS platforms cannot satisfy because customer data and fine-tuned model weights are typically locked to the vendor's infrastructure.</p>
-      <p>The UK FCA's SYSC 8 rules require that firms ensure their operational resilience is not compromised by third-party arrangements. For AI systems that have become part of core business processes, this means the firm must be able to demonstrate it can either continue operating if the AI vendor becomes unavailable or switch to an alternative within an acceptable recovery time objective. On-premise deployment satisfies this requirement because the AI system is entirely within the firm's operational boundary — vendor availability is irrelevant.</p>
+      <p>The Reserve Bank of India's outsourcing guidelines require that banks and NBFCs maintain control over their data and can retrieve it at any time, irrespective of the outsourcing arrangement. More specifically, any IT service provider - and an AI vendor is an IT service provider - must agree to permit RBI inspection and must not impede the regulator's ability to supervise the institution. Data localisation for financial data is not a recommendation under these guidelines; it is a condition of compliance.</p>
+      <p>SEBI's circular on cloud adoption for regulated entities (2023) requires data localisation for sensitive financial data and mandates that regulated entities conduct due diligence on cloud service providers before onboarding. Critically, SEBI requires that regulated entities maintain the ability to switch service providers without disruption - a requirement that most AI SaaS platforms cannot satisfy because customer data and fine-tuned model weights are typically locked to the vendor's infrastructure.</p>
+      <p>The UK FCA's SYSC 8 rules require that firms ensure their operational resilience is not compromised by third-party arrangements. For AI systems that have become part of core business processes, this means the firm must be able to demonstrate it can either continue operating if the AI vendor becomes unavailable or switch to an alternative within an acceptable recovery time objective. On-premise deployment satisfies this requirement because the AI system is entirely within the firm's operational boundary - vendor availability is irrelevant.</p>
     </div>
 
     <div class="sector-block">
       <h3>Healthcare: HIPAA BAA Requirements and the Minimum Necessary Standard</h3>
-      <p>HIPAA requires that any vendor processing Protected Health Information (PHI) on behalf of a covered entity signs a Business Associate Agreement and implements technical safeguards equivalent to the covered entity's own requirements. Most AI vendors will sign a BAA — but signing a BAA is a contractual act, not a technical one. The question is whether the vendor's architecture actually implements the required technical safeguards: audit controls that log every access to PHI, integrity controls that prevent improper alteration of PHI, and transmission security that protects PHI in transit. Multi-tenant cloud AI platforms process PHI on shared infrastructure — which means PHI from multiple covered entities is processed in the same environment. The audit and integrity control requirements become extremely difficult to satisfy in a shared environment.</p>
-      <p>The Minimum Necessary Standard requires that covered entities limit PHI shared with any business associate to the minimum necessary to accomplish the intended purpose. In practice, this means that before sending patient records to a cloud AI endpoint, the covered entity must have a documented analysis showing that the full record content is necessary for the AI function — and that analysis will usually conclude that it is not. Anonymisation or pseudonymisation before inference is one approach, but it degrades model performance. On-premise deployment — where PHI never leaves the covered entity's own infrastructure — eliminates the Minimum Necessary analysis entirely, because PHI is not being shared with anyone.</p>
+      <p>HIPAA requires that any vendor processing Protected Health Information (PHI) on behalf of a covered entity signs a Business Associate Agreement and implements technical safeguards equivalent to the covered entity's own requirements. Most AI vendors will sign a BAA - but signing a BAA is a contractual act, not a technical one. The question is whether the vendor's architecture actually implements the required technical safeguards: audit controls that log every access to PHI, integrity controls that prevent improper alteration of PHI, and transmission security that protects PHI in transit. Multi-tenant cloud AI platforms process PHI on shared infrastructure - which means PHI from multiple covered entities is processed in the same environment. The audit and integrity control requirements become extremely difficult to satisfy in a shared environment.</p>
+      <p>The Minimum Necessary Standard requires that covered entities limit PHI shared with any business associate to the minimum necessary to accomplish the intended purpose. In practice, this means that before sending patient records to a cloud AI endpoint, the covered entity must have a documented analysis showing that the full record content is necessary for the AI function - and that analysis will usually conclude that it is not. Anonymisation or pseudonymisation before inference is one approach, but it degrades model performance. On-premise deployment - where PHI never leaves the covered entity's own infrastructure - eliminates the Minimum Necessary analysis entirely, because PHI is not being shared with anyone.</p>
     </div>
 
     <div class="sector-block">
       <h3>Government and Public Sector: Data Classification and Sovereignty</h3>
-      <p>Government data classification requirements are frequently the most restrictive of any sector. In India, data classified under the Official Secrets Act or the IT Act's sensitive personal data provisions must be processed on sovereign infrastructure. The Digital Personal Data Protection Act (DPDPA) 2023 creates localisation requirements for certain categories of personal data and establishes significant penalties for cross-border transfers that do not satisfy the prescribed conditions. For government AI deployments involving classified or sensitive data, cloud deployment — even in a private cloud operated by an Indian company — may not satisfy the classification requirements that mandate government-owned or government-operated infrastructure.</p>
-      <p>For government deployments where the AI system will process data at restricted classification levels or above, air-gapped on-premise deployment is frequently the only compliant option. Air-gapping means the AI infrastructure has no network connection to the internet — inference requests come from within the classified network, and outputs stay within the classified network. Upcore has designed and deployed air-gapped AI architectures for government clients where the compliance requirement is absolute data isolation, not merely strong controls over data that still flows.</p>
+      <p>Government data classification requirements are frequently the most restrictive of any sector. In India, data classified under the Official Secrets Act or the IT Act's sensitive personal data provisions must be processed on sovereign infrastructure. The Digital Personal Data Protection Act (DPDPA) 2023 creates localisation requirements for certain categories of personal data and establishes significant penalties for cross-border transfers that do not satisfy the prescribed conditions. For government AI deployments involving classified or sensitive data, cloud deployment - even in a private cloud operated by an Indian company - may not satisfy the classification requirements that mandate government-owned or government-operated infrastructure.</p>
+      <p>For government deployments where the AI system will process data at restricted classification levels or above, air-gapped on-premise deployment is frequently the only compliant option. Air-gapping means the AI infrastructure has no network connection to the internet - inference requests come from within the classified network, and outputs stay within the classified network. Upcore has designed and deployed air-gapped AI architectures for government clients where the compliance requirement is absolute data isolation, not merely strong controls over data that still flows.</p>
     </div>
   </section>
 
@@ -393,7 +393,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Architecture Comparison</div>
     <h2 class="sec-h2">How On-Premise AI Deployment Satisfies Every Compliance Requirement</h2>
-    <p class="sec-p">Every compliance objection raised by legal and procurement teams maps to a specific architectural property. On-premise deployment resolves each objection at the infrastructure level — not through better contracts, but through better architecture.</p>
+    <p class="sec-p">Every compliance objection raised by legal and procurement teams maps to a specific architectural property. On-premise deployment resolves each objection at the infrastructure level - not through better contracts, but through better architecture.</p>
 
     <div class="cmp-wrap">
       <table class="cmp-table">
@@ -408,7 +408,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <tr>
             <td><strong>Data Residency</strong></td>
             <td class="no">Data processed in vendor's infrastructure, potentially multi-jurisdiction; contractual restriction only</td>
-            <td class="yes">All inference runs inside your network boundary — data never leaves; architectural guarantee</td>
+            <td class="yes">All inference runs inside your network boundary - data never leaves; architectural guarantee</td>
           </tr>
           <tr>
             <td><strong>Access Control</strong></td>
@@ -422,8 +422,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           </tr>
           <tr>
             <td><strong>Model Explainability</strong></td>
-            <td class="partial">Limited — depends on vendor's proprietary implementation; often a black box to the customer</td>
-            <td class="yes">Full — reasoning chain logged and auditable by your team; model weights and architecture fully documented</td>
+            <td class="partial">Limited - depends on vendor's proprietary implementation; often a black box to the customer</td>
+            <td class="yes">Full - reasoning chain logged and auditable by your team; model weights and architecture fully documented</td>
           </tr>
           <tr>
             <td><strong>Regulatory Certification</strong></td>
@@ -432,8 +432,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           </tr>
           <tr>
             <td><strong>Data Deletion Guarantee</strong></td>
-            <td class="no">Contractual only — no architectural guarantee; vendor backups and training pipelines may retain data</td>
-            <td class="yes">Architectural — data never left your environment; no deletion process required because nothing was ever shared</td>
+            <td class="no">Contractual only - no architectural guarantee; vendor backups and training pipelines may retain data</td>
+            <td class="yes">Architectural - data never left your environment; no deletion process required because nothing was ever shared</td>
           </tr>
         </tbody>
       </table>
@@ -448,19 +448,19 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <a href="/platform/on-premise-deployment" class="rel-card">
         <div class="rel-card-tag">Platform</div>
         <h4>On-Premise Deployment</h4>
-        <p>The technical architecture behind compliant AI deployment — how Upcore builds and operates AI inside your network boundary.</p>
+        <p>The technical architecture behind compliant AI deployment - how Upcore builds and operates AI inside your network boundary.</p>
         <span class="rel-card-arr">&rarr;</span>
       </a>
       <a href="/kw/financial-services-ai-agents" class="rel-card">
         <div class="rel-card-tag">Industry Guide</div>
         <h4>AI for Banking &amp; Finance</h4>
-        <p>BFSI-specific compliance and deployment guide — AML, KYC, credit, and customer service AI under RBI and FCA frameworks.</p>
+        <p>BFSI-specific compliance and deployment guide - AML, KYC, credit, and customer service AI under RBI and FCA frameworks.</p>
         <span class="rel-card-arr">&rarr;</span>
       </a>
       <a href="/kw/healthcare-ai-agents" class="rel-card">
         <div class="rel-card-tag">Industry Guide</div>
         <h4>AI for Healthcare</h4>
-        <p>HIPAA-compliant AI for healthcare operations — clinical documentation, patient communications, and diagnostic support.</p>
+        <p>HIPAA-compliant AI for healthcare operations - clinical documentation, patient communications, and diagnostic support.</p>
         <span class="rel-card-arr">&rarr;</span>
       </a>
     </div>
@@ -469,7 +469,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- SECTION 6: FAQ -->
   <section class="pg-section">
     <div class="sec-label">FAQ</div>
-    <h2 class="sec-h2">Enterprise AI Compliance — Frequently Asked Questions</h2>
+    <h2 class="sec-h2">Enterprise AI Compliance - Frequently Asked Questions</h2>
 
     <div class="faq-list">
       <div class="faq-item">
@@ -479,7 +479,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>A Data Processing Agreement (DPA) is a contract between a data controller and a data processor that establishes obligations around how data is handled. It specifies purposes of processing, security measures, sub-processor obligations, and data subject rights. A DPA is a legal instrument.</p>
-          <p>A data residency guarantee, by contrast, is an architectural commitment — a promise that data will never be processed outside a defined geographic or network boundary. The critical difference is enforceability. A DPA can be breached; an architectural constraint cannot. If a vendor's infrastructure processes your data in a US data centre and your DPA says it should not leave India, you have a contractual remedy after the breach — but the breach still occurred.</p>
+          <p>A data residency guarantee, by contrast, is an architectural commitment - a promise that data will never be processed outside a defined geographic or network boundary. The critical difference is enforceability. A DPA can be breached; an architectural constraint cannot. If a vendor's infrastructure processes your data in a US data centre and your DPA says it should not leave India, you have a contractual remedy after the breach - but the breach still occurred.</p>
           <p>On-premise deployment eliminates this class of risk entirely. If the model runs on your hardware inside your network, there is no possible jurisdiction issue regardless of what any contract does or does not say.</p>
         </div>
       </div>
@@ -491,8 +491,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>Private cloud deployments such as AWS GovCloud, Azure Government, or Google Cloud's assured workloads offering address some compliance concerns but not all. These environments restrict data processing to specific geographic regions and limit access to cleared personnel in the relevant jurisdiction. They satisfy data residency requirements in many cases.</p>
-          <p>However, they do not satisfy all enterprise and regulatory requirements. The infrastructure is still managed by a third party — the hypervisor, the storage layer, and the networking infrastructure are outside your direct control. For regulated entities under RBI outsourcing guidelines or UK FCA SYSC 8, the question is not just where the data is, but who has administrative access to the underlying infrastructure.</p>
-          <p>For the most stringent compliance requirements — particularly in central banking, defence, and tier-1 healthcare — on-premise deployment on institution-owned or institution-operated hardware remains the only fully compliant option. Where private cloud can satisfy your specific requirements, Upcore can deploy on your private cloud environment as well as fully on-premise hardware.</p>
+          <p>However, they do not satisfy all enterprise and regulatory requirements. The infrastructure is still managed by a third party - the hypervisor, the storage layer, and the networking infrastructure are outside your direct control. For regulated entities under RBI outsourcing guidelines or UK FCA SYSC 8, the question is not just where the data is, but who has administrative access to the underlying infrastructure.</p>
+          <p>For the most stringent compliance requirements - particularly in central banking, defence, and tier-1 healthcare - on-premise deployment on institution-owned or institution-operated hardware remains the only fully compliant option. Where private cloud can satisfy your specific requirements, Upcore can deploy on your private cloud environment as well as fully on-premise hardware.</p>
         </div>
       </div>
 
@@ -502,9 +502,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>GDPR Article 25 establishes the principle of data protection by design and by default. For AI deployments, this has three practical implications. First, data minimisation must be built into the system architecture — the AI should process only the minimum personal data necessary for the specified purpose, not broad data sets because they might be useful. Second, technical and organisational measures to protect personal data must be implemented from the outset of system design, not bolted on afterward. Third, by default the system should process the least personal data necessary.</p>
-          <p>In practice, Article 25 compliance for AI requires documented decisions about what data is processed, why, and what technical controls prevent over-processing. It also interacts with Article 22, which requires that individuals not be subject to solely automated decisions with significant effects without human oversight — highly relevant for credit, insurance, and HR AI applications.</p>
-          <p>Cloud AI systems that process personal data at inference time without documenting the minimum necessary standard or the automated decision-making logic create significant Article 25 exposure. On-premise deployment doesn't resolve the Article 25 design obligation, but it eliminates the most common source of Article 25 violations — sending more personal data to a third party than is necessary.</p>
+          <p>GDPR Article 25 establishes the principle of data protection by design and by default. For AI deployments, this has three practical implications. First, data minimisation must be built into the system architecture - the AI should process only the minimum personal data necessary for the specified purpose, not broad data sets because they might be useful. Second, technical and organisational measures to protect personal data must be implemented from the outset of system design, not bolted on afterward. Third, by default the system should process the least personal data necessary.</p>
+          <p>In practice, Article 25 compliance for AI requires documented decisions about what data is processed, why, and what technical controls prevent over-processing. It also interacts with Article 22, which requires that individuals not be subject to solely automated decisions with significant effects without human oversight - highly relevant for credit, insurance, and HR AI applications.</p>
+          <p>Cloud AI systems that process personal data at inference time without documenting the minimum necessary standard or the automated decision-making logic create significant Article 25 exposure. On-premise deployment doesn't resolve the Article 25 design obligation, but it eliminates the most common source of Article 25 violations - sending more personal data to a third party than is necessary.</p>
         </div>
       </div>
 
@@ -516,19 +516,19 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <div class="faq-a">
           <p>The Reserve Bank of India's Master Directions on Outsourcing of IT Services (2023) establish that regulated entities must maintain oversight and control over outsourced IT functions. Key requirements include: the regulated entity must retain the ability to access data at all times; the service provider must permit the RBI and the regulated entity to conduct audits and inspections; the outsourcing arrangement must not impede the RBI's ability to supervise the regulated entity; and data localisation requirements must be satisfied.</p>
           <p>For AI deployments, the most direct way to satisfy these requirements is on-premise deployment, where the AI infrastructure is treated as an in-house IT system rather than a third-party outsourcing arrangement. When on-premise deployment is not feasible, at minimum the architecture must ensure: dedicated (not shared) infrastructure; contractual rights to audit the AI vendor's controls; documented data localisation with no cross-border data transfers for personal or financial data; and a documented exit plan that preserves data access and system continuity.</p>
-          <p>Upcore's on-premise deployment model is specifically designed to satisfy the RBI's outsourcing guidelines. The AI infrastructure is installed on the institution's own servers. Upcore's team conducts the initial deployment and provides ongoing support but does not maintain persistent access to the infrastructure. All documentation — architecture diagrams, data flow maps, access control matrices — is provided to the institution for inclusion in their regulatory filings.</p>
+          <p>Upcore's on-premise deployment model is specifically designed to satisfy the RBI's outsourcing guidelines. The AI infrastructure is installed on the institution's own servers. Upcore's team conducts the initial deployment and provides ongoing support but does not maintain persistent access to the infrastructure. All documentation - architecture diagrams, data flow maps, access control matrices - is provided to the institution for inclusion in their regulatory filings.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          What does HIPAA require from an AI vendor — and what most vendors miss?
+          What does HIPAA require from an AI vendor - and what most vendors miss?
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>HIPAA requires that any entity processing Protected Health Information on behalf of a covered entity must sign a Business Associate Agreement and implement technical safeguards at least equivalent to those required of the covered entity. Most AI vendors satisfy the BAA requirement contractually — they will sign a BAA. What most vendors miss is the Minimum Necessary Standard and the technical safeguard requirements.</p>
-          <p>The Minimum Necessary Standard requires that PHI shared with a business associate be limited to the minimum necessary to accomplish the intended purpose. When a covered entity sends patient records to a cloud AI endpoint for processing, the full record is rarely the minimum necessary — but the architecture doesn't enforce this constraint. The covered entity is responsible for ensuring compliance, and most cloud AI endpoints make it technically trivial to send more data than is necessary.</p>
-          <p>The HIPAA Security Rule's technical safeguard requirements include audit controls (logging every access to PHI), integrity controls (preventing improper alteration of PHI), and transmission security. Multi-tenant cloud AI platforms create challenges for each of these. On-premise deployment — where PHI never leaves the covered entity's own infrastructure — satisfies all three technically rather than contractually.</p>
+          <p>HIPAA requires that any entity processing Protected Health Information on behalf of a covered entity must sign a Business Associate Agreement and implement technical safeguards at least equivalent to those required of the covered entity. Most AI vendors satisfy the BAA requirement contractually - they will sign a BAA. What most vendors miss is the Minimum Necessary Standard and the technical safeguard requirements.</p>
+          <p>The Minimum Necessary Standard requires that PHI shared with a business associate be limited to the minimum necessary to accomplish the intended purpose. When a covered entity sends patient records to a cloud AI endpoint for processing, the full record is rarely the minimum necessary - but the architecture doesn't enforce this constraint. The covered entity is responsible for ensuring compliance, and most cloud AI endpoints make it technically trivial to send more data than is necessary.</p>
+          <p>The HIPAA Security Rule's technical safeguard requirements include audit controls (logging every access to PHI), integrity controls (preventing improper alteration of PHI), and transmission security. Multi-tenant cloud AI platforms create challenges for each of these. On-premise deployment - where PHI never leaves the covered entity's own infrastructure - satisfies all three technically rather than contractually.</p>
         </div>
       </div>
 
@@ -539,7 +539,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>Model explainability refers to the ability to produce a human-understandable account of why an AI model reached a particular output or decision. It exists on a spectrum from feature importance (which inputs most influenced this output) to full counterfactual reasoning (what would have had to be different for the output to change).</p>
-          <p>Regulatory requirements for explainability are expanding. Under GDPR Article 22, individuals subject to solely automated decisions with significant effects have the right to obtain a meaningful explanation of the decision logic. Under the EU AI Act, high-risk AI systems — including those used for credit scoring, employment decisions, and healthcare — must provide documentation of model logic adequate for oversight by competent authorities. The RBI's guidance on responsible AI in banking requires that credit and risk AI decisions be explainable to the regulator and to affected customers.</p>
+          <p>Regulatory requirements for explainability are expanding. Under GDPR Article 22, individuals subject to solely automated decisions with significant effects have the right to obtain a meaningful explanation of the decision logic. Under the EU AI Act, high-risk AI systems - including those used for credit scoring, employment decisions, and healthcare - must provide documentation of model logic adequate for oversight by competent authorities. The RBI's guidance on responsible AI in banking requires that credit and risk AI decisions be explainable to the regulator and to affected customers.</p>
           <p>For enterprise AI compliance purposes, require explainability capability for any AI system touching credit, insurance, employment, healthcare, or law enforcement decisions. Cloud AI systems often provide limited explainability because the model architecture and reasoning chain are proprietary. On-premise deployment with full model ownership means the reasoning chain is logged, auditable, and under your control.</p>
         </div>
       </div>
@@ -550,8 +550,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Multi-jurisdiction AI compliance requires a layered approach. The foundational principle is that the most restrictive applicable jurisdiction governs — if your deployment must satisfy both GDPR and RBI requirements, the architecture must satisfy both simultaneously.</p>
-          <p>In practice, this typically means: separate on-premise deployments for each major regulatory jurisdiction, with a central governance framework applying across all deployments (audit logging standards, change management, incident response). Data flows must be documented to demonstrate that no cross-jurisdiction transfer of regulated data occurs. Model governance — the policies governing how models are trained, updated, and retired — must be consistent across jurisdictions while accommodating local regulatory variations.</p>
+          <p>Multi-jurisdiction AI compliance requires a layered approach. The foundational principle is that the most restrictive applicable jurisdiction governs - if your deployment must satisfy both GDPR and RBI requirements, the architecture must satisfy both simultaneously.</p>
+          <p>In practice, this typically means: separate on-premise deployments for each major regulatory jurisdiction, with a central governance framework applying across all deployments (audit logging standards, change management, incident response). Data flows must be documented to demonstrate that no cross-jurisdiction transfer of regulated data occurs. Model governance - the policies governing how models are trained, updated, and retired - must be consistent across jurisdictions while accommodating local regulatory variations.</p>
           <p>Where a single deployment must serve multiple jurisdictions, the architecture should implement the union of all applicable requirements: the strictest data residency rule, the most comprehensive audit logging standard, the highest explainability requirement. Upcore's compliance architecture team can produce a multi-jurisdiction compliance matrix for your specific regulatory footprint as part of the pre-deployment discovery process.</p>
         </div>
       </div>
@@ -563,7 +563,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>Yes. As part of every enterprise AI deployment, Upcore produces a standard documentation package that includes: system architecture diagrams showing data flows, processing locations, and access control boundaries; data processing records meeting GDPR Article 30 requirements; model cards documenting training data sources, performance metrics, known limitations, and intended use cases; integration specifications for all system connections; audit log formats and retention configurations; and incident response procedures specific to the AI system.</p>
-          <p>For regulated entities facing formal AI audits — from the RBI, FCA, HIPAA auditors, or internal audit functions — this documentation package provides the starting point for demonstrating compliant deployment. For deployments subject to the EU AI Act's high-risk AI system requirements, Upcore's documentation package is structured to align with the technical documentation requirements of Article 11.</p>
+          <p>For regulated entities facing formal AI audits - from the RBI, FCA, HIPAA auditors, or internal audit functions - this documentation package provides the starting point for demonstrating compliant deployment. For deployments subject to the EU AI Act's high-risk AI system requirements, Upcore's documentation package is structured to align with the technical documentation requirements of Article 11.</p>
           <p>Additional audit support, including evidence gathering and auditor response preparation, is available as a professional services engagement. In practice, many of Upcore's enterprise clients involve the compliance team early in the deployment process so that documentation requirements are built into the architecture from the start rather than reconstructed afterward.</p>
         </div>
       </div>
@@ -573,9 +573,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- CTA -->
   <div class="pg-cta">
     <h2>Your Legal Team Will Have Questions. <strong>We Have Answers.</strong></h2>
-    <p>Compliance is not a blocker when the deployment model is built around it from the start. Book a 45-minute compliance architecture call with Upcore's team — bring your legal, procurement, and IT stakeholders.</p>
+    <p>Compliance is not a blocker when the deployment model is built around it from the start. Book a 45-minute compliance architecture call with Upcore's team - bring your legal, procurement, and IT stakeholders.</p>
     <div class="pg-cta-btns">
-      <a href="/assessment" class="btn-p">Book a Compliance Call &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Compliance Call &rarr;</a>
       <a href="/platform/on-premise-deployment" class="btn-o">See On-Premise Deployment &rarr;</a>
     </div>
   </div>
@@ -606,7 +606,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/agent-builder">Agent Builder</a></li>
         <li><a href="/insights">Insights &amp; Blog</a></li>
         <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/assessment">Book a Discovery Call</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Book a Discovery Call</a></li>
       </ul>
     </div>
     <div>
@@ -616,7 +616,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>

@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="Upcore Technologies"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="AI Workforce for Real Estate Firms | Upcore Technologies"/>
-  <meta name="twitter:description" content="Custom AI agents for lease abstraction, tenant communications, maintenance dispatch, and deal pipeline management. The full ops loop for real estate teams — automated and on your infrastructure."/>
+  <meta name="twitter:description" content="Custom AI agents for lease abstraction, tenant communications, maintenance dispatch, and deal pipeline management. The full ops loop for real estate teams - automated and on your infrastructure."/>
   <meta name="twitter:image" content="https://www.upcoretech.com/upcore-logo.png"/>
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
@@ -39,7 +39,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "AI Workforce for Real Estate",
-    "description": "Custom AI agents for lease abstraction, tenant communications, maintenance dispatch, and deal pipeline management — deployed on your infrastructure and live in 30 days.",
+    "description": "Custom AI agents for lease abstraction, tenant communications, maintenance dispatch, and deal pipeline management - deployed on your infrastructure and live in 30 days.",
     "provider": {
       "@type": "Organization",
       "name": "Upcore Technologies",
@@ -60,7 +60,7 @@
         "name": "Can the AI agent actually read and extract data from lease PDFs accurately?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — with accuracy levels that, once the model is fine-tuned on your lease document corpus, consistently exceed 95% for standard clause extraction. The agent uses a multi-stage pipeline: first, an OCR layer converts PDF content to structured text, handling both digitally created and scanned documents. Second, a document classification model identifies the document type and the relevant sections. Third, the extraction model identifies and extracts specific data points — commencement date, expiry date, break options, rent review mechanism, rent amount and escalation schedule, service charge obligations, permitted use, and landlord and tenant party details. Fourth, a validation layer cross-checks extracted values for internal consistency (for example, checking that rent escalation intervals are consistent with the review mechanism) and flags anomalies for human review. The model is fine-tuned on examples of your specific lease formats — commercial, residential, or mixed — before deployment. Performance improves as the model processes more of your lease portfolio and the validation rules are refined."
+          "text": "Yes - with accuracy levels that, once the model is fine-tuned on your lease document corpus, consistently exceed 95% for standard clause extraction. The agent uses a multi-stage pipeline: first, an OCR layer converts PDF content to structured text, handling both digitally created and scanned documents. Second, a document classification model identifies the document type and the relevant sections. Third, the extraction model identifies and extracts specific data points - commencement date, expiry date, break options, rent review mechanism, rent amount and escalation schedule, service charge obligations, permitted use, and landlord and tenant party details. Fourth, a validation layer cross-checks extracted values for internal consistency (for example, checking that rent escalation intervals are consistent with the review mechanism) and flags anomalies for human review. The model is fine-tuned on examples of your specific lease formats - commercial, residential, or mixed - before deployment. Performance improves as the model processes more of your lease portfolio and the validation rules are refined."
         }
       },
       {
@@ -68,7 +68,7 @@
         "name": "Which property management systems does the agent integrate with?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Upcore has pre-built connectors for the major property management platforms: Yardi Voyager, MRI Software, AppFolio, Buildium, RealPage, and Propertyware. For the Indian market, connectors are available for NoBroker for Business, Propstack, and other regional platforms. For organisations using custom-built property management systems or ERP modules (SAP RE-FX, Oracle Property Manager), Upcore builds custom connectors as part of the deployment. The integration is bidirectional: the agent can read lease and property data from your PMS to inform its decisions, and it can write structured data back to the PMS when lease abstraction, maintenance job completion, or communication records are created. All integrations use a least-privilege access model — the agent has access only to the data objects and workflows relevant to its function."
+          "text": "Upcore has pre-built connectors for the major property management platforms: Yardi Voyager, MRI Software, AppFolio, Buildium, RealPage, and Propertyware. For the Indian market, connectors are available for NoBroker for Business, Propstack, and other regional platforms. For organisations using custom-built property management systems or ERP modules (SAP RE-FX, Oracle Property Manager), Upcore builds custom connectors as part of the deployment. The integration is bidirectional: the agent can read lease and property data from your PMS to inform its decisions, and it can write structured data back to the PMS when lease abstraction, maintenance job completion, or communication records are created. All integrations use a least-privilege access model - the agent has access only to the data objects and workflows relevant to its function."
         }
       },
       {
@@ -76,7 +76,7 @@
         "name": "How does the tenant communication agent handle complex or escalated queries?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The tenant communication agent classifies every incoming message by type and complexity before deciding whether to handle it autonomously or route it to a human. Standard query types — payment status, maintenance request status, building access queries, standard policy questions — are handled autonomously by the agent using information from the lease data store and property management system. Queries that fall outside the standard categories, involve tenant disputes, reference legal obligations, express dissatisfaction at a level that signals escalation risk, or require a decision that has not been pre-authorised are routed to the appropriate human team member with full context: the query, the tenant's lease details, the history of recent interactions, and a suggested response. The routing logic is configurable — property managers can define their own escalation conditions and thresholds in the Studio configuration layer. The agent never attempts to handle a query it is not confident handling; it errs toward human escalation over autonomous response when in doubt."
+          "text": "The tenant communication agent classifies every incoming message by type and complexity before deciding whether to handle it autonomously or route it to a human. Standard query types - payment status, maintenance request status, building access queries, standard policy questions - are handled autonomously by the agent using information from the lease data store and property management system. Queries that fall outside the standard categories, involve tenant disputes, reference legal obligations, express dissatisfaction at a level that signals escalation risk, or require a decision that has not been pre-authorised are routed to the appropriate human team member with full context: the query, the tenant's lease details, the history of recent interactions, and a suggested response. The routing logic is configurable - property managers can define their own escalation conditions and thresholds in the Studio configuration layer. The agent never attempts to handle a query it is not confident handling; it errs toward human escalation over autonomous response when in doubt."
         }
       },
       {
@@ -84,7 +84,7 @@
         "name": "Does the maintenance dispatch agent work with our existing vendor network?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The maintenance dispatch agent works with the vendor network you already have — it does not require you to onboard new vendors or use a vendor marketplace. During the deployment, Upcore's team maps your existing vendor list into the agent's dispatch logic: vendor names, contact details (for automated job assignment notifications), service categories, geographic coverage, and any preferred vendor rules or pre-approved rate cards you have in place. When a maintenance request arrives, the agent categorises the job type, identifies the appropriate vendor or vendors based on service category and geographic coverage, checks vendor availability if your systems support this, and sends the job assignment. Job completion confirmation can be handled via a simple response from the vendor (SMS or email reply), or via integration with a field service management tool if your vendors use one. For jobs that exceed a cost threshold or fall into a category requiring management approval, the agent routes to a human rather than dispatching autonomously."
+          "text": "Yes. The maintenance dispatch agent works with the vendor network you already have - it does not require you to onboard new vendors or use a vendor marketplace. During the deployment, Upcore's team maps your existing vendor list into the agent's dispatch logic: vendor names, contact details (for automated job assignment notifications), service categories, geographic coverage, and any preferred vendor rules or pre-approved rate cards you have in place. When a maintenance request arrives, the agent categorises the job type, identifies the appropriate vendor or vendors based on service category and geographic coverage, checks vendor availability if your systems support this, and sends the job assignment. Job completion confirmation can be handled via a simple response from the vendor (SMS or email reply), or via integration with a field service management tool if your vendors use one. For jobs that exceed a cost threshold or fall into a category requiring management approval, the agent routes to a human rather than dispatching autonomously."
         }
       },
       {
@@ -92,7 +92,7 @@
         "name": "What data does the agent need access to, and how is it secured?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The real estate AI workforce accesses four categories of data: lease documents and abstracts (for the lease abstraction and compliance workflows), property and tenant records from the property management system (for tenant communications and maintenance dispatch), deal pipeline data from the CRM (for pipeline management), and communication history from email and messaging systems (for context in tenant communications). All data is processed on your own infrastructure — nothing is sent to shared cloud AI endpoints. Access is controlled by a service account with read and write permissions scoped precisely to the data objects the agent needs; the agent cannot access data outside its defined scope. All data access events are logged in a tamper-evident audit log. Communication channel integrations use OAuth or API key authentication with rotation policies consistent with your security standards. Tenant personal data — contact details, payment history, correspondence — is handled in accordance with the applicable data protection regulations (DPDPA in India, GDPR for UK/EU assets) and never leaves your infrastructure."
+          "text": "The real estate AI workforce accesses four categories of data: lease documents and abstracts (for the lease abstraction and compliance workflows), property and tenant records from the property management system (for tenant communications and maintenance dispatch), deal pipeline data from the CRM (for pipeline management), and communication history from email and messaging systems (for context in tenant communications). All data is processed on your own infrastructure - nothing is sent to shared cloud AI endpoints. Access is controlled by a service account with read and write permissions scoped precisely to the data objects the agent needs; the agent cannot access data outside its defined scope. All data access events are logged in a tamper-evident audit log. Communication channel integrations use OAuth or API key authentication with rotation policies consistent with your security standards. Tenant personal data - contact details, payment history, correspondence - is handled in accordance with the applicable data protection regulations (DPDPA in India, GDPR for UK/EU assets) and never leaves your infrastructure."
         }
       },
       {
@@ -100,7 +100,7 @@
         "name": "Can the AI workforce handle commercial and residential properties differently?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The AI workforce is configured to apply different logic, terminology, and workflows for commercial and residential properties. The differences are significant: commercial leases use different clause structures (full repairing and insuring terms, service charge reconciliation, rent review at open market value), different regulatory frameworks, and different communication norms than residential leases. The lease abstraction templates are separate for commercial and residential documents. The tenant communication templates use different language and reference different obligations. The maintenance dispatch logic may differ — commercial properties often have service charge structures that affect how maintenance costs are allocated, which the agent accounts for when logging jobs against the relevant cost code. If you manage both commercial and residential assets, the agent applies the correct logic based on the property type flag in your property management system."
+          "text": "Yes. The AI workforce is configured to apply different logic, terminology, and workflows for commercial and residential properties. The differences are significant: commercial leases use different clause structures (full repairing and insuring terms, service charge reconciliation, rent review at open market value), different regulatory frameworks, and different communication norms than residential leases. The lease abstraction templates are separate for commercial and residential documents. The tenant communication templates use different language and reference different obligations. The maintenance dispatch logic may differ - commercial properties often have service charge structures that affect how maintenance costs are allocated, which the agent accounts for when logging jobs against the relevant cost code. If you manage both commercial and residential assets, the agent applies the correct logic based on the property type flag in your property management system."
         }
       },
       {
@@ -108,7 +108,7 @@
         "name": "What happens when the agent encounters an edge case it can't handle?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The agent is designed to identify its own uncertainty and escalate rather than proceed incorrectly. Each workflow has configurable confidence score thresholds: when the agent's confidence in a decision or extraction falls below the threshold, it routes to a human reviewer with full context instead of acting autonomously. For lease abstraction, this means flagging clauses with unusual language, crossing-out and annotation in scanned documents, or clause structures that differ significantly from the training corpus. For tenant communications, it means routing queries that don't match known categories. For maintenance dispatch, it means escalating jobs with unusual descriptions, unusually high estimated costs, or safety implications. Edge cases handled with human review are fed back into the model as labelled training examples — which improves the model's performance on similar cases over time. Edge case rate typically decreases significantly within 60–90 days of deployment as the model adapts to your specific document and workflow patterns."
+          "text": "The agent is designed to identify its own uncertainty and escalate rather than proceed incorrectly. Each workflow has configurable confidence score thresholds: when the agent's confidence in a decision or extraction falls below the threshold, it routes to a human reviewer with full context instead of acting autonomously. For lease abstraction, this means flagging clauses with unusual language, crossing-out and annotation in scanned documents, or clause structures that differ significantly from the training corpus. For tenant communications, it means routing queries that don't match known categories. For maintenance dispatch, it means escalating jobs with unusual descriptions, unusually high estimated costs, or safety implications. Edge cases handled with human review are fed back into the model as labelled training examples - which improves the model's performance on similar cases over time. Edge case rate typically decreases significantly within 60–90 days of deployment as the model adapts to your specific document and workflow patterns."
         }
       },
       {
@@ -116,7 +116,7 @@
         "name": "What is the typical ROI timeline for a real estate AI workforce deployment?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For real estate operations teams, the ROI from an AI workforce deployment typically becomes measurable within the first 60–90 days. The primary value drivers are: time saved on lease abstraction (typically 3–6 hours per lease reduced to under 15 minutes for structured data extraction), reduction in tenant query handling time for standard queries (autonomous handling of 60–70% of inbound communications), and faster deal pipeline updates (eliminating the manual CRM update cycle after calls and emails). For a firm managing 100+ leases and handling significant inbound tenant volume, the efficiency gains typically represent the equivalent of 1–2 full-time operations staff — without the hire. Secondary value drivers include: fewer lease deadline misses (the compliance module tracks all key dates and generates automated reminders), faster maintenance resolution (vendor dispatch time reduced from hours to minutes for standard jobs), and better pipeline visibility (management reporting generated automatically from pipeline data rather than assembled manually). A realistic ROI range is 3–6x deployment cost in year one for mid-to-large real estate operations, driven primarily by headcount efficiency and error reduction."
+          "text": "For real estate operations teams, the ROI from an AI workforce deployment typically becomes measurable within the first 60–90 days. The primary value drivers are: time saved on lease abstraction (typically 3–6 hours per lease reduced to under 15 minutes for structured data extraction), reduction in tenant query handling time for standard queries (autonomous handling of 60–70% of inbound communications), and faster deal pipeline updates (eliminating the manual CRM update cycle after calls and emails). For a firm managing 100+ leases and handling significant inbound tenant volume, the efficiency gains typically represent the equivalent of 1–2 full-time operations staff - without the hire. Secondary value drivers include: fewer lease deadline misses (the compliance module tracks all key dates and generates automated reminders), faster maintenance resolution (vendor dispatch time reduced from hours to minutes for standard jobs), and better pipeline visibility (management reporting generated automatically from pipeline data rather than assembled manually). A realistic ROI range is 3–6x deployment cost in year one for mid-to-large real estate operations, driven primarily by headcount efficiency and error reduction."
         }
       }
     ]
@@ -153,7 +153,7 @@ a{text-decoration:none;color:inherit;}img{max-width:100%;}
 /* ── Navigation ──────────────────────────────────────────────── */
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:48px;width:auto;}
+.nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
@@ -261,7 +261,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <li><a href="/insights" class="active">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Governance Review</a>
+  <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="nav-cta">Book a Governance Review</a>
 </nav>
 
 <div class="pg-wrap">
@@ -269,10 +269,10 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- HERO -->
   <section class="pg-hero">
     <div class="pg-badge">Industry &middot; Real Estate</div>
-    <h1 class="pg-h1">AI Workforce for Real Estate —<br/><strong>The Full Ops Loop, Automated</strong></h1>
-    <p class="pg-sub">Real estate operations teams are buried in workflows that are high-volume, document-heavy, and time-sensitive: lease reviews, tenant queries, maintenance coordination, deal tracking, and compliance documentation. Generic AI tools touch the surface. An Upcore AI workforce runs the loop — from document ingestion to decision and action, on your own infrastructure.</p>
+    <h1 class="pg-h1">AI Workforce for Real Estate -<br/><strong>The Full Ops Loop, Automated</strong></h1>
+    <p class="pg-sub">Real estate operations teams are buried in workflows that are high-volume, document-heavy, and time-sensitive: lease reviews, tenant queries, maintenance coordination, deal tracking, and compliance documentation. Generic AI tools touch the surface. An Upcore AI workforce runs the loop - from document ingestion to decision and action, on your own infrastructure.</p>
     <div class="pg-btns">
-      <a href="/assessment" class="btn-p">Book a Real Estate AI Call &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Real Estate AI Call &rarr;</a>
       <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
     </div>
 
@@ -283,7 +283,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       </div>
       <div class="stat-box">
         <div class="stat-num">On-Prem</div>
-        <div class="stat-lbl">deployed on your own infrastructure — tenant data stays in-house</div>
+        <div class="stat-lbl">deployed on your own infrastructure - tenant data stays in-house</div>
       </div>
       <div class="stat-box">
         <div class="stat-num">30 days</div>
@@ -297,9 +297,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <div class="sec-label">The Problem</div>
     <h2 class="sec-h2">The Real Estate Operations Burden</h2>
 
-    <p class="sec-p">The average real estate operations team spends 60% of its time on tasks that are mechanical but consequential: extracting key dates from leases, triaging tenant queries, dispatching maintenance, updating deal pipelines, chasing compliance deadlines. These tasks require accuracy and consistency — but they do not require human judgement on every instance. A missed lease break option costs hundreds of thousands in rent. A delayed maintenance response costs a tenant relationship. An outdated deal pipeline costs a management team the information it needs to allocate capital. The cost of doing these things manually is not just the time spent — it is the errors made, the deadlines missed, and the attention diverted from the complex work that actually requires experienced human judgement.</p>
+    <p class="sec-p">The average real estate operations team spends 60% of its time on tasks that are mechanical but consequential: extracting key dates from leases, triaging tenant queries, dispatching maintenance, updating deal pipelines, chasing compliance deadlines. These tasks require accuracy and consistency - but they do not require human judgement on every instance. A missed lease break option costs hundreds of thousands in rent. A delayed maintenance response costs a tenant relationship. An outdated deal pipeline costs a management team the information it needs to allocate capital. The cost of doing these things manually is not just the time spent - it is the errors made, the deadlines missed, and the attention diverted from the complex work that actually requires experienced human judgement.</p>
 
-    <p class="sec-p">Generic AI tools add a thin layer of automation on top of this picture. A chatbot answers some queries. A document scanner extracts some data. A CRM reminder pings some follow-ups. What these tools do not do is run the full loop: ingest the lease, extract the data, validate it, update the system, flag the exceptions, and trigger the next action — all without a human coordinating each step. That is the difference between a point tool and an AI workforce. An AI workforce is not a collection of automations; it is a coordinated set of agents that collectively handle a workflow from start to finish, escalating to humans only at the decision points that warrant human judgement.</p>
+    <p class="sec-p">Generic AI tools add a thin layer of automation on top of this picture. A chatbot answers some queries. A document scanner extracts some data. A CRM reminder pings some follow-ups. What these tools do not do is run the full loop: ingest the lease, extract the data, validate it, update the system, flag the exceptions, and trigger the next action - all without a human coordinating each step. That is the difference between a point tool and an AI workforce. An AI workforce is not a collection of automations; it is a coordinated set of agents that collectively handle a workflow from start to finish, escalating to humans only at the decision points that warrant human judgement.</p>
   </section>
 
   <!-- SECTION 2: The 5 Workflows -->
@@ -312,27 +312,27 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="pg-card">
         <div class="pg-card-icon">&#128196;</div>
         <h3>Lease Abstraction</h3>
-        <p>Automatically extract key dates, obligations, rent escalation clauses, permitted use, break options, service charge provisions, and landlord and tenant details from lease documents — whether PDF, DOCX, or scanned. Output structured data directly to your property management system, eliminating manual re-entry and the errors it introduces.</p>
+        <p>Automatically extract key dates, obligations, rent escalation clauses, permitted use, break options, service charge provisions, and landlord and tenant details from lease documents - whether PDF, DOCX, or scanned. Output structured data directly to your property management system, eliminating manual re-entry and the errors it introduces.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128172;</div>
         <h3>Tenant Communications Triage</h3>
-        <p>Classify every incoming tenant query by type and urgency. Route to the appropriate team member with full context. Handle standard queries — payment status, maintenance ETA, building access, policy questions — autonomously using live data from your PMS and lease data store. Human agents see only the escalated items that require real judgement.</p>
+        <p>Classify every incoming tenant query by type and urgency. Route to the appropriate team member with full context. Handle standard queries - payment status, maintenance ETA, building access, policy questions - autonomously using live data from your PMS and lease data store. Human agents see only the escalated items that require real judgement.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128295;</div>
         <h3>Maintenance Dispatch</h3>
-        <p>Receive maintenance requests through any channel (email, WhatsApp, portal), categorise by type and priority, assign to the appropriate vendor based on service category and coverage area, track job completion, and notify the tenant of status updates — without human coordination for standard jobs. Escalate complex or high-cost jobs for management approval.</p>
+        <p>Receive maintenance requests through any channel (email, WhatsApp, portal), categorise by type and priority, assign to the appropriate vendor based on service category and coverage area, track job completion, and notify the tenant of status updates - without human coordination for standard jobs. Escalate complex or high-cost jobs for management approval.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#128202;</div>
         <h3>Deal Pipeline Management</h3>
-        <p>Update deal status automatically from email threads, call notes, and meeting summaries. Flag deals showing risk signals — no contact in 14 days, a change in buyer tone, a competitor named for the first time. Identify follow-up actions and create tasks. Generate pipeline reports for weekly management reviews without a team member assembling data manually.</p>
+        <p>Update deal status automatically from email threads, call notes, and meeting summaries. Flag deals showing risk signals - no contact in 14 days, a change in buyer tone, a competitor named for the first time. Identify follow-up actions and create tasks. Generate pipeline reports for weekly management reviews without a team member assembling data manually.</p>
       </div>
       <div class="pg-card">
         <div class="pg-card-icon">&#9989;</div>
         <h3>Compliance Documentation</h3>
-        <p>Track every lease expiry date, break option window, rent review date, and regulatory filing deadline across your portfolio. Generate automated reminders at configurable advance notice periods. Draft standard notices — rent review commencement, break option exercise, lease renewal proposals — for solicitor review and dispatch. Never miss a deadline because it was buried in a spreadsheet.</p>
+        <p>Track every lease expiry date, break option window, rent review date, and regulatory filing deadline across your portfolio. Generate automated reminders at configurable advance notice periods. Draft standard notices - rent review commencement, break option exercise, lease renewal proposals - for solicitor review and dispatch. Never miss a deadline because it was buried in a spreadsheet.</p>
       </div>
     </div>
   </section>
@@ -342,11 +342,11 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <div class="sec-label">Integration Architecture</div>
     <h2 class="sec-h2">How the AI Workforce Connects to Your Systems</h2>
 
-    <p class="sec-p">An AI workforce is only as useful as its access to real data. Generic point tools work with manually uploaded files or limited API connections to mainstream platforms. Upcore's real estate AI workforce connects natively to the property management, CRM, and communication systems you already use — reading live data, writing outputs back to the source of truth, and maintaining a complete audit trail of every action taken.</p>
+    <p class="sec-p">An AI workforce is only as useful as its access to real data. Generic point tools work with manually uploaded files or limited API connections to mainstream platforms. Upcore's real estate AI workforce connects natively to the property management, CRM, and communication systems you already use - reading live data, writing outputs back to the source of truth, and maintaining a complete audit trail of every action taken.</p>
 
-    <p class="sec-p">Property management system integration is bidirectional: the agent reads lease data, tenancy records, property details, and financial balances from your PMS to inform its decisions, and writes structured outputs back — lease abstract data, maintenance job records, communication logs — directly into the relevant records. Supported platforms include Yardi Voyager, MRI Software, AppFolio, Buildium, RealPage, and regional platforms including NoBroker for Business and Propstack. For custom-built property management systems, Upcore builds a dedicated integration layer during the 30-day deployment phase.</p>
+    <p class="sec-p">Property management system integration is bidirectional: the agent reads lease data, tenancy records, property details, and financial balances from your PMS to inform its decisions, and writes structured outputs back - lease abstract data, maintenance job records, communication logs - directly into the relevant records. Supported platforms include Yardi Voyager, MRI Software, AppFolio, Buildium, RealPage, and regional platforms including NoBroker for Business and Propstack. For custom-built property management systems, Upcore builds a dedicated integration layer during the 30-day deployment phase.</p>
 
-    <p class="sec-p">The document ingestion pipeline processes lease files from your document management system — SharePoint, Google Drive, Dropbox, or a custom DMS — with no manual upload step required. When a new lease document is filed in the designated folder, the ingestion pipeline picks it up automatically. Communication channel integration covers email (via IMAP/SMTP or Microsoft 365/Google Workspace APIs), WhatsApp Business API, SMS, and tenant portals. All data — lease documents, tenant records, communication history — is processed on your own infrastructure. No tenant personal data, no lease financial terms, and no deal information leaves your network perimeter.</p>
+    <p class="sec-p">The document ingestion pipeline processes lease files from your document management system - SharePoint, Google Drive, Dropbox, or a custom DMS - with no manual upload step required. When a new lease document is filed in the designated folder, the ingestion pipeline picks it up automatically. Communication channel integration covers email (via IMAP/SMTP or Microsoft 365/Google Workspace APIs), WhatsApp Business API, SMS, and tenant portals. All data - lease documents, tenant records, communication history - is processed on your own infrastructure. No tenant personal data, no lease financial terms, and no deal information leaves your network perimeter.</p>
 
     <div class="integration-row">
       <span class="integration-pill">Yardi Voyager</span>
@@ -368,7 +368,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <section class="pg-section">
     <div class="sec-label">Why AI Workforce vs. Point Tools</div>
     <h2 class="sec-h2">Point Tools vs. Integrated AI Workforce</h2>
-    <p class="sec-p">The market is not short of point-solution tools for individual real estate workflows. The problem is that point tools create their own overhead — each one requires its own vendor relationship, its own integration, its own data silo, and its own training programme. An integrated AI workforce eliminates the seams between workflows and the coordination cost of managing multiple vendors.</p>
+    <p class="sec-p">The market is not short of point-solution tools for individual real estate workflows. The problem is that point tools create their own overhead - each one requires its own vendor relationship, its own integration, its own data silo, and its own training programme. An integrated AI workforce eliminates the seams between workflows and the coordination cost of managing multiple vendors.</p>
 
     <div class="cmp-wrap">
       <table class="cmp-table">
@@ -383,7 +383,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <tr>
             <td><strong>Lease Abstraction</strong></td>
             <td class="no">Separate vendor, manual review layer required, output must be re-entered into PMS by hand</td>
-            <td class="yes">End-to-end: ingest, extract, validate, write to PMS — no manual re-entry, no separate vendor</td>
+            <td class="yes">End-to-end: ingest, extract, validate, write to PMS - no manual re-entry, no separate vendor</td>
           </tr>
           <tr>
             <td><strong>Tenant Communications</strong></td>
@@ -417,7 +417,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
 
     <div class="case-block">
       <h3>Scenario: A diversified real estate company with 200+ commercial and residential assets</h3>
-      <p>A regional real estate firm managing a mixed portfolio of commercial offices, retail units, and residential blocks across three cities was facing a specific set of operational pressures. Their lease abstraction backlog had grown to over 300 documents — a combination of new acquisitions, lease renewals, and legacy leases never properly abstracted into the PMS. Their operations team was fielding 400–500 tenant queries per month, of which two full-time coordinators estimated roughly 65% were answerable without any research. Maintenance dispatch was handled entirely by a single coordinator who had become a single point of failure. And their deal pipeline — 40+ live acquisition and disposal transactions — was updated manually every Friday by an analyst pulling information from email threads.</p>
+      <p>A regional real estate firm managing a mixed portfolio of commercial offices, retail units, and residential blocks across three cities was facing a specific set of operational pressures. Their lease abstraction backlog had grown to over 300 documents - a combination of new acquisitions, lease renewals, and legacy leases never properly abstracted into the PMS. Their operations team was fielding 400–500 tenant queries per month, of which two full-time coordinators estimated roughly 65% were answerable without any research. Maintenance dispatch was handled entirely by a single coordinator who had become a single point of failure. And their deal pipeline - 40+ live acquisition and disposal transactions - was updated manually every Friday by an analyst pulling information from email threads.</p>
 
       <p>Upcore's deployment began with a 5-day discovery phase: mapping the existing workflows, identifying the 12 system integrations required, classifying the lease document corpus by format and completeness, and setting the performance targets with the operations director. The 30-day deployment covered: on-premise infrastructure setup on the firm's own servers; lease abstraction model training on a labelled sample of 80 leases from the existing portfolio; PMS integration with Yardi Voyager; WhatsApp Business API and email integration for tenant communications; vendor list integration for maintenance dispatch; and CRM (Salesforce) integration for deal pipeline management.</p>
 
@@ -440,9 +440,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </div>
       </div>
 
-      <p>The lease abstraction backlog was cleared within the first week of deployment, with the model operating at 96.3% accuracy on standard commercial lease clauses and flagging 34 leases for human review due to unusual clause structures or scan quality issues. The tenant communications agent handled 68% of inbound queries autonomously within 60 days — a figure that rose to 74% by day 90 as the model was fine-tuned on the firm's specific query patterns and the knowledge base was expanded. The maintenance dispatch process, previously dependent on a single coordinator, was made resilient and faster: average dispatch time dropped from over four hours to fourteen minutes for standard jobs. Deal pipeline updates became fully automated — the analyst's Friday afternoon task was eliminated, and management received a real-time pipeline dashboard instead of a weekly snapshot assembled from emails.</p>
+      <p>The lease abstraction backlog was cleared within the first week of deployment, with the model operating at 96.3% accuracy on standard commercial lease clauses and flagging 34 leases for human review due to unusual clause structures or scan quality issues. The tenant communications agent handled 68% of inbound queries autonomously within 60 days - a figure that rose to 74% by day 90 as the model was fine-tuned on the firm's specific query patterns and the knowledge base was expanded. The maintenance dispatch process, previously dependent on a single coordinator, was made resilient and faster: average dispatch time dropped from over four hours to fourteen minutes for standard jobs. Deal pipeline updates became fully automated - the analyst's Friday afternoon task was eliminated, and management received a real-time pipeline dashboard instead of a weekly snapshot assembled from emails.</p>
 
-      <p>The compliance module was activated in week three to track lease expiry dates and break option windows across the entire portfolio. Within the first month, the agent identified three upcoming break option windows that were not in the ops team's existing reminder system — all within the six-month notice period required. Two were acted on; one was allowed to lapse intentionally. The value of catching the third — a commercial lease where the break option saved a significant above-market rent obligation — more than covered the entire deployment cost.</p>
+      <p>The compliance module was activated in week three to track lease expiry dates and break option windows across the entire portfolio. Within the first month, the agent identified three upcoming break option windows that were not in the ops team's existing reminder system - all within the six-month notice period required. Two were acted on; one was allowed to lapse intentionally. The value of catching the third - a commercial lease where the break option saved a significant above-market rent obligation - more than covered the entire deployment cost.</p>
     </div>
   </section>
 
@@ -466,7 +466,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <a href="/platform/on-premise-deployment" class="rel-card">
         <div class="rel-card-tag">Platform</div>
         <h4>On-Premise Deployment</h4>
-        <p>Keep tenant data, lease details, and deal information inside your own infrastructure — fully secure and compliant.</p>
+        <p>Keep tenant data, lease details, and deal information inside your own infrastructure - fully secure and compliant.</p>
         <span class="rel-card-arr">&rarr;</span>
       </a>
     </div>
@@ -475,7 +475,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- SECTION 7: FAQ -->
   <section class="pg-section">
     <div class="sec-label">FAQ</div>
-    <h2 class="sec-h2">Real Estate AI Workforce — Frequently Asked Questions</h2>
+    <h2 class="sec-h2">Real Estate AI Workforce - Frequently Asked Questions</h2>
 
     <div class="faq-list">
       <div class="faq-item">
@@ -484,7 +484,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Yes — with accuracy levels that, once the model is fine-tuned on your lease document corpus, consistently exceed 95% for standard clause extraction. The agent uses a multi-stage pipeline: an OCR layer converts PDF content to structured text, handling both digitally created and scanned documents. A document classification model identifies the document type and relevant sections. The extraction model identifies and extracts specific data points — commencement date, expiry date, break options, rent review mechanism, rent amount, escalation schedule, service charge obligations, permitted use, and party details.</p>
+          <p>Yes - with accuracy levels that, once the model is fine-tuned on your lease document corpus, consistently exceed 95% for standard clause extraction. The agent uses a multi-stage pipeline: an OCR layer converts PDF content to structured text, handling both digitally created and scanned documents. A document classification model identifies the document type and relevant sections. The extraction model identifies and extracts specific data points - commencement date, expiry date, break options, rent review mechanism, rent amount, escalation schedule, service charge obligations, permitted use, and party details.</p>
           <p>A validation layer cross-checks extracted values for internal consistency and flags anomalies for human review. The model is fine-tuned on examples from your specific lease portfolio before deployment. Performance improves as the model processes more of your leases and validation rules are refined based on the exceptions your team reviews.</p>
         </div>
       </div>
@@ -496,7 +496,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>Upcore has pre-built connectors for the major property management platforms: Yardi Voyager, MRI Software, AppFolio, Buildium, RealPage, and Propertyware. For the Indian market, connectors are available for NoBroker for Business, Propstack, and other regional platforms. For organisations using SAP RE-FX, Oracle Property Manager, or custom-built PMS solutions, Upcore builds custom connectors as part of the 30-day deployment.</p>
-          <p>The integration is bidirectional: the agent reads lease and property data from your PMS to inform decisions, and writes structured data back — lease abstracts, maintenance job records, communication logs — directly into the relevant records. All integrations use a least-privilege access model.</p>
+          <p>The integration is bidirectional: the agent reads lease and property data from your PMS to inform decisions, and writes structured data back - lease abstracts, maintenance job records, communication logs - directly into the relevant records. All integrations use a least-privilege access model.</p>
         </div>
       </div>
 
@@ -506,8 +506,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>The tenant communication agent classifies every incoming message by type and complexity before deciding whether to handle it autonomously or route it to a human. Standard query types — payment status, maintenance request status, building access, policy questions — are handled autonomously using information from the lease data store and property management system.</p>
-          <p>Queries outside standard categories, involving tenant disputes, referencing legal obligations, expressing dissatisfaction that signals escalation risk, or requiring a decision not pre-authorised are routed to the appropriate team member with full context: the query, the tenant's lease details, recent interaction history, and a suggested response. The routing logic is configurable — property managers set their own escalation conditions in the Studio configuration layer. The agent always errs toward human escalation over autonomous response when in doubt.</p>
+          <p>The tenant communication agent classifies every incoming message by type and complexity before deciding whether to handle it autonomously or route it to a human. Standard query types - payment status, maintenance request status, building access, policy questions - are handled autonomously using information from the lease data store and property management system.</p>
+          <p>Queries outside standard categories, involving tenant disputes, referencing legal obligations, expressing dissatisfaction that signals escalation risk, or requiring a decision not pre-authorised are routed to the appropriate team member with full context: the query, the tenant's lease details, recent interaction history, and a suggested response. The routing logic is configurable - property managers set their own escalation conditions in the Studio configuration layer. The agent always errs toward human escalation over autonomous response when in doubt.</p>
         </div>
       </div>
 
@@ -517,7 +517,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>Yes. The maintenance dispatch agent works entirely with your existing vendor network — it does not require onboarding new vendors or using a vendor marketplace. During deployment, Upcore's team maps your vendor list into the dispatch logic: vendor names, contact details, service categories, geographic coverage, and any preferred vendor or pre-approved rate card rules you have in place.</p>
+          <p>Yes. The maintenance dispatch agent works entirely with your existing vendor network - it does not require onboarding new vendors or using a vendor marketplace. During deployment, Upcore's team maps your vendor list into the dispatch logic: vendor names, contact details, service categories, geographic coverage, and any preferred vendor or pre-approved rate card rules you have in place.</p>
           <p>When a maintenance request arrives, the agent categorises the job, identifies the appropriate vendor, and sends the job assignment via email or SMS. Job completion confirmation is handled through vendor response or integration with a field service tool if applicable. Jobs exceeding a cost threshold or requiring management approval are routed to a human before dispatch.</p>
         </div>
       </div>
@@ -529,7 +529,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>The AI workforce accesses four data categories: lease documents and abstracts (for abstraction and compliance workflows), property and tenant records from the PMS (for communications and maintenance dispatch), deal pipeline data from the CRM (for pipeline management), and communication history from email and messaging systems (for context).</p>
-          <p>All data is processed on your own infrastructure — nothing is sent to shared cloud AI endpoints. Access is controlled by a service account with permissions scoped to the specific data objects the agent needs. All data access events are logged in a tamper-evident audit log. Tenant personal data is handled in accordance with applicable data protection regulations (DPDPA, GDPR) and never leaves your infrastructure.</p>
+          <p>All data is processed on your own infrastructure - nothing is sent to shared cloud AI endpoints. Access is controlled by a service account with permissions scoped to the specific data objects the agent needs. All data access events are logged in a tamper-evident audit log. Tenant personal data is handled in accordance with applicable data protection regulations (DPDPA, GDPR) and never leaves your infrastructure.</p>
         </div>
       </div>
 
@@ -540,7 +540,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>Yes. The AI workforce applies different logic, terminology, and workflows for commercial and residential properties. The differences are significant: commercial leases use different clause structures (full repairing and insuring terms, open market rent reviews, service charge reconciliation), different regulatory frameworks, and different communication norms than residential tenancies.</p>
-          <p>Lease abstraction templates are separate for commercial and residential documents. Tenant communication templates use different language and reference different obligations. The maintenance dispatch logic accounts for service charge allocation differences. If you manage both asset types, the agent applies the correct logic based on the property type flag in your PMS — automatically, without manual workflow selection.</p>
+          <p>Lease abstraction templates are separate for commercial and residential documents. Tenant communication templates use different language and reference different obligations. The maintenance dispatch logic accounts for service charge allocation differences. If you manage both asset types, the agent applies the correct logic based on the property type flag in your PMS - automatically, without manual workflow selection.</p>
         </div>
       </div>
 
@@ -562,7 +562,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </button>
         <div class="faq-a">
           <p>ROI from a real estate AI workforce deployment typically becomes measurable within 60–90 days. The primary value drivers are: lease abstraction time reduced from 3–6 hours per lease to under 15 minutes; autonomous handling of 60–70% of inbound tenant communications; and elimination of manual CRM update cycles. For a firm managing 100+ leases with significant inbound tenant volume, the efficiency gains typically represent the equivalent of 1–2 full-time operations staff.</p>
-          <p>Secondary value drivers include fewer lease deadline misses (the compliance module tracks all key dates automatically), faster maintenance resolution (dispatch time from hours to minutes), and better pipeline visibility for management decision-making. A realistic ROI range is 3–6x deployment cost in year one for mid-to-large real estate operations, driven primarily by headcount efficiency and avoided deadline errors. The compliance value alone — preventing a single missed break option or rent review deadline — can exceed the total deployment cost.</p>
+          <p>Secondary value drivers include fewer lease deadline misses (the compliance module tracks all key dates automatically), faster maintenance resolution (dispatch time from hours to minutes), and better pipeline visibility for management decision-making. A realistic ROI range is 3–6x deployment cost in year one for mid-to-large real estate operations, driven primarily by headcount efficiency and avoided deadline errors. The compliance value alone - preventing a single missed break option or rent review deadline - can exceed the total deployment cost.</p>
         </div>
       </div>
     </div>
@@ -571,9 +571,9 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <!-- CTA -->
   <div class="pg-cta">
     <h2>Your Ops Team Should Be Managing Exceptions, <strong>Not Routine Tasks.</strong></h2>
-    <p>The workflows burying your real estate operations team are exactly the workflows an AI workforce is built for. Let's scope yours — lease abstraction, tenant comms, maintenance dispatch, or all five. A 30-minute call is enough to design the first deployment.</p>
+    <p>The workflows burying your real estate operations team are exactly the workflows an AI workforce is built for. Let's scope yours - lease abstraction, tenant comms, maintenance dispatch, or all five. A 30-minute call is enough to design the first deployment.</p>
     <div class="pg-cta-btns">
-      <a href="/assessment" class="btn-p">Book a Real Estate AI Call &rarr;</a>
+      <a href="https://calendar.app.google/UdtvB1BBhrffT9o96" class="btn-p">Book a Real Estate AI Call &rarr;</a>
       <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents &rarr;</a>
     </div>
   </div>
@@ -604,7 +604,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/agent-builder">Agent Builder</a></li>
         <li><a href="/insights">Insights &amp; Blog</a></li>
         <li><a href="/contact">Contact Us</a></li>
-        <li><a href="/assessment">Book a Discovery Call</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Book a Discovery Call</a></li>
       </ul>
     </div>
     <div>
@@ -614,7 +614,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
+        <li><a href="https://calendar.app.google/UdtvB1BBhrffT9o96">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>

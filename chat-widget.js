@@ -574,34 +574,96 @@
 
 })();
 
-// ── Governance Calendar Popup ─────────────────────────────────────────────
+// ── Governance Calendar (Google Scheduling Button) ────────────────────────
 (function () {
-  var CAL_URL = 'https://calendar.app.google/UdtvB1BBhrffT9o96';
-  var popup = null;
+  var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
+  var FALLBACK = 'https://calendar.app.google/UdtvB1BBhrffT9o96';
 
-  function openCalendar() {
-    // If a popup is already open, focus it instead of opening a second one
-    if (popup && !popup.closed) { popup.focus(); return; }
+  var calBtn = null;
+  var initialized = false;
+  var ready = false;
+  var pendingOpen = false;
 
-    var w = 840, h = 740;
-    var left = Math.round((screen.width - w) / 2);
-    var top = Math.round((screen.height - h) / 2);
+  function fallback() { window.open(FALLBACK, '_blank'); }
 
-    popup = window.open(
-      CAL_URL,
-      'upcore_book_governance',
-      'width=' + w + ',height=' + h + ',top=' + top + ',left=' + left +
-      ',resizable=yes,scrollbars=yes,status=no,toolbar=no,menubar=no,location=no'
-    );
+  function findBtn(root) {
+    // Google inserts the clickable element inside or immediately after the target
+    return root.querySelector('a, button') ||
+      (root.nextElementSibling && root.nextElementSibling.querySelector('a, button')) ||
+      (root.nextElementSibling && (root.nextElementSibling.tagName === 'A' || root.nextElementSibling.tagName === 'BUTTON') ? root.nextElementSibling : null);
+  }
 
-    // Fallback if popup was blocked by the browser
-    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-      window.open(CAL_URL, '_blank');
-    }
+  function init() {
+    if (initialized) return;
+    initialized = true;
+
+    // Load Google's scheduling-button CSS
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
+    document.head.appendChild(link);
+
+    // Hidden target element (off-screen, not in the tab order)
+    var target = document.createElement('div');
+    target.id = '_gov_cal_wrap';
+    target.setAttribute('aria-hidden', 'true');
+    target.style.cssText = 'position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;';
+    document.body.appendChild(target);
+
+    // Load Google's scheduling-button JS
+    var script = document.createElement('script');
+    script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
+    script.async = true;
+    script.onerror = function () { ready = true; if (pendingOpen) { pendingOpen = false; fallback(); } };
+    script.onload = function () {
+      if (!window.calendar || !window.calendar.schedulingButton) {
+        ready = true;
+        if (pendingOpen) { pendingOpen = false; fallback(); }
+        return;
+      }
+
+      window.calendar.schedulingButton.load({
+        url: CAL_URL,
+        color: '#0ABFCC',
+        label: 'Book a Governance Review',
+        target: target,
+      });
+
+      // Watch for Google to render the clickable element into the DOM
+      var observer = new MutationObserver(function (_, obs) {
+        var btn = findBtn(target);
+        if (btn) {
+          obs.disconnect();
+          calBtn = btn;
+          ready = true;
+          if (pendingOpen) { pendingOpen = false; btn.click(); }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Safety timeout — give Google 6 s then fall back
+      setTimeout(function () {
+        observer.disconnect();
+        if (!ready) { ready = true; if (pendingOpen) { pendingOpen = false; fallback(); } }
+      }, 6000);
+    };
+    document.head.appendChild(script);
+  }
+
+  function open() {
+    if (ready) { calBtn ? calBtn.click() : fallback(); }
+    else { pendingOpen = true; init(); }
+  }
+
+  // Pre-load the script after the page is idle so it's ready on first click
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 1000); });
+  } else {
+    setTimeout(init, 1000);
   }
 
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a[href="#book-governance"]');
-    if (link) { e.preventDefault(); openCalendar(); }
+    if (link) { e.preventDefault(); open(); }
   });
 })();

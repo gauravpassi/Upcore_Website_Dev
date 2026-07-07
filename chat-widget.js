@@ -573,3 +573,114 @@
   }, 8000);
 
 })();
+
+// ── Governance Calendar Modal ─────────────────────────────────────────────
+(function () {
+  var CAL_URL = 'https://calendar.app.google/UdtvB1BBhrffT9o96';
+
+  function buildModal() {
+    var overlay = document.createElement('div');
+    overlay.id = 'gov-cal-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Book a Governance Review');
+    overlay.style.cssText = [
+      'display:none',
+      'position:fixed',
+      'inset:0',
+      'z-index:10000',
+      'background:rgba(0,0,0,.6)',
+      'align-items:center',
+      'justify-content:center',
+      'padding:16px',
+    ].join(';');
+
+    var box = document.createElement('div');
+    box.style.cssText = [
+      'position:relative',
+      'width:min(740px,100%)',
+      'height:min(680px,90vh)',
+      'background:#fff',
+      'border-radius:16px',
+      'overflow:hidden',
+      'box-shadow:0 24px 64px rgba(0,0,0,.35)',
+      'display:flex',
+      'flex-direction:column',
+    ].join(';');
+
+    var header = document.createElement('div');
+    header.style.cssText = [
+      'display:flex',
+      'align-items:center',
+      'justify-content:space-between',
+      'padding:14px 18px',
+      'border-bottom:1px solid #e2e8f0',
+      'background:#f8fafc',
+      'flex-shrink:0',
+    ].join(';');
+
+    var title = document.createElement('span');
+    title.textContent = 'Book a Governance Review';
+    title.style.cssText = 'font-family:DM Sans,sans-serif;font-size:14px;font-weight:700;color:#0a0a0a;';
+
+    var closeBtn = document.createElement('button');
+    closeBtn.id = 'gov-cal-close';
+    closeBtn.setAttribute('aria-label', 'Close');
+    closeBtn.style.cssText = [
+      'background:none',
+      'border:none',
+      'cursor:pointer',
+      'font-size:22px',
+      'line-height:1',
+      'color:#64748b',
+      'padding:2px 6px',
+      'border-radius:6px',
+    ].join(';');
+    closeBtn.innerHTML = '&times;';
+
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+
+    var iframe = document.createElement('iframe');
+    iframe.src = CAL_URL;
+    iframe.title = 'Book a Governance Review';
+    iframe.setAttribute('frameborder', '0');
+    iframe.style.cssText = 'flex:1;width:100%;border:none;';
+
+    box.appendChild(header);
+    box.appendChild(iframe);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    return overlay;
+  }
+
+  var modal;
+  function getModal() {
+    if (!modal) modal = buildModal();
+    return modal;
+  }
+
+  function openModal() {
+    var m = getModal();
+    m.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href="#book-governance"]');
+    if (link) { e.preventDefault(); openModal(); return; }
+
+    var m = getModal();
+    if (e.target === m || e.target.id === 'gov-cal-close') { closeModal(); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+})();

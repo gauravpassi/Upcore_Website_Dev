@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-03 — Governance CTAs open calendar modal; other CTAs stay on /assessment
+**Type:** feature
+**Files:** `chat-widget.js`, all `.html` files
+AI-governance CTAs ("Book a Governance Review", "Start Your 72-Hour Onboarding") now open an inline iframe modal with the Google Calendar booking page — no external redirect. All other CTAs ("Book a Discovery Call", "Free AI Assessment", etc.) continue to link to /assessment. Modal built lazily on first click, closes on ×, backdrop click, or Escape. Added ?v=2 cache-bust to chat-widget.js script tag across all 65 pages so the new modal code loads immediately.
+
+---
+
 ## 2026-07-03 — No em dashes, calendar CTAs, bigger logo (site-wide)
 **Type:** fix
 **Files:** all `.html` files (67+)

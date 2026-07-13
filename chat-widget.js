@@ -624,8 +624,17 @@
       target: target,
     });
     var obs = new MutationObserver(function (_, o) {
-      var btn = target.querySelector('a[href], button') ||
-               (target.nextElementSibling && target.nextElementSibling.querySelector('a[href], button'));
+      // Google renders the button as a SIBLING of target, not a child.
+      // Check target children first, then the sibling itself, then sibling descendants.
+      var btn = target.querySelector('a[href], button');
+      if (!btn) {
+        var sib = target.nextElementSibling;
+        if (sib) {
+          btn = (sib.tagName === 'A' || sib.tagName === 'BUTTON')
+                ? sib
+                : sib.querySelector('a[href], button');
+        }
+      }
       if (btn) { o.disconnect(); calBtn = btn; }
     });
     obs.observe(document.body, { childList: true, subtree: true });

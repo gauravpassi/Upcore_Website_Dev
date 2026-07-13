@@ -575,80 +575,82 @@
 })();
 
 // ── Governance Calendar (Google Scheduling Button) ────────────────────────
+// Mirrors the official Google Calendar embed pattern:
+//   <link href="…scheduling-button-script.css" rel="stylesheet">
+//   <script src="…scheduling-button-script.js" async></script>
+//   <script>(function(){ var target=document.currentScript;
+//     window.addEventListener('load', function(){ calendar.schedulingButton.load({…,target}); }); })()</script>
+// We adapt it for programmatic triggering: the button renders off-screen into a hidden
+// div (our "target"), and our CTA click handler synchronously clicks it so Google's
+// overlay opens without popup-blocker interference.
 (function () {
   var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
   var FALLBACK = 'https://calendar.app.google/UdtvB1BBhrffT9o96';
   var calBtn = null;
-  var initialized = false;
 
-  function findBtn(root) {
-    var b = root.querySelector('a[href], button');
-    if (b) return b;
-    var sib = root.nextElementSibling;
-    if (!sib) return null;
-    if (sib.tagName === 'A' || sib.tagName === 'BUTTON') return sib;
-    return sib.querySelector('a[href], button') || null;
+  // Step 1 — Load CSS (identical to official embed)
+  var link = document.createElement('link');
+  link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
+  link.rel = 'stylesheet';
+  document.head.appendChild(link);
+
+  // Step 2 — Off-screen target div (our equivalent of document.currentScript in the
+  // official embed). Full-width so Google renders the button at its natural size.
+  var target = document.createElement('div');
+  target.id = '_gov_cal_target';
+  target.setAttribute('aria-hidden', 'true');
+  target.style.cssText = 'position:fixed;left:-400px;bottom:20px;width:260px;overflow:visible;';
+  document.body.appendChild(target);
+
+  // Step 3 — Load JS (identical to official embed)
+  var script = document.createElement('script');
+  script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
+  script.async = true;
+  document.head.appendChild(script);
+
+  // Step 4 — Initialize once BOTH the scheduling-button script AND the page are
+  // fully loaded (mirrors the official embed's window 'load' handler).
+  // chat-widget.js is defer'd, so window.load may already have fired by the time
+  // we reach here — track both signals and init when whichever fires last arrives.
+  var winReady = document.readyState === 'complete';
+  var scriptReady = false;
+
+  function initCalendar() {
+    if (!window.calendar || !window.calendar.schedulingButton) return;
+    calendar.schedulingButton.load({
+      url: CAL_URL,
+      color: '#0ABFCC',
+      label: 'Book a Governance Review',
+      target: target,
+    });
+    var obs = new MutationObserver(function (_, o) {
+      var btn = target.querySelector('a[href], button') ||
+               (target.nextElementSibling && target.nextElementSibling.querySelector('a[href], button'));
+      if (btn) { o.disconnect(); calBtn = btn; }
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+    setTimeout(function () { obs.disconnect(); }, 8000);
   }
 
-  function init() {
-    if (initialized) return;
-    initialized = true;
+  function tryInit() { if (scriptReady && winReady) initCalendar(); }
 
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
-    document.head.appendChild(link);
+  script.onload = function () { scriptReady = true; tryInit(); };
 
-    // Off-screen but NOT clipped — Google renders the button at full size here.
-    // overflow:visible and a proper width let the button element exist correctly.
-    var target = document.createElement('div');
-    target.id = '_gov_cal_wrap';
-    target.setAttribute('aria-hidden', 'true');
-    target.style.cssText = 'position:fixed;left:-400px;bottom:20px;width:280px;overflow:visible;z-index:-1;';
-    document.body.appendChild(target);
-
-    var script = document.createElement('script');
-    script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
-    script.async = true;
-    script.onload = function () {
-      if (!window.calendar || !window.calendar.schedulingButton) return;
-      window.calendar.schedulingButton.load({
-        url: CAL_URL,
-        color: '#0ABFCC',
-        label: 'Book a Governance Review',
-        target: target,
-      });
-      // Watch for Google to inject the button element into the target
-      var obs = new MutationObserver(function (_, o) {
-        var btn = findBtn(target);
-        if (btn) { o.disconnect(); calBtn = btn; }
-      });
-      obs.observe(target, { childList: true, subtree: true });
-      obs.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function () { obs.disconnect(); }, 10000);
-    };
-    document.head.appendChild(script);
+  if (!winReady) {
+    window.addEventListener('load', function () { winReady = true; tryInit(); });
   }
 
-  // Initialize immediately — no delay — so the button is likely ready before the first click.
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
+  // Step 5 — CTA click handler. Runs synchronously inside the user-gesture context
+  // so the activation propagates to calBtn.click() → Google's overlay opens.
+  // If the button isn't ready yet, window.open() from within the click handler is
+  // also never blocked by popup blockers.
   document.addEventListener('click', function (e) {
     var anchor = e.target.closest('a[href="#book-governance"]');
     if (!anchor) return;
     e.preventDefault();
-
     if (calBtn) {
-      // Synchronous click inside user-gesture context → browser preserves user
-      // activation → Google's overlay opens without being blocked.
       calBtn.click();
     } else {
-      // Button not ready yet. Open fallback directly here, still inside the
-      // synchronous click handler, so popup blockers won't fire.
       window.open(FALLBACK, '_blank', 'noopener,noreferrer');
     }
   });

@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-13 — Governance calendar: align with official Google Scheduling Button embed pattern
+**Type:** fix
+**Files:** `chat-widget.js`, all `.html` files (67, `?v=6`)
+Rewrote governance calendar IIFE to mirror the official Google Calendar embed pattern (`window.addEventListener('load', …)` + dual-signal guard). The hidden-div + synchronous `.click()` approach is preserved (user activation context maintained; popup blockers don't fire). Both signals — `script.onload` and `window.load` — must arrive before `schedulingButton.load()` is called, ensuring the API is ready. Handles the edge case where `window.load` fires before our deferred script registers the listener. Cache-busted to v=6.
+
+---
+
 ## 2026-07-07 — Privacy Policy and Terms & Conditions pages + footer links
 **Type:** feature
 **Files:** `privacy.html`, `terms.html`, all `.html` files (65 updated)

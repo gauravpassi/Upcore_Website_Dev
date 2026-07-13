@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-07 — Privacy Policy and Terms & Conditions pages + footer links
+**Type:** feature
+**Files:** `privacy.html`, `terms.html`, all `.html` files (65 updated)
+Added `/privacy` and `/terms` pages. Privacy Policy covers India DPDP Act 2023 (primary), GDPR (EU visitors), CCPA (California); documents all six third-party processors (Anthropic, Google Analytics/GTM/Fonts/Calendar, FormSubmit, Vercel), cookie table, retention schedule, B2B client data handling, and data subject rights. Terms covers website use, AI chat disclaimer (Kai), IP, limitation of liability, B2B services clause, and governing law (India, courts of Chandigarh). Both pages use sticky TOC sidebar (desktop), same nav/footer/design system. Both `noindex` to avoid thin-content SEO noise. Footer-copy updated with Privacy Policy and T&C links across all 65 existing pages.
+
+---
+
 ## 2026-07-03 — Governance CTAs open calendar modal; other CTAs stay on /assessment
 **Type:** feature
 **Files:** `chat-widget.js`, all `.html` files

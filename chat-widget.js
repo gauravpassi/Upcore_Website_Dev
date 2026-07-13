@@ -574,93 +574,100 @@
 
 })();
 
-// ── Governance Calendar (Google Scheduling Button) ────────────────────────
-// Mirrors the official Google Calendar embed pattern:
-//   <link href="…scheduling-button-script.css" rel="stylesheet">
-//   <script src="…scheduling-button-script.js" async></script>
-//   <script>(function(){ var target=document.currentScript;
-//     window.addEventListener('load', function(){ calendar.schedulingButton.load({…,target}); }); })()</script>
-// We adapt it for programmatic triggering: the button renders off-screen into a hidden
-// div (our "target"), and our CTA click handler synchronously clicks it so Google's
-// overlay opens without popup-blocker interference.
+// ── Governance Calendar (iframe modal) ────────────────────────────────────
+// Google's appointment scheduling page (?gv=true) is iframe-embeddable.
+// We show it in our own modal — no dependency on Google's button-click
+// mechanics, no popup-blocker risk, opens reliably on every click.
 (function () {
   var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
-  var FALLBACK = 'https://calendar.app.google/UdtvB1BBhrffT9o96';
-  var calBtn = null;
 
-  // Step 1 — Load CSS (identical to official embed)
-  var link = document.createElement('link');
-  link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
-  link.rel = 'stylesheet';
-  document.head.appendChild(link);
+  var overlay = null;
+  var calIframe = null;
 
-  // Step 2 — Off-screen target div (our equivalent of document.currentScript in the
-  // official embed). Full-width so Google renders the button at its natural size.
-  var target = document.createElement('div');
-  target.id = '_gov_cal_target';
-  target.setAttribute('aria-hidden', 'true');
-  target.style.cssText = 'position:fixed;left:-400px;bottom:20px;width:260px;overflow:visible;';
-  document.body.appendChild(target);
+  function buildModal() {
+    overlay = document.createElement('div');
+    overlay.id = '_gov_cal_overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-label', 'Book a Governance Review');
+    overlay.style.cssText = [
+      'position:fixed;inset:0;z-index:999999;',
+      'background:rgba(10,10,10,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);',
+      'display:none;align-items:center;justify-content:center;',
+      'padding:16px;box-sizing:border-box;'
+    ].join('');
 
-  // Step 3 — Load JS (identical to official embed)
-  var script = document.createElement('script');
-  script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
-  script.async = true;
-  document.head.appendChild(script);
+    var box = document.createElement('div');
+    box.style.cssText = [
+      'background:#fff;border-radius:14px;overflow:hidden;',
+      'width:min(820px,100%);height:min(700px,90vh);',
+      'display:flex;flex-direction:column;',
+      'box-shadow:0 24px 80px rgba(0,0,0,.5);'
+    ].join('');
 
-  // Step 4 — Initialize once BOTH the scheduling-button script AND the page are
-  // fully loaded (mirrors the official embed's window 'load' handler).
-  // chat-widget.js is defer'd, so window.load may already have fired by the time
-  // we reach here — track both signals and init when whichever fires last arrives.
-  var winReady = document.readyState === 'complete';
-  var scriptReady = false;
+    var hdr = document.createElement('div');
+    hdr.style.cssText = [
+      'background:#0a0a0a;padding:13px 18px;flex-shrink:0;',
+      'display:flex;align-items:center;justify-content:space-between;gap:12px;'
+    ].join('');
 
-  function initCalendar() {
-    if (!window.calendar || !window.calendar.schedulingButton) return;
-    calendar.schedulingButton.load({
-      url: CAL_URL,
-      color: '#0ABFCC',
-      label: 'Book a Governance Review',
-      target: target,
+    var dot = document.createElement('span');
+    dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#0ABFCC;flex-shrink:0;';
+
+    var lbl = document.createElement('span');
+    lbl.textContent = 'Book a Governance Review';
+    lbl.style.cssText = 'color:#fff;font:600 13px/1 "DM Sans",system-ui,sans-serif;flex:1;';
+
+    var cls = document.createElement('button');
+    cls.innerHTML = '&#x2715;';
+    cls.setAttribute('aria-label', 'Close');
+    cls.style.cssText = [
+      'background:none;border:none;cursor:pointer;padding:2px 8px;',
+      'color:rgba(255,255,255,.5);font-size:20px;line-height:1;'
+    ].join('');
+    cls.onclick = closeModal;
+
+    hdr.appendChild(dot);
+    hdr.appendChild(lbl);
+    hdr.appendChild(cls);
+
+    calIframe = document.createElement('iframe');
+    calIframe.setAttribute('title', 'Book a Governance Review');
+    calIframe.setAttribute('frameborder', '0');
+    calIframe.setAttribute('allowfullscreen', '');
+    calIframe.style.cssText = 'flex:1;width:100%;border:none;display:block;';
+    calIframe.allow = 'payment camera microphone';
+
+    box.appendChild(hdr);
+    box.appendChild(calIframe);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
     });
-    var obs = new MutationObserver(function (_, o) {
-      // Google renders the button as a SIBLING of target, not a child.
-      // Check target children first, then the sibling itself, then sibling descendants.
-      var btn = target.querySelector('a[href], button');
-      if (!btn) {
-        var sib = target.nextElementSibling;
-        if (sib) {
-          btn = (sib.tagName === 'A' || sib.tagName === 'BUTTON')
-                ? sib
-                : sib.querySelector('a[href], button');
-        }
-      }
-      if (btn) { o.disconnect(); calBtn = btn; }
-    });
-    obs.observe(document.body, { childList: true, subtree: true });
-    setTimeout(function () { obs.disconnect(); }, 8000);
   }
 
-  function tryInit() { if (scriptReady && winReady) initCalendar(); }
-
-  script.onload = function () { scriptReady = true; tryInit(); };
-
-  if (!winReady) {
-    window.addEventListener('load', function () { winReady = true; tryInit(); });
+  function openModal() {
+    if (!overlay) buildModal();
+    if (calIframe && !calIframe.src) calIframe.src = CAL_URL;
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
 
-  // Step 5 — CTA click handler. Runs synchronously inside the user-gesture context
-  // so the activation propagates to calBtn.click() → Google's overlay opens.
-  // If the button isn't ready yet, window.open() from within the click handler is
-  // also never blocked by popup blockers.
+  function closeModal() {
+    if (!overlay) return;
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
   document.addEventListener('click', function (e) {
     var anchor = e.target.closest('a[href="#book-governance"]');
     if (!anchor) return;
     e.preventDefault();
-    if (calBtn) {
-      calBtn.click();
-    } else {
-      window.open(FALLBACK, '_blank', 'noopener,noreferrer');
-    }
+    openModal();
   });
 })();

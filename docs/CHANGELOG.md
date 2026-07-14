@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Studio framing: no-code builder → managed deployment service
+**Type:** content fix
+**Files:** agent-builder.html
+Audit finding C8: page titled "No-Code AI Agent Builder" implied a DIY SaaS product; reality is a services engagement. Fixes: title/OG/Twitter → "Managed AI Agent Deployment", LD+JSON type SoftwareApplication → Service, hero eyebrow "Agent Builder" → "Managed Deployment", "Instant Kill Switch" → "Instant Pause Control" (less alarming), ₹2,000 rupee example removed (international buyers).
+
 ## 2026-07-14 — Security & Trust page + ISO 27001 badge links
 **Type:** feature
 **Files:** security.html (new), all 67 HTML pages (footer + ISO 27001 badge), index.html (cert-item), agent-builder.html, ai-engineering-governance.html, platform.html, sdlc-agent.html

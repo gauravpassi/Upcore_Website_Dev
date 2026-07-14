@@ -593,6 +593,17 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fao-exp-row.fao-exp-review .fao-exp-tag { color:rgba(251,191,36,.7); background:rgba(245,158,11,.06); border-color:rgba(245,158,11,.12); }
 @media(max-width:1024px){ .fao-explorer { display:none; } }
 
+/* ── FAO RIBBON ─────────────────────────────────────────────── */
+.fao-ribbon { background:#0a0a0a; border-radius:14px; margin-top:40px; padding:32px 40px; display:grid; grid-template-columns:1fr 1.6fr; gap:48px; align-items:center; border:1px solid rgba(255,255,255,.06); }
+.fao-ribbon-stats { display:flex; gap:36px; flex-wrap:wrap; }
+.fao-rstat { flex:1; min-width:72px; }
+.fao-rnum { font-size:28px; font-weight:800; color:var(--teal); letter-spacing:-1px; line-height:1; }
+.fao-rlbl { font-size:10px; color:rgba(255,255,255,.3); text-transform:uppercase; letter-spacing:.07em; margin-top:5px; line-height:1.4; }
+.fao-chart-wrap { }
+.fao-chart-title { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.22); margin-bottom:10px; }
+@media(max-width:1024px){ .fao-ribbon { grid-template-columns:1fr; } }
+@media(max-width:768px){ .fao-ribbon { padding:24px; } .fao-ribbon-stats { gap:24px; } }
+
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
 #bridge { background:var(--bg3); }
@@ -901,6 +912,41 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
           </div>
 
         </div>
+      </div>
+    </div>
+
+    <!-- FAO RIBBON: stats + risk-decline chart -->
+    <div class="fao-ribbon">
+      <div class="fao-ribbon-stats">
+        <div class="fao-rstat"><div class="fao-rnum">72h</div><div class="fao-rlbl">To embed &amp; govern</div></div>
+        <div class="fao-rstat"><div class="fao-rnum">Day&nbsp;30</div><div class="fao-rlbl">First risk report</div></div>
+        <div class="fao-rstat"><div class="fao-rnum" data-target="19">0</div><div class="fao-rlbl">Integrated capabilities</div></div>
+        <div class="fao-rstat"><div class="fao-rnum" data-target="5">0</div><div class="fao-rlbl">Governance layers</div></div>
+      </div>
+      <div class="fao-chart-wrap">
+        <div class="fao-chart-title">AI Risk Exposure Over 90 Days</div>
+        <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block">
+          <defs>
+            <linearGradient id="riskGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0ABFCC" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#0ABFCC" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M 0,10 C 60,12 90,45 150,62 C 200,74 240,88 300,96 L 300,110 L 0,110 Z" fill="url(#riskGrad)"/>
+          <path class="fao-risk-line" d="M 0,10 C 60,12 90,45 150,62 C 200,74 240,88 300,96" fill="none" stroke="#0ABFCC" stroke-width="2" stroke-linecap="round" stroke-dasharray="400" stroke-dashoffset="400"/>
+          <text x="2" y="13" font-size="7" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">HIGH</text>
+          <text x="2" y="65" font-size="7" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">MED</text>
+          <text x="2" y="100" font-size="7" fill="rgba(255,255,255,0.2)" font-family="DM Sans,sans-serif">LOW</text>
+          <circle cx="0" cy="10" r="3.5" fill="#0ABFCC"/>
+          <circle cx="150" cy="62" r="3.5" fill="#0ABFCC"/>
+          <circle cx="300" cy="96" r="3.5" fill="#22c55e"/>
+          <line x1="0" y1="10" x2="0" y2="104" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="150" y1="62" x2="150" y2="104" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="300" y1="96" x2="300" y2="104" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="0" y="110" font-size="7.5" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 0</text>
+          <text x="138" y="110" font-size="7.5" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 30</text>
+          <text x="280" y="110" font-size="7.5" fill="rgba(255,255,255,0.28)" font-family="DM Sans,sans-serif">Day 90</text>
+        </svg>
       </div>
     </div>
 
@@ -1361,6 +1407,35 @@ document.addEventListener('DOMContentLoaded',function(){
       rows.forEach(function(r){r.style.outline='';});
     });
   });
+})();
+
+// FAO Ribbon: count-up + SVG risk-line draw on scroll
+(function(){
+  var done=false;
+  var observer=new IntersectionObserver(function(entries){
+    if(done||!entries[0].isIntersecting)return;
+    done=true;
+    document.querySelectorAll('.fao-rnum[data-target]').forEach(function(el){
+      var end=+el.dataset.target;
+      var t0=performance.now();
+      var dur=1100;
+      function step(now){
+        var pct=Math.min((now-t0)/dur,1);
+        var ease=1-Math.pow(1-pct,3);
+        el.textContent=Math.round(ease*end);
+        if(pct<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+    var line=document.querySelector('.fao-risk-line');
+    if(line){
+      line.style.transition='stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1) .2s';
+      line.style.strokeDashoffset='0';
+    }
+    observer.disconnect();
+  },{threshold:.35});
+  var ribbon=document.querySelector('.fao-ribbon');
+  if(ribbon)observer.observe(ribbon);
 })();
 
 </script>

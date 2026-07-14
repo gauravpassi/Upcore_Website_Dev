@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — C9 + M11: template contradiction resolved, fake "Live" labels removed
+**Type:** content fix
+**Files:** about.html, platform.html, index.html
+C9 fix: "60+ Agent Templates" (about.html stats strip + Studio card) changed to "60+ Agent Specialities" — matches agent-builder.html which already used correct wording. platform.html "No templates. No adapters." reworded to avoid directly contradicting the specialities count while keeping the custom-build message intact. M11 fix: "FAO Risk Monitor — Live" → "FAO Risk Monitor — Example"; "FAO Governance Explorer — Active" → "FAO Governance Explorer — Interactive Demo"; pulsing green dot removed from rm-live-dot (animation:none, color changed from green to teal). A developer inspecting the DOM no longer sees a marketing mockup claiming to be a live system.
+
 ## 2026-07-14 — Sprint 4: credibility hardening (team, jurisdiction, AI-certified reframe)
 **Type:** content + trust
 **Files:** about.html, security.html, ai-engineering-governance.html, index.html, platform.html, pricing.html

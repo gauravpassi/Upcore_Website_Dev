@@ -181,9 +181,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   letter-spacing:.1em; text-transform:uppercase;
 }
 .rm-live-dot {
-  width:7px; height:7px; border-radius:50%; background:#22c55e;
-  box-shadow:0 0 0 2px rgba(34,197,94,.25);
-  animation:blink 2s ease infinite;
+  width:7px; height:7px; border-radius:50%; background:var(--teal);
+  opacity:.7;
 }
 .rm-body { padding:16px; display:flex; flex-direction:column; gap:10px; }
 .rm-alert { border-radius:10px; padding:13px 15px; border:1px solid; }
@@ -694,7 +693,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       <div class="risk-monitor">
         <div class="rm-header">
           <span class="rm-live-dot"></span>
-          FAO Risk Monitor - Live
+          FAO Risk Monitor &mdash; Example
         </div>
         <div class="rm-body">
           <div class="rm-alert high">
@@ -851,7 +850,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
         <p class="fao-reassurance">We respond within 24 hours. No commitment required.</p>
       </div>
       <div class="fao-explorer">
-        <div class="fao-exp-header"><span class="fao-exp-live"></span>FAO Governance Explorer - Active</div>
+        <div class="fao-exp-header"><span class="fao-exp-live"></span>FAO Governance Explorer &mdash; Interactive Demo</div>
         <div class="fao-exp-rows">
 
           <div class="fao-exp-row" onclick="toggleLayer(this)">

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Assessment page overhaul: governance focus + Calendly embed
+**Type:** content + feature
+**Files:** assessment.html
+Sprint 3 conversion fix. Changes: title/meta → "Book an AI Governance Review"; left panel → governance-focused (risk mapping, compliance gap, Day-30 roadmap, honest fit); form reduced from 9 fields to 7 (4 required) — removed phone, industry, team size; added "AI tools in use" and "compliance framework" governance-specific dropdowns; textarea now optional; success screen now shows Calendly embed for immediate booking (URL: calendly.com/gaurav-upcore/governance-review — update if different); honeypot field added; FormSubmit.co disclosed in privacy note.
+
 ## 2026-07-14 — FAO "who is it?" profile strip on governance page
 **Type:** content
 **Files:** ai-engineering-governance.html

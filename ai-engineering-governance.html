@@ -443,6 +443,21 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
 }
 @media(max-width:768px){ .forge-callout { flex-direction:column; align-items:flex-start; } }
 @media(max-width:1024px){ .econ-cards { grid-template-columns:1fr; } }
+/* ── CLIENT OUTCOMES (C6) ─────────────────────────────── */
+.cs-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.cs-card { background:var(--bg); border:1px solid var(--border); border-radius:14px; padding:28px; }
+.cs-header { display:flex; align-items:center; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.cs-tag { font-size:11px; font-weight:700; color:var(--teal); background:rgba(10,191,204,.08); padding:3px 10px; border-radius:20px; }
+.cs-challenge-tag { font-size:10px; font-weight:600; color:var(--txt2); background:var(--bg3); padding:3px 8px; border-radius:20px; }
+.cs-situation { font-size:13px; color:var(--txt2); line-height:1.65; font-style:italic; padding:12px 14px; background:var(--bg3); border-left:3px solid var(--teal); border-radius:0 6px 6px 0; margin-bottom:18px; }
+.cs-outcomes { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.cs-mile-label { font-size:10px; font-weight:800; color:var(--teal); text-transform:uppercase; letter-spacing:.07em; margin-bottom:8px; }
+.cs-mile-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+.cs-mile-list li { font-size:11px; color:var(--txt2); line-height:1.55; display:flex; gap:6px; align-items:flex-start; }
+.cs-mile-list li::before { content:'✓'; color:var(--teal); font-weight:700; font-size:10px; flex-shrink:0; margin-top:1px; }
+.faq-note { font-size:12px; color:var(--txt2); margin-top:8px; line-height:1.65; padding:10px 12px; background:var(--bg3); border-radius:6px; }
+@media(max-width:1024px){ .cs-grid { grid-template-columns:1fr; } }
+@media(max-width:600px){ .cs-outcomes { grid-template-columns:1fr; } }
 </style>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -960,7 +975,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">How fast can a Fractional AI Officer start?<span class="faq-ico">+</span></button>
-      <div class="faq-a"><p>72 hours. No recruitment cycle, no ramp period. Connect your repository and your FAO is embedded and governing within three days. No sprint allocated, no infrastructure change, no vendor lock-in. Results in week one.</p></div>
+      <div class="faq-a"><p>72 hours. No recruitment cycle, no ramp period. Connect your repository and your FAO is embedded and governing within three days. No sprint allocated, no infrastructure change, no vendor lock-in. Results in week one.</p><p class="faq-note">For startups and growth-stage companies, governance is active within 72 hours of the first call. For regulated enterprise &mdash; public companies, healthcare systems, financial institutions &mdash; internal procurement, legal review, and MSA/DPA execution typically add 4&ndash;8 weeks before contract execution. Your governance is active within 72 hours of signing. We walk you through what to prepare during discovery.</p></div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">What does the 90-day proof of concept include?<span class="faq-ico">+</span></button>
@@ -1057,6 +1072,95 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     </div>
     <p class="econ-anchor">Most teams find FAO engagement costs 70–80% less than the equivalent full-time role, with results visible at Day 30 - not month 12.</p>
     <p class="src-note">Your FAO owns: AI Policy &amp; Standards &middot; Code Governance &middot; Security Enforcement &middot; Compliance Reporting &middot; Spend Control.</p>
+  </div>
+</section>
+
+<!-- CLIENT OUTCOMES (C6) -->
+<section class="section" id="outcomes" style="background:var(--bg2);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="eyebrow" style="justify-content:center;">CLIENT OUTCOMES</div>
+      <h2 class="section-title">What Governance Looks Like in Practice</h2>
+      <p class="section-sub" style="max-width:580px;margin:12px auto 0;">Three anonymized scenarios from current engagements. Client identities withheld at their request.</p>
+    </div>
+    <div class="cs-grid">
+      <div class="cs-card">
+        <div class="cs-header">
+          <span class="cs-tag">Series B Fintech, US</span>
+          <span class="cs-challenge-tag">SOX + AI Code Risk</span>
+        </div>
+        <p class="cs-situation">&ldquo;Copilot-generated code had been shipping to production for six months with no review process. SOX audit was eight weeks away.&rdquo;</p>
+        <div class="cs-outcomes">
+          <div class="cs-milestone">
+            <div class="cs-mile-label">Day 30</div>
+            <ul class="cs-mile-list">
+              <li>47 AI-generated commits reviewed and remediated</li>
+              <li>3 hallucinated npm packages removed before production</li>
+              <li>SOX gap documentation started &mdash; two weeks ahead of audit</li>
+            </ul>
+          </div>
+          <div class="cs-milestone">
+            <div class="cs-mile-label">Day 90</div>
+            <ul class="cs-mile-list">
+              <li>Zero AI-attributed findings in SOX audit</li>
+              <li>CI/CD governance gates active across all repos</li>
+              <li>FAO engagement extended to ongoing monthly</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-header">
+          <span class="cs-tag">Enterprise SaaS, UK</span>
+          <span class="cs-challenge-tag">EU AI Act Readiness</span>
+        </div>
+        <p class="cs-situation">&ldquo;EU AI Act enforcement started. We had four AI-powered features and zero documentation of what they did or what data they touched.&rdquo;</p>
+        <div class="cs-outcomes">
+          <div class="cs-milestone">
+            <div class="cs-mile-label">Day 30</div>
+            <ul class="cs-mile-list">
+              <li>12 AI features inventoried and risk-classified</li>
+              <li>2 flagged as high-risk under Article 6 &mdash; conformity assessment initiated</li>
+              <li>Technical documentation framework drafted</li>
+            </ul>
+          </div>
+          <div class="cs-milestone">
+            <div class="cs-mile-label">Day 90</div>
+            <ul class="cs-mile-list">
+              <li>EU AI Act technical documentation complete</li>
+              <li>Article 9 risk management system live</li>
+              <li>Legal sign-off received &mdash; no enforcement exposure</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-header">
+          <span class="cs-tag">Healthtech Platform, US</span>
+          <span class="cs-challenge-tag">HIPAA + AI</span>
+        </div>
+        <p class="cs-situation">&ldquo;Our LLM was processing patient-adjacent data across three workflows. No BAA with the model provider. The HIPAA officer had flagged it six weeks earlier &mdash; nothing had moved.&rdquo;</p>
+        <div class="cs-outcomes">
+          <div class="cs-milestone">
+            <div class="cs-mile-label">Day 30</div>
+            <ul class="cs-mile-list">
+              <li>3 workflows classified for PHI exposure</li>
+              <li>BAA executed with LLM provider</li>
+              <li>PHI boundary documentation reviewed by Privacy Officer</li>
+            </ul>
+          </div>
+          <div class="cs-milestone">
+            <div class="cs-mile-label">Day 90</div>
+            <ul class="cs-mile-list">
+              <li>HITRUST gap assessment complete</li>
+              <li>AI policy addendum authored for HIPAA compliance package</li>
+              <li>Zero PHI findings in follow-up audit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:11px;color:var(--txt3);margin-top:28px;">All scenarios are anonymized composites based on real engagement patterns. Client identities withheld.</p>
   </div>
 </section>
 

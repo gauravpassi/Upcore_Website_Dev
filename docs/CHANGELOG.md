@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Sprint 5: C6 (case studies), M4 (FAO archetypes), M3 (72h qualification)
+**Type:** content
+**Files:** ai-engineering-governance.html, about.html
+C6: Added "Client Outcomes" section to ai-engineering-governance.html (between Economics and Engagement Model) with 3 anonymized scenarios — Series B Fintech/SOX, Enterprise SaaS UK/EU AI Act, Healthtech US/HIPAA. Each card shows Day 30 and Day 90 outcome metrics. Clearly labeled as anonymized composites. M4: Expanded the FAO Specialists team card on about.html with 3 specialist archetype sub-cards (Engineering-Native, Compliance-Led, Security-First) — describes the type of person without fabricating identities. M3: Added enterprise procurement caveat to the FAQ "How fast can you start?" answer on ai-engineering-governance.html and a one-sentence qualifier to the "72 hours is not a marketing claim" belief in about.html.
+
 ## 2026-07-14 — C9 + M11: template contradiction resolved, fake "Live" labels removed
 **Type:** content fix
 **Files:** about.html, platform.html, index.html

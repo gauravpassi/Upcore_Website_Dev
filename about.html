@@ -214,6 +214,11 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   .footer-grid{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
 }
+/* ── FAO ARCHETYPES (M4) ───────────────────────────────── */
+.fao-archetypes { margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:8px; }
+.fa-arc { padding:10px 12px; background:var(--bg2); border-radius:8px; }
+.fa-arc-title { font-size:11px; font-weight:700; color:var(--txt); margin-bottom:3px; }
+.fa-arc-desc { font-size:11px; color:var(--txt2); line-height:1.6; }
 </style>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -394,7 +399,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="belief-card">
         <div class="belief-num">03</div>
         <div class="belief-title">Speed to deploy is a competitive advantage.</div>
-        <div class="belief-desc">The window between identifying an operational problem and having an AI solution for it should be measured in days, not quarters. Every month an operator waits for a custom build, a competitor is moving. We believe deployment speed is not just a technical property. it's a strategic one. 72 hours is not a marketing claim; it's an architecture decision.</div>
+        <div class="belief-desc">The window between identifying an operational problem and having an AI solution for it should be measured in days, not quarters. Every month an operator waits for a custom build, a competitor is moving. We believe deployment speed is not just a technical property. it's a strategic one. 72 hours is not a marketing claim; it's an architecture decision. For regulated enterprise clients with procurement cycles, the 72 hours runs from contract execution — not the first call.</div>
       </div>
       <div class="belief-card">
         <div class="belief-num">04</div>
@@ -491,6 +496,20 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           <div class="team-name">The FAO Specialists</div>
           <div class="team-role">AI Governance Delivery</div>
           <div class="team-bio">Every Fractional AI Officer embedded at a client is an AI engineering governance specialist — typically 8+ years across SDLC governance, AI tool deployment, and regulatory frameworks (EU AI Act, HIPAA, SOX, ISO 27001). You meet your named FAO before you sign anything. Your engagement's specialist is confirmed in the proposal, not after you've committed.</div>
+          <div class="fao-archetypes">
+            <div class="fa-arc">
+              <div class="fa-arc-title">Engineering-Native FAO</div>
+              <div class="fa-arc-desc">8+ yrs as a senior engineer. Governs AI at the PR level &mdash; reviews Copilot output, catches hallucinated packages, enforces prompt standards in CI. Common verticals: SaaS, fintech.</div>
+            </div>
+            <div class="fa-arc">
+              <div class="fa-arc-title">Compliance-Led FAO</div>
+              <div class="fa-arc-desc">GRC and regulatory advisory background. Specialises in HIPAA, SOX, and EU AI Act documentation &mdash; turns AI risk into board-ready audit trail. Common verticals: healthcare, public company, financial services.</div>
+            </div>
+            <div class="fa-arc">
+              <div class="fa-arc-title">Security-First FAO</div>
+              <div class="fa-arc-desc">AppSec and AI red-teaming background. Focused on supply chain risk, prompt injection safeguards, and LLM threat modelling. Common verticals: enterprise IT, defence-adjacent, regulated SaaS.</div>
+            </div>
+          </div>
           <div class="team-links">
             <a href="/assessment" class="team-link">Meet Your FAO &rarr;</a>
           </div>

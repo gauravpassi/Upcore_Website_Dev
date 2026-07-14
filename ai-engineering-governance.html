@@ -265,6 +265,28 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .fw-cap b { color:var(--txt); font-weight:700; }
 .fw-dot { flex-shrink:0; width:5px; height:5px; border-radius:50%; background:var(--teal); margin-top:8px; }
 
+/* ── TOKEN DASHBOARD (L5 panel) ────────────────────────────── */
+.tok-dashboard { grid-column:1/-1; background:#0a0a0a; border-radius:10px; padding:16px 18px; margin-top:8px; border:1px solid rgba(255,255,255,.07); }
+.tok-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:8px; }
+.tok-title { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.3); }
+.tok-badge { font-size:.65rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:rgba(10,191,204,.6); background:rgba(10,191,204,.08); padding:2px 8px; border-radius:3px; border:1px solid rgba(10,191,204,.12); }
+.tok-rows { display:flex; flex-direction:column; gap:9px; margin-bottom:14px; }
+.tok-row { display:grid; grid-template-columns:90px 1fr 44px 30px 44px; align-items:center; gap:8px; }
+.tok-team { font-size:.75rem; color:rgba(255,255,255,.45); white-space:nowrap; }
+.tok-bar-wrap { height:4px; background:rgba(255,255,255,.06); border-radius:2px; overflow:hidden; }
+.tok-bar { height:100%; background:linear-gradient(90deg,#0ABFCC,rgba(10,191,204,.4)); border-radius:2px; }
+.tok-amt { font-size:.75rem; font-weight:700; color:rgba(255,255,255,.6); text-align:right; }
+.tok-pct { font-size:.65rem; color:rgba(255,255,255,.25); text-align:right; }
+.tok-delta { font-size:.65rem; font-weight:700; white-space:nowrap; }
+.tok-delta.down { color:#22c55e; }
+.tok-delta.up { color:#f87171; }
+.tok-delta.flat { color:rgba(255,255,255,.25); }
+.tok-footer { border-top:1px solid rgba(255,255,255,.05); padding-top:12px; display:flex; flex-direction:column; gap:4px; }
+.tok-total { font-size:.72rem; color:rgba(255,255,255,.3); }
+.tok-total strong { color:rgba(255,255,255,.6); }
+.tok-saved { font-size:.68rem; color:rgba(10,191,204,.5); }
+@media(max-width:600px){ .tok-row { grid-template-columns:72px 1fr 40px 28px; } .tok-pct { display:none; } }
+
 /* ── ECONOMICS ─────────────────────────────────────────────── */
 #economics { background:var(--bg); }
 .econ-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -425,7 +447,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
     <li><a href="/ai-engineering-governance" class="active">AI Governance</a></li>
-    <li><a href="/platform">Products</a></li>
+    <li><a href="/platform">Services</a></li>
     <li><a href="/industries">Industries</a></li>
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
@@ -636,6 +658,94 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
   </div>
 </section>
 
+<!-- COST OF NOT GOVERNING -->
+<section class="section" id="cost-of-not-governing" style="background:var(--bg2);">
+  <div class="section-inner">
+    <span class="eyebrow">The Risk You're Carrying Right Now</span>
+    <h2 class="section-title">What You're Losing<br>by Not Governing AI.</h2>
+    <p class="section-sub">Every month without a governance owner is a month of compounding exposure. Here's what the data says it costs.</p>
+    <div class="cong-layout">
+      <div class="cong-left">
+        <div class="cong-title">Without Governance — Annual Exposure</div>
+        <div class="cong-rows">
+          <div class="cong-row">
+            <div class="cong-num">$4.7M</div>
+            <div class="cong-detail">
+              <div class="cong-label">Average breach cost when AI code is in the attack path</div>
+              <div class="cong-src">IBM Cost of a Data Breach Report, 2024</div>
+            </div>
+          </div>
+          <div class="cong-row">
+            <div class="cong-num">$1.2M</div>
+            <div class="cong-detail">
+              <div class="cong-label">Average cost to remediate a failed compliance audit</div>
+              <div class="cong-src">Ponemon Institute, 2024</div>
+            </div>
+          </div>
+          <div class="cong-row">
+            <div class="cong-num">$600K</div>
+            <div class="cong-detail">
+              <div class="cong-label">Productivity lost per year to ungoverned AI code debt</div>
+              <div class="cong-src">Based on CodeRabbit 8.1M PR study + industry benchmarks</div>
+            </div>
+          </div>
+          <div class="cong-divider"></div>
+          <div class="cong-row cong-total">
+            <div class="cong-num red">~$6.5M</div>
+            <div class="cong-detail">
+              <div class="cong-label"><strong>Estimated annual exposure from unmanaged AI engineering risk</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cong-right">
+        <div class="cong-offset-card">
+          <div class="cong-offset-eyebrow">With Your FAO</div>
+          <div class="cong-offset-price">&lt;&thinsp;$4,000<span class="cong-offset-mo">/mo</span></div>
+          <div class="cong-offset-year">&lt;&thinsp;$48,000&thinsp;/&thinsp;year</div>
+          <div class="cong-offset-calc">
+            <div class="cong-calc-row"><span class="cong-calc-lbl">$6.5M exposure</span><span class="cong-calc-op">÷</span><span class="cong-calc-val">$48K/yr FAO</span></div>
+            <div class="cong-calc-eq">= <strong>135x return on one breach prevented</strong></div>
+          </div>
+          <p class="cong-offset-hook">You're not paying for governance. You're paying to prevent the breach that pays for itself 135 times over.</p>
+          <a href="#book-governance" class="btn btn-fill" style="width:100%;text-align:center;display:block;margin-top:20px">Book a Governance Review &rarr;</a>
+          <p class="cong-offset-reassure">One call. No commitment required.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.cong-layout { display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:start; margin-top:40px; }
+.cong-left { }
+.cong-title { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--txt3); margin-bottom:20px; }
+.cong-rows { display:flex; flex-direction:column; gap:0; }
+.cong-row { display:flex; align-items:flex-start; gap:20px; padding:18px 0; border-bottom:1px solid var(--border); }
+.cong-row.cong-total { border-bottom:none; padding-top:20px; }
+.cong-num { font-size:1.7rem; font-weight:800; color:var(--txt); letter-spacing:-1px; min-width:90px; flex-shrink:0; line-height:1.1; }
+.cong-num.red { color:#ef4444; }
+.cong-detail { flex:1; }
+.cong-label { font-size:.92rem; color:var(--txt2); line-height:1.5; }
+.cong-src { font-size:.7rem; color:var(--txt3); margin-top:4px; }
+.cong-divider { height:2px; background:var(--border); margin:4px 0; }
+.cong-right { position:sticky; top:100px; }
+.cong-offset-card { background:#0a0a0a; border-radius:16px; padding:32px 28px; border:1px solid rgba(10,191,204,.18); }
+.cong-offset-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(10,191,204,.6); margin-bottom:12px; }
+.cong-offset-price { font-size:3rem; font-weight:900; color:#0ABFCC; letter-spacing:-2px; line-height:1; }
+.cong-offset-mo { font-size:1.2rem; font-weight:600; color:rgba(10,191,204,.6); letter-spacing:0; }
+.cong-offset-year { font-size:.85rem; color:rgba(255,255,255,.35); margin-top:6px; margin-bottom:24px; }
+.cong-offset-calc { background:rgba(10,191,204,.06); border:1px solid rgba(10,191,204,.1); border-radius:8px; padding:14px 16px; margin-bottom:20px; }
+.cong-calc-row { display:flex; align-items:center; gap:10px; font-size:.82rem; color:rgba(255,255,255,.4); }
+.cong-calc-op { color:rgba(255,255,255,.2); }
+.cong-calc-val { color:rgba(10,191,204,.6); }
+.cong-calc-eq { font-size:.88rem; color:rgba(255,255,255,.75); margin-top:8px; line-height:1.4; }
+.cong-calc-eq strong { color:#0ABFCC; }
+.cong-offset-hook { font-size:.83rem; color:rgba(255,255,255,.5); line-height:1.65; font-style:italic; border-left:2px solid rgba(10,191,204,.25); padding-left:12px; }
+.cong-offset-reassure { font-size:.7rem; color:rgba(255,255,255,.25); text-align:center; margin-top:10px; }
+@media(max-width:900px){ .cong-layout { grid-template-columns:1fr; } .cong-right { position:static; } }
+@media(max-width:600px){ .cong-num { font-size:1.3rem; min-width:72px; } .cong-offset-price { font-size:2.2rem; } }
+</style>
+
 <!-- THE GAP -->
 <section class="section" id="gap">
   <div class="section-inner">
@@ -770,6 +880,46 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
             <div class="fw-cap"><span class="fw-dot"></span><span><b>Risk &amp; Observability.</b> CTO/CISO live dashboard. AI code % by team. Tech-debt exposure in $.</span></div>
             <div class="fw-cap"><span class="fw-dot"></span><span><b>Evaluation &amp; Metrics.</b> AI-vs-human PR quality delta, bug rate by code origin, cycle time.</span></div>
             <div class="fw-cap"><span class="fw-dot"></span><span><b>Production Monitor.</b> Prompt-to-incident linkage. AI runtime tagging. Incident runbooks.</span></div>
+            <div class="tok-dashboard">
+              <div class="tok-header">
+                <span class="tok-title">AI Spend by Team &mdash; Q3</span>
+                <span class="tok-badge">Budget Attribution</span>
+              </div>
+              <div class="tok-rows">
+                <div class="tok-row">
+                  <span class="tok-team">Frontend</span>
+                  <div class="tok-bar-wrap"><div class="tok-bar" style="width:82%"></div></div>
+                  <span class="tok-amt">$12.4k</span>
+                  <span class="tok-pct">43%</span>
+                  <span class="tok-delta down">&darr;&thinsp;-8%</span>
+                </div>
+                <div class="tok-row">
+                  <span class="tok-team">Backend API</span>
+                  <div class="tok-bar-wrap"><div class="tok-bar" style="width:54%"></div></div>
+                  <span class="tok-amt">$8.1k</span>
+                  <span class="tok-pct">28%</span>
+                  <span class="tok-delta flat">&rarr; flat</span>
+                </div>
+                <div class="tok-row">
+                  <span class="tok-team">Data Pipeline</span>
+                  <div class="tok-bar-wrap"><div class="tok-bar" style="width:38%"></div></div>
+                  <span class="tok-amt">$5.6k</span>
+                  <span class="tok-pct">19%</span>
+                  <span class="tok-delta up">&uarr;&thinsp;+3%</span>
+                </div>
+                <div class="tok-row">
+                  <span class="tok-team">Mobile</span>
+                  <div class="tok-bar-wrap"><div class="tok-bar" style="width:19%"></div></div>
+                  <span class="tok-amt">$2.9k</span>
+                  <span class="tok-pct">10%</span>
+                  <span class="tok-delta down">&darr;&thinsp;-2%</span>
+                </div>
+              </div>
+              <div class="tok-footer">
+                <span class="tok-total">Total this month: <strong>$29k</strong> <span class="tok-delta down">&darr; -11% vs last month</span></span>
+                <span class="tok-saved">42 hallucinated pkg calls blocked &middot; est. <strong>$1.8k</strong> waste avoided</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -825,6 +975,41 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     <span class="eyebrow">The Business Case</span>
     <h2 class="section-title">The Role Your Org Is Missing -<br />Without the Cost or the Timeline.</h2>
     <p class="section-sub">An AI-certified Fractional AI Officer owns your AI engineering governance - strategy to compliance - without the cost or timeline of a full-time hire or a Big-4 engagement.</p>
+    <div class="price-stack">
+      <div class="ps-eyebrow">Fractional. Not Expensive.</div>
+      <div class="ps-rows">
+        <div class="ps-row muted">
+          <span class="ps-role">Full-Time AI Governance Leader</span>
+          <span class="ps-price strike">$20,000<span class="ps-mo">+/mo</span></span>
+        </div>
+        <div class="ps-row muted">
+          <span class="ps-role">Part-Time / Contractor</span>
+          <span class="ps-price strike">$10,000<span class="ps-mo">+/mo</span></span>
+        </div>
+        <div class="ps-row featured">
+          <span class="ps-role">Fractional AI Officer by Upcore <span class="ps-popular">Most Chosen</span></span>
+          <span class="ps-price teal">&lt;&thinsp;$4,000<span class="ps-mo">/mo</span></span>
+        </div>
+      </div>
+      <p class="ps-tagline">Same accountability. Same expertise. 80% less spend.</p>
+    </div>
+    <style>
+    .price-stack { background:#0a0a0a; border-radius:14px; padding:32px 36px; margin-bottom:32px; border:1px solid rgba(255,255,255,.07); }
+    .ps-eyebrow { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:rgba(10,191,204,.6); margin-bottom:20px; }
+    .ps-rows { display:flex; flex-direction:column; gap:0; }
+    .ps-row { display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.06); gap:16px; }
+    .ps-row:last-child { border-bottom:none; }
+    .ps-row.featured { padding:16px 0; }
+    .ps-role { font-size:.9rem; color:rgba(255,255,255,.35); display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .ps-row.featured .ps-role { color:#fff; font-weight:600; font-size:.95rem; }
+    .ps-popular { font-size:.65rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:rgba(10,191,204,.12); color:#0ABFCC; padding:2px 8px; border-radius:9999px; border:1px solid rgba(10,191,204,.2); }
+    .ps-price { font-size:1.25rem; font-weight:800; color:rgba(255,255,255,.2); white-space:nowrap; flex-shrink:0; }
+    .ps-price.strike { text-decoration:line-through; text-decoration-color:rgba(255,255,255,.15); }
+    .ps-price.teal { color:#0ABFCC; font-size:1.6rem; text-decoration:none; }
+    .ps-mo { font-size:.75rem; font-weight:500; opacity:.7; margin-left:1px; }
+    .ps-tagline { font-size:.82rem; color:rgba(255,255,255,.3); margin-top:18px; text-align:center; letter-spacing:.02em; }
+    @media(max-width:600px){ .ps-row { flex-direction:column; align-items:flex-start; gap:6px; } .price-stack { padding:22px 20px; } }
+    </style>
     <div class="econ-cards">
       <div class="econ-card">
         <div class="econ-label">Full-Time Hire</div>
@@ -1001,7 +1186,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       <ul class="footer-links">
         <li><a href="/ai-engineering-governance">AI Engineering Governance</a></li>
         <li><a href="/sdlc-agent">Forge &middot; SDLC Agent</a></li>
-        <li><a href="/platform">Upcore Studio</a></li>
+        <li><a href="/agent-builder">Upcore Studio</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/assessment">Free AI Assessment</a></li>
       </ul>
@@ -1058,6 +1243,6 @@ function toggleFaq(btn) {
   else { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
 }
 </script>
-<script src="/chat-widget.js?v=8" defer></script>
+<script src="/chat-widget.js?v=9" defer></script>
 </body>
 </html>

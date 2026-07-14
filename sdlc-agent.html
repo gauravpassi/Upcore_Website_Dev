@@ -113,6 +113,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .hero-sub { font-size:17px; color:var(--txt2); line-height:1.8; margin-bottom:16px; max-width:500px; }
 .hero-hook { font-size:14px; color:var(--teal); font-style:italic; padding:14px 18px; border-left:2px solid var(--teal); background:rgba(10,191,204,.05); border-radius:0 8px 8px 0; margin-bottom:32px; max-width:500px; line-height:1.7; }
 .hero-ctas { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:40px; }
+.gov-badge-band { display:flex; align-items:flex-start; gap:10px; background:rgba(10,191,204,.05); border-left:3px solid #0ABFCC; border-radius:0 8px 8px 0; padding:11px 15px; font-size:.78rem; color:var(--txt2); line-height:1.55; margin-bottom:24px; }
 .hero-stats { display:flex; gap:0; border-top:1px solid var(--border); padding-top:32px; }
 .hstat { flex:1; padding-right:24px; border-right:1px solid var(--border); margin-right:24px; }
 .hstat:last-child { border-right:none; padding-right:0; margin-right:0; }
@@ -334,7 +335,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
     <li><a href="/ai-engineering-governance">AI Governance</a></li>
-    <li><a href="/platform">Products</a></li>
+    <li><a href="/platform">Services</a></li>
     <li><a href="/industries">Industries</a></li>
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
@@ -358,6 +359,10 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       <div class="hero-ctas">
         <a href="/assessment" class="btn btn-fill">Book a Live Demo &rarr;</a>
         <a href="#how-it-works" class="btn btn-ghost">See How It Works</a>
+      </div>
+      <div class="gov-badge-band">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#0ABFCC"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Every Forge deployment is governed by your Fractional AI Officer &mdash; AI code reviewed, compliance checked, risk reported. &nbsp;<a href="/ai-engineering-governance" style="color:#0ABFCC;font-weight:600;">Not deploying under governance yet? Start with the FAO &rarr;</a></span>
       </div>
       <div class="hero-stats">
         <div class="hstat"><div class="hstat-num">Full</div><div class="hstat-lbl">SDLC Coverage</div></div>
@@ -784,7 +789,7 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
       <ul class="footer-links">
         <li><a href="/ai-engineering-governance">AI Engineering Governance</a></li>
         <li><a href="/sdlc-agent">Forge &middot; SDLC Agent</a></li>
-        <li><a href="/platform">Upcore Studio</a></li>
+        <li><a href="/agent-builder">Upcore Studio</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/assessment">Free AI Assessment</a></li>
       </ul>
@@ -826,6 +831,6 @@ function switchVs(tab, btn) {
   document.getElementById('vs-' + tab).classList.add('active');
 }
 </script>
-<script src="/chat-widget.js?v=8" defer></script>
+<script src="/chat-widget.js?v=9" defer></script>
 </body>
 </html>

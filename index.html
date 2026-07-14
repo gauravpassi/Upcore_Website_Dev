@@ -532,6 +532,17 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fao-layers { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:26px; }
 .layer-pill { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.08); color:rgba(10,191,204,.85); border:1px solid rgba(10,191,204,.2); padding:5px 13px; border-radius:9999px; cursor:default; transition:background .15s,border-color .15s; }
 .layer-pill:hover { background:rgba(10,191,204,.18); border-color:rgba(10,191,204,.5); }
+.fao-price-stack { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:10px; padding:16px 18px; margin-bottom:20px; }
+.fps-row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.05); gap:12px; }
+.fps-row:last-of-type { border-bottom:none; }
+.fps-role { font-size:.82rem; color:rgba(255,255,255,.3); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.fps-featured .fps-role { color:rgba(255,255,255,.85); font-weight:600; }
+.fps-pill { font-size:.6rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; background:rgba(10,191,204,.12); color:#0ABFCC; padding:2px 7px; border-radius:9999px; border:1px solid rgba(10,191,204,.2); }
+.fps-price { font-size:1.05rem; font-weight:800; color:rgba(255,255,255,.18); white-space:nowrap; flex-shrink:0; }
+.fps-strike { text-decoration:line-through; text-decoration-color:rgba(255,255,255,.12); }
+.fps-teal { color:#0ABFCC; font-size:1.25rem; text-decoration:none; }
+.fps-mo { font-size:.65rem; font-weight:500; opacity:.7; margin-left:1px; }
+.fps-tagline { font-size:.72rem; color:rgba(255,255,255,.25); text-align:center; margin-top:12px; letter-spacing:.02em; }
 .fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
 .fao-btns .btn-ghost { color:rgba(255,255,255,.65); border-color:rgba(255,255,255,.15); }
 .fao-btns .btn-ghost:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.32); color:#fff; }
@@ -630,7 +641,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   </div>
   <ul class="nav-links">
     <li><a href="/ai-engineering-governance">AI Governance</a></li>
-    <li><a href="/platform">Products</a></li>
+    <li><a href="/platform">Services</a></li>
     <li><a href="/industries">Industries</a></li>
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
@@ -812,6 +823,12 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
             <div class="fao-win-icon">&#10003;</div>
             <div><div class="fao-win-title">EU AI Act &amp; HIPAA ready</div><div class="fao-win-sub">19 capabilities across ISO&nbsp;27001, SOX, HIPAA, and EU AI Act.</div></div>
           </div>
+        </div>
+        <div class="fao-price-stack">
+          <div class="fps-row fps-muted"><span class="fps-role">Full-Time Hire</span><span class="fps-price fps-strike">$20,000<span class="fps-mo">+/mo</span></span></div>
+          <div class="fps-row fps-muted"><span class="fps-role">Part-Time / Contractor</span><span class="fps-price fps-strike">$10,000<span class="fps-mo">+/mo</span></span></div>
+          <div class="fps-row fps-featured"><span class="fps-role">Fractional AI Officer <span class="fps-pill">Most Chosen</span></span><span class="fps-price fps-teal">&lt;&thinsp;$4,000<span class="fps-mo">/mo</span></span></div>
+          <p class="fps-tagline">Same accountability. Same expertise. 80% less spend.</p>
         </div>
         <div class="fao-btns">
           <a href="#book-governance" class="btn btn-teal">Book a Governance Review &rarr;</a>
@@ -1267,7 +1284,7 @@ if('IntersectionObserver' in window){
       <ul class="footer-links">
         <li><a href="/ai-engineering-governance">AI Governance</a></li>
         <li><a href="/sdlc-agent">Forge &middot; SDLC Agent</a></li>
-        <li><a href="/platform">Upcore Studio</a></li>
+        <li><a href="/agent-builder">Upcore Studio</a></li>
         <li><a href="/build-your-demo">Free Demo</a></li>
         <li><a href="/assessment">Free AI Assessment</a></li>
       </ul>
@@ -1309,7 +1326,7 @@ if('IntersectionObserver' in window){
   </div>
 </footer>
 
-<script src="/chat-widget.js?v=8" defer></script>
+<script src="/chat-widget.js?v=9" defer></script>
 <script>
 // FAO Explorer: accordion toggle
 function toggleLayer(row){

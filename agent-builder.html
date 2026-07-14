@@ -116,6 +116,7 @@ a{text-decoration:none;color:inherit;}
 .btn-hero-primary:hover{transform:translateY(-2px);}
 .btn-hero-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--teal);font-family:var(--ff);font-size:15px;font-weight:600;padding:14px 28px;border-radius:100px;border:1px solid var(--border);transition:all .2s;}
 .btn-hero-ghost:hover{border-color:var(--teal);background:rgba(10,191,204,.06);}
+.gov-badge-band { display:flex; align-items:flex-start; gap:10px; background:rgba(10,191,204,.05); border-left:3px solid #0ABFCC; border-radius:0 8px 8px 0; padding:11px 15px; font-size:.78rem; color:var(--txt2); line-height:1.55; margin-bottom:24px; }
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
 .hstat{display:flex;flex-direction:column;}
 .hstat-num{font-size:26px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;}
@@ -326,7 +327,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
     <li><a href="/ai-engineering-governance">AI Governance</a></li>
-    <li><a href="/platform">Products</a></li>
+    <li><a href="/platform">Services</a></li>
     <li><a href="/industries">Industries</a></li>
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
@@ -348,6 +349,10 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
       <div class="hero-ctas">
         <a href="/build-your-demo" class="btn btn-fill">Build Your Agent Demo →</a>
         <a href="/assessment" class="btn-hero-ghost">Book a Discovery Call</a>
+      </div>
+      <div class="gov-badge-band">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#0ABFCC"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Every Studio agent deployment is governed by your Fractional AI Officer &mdash; AI code reviewed, compliance checked, risk reported. &nbsp;<a href="/ai-engineering-governance" style="color:#0ABFCC;font-weight:600;">Not deploying under governance yet? Start with the FAO &rarr;</a></span>
       </div>
       <div class="hero-stats">
         <div class="hstat"><span class="hstat-num">12</span><span class="hstat-lbl">Industries Covered</span></div>
@@ -1344,7 +1349,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <div>
       <div class="footer-col-title">Solutions</div>
       <ul class="footer-links">
-        <li><a href="/platform">Upcore Studio</a></li>
+        <li><a href="/agent-builder">Upcore Studio</a></li>
         <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/industries">All Industries</a></li>
@@ -1395,6 +1400,6 @@ function showIndustry(id, btn) {
   btn.classList.add('active');
 }
 </script>
-<script src="/chat-widget.js?v=8" defer></script>
+<script src="/chat-widget.js?v=9" defer></script>
 </body>
 </html>

@@ -12,6 +12,21 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Messaging & structure overhaul: FAO primary, agents secondary
+**Type:** content + feature
+**Files:** All 67 `.html` files (nav, footer, v=9 cache-bust), `ai-engineering-governance.html`, `platform.html`, `index.html`, `sdlc-agent.html`, `agent-builder.html`
+8-change overhaul to make FAO hierarchy explicit site-wide:
+1. Nav "Products" → "Services" (all 67 pages); Upcore Studio footer link fixed to `/agent-builder` (64 pages).
+2. `<$4K/month` price-stack visual added above economics table (governance page) and in FAO section (homepage) — "Fractional. Not Expensive." with full-time/contractor strikethrough.
+3. New "Cost of Not Governing" section on governance page (between incidents and The Gap): $4.7M breach + $1.2M compliance + $600K productivity = ~$6.5M annual exposure vs <$48K/yr FAO. 135× return framing.
+4. Token optimisation mini-dashboard added inside L5 Optimise accordion panel on governance page — static dark widget showing AI spend by team (Frontend/Backend/Data/Mobile) with bar charts and delta indicators.
+5. `platform.html` reframed: title "AI Services", hero "Governed First. Built to Last.", 4 Products stat removed, Tab 1 visually featured with "Start here" framing, contradictory "We're not a platform" line replaced.
+6. "Governed Delivery" trust badge added below hero CTAs on both `sdlc-agent.html` and `agent-builder.html` — teal callout linking back to `/ai-engineering-governance`.
+7. Tab labels in platform.html updated (SDLC Agent → Forge (SDLC Agent) for clarity).
+8. `chat-widget.js` bumped v=8 → v=9 across all 67 pages.
+
+---
+
 ## 2026-07-13 — Governance calendar: align with official Google Scheduling Button embed pattern
 **Type:** fix
 **Files:** `chat-widget.js`, all `.html` files (67, `?v=6`)

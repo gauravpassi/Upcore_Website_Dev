@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Full customer audit + Sprint 1-2 fixes
+**Type:** fix
+**Files:** all 67 HTML, industries/index.html, agent-builder.html, ai-engineering-governance.html
+3-agent audit surfaced 10 critical and 20 major conversion blockers. Implemented: mobile nav hamburger drawer (all pages), industry hub cards now clickable with "View suite →" links (JS + href), hero CTA scrolls to grid not assessment form, "60+ Agent Templates" changed to "Agent Specialities" removing contradiction with platform.html "No templates", Upwork badge removed from all footers, "Fortune 50 AppSec Benchmarks" fabricated citation removed, L1 hero dashboard label changed from "Prompt Audit" → "Align" for consistency, "Top AI Company 2025" updated to 2026, hero hook quote gets Clutch link for verifiability.
+
 ## 2026-07-14 — Messaging & structure overhaul: FAO primary, agents secondary
 **Type:** content + feature
 **Files:** All 67 `.html` files (nav, footer, v=9 cache-bust), `ai-engineering-governance.html`, `platform.html`, `index.html`, `sdlc-agent.html`, `agent-builder.html`

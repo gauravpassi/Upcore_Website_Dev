@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Security & Trust page + ISO 27001 badge links
+**Type:** feature
+**Files:** security.html (new), all 67 HTML pages (footer + ISO 27001 badge), index.html (cert-item), agent-builder.html, ai-engineering-governance.html, platform.html, sdlc-agent.html
+Created `/security` page addressing 6 key CISO questions: ISO 27001 status, code handling, LLM provider disclosure, BAA availability, SOC 2 audit, on-premise option. Linked ISO 27001 badges sitewide to `/security`. Added "Security & Trust" link to footer Resources column on all 67 pages. Page is honest about what's available on-request vs. included.
+
 ## 2026-07-14 — Full customer audit + Sprint 1-2 fixes
 **Type:** fix
 **Files:** all 67 HTML, industries/index.html, agent-builder.html, ai-engineering-governance.html

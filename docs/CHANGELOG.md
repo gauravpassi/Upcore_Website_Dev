@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — /pricing page + sitewide footer link
+**Type:** feature
+**Files:** pricing.html (new), all 67 pages (footer bulk replace)
+Audit finding C5 closed: no pricing information anywhere on site. New `/pricing` page: hero with `<$4,000/month` anchor, price-stack visual (vs $20K FTE vs $10K contractor), what's included (all 6 FAO deliverables per layer), Done-For-You vs. Done-With-You engagement model comparison, Forge/Studio add-on cards, 5 FAQ items, and a "Get a Quote" CTA linking to /assessment. Sitewide footer update: Pricing link added to Company column on all 67 pages (one PowerShell pass — all used `&amp;` entity variant).
+
 ## 2026-07-14 — Assessment page overhaul: governance focus + Calendly embed
 **Type:** content + feature
 **Files:** assessment.html

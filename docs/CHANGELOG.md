@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — FAO "who is it?" profile strip on governance page
+**Type:** content
+**Files:** ai-engineering-governance.html
+Audit finding C10: "FAO = person or system — never answered." Added 4-card profile strip inside the Engagement Model section: Who (a real person), Background (8+ yrs AI engineering + compliance), Time commitment (8-12 hrs/week), Selection (named before you sign, met in discovery call). Closes the biggest ambiguity buyers had about the core product.
+
 ## 2026-07-14 — Studio framing: no-code builder → managed deployment service
 **Type:** content fix
 **Files:** agent-builder.html

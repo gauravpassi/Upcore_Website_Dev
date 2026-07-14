@@ -316,6 +316,15 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .eng-item { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:var(--txt2); margin-bottom:12px; line-height:1.55; }
 .eng-check { width:18px; height:18px; border-radius:50%; background:rgba(10,191,204,.08); border:1px solid rgba(10,191,204,.25); display:flex; align-items:center; justify-content:center; font-size:9px; color:var(--teal); flex-shrink:0; margin-top:1px; font-weight:800; }
 
+/* ── FAO PROFILE STRIP ─────────────────────────────────────── */
+.fao-profile { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:40px; }
+.fao-pcard { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:18px 16px; }
+.fao-pcard-label { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
+.fao-pcard-val { font-size:13px; font-weight:700; color:var(--txt); margin-bottom:5px; line-height:1.35; }
+.fao-pcard-desc { font-size:11px; color:var(--txt2); line-height:1.6; }
+@media(max-width:1024px){ .fao-profile { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:600px){ .fao-profile { grid-template-columns:1fr; } }
+
 /* ── 90-DAY JOURNEY ────────────────────────────────────────── */
 #journey { background:var(--bg); }
 .journey-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:52px; }
@@ -1057,6 +1066,30 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
     <span class="eyebrow">Engagement Model</span>
     <h2 class="section-title">Two Ways to Engage.<br />Your FAO Leads From Day One.</h2>
     <p class="section-sub">Same six stages. Choose how hands-on your team is - your Fractional AI Officer is accountable in both.</p>
+
+    <div class="fao-profile">
+      <div class="fao-pcard">
+        <div class="fao-pcard-label">Who</div>
+        <div class="fao-pcard-val">A person. Not software.</div>
+        <div class="fao-pcard-desc">A senior AI governance specialist embedded in your engineering team — attends standups, reviews PRs, authors policies, owns outcomes.</div>
+      </div>
+      <div class="fao-pcard">
+        <div class="fao-pcard-label">Background</div>
+        <div class="fao-pcard-val">AI Engineering &amp; Compliance</div>
+        <div class="fao-pcard-desc">8+ years in software engineering with deep AI/ML and compliance expertise. Certified in prompt engineering, code security, and regulatory AI frameworks.</div>
+      </div>
+      <div class="fao-pcard">
+        <div class="fao-pcard-label">Time commitment</div>
+        <div class="fao-pcard-val">8–12 hrs / week, dedicated</div>
+        <div class="fao-pcard-desc">Enough to attend your sprint cycles, review AI-generated PRs, and produce weekly governance reports. Not a consultant who disappears between calls.</div>
+      </div>
+      <div class="fao-pcard">
+        <div class="fao-pcard-label">Selection</div>
+        <div class="fao-pcard-val">Named before you sign</div>
+        <div class="fao-pcard-desc">You meet your FAO in the discovery call — before any commitment. If the match isn't right, we find a better fit. No surprise assignments.</div>
+      </div>
+    </div>
+
     <div class="eng-cols">
       <div class="eng-col">
         <div class="eng-tag">Done With You</div>

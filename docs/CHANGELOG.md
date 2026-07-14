@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-14 — Sprint 4: credibility hardening (team, jurisdiction, AI-certified reframe)
+**Type:** content + trust
+**Files:** about.html, security.html, ai-engineering-governance.html, index.html, platform.html, pricing.html
+Four credibility fixes: (1) about.html team section added — Gaurav Passi founder card + FAO Specialists profile card, closes audit finding M7; (2) security.html new "Contracting Entity & Jurisdiction" section with factual Q&A on GDPR/SCCs, HIPAA BAA, SOX scope, EU AI Act extraterritoriality for the Indian Pvt. Ltd. entity — closes audit finding M9; (3) "AI-certified" removed from all body copy and LD+JSON, replaced with "AI governance specialist" or "specialist in AI engineering governance" — closes C7; (4) "Compliance Autopilot" implausible claim (M5) softened to "Compliance Framework Mapping" with an honest description of what the FAO actually does.
+
 ## 2026-07-14 — /pricing page + sitewide footer link
 **Type:** feature
 **Files:** pricing.html (new), all 67 pages (footer bulk replace)

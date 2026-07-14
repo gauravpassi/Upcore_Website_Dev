@@ -200,6 +200,16 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
 @media(max-width:560px){
   .footer-bottom { flex-direction:column; align-items:flex-start; }
 }
+
+/* ── JURISDICTION ───────────────────────────────────────── */
+#jurisdiction { background:var(--bg); padding:80px 0; }
+.juris-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:48px; }
+.juris-card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:28px; }
+.juris-q { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:10px; line-height:1.45; }
+.juris-a { font-size:13px; color:var(--txt2); line-height:1.75; }
+.juris-tag { display:inline-block; font-size:9px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:2px 8px; border-radius:3px; margin-bottom:10px; }
+.juris-tag.answered { background:rgba(34,197,94,.1); color:#16a34a; border:1px solid rgba(34,197,94,.2); }
+@media(max-width:768px){ .juris-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -523,6 +533,42 @@ footer { background:#0a0a0a; border-top:1px solid rgba(255,255,255,.06); padding
         <div class="contract-title">Security Review Pack</div>
         <div class="contract-desc">Full pack including ISO 27001 certificate, CMMI attestation, subprocessor list, and security questionnaire responses. Available to enterprise procurement teams under NDA.</div>
         <span class="contract-avail request"><span class="contract-dot teal"></span>On request — <a href="mailto:gaurav@upcoretechnologies.com" style="color:var(--teal)">email us</a></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- JURISDICTION -->
+<section id="jurisdiction">
+  <div class="sec-inner">
+    <span class="eyebrow">Entity &amp; jurisdiction</span>
+    <h2 class="sec-title">Upcore Technologies Pvt. Ltd. — Procurement Questions Answered</h2>
+    <p class="sec-sub">Upcore is an Indian private limited company. Enterprise procurement teams in the US, EU, and UK regularly ask jurisdiction-specific questions. Here are the factual answers.</p>
+    <div class="juris-grid">
+
+      <div class="juris-card">
+        <span class="juris-tag answered">Addressed</span>
+        <div class="juris-q">GDPR: India is not an EU adequacy country. How does data transfer work?</div>
+        <div class="juris-a">EU personal data transferred to Upcore is governed by Standard Contractual Clauses (SCCs) — the EU Commission's approved mechanism for transfers to non-adequacy countries. Our DPA (included with every MSA) specifies the applicable SCC module, subprocessor list, and breach notification timeline. No EU personal data is processed outside the scope of the executed SCC.</div>
+      </div>
+
+      <div class="juris-card">
+        <span class="juris-tag answered">Addressed</span>
+        <div class="juris-q">HIPAA: Can an Indian Pvt. Ltd. sign a Business Associate Agreement?</div>
+        <div class="juris-a">Yes. HIPAA's Business Associate requirements apply based on what data is handled, not where the vendor is incorporated. If PHI may be in scope, Upcore executes a BAA that meets the 45 CFR §164.308–314 safeguard requirements. The BAA is reviewed by your compliance team before any engagement starts.</div>
+      </div>
+
+      <div class="juris-card">
+        <span class="juris-tag answered">Addressed</span>
+        <div class="juris-q">SOX: How does an Indian vendor fit into a SOX-scoped audit chain?</div>
+        <div class="juris-a">SOX Section 404 requires controls over financial reporting to be documented and tested — including third-party vendors with access to financial data or systems. Upcore's FAO engagement delivers audit-ready AI governance documentation (control inventories, change logs, risk assessments) that your internal audit team can present to your external auditor. Upcore is treated as a third-party vendor under your vendor management controls.</div>
+      </div>
+
+      <div class="juris-card">
+        <span class="juris-tag answered">Addressed</span>
+        <div class="juris-q">EU AI Act: Does the Act apply to an Indian provider serving EU clients?</div>
+        <div class="juris-a">Yes — under the EU AI Act's extraterritorial scope (Article 2), providers placing AI systems on the EU market or whose outputs are used in the EU are covered regardless of where they are established. Upcore's FAO engagement includes EU AI Act compliance mapping: risk classification, transparency obligations, and conformity assessment documentation for AI systems within the Act's scope.</div>
       </div>
 
     </div>

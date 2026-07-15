@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-15 — Audit batch: M8, M13, M18, M19, M20 + sitewide minors
+**Type:** content fix
+**Files:** about.html, industries/index.html, sdlc-agent.html, compare/ai-workforce-vs-ai-tools.html, insights/index.html, all 66 pages (footer)
+M8: Removed India-specific financial terms (NBFC, DPD bucket) from about.html origin story — replaced with international equivalents (specialist lending portfolios, delinquency schedules, Days Past Due schedules). M13: Added "View suite →" links to all 12 industry hub cards in industries/index.html using PowerShell targeted replacement — all 12 confirmed via grep. M18: Fixed Forge contradiction — "1× Train. Use Forever." → "Train once. Refine as you grow." and "Continuous retraining" → "Refinement" in sdlc-agent.html. M19: Compare page meta description updated — "6–8 AI SaaS subscriptions" → "10–14 disconnected AI tools" to match hero stat and body copy. M20: insights/index.html OG/Twitter titles and `<title>` tag updated from "India's Industries" to "AI Governance & Industry Strategy Insights". Minor: Facebook and Instagram social links removed from footer of 66 pages (sitewide PowerShell). Copyright year already 2026 sitewide — no change needed.
+
 ## 2026-07-14 — Sprint 5: C6 (case studies), M4 (FAO archetypes), M3 (72h qualification)
 **Type:** content
 **Files:** ai-engineering-governance.html, about.html

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-20 — Agent pricing anchor: "Starting at $149" for Forge/Studio
+**Type:** content
+**Files:** `pricing.html`, `sdlc-agent.html`, `agent-builder.html`
+Added a public starting price for agent services (Forge, Studio) — previously both were quote-only with no number shown anywhere. "$149" now appears on pricing.html's two add-on cards + FAQ, and as the headline stat on each page's Investment section. Governance pricing ($1,999/mo) is unaffected — this anchor is agents-only.
+
 ## 2026-07-20 — Pricing floor $1,999/mo, Forge/Studio Investment sections, homepage/governance de-dupe
 **Type:** content | decision
 **Files:** `pricing.html`, `ai-engineering-governance.html`, `sdlc-agent.html`, `agent-builder.html`, `index.html`

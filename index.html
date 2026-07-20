@@ -443,12 +443,11 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
-#bridge { background:var(--bg3); }
-.bridge-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
-.bridge-left .section-title { margin-bottom:0; }
-.bridge-right { border-left:3px solid var(--teal); padding-left:36px; }
-.bridge-accent { font-size:15px; font-weight:600; color:var(--txt); line-height:1.7; }
-@media(max-width:768px){ .bridge-inner { grid-template-columns:1fr; gap:32px; } .bridge-right { border-left:none; border-top:3px solid var(--teal); padding-left:0; padding-top:28px; } }
+#bridge { background:var(--bg2); padding:48px 0; }
+.bridge-break { text-align:center; display:flex; flex-direction:column; align-items:center; gap:20px; }
+.bridge-rule { width:48px; height:2px; background:var(--teal); opacity:.55; border-radius:2px; }
+.bridge-headline { font-size:clamp(24px,3.2vw,40px); font-weight:800; letter-spacing:-.75px; line-height:1.3; color:var(--txt); margin:0; }
+.bridge-headline strong { color:var(--teal); font-weight:inherit; }
 .addon-icon { font-size:22px; margin-bottom:12px; }
 
 /* ── HOW IT WORKS (Timeline Cards) ─────────────────────────── */
@@ -745,17 +744,11 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 </section>
 
 <!-- BRIDGE: ONCE GOVERNED, BUILD -->
-<section class="section" id="bridge">
-  <div class="section-inner">
-    <div class="bridge-inner">
-      <div class="bridge-left">
-        <span class="eyebrow eyebrow-teal">Then Build</span>
-        <h2 class="section-title">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
-      </div>
-      <div class="bridge-right">
-        <p class="bridge-accent">Governance isn't a gate. It's what makes speed safe.</p>
-      </div>
-    </div>
+<section id="bridge">
+  <div class="section-inner bridge-break">
+    <div class="bridge-rule"></div>
+    <h2 class="bridge-headline">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
+    <div class="bridge-rule"></div>
   </div>
 </section>
 

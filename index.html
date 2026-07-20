@@ -446,11 +446,12 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 
 /* ── BRIDGE SECTION ─────────────────────────────────────────── */
-#bridge { background:var(--bg2); padding:48px 0; }
-.bridge-break { text-align:center; display:flex; flex-direction:column; align-items:center; gap:20px; }
-.bridge-rule { width:48px; height:2px; background:var(--teal); opacity:.55; border-radius:2px; }
-.bridge-headline { font-size:clamp(24px,3.2vw,40px); font-weight:800; letter-spacing:-.75px; line-height:1.3; color:var(--txt); margin:0; }
+#bridge { background:var(--bg2); padding:28px 0; }
+.bridge-break { display:flex; align-items:center; justify-content:center; gap:24px; }
+.bridge-rule { flex:1 1 auto; max-width:120px; height:1px; background:var(--teal); opacity:.35; }
+.bridge-headline { flex:0 0 auto; font-size:clamp(15px,1.7vw,19px); font-weight:700; letter-spacing:-.2px; line-height:1.3; color:var(--txt); margin:0; white-space:nowrap; }
 .bridge-headline strong { color:var(--teal); font-weight:inherit; }
+@media(max-width:640px){ .bridge-headline { white-space:normal; text-align:center; font-size:14px; } .bridge-rule { display:none; } }
 .addon-icon { font-size:22px; margin-bottom:12px; }
 
 /* ── HOW IT WORKS (Timeline Cards) ─────────────────────────── */
@@ -751,7 +752,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 <section id="bridge">
   <div class="section-inner bridge-break">
     <div class="bridge-rule"></div>
-    <h2 class="bridge-headline">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
+    <h2 class="bridge-headline">Once Your AI Is Governed, <strong>You Can Build Fearlessly.</strong></h2>
     <div class="bridge-rule"></div>
   </div>
 </section>

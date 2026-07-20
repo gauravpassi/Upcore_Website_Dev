@@ -363,7 +363,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .persona-pain { font-size:15px; font-weight:600; color:var(--txt); line-height:1.5; margin-bottom:16px; }
 .persona-quote { font-size:13px; color:var(--txt2); line-height:1.7; font-style:italic; padding:12px 16px; background:var(--bg3); border-radius:8px; border-left:2px solid var(--teal); }
 .persona-unifier { text-align:center; margin-top:48px; font-size:22px; font-weight:700; color:var(--txt); letter-spacing:-0.5px; }
-.persona-cta { display:flex; justify-content:center; margin-top:24px; }
 
 /* ── FAO STANDALONE SECTION ─────────────────────────────────── */
 #fao-section { background:#0a0a0a; }
@@ -445,10 +444,9 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .bridge-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
 .bridge-left .section-title { margin-bottom:0; }
 .bridge-right { border-left:3px solid var(--teal); padding-left:36px; }
-.bridge-body { font-size:17px; color:var(--txt2); line-height:1.85; margin-bottom:24px; }
 .bridge-accent { font-size:15px; font-weight:600; color:var(--txt); line-height:1.7; }
 @media(max-width:768px){ .bridge-inner { grid-template-columns:1fr; gap:32px; } .bridge-right { border-left:none; border-top:3px solid var(--teal); padding-left:0; padding-top:28px; } }
-.am-link:hover { gap:10px; }
+.addon-icon { font-size:22px; margin-bottom:12px; }
 
 /* ── HOW IT WORKS (Timeline Cards) ─────────────────────────── */
 #how-we-work { background:var(--bg2); }
@@ -778,7 +776,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       </div>
     </div>
     <div class="tl-cta">
-      <a href="/ai-engineering-governance#journey" class="btn btn-ghost" style="font-size:13px;padding:11px 22px">See the Full 90-Day Journey &rarr;</a>
+      <a href="/ai-engineering-governance#journey" class="btn btn-ghost btn-sm">See the Full 90-Day Journey &rarr;</a>
     </div>
   </div>
 </section>
@@ -792,19 +790,19 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
     <p class="section-sub">Once your AI code is governed, Upcore deploys purpose-built agent teams for your vertical. Optional add-ons - you can start with governance alone and add agents when you're ready.</p>
     <div class="addon-cards">
       <div class="addon-card">
-        <div class="addon-icon" style="font-size:22px;margin-bottom:12px">🏭</div>
+        <div class="addon-icon">🏭</div>
         <div class="addon-label">Manufacturing</div>
         <p class="addon-desc">Predictive maintenance, procurement intelligence, and quality escalation agents - built for shop-floor workflows and OT/IT integration.</p>
         <a href="/industries/manufacturing" class="addon-link">See Manufacturing Suite &rarr;</a>
       </div>
       <div class="addon-card">
-        <div class="addon-icon" style="font-size:22px;margin-bottom:12px">⚡</div>
+        <div class="addon-icon">⚡</div>
         <div class="addon-label">SaaS &amp; Technology</div>
         <p class="addon-desc">Onboarding intelligence, churn prediction, and AI cost attribution agents - built for product-led SaaS teams shipping fast.</p>
         <a href="/industries/saas-technology" class="addon-link">See SaaS Suite &rarr;</a>
       </div>
       <div class="addon-card">
-        <div class="addon-icon" style="font-size:22px;margin-bottom:12px">🛒</div>
+        <div class="addon-icon">🛒</div>
         <div class="addon-label">Ecommerce &amp; D2C</div>
         <p class="addon-desc">Returns intelligence, inventory forecasting, and AI spend governance agents - built for high-SKU, high-velocity operations.</p>
         <a href="/industries/retail-d2c" class="addon-link">See Ecommerce Suite &rarr;</a>
@@ -935,21 +933,6 @@ document.addEventListener('DOMContentLoaded',function(){
   if(rows[2])toggleLayer(rows[2]);
 });
 
-// Layer pill hover → highlight matching explorer row
-(function(){
-  var pills=document.querySelectorAll('.layer-pill[data-layer]');
-  var rows=document.querySelectorAll('.fao-exp-row');
-  pills.forEach(function(pill){
-    pill.addEventListener('mouseenter',function(){
-      rows.forEach(function(r){r.style.outline='';});
-      var idx=+pill.dataset.layer;
-      if(rows[idx])rows[idx].style.outline='1px solid rgba(10,191,204,.35)';
-    });
-    pill.addEventListener('mouseleave',function(){
-      rows.forEach(function(r){r.style.outline='';});
-    });
-  });
-})();
 
 // FAO Ribbon: count-up + SVG risk-line draw on scroll
 (function(){

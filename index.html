@@ -69,7 +69,6 @@
   --card2:  #f7f8fa;
   --teal:   #0ABFCC;
   --teal2:  #089AAA;
-  --mint:   #0ABFCC;
   --green:  #22C55E;
   --red:    #EF4444;
   --txt:    #0a0a0a;
@@ -89,7 +88,7 @@
 /* ── RESET ─────────────────────────────────────────────────── */
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body { font-family:var(--ff); background:var(--bg); color:var(--txt); line-height:1.6; overflow-x:hidden; }
+body { font-family:var(--ff); background:var(--bg); color:var(--txt); line-height:1.75; overflow-x:hidden; }
 img { display:block; max-width:100%; }
 a { text-decoration:none; color:inherit; }
 
@@ -140,7 +139,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .hero-left { max-width:560px; }
 .hero-eyebrow {
   display:inline-flex; align-items:center; gap:10px;
-  font-size:10px; font-weight:700; letter-spacing:3.5px;
+  font-size:10px; font-weight:600; letter-spacing:3.5px;
   text-transform:uppercase; color:var(--teal); margin-bottom:24px;
 }
 .hero-eyebrow-dot {
@@ -156,7 +155,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 }
 .hero-h1 strong { font-weight:700; color:var(--txt); }
 .hero-sub {
-  font-size:16px; color:var(--txt2); line-height:1.8;
+  font-size:17px; color:var(--txt2); line-height:1.8;
   margin-bottom:32px;
 }
 .hero-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px; }
@@ -185,7 +184,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   opacity:.7;
 }
 .rm-body { padding:16px; display:flex; flex-direction:column; gap:10px; }
-.rm-alert { border-radius:10px; padding:13px 15px; border:1px solid; }
+.rm-alert { border-radius:8px; padding:13px 15px; border:1px solid; }
 .rm-alert.high { background:rgba(239,68,68,.04); border-color:rgba(239,68,68,.16); }
 .rm-alert.medium { background:rgba(245,158,11,.04); border-color:rgba(245,158,11,.16); }
 .rm-level {
@@ -215,25 +214,6 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
   padding:3px 10px; border-radius:9999px;
 }
 
-/* ── HERO METRICS (spans full width below the 2-col grid) ── */
-.hero-metrics {
-  grid-column:1 / -1;
-  display:flex; gap:0;
-  border-top:1px solid var(--border);
-  padding-top:40px; max-width:480px;
-}
-.h-metric {
-  flex:1; padding-right:36px;
-  border-right:1px solid var(--border); margin-right:36px;
-}
-.h-metric:last-child { border-right:none; padding-right:0; margin-right:0; }
-.h-metric-num {
-  font-size:32px; font-weight:800;
-  color:var(--txt); line-height:1;
-  letter-spacing:-1.5px; margin-bottom:6px;
-}
-.h-metric-num .accent { color:var(--teal); }
-.h-metric-lbl { font-size:12px; color:var(--txt2); line-height:1.5; }
 
 /* ── CERTS STRIP ───────────────────────────────────────────── */
 #certs {
@@ -267,7 +247,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .section { width:100%; padding:100px 0; }
 .section-inner { width:100%; max-width:1240px; margin:0 auto; padding:0 48px; }
 .eyebrow {
-  display:inline-block; font-size:10px; font-weight:700;
+  display:inline-block; font-size:10px; font-weight:600;
   letter-spacing:3px; text-transform:uppercase;
   color:var(--teal); margin-bottom:16px;
 }
@@ -281,125 +261,6 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 
 /* ── PROBLEM ───────────────────────────────────────────────── */
 #problem { background:var(--bg3); }
-.prob-layout {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:80px; align-items:start; margin-top:60px;
-}
-.stat-stack { display:flex; flex-direction:column; gap:0; }
-.stat-row {
-  display:flex; flex-direction:column; gap:6px;
-  padding:32px 0; border-bottom:1px solid var(--border);
-}
-.stat-row:first-child { padding-top:0; }
-.stat-row:last-child { border-bottom:none; padding-bottom:0; }
-.stat-big {
-  font-size:clamp(44px,5.5vw,68px); font-weight:800;
-  letter-spacing:-2.5px; line-height:1; color:var(--teal);
-}
-.stat-big.amber { color:var(--teal); }
-.stat-label { font-size:15px; color:var(--txt); font-weight:700; margin-bottom:2px; }
-.stat-note { font-size:12px; color:var(--txt2); line-height:1.6; }
-
-.prob-right { display:flex; flex-direction:column; gap:28px; }
-.prob-pull {
-  font-size:18px; font-weight:400; color:var(--txt);
-  line-height:1.7; font-style:italic;
-  border-left:3px solid var(--teal); padding-left:24px;
-}
-.prob-attr { font-size:12px; color:var(--txt2); padding-left:24px; margin-top:-18px; }
-.prob-incidents {
-  border:1px solid var(--border); border-radius:10px; overflow:hidden;
-}
-.inc-row {
-  display:flex; align-items:flex-start; gap:16px;
-  padding:18px 22px; border-bottom:1px solid var(--border);
-  transition:background .15s;
-}
-.inc-row:last-child { border-bottom:none; }
-.inc-row:hover { background:var(--glow); }
-.inc-n { font-size:10px; font-weight:700; letter-spacing:1.5px; color:var(--txt3); margin-top:3px; flex-shrink:0; width:24px; }
-.inc-name { font-size:13px; font-weight:700; color:var(--txt); margin-bottom:3px; }
-.inc-desc { font-size:12px; color:var(--txt2); line-height:1.55; }
-
-/* ── PRODUCTS ──────────────────────────────────────────────── */
-#products { background:var(--bg); }
-.products-list { display:flex; flex-direction:column; gap:18px; margin-top:56px; }
-
-.prod-gov {
-  border:1px solid rgba(10,191,204,.4); border-radius:10px;
-  padding:40px 44px; background:var(--card);
-  display:grid; grid-template-columns:1fr auto;
-  gap:48px; align-items:center;
-  position:relative; overflow:hidden;
-  transition:border-color .2s;
-}
-.prod-gov::before {
-  content:''; position:absolute; left:0; top:0; bottom:0;
-  width:3px; background:var(--grad);
-}
-.prod-gov:hover { border-color:rgba(10,191,204,.5); }
-.prod-gov-badge {
-  display:inline-flex; align-items:center; gap:6px;
-  font-size:10px; font-weight:700; letter-spacing:2px;
-  text-transform:uppercase; color:var(--teal); margin-bottom:12px;
-}
-.prod-gov-title { font-size:24px; font-weight:700; letter-spacing:-.5px; color:var(--txt); margin-bottom:10px; }
-.prod-gov-desc { font-size:15px; color:var(--txt2); line-height:1.7; max-width:560px; margin-bottom:22px; }
-.prod-gov-feats { display:flex; flex-direction:column; gap:6px; margin-bottom:28px; }
-.prod-feat { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--txt2); }
-.pf-check {
-  width:15px; height:15px; border-radius:50%;
-  background:rgba(10,191,204,.1); border:1px solid rgba(10,191,204,.25);
-  display:flex; align-items:center; justify-content:center;
-  font-size:8px; color:var(--teal); flex-shrink:0; font-weight:800;
-}
-.prod-gov-stat-box { flex-shrink:0; text-align:center; }
-.prod-gov-stat { font-size:52px; font-weight:800; color:var(--teal); letter-spacing:-3px; line-height:1; margin-bottom:4px; }
-.prod-gov-stat-lbl { font-size:12px; color:var(--txt2); line-height:1.5; margin-bottom:20px; }
-
-.prod-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-.prod-card {
-  border:1px solid var(--border); border-radius:10px;
-  padding:32px 36px; background:var(--card);
-  position:relative; overflow:hidden; transition:border-color .2s;
-}
-.prod-card::before {
-  content:''; position:absolute; left:0; top:0; bottom:0;
-  width:3px; background:var(--grad);
-}
-.prod-card:hover { border-color:var(--bh); }
-.prod-badge { display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:12px; }
-.prod-title { font-size:19px; font-weight:700; letter-spacing:-.3px; color:var(--txt); margin-bottom:10px; }
-.prod-desc { font-size:14px; color:var(--txt2); line-height:1.7; margin-bottom:24px; }
-.prod-link { font-size:13px; font-weight:600; color:var(--teal); display:inline-flex; align-items:center; gap:6px; transition:gap .2s; }
-.prod-link:hover { gap:10px; }
-
-/* ── HOW WE WORK ───────────────────────────────────────────── */
-#how-we-work { background:var(--bg3); }
-.steps-grid {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:20px; margin-top:56px; position:relative;
-}
-.steps-grid::before {
-  content:''; position:absolute; top:30px; left:40px; right:40px;
-  height:1px; background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent); z-index:0;
-}
-.step-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:10px; padding:28px 22px;
-  position:relative; z-index:1; transition:border-color .2s;
-}
-.step-card:hover { border-color:var(--bh); }
-.step-num { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
-.step-title { font-size:15px; font-weight:700; color:var(--txt); margin-bottom:8px; }
-.step-desc { font-size:13px; color:var(--txt2); line-height:1.65; }
-
-/* ── WHO WE GOVERN ─────────────────────────────────────────── */
-#who-we-govern { background:var(--bg); }
-#who-we-govern .section-sub { max-width:560px; margin:0 auto 32px; }
-.gov-type-pills { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:0 0 20px; }
-.gov-pill { background:rgba(10,191,204,.1); border:1px solid rgba(10,191,204,.35); color:var(--teal); padding:7px 20px; border-radius:9999px; font-size:13px; font-weight:600; letter-spacing:.02em; }
-.gov-type-line { font-size:15px; font-style:italic; color:var(--txt2); text-align:center; margin-top:8px; }
 
 /* ── AGENT ADD-ONS ─────────────────────────────────────────── */
 #industries { background:var(--bg3); }
@@ -412,9 +273,9 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .ind-cta-row { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
 
 /* ── CTA ───────────────────────────────────────────────────── */
-#cta { background:var(--bg3); }
-.cta-inner { max-width:1240px; margin:0 auto; padding:0 48px; text-align:center; }
-.cta-title { font-size:clamp(28px,4vw,48px); font-weight:700; letter-spacing:-1px; color:var(--txt); margin-bottom:16px; }
+#cta { background:var(--bg); }
+#cta .section-inner { text-align:center; }
+.cta-title { font-size:clamp(30px,3.8vw,50px); font-weight:700; letter-spacing:-1px; color:var(--txt); margin-bottom:16px; }
 .cta-sub { font-size:17px; color:var(--txt2); line-height:1.7; max-width:540px; margin:0 auto 40px; }
 .cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:24px; }
 .cta-proof { font-size:12px; color:var(--txt3); }
@@ -463,36 +324,30 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   .hero-visual { justify-content:flex-start; }
   .risk-monitor { max-width:480px; }
   .hero-h1 { letter-spacing:-2px; }
-  .prob-layout { grid-template-columns:1fr; gap:48px; }
-  .prod-row { grid-template-columns:1fr; }
-  .prod-gov { grid-template-columns:1fr; gap:28px; }
-  .prod-gov-stat-box { text-align:left; }
-  .steps-grid { grid-template-columns:repeat(2,1fr); }
-  .steps-grid::before { display:none; }
-  .addon-cards { grid-template-columns:1fr; }
+  .tl-grid { grid-template-columns:repeat(2,1fr); }
+  .addon-cards { grid-template-columns:repeat(2,1fr); }
   .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
 }
 @media(max-width:768px){
-  .hero-inner,.section-inner,.cta-inner { padding-left:24px; padding-right:24px; }
+  .hero-inner,.section-inner { padding-left:24px; padding-right:24px; }
   .hero-inner { padding-top:80px; padding-bottom:48px; }
   #hero { min-height:auto; }
   .hero-h1 { font-size:clamp(36px,9vw,52px); letter-spacing:-1.5px; }
   .hero-visual { display:none; }
-  .hero-metrics { flex-direction:column; gap:0; max-width:100%; }
-  .h-metric { border-right:none; padding-right:0; margin-right:0; padding-bottom:24px; margin-bottom:24px; border-bottom:1px solid var(--border); }
-  .h-metric:last-child { border-bottom:none; padding-bottom:0; margin-bottom:0; }
-  .steps-grid { grid-template-columns:1fr; }
+  .section { padding:64px 0; }
   .footer-grid { grid-template-columns:1fr; gap:28px; }
   footer { padding:48px 24px 0; }
   .certs-inner { gap:28px; padding:0 24px; }
-  .prod-gov { padding:28px 24px; }
+}
+@media(max-width:600px){
+  .addon-cards { grid-template-columns:1fr; }
 }
 @media(max-width:560px){
   .footer-bottom { flex-direction:column; align-items:flex-start; }
 }
 
 /* ── CRISIS PROOF STATS ────────────────────────────────────── */
-.crisis-stats { display:grid; grid-template-columns:repeat(3,1fr); margin:36px 0 0; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+.crisis-stats { display:grid; grid-template-columns:repeat(3,1fr); margin:36px 0 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; }
 .crisis-stat { padding:28px 24px; border-right:1px solid var(--border); background:var(--bg3); }
 .crisis-stat:last-child { border-right:none; }
 .crisis-num { display:block; font-size:36px; font-weight:800; color:var(--txt); letter-spacing:-1.5px; line-height:1; margin-bottom:8px; }
@@ -503,8 +358,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 /* ── PERSONA CARDS (problem section) ───────────────────────── */
 .persona-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
-.persona-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px 28px; position:relative; overflow:hidden; }
-.persona-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad); }
+.persona-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; border-top:3px solid var(--teal); }
 .persona-role { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin-bottom:14px; }
 .persona-pain { font-size:15px; font-weight:600; color:var(--txt); line-height:1.5; margin-bottom:16px; }
 .persona-quote { font-size:13px; color:var(--txt2); line-height:1.7; font-style:italic; padding:12px 16px; background:var(--bg3); border-radius:8px; border-left:2px solid var(--teal); }
@@ -512,43 +366,27 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .persona-cta { display:flex; justify-content:center; margin-top:24px; }
 
 /* ── FAO STANDALONE SECTION ─────────────────────────────────── */
-#fao-section { background:#070B10; }
-#fao-section.section { background:#070B10; padding:80px 0; }
+#fao-section { background:#0a0a0a; }
 .fao-layout { display:grid; grid-template-columns:1fr 1.1fr; gap:56px; align-items:center; }
 @media(max-width:1024px){ .fao-layout { grid-template-columns:1fr; gap:40px; } }
 .fao-eyebrow { display:inline-flex; align-items:center; gap:9px; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin-bottom:20px; }
 .fao-eyebrow-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; display:inline-block; }
-.fao-h2 { font-size:clamp(32px,3.6vw,50px); font-weight:700; letter-spacing:-1.5px; line-height:1.08; margin-bottom:18px; color:rgba(255,255,255,.93); }
+.fao-h2 { font-size:clamp(30px,3.8vw,50px); font-weight:700; letter-spacing:-1px; line-height:1.08; margin-bottom:18px; color:rgba(255,255,255,.93); }
 .fao-h2 strong { font-weight:800; color:rgba(255,255,255,.96); }
-.fao-desc { font-size:14px; color:rgba(255,255,255,.52); line-height:1.8; margin-bottom:24px; }
-.fao-wins { display:flex; flex-direction:column; margin-bottom:30px; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; }
+.fao-desc { font-size:16px; color:rgba(255,255,255,.65); line-height:1.8; margin-bottom:24px; }
+.fao-wins { display:flex; flex-direction:column; margin-bottom:30px; border:1px solid rgba(255,255,255,.08); border-radius:16px; overflow:hidden; }
 .fao-win { display:flex; gap:14px; align-items:flex-start; padding:15px 18px; background:rgba(255,255,255,.02); border-bottom:1px solid rgba(255,255,255,.07); transition:background .15s; }
 .fao-win:last-child { border-bottom:none; }
 .fao-win:hover { background:rgba(10,191,204,.05); }
-.fao-win-icon { width:26px; height:26px; border-radius:6px; background:rgba(10,191,204,.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:13px; font-weight:800; color:var(--teal); line-height:1; margin-top:2px; }
+.fao-win-icon { width:26px; height:26px; border-radius:8px; background:rgba(10,191,204,.12); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:13px; font-weight:800; color:var(--teal); line-height:1; margin-top:2px; }
 .fao-win-title { font-size:13px; font-weight:700; color:rgba(255,255,255,.85); margin-bottom:3px; }
 .fao-win-sub { font-size:11px; color:rgba(255,255,255,.38); line-height:1.6; }
-.fao-layers { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:26px; }
-.layer-pill { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.08); color:rgba(10,191,204,.85); border:1px solid rgba(10,191,204,.2); padding:5px 13px; border-radius:9999px; cursor:default; transition:background .15s,border-color .15s; }
-.layer-pill:hover { background:rgba(10,191,204,.18); border-color:rgba(10,191,204,.5); }
-.fao-price-stack { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:10px; padding:16px 18px; margin-bottom:20px; }
-.fps-row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,.05); gap:12px; }
-.fps-row:last-of-type { border-bottom:none; }
-.fps-role { font-size:.82rem; color:rgba(255,255,255,.3); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-.fps-featured .fps-role { color:rgba(255,255,255,.85); font-weight:600; }
-.fps-pill { font-size:.6rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; background:rgba(10,191,204,.12); color:#0ABFCC; padding:2px 7px; border-radius:9999px; border:1px solid rgba(10,191,204,.2); }
-.fps-price { font-size:1.05rem; font-weight:800; color:rgba(255,255,255,.18); white-space:nowrap; flex-shrink:0; }
-.fps-strike { text-decoration:line-through; text-decoration-color:rgba(255,255,255,.12); }
-.fps-teal { color:#0ABFCC; font-size:1.25rem; text-decoration:none; }
-.fps-mo { font-size:.65rem; font-weight:500; opacity:.7; margin-left:1px; }
-.fps-tagline { font-size:.72rem; color:rgba(255,255,255,.25); text-align:center; margin-top:12px; letter-spacing:.02em; }
 .fao-btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
 .fao-btns .btn-ghost { color:rgba(255,255,255,.65); border-color:rgba(255,255,255,.15); }
 .fao-btns .btn-ghost:hover { background:rgba(255,255,255,.07); border-color:rgba(255,255,255,.32); color:#fff; }
-.fao-reassurance { font-size:12px; color:rgba(255,255,255,.25); margin-top:4px; }
 
 /* ── FAO EXPLORER (right column accordion) ───────────────────── */
-.fao-explorer { background:#0a0a0a; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+.fao-explorer { background:#0a0a0a; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
 .fao-exp-header { padding:12px 18px; display:flex; align-items:center; gap:9px; font-size:10px; font-weight:700; color:rgba(255,255,255,.4); letter-spacing:.1em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.07); }
 .fao-exp-live { width:7px; height:7px; border-radius:50%; background:#22c55e; animation:blink 2s ease infinite; flex-shrink:0; }
 .fao-exp-rows { padding:10px; display:flex; flex-direction:column; gap:4px; }
@@ -563,7 +401,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fao-exp-row.fao-exp-alert.fao-exp-open .fao-exp-trigger { background:rgba(239,68,68,.04); }
 .fao-exp-row.fao-exp-review.fao-exp-open .fao-exp-trigger { background:rgba(245,158,11,.04); }
 .fao-exp-left { display:flex; align-items:center; gap:11px; }
-.fao-exp-badge { font-size:9px; font-weight:800; color:var(--teal); background:rgba(10,191,204,.12); padding:2px 7px; border-radius:4px; letter-spacing:.05em; flex-shrink:0; }
+.fao-exp-badge { font-size:9px; font-weight:800; color:var(--teal); background:rgba(10,191,204,.12); padding:2px 7px; border-radius:8px; letter-spacing:.05em; flex-shrink:0; }
 .fao-exp-row.fao-exp-alert .fao-exp-badge { color:#f87171; background:rgba(239,68,68,.12); }
 .fao-exp-row.fao-exp-review .fao-exp-badge { color:#fbbf24; background:rgba(245,158,11,.12); }
 .fao-exp-name { font-size:12px; font-weight:700; color:rgba(255,255,255,.88); }
@@ -582,18 +420,18 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .fao-exp-caps li::before { content:'✓'; color:var(--teal); font-weight:700; font-size:10px; flex-shrink:0; margin-top:1px; }
 .fao-exp-row.fao-exp-alert .fao-exp-caps li::before { color:#f87171; }
 .fao-exp-row.fao-exp-review .fao-exp-caps li::before { color:#fbbf24; }
-.fao-exp-log { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:6px; padding:10px 12px; margin-bottom:10px; }
+.fao-exp-log { background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); border-radius:8px; padding:10px 12px; margin-bottom:10px; }
 .fao-exp-log-label { font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:5px; }
 .fao-exp-log-text { font-size:10px; color:rgba(255,255,255,.48); line-height:1.55; font-family:monospace; }
 .fao-exp-log-ts { font-size:8px; color:rgba(255,255,255,.18); margin-top:4px; }
 .fao-exp-tags { display:flex; flex-wrap:wrap; gap:5px; }
-.fao-exp-tag { font-size:8px; font-weight:700; color:rgba(10,191,204,.7); background:rgba(10,191,204,.06); border:1px solid rgba(10,191,204,.12); padding:2px 7px; border-radius:3px; letter-spacing:.04em; }
+.fao-exp-tag { font-size:8px; font-weight:700; color:rgba(10,191,204,.7); background:rgba(10,191,204,.06); border:1px solid rgba(10,191,204,.12); padding:2px 7px; border-radius:9999px; letter-spacing:.04em; }
 .fao-exp-row.fao-exp-alert .fao-exp-tag { color:rgba(248,113,113,.7); background:rgba(239,68,68,.06); border-color:rgba(239,68,68,.12); }
 .fao-exp-row.fao-exp-review .fao-exp-tag { color:rgba(251,191,36,.7); background:rgba(245,158,11,.06); border-color:rgba(245,158,11,.12); }
 @media(max-width:1024px){ .fao-explorer { display:none; } }
 
 /* ── FAO RIBBON ─────────────────────────────────────────────── */
-.fao-ribbon { background:#0a0a0a; border-radius:10px; margin-top:32px; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(255,255,255,.06); flex-wrap:wrap; gap:24px; }
+.fao-ribbon { background:#0a0a0a; border-radius:16px; margin-top:32px; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(255,255,255,.06); flex-wrap:wrap; gap:24px; }
 .fao-ribbon-stats { display:flex; gap:32px; flex-wrap:wrap; flex:1; }
 .fao-rstat { min-width:72px; }
 .fao-rnum { font-size:22px; font-weight:800; color:var(--teal); letter-spacing:-.5px; line-height:1; }
@@ -612,11 +450,10 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .am-link:hover { gap:10px; }
 
 /* ── HOW IT WORKS (Timeline Cards) ─────────────────────────── */
-#how-we-work { background:var(--bg); }
+#how-we-work { background:var(--bg2); }
 .tl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:56px; position:relative; }
-.tl-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px 28px; position:relative; overflow:hidden; transition:border-color .2s; }
+.tl-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:32px 28px; position:relative; overflow:hidden; transition:border-color .2s; border-top:3px solid var(--teal); }
 @media(min-width:769px){ .tl-card:not(:last-child)::after { content:'→'; position:absolute; right:14px; top:14px; font-size:14px; color:var(--teal); font-weight:700; opacity:.55; } }
-.tl-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad); border-radius:12px 12px 0 0; }
 .tl-card:hover { border-color:rgba(10,191,204,.3); }
 .tl-day { display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; background:rgba(10,191,204,.1); color:var(--teal); border:1px solid rgba(10,191,204,.2); padding:4px 12px; border-radius:9999px; margin-bottom:20px; }
 .tl-ghost { font-size:72px; font-weight:800; color:var(--teal); opacity:.06; position:absolute; top:8px; right:20px; letter-spacing:-4px; line-height:1; pointer-events:none; user-select:none; }
@@ -624,8 +461,9 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 .tl-body { font-size:13px; color:var(--txt2); line-height:1.7; }
 .tl-cta { margin-top:40px; }
 
-/* ── CTA RISK REVERSAL ──────────────────────────────────────── */
-.cta-reversal { font-size:12px; color:var(--txt3); margin-top:20px; }
+/* ── UTILITY ─────────────────────────────────────────────────── */
+.btn-sm { font-size:13px; padding:11px 22px; }
+.cta-note { font-size:11px; color:var(--txt3); margin-top:10px; }
 
 @media(max-width:1024px){
   .fao-layout { grid-template-columns:1fr; gap:40px; }
@@ -713,17 +551,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       </div>
     </div>
 
-    <!-- METRICS (spans both columns) -->
-    <div class="hero-metrics">
-      <div class="h-metric">
-        <div class="h-metric-num"><span class="accent">$3.2B</span></div>
-        <div class="h-metric-lbl">In annual enterprise AI spend — zero team-level visibility or attribution</div>
-      </div>
-      <div class="h-metric">
-        <div class="h-metric-num">72<span class="accent">h</span></div>
-        <div class="h-metric-lbl">from first call to your Fractional AI Officer embedded</div>
-      </div>
-    </div>
 
   </div>
 </section>
@@ -744,22 +571,14 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       <img src="/images/accolades/iso9001.svg" alt="ISO 9001" />
       <span class="cert-label">ISO 9001</span>
     </div>
-    <div class="cert-item">
-      <img src="/images/accolades/nasscom.svg" alt="Nasscom Member" style="height:22px" />
-      <span class="cert-label">Nasscom Member</span>
-    </div>
     <div class="cert-sep"></div>
     <div class="cert-item">
       <img src="/images/accolades/clutch.svg" alt="Clutch Top Rated" />
       <span class="cert-label">Top AI Company</span>
     </div>
     <div class="cert-item">
-      <img src="/images/accolades/selectedfirms.svg" alt="SelectedFirms" style="height:44px" />
+      <img src="/images/accolades/selectedfirms.svg" alt="SelectedFirms" />
       <span class="cert-label">Top Enterprise</span>
-    </div>
-    <div class="cert-item">
-      <img src="/images/accolades/upwork.svg" alt="Upwork Top Rated Plus" style="height:44px" />
-      <span class="cert-label">Top Rated Plus</span>
     </div>
   </div>
 </div>
@@ -792,7 +611,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       <div class="persona-card">
         <div class="persona-role">For the CISO</div>
         <div class="persona-pain">Your scanners miss AI-generated vulnerabilities. They were built for human code - hallucinated packages, inverted auth, injected credentials all slip through.</div>
-        <div class="persona-quote">"45% of AI code has exploits. Our tools catch 0% of them."<br />- CISO, Series B fintech</div>
+        <div class="persona-quote">"Our scanners were built for human code. They catch nothing that Copilot hallucinates."<br />- CISO, Series B fintech</div>
       </div>
       <div class="persona-card">
         <div class="persona-role">For the CFO / Board</div>
@@ -801,9 +620,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
       </div>
     </div>
     <div class="persona-unifier">Everyone's problem. Nobody's job. Until now.</div>
-    <div class="persona-cta">
-      <a href="/ai-engineering-governance" class="btn btn-ghost" style="font-size:13px;padding:11px 22px">See how the FAO fixes this &rarr;</a>
-    </div>
   </div>
 </section>
 
@@ -834,17 +650,10 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
             <div><div class="fao-win-title">EU AI Act &amp; HIPAA ready</div><div class="fao-win-sub">19 capabilities across ISO&nbsp;27001, SOX, HIPAA, and EU AI Act.</div></div>
           </div>
         </div>
-        <div class="fao-price-stack">
-          <div class="fps-row fps-muted"><span class="fps-role">Full-Time Hire</span><span class="fps-price fps-strike">$20,000<span class="fps-mo">+/mo</span></span></div>
-          <div class="fps-row fps-muted"><span class="fps-role">Part-Time / Contractor</span><span class="fps-price fps-strike">$10,000<span class="fps-mo">+/mo</span></span></div>
-          <div class="fps-row fps-featured"><span class="fps-role">Fractional AI Officer <span class="fps-pill">Most Chosen</span></span><span class="fps-price fps-teal">&lt;&thinsp;$4,000<span class="fps-mo">/mo</span></span></div>
-          <p class="fps-tagline">Same accountability. Same expertise. 80% less spend.</p>
-        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.35);margin-bottom:20px"><a href="/pricing" style="color:var(--teal);font-weight:600">See pricing &rarr;</a></p>
         <div class="fao-btns">
-          <a href="#book-governance" class="btn btn-teal">Book a Governance Review &rarr;</a>
-          <a href="/ai-engineering-governance" class="btn btn-ghost">See the Framework &rarr;</a>
+          <a href="/ai-engineering-governance" class="btn btn-ghost">See the Full Framework &rarr;</a>
         </div>
-        <p class="fao-reassurance">We respond within 24 hours. No commitment required.</p>
       </div>
       <div class="fao-explorer">
         <div class="fao-exp-header"><span class="fao-exp-live"></span>FAO Governance Explorer &mdash; Interactive Demo</div>
@@ -936,12 +745,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
         <h2 class="section-title">Once Your AI Is Governed,<br /><strong>You Can Build Fearlessly.</strong></h2>
       </div>
       <div class="bridge-right">
-        <p class="bridge-body">Your FAO changes that. With governance in place, every AI-written commit is tracked, every risk is caught before it reaches production, and every deployment is audit-ready. Your engineers stop second-guessing AI output - and start shipping with it confidently.</p>
         <p class="bridge-accent">Governance isn't a gate. It's what makes speed safe.</p>
-        <div style="margin-top:28px">
-          <a href="#book-governance" class="btn btn-teal" style="font-size:13px;padding:11px 22px">Book a Governance Review &rarr;</a>
-          <p style="font-size:11px;color:var(--txt3);margin-top:10px">We respond within 24 hours. No commitment required.</p>
-        </div>
       </div>
     </div>
   </div>
@@ -978,23 +782,6 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
   </div>
 </section>
 
-<!-- WHO IT'S FOR -->
-<section class="section" id="who-we-govern">
-  <div class="section-inner" style="text-align:center">
-    <span class="eyebrow">Who It's For</span>
-    <h2 class="section-title">AI Governance for Any<br />Technical Company.</h2>
-    <p class="section-sub">If your engineers ship code - and AI writes some of it - you need an FAO. We've governed SaaS startups, fintech scale-ups, healthtech platforms, enterprise IT teams, and dev agencies.</p>
-    <div class="gov-type-pills">
-      <span class="gov-pill">SaaS &amp; Product</span>
-      <span class="gov-pill">Fintech</span>
-      <span class="gov-pill">Healthtech</span>
-      <span class="gov-pill">Enterprise IT</span>
-      <span class="gov-pill">Dev Agencies</span>
-      <span class="gov-pill">Manufacturing</span>
-    </div>
-    <p class="gov-type-line">Industry doesn't determine risk. Using AI to write code does.</p>
-  </div>
-</section>
 
 <!-- AGENT ADD-ONS -->
 <section class="section" id="industries">
@@ -1028,15 +815,14 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 
 <!-- CTA -->
 <section class="section" id="cta">
-  <div class="cta-inner">
+  <div class="section-inner">
     <span class="eyebrow eyebrow-teal">Ready to Start</span>
     <h2 class="cta-title">The Window to Govern<br />AI Code Is Closing.</h2>
     <p class="cta-sub">EU AI Act 2026. SOX. HIPAA. The audit trail requirements don't wait - and neither does the risk already inside your engineering org.</p>
     <div class="cta-btns">
       <a href="/assessment" class="btn btn-teal">Book a Governance Review &rarr;</a>
     </div>
-    <div class="cta-reversal">72h to embed &nbsp;&middot;&nbsp; Day 30 risk report &nbsp;&middot;&nbsp; Walk away if ROI isn't there</div>
-    <div class="cta-proof" style="margin-top:8px">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; 30-Day POC with Walk-Away Clause</div>
+    <div class="cta-proof">CMMI Level&nbsp;3 &nbsp;&middot;&nbsp; ISO&nbsp;27001 &nbsp;&middot;&nbsp; 50+ teams governed &nbsp;&middot;&nbsp; Walk away at Day&nbsp;30</div>
   </div>
 </section>
 

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-20 — Homepage UI cleanup: clutter cuts, visual alignment, responsive fixes
+**Type:** refactor
+**Files:** index.html
+Tier 1 cuts: removed ~80 lines dead CSS (prob-layout, products, old steps-grid, who-we-govern blocks); removed hero-metrics strip, fao-price-stack, persona-cta, cta-reversal, Nasscom/Upwork cert badges, bridge body+CTA, #who-we-govern section; CISO quote updated to be non-literal. Tier 2 visual: border-radius standardised across all cards/pills/panels (12/14→16px, 6→8px, 3→9999px); persona-card and tl-card ::before gradient top-bars replaced with border-top:3px solid teal; body line-height 1.6→1.75, hero-sub 16→17px, fao-desc 14→16px/opacity bump, fao-h2 + cta-title clamps standardised; #how-we-work bg bg→bg2, #cta bg bg3→bg; #fao-section #070B10→#0a0a0a. Tier 3 responsive: tl-grid 2-col at 1024px, addon-cards 2-col at 1024px/1-col at 600px, section padding 64px on mobile.
+
 ## 2026-07-20 — Sprint 8: External audit consistency fixes
 **Type:** content fix
 **Files:** ai-engineering-governance.html, index.html, agent-builder.html, about.html, platform.html, industries/index.html, all 69 pages (nav bulk)

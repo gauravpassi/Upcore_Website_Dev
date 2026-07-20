@@ -187,6 +187,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .rm-alert { border-radius:8px; padding:13px 15px; border:1px solid; }
 .rm-alert.high { background:rgba(239,68,68,.04); border-color:rgba(239,68,68,.16); }
 .rm-alert.medium { background:rgba(245,158,11,.04); border-color:rgba(245,158,11,.16); }
+.rm-alert.insight { background:rgba(124,58,237,.04); border-color:rgba(124,58,237,.16); }
+.rm-alert.insight .rm-level { color:#7c3aed; }
 .rm-level {
   font-size:9px; font-weight:800; letter-spacing:.12em;
   text-transform:uppercase; margin-bottom:5px;
@@ -201,6 +203,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 }
 .rm-status.blocked { background:rgba(239,68,68,.09); color:#dc2626; }
 .rm-status.review { background:rgba(10,191,204,.1); color:var(--teal2); }
+.rm-status.optimize { background:rgba(124,58,237,.09); color:#7c3aed; }
 .rm-footer {
   display:flex; justify-content:space-between; align-items:center;
   padding:12px 16px; border-top:1px solid var(--border);
@@ -541,6 +544,12 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
             <div class="rm-title">Hardcoded API Key - auth.py : line 34</div>
             <div class="rm-meta">12 lines &middot; AI-generated &middot; GitHub Copilot</div>
             <span class="rm-status review"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:3px;flex-shrink:0"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Sent for human review</span>
+          </div>
+          <div class="rm-alert insight">
+            <div class="rm-level"><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#7c3aed;margin-right:4px;vertical-align:middle;flex-shrink:0;"></span>Spend Insight &middot; L5 Optimise</div>
+            <div class="rm-title">18-engineer team &middot; $18.7K in AI token waste &mdash; last month</div>
+            <div class="rm-meta">Redundant completions &middot; no model routing &middot; 60&ndash;70% reducible</div>
+            <span class="rm-status optimize"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:3px;flex-shrink:0"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Flagged for optimisation</span>
           </div>
         </div>
         <div class="rm-footer">

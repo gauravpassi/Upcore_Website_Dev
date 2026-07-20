@@ -104,6 +104,16 @@ a{text-decoration:none;color:inherit;}
 .filter-btn{font-family:var(--ff);font-size:12px;font-weight:500;padding:8px 18px;border-radius:9999px;border:1px solid var(--border);background:transparent;color:var(--txt2);cursor:pointer;transition:all .2s;}
 .filter-btn:hover,.filter-btn.active{background:var(--bg2);border-color:var(--txt2);color:var(--txt);}
 
+/* GOVERNANCE STRIP */
+.ind-gov-strip{margin:0 48px 32px;background:rgba(10,191,204,.05);border:1px solid rgba(10,191,204,.15);border-radius:10px;}
+.igs-inner{display:flex;align-items:center;gap:16px;padding:16px 20px;flex-wrap:wrap;}
+.igs-icon{font-size:20px;flex-shrink:0;}
+.igs-label{font-size:13px;font-weight:700;color:var(--txt);display:block;margin-bottom:2px;}
+.igs-text{font-size:12px;color:var(--txt2);line-height:1.5;margin:0;}
+.igs-link{font-size:12px;font-weight:700;color:var(--teal);white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.igs-link:hover{text-decoration:underline;}
+@media(max-width:600px){.igs-inner{flex-direction:column;align-items:flex-start;}.ind-gov-strip{margin:0 20px 24px;}}
+
 /* HUB GRID */
 .hubs-section{padding:0 48px 80px;}
 .hubs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;}
@@ -227,7 +237,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
     <li><a href="/ai-engineering-governance">AI Governance</a></li>
-    <li><a href="/platform">Services</a></li>
+    <li><a href="/platform">AI Agents</a></li><li><a href="/pricing">Pricing</a></li>
     <li><a href="/industries" class="active">Industries</a></li>
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
@@ -261,6 +271,17 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   <button class="filter-btn" onclick="filterHubs('finance',this)">Finance</button>
   <button class="filter-btn" onclick="filterHubs('operations',this)">Operations</button>
   <button class="filter-btn" onclick="filterHubs('growth',this)">Growth</button>
+</div>
+
+<div class="ind-gov-strip">
+  <div class="igs-inner">
+    <span class="igs-icon">⚡</span>
+    <div>
+      <strong class="igs-label">Governed by Default</strong>
+      <p class="igs-text">Every industry deployment runs under FAO governance — AI code reviewed, compliance documented, risk attributed. Agents without governance are not enterprise-ready.</p>
+    </div>
+    <a href="/ai-engineering-governance" class="igs-link">Learn about the FAO &rarr;</a>
+  </div>
 </div>
 
 <div class="hubs-section">

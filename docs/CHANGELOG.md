@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-20 — Sprint 8: External audit consistency fixes
+**Type:** content fix
+**Files:** ai-engineering-governance.html, index.html, agent-builder.html, about.html, platform.html, industries/index.html, all 69 pages (nav bulk)
+A1: Dashboard widget layer names aligned to brand names (Accelerate/Protect/Comply/Optimise) — were using operational names (Code Review/Dependency Check/CI/CD Gate/Production Monitor). A2: index.html L1 capability bullets updated to match governance page (Spec & Goals Engine → AI risk inventory etc.). A3: $3.2B stat standardised to "In annual enterprise AI spend — zero team-level visibility or attribution" on both pages. A4: 45% vulnerability stat attribution fixed — index.html now cites Veracode 2025 (not Gartner). A5: "90-day proof of concept" reframed as "90-day engagement with a Day-30 walk-away checkpoint" with month-to-month continuation copy. A6: agent-builder.html "Deploy Time" label → "Agent Build Time"; index.html Day-90 milestone → "Full AI Workforce Operational"; OG meta updated to "First agent live within 30 days". A7: Amazon incident anonymized to "Fortune 10 Retailer" with source updated to Stack Overflow Blog · Developer Survey 2025. Sprint B: All major CTAs on 6 flagship pages unified — "Book a Governance Review →" pointing to /assessment; secondary distraction buttons removed. Sprint C: Nav "Services" → "AI Agents" (href stays /platform) and "Pricing" link added across 69 pages via PowerShell. Sprint D: about.html "Why We Started" rewritten governance-first — leads with the governance accountability gap, not agent tools. Sprint E: industries/index.html — teal "Governed by Default" callout strip added above industry card grid with link to /ai-engineering-governance.
+
 ## 2026-07-15 — Audit batch: M8, M13, M18, M19, M20 + sitewide minors
 **Type:** content fix
 **Files:** about.html, industries/index.html, sdlc-agent.html, compare/ai-workforce-vs-ai-tools.html, insights/index.html, all 66 pages (footer)

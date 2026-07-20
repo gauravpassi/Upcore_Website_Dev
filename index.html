@@ -204,6 +204,9 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .rm-status.blocked { background:rgba(239,68,68,.09); color:#dc2626; }
 .rm-status.review { background:rgba(10,191,204,.1); color:var(--teal2); }
 .rm-status.optimize { background:rgba(124,58,237,.09); color:#7c3aed; }
+.fao-exp-summary { font-size:11px; color:rgba(255,255,255,.55); line-height:1.6; margin-bottom:12px; }
+.fao-exp-more { display:block; text-align:center; font-size:11px; font-weight:600; color:var(--teal); padding:12px; border-top:1px solid rgba(255,255,255,.06); text-decoration:none; }
+.fao-exp-more:hover { text-decoration:underline; }
 .rm-footer {
   display:flex; justify-content:space-between; align-items:center;
   padding:12px 16px; border-top:1px solid var(--border);
@@ -594,7 +597,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
 <section class="section" id="problem">
   <div class="section-inner">
     <span class="eyebrow eyebrow-teal">The AI Code Crisis</span>
-    <h2 class="section-title">AI Is Shipping Inside Your Org.<br />Nobody Is Governing It.</h2>
+    <h2 class="section-title">Your Engineers Ship AI Code Daily.<br />No One Signs Off On It.</h2>
     <div class="crisis-stats">
       <div class="crisis-stat">
         <span class="crisis-num">45<span>%</span></span>
@@ -672,7 +675,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
               <div class="fao-exp-right"><span class="fao-exp-status ok">ACTIVE</span><span class="fao-exp-chevron">&#9660;</span></div>
             </div>
             <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
-              <ul class="fao-exp-caps"><li>AI tool inventory &amp; risk classification across your codebase</li><li>Context engineering — what AI knows about your workflows &amp; boundaries</li><li>Model selection &amp; cost-vs-capability optimization</li></ul>
+              <p class="fao-exp-summary">Every AI tool your team uses — inventoried, classified, and governed before it touches your codebase.</p>
               <div class="fao-exp-log"><div class="fao-exp-log-label">Flagged this quarter</div><div class="fao-exp-log-text">"Undocumented GPT-4 integration found in payments module - flagged before board audit"</div><div class="fao-exp-log-ts">3 hr ago</div></div>
               <div class="fao-exp-tags"><span class="fao-exp-tag">EU AI Act Art.&nbsp;9</span><span class="fao-exp-tag">ISO&nbsp;27001</span></div>
             </div></div>
@@ -684,7 +687,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
               <div class="fao-exp-right"><span class="fao-exp-status review">REVIEW</span><span class="fao-exp-chevron">&#9660;</span></div>
             </div>
             <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
-              <ul class="fao-exp-caps"><li>PR-level AI code review gates</li><li>Prompt library governance &amp; versioning</li><li>AI tool vetting &amp; approved stack management</li></ul>
+              <p class="fao-exp-summary">Every AI-assisted PR reviewed against your policy before it merges.</p>
               <div class="fao-exp-log"><div class="fao-exp-log-label">Under review</div><div class="fao-exp-log-text">"Copilot-generated auth helper - 2 issues flagged, pending remediation before merge"</div><div class="fao-exp-log-ts">14 min ago</div></div>
               <div class="fao-exp-tags"><span class="fao-exp-tag">OWASP LLM Top&nbsp;10</span><span class="fao-exp-tag">SOX</span></div>
             </div></div>
@@ -696,7 +699,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
               <div class="fao-exp-right"><span class="fao-exp-status scanning">SCANNING</span><span class="fao-exp-chevron">&#9660;</span></div>
             </div>
             <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
-              <ul class="fao-exp-caps"><li>AI hallucination detection in production paths</li><li>Supply chain scanning for AI-suggested packages</li><li>Prompt injection safeguards &amp; sandboxing</li></ul>
+              <p class="fao-exp-summary">Hallucinated packages and prompt injection — caught before they ship.</p>
               <div class="fao-exp-log"><div class="fao-exp-log-label">Blocked today</div><div class="fao-exp-log-text">"npm pkg 'ai-helpers@3.2.1' blocked - Copilot-suggested, no security review, 0 downloads"</div><div class="fao-exp-log-ts">just now</div></div>
               <div class="fao-exp-tags"><span class="fao-exp-tag">CVE Monitoring</span><span class="fao-exp-tag">HIPAA &sect;164.312</span></div>
             </div></div>
@@ -708,7 +711,7 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
               <div class="fao-exp-right"><span class="fao-exp-status ok">ACTIVE</span><span class="fao-exp-chevron">&#9660;</span></div>
             </div>
             <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
-              <ul class="fao-exp-caps"><li>EU AI Act high-risk system classification &amp; mapping</li><li>HIPAA, SOX, ISO&nbsp;27001 audit trail generation</li><li>Board-ready AI governance reporting</li></ul>
+              <p class="fao-exp-summary">EU AI Act, HIPAA, SOX — audit trail generated automatically, not assembled after the fact.</p>
               <div class="fao-exp-log"><div class="fao-exp-log-label">Recent action</div><div class="fao-exp-log-text">"SOX attestation gap identified and closed 48h before board review - zero findings"</div><div class="fao-exp-log-ts">yesterday</div></div>
               <div class="fao-exp-tags"><span class="fao-exp-tag">EU AI Act</span><span class="fao-exp-tag">SOX</span><span class="fao-exp-tag">HIPAA</span></div>
             </div></div>
@@ -720,13 +723,14 @@ footer { background:#0a0a0a; border-top:3px solid rgba(10,191,204,.2); padding:6
               <div class="fao-exp-right"><span class="fao-exp-status ok">ACTIVE</span><span class="fao-exp-chevron">&#9660;</span></div>
             </div>
             <div class="fao-exp-panel"><div class="fao-exp-panel-inner">
-              <ul class="fao-exp-caps"><li>AI budget attribution &amp; cost-per-feature reporting</li><li>Model benchmarking &amp; vendor evaluation</li><li>Quarterly AI ROI dashboards for leadership</li></ul>
+              <p class="fao-exp-summary">AI spend tracked to the team and feature level, with quarterly ROI reporting.</p>
               <div class="fao-exp-log"><div class="fao-exp-log-label">Recent win</div><div class="fao-exp-log-text">"LLM API spend reduced 31% via intelligent model routing - $18k saved in Q3"</div><div class="fao-exp-log-ts">2 days ago</div></div>
               <div class="fao-exp-tags"><span class="fao-exp-tag">ROI Reporting</span><span class="fao-exp-tag">ISO&nbsp;42001</span></div>
             </div></div>
           </div>
 
         </div>
+        <a href="/ai-engineering-governance#framework" class="fao-exp-more">See the full framework, capability-by-capability &rarr;</a>
       </div>
     </div>
 

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-20 — Pricing floor $1,999/mo, Forge/Studio Investment sections, homepage/governance de-dupe
+**Type:** content | decision
+**Files:** `pricing.html`, `ai-engineering-governance.html`, `sdlc-agent.html`, `agent-builder.html`, `index.html`
+FAO headline price changed from "under $4,000/month" to "starting from $1,999/month" everywhere (pricing.html hero/meta/JSON-LD/FAQ, governance page price-stack/cost-of-not-governing/econ-card). ROI multiplier on the governance page rounded from a literal ~271x (at the new lower price) down to a credible "100x" to match pricing.html. Added a labeled "Investment" section (no public numbers — quote-based, links to /pricing) to sdlc-agent.html and agent-builder.html, since neither had any pricing signal before. Homepage Problem-section H2 changed from a verbatim duplicate of the governance page's headline to distinct phrasing; FAO Explorer widget's 5 accordion rows trimmed from 3-bullet capability lists to 1-line summaries each, plus a "See the full framework →" link to the governance page — reduces homepage/governance content overlap while keeping the widget's live-log interactivity.
+
 ## 2026-07-20 — Homepage UI cleanup: clutter cuts, visual alignment, responsive fixes
 **Type:** refactor
 **Files:** index.html

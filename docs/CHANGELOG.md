@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Pre-live audit Sprint A: 3 launch-blocking bugs fixed
+**Type:** fix
+**Files:** `agent-builder.html`, `assessment.html`, `ai-engineering-governance.html`
+(1) `agent-builder.html`'s hero CTA + 2 other primary buttons used `class="btn btn-fill"`, but neither class was ever defined in this page's stylesheet — same phantom-class bug already fixed twice this session elsewhere. Swapped to `.btn-hero-primary`/`.btn-primary`. (2) `assessment.html`'s submit handler referenced two nonexistent element IDs (`industry`, `confirm-email` — leftover from a past field-reduction edit), throwing a JS error on every submission that silently skipped the button loading state and the prospect confirmation email. Removed the dead references. (3) `ai-engineering-governance.html`'s hero dashboard said "— Live" with an animated pulsing dot and "LIVE" status badges over static hardcoded numbers, unlike `index.html`'s equivalent widget (already fixed to say "— Example" with a static dot). Matched the same treatment here.
+
 ## 2026-07-20 — Agent pricing anchor: "Starting at $799" for Forge/Studio
 **Type:** content
 **Files:** `pricing.html`, `sdlc-agent.html`, `agent-builder.html`

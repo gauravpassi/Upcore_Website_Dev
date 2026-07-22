@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Fix "Book a Governance Review" CTA on agent (non-governance) sections
+**Type:** content
+**Files:** `platform.html`, `agent-builder.html`
+User feedback: agent product sections (Forge, Studio, AI Workforce) shouldn't use the governance-specific CTA label — booking a "Governance Review" doesn't fit a visitor evaluating an agent product. Changed `platform.html`'s Forge/Studio/AI Workforce tab CTAs (3 instances) and `agent-builder.html`'s hero-secondary + final CTA (2 instances) to "Book a Live Demo", matching `sdlc-agent.html`'s own already-established pattern. Left untouched: the site-wide nav CTA, `platform.html`'s whole-platform hero/bottom CTAs (cover all products, not agent-specific), and the AI Governance tab's own CTA (correctly governance-focused). Also fixed a footer-sync bug found along the way: both files' footer link had drifted to "Book a Governance Review" when the canonical (`index.html`) footer says "Book a Discovery Call" — corrected both to match.
+
 ## 2026-07-22 — Pre-live audit Sprint B12: exclude *.py scripts from deploy + doc staleness cleanup
 **Type:** infra | fix
 **Files:** `.vercelignore` (new), `docs/STRUCTURE.md`, `docs/FEATURES.md`

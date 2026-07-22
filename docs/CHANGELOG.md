@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Pre-live audit Sprint B7-B8: footer certs sitewide, orphan industry pages linked into hub
+**Type:** content | decision
+**Files:** all 69 pages (footer), `industries/index.html`
+(B7) `docs/DESIGN-SYSTEM.md` documents a footer certification strip (CMMI Level 3 · ISO 27001 · ISO 9001 · Nasscom Member) as standard, but only `index.html` actually rendered it. Rolled out the same `.footer-certs` block + CSS to all other 68 pages via a verified bulk script (confirmed HTML+CSS present on all 69 files afterward, zero corruption). (B8) `industries/compliance-governance.html` and `industries/tech-sdlc.html` existed but weren't linked from the 12-card hub, nav, or footer — added both as new cards on `industries/index.html` (now 14 cards total), updated the page's "12 Industry Workforces" stat and meta description to 14. The footer's "Industries" column is an intentionally curated 5-6 link sample ending in "View All →" on every page (never exhaustive) — left as-is, since the hub-card fix already makes both pages discoverable.
+
 ## 2026-07-22 — Pre-live audit Sprint B1-B6: pricing math, sitemap, SEO tags, product-story contradictions, copy artifacts, CTA labels
 **Type:** fix | content
 **Files:** `pricing.html`, `ai-engineering-governance.html`, `sitemap.xml`, `agent-builder.html`, `platform.html`, `index.html`, `about.html`

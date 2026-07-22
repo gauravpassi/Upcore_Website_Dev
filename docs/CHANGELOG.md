@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Pre-live audit Sprint B1-B6: pricing math, sitemap, SEO tags, product-story contradictions, copy artifacts, CTA labels
+**Type:** fix | content
+**Files:** `pricing.html`, `ai-engineering-governance.html`, `sitemap.xml`, `agent-builder.html`, `platform.html`, `index.html`, `about.html`
+(B1) Pricing-savings copy ("70-80% less spend") was stale math left over from the old $4,000 price point — corrected to "80-90%" to match the current $1,999 floor, consistently across both pages. (B2) `sitemap.xml` was missing `/pricing` entirely and had a literal `` `n `` (unescaped PowerShell newline artifact) corrupting all 64 entries — regenerated cleanly with 65 URLs and realistic `lastmod` dates for recently-touched pages. (B3) Trimmed `agent-builder.html`'s title (67→50 chars) and meta description (183→139 chars) and `platform.html`'s title (69→47 chars) to fit SEO guidelines. (B4) Fixed 3 product-story contradictions that had regressed from earlier fixes: `platform.html` calling Studio "no-code" (contradicts its own corrected "managed deployment service" framing, fixed in 4 places including JSON-LD), `index.html`'s hero reintroducing an unverifiable "certified" FAO claim (also found + fixed in `ai-engineering-governance.html`'s FAQ, both visible text and JSON-LD twin), and `platform.html`'s "Compliance Autopilot" claim (softened to "Compliance framework mapping" elsewhere already, missed in one diagram). (B5) Fixed 79 instances across `agent-builder.html` (53), `platform.html` (17), and `about.html` (9) where a past "remove all em dashes" commit had replaced "—" with ". " mid-sentence, producing fragments like "...your business. deployed in 48 hours." — restored proper em dashes via a verified regex pass (each match manually reviewed for false positives before applying). (B6) Standardized `pricing.html`'s "Get a Quote" CTA and `platform.html`'s "Book a Demo" CTA to "Book a Governance Review", matching the site's dominant CTA label (note: `sdlc-agent.html`'s "Book a Live Demo" is an intentional, previously-documented exception — not touched).
+
 ## 2026-07-22 — Pre-live audit Sprint A: 3 launch-blocking bugs fixed
 **Type:** fix
 **Files:** `agent-builder.html`, `assessment.html`, `ai-engineering-governance.html`

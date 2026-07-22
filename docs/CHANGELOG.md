@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Pre-live audit Sprint B12: exclude *.py scripts from deploy + doc staleness cleanup
+**Type:** infra | fix
+**Files:** `.vercelignore` (new), `docs/STRUCTURE.md`, `docs/FEATURES.md`
+9 internal one-off Python maintenance scripts (`fix_*.py`, `apply_*.py`, `propagate_design.py`) sit at the repo root with no exclusion from the Vercel static deploy — likely publicly downloadable (e.g. `/fix_cta_buttons.py`) despite containing no secrets. Added `.vercelignore` to exclude `*.py`. While touching `docs/STRUCTURE.md`, also fixed a stale claim (`contact.html` form documented as "inert"/fake since 2026-05 — it was actually fixed to a real FormSubmit `fetch()` call at some point and the docs were never updated) — corrected in both `STRUCTURE.md`'s anomalies list and `FEATURES.md`'s B2 entry + Known Gaps section, per `CLAUDE.md`'s "if docs and code disagree, fix it" rule.
+
 ## 2026-07-22 — Pre-live audit Sprint B11: fix 10 broken Related Articles modules
 **Type:** fix
 **Files:** 10 `insights/*.html` article pages

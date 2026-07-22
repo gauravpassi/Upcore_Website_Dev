@@ -18,6 +18,7 @@ upcore-website/
 │
 ├── vercel.json                        # Routing, headers, function config
 ├── .gitignore
+├── .vercelignore                      # Excludes *.py (internal one-off maintenance scripts) from the deploy
 ├── .github/
 │   └── workflows/                     # GitHub Actions (daily demo cleanup cron)
 │
@@ -108,8 +109,8 @@ These exist in the working tree and are worth knowing about before you "tidy the
 
 1. **`industries/upcore-logo.png` and `industries/upcore-logo.svg`** are duplicates of the root logos. Likely a leftover from when industry pages used relative paths. Pages currently reference root paths (`/upcore-logo.svg`), so these copies are unused — but confirm before deleting.
 2. **`demos/ecommerce-myagent-ky7o92.html` + `demos/manufacturing-myagent-w6ihwp.html`** exist on disk while `demos/manifest.json` is `[]`. Either samples that pre-date the manifest convention, or orphans from a builder run that didn't update the manifest. Cleanup cron won't touch them (it iterates the manifest, not the directory).
-3. **`contact.html` form is inert** — `handleSubmit` fakes a "Sending…" spinner with `setTimeout`. Comment in source: *"In production, replace with fetch() to your form handler / Formspree / EmailJS etc."* See [FEATURES.md](FEATURES.md#-known-gaps).
-4. **No `package.json`** — confirms the no-build-step architecture. If anyone ever needs to add one, that's a significant decision; document it.
+3. **No `package.json`** — confirms the no-build-step architecture. If anyone ever needs to add one, that's a significant decision; document it.
+4. **~9 one-off Python maintenance scripts at the repo root** (`fix_*.py`, `apply_*.py`, `propagate_design.py`) — used for past bulk find/replace edits across pages. Excluded from the live deploy via `.vercelignore` (2026-07-22, since they were previously publicly downloadable on the static site). No secrets inside them, but don't add new ones without the same exclusion in mind.
 
 ## Files explicitly excluded from the source-of-truth set
 

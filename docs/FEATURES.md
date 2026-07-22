@@ -90,12 +90,10 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Touches:** FormSubmit.co (no backend, no env vars, no JS submit handler).
 - **Extend by:** Add/remove fields in the form HTML. FormSubmit will email whatever you POST. If the destination email changes, also update [§E](#e-cross-cutting-contracts).
 
-### B2. Contact form ⚠️ INERT
-- **What:** Contact form on `/contact`. **Currently does not actually send anything** — the submit handler is a fake `setTimeout` showing a "Sending…" UI.
+### B2. Contact form
+- **What:** Contact form on `/contact`. Real `async handleSubmit()` — posts to FormSubmit.co via `fetch()` (matches B1's destination), shows a proper loading/error state.
 - **Where:** [`contact.html`](../contact.html), `handleSubmit()` near the bottom.
-- **Source comment:** *"In production, replace with fetch() to your form handler / Formspree / EmailJS etc."*
-- **Status:** Listed in [Known gaps](#-known-gaps) below.
-- **Extend by:** Replace the fake submit with a real FormSubmit POST (matching B1) before treating this as live. Then update this entry to remove "INERT".
+- **Extend by:** Add/remove fields in the form HTML; FormSubmit will email whatever you POST. Note (2026-07-22 audit): unlike B1, this form has no inline privacy disclosure near the submit button and no CAPTCHA/honeypot — worth aligning with B1's pattern if spam becomes an issue.
 
 ### B3. Booking via chat (auto-emails)
 - **What:** When Kai (the chat widget) detects user is ready to book, it embeds a `[BOOK_APPOINTMENT:{...json...}]` marker in its reply. The server strips it and fires two FormSubmit emails (one to Upcore, one to the prospect).
@@ -166,7 +164,7 @@ These are not features per se — they're invariants that span multiple features
 | Contract | Places that depend on it |
 |---|---|
 | Anthropic model `claude-haiku-4-5-20251001` | `api/chat.js`, `api/build-demo.js` |
-| Lead-notification email `gaurav@upcoretechnologies.com` | `assessment.html`, `contact.html` (when wired up), `api/chat.js` `sendBookingEmails`, `api/build-demo.js` `NOTIFY_TO` |
+| Lead-notification email `gaurav@upcoretechnologies.com` | `assessment.html`, `contact.html`, `api/chat.js` `sendBookingEmails`, `api/build-demo.js` `NOTIFY_TO` |
 | Industry list (Kai's knowledge) | `api/chat.js` `SYSTEM_PROMPT`, `industries/index.html`, individual `industries/*.html`, `INDUSTRY_CONFIG` (subset) |
 | Product list (Kai's knowledge) | `api/chat.js` `SYSTEM_PROMPT`, `platform.html`, `agent-builder.html`, `sdlc-agent.html` |
 | Booking marker `[BOOK_APPOINTMENT:{...}]` | `api/chat.js` `SYSTEM_PROMPT` (defines it), `api/chat.js` parser, `chat-widget.js` (must never display it) |
@@ -179,7 +177,6 @@ These are not features per se — they're invariants that span multiple features
 
 These are documented so they're not rediscovered repeatedly. When a gap is closed, move it into the relevant feature section above.
 
-- **Contact form is inert** ([B2](#b2-contact-form-️-inert)). Submit handler is a fake spinner; no email is actually sent. Wire it to FormSubmit (mirror the assessment form) before relying on it.
 - **Demo builder only supports 2 industries** ([C2](#c2-personalised-demo-builder)) despite 12 marketing pages existing. To expand: extend `INDUSTRY_CONFIG` and the radio options. See [CONVENTIONS.md §4](CONVENTIONS.md#4-adding-a-new-industry-to-the-demo-builder).
 - **Two demo HTML files exist with empty manifest** ([STRUCTURE.md anomalies](STRUCTURE.md#anomalies-current-technical-debt)). Either stale samples or orphaned from a previous run. Cleanup cron won't touch them.
 - **Duplicate `industries/upcore-logo.{png,svg}`** appear unused (pages reference root paths). Verify before deleting.

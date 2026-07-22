@@ -1,0 +1,3 @@
+# Internal one-off maintenance/migration scripts - never serve these publicly
+*.py
+__pycache__/

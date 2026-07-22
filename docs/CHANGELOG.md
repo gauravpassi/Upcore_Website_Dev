@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Pre-live audit Sprint B11: fix 10 broken Related Articles modules
+**Type:** fix
+**Files:** 10 `insights/*.html` article pages
+The `.related-card h4`/`.related-card p` CSS selector only matched 6 of 16 article pages' actual markup. 5 pages used `<div class="title">`/`<div class="meta">` instead of `<h4>`/`<p>` (completely unstyled - no font hierarchy at all): `choosing-first-ai-agent.html`, `government-ai-citizen-services.html`, `legal-ai-contract-review.html`, `marketing-ai-execution-vs-strategy.html`, `roi-business-case-ai-agents.html`. 5 more used `<h3>` instead of `<h4>` (renders at default oversized browser heading size instead of the intended 14px/600): `banking-ai-customer-service.html`, `healthcare-patient-no-show-ai.html`, `logistics-wismo-ai-agents.html`, `real-estate-lead-conversion.html`, `saas-churn-ai-early-warning.html`. Fixed via a scoped script (matched only within each page's `related-grid` block, verified not to touch legitimate `<h3>` article subheadings elsewhere on the same pages).
+
 ## 2026-07-22 — Pre-live audit Sprint B9-B10: formalize amber/violet tokens, correct button-color doc
 **Type:** decision
 **Files:** `index.html`, `docs/DESIGN-SYSTEM.md`

@@ -22,17 +22,18 @@ Every page declares the same `:root`:
   --teal2:  #089AAA;
   --mint:   #0ABFCC;   /* alias */
 
-  /* Removed: amber accent tokens — replaced with teal site-wide (2025-07) */
-
-  /* Status */
+  /* Status — RAG (red/amber/green) severity coding, risk/security widgets only */
   --green:  #22C55E;
   --red:    #EF4444;
+  --amber:  #d97706;          /* light-background badges (e.g. rm-alert.medium) */
+  --amber-bright: #fbbf24;    /* dark-background widgets (e.g. FAO Explorer "review" status) */
+  --violet: #7c3aed;          /* insight/optimisation status, distinct from risk severity */
 
   /* Text — dark on white */
   --txt:    #0a0a0a;   /* Near-black — primary headings */
   --txt2:   #45515e;   /* Muted — body / secondary */
   --txt3:   #8e8e93;   /* Dimmer tertiary */
-  --ink:    #0a0a0a;   /* Alias for button fill */
+  --ink:    #0a0a0a;   /* Alias for --txt; NOT the button fill color (that's teal, see §4.2) */
   --ink-press: #222222;
 
   /* Borders — light hairline */
@@ -55,7 +56,7 @@ Every page declares the same `:root`:
 - Don't introduce new hex values. Use a token or extend `:root` (propagate via `apply_minimax.py`).
 - Backgrounds are white-canvas — never add dark/navy backgrounds to content sections.
 - Borders use solid light hairlines (`#e5e7eb`), not white-alpha. White-alpha borders are only appropriate on the dark footer.
-- **No amber tokens.** Amber was removed site-wide (2025-07); use `--teal` / `--teal2` for all accents.
+- **Amber/violet are risk-status colors only, reintroduced 2026-07-22** for RAG (red/amber/green) severity coding in security/governance widgets (e.g. the homepage Risk Monitor and FAO Explorer) — use `--amber`/`--amber-bright`/`--violet`. Everywhere else (headings, links, general accents, buttons) still uses `--teal`/`--teal2` only — do not use amber/violet as a general branding color.
 - **Footer** is always dark (`background:#0a0a0a`) — MiniMax footer-region token. Footer text uses explicit `rgba(255,255,255,…)` overrides since `--txt` is now dark.
 
 ## 2. Typography
@@ -141,23 +142,23 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 /* Base — pill shape */
 .btn       { font: 600 15px/1 var(--ff); padding: 12px 26px; border-radius: 9999px;
              cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; border: none; }
-/* Primary — black pill */
-.btn-fill  { background: #0a0a0a; color: #ffffff; }
-.btn-fill:hover  { background: #222222; transform: translateY(-1px); }
+/* Primary — teal pill (corrected 2026-07-22: every page's .btn-fill is teal, not black) */
+.btn-fill  { background: #0ABFCC; color: #070B10; }
+.btn-fill:hover  { background: #089AAA; transform: translateY(-1px); }
 /* Secondary — ink outline pill */
 .btn-ghost { background: transparent; color: #0a0a0a; border: 1px solid #0a0a0a; }
 .btn-ghost:hover { background: rgba(0,0,0,.04); border-color: #222222; }
-/* Teal accent */
+/* Teal accent — functionally identical to .btn-fill on most pages; a legacy alias, not a distinct style */
 .btn-teal { background: var(--teal); color: #070B10; border-radius: 9999px; }
 .btn-teal:hover { background: var(--teal2); transform: translateY(-1px); }
 ```
 
 Usage:
-- `.btn.btn-fill` — primary CTA (black pill). Used everywhere for the main action.
+- `.btn.btn-fill` — primary CTA (teal pill, `#0ABFCC` background / `#070B10` text). Used everywhere for the main action.
 - `.btn.btn-ghost` — secondary action (ink outline pill).
-- `.btn.btn-teal` — teal accent CTA, available site-wide.
-- **Never use teal fills on buttons** — black pill is the MiniMax CTA pattern.
+- `.btn.btn-teal` — same teal fill as `.btn-fill`; kept for backwards compatibility on pages that already use it, don't introduce new usages.
 - The nav CTA (`.nav-cta`) keeps its own scoped CSS and is NOT part of the `.btn` system.
+- Every button on a page must use classes actually defined in that page's own `<style>` block — this is a static, no-build site, so CSS is per-page, not shared. A button referencing an undefined class (e.g. bare `.btn`/`.btn-fill` combos when only `.btn-primary`/`.btn-hero-primary` exist on that page) renders completely unstyled. This exact bug has recurred multiple times (`build-your-demo.html`, `agent-builder.html`) — always grep the target file's `<style>` block to confirm a class exists before using it.
 
 ### 4.3 Cards / surfaces
 

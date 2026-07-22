@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Pre-live audit Sprint B9-B10: formalize amber/violet tokens, correct button-color doc
+**Type:** decision
+**Files:** `index.html`, `docs/DESIGN-SYSTEM.md`
+(B9) Amber (`--amber`/`--amber-bright`) and violet (`--violet`) were used repeatedly in the Risk Monitor and FAO Explorer widgets for RAG severity coding but never declared in `:root`, contradicting the doc's "no amber token" rule (a leftover from the 2025-07 MiniMax redesign). Added both to `:root`, replaced every hardcoded solid hex occurrence with `var()`, and updated `DESIGN-SYSTEM.md` to document them as risk-status-only colors (not general branding — teal remains the only brand accent). (B10) `DESIGN-SYSTEM.md` documented the primary CTA (`.btn-fill`) as a black pill, but every page's actual `.btn-fill` is teal (`#0ABFCC`), 100% consistently — updated the doc to match reality rather than repaint every button. Also fixed a stale comment calling `--ink` an "alias for button fill" (it isn't, teal is) and added a doc note about the recurring "button uses an undefined class" bug pattern to help prevent it next time.
+
 ## 2026-07-22 — Pre-live audit Sprint B7-B8: footer certs sitewide, orphan industry pages linked into hub
 **Type:** content | decision
 **Files:** all 69 pages (footer), `industries/index.html`

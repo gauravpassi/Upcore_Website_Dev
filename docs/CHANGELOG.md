@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Redesign Team section as stacked cards; fix duplicate "View suite" button
+**Type:** fix
+**Files:** `about.html`, `industries/index.html`
+User reported the Team section still "looks terrible" after the earlier grid rebalance (2-col + full-width row). Root cause was more fundamental than alignment: mixing a half-width card format with a full-width one in the same grid reads as visually inconsistent regardless of alignment fixes. Redesigned `.team-grid` from a grid to a simple vertical flex stack — every card is now full-width, one per row, in logical order (Gaurav Passi → The FAO Specialists → The FDE Engineers). Added `max-width:680px` to `.team-bio` so paragraph text doesn't stretch into unreadably long lines now that cards are much wider; `.fao-archetypes` (already changed to a 3-column row) still uses the full card width. Removed the now-dead `.team-grid{grid-template-columns:1fr}` mobile override and the `.team-card-wide` class, both no longer needed.
+
+Also fixed a duplicate-button bug on `industries/index.html`: every hub card already had a hardcoded `<a class="hub-view-link">View suite →</a>`, but a JS block (from a past "make cards clickable" fix) was also dynamically creating and appending a second one to every card via `document.createElement`/`appendChild`. Removed the dynamic link creation, kept the click-anywhere-on-card listener. Also added the 2 industries added earlier today (Software & Technology (SDLC), Compliance & Governance) to the `HUB_URLS` map, which had silently excluded them from the click-anywhere behavior (their hardcoded links still worked, just not the whole-card click target).
+
 ## 2026-07-22 — Fix Team section layout, expand FDE mentions to homepage + pricing
 **Type:** fix | content
 **Files:** `about.html`, `index.html`, `pricing.html`

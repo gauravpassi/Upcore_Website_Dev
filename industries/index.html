@@ -586,7 +586,9 @@ var HUB_URLS = {
   'Healthcare':'/industries/healthcare',
   'Logistics & Supply Chain':'/industries/logistics',
   'Legal & Compliance':'/industries/legal-compliance',
-  'Marketing & Agencies':'/industries/marketing-agencies'
+  'Marketing & Agencies':'/industries/marketing-agencies',
+  'Software & Technology (SDLC)':'/industries/tech-sdlc',
+  'Compliance & Governance':'/industries/compliance-governance'
 };
 
 document.querySelectorAll('.hub-card').forEach(function(card) {
@@ -598,11 +600,6 @@ document.querySelectorAll('.hub-card').forEach(function(card) {
   card.addEventListener('click', function(e) {
     if (!e.target.closest('a')) location.href = url;
   });
-  var lnk = document.createElement('a');
-  lnk.href = url;
-  lnk.className = 'hub-view-link';
-  lnk.innerHTML = 'View suite &rarr;';
-  card.appendChild(lnk);
 });
 
 function filterHubs(cat, btn) {

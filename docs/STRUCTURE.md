@@ -23,10 +23,10 @@ upcore-website/
 │   └── workflows/                     # GitHub Actions (daily demo cleanup cron)
 │
 ├── api/                               # 🔌 Vercel serverless functions
-│   ├── chat.js                        # /api/chat — Kai chatbot (Anthropic)
+│   ├── chat.js                        # /api/chat — legacy Anthropic chatbot backend, UNUSED (see FEATURES.md B3)
 │   └── build-demo.js                  # /api/build-demo — demo generator pipeline
 │
-├── chat-widget.js                     # Global vanilla-JS chat widget (loaded on every page)
+├── chat-widget.js                     # Global vanilla-JS chat widget: one-click FAQ + email lead capture (loaded on every page)
 │
 ├── index.html                         # Homepage — CANONICAL :root + nav block
 ├── about.html                         # About

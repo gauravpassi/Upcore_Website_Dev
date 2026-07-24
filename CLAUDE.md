@@ -37,8 +37,8 @@ These are the gotchas that have actually bitten this repo. The full context is i
 - **`cleanUrls: true`** — internal links omit `.html` (`/about`, not `/about.html`).
 - **Anthropic model `claude-haiku-4-5-20251001` is hard-pinned in two places** (`api/chat.js`, `api/build-demo.js`). Bump both together.
 - **`demos/manifest.json` is owned by the demo builder + nightly cleanup cron** — don't hand-edit. `[]` is a valid state.
-- **All form/booking emails go to `gaurav@upcoretechnologies.com`** via FormSubmit, hard-coded in 4 places. Change all four together.
-- **Chat widget (`chat-widget.js`)** is included on every non-demo page. It's a single vanilla-JS IIFE — don't refactor into modules.
+- **All form/booking emails go to `gaurav@upcoretechnologies.com`** via FormSubmit, hard-coded in 5 places (4 live + 1 unused legacy). Change all together — see `docs/CONVENTIONS.md` §8.
+- **Chat widget (`chat-widget.js`)** is included on every non-demo page. It's a single vanilla-JS IIFE — don't refactor into modules. As of 2026-07-24 it's a self-contained client-side FAQ menu + email lead capture, **not** a live AI conversation — `api/chat.js` (the old Anthropic-backed version) is unused legacy, left in place but not called. The script tag's `?v=N` cache-buster must be bumped across all 70 pages whenever `chat-widget.js` changes substantively, or browsers keep serving the stale cached file.
 
 ## Local development
 

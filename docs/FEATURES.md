@@ -29,19 +29,19 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 ### A3. Platform overview
 - **What:** "Four Products. One AI Partner." — index page that introduces AI Engineering Governance, Studio, Forge, and the broader platform (tabbed).
 - **Where:** [`platform.html`](../platform.html)
-- **Touches:** Cross-links to `ai-engineering-governance.html`, `agent-builder.html` (Studio) and `sdlc-agent.html` (Forge). If the product lineup changes, update this page **and** Kai's `SYSTEM_PROMPT` in `api/chat.js` together.
+- **Touches:** Cross-links to `ai-engineering-governance.html`, `agent-builder.html` (Studio) and `sdlc-agent.html` (Forge). If the product lineup changes, update this page **and** the chat widget's FAQ answers (`chat-widget.js`) together.
 
 ### A3b. AI Engineering Governance (FLAGSHIP)
 - **What:** Flagship offering page — "The AI Code Crisis Is Already Inside Your Enterprise." Sells **AI Engineering Governance** delivered via a **Fractional AI Officer (FAO)**: governs the risk of AI-generated code (budget, security, compliance). Sections: crisis stats, documented incidents, the-gap comparison, FAO solution, 5-layer/19-capability framework, hire-vs-Big4-vs-FAO economics, 90-day journey, FAQ. Source of truth = the FAO decks.
 - **Where:** [`ai-engineering-governance.html`](../ai-engineering-governance.html) (URL `/ai-engineering-governance`; redirects: `/fractional-ai-officer`, `/aigov`, `/ai-governance`)
 - **Touches:** Standard nav (has its own top-level "AI Governance" link), chat widget, Service + FAQPage JSON-LD. No API calls. Featured as #1 product on `index.html` and first tab on `platform.html`; cross-linked from `sdlc-agent.html`, `industries/compliance-governance.html`, `learn/ai-data-governance.html`.
-- **Extend by:** Inline edits. Buyers = CTO/CISO/CFO/Board. Keep stats' cited sources; keep pricing unpublished. If the offering changes, update Kai's `SYSTEM_PROMPT` too. "AIGOV" = internal shorthand only.
+- **Extend by:** Inline edits. Buyers = CTO/CISO/CFO/Board. Keep stats' cited sources. Pricing (starting from $1,999/month) is published on `pricing.html` — keep that page and this one's price-stack in sync. If the offering changes, update the chat widget's FAQ answers too. "AIGOV" = internal shorthand only.
 
 ### A4. Studio (Agent Builder marketing)
 - **What:** Marketing page for Upcore Studio — "Your Workflows. Now Run Themselves." Describes the plain-English-to-agent-logic flow.
 - **Where:** [`agent-builder.html`](../agent-builder.html)
 - **Touches:** Standard nav, chat widget. Does **not** call any API.
-- **Extend by:** Inline edits. If Studio gains new capabilities, also update Kai's product description in `api/chat.js`.
+- **Extend by:** Inline edits. If Studio gains new capabilities, also update the chat widget's FAQ answer for "How is Studio different from a no-code tool?" in `chat-widget.js`.
 
 ### A4b. FDE Engineers (Forward Deployed Engineering flagship)
 - **What:** Flagship page for Studio's delivery model — "Your AI Agent Vendor Ships a Demo. We Ship an Engineer." Sells a **Forward Deployed Engineer (FDE)**: a dedicated engineer embedded in the client's workflow to build, integrate, deploy, and maintain custom agents against real systems (CRM/ERP/APIs), governed by the client's FAO from the first commit. Mirrors `ai-engineering-governance.html`'s section architecture (problem stats, failure patterns, cost-of-not-shipping, gap, solution pillars, 5-stage framework, FAQ, economics, client outcomes, engagement model). Single retainer price: starting from $2,499/month — no dual-tier pricing.
@@ -101,30 +101,24 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Where:** [`contact.html`](../contact.html), `handleSubmit()` near the bottom.
 - **Extend by:** Add/remove fields in the form HTML; FormSubmit will email whatever you POST. Note (2026-07-22 audit): unlike B1, this form has no inline privacy disclosure near the submit button and no CAPTCHA/honeypot — worth aligning with B1's pattern if spam becomes an issue.
 
-### B3. Booking via chat (auto-emails)
-- **What:** When Kai (the chat widget) detects user is ready to book, it embeds a `[BOOK_APPOINTMENT:{...json...}]` marker in its reply. The server strips it and fires two FormSubmit emails (one to Upcore, one to the prospect).
-- **Where:** [`api/chat.js`](../api/chat.js) — see `sendBookingEmails()`. Marker contract documented in `SYSTEM_PROMPT`.
-- **Touches:** FormSubmit, Anthropic API.
-- **Extend by:** To change the data captured in a booking, update both the marker schema described in `SYSTEM_PROMPT` *and* the `sendBookingEmails()` payload. Keep them in sync.
+### B3. Kai chat widget (one-click FAQ + lead capture)
+- **What:** Floating chat widget on every non-demo page. Bot named **Kai**. As of 2026-07-24 this is a self-contained client-side FAQ menu, not a live AI conversation: a curated knowledge base (`FAQ` array, grouped into 6 categories) answers common questions in one click — click a popular question or drill into a category card, get the canned answer instantly, no network call. Anything typed into the free-text input is treated as a custom question: the bot collects name + email conversationally, then POSTs the question/name/email straight to FormSubmit (team notification, `_cc` to a second inbox) and shows a "Message Sent" confirmation — the team replies by email within 24 hours instead of the bot improvising an answer.
+- **Where:** [`chat-widget.js`](../chat-widget.js) (vanilla-JS IIFE, self-contained CSS) — entirely frontend, no backend call. Loaded via `<script src="/chat-widget.js?v=N" defer></script>` on **all 70 non-demo pages**. The `?v=N` query is a manual cache-buster — bump it on every substantive edit to the file, across all pages, or browsers will keep serving a stale cached copy.
+- **Touches:** FormSubmit.co (`gaurav@upcoretechnologies.com`, `_cc: saswata@upcoretechnologies.com`). The "📅 Book a Governance Review" chip re-dispatches a click on a synthetic `a[href="#book-governance"]` to open the same Google Calendar modal every nav CTA uses (bottom IIFE in the same file, unchanged).
+- **Extend by:**
+  - To add/edit a question: add an entry to the `FAQ` array (`id`, `cat`, `q`, `a`; set `popular: true` to also surface it in the initial 6-chip menu) or a new entry to `CATEGORIES`.
+  - To change voice/copy: edit `INITIAL_MESSAGE` and the `a` strings directly — these are trusted, hand-authored HTML (inline `<a>` tags allowed), unlike user-typed text which is always escaped.
+  - To change widget UI: edit `chat-widget.js` directly. Don't unify its CSS with the page's design tokens — see [DESIGN-SYSTEM.md §5](DESIGN-SYSTEM.md#5-chat-widget-styling).
+  - To change what the lead-notification email contains: edit the payload in `submitLead()`.
+- **Legacy:** `api/chat.js` (the previous Anthropic-backed implementation, with its `SYSTEM_PROMPT` and `[BOOK_APPOINTMENT:{...}]` marker protocol) is no longer called by `chat-widget.js` and is unused dead code — left in place rather than deleted in case AI-driven chat is reinstated later. Don't treat its `SYSTEM_PROMPT` as current brand voice; `chat-widget.js`'s `FAQ`/`INITIAL_MESSAGE` is the source of truth now.
 
 ---
 
 ## C. AI-powered features (Anthropic API)
 
-### C1. Kai chatbot (chat widget)
-- **What:** Floating chat widget on every non-demo page. Bot named **Kai**. Answers product questions, suggests demos, captures booking info via the marker protocol (B3).
-- **Where:**
-  - Frontend: [`chat-widget.js`](../chat-widget.js) (vanilla-JS IIFE, self-contained CSS).
-  - Backend: [`api/chat.js`](../api/chat.js).
-  - Loaded via `<script src="/chat-widget.js" defer></script>` — included on **all 37 non-demo pages**.
-- **Touches:** Anthropic API (`claude-haiku-4-5-20251001`, `max_tokens: 600`, last 20 messages), FormSubmit (for booking emails). Env: `ANTHROPIC_API_KEY`.
-- **Brand voice / product/industry list:** all in `SYSTEM_PROMPT` at the top of `api/chat.js` — that string is the source of truth for what Kai says about Upcore.
-- **Extend by:**
-  - To change voice/messaging: edit `SYSTEM_PROMPT`.
-  - To change widget UI: edit `chat-widget.js`. Don't unify its CSS with the page's design tokens — see [DESIGN-SYSTEM.md §5](DESIGN-SYSTEM.md#5-chat-widget-styling).
-  - To add a new conversational capability (e.g. capture a different kind of intent): introduce a new bracket-marker convention, document it in `SYSTEM_PROMPT`, parse it in `api/chat.js`.
+*(No AI-powered chat feature is currently live — see B3's "Legacy" note. `api/chat.js` remains deployable but unused.)*
 
-### C2. Personalised Demo Builder
+### C1. Personalised Demo Builder
 - **What:** User picks an industry + describes pain point + agent name → in ~60s a live, personalised demo HTML is generated, committed to GitHub, deployed by Vercel, and the URL is returned. Lead notification email sent to Upcore.
 - **Where:**
   - Frontend: [`build-your-demo.html`](../build-your-demo.html) (multi-step UI, POSTs to `/api/build-demo`).
@@ -169,13 +163,12 @@ These are not features per se — they're invariants that span multiple features
 
 | Contract | Places that depend on it |
 |---|---|
-| Anthropic model `claude-haiku-4-5-20251001` | `api/chat.js`, `api/build-demo.js` |
-| Lead-notification email `gaurav@upcoretechnologies.com` | `assessment.html`, `contact.html`, `api/chat.js` `sendBookingEmails`, `api/build-demo.js` `NOTIFY_TO` |
-| Industry list (Kai's knowledge) | `api/chat.js` `SYSTEM_PROMPT`, `industries/index.html`, individual `industries/*.html`, `INDUSTRY_CONFIG` (subset) |
-| Product list (Kai's knowledge) | `api/chat.js` `SYSTEM_PROMPT`, `platform.html`, `agent-builder.html`, `sdlc-agent.html` |
-| Booking marker `[BOOK_APPOINTMENT:{...}]` | `api/chat.js` `SYSTEM_PROMPT` (defines it), `api/chat.js` parser, `chat-widget.js` (must never display it) |
+| Anthropic model `claude-haiku-4-5-20251001` | `api/build-demo.js` (live); `api/chat.js` (hardcoded but unused — see B3) |
+| Lead-notification email `gaurav@upcoretechnologies.com` | `assessment.html`, `contact.html`, `chat-widget.js` `LEAD_EMAIL`/`submitLead()`, `api/build-demo.js` `NOTIFY_TO`; `api/chat.js` `sendBookingEmails` is unused legacy |
+| Chat widget cache-buster `chat-widget.js?v=N` | One `<script>` tag per page, all 70 non-demo pages — bump the number everywhere in the same commit whenever `chat-widget.js` changes substantively |
+| Industry list | `industries/index.html`, individual `industries/*.html`, `INDUSTRY_CONFIG` in `api/build-demo.js` (subset) — `chat-widget.js`'s FAQ links out to `/industries` rather than duplicating the list |
 | Demo manifest schema `{ slug, expires, ... }` | `api/build-demo.js` (writer), `.github/workflows/*` (reader/cleaner) |
-| Design tokens (`:root`) and nav block | All 37 non-demo HTML pages — see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) |
+| Design tokens (`:root`) and nav block | All 70 non-demo HTML pages — see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) |
 
 ---
 

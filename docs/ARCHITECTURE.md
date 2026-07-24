@@ -36,14 +36,15 @@ The chat widget (`<script src="/chat-widget.js" defer>`) is included on **every*
 
 ## 3. Serverless functions ([`api/`](../api/))
 
-### 3.1 `/api/chat` — Kai chatbot
+### 3.1 `/api/chat` — legacy, unused
 
-[`api/chat.js`](../api/chat.js)
+[`api/chat.js`](../api/chat.js) is a Vercel function that calls the Anthropic Messages API (`model: claude-haiku-4-5-20251001`) with a hard-coded `SYSTEM_PROMPT` and a `[BOOK_APPOINTMENT:{...json...}]` marker protocol. **As of 2026-07-24, `chat-widget.js` no longer calls this endpoint** — the widget was rebuilt as a self-contained client-side FAQ menu (see below) that never hits the network for answers. `api/chat.js` still deploys and would still work if called directly, but nothing on the site calls it. Left in place rather than deleted in case AI-driven chat is reinstated; don't treat its `SYSTEM_PROMPT` as current brand voice.
 
-- **Brand voice + product/industry list lives in the `SYSTEM_PROMPT` string** at the top of the file. To change what Kai says about Upcore, edit that string.
-- Calls Anthropic Messages API: `model: claude-haiku-4-5-20251001`, `max_tokens: 600`, last 20 messages forwarded.
-- Response can include a `[BOOK_APPOINTMENT:{...json...}]` marker. Server **strips the marker before returning to the client** and fires fire-and-forget FormSubmit emails (notification to Upcore + confirmation to prospect).
-- Vercel function: `memory: 256MB`, `maxDuration: 15s`.
+### 3.1b Kai chat widget — one-click FAQ + email lead capture
+
+[`chat-widget.js`](../chat-widget.js) is a pure static asset with **no backend function of its own**. Two data structures at the top of the file (`CATEGORIES`, `FAQ`) drive the whole UI: clicking a popular question or a category card renders the matching canned answer instantly, client-side. Anything typed into the free-text input starts a short conversational capture (name → email) and then POSTs directly to `https://formsubmit.co/gaurav@upcoretechnologies.com` (same pattern as `assessment.html`/`contact.html`) with the question, name, email, and originating page — no serverless function involved. The "Book a Governance Review" chip reuses the existing Google Calendar modal (bottom IIFE in the same file) via a synthetic click on `a[href="#book-governance"]`.
+
+The `<script src="/chat-widget.js?v=N" defer>` tag's `?v=N` query is a manual cache-buster. Browsers cache the script aggressively by exact URL; bump `N` across **all 70 non-demo pages** in the same commit whenever you change `chat-widget.js` substantively, or visitors keep getting the old version.
 
 ### 3.2 `/api/build-demo` — Demo Builder pipeline
 
@@ -92,7 +93,7 @@ Set in Vercel project settings:
 
 | Var | Required by | Purpose |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | `api/chat.js`, `api/build-demo.js` | Anthropic Messages API |
+| `ANTHROPIC_API_KEY` | `api/build-demo.js` (live); `api/chat.js` (unused legacy, see §3.1) | Anthropic Messages API |
 | `GITHUB_PAT` | `api/build-demo.js` | Contents-API token to commit demos. Needs `contents:write` on the repo. |
 | `GITHUB_REPO` | `api/build-demo.js` | Defaults to `gauravpassi/upcore-website`. |
 | `SITE_BASE_URL` | `api/build-demo.js` | Used to build the demo URL returned to the caller. Defaults to `https://upcore.ai`. |
@@ -108,9 +109,9 @@ The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-202510
 
 | Service | Used for | How to change |
 |---|---|---|
-| Anthropic API | Chat + demo generation | Env var + model string in two files |
+| Anthropic API | Demo generation (`api/build-demo.js`); `api/chat.js` also calls it but is unused | Env var + model string in both files |
 | GitHub Contents API | Writing demo HTML + manifest | Env var `GITHUB_PAT`, `GITHUB_REPO` |
-| FormSubmit.co | Static forms + chat booking + demo lead emails | Email is hard-coded as `gaurav@upcoretechnologies.com` in: `assessment.html`, `contact.html`, `api/chat.js` (`sendBookingEmails`), `api/build-demo.js` (`NOTIFY_TO`). Change all together. |
+| FormSubmit.co | Static forms + chat lead capture + demo lead emails | Email is hard-coded as `gaurav@upcoretechnologies.com` in: `assessment.html`, `contact.html`, `chat-widget.js` (`LEAD_EMAIL`, client-side `submitLead()`), `api/build-demo.js` (`NOTIFY_TO`). Change all together. (`api/chat.js`'s `sendBookingEmails` is unused legacy.) |
 | Google Fonts | Poppins | `<link>` on every page |
 | Vercel | Hosting + deploy + cron-relay-via-GitHub-Actions | `vercel.json` |
 

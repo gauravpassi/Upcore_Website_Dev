@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-24 — Revamp chat widget: one-click FAQ + email lead capture
+**Type:** feature | decision
+**Files:** `chat-widget.js`, all 70 non-demo HTML pages (cache-buster bump only), `docs/FEATURES.md`, `docs/ARCHITECTURE.md`, `docs/CONVENTIONS.md`, `docs/STRUCTURE.md`, `CLAUDE.md`
+Rebuilt Kai from a live Anthropic-backed conversation into a self-contained client-side FAQ menu, per explicit request: "common questions and answers should be answered in one click and custom questions will be submitted on our mail as a lead form." Added a `CATEGORIES`/`FAQ` data structure (6 categories, 12 questions grounded in real site content — FAO, FDE, Studio pricing, industries, security) rendered as one-click chips; a "📂 Browse All Topics" card grid (redesigned with hover-lift `.uc-topic-card`s, gradient header, fade-in message animation) drills into any category. Anything typed into the free-text input is no longer sent to the Anthropic API — it starts a short name → email capture, then POSTs directly to FormSubmit (`gaurav@upcoretechnologies.com`, cc'd to a second inbox), mirroring `assessment.html`/`contact.html`'s existing pattern, and shows a "Message Sent" confirmation instead of an AI-generated reply. Verified end-to-end in-browser: one-click answers, category drill-down, the "Book a Governance Review" chip re-opening the existing calendar modal, invalid-email rejection, and the exact FormSubmit payload on successful submission. `api/chat.js` (the old Anthropic backend, `SYSTEM_PROMPT`, `[BOOK_APPOINTMENT:{...}]` marker) is no longer called by the widget — left in place as unused legacy rather than deleted, and documented as such everywhere it was previously referenced as load-bearing. Bumped the `chat-widget.js?v=` cache-buster from 9 to 10 across all 70 pages in the same commit (required — browsers cache the script by exact URL, so skipping this would leave visitors on the old AI-chat version).
+
 ## 2026-07-24 — Build FDE Engineers flagship page + integrate sitewide
 **Type:** feature | content
 **Files:** `fde-engineers.html` (new), `about.html`, `agent-builder.html`, `pricing.html`, `sitemap.xml`, `docs/FEATURES.md`, `docs/STRUCTURE.md`

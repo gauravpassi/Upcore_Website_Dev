@@ -27,7 +27,7 @@ Rules of the road. When in doubt, default to the existing pattern in the repo ov
 
 1. Extend `INDUSTRY_CONFIG` in [`api/build-demo.js`](../api/build-demo.js) with: `label`, `emoji`, `entityName`, `entityNamePlural`, `defaultAgentName`, `integrations[]`, `metricsTemplate[]`, `statusOptions[]`, `systemPromptContext`.
 2. Update the dropdown / industry picker in [`build-your-demo.html`](../build-your-demo.html).
-3. Add the industry to Kai's `SYSTEM_PROMPT` industry list in [`api/chat.js`](../api/chat.js) if it's a new vertical.
+3. Chat widget FAQ doesn't duplicate the industry list (it links out to `/industries`), so no chat-widget edit is needed here.
 4. Add the matching marketing page under `industries/` (see §3 above).
 5. Smoke-test the builder end-to-end with `vercel dev` and a real Anthropic key.
 
@@ -50,13 +50,14 @@ This is the highest-risk surface in the repo (recent commits had to repair it). 
 
 ## 7. Editing brand copy / messaging
 
-- Site-wide brand voice for the chatbot lives in `SYSTEM_PROMPT` in [`api/chat.js`](../api/chat.js). Update there.
-- The "What we build" / "Industries served" / "How it works" lists in `SYSTEM_PROMPT` should match the marketing pages. If you add a product or industry, update both.
-- Pricing is intentionally unpublished. Don't add fixed prices to pages.
+- The chat widget's canned Q&A lives in the `FAQ` array at the top of [`chat-widget.js`](../chat-widget.js) — that's the source of truth for what Kai says about Upcore now (as of 2026-07-24, it's a client-side FAQ menu, not a live AI conversation — see [ARCHITECTURE.md §3.1b](ARCHITECTURE.md#31b-kai-chat-widget--one-click-faq--email-lead-capture)).
+- The `FAQ` answers should stay consistent with the marketing pages they link to. If you add a product or industry, check whether an existing FAQ answer needs updating.
+- `api/chat.js`'s `SYSTEM_PROMPT` is unused legacy — don't edit it expecting it to affect the live site.
+- Pricing is published: FAO starts from $1,999/month, Studio/Forge from $799, FDE Engineers from $2,499/month — see `pricing.html`. Keep new copy consistent with these figures rather than treating pricing as unpublished.
 
 ## 8. Forms & email destinations
 
-- All forms route to FormSubmit.co with target `gaurav@upcoretechnologies.com`. The destination is hard-coded in **four places** (see [ARCHITECTURE.md §7](ARCHITECTURE.md#7-external-services--destinations)). When changing it, change all four.
+- All forms route to FormSubmit.co with target `gaurav@upcoretechnologies.com`. The destination is hard-coded in **five places** (see [ARCHITECTURE.md §7](ARCHITECTURE.md#7-external-services--destinations)): `assessment.html`, `contact.html`, `chat-widget.js` (`LEAD_EMAIL`), `api/build-demo.js` (`NOTIFY_TO`), and legacy/unused `api/chat.js` (`sendBookingEmails`). When changing it, change all five (or at minimum the four live ones).
 - Don't introduce a new form-submission service or backend without approval.
 
 ## 9. What NOT to do

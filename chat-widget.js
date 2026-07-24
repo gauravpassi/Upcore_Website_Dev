@@ -2,24 +2,72 @@
   'use strict';
 
   // ── Config ───────────────────────────────────────────────────────────────
-  var API_URL = '/api/chat';
+  var LEAD_EMAIL = 'gaurav@upcoretechnologies.com';
+  var LEAD_CC = 'saswata@upcoretechnologies.com';
   var BOT_NAME = 'Kai';
   var BOT_SUBTITLE = 'Upcore AI Assistant';
-  var INITIAL_MESSAGE = "Hi there! I'm Kai, Upcore's AI assistant.\n\nI can help you understand how AI agents can transform your operations, answer any questions about Upcore, or help you get started.\n\nWhat brings you here today?";
-  var SUGGESTED_PROMPTS = [
-    'Who governs our AI-generated code?',
-    'How can AI agents help my business?',
-    'What industries do you work with?',
-    'Book a Discovery Call'
+  var INITIAL_MESSAGE = "Hi there! I'm Kai. Tap a question below for an instant answer, or type your own and I'll pass it straight to our team for a personal reply.";
+
+  // ── Knowledge base ───────────────────────────────────────────────────────
+  var CATEGORIES = [
+    { id: 'start', icon: '🚀', label: 'Getting Started' },
+    { id: 'gov', icon: '🛡️', label: 'AI Governance' },
+    { id: 'agents', icon: '🤖', label: 'Agents & Delivery' },
+    { id: 'pricing', icon: '💰', label: 'Pricing' },
+    { id: 'trust', icon: '🔒', label: 'Trust & Security' },
+    { id: 'talk', icon: '📞', label: 'Talk to a Human' }
   ];
 
+  var FAQ = [
+    { id: 'gov-what', cat: 'gov', popular: true,
+      q: 'What is AI Governance (the FAO)?',
+      a: 'A Fractional AI Officer (FAO) is an AI-certified governance specialist embedded directly in your engineering org — accountable for the risk of AI-generated code across security, budget, and compliance. Embeds in 72 hours, no recruiting cycle. <a href="/ai-engineering-governance" target="_blank" rel="noopener">See the full framework &rarr;</a>' },
+    { id: 'gov-why', cat: 'gov',
+      q: 'Why do I need AI governance?',
+      a: "Because your engineers are already shipping AI-generated code, and most orgs have zero review process for it. Roughly 45% of AI-generated code carries security vulnerabilities (Veracode, 2025), and most teams have no audit trail ready for the EU AI Act, HIPAA, or SOX. Your FAO owns that risk end to end." },
+    { id: 'fde-what', cat: 'agents', popular: true,
+      q: 'What is a Forward Deployed Engineer?',
+      a: 'A dedicated engineer embedded in your workflow to build, integrate, and maintain custom AI agents against your real systems — not a demo, not a project-and-vanish agency engagement. Starting from $2,499/month. <a href="/fde-engineers" target="_blank" rel="noopener">Meet the FDE Engineers &rarr;</a>' },
+    { id: 'studio-vs-nocode', cat: 'agents',
+      q: 'How is Studio different from a no-code tool?',
+      a: 'A no-code tool hands you a config UI and leaves integration to you. Studio is a managed service — describe a workflow in plain English, and your Forward Deployed Engineer builds, integrates, and deploys it into your actual CRM, ERP, or channels, governed by your FAO. <a href="/agent-builder" target="_blank" rel="noopener">Explore Studio &rarr;</a>' },
+    { id: 'industries', cat: 'agents', popular: true,
+      q: 'What industries do you work with?',
+      a: 'We serve 12+ verticals, including Manufacturing, SaaS, Ecommerce/D2C, Banking &amp; Finance, Healthcare, Real Estate, Logistics, Legal &amp; Compliance, EdTech, Government, NBFC/Loans, and Marketing Agencies. <a href="/industries" target="_blank" rel="noopener">See all industries &rarr;</a>' },
+    { id: 'pricing-how-much', cat: 'pricing', popular: true,
+      q: 'How much does this cost?',
+      a: 'AI Governance (the FAO) starts from $1,999/month. Studio and Forge agents start from $799. A dedicated FDE Engineer retainer starts from $2,499/month. Exact pricing depends on scope — confirmed for free on your Discovery Call. <a href="/pricing" target="_blank" rel="noopener">See full pricing &rarr;</a>' },
+    { id: 'pricing-lockin', cat: 'pricing',
+      q: 'Is there a minimum commitment?',
+      a: "No lock-in on the FAO engagement. You get your first AI risk report at Day 30 — if it doesn't justify continuing, you walk away. No exit fee, no minimum term after that." },
+    { id: 'start-how', cat: 'start', popular: true,
+      q: 'How do I get started?',
+      a: 'Book a free 45-minute Discovery Call. We\'ll audit your current setup, map your top 3 opportunities, and hand you a written action plan — no pitch, no pressure. <a href="/assessment" target="_blank" rel="noopener">Book a Discovery Call &rarr;</a>' },
+    { id: 'start-speed', cat: 'start',
+      q: 'How fast can you deploy?',
+      a: 'AI Governance embeds in 72 hours. A single Studio agent goes live in 48 hours. Full multi-agent build-outs typically take 30&ndash;90 days depending on scope.' },
+    { id: 'start-call', cat: 'start',
+      q: 'What happens on the Discovery Call?',
+      a: "30&ndash;45 minutes, completely free. We audit your current AI/ops posture, map your top 3 opportunities, and give you a written blueprint you can act on &mdash; with or without us." },
+    { id: 'trust-security', cat: 'trust', popular: true,
+      q: 'Is my code and data secure?',
+      a: 'Yes &mdash; we operate under ISO 27001 and CMMI Level 3 practices, and every engagement runs under your FAO\'s governance framework from day one. <a href="/security" target="_blank" rel="noopener">See our Security page &rarr;</a>' },
+    { id: 'trust-certs', cat: 'trust',
+      q: 'What certifications do you hold?',
+      a: 'ISO 27001, ISO 9001, and CMMI Level 3 &mdash; plus a 4.9 rating on Clutch. <a href="/security" target="_blank" rel="noopener">Full details on our Security page &rarr;</a>' }
+  ];
+
+  function faqById(id) { for (var i = 0; i < FAQ.length; i++) if (FAQ[i].id === id) return FAQ[i]; return null; }
+  function faqByCat(catId) { return FAQ.filter(function (f) { return f.cat === catId; }); }
+  function popularFaq() { return FAQ.filter(function (f) { return f.popular; }); }
+
   // ── State ────────────────────────────────────────────────────────────────
-  var messages = [];
   var isOpen = false;
-  var isTyping = false;
+  var isBusy = false;
   var hasGreeted = false;
-  var booked = false;
   var unreadCount = 0;
+  var leadStage = null; // null | 'name' | 'email'
+  var pendingQuestion = '', pendingName = '', pendingEmail = '';
 
   // ── Styles ───────────────────────────────────────────────────────────────
   var css = `
@@ -43,7 +91,7 @@
     }
     #upcore-chat-btn:hover {
       transform: scale(1.06);
-      box-shadow: 0 6px 28px rgba(0,0,0,0.36);
+      box-shadow: 0 6px 28px rgba(10,191,204,0.32);
     }
     #upcore-chat-btn svg { transition: opacity 0.2s; }
     #upcore-chat-badge {
@@ -67,17 +115,17 @@
       position: fixed;
       bottom: 96px;
       right: 28px;
-      width: 380px;
+      width: 392px;
       max-width: calc(100vw - 40px);
-      height: 560px;
+      height: 600px;
       max-height: calc(100vh - 120px);
       background: #ffffff;
       border: 1px solid #e5e7eb;
-      border-radius: 20px;
+      border-radius: 22px;
       z-index: 9999;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.06);
       transform: translateY(16px) scale(0.97);
       opacity: 0;
       pointer-events: none;
@@ -91,8 +139,8 @@
       pointer-events: all;
     }
     #upcore-chat-header {
-      padding: 14px 16px;
-      background: #0a0a0a;
+      padding: 16px 16px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #0d1f22 65%, #0f2b2e 100%);
       border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
@@ -100,8 +148,8 @@
       flex-shrink: 0;
     }
     #upcore-chat-avatar {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: #0ABFCC;
       display: flex;
@@ -109,17 +157,18 @@
       justify-content: center;
       font-size: 16px;
       flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(10,191,204,0.14);
     }
     #upcore-chat-info { flex: 1; min-width: 0; }
     #upcore-chat-name {
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 700;
       color: #ffffff;
       letter-spacing: -0.2px;
     }
     #upcore-chat-status {
       font-size: 11px;
-      color: #0ABFCC;
+      color: #3ddcc4;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -129,7 +178,7 @@
       content: '';
       width: 5px;
       height: 5px;
-      background: #0ABFCC;
+      background: #3ddcc4;
       border-radius: 50%;
       display: inline-block;
     }
@@ -162,9 +211,10 @@
     #upcore-chat-messages::-webkit-scrollbar { width: 4px; }
     #upcore-chat-messages::-webkit-scrollbar-track { background: transparent; }
     #upcore-chat-messages::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 2px; }
-    .uc-msg-wrap { display: flex; flex-direction: column; gap: 2px; }
+    .uc-msg-wrap { display: flex; flex-direction: column; gap: 2px; animation: ucFadeIn 0.28s ease; }
     .uc-msg-wrap.user { align-items: flex-end; }
     .uc-msg-wrap.bot { align-items: flex-start; }
+    @keyframes ucFadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
     .uc-msg {
       max-width: 88%;
       padding: 10px 14px;
@@ -185,7 +235,8 @@
       border-bottom-left-radius: 4px;
       border: 1px solid #e5e7eb;
     }
-    .uc-msg a { color: #0ABFCC; text-decoration: underline; }
+    .uc-msg a { color: #0ABFCC; font-weight: 600; text-decoration: none; }
+    .uc-msg a:hover { text-decoration: underline; }
     #upcore-typing {
       display: none;
       align-items: flex-start;
@@ -213,6 +264,34 @@
     .uc-dot:nth-child(2) { animation-delay: 0.2s; }
     .uc-dot:nth-child(3) { animation-delay: 0.4s; }
     @keyframes ucPulse { 0%,60%,100% { opacity:0.4; transform:scale(1); } 30% { opacity:1; transform:scale(1.2); } }
+
+    /* Topic cards (category grid) */
+    .uc-topics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      max-width: 100%;
+      width: 100%;
+    }
+    .uc-topic-card {
+      background: #f7f8fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.15s;
+      font-family: inherit;
+    }
+    .uc-topic-card:hover {
+      border-color: #0ABFCC;
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+    .uc-topic-icon { font-size: 21px; display: block; margin-bottom: 5px; }
+    .uc-topic-label { font-size: 11.5px; font-weight: 700; color: #2d3748; line-height: 1.3; }
+
+    /* Suggestion / action chips */
     #upcore-suggestions {
       padding: 6px 16px 12px;
       display: flex;
@@ -235,6 +314,10 @@
       outline: none;
     }
     .uc-suggestion:hover { background: #0a0a0a; border-color: #0a0a0a; color: #ffffff; }
+    .uc-suggestion.accent { border-color: rgba(10,191,204,0.35); color: #089aaa; font-weight: 600; }
+    .uc-suggestion.accent:hover { background: #0ABFCC; border-color: #0ABFCC; color: #ffffff; }
+    .uc-suggestion.ask-else { border-style: dashed; }
+
     #upcore-chat-input-area {
       padding: 10px 14px 12px;
       border-top: 1px solid #e5e7eb;
@@ -286,17 +369,18 @@
       flex-shrink: 0;
     }
     #upcore-chat-footer a { color: #c4c9d4; text-decoration: none; }
-    .uc-booked-banner {
+    .uc-banner {
       background: rgba(10,191,204,0.06);
       border: 1px solid rgba(10,191,204,0.2);
       border-radius: 12px;
       padding: 14px;
       text-align: center;
       margin: 4px 0;
+      max-width: 100%;
     }
-    .uc-booked-banner .uc-booked-icon { font-size: 28px; margin-bottom: 6px; }
-    .uc-booked-banner .uc-booked-title { font-size: 14px; font-weight: 700; color: #0ABFCC; margin-bottom: 4px; }
-    .uc-booked-banner .uc-booked-sub { font-size: 12px; color: #45515e; line-height: 1.5; }
+    .uc-banner .uc-banner-icon { font-size: 28px; margin-bottom: 6px; }
+    .uc-banner .uc-banner-title { font-size: 14px; font-weight: 700; color: #0ABFCC; margin-bottom: 4px; }
+    .uc-banner .uc-banner-sub { font-size: 12px; color: #45515e; line-height: 1.5; }
     @media (max-width: 440px) {
       #upcore-chat-window { right: 16px; left: 16px; width: auto; bottom: 88px; }
       #upcore-chat-btn { right: 20px; bottom: 20px; }
@@ -324,10 +408,8 @@
       .replace(/"/g, '&quot;');
   }
 
-  function formatMessage(text) {
-    return escapeHtml(text)
-      .replace(/\n/g, '<br>')
-      .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  function formatUserMessage(text) {
+    return escapeHtml(text).replace(/\n/g, '<br>');
   }
 
   // ── Render ───────────────────────────────────────────────────────────────
@@ -369,7 +451,6 @@
 
     // Suggestions
     suggestionsEl = el('div', { id: 'upcore-suggestions' });
-    renderSuggestions(SUGGESTED_PROMPTS);
 
     // Input area
     inputEl = el('textarea', {
@@ -410,30 +491,36 @@
     return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/><circle cx="8.5" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/><circle cx="12" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/><circle cx="15.5" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/></svg>';
   }
 
-  function renderSuggestions(prompts) {
-    suggestionsEl.innerHTML = '';
-    prompts.forEach(function (p) {
-      var btn = el('button', {
-        class: 'uc-suggestion', text: p,
-        onclick: function () { sendUserMessage(p); }
-      });
-      suggestionsEl.appendChild(btn);
-    });
+  // ── Message rendering ───────────────────────────────────────────────────
+  function addMessage(role, text) {
+    var wrap = el('div', { class: 'uc-msg-wrap ' + role });
+    var bubble = el('div', { class: 'uc-msg ' + role, html: role === 'user' ? formatUserMessage(text) : text });
+    wrap.appendChild(bubble);
+    messagesEl.insertBefore(wrap, typingEl);
+    scrollToBottom();
   }
 
-  function addMessage(role, text, isBookingConfirm) {
-    var wrap = el('div', { class: 'uc-msg-wrap ' + role });
+  function addBanner(icon, title, sub) {
+    var wrap = el('div', { class: 'uc-msg-wrap bot' });
+    var banner = el('div', { class: 'uc-banner' });
+    banner.innerHTML = '<div class="uc-banner-icon">' + icon + '</div><div class="uc-banner-title">' + escapeHtml(title) + '</div><div class="uc-banner-sub">' + escapeHtml(sub) + '</div>';
+    wrap.appendChild(banner);
+    messagesEl.insertBefore(wrap, typingEl);
+    scrollToBottom();
+  }
 
-    if (isBookingConfirm) {
-      var banner = el('div', { class: 'uc-booked-banner' });
-      banner.innerHTML = '<div class="uc-booked-icon">✅</div><div class="uc-booked-title">Discovery Call Requested!</div><div class="uc-booked-sub">Check your inbox for confirmation. The Upcore team will reach out within 24 hours.</div>';
-      wrap.appendChild(banner);
-    } else {
-      var bubble = el('div', { class: 'uc-msg ' + role, html: formatMessage(text) });
-      wrap.appendChild(bubble);
-    }
-
-    // Insert before typing indicator
+  function addTopicGrid() {
+    var wrap = el('div', { class: 'uc-msg-wrap bot' });
+    var grid = el('div', { class: 'uc-topics-grid' });
+    CATEGORIES.forEach(function (cat) {
+      var card = el('button', {
+        class: 'uc-topic-card',
+        onclick: function () { handleCategoryClick(cat); }
+      });
+      card.innerHTML = '<span class="uc-topic-icon">' + cat.icon + '</span><span class="uc-topic-label">' + escapeHtml(cat.label) + '</span>';
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
     messagesEl.insertBefore(wrap, typingEl);
     scrollToBottom();
   }
@@ -444,11 +531,20 @@
 
   function showTyping() {
     typingEl.classList.add('show');
+    isBusy = true;
+    sendBtn.disabled = true;
     scrollToBottom();
   }
 
   function hideTyping() {
     typingEl.classList.remove('show');
+    isBusy = false;
+    sendBtn.disabled = false;
+  }
+
+  function think(fn, delay) {
+    showTyping();
+    setTimeout(function () { hideTyping(); fn(); }, delay || 550);
   }
 
   function toggleChat() {
@@ -468,92 +564,163 @@
   }
 
   function greet() {
-    showTyping();
-    setTimeout(function () {
-      hideTyping();
+    think(function () {
       addMessage('bot', INITIAL_MESSAGE);
-    }, 900);
+      setTimeout(renderPopular, 300);
+    }, 700);
   }
 
-  // ── Messaging ────────────────────────────────────────────────────────────
-  function sendUserMessage(text) {
-    if (!text || !text.trim() || isTyping) return;
-    text = text.trim();
+  // ── Quick-reply chip rendering ──────────────────────────────────────────
+  function renderChips(items) {
     suggestionsEl.innerHTML = '';
-    addMessage('user', text);
-    messages.push({ role: 'user', content: text });
-    fetchBotReply();
+    items.forEach(function (item) {
+      var btn = el('button', {
+        class: 'uc-suggestion' + (item.cls ? ' ' + item.cls : ''),
+        text: item.label,
+        onclick: item.onClick
+      });
+      suggestionsEl.appendChild(btn);
+    });
   }
 
+  function askElseChip() {
+    return {
+      label: '🙋 Ask us something else', cls: 'ask-else',
+      onClick: function () {
+        suggestionsEl.innerHTML = '';
+        think(function () {
+          addMessage('bot', "Sure — type your question in the box below and I'll pass it straight to our team for a personal reply.");
+        }, 400);
+      }
+    };
+  }
+
+  function bookChip() {
+    return {
+      label: '📅 Book a Governance Review', cls: 'accent',
+      onClick: function () {
+        var a = document.createElement('a');
+        a.href = '#book-governance';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+    };
+  }
+
+  function renderPopular() {
+    var chips = popularFaq().map(function (f) {
+      return { label: f.q, onClick: function () { handleQuestionClick(f); } };
+    });
+    chips.push({ label: '📂 Browse All Topics', onClick: function () { addTopicGrid(); suggestionsEl.innerHTML = ''; } });
+    renderChips(chips);
+  }
+
+  function handleCategoryClick(cat) {
+    if (cat.id === 'talk') {
+      addMessage('user', cat.label);
+      think(function () {
+        addMessage('bot', "Here's how to reach the team directly:");
+        renderChips([bookChip(), askElseChip(), { label: '⬅ Back to Popular', onClick: renderPopular }]);
+      });
+      return;
+    }
+    addMessage('user', cat.label);
+    think(function () {
+      addMessage('bot', 'Here are common questions about ' + cat.label + ':');
+      var qs = faqByCat(cat.id).map(function (f) {
+        return { label: f.q, onClick: function () { handleQuestionClick(f); } };
+      });
+      qs.push({ label: '⬅ Back to Popular', onClick: renderPopular });
+      renderChips(qs);
+    });
+  }
+
+  function handleQuestionClick(item) {
+    addMessage('user', item.q);
+    suggestionsEl.innerHTML = '';
+    think(function () {
+      addMessage('bot', item.a);
+      var related = faqByCat(item.cat).filter(function (f) { return f.id !== item.id; }).slice(0, 3);
+      var chips = related.map(function (f) {
+        return { label: f.q, onClick: function () { handleQuestionClick(f); } };
+      });
+      chips.push({ label: '⬅ More Topics', onClick: function () { addTopicGrid(); suggestionsEl.innerHTML = ''; } });
+      chips.push(askElseChip());
+      renderChips(chips);
+    });
+  }
+
+  // ── Free-text input → lead capture ──────────────────────────────────────
   function sendMessage() {
     var text = inputEl.value.trim();
-    if (!text || isTyping) return;
+    if (!text || isBusy) return;
     inputEl.value = '';
     inputEl.style.height = 'auto';
-    sendUserMessage(text);
+    handleUserInput(text);
   }
 
-  function fetchBotReply() {
-    if (booked) return;
-    isTyping = true;
-    sendBtn.disabled = true;
-    showTyping();
+  function handleUserInput(text) {
+    addMessage('user', text);
+    suggestionsEl.innerHTML = '';
 
-    fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: messages })
-    })
-      .then(function (r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
-      .then(function (res) {
-        hideTyping();
-        isTyping = false;
-        sendBtn.disabled = false;
-
-        var data = res.data;
-        // Log error detail to console for debugging
-        if (!data.reply && data.error) {
-          console.warn('[Kai] API error:', data.error, data.detail || '');
-        }
-        var reply = data.reply || "I'm having trouble connecting. Please try again or email gaurav@upcoretechnologies.com";
-        messages.push({ role: 'assistant', content: reply });
-
-        if (data.booked) {
-          booked = true;
-          addMessage('bot', reply);
-          setTimeout(function () { addMessage('bot', '', true); }, 600);
-          // Hide input, show final CTA
-          setTimeout(function () {
-            suggestionsEl.innerHTML = '';
-            var cta = el('button', {
-              class: 'uc-suggestion',
-              text: 'View Discovery Call Page →',
-              onclick: function () { window.open('/assessment', '_blank'); }
-            });
-            suggestionsEl.appendChild(cta);
-          }, 1500);
-        } else {
-          addMessage('bot', reply);
-          // Show contextual follow-up suggestions after first exchange
-          if (messages.length === 2) {
-            setTimeout(function () {
-              renderSuggestions(['Tell me about pricing', 'See industries →', 'Build a free demo', 'Book a call now']);
-            }, 500);
-          }
-        }
-
-        if (!isOpen) {
-          unreadCount++;
-          badgeEl.style.display = 'flex';
-          badgeEl.textContent = unreadCount;
-        }
-      })
-      .catch(function () {
-        hideTyping();
-        isTyping = false;
-        sendBtn.disabled = false;
-        addMessage('bot', "Hmm, something went wrong on my end. You can email us at gaurav@upcoretechnologies.com and we'll get back to you within a few hours.");
+    if (leadStage === 'name') {
+      pendingName = text;
+      leadStage = 'email';
+      think(function () {
+        addMessage('bot', 'Thanks, ' + escapeHtml(text.split(' ')[0]) + '! And what\'s the best email to reach you at?');
       });
+      return;
+    }
+
+    if (leadStage === 'email') {
+      if (text.indexOf('@') === -1 || text.indexOf('.') === -1) {
+        think(function () {
+          addMessage('bot', "That doesn't look like a valid email — mind double-checking it?");
+        }, 400);
+        return;
+      }
+      pendingEmail = text;
+      leadStage = null;
+      submitLead();
+      return;
+    }
+
+    // Idle — any typed message becomes a question for the team
+    pendingQuestion = text;
+    leadStage = 'name';
+    think(function () {
+      addMessage('bot', "Great question — I'll pass this straight to our team so you get a real, specific answer, not a canned one. What's your name?");
+    }, 600);
+  }
+
+  function submitLead() {
+    showTyping();
+    fetch('https://formsubmit.co/' + LEAD_EMAIL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _captcha: 'false',
+        _template: 'table',
+        _subject: 'New Chat Question — ' + pendingName,
+        _cc: LEAD_CC,
+        'Name': pendingName,
+        'Email': pendingEmail,
+        'Question': pendingQuestion,
+        'Page': window.location.href,
+        'Source': 'Website Chat Widget (Kai) — Custom Question'
+      })
+    }).catch(function () {}).then(function () {
+      hideTyping();
+      addBanner('📨', 'Message Sent!', "We'll reply to your question by email within 24 hours.");
+      var q = pendingQuestion, n = pendingName, e = pendingEmail;
+      pendingQuestion = ''; pendingName = ''; pendingEmail = '';
+      if (!isOpen) { unreadCount++; badgeEl.style.display = 'flex'; badgeEl.textContent = unreadCount; }
+      setTimeout(function () {
+        addMessage('bot', 'Anything else I can help with?');
+        renderPopular();
+      }, 700);
+    });
   }
 
   // ── Boot ─────────────────────────────────────────────────────────────────

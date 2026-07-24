@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Revert all "FDE Engineers" content
+**Type:** content | decision
+**Files:** `about.html`, `agent-builder.html`, `platform.html`, `index.html`, `industries/index.html`, `pricing.html`
+User asked to revert the FDE (Forward Deployed Engineer) concept sitewide and reconsider how/whether to integrate it properly later, rather than iterating further on today's rollout. Removed: the FDE team-card on `about.html` (back to 2 cards: Gaurav Passi, The FAO Specialists), the FDE bullet on `agent-builder.html`'s Phase 2 card and its Investment section mention, the FDE mentions on `platform.html`'s hero and Studio tab, the `.fde-badge` and its usage on `index.html`, the FDE mention on `industries/index.html`'s hero, and the entire FDE pricing plan on `pricing.html` (price-anchor section, what's-included grid, JSON-LD Product schema, 2 FAQ entries, the dedicated FAQ question, and the now-unused `.src-note` CSS rule). Preserved everything unrelated that was bundled in the same prior commits: the site-wide nav "Home" link, Gaurav's "Co-Founder & CEO" title, the `industries/index.html` duplicate "View suite" button fix and stale "14 Industry Workforces" count fix, and the Team section's stacked full-width card layout (kept since it's a genuine improvement independent of how many cards it holds). Verified zero remaining "FDE"/"Forward Deployed Engineer"/"$2,499" references sitewide, and pricing.html's tag balance/JSON-LD/phantom-class checks all pass post-revert.
+
 ## 2026-07-22 — Add "Home" to nav site-wide
 **Type:** content
 **Files:** all 69 pages

@@ -226,6 +226,10 @@ a{text-decoration:none;color:inherit;}
 
 /* INVESTMENT */
 .invest-note{max-width:520px;margin:24px auto 0;padding:14px 20px;background:var(--bg2);border-radius:8px;font-size:13px;color:var(--txt2);line-height:1.6;}
+.fde-callout{max-width:640px;margin:20px auto 0;padding:20px 24px;background:rgba(10,191,204,.05);border:1px solid rgba(10,191,204,.2);border-radius:10px;text-align:left;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.fde-callout-body{flex:1;min-width:220px;font-size:13px;color:var(--txt2);line-height:1.6;}
+.fde-callout-body strong{color:var(--txt);}
+@media(max-width:600px){.fde-callout{flex-direction:column;align-items:flex-start;}}
 
 /* PRICING */
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
@@ -1283,6 +1287,10 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
     <h2 class="section-title">Starting at <strong style="color:var(--teal)">$799.</strong><br/>Not a Flat Rate.</h2>
     <p class="section-sub" style="margin:0 auto;">Studio agents are priced per deployment — based on workflow complexity, integrations required, and how many agents you need. Governed by your FAO from day one.</p>
     <div class="invest-note">Exact pricing is scoped in your 45-minute discovery call, before you commit to anything. <a href="/pricing" style="color:var(--teal);font-weight:600;">See FAO governance pricing &rarr;</a></div>
+    <div class="fde-callout">
+      <div class="fde-callout-body"><strong>Want a dedicated engineer instead of a single project?</strong> A Forward Deployed Engineer (FDE) stays embedded on an ongoing monthly retainer &mdash; building, integrating, and maintaining agents as your needs grow. Starting from $2,499/month.</div>
+      <a href="/fde-engineers" class="btn btn-ghost" style="font-size:13px;padding:10px 20px;white-space:nowrap;flex-shrink:0;">Meet the FDE &rarr;</a>
+    </div>
   </div>
 </section>
 

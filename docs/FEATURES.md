@@ -43,6 +43,12 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Touches:** Standard nav, chat widget. Does **not** call any API.
 - **Extend by:** Inline edits. If Studio gains new capabilities, also update Kai's product description in `api/chat.js`.
 
+### A4b. FDE Engineers (Forward Deployed Engineering flagship)
+- **What:** Flagship page for Studio's delivery model — "Your AI Agent Vendor Ships a Demo. We Ship an Engineer." Sells a **Forward Deployed Engineer (FDE)**: a dedicated engineer embedded in the client's workflow to build, integrate, deploy, and maintain custom agents against real systems (CRM/ERP/APIs), governed by the client's FAO from the first commit. Mirrors `ai-engineering-governance.html`'s section architecture (problem stats, failure patterns, cost-of-not-shipping, gap, solution pillars, 5-stage framework, FAQ, economics, client outcomes, engagement model). Single retainer price: starting from $2,499/month — no dual-tier pricing.
+- **Where:** [`fde-engineers.html`](../fde-engineers.html) (URL `/fde-engineers`)
+- **Touches:** Standard nav, chat widget, Service + FAQPage JSON-LD. Cross-linked from `about.html` (3rd team card), `agent-builder.html` (Investment-section callout), and `pricing.html` (3rd add-on card + footer Solutions link). Scoped to agent-building pages only — no homepage/nav changes (FAO remains the sitewide hero story).
+- **Extend by:** Inline edits. Keep the single $2,499/mo retainer price — do not reintroduce a second FDE price point. Cited stats (RAND 80%, Gartner 40%+, S&P Global $7.2M) must stay attributed, not fabricated.
+
 ### A5. Forge (SDLC Agent marketing)
 - **What:** Marketing page for Upcore Forge — "Build Software Without a Dev Team."
 - **Where:** [`sdlc-agent.html`](../sdlc-agent.html)

@@ -151,7 +151,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 
 /* ── ADD-ONS ───────────────────────────────────────────────── */
 #addons { background:var(--bg2); padding:80px 0; }
-.addon-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:48px; }
+.addon-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:48px; }
 .addon-card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:32px; }
 .addon-eyebrow { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); margin-bottom:10px; }
 .addon-title { font-size:18px; font-weight:700; color:var(--txt); margin-bottom:8px; }
@@ -424,6 +424,18 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:60p
         <div class="addon-note"><strong style="color:var(--teal)">Starting at $799.</strong> Based on agent complexity and deployment scope. <a href="/agent-builder" style="color:var(--teal)">Learn more about Studio →</a></div>
       </div>
 
+      <div class="addon-card">
+        <div class="addon-eyebrow">FDE Engineers · Dedicated Retainer</div>
+        <div class="addon-title">A Named Engineer, Embedded Ongoing</div>
+        <div class="addon-sub">Want more than one project? A Forward Deployed Engineer (FDE) stays embedded on a monthly retainer — building, integrating, and maintaining agents as your needs grow. Governed by your FAO from the first commit.</div>
+        <div class="addon-items">
+          <div class="addon-item"><span class="mcheck">&#10003;</span><span>One dedicated engineer, not a rotating agency team</span></div>
+          <div class="addon-item"><span class="mcheck">&#10003;</span><span>Stays after launch — maintains and expands what they build</span></div>
+          <div class="addon-item"><span class="mcheck">&#10003;</span><span>Same specialist model OpenAI, Anthropic &amp; Databricks use</span></div>
+        </div>
+        <div class="addon-note"><strong style="color:var(--teal)">Starting at $2,499/mo.</strong> A dedicated retainer, not a per-project quote. <a href="/fde-engineers" style="color:var(--teal)">Meet the FDE Engineers →</a></div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -535,6 +547,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:60p
         <li><a href="/ai-engineering-governance">AI Engineering Governance</a></li>
         <li><a href="/sdlc-agent">Forge &middot; SDLC Agent</a></li>
         <li><a href="/agent-builder">Upcore Studio</a></li>
+        <li><a href="/fde-engineers">FDE Engineers</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
         <li><a href="/assessment">Free AI Assessment</a></li>
       </ul>

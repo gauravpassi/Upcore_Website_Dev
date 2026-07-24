@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-24 — Build FDE Engineers flagship page + integrate sitewide
+**Type:** feature | content
+**Files:** `fde-engineers.html` (new), `about.html`, `agent-builder.html`, `pricing.html`, `sitemap.xml`, `docs/FEATURES.md`, `docs/STRUCTURE.md`
+After the 2026-07-22 revert, researched the "Forward Deployed Engineer" (FDE) concept properly via web search before rebuilding: confirmed Palantir originated the role and that OpenAI, Anthropic, Cohere, Databricks, and Scale AI now run their own versions of it; sourced real failure-rate stats (RAND 2025: 80% of AI projects fail to deliver value; Gartner June 2025: 40%+ of agentic pilots canceled by 2027; S&P Global 2025: $7.2M average sunk cost per abandoned large-enterprise AI initiative) and real FDE compensation data ($180K–$550K+ depending on seniority/company) to ground every claim on the new page — no fabricated stats or named-company incidents (used anonymized "Failure Patterns" instead). Built `fde-engineers.html` mirroring `ai-engineering-governance.html`'s exact section architecture and CSS component library (hero delivery-log widget labeled "— Example" per the site's static-mockup convention, 5-stage Discover/Build/Integrate/Deploy/Iterate framework accordion, price-stack + econ-cards economics, anonymized client-outcome composites). One clean retainer price sitewide: starting from $2,499/month — deliberately avoided the dual-tier $799/$2,499 confusion from the reverted 2026-07-22 attempt. Integrated with exactly one link each from `about.html` (3rd team card, "The FDE Engineers"), `agent-builder.html` (new `.fde-callout` box in the Investment section), and `pricing.html` (3rd `.addon-card` + footer Solutions link) — scoped to agent-building pages only, no homepage/nav changes, per the confirmed integration-scope decision. Added `/fde-engineers` to `sitemap.xml` and documented the new page in `docs/FEATURES.md` (A4b) and `docs/STRUCTURE.md`.
+
 ## 2026-07-22 — Revert all "FDE Engineers" content
 **Type:** content | decision
 **Files:** `about.html`, `agent-builder.html`, `platform.html`, `index.html`, `industries/index.html`, `pricing.html`

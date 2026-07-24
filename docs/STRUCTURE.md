@@ -33,7 +33,9 @@ upcore-website/
 ├── ai-engineering-governance.html     # FLAGSHIP — AI Engineering Governance / Fractional AI Officer
 ├── platform.html                      # "Four Products. One AI Partner." overview (incl. AI Governance)
 ├── agent-builder.html                 # Studio — agent builder marketing page
+├── fde-engineers.html                 # FLAGSHIP — Forward Deployed Engineers (Studio delivery model)
 ├── sdlc-agent.html                    # Forge — software-without-a-dev-team page
+├── pricing.html                       # FAO pricing + Forge/Studio/FDE add-on pointers
 ├── build-your-demo.html               # Interactive UI → POSTs to /api/build-demo
 ├── assessment.html                    # Discovery Call form → FormSubmit
 ├── contact.html                       # Contact form ⚠️ currently INERT (see FEATURES.md)

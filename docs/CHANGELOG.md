@@ -12,6 +12,16 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Add "Home" to nav site-wide
+**Type:** content
+**Files:** all 69 pages
+Nav previously had no way back to the homepage except clicking the logo. Added `<li><a href="/">Home</a></li>` as the first nav item across all 69 pages via a verified bulk script (confirmed present on every page afterward, correct item count, no duplicates). `index.html` itself marks Home as `class="active"`, matching the existing active-state convention for other nav items.
+
+## 2026-07-22 — Add FDE Engineers pricing plan; fix about.html team-card issues
+**Type:** feature | fix | content
+**Files:** `pricing.html`, `about.html`, `agent-builder.html`
+(1) Gaurav Passi's title corrected from "Founder & CEO" to "Co-Founder & CEO". (2) Removed the "Explore Studio →" link from the FDE Engineers team-card (no replacement requested). (3) "Meet Your FAO →" now links to `/ai-engineering-governance#solution` (scrolls to the FAO intro) instead of `/assessment`; added a secondary "Book a Governance Review →" button matching the nav CTA, plus `margin-top` on `.team-links` for breathing room above the button row. (4) Built a full FDE Engineers pricing plan on `pricing.html`, mirroring the FAO plan's structure: a price-anchor comparison (Full-Time Integration Engineer $15,000+/mo vs. Agency/Contract Dev Shop $8,000+/mo vs. FDE Engineers by Upcore $2,499+/mo — "65–80% less spend", conservatively rounded down from the actual 69–83% range for credibility), a 5-stage "what's included" grid (Discovery & Workflow Mapping → Custom Agent Build → Systems Integration → Channel Deployment → Governed by Your FAO) plus an "Always included: Named FDE, Dedicated" card, a new JSON-LD Product schema (name "FDE Engineers by Upcore", price 2499), and 2 FAQ updates clarifying the $799 one-off Studio project rate vs. the $2,499/month dedicated retainer are two different things, not a contradiction. Cross-linked from the existing Studio add-on card and from `agent-builder.html`'s Investment section. Added the missing `.src-note` CSS rule the new section referenced (verified zero phantom classes in the new content before committing).
+
 ## 2026-07-22 — Make FDE mentions genuinely prominent (homepage badge + 2 more page heroes)
 **Type:** content
 **Files:** `index.html`, `platform.html`, `industries/index.html`

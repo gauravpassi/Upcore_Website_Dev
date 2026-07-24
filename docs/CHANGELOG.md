@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Add "FDE Engineers" (Forward Deployed Engineers) role
+**Type:** content
+**Files:** `about.html`, `agent-builder.html`, `platform.html`
+The site named exactly one delivery role (the FAO, for governance) but never credited who actually builds/integrates/deploys Studio's custom agents — that work was described entirely in passive voice ("Custom agent built...", "Upcore configures, tests, and deploys..."). Added a new "The FDE Engineers" team-card on `about.html` (3rd card alongside Gaurav Passi and The FAO Specialists — `.team-grid` CSS changed from a fixed `1fr 1fr` to `repeat(auto-fit,minmax(280px,1fr))` to fit cleanly), named the role as the first bullet in `agent-builder.html`'s Phase 2 "Build & Deploy" card, and updated `platform.html`'s Studio tab description to say "delivered by a dedicated Forward Deployed Engineer (FDE)". Deliberately did NOT touch `sdlc-agent.html` (Forge) — that page's entire pitch is "zero team overhead, no dev team," so naming an FDE role there would contradict its own positioning.
+
 ## 2026-07-22 — Fix "Book a Governance Review" CTA on agent (non-governance) sections
 **Type:** content
 **Files:** `platform.html`, `agent-builder.html`

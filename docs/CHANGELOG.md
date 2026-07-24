@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Make FDE mentions genuinely prominent (homepage badge + 2 more page heroes)
+**Type:** content
+**Files:** `index.html`, `platform.html`, `industries/index.html`
+User re-emphasized wanting FDE visibility to "ride the hype" — the earlier additions (subhead sentences) were too easy to miss while scanning. (1) `index.html`: added a distinct `.fde-badge` pill ("🛠 Built & deployed by Forward Deployed Engineers (FDEs)") directly under the Agent Add-Ons H2, above the subhead — a scannable visual element, not just body text. (2) `platform.html`: added an FDE mention to the top-level hero paragraph (visible immediately, before any tab is clicked — previously FDE only appeared inside the Studio tab's content). (3) `industries/index.html`: added an FDE mention to the hero intro paragraph (previously zero FDE mentions on this page despite it being the primary agent-suite discovery page); also fixed a stale "12 Industry Workforces" eyebrow badge that should have read "14" since the hub grew to 14 cards earlier today.
+
 ## 2026-07-22 — Redesign Team section as stacked cards; fix duplicate "View suite" button
 **Type:** fix
 **Files:** `about.html`, `industries/index.html`

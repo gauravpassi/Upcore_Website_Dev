@@ -136,8 +136,9 @@ a{text-decoration:none;color:inherit;}
 .ind-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(10,191,204,.06);border:1px solid var(--border);border-radius:100px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--txt2);}
 
 /* TEAM */
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px;}
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;align-items:start;}
 .team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:32px;display:flex;gap:24px;align-items:flex-start;}
+.team-card.team-card-wide{grid-column:1 / -1;}
 .team-avatar{width:64px;height:64px;border-radius:50%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--teal);flex-shrink:0;letter-spacing:-1px;}
 .team-name{font-size:17px;font-weight:700;color:var(--txt);margin-bottom:3px;}
 .team-role{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
@@ -217,7 +218,8 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
 }
 /* ── FAO ARCHETYPES (M4) ───────────────────────────────── */
-.fao-archetypes { margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:8px; }
+.fao-archetypes { margin-top:16px; padding-top:16px; border-top:1px solid var(--border); display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+@media(max-width:768px){ .fao-archetypes { grid-template-columns:1fr; } }
 .fa-arc { padding:10px 12px; background:var(--bg2); border-radius:8px; }
 .fa-arc-title { font-size:11px; font-weight:700; color:var(--txt); margin-bottom:3px; }
 .fa-arc-desc { font-size:11px; color:var(--txt2); line-height:1.6; }
@@ -493,6 +495,17 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
         </div>
       </div>
       <div class="team-card">
+        <div class="team-avatar" style="font-size:24px;">&#128736;</div>
+        <div>
+          <div class="team-name">The FDE Engineers</div>
+          <div class="team-role">Custom Agent Delivery</div>
+          <div class="team-bio">Every Studio engagement is delivered by a Forward Deployed Engineer (FDE) &mdash; embedded directly in your workflow to build, integrate, and ship your custom agent into the tools you already use (CRM, ERP, WhatsApp, Slack). Typically 5+ years in integration engineering and API architecture. Works alongside your FAO, so every agent they deploy is already governed before it goes live.</div>
+          <div class="team-links">
+            <a href="/agent-builder" class="team-link">Explore Studio &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="team-card team-card-wide">
         <div class="team-avatar" style="font-size:26px;">&#128101;</div>
         <div>
           <div class="team-name">The FAO Specialists</div>
@@ -514,17 +527,6 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
           </div>
           <div class="team-links">
             <a href="/assessment" class="team-link">Meet Your FAO &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="team-avatar" style="font-size:24px;">&#128736;</div>
-        <div>
-          <div class="team-name">The FDE Engineers</div>
-          <div class="team-role">Custom Agent Delivery</div>
-          <div class="team-bio">Every Studio engagement is delivered by a Forward Deployed Engineer (FDE) &mdash; embedded directly in your workflow to build, integrate, and ship your custom agent into the tools you already use (CRM, ERP, WhatsApp, Slack). Typically 5+ years in integration engineering and API architecture. Works alongside your FAO, so every agent they deploy is already governed before it goes live.</div>
-          <div class="team-links">
-            <a href="/agent-builder" class="team-link">Explore Studio &rarr;</a>
           </div>
         </div>
       </div>

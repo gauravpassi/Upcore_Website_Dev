@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-22 — Fix Team section layout, expand FDE mentions to homepage + pricing
+**Type:** fix | content
+**Files:** `about.html`, `index.html`, `pricing.html`
+User feedback: the 3-card Team section (added same day) looked bad, and FDE needed more visibility site-wide to "ride the hype." (1) Layout fix: `.team-grid` was `repeat(auto-fit,minmax(280px,1fr))` with default `stretch` alignment — since "The FAO Specialists" card (long bio + 3 stacked archetype blocks) was far taller than the other two, the shorter Gaurav Passi and FDE Engineers cards were stretching to match it, leaving large dead whitespace. Restructured to a 2-column grid with `align-items:start` (Gaurav Passi + The FDE Engineers side by side, similar content length) and gave "The FAO Specialists" a `.team-card-wide` (`grid-column:1/-1`) full-width row of its own, since it has the most content depth. Also changed `.fao-archetypes` from a stacked column to a 3-column row (collapsing to 1 column ≤768px) so the now-full-width card doesn't just get taller — it uses the width. (2) Added FDE mentions to `index.html`'s "Agent Add-Ons" section intro and `pricing.html`'s Studio add-on card, both naming "a dedicated Forward Deployed Engineer (FDE)" as who does the build/deploy work — extending the 3-page FDE rollout from earlier today to the two most-trafficked pages.
+
 ## 2026-07-22 — Add "FDE Engineers" (Forward Deployed Engineers) role
 **Type:** content
 **Files:** `about.html`, `agent-builder.html`, `platform.html`

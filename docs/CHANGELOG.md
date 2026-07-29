@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Add Microsoft Clarity sitewide
+**Type:** infra
+**Files:** all 70 non-demo HTML pages (new `<script>` block in `<head>`), `docs/ARCHITECTURE.md`
+Inserted Microsoft Clarity's tracking snippet (project ID `xtvhi9nvqa`) immediately after the GA4 `gtag.js` block on every page, via a small one-off Python script that matched the exact post-GA4 anchor per file (handling both LF and CRLF line endings and preserving each file's original BOM state, so the diff is a clean 8-line pure insertion on every file — verified via `git diff --numstat`). Demo pages (`demos/*.html`) intentionally excluded, matching the existing GA4/analytics-script convention for auto-generated pages.
+
 ## 2026-07-29 — Replace GA4 measurement ID sitewide
 **Type:** infra
 **Files:** all 70 non-demo HTML pages (`gtag.js` script `src` + `gtag('config', ...)` call)

@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Full-site SEO deep audit: GSC verification, structured data, CLS, hreflang
+**Type:** fix
+**Files:** all 70 non-demo HTML pages (logo `width`/`height`), `index.html` (5 accolade SVG dims), `pricing.html`/`privacy.html`/`security.html`/`terms.html` (hreflang tags)
+Ran a deeper sweep beyond the earlier same-day audit, checking things not yet verified: Google Search Console (confirmed connected via a domain-level DNS TXT record, `google-site-verification=bZ7oRsO8...` — no meta-tag/file-based verification in the codebase, DNS is the sole method and it's the most robust of the three); live production checks against `upcoretech.com` (robots.txt and sitemap.xml both match the repo and return 200; live `<head>` confirmed charset/viewport genuinely first now); JSON-LD validity across all 70 pages (0 parse errors; the 13 pages that looked "unknown-type" turned out to correctly use the valid `@graph` pattern bundling Article+FAQPage, not a real issue); zero hardcoded `http://` links (no mixed-content risk); zero relative `og:image` URLs.
+
+Two real, fixable findings from this pass: (1) 145 `<img>` tags (the site logo, repeated across all 70 pages, plus 5 homepage accolade SVGs) had no `width`/`height` attributes — a Core Web Vitals (CLS) risk since the browser can't reserve layout space before the image loads. Fixed by adding each image's real native dimensions (logo: 360×240 from the source PNG; SVGs: their own `viewBox` dimensions) — CSS still controls final rendered size (`.nav-logo img{height:60px;width:auto}` etc.), the HTML attributes just let the browser compute the correct aspect ratio immediately. (2) 4 pages (`pricing.html`, `privacy.html`, `security.html`, `terms.html`) had a canonical tag but no self-referencing `hreflang` tags, unlike the other 66 pages — added the same `en` + `x-default` pair for consistency.
+
+Confirmed as correct/intentional, not issues: `build-your-demo.html`'s `noindex,nofollow` (matches its `robots.txt` disallow), `privacy.html`/`terms.html`'s `noindex,follow` (standard for legal boilerplate).
+
 ## 2026-07-29 — Fix remaining SEO audit findings: title/description lengths, sitemap
 **Type:** fix
 **Files:** 12 pages (`<title>` trims), `fde-engineers.html` (meta description trim), `sitemap.xml` (+`/security`)

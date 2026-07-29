@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Fix remaining SEO audit findings: title/description lengths, sitemap
+**Type:** fix
+**Files:** 12 pages (`<title>` trims), `fde-engineers.html` (meta description trim), `sitemap.xml` (+`/security`)
+Closed out the minor findings from the same-day SEO audit. Trimmed 12 titles from 61–71 chars down to 42–58 chars (decoded/entity-aware count), preserving the core keyword and `| Upcore` suffix on each — e.g. `security.html` dropped the redundant "Technologies" (67→54 chars), `learn/ai-workforce-platform.html` dropped the "Buyer's Guide 2025" qualifier (63→42 chars). Re-checked `index.html`'s meta description with entities decoded and found it was actually already fine at 158 displayed chars (the earlier audit's 162 count included the raw `&amp;` source length, not the 1-char rendered `&`) — left it untouched. `fde-engineers.html`'s description was genuinely over even decoded (182 chars) — trimmed to 154 by dropping "in your workflow" and "to ship AI" while keeping the $2,499/month anchor and the OpenAI/Anthropic/Databricks social proof. Added `/security` to `sitemap.xml` (priority 0.6, since it's real content with search value, unlike `/privacy`/`/terms`/`/build-your-demo` which stay correctly excluded). Verified: 0 titles or descriptions outside the 30–60/70–160 decoded-character guidelines sitewide, 0 new duplicate titles/descriptions/H1s introduced, diff touches exactly the 14 intended files.
+
 ## 2026-07-29 — SEO audit + fix: restore meta charset/viewport to top of <head>
 **Type:** fix
 **Files:** all 70 non-demo HTML pages (2-line move each)

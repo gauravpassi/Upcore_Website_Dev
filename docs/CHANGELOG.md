@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Replace GA4 measurement ID sitewide
+**Type:** infra
+**Files:** all 70 non-demo HTML pages (`gtag.js` script `src` + `gtag('config', ...)` call)
+Swapped the Google Analytics 4 property from `G-T4WFSX3C90` to `G-TVRF5M70ES` per the exact snippet from Google's "Install manually" setup screen, bulk-replaced across every page (2 occurrences per file — the loader script tag and the config call). Verified zero remaining references to the old ID anywhere in the repo, including demo pages.
+
 ## 2026-07-24 — Revamp chat widget: one-click FAQ + email lead capture
 **Type:** feature | decision
 **Files:** `chat-widget.js`, all 70 non-demo HTML pages (cache-buster bump only), `docs/FEATURES.md`, `docs/ARCHITECTURE.md`, `docs/CONVENTIONS.md`, `docs/STRUCTURE.md`, `CLAUDE.md`

@@ -741,15 +741,25 @@
 
 })();
 
-// ── Governance Calendar (iframe modal) ────────────────────────────────────
-// Google's appointment scheduling page (?gv=true) is iframe-embeddable.
-// We show it in our own modal — no dependency on Google's button-click
-// mechanics, no popup-blocker risk, opens reliably on every click.
+// ── Governance Calendar (Calendly modal) ──────────────────────────────────
+// Calendly is embedded in our own modal chrome (not their popup widget) so
+// the "Book a Governance Review" experience looks identical everywhere. Its
+// postMessage API (unlike Google Calendar's appointment scheduler) exposes a
+// real "calendly.event_scheduled" event, letting us fire the Google Ads
+// primary conversion only on an actually-completed booking.
 (function () {
-  var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
+  var CAL_URL = 'https://calendly.com/saswata-upcoretechnologies/30min';
 
   var overlay = null;
   var calIframe = null;
+
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://calendly.com') return;
+    if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { send_to: 'AW-16546427858/_Q5SCO7LodgcENLn-dE9' });
+    }
+  });
 
   function buildModal() {
     overlay = document.createElement('div');
@@ -800,9 +810,7 @@
     calIframe = document.createElement('iframe');
     calIframe.setAttribute('title', 'Book a Governance Review');
     calIframe.setAttribute('frameborder', '0');
-    calIframe.setAttribute('allowfullscreen', '');
     calIframe.style.cssText = 'flex:1;width:100%;border:none;display:block;';
-    calIframe.allow = 'payment camera microphone';
 
     box.appendChild(hdr);
     box.appendChild(calIframe);
@@ -816,7 +824,9 @@
 
   function openModal() {
     if (!overlay) buildModal();
-    if (calIframe && !calIframe.src) calIframe.src = CAL_URL;
+    if (calIframe && !calIframe.src) {
+      calIframe.src = CAL_URL + '?embed_domain=' + window.location.hostname + '&embed_type=Inline';
+    }
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }

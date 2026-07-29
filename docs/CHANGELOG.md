@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Switch booking widget to Calendly; wire up primary Google Ads conversion
+**Type:** feature | infra | decision
+**Files:** `chat-widget.js` (bottom IIFE + cache-buster bump), all 70 non-demo HTML pages (`chat-widget.js?v=10` → `?v=11`), `docs/FEATURES.md`, `docs/ARCHITECTURE.md`
+User clarified the conversion hierarchy from the previous entry: the assessment.html form submission should be the *secondary* conversion, and the *primary* should be "click Book a Governance Review anywhere, then successfully book a meeting." Google Calendar's public appointment-scheduling embed (used until now for the "Book a Governance Review" modal, sitewide via `a[href="#book-governance"]`) doesn't expose any postMessage/callback signal when a visitor actually finishes booking a slot inside the iframe — cross-origin, no completion event — so there was no way to distinguish "opened the modal" from "actually booked." Flagged this constraint and asked the user to choose between firing on click (inaccurate — overstates conversions), switching to a booking tool with a real completion signal, or dropping the calendar-modal tracking entirely; user chose to switch. Replaced the Google Calendar iframe with Calendly (`https://calendly.com/saswata-upcoretechnologies/30min`, same modal chrome, same trigger mechanism) and added a `window.addEventListener('message', ...)` listener (checking `e.origin === 'https://calendly.com'` first) that fires `gtag('event', 'conversion', {send_to: 'AW-16546427858/_Q5SCO7LodgcENLn-dE9'})` only on Calendly's genuine `calendly.event_scheduled` event — i.e. an actually-completed booking, not a click. The assessment.html conversion (`AW-16546427858/CN8BCPra5LsZENLn-dE9`) is untouched and stays wired exactly as before; the user still needs to mark it Secondary and the new one Primary in the Google Ads dashboard itself (not something settable from code). Bumped `chat-widget.js?v=` from 10 to 11 across all 70 pages since the change is substantive.
+
 ## 2026-07-29 — Add Google Ads conversion tracking
 **Type:** infra
 **Files:** all 70 non-demo HTML pages (1-line `gtag('config', ...)` addition each), `assessment.html` (conversion event), `docs/FEATURES.md`

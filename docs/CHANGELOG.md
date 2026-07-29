@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — SEO audit + fix: restore meta charset/viewport to top of <head>
+**Type:** fix
+**Files:** all 70 non-demo HTML pages (2-line move each)
+Ran a full technical + on-page SEO audit specifically checking for regressions from the recent GTM/GA4/Clarity/Ads/CTA-tagging changes. Found one real issue: adding those tracking scripts pushed `<meta charset>` and the viewport meta tag down to byte offset ~1160 in every page — past the 1024-byte window browsers use for early encoding detection, and no longer the first element in `<head>` as the HTML spec recommends. Moved both back to be the literal first two lines inside `<head>`, before the GTM/GA4/Clarity/Ads block, on all 70 pages (max offset now 47 bytes). Verified via `git diff --numstat` that every page's diff is a clean 2-added/2-removed move, no content lost.
+
+Full audit results — everything else came back clean: 0 duplicate titles/descriptions/H1s across all 70 pages, exactly one `<h1>` per page, canonical tags present everywhere, all image `alt` text present, zero broken internal links (verified against `vercel.json` redirects/rewrites), sitemap.xml's 66 URLs all map to real pages (the 4 pages correctly excluded — `/build-your-demo` per robots.txt, `/privacy`, `/terms`, and `/security` — are reasonable omissions, `/security` being the only one worth reconsidering later as a content page with real search value). Minor, non-blocking opportunities noted but not fixed: 12 titles run 61–71 chars (vs. the ~60 guideline) and `fde-engineers.html`'s meta description is 186 chars (vs. ~160) — cosmetic SERP-truncation risk, not indexation-breaking. `privacy.html`/`terms.html` lack Open Graph tags and JSON-LD (reasonable for legal boilerplate pages).
+
 ## 2026-07-29 — Switch booking widget to Calendly; wire up primary Google Ads conversion
 **Type:** feature | infra | decision
 **Files:** `chat-widget.js` (bottom IIFE + cache-buster bump), all 70 non-demo HTML pages (`chat-widget.js?v=10` → `?v=11`), `docs/FEATURES.md`, `docs/ARCHITECTURE.md`

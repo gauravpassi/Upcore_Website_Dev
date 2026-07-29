@@ -284,7 +284,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/about">About</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#book-governance" class="nav-cta">Book a Governance Review</a>
+    <a data-gtm-cta="book-a-governance-review" data-gtm-cta-type="primary" data-gtm-cta-section="nav" href="#book-governance" class="nav-cta">Book a Governance Review</a>
     <button class="nav-burger" aria-label="Menu" onclick="var nl=document.querySelector('.nav-links');nl.classList.toggle('open');this.innerHTML=nl.classList.contains('open')?'&#10005;':'&#9776;';">&#9776;</button>
   </div>
 </nav>
@@ -298,8 +298,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 class="pg-h1">What Are AI Agent Skills?<br/><strong>Capabilities Explained</strong></h1>
       <p class="pg-sub">An AI agent's "skills" are the capabilities it has been equipped with beyond reasoning: the tools it can call, the systems it can access, the actions it can take. Understanding what skills a production enterprise agent needs - and how they are implemented - is the difference between buying an AI demo and buying an AI that runs your business.</p>
       <div class="pg-btns">
-        <a href="/assessment" class="btn-p">Design Your Agent's Skill Set &#8594;</a>
-        <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
+        <a data-gtm-cta="design-your-agent-s-skill-set" data-gtm-cta-type="primary" data-gtm-cta-section="hero" href="/assessment" class="btn-p">Design Your Agent's Skill Set &#8594;</a>
+        <a data-gtm-cta="see-custom-ai-agents" data-gtm-cta-type="secondary" data-gtm-cta-section="hero" href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
       </div>
 
       <div class="stats-row">
@@ -561,8 +561,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2>Ready to Define Your Agent's Skill Set?</h2>
       <p>Upcore maps every skill required for your target workflow and delivers a production-ready enterprise agent in 30 days. No framework ramp-up. No skill gaps. Accountable outcomes.</p>
       <div class="pg-cta-btns">
-        <a href="/assessment" class="btn-p">Book a Discovery Call &#8594;</a>
-        <a href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
+        <a data-gtm-cta="book-a-discovery-call" data-gtm-cta-type="primary" data-gtm-cta-section="cta_final" href="/assessment" class="btn-p">Book a Discovery Call &#8594;</a>
+        <a data-gtm-cta="see-custom-ai-agents" data-gtm-cta-type="secondary" data-gtm-cta-section="cta_final" href="/platform/custom-ai-agents" class="btn-o">See Custom AI Agents</a>
       </div>
     </div>
 
@@ -651,5 +651,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 function toggleFaq(btn){var a=btn.nextElementSibling;var isOpen=a.classList.contains('open');document.querySelectorAll('.faq-a.open').forEach(function(el){el.classList.remove('open');el.previousElementSibling.querySelector('.faq-icon').textContent='+';});if(!isOpen){a.classList.add('open');btn.querySelector('.faq-icon').textContent='−';}}
 </script>
 <script src="/chat-widget.js?v=10" defer></script>
+<script src="/cta-tracking.js?v=1" defer></script>
 </body>
 </html>

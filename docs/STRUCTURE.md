@@ -27,6 +27,7 @@ upcore-website/
 │   └── build-demo.js                  # /api/build-demo — demo generator pipeline
 │
 ├── chat-widget.js                     # Global vanilla-JS chat widget: one-click FAQ + email lead capture (loaded on every page)
+├── cta-tracking.js                    # Listens for [data-gtm-cta] clicks, pushes cta_click to window.dataLayer (loaded on every page)
 │
 ├── index.html                         # Homepage — CANONICAL :root + nav block
 ├── about.html                         # About

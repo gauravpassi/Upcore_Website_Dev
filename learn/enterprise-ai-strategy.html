@@ -279,7 +279,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <li><a href="/about">About</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#book-governance" class="nav-cta">Book a Governance Review</a>
+    <a data-gtm-cta="book-a-governance-review" data-gtm-cta-type="primary" data-gtm-cta-section="nav" href="#book-governance" class="nav-cta">Book a Governance Review</a>
     <button class="nav-burger" aria-label="Menu" onclick="var nl=document.querySelector('.nav-links');nl.classList.toggle('open');this.innerHTML=nl.classList.contains('open')?'&#10005;':'&#9776;';">&#9776;</button>
   </div>
 </nav>
@@ -291,8 +291,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1 class="pg-h1">Enterprise AI Strategy: <strong>The 5 Decisions Every Leader Must Get Right in 2025</strong></h1>
     <p class="pg-sub">Most enterprises are reactive about AI. A tool emerges, a department experiments, procurement rushes a contract, and 12 months later the results are disappointing and the spend is unaccountable. This framework gives enterprise leaders a structured way to make five foundational decisions before committing to any AI deployment.</p>
     <div class="pg-btns">
-      <a href="/assessment" class="btn-p">Book a Strategy Call &rarr;</a>
-      <a href="/platform/custom-ai-agents" class="btn-o">See Our Deployment Model</a>
+      <a data-gtm-cta="book-a-strategy-call" data-gtm-cta-type="primary" data-gtm-cta-section="hero" href="/assessment" class="btn-p">Book a Strategy Call &rarr;</a>
+      <a data-gtm-cta="see-our-deployment-model" data-gtm-cta-type="secondary" data-gtm-cta-section="hero" href="/platform/custom-ai-agents" class="btn-o">See Our Deployment Model</a>
     </div>
     <div class="stats-row">
       <div class="stat-box">
@@ -520,8 +520,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Stop Reacting to AI. <strong>Start Strategising.</strong></h2>
     <p>Most enterprises build their AI strategy backwards - they buy tools first and figure out the strategy later. Let's map yours from first principles in a focused 45-minute call.</p>
     <div class="pg-cta-btns">
-      <a href="/assessment" class="btn-p">Book a Strategy Call &rarr;</a>
-      <a href="/platform/custom-ai-agents" class="btn-o">See Our Deployment Model &rarr;</a>
+      <a data-gtm-cta="book-a-strategy-call" data-gtm-cta-type="primary" data-gtm-cta-section="cta_final" href="/assessment" class="btn-p">Book a Strategy Call &rarr;</a>
+      <a data-gtm-cta="see-our-deployment-model" data-gtm-cta-type="secondary" data-gtm-cta-section="cta_final" href="/platform/custom-ai-agents" class="btn-o">See Our Deployment Model &rarr;</a>
     </div>
   </div>
 </div>
@@ -608,5 +608,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 function toggleFaq(btn){var a=btn.nextElementSibling;var isOpen=a.classList.contains('open');document.querySelectorAll('.faq-a.open').forEach(function(el){el.classList.remove('open');el.previousElementSibling.querySelector('.faq-icon').textContent='+';});if(!isOpen){a.classList.add('open');btn.querySelector('.faq-icon').textContent='−';}}
 </script>
 <script src="/chat-widget.js?v=10" defer></script>
+<script src="/cta-tracking.js?v=1" defer></script>
 </body>
 </html>

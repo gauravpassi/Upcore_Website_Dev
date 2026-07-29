@@ -155,6 +155,20 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Where:** [`vercel.json`](../vercel.json) `functions` block.
 - **Note:** The 60s ceiling on `build-demo` is sized for a single Anthropic generation. If the prompt grows, watch latency.
 
+### D5. Analytics stack (GTM + GA4 + Clarity) & CTA click tracking
+- **What:** Three tracking scripts in `<head>`/`<body>` on all 70 non-demo pages, in this order: Google Tag Manager (container `GTM-MH5PB32L`, loader script first in `<head>` + `<noscript><iframe>` fallback first in `<body>`), Google Analytics 4 (`gtag.js`, property `G-TVRF5M70ES`), Microsoft Clarity (project `xtvhi9nvqa`). On top of that, every primary/secondary CTA `<a>` sitewide carries three `data-gtm-*` attributes, and [`cta-tracking.js`](../cta-tracking.js) listens for clicks on any `[data-gtm-cta]` element and pushes a structured `cta_click` event to `window.dataLayer`.
+- **Where:**
+  - GTM/GA4/Clarity snippets: inline in every page's `<head>`/`<body>` (no shared file — see D2/D3-style per-page duplication pattern already used for `:root`/nav).
+  - CTA attributes: `data-gtm-cta="<slug>"` (derived from the button's own text, e.g. `"Book a Governance Review →"` → `book-a-governance-review`), `data-gtm-cta-type="primary"` or `"secondary"` (derived from the button's CSS class — see the allow-lists in the one-off tagging script's history, e.g. `btn-teal`/`btn-fill`/`btn-primary`/`nav-cta`/`btn-p`/etc. = primary, `btn-ghost`/`btn-o`/etc. = secondary), `data-gtm-cta-section="<context>"` (the nearest ancestor element's `id`, or a heuristic fallback: `nav`, `footer`, `hero`, `cta_final`, or `other`).
+  - Tracking script: [`cta-tracking.js`](../cta-tracking.js) — a single vanilla-JS IIFE, same pattern as `chat-widget.js`. Loaded via `<script src="/cta-tracking.js?v=N" defer></script>` immediately after the `chat-widget.js` tag on every page.
+- **Touches:** `window.dataLayer` (shared with GTM/GA4). No backend, no API calls.
+- **cta_click event shape:** `{ event: 'cta_click', cta_id, cta_type, cta_section, cta_text, cta_url, page_path }`. `cta_text`/`cta_url`/`page_path` are read live from the DOM/location at click time, not baked into the HTML attributes.
+- **GTM/GA4 configuration required (not done by this codebase — set up in the GTM/GA4 web UI):** a Custom Event trigger on `event == 'cta_click'`, Data Layer Variables for `cta_id`/`cta_type`/`cta_section`/`cta_text`/`cta_url`, and a GA4 Event tag (Event Name `cta_click`) mapping those as event parameters. Nobody in this repo can configure that from code — it's a one-time manual step in the GTM container.
+- **Extend by:**
+  - New CTA buttons: add the same three `data-gtm-cta*` attributes by hand, following the existing convention (`cta_id` = slugified button text, `cta_type` = primary/secondary by visual weight, `cta_section` = nearest semantic ancestor id or a sensible new heuristic label).
+  - Changing the event shape: edit `cta-tracking.js`'s `dataLayer.push(...)` call, then update the GA4 Event tag's parameter mapping in GTM to match.
+  - Bumping GTM/GA4/Clarity IDs: bulk-replace across all 70 pages in one commit (see CHANGELOG entries from 2026-07-29 for the exact pattern used).
+
 ---
 
 ## E. Cross-cutting contracts

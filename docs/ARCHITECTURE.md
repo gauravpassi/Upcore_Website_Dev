@@ -113,7 +113,8 @@ The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-202510
 | GitHub Contents API | Writing demo HTML + manifest | Env var `GITHUB_PAT`, `GITHUB_REPO` |
 | FormSubmit.co | Static forms + chat lead capture + demo lead emails | Email is hard-coded as `gaurav@upcoretechnologies.com` in: `assessment.html`, `contact.html`, `chat-widget.js` (`LEAD_EMAIL`, client-side `submitLead()`), `api/build-demo.js` (`NOTIFY_TO`). Change all together. (`api/chat.js`'s `sendBookingEmails` is unused legacy.) |
 | Google Fonts | Poppins | `<link>` on every page |
-| Google Analytics 4 (`gtag.js`) | Pageview/traffic analytics | Property ID `G-TVRF5M70ES` hard-coded (script `src` + `gtag('config', ...)`) at the very top of `<head>` on all 70 non-demo pages. Bulk-replace if the property changes. |
+| Google Tag Manager | Tag/pixel management container | Container ID `GTM-MH5PB32L` hard-coded in two places per page: the loader `<script>` as the very first thing in `<head>` (above GA4/Clarity), and the `<noscript><iframe>` fallback immediately after the opening `<body>` tag. Both on all 70 non-demo pages. Bulk-replace both if the container changes. |
+| Google Analytics 4 (`gtag.js`) | Pageview/traffic analytics | Property ID `G-TVRF5M70ES` hard-coded (script `src` + `gtag('config', ...)`) directly below the GTM block in `<head>` on all 70 non-demo pages. Bulk-replace if the property changes. |
 | Microsoft Clarity | Session recording / heatmaps | Project ID `xtvhi9nvqa` hard-coded in the inline snippet directly below the GA4 block on all 70 non-demo pages. Bulk-replace if the project changes. |
 | Vercel | Hosting + deploy + cron-relay-via-GitHub-Actions | `vercel.json` |
 

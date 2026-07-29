@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Add Google Tag Manager sitewide
+**Type:** infra
+**Files:** all 70 non-demo HTML pages (new head `<script>` + body `<noscript>` blocks), `docs/ARCHITECTURE.md`
+Installed GTM (container `GTM-MH5PB32L`) per Google's standard two-part snippet: the loader script as the very first thing in `<head>` — above the existing GA4/Clarity blocks, per Google's own placement guidance — and the `<noscript><iframe>` fallback immediately after the opening `<body>` tag. Same one-off Python-script approach as the GA4/Clarity rollouts (LF/CRLF- and BOM-safe, verified `<head>`/`<body>` each occur exactly once per file first). Verified every diff is a clean 11-line pure insertion (7 head + 4 body lines), 0 deletions, across all 70 files. Demo pages excluded, matching the existing analytics-script convention.
+
 ## 2026-07-29 — Add Microsoft Clarity sitewide
 **Type:** infra
 **Files:** all 70 non-demo HTML pages (new `<script>` block in `<head>`), `docs/ARCHITECTURE.md`

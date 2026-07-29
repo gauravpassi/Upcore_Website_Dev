@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-07-29 — Add Google Ads conversion tracking
+**Type:** infra
+**Files:** all 70 non-demo HTML pages (1-line `gtag('config', ...)` addition each), `assessment.html` (conversion event), `docs/FEATURES.md`
+Per Google Ads' own "already installed a Google tag" instructions (the site already has `gtag.js` loaded for GA4), added `gtag('config', 'AW-16546427858')` right after the existing `gtag('config', 'G-TVRF5M70ES')` call on all 70 pages — reusing the existing loader script rather than installing a second, duplicate `gtag.js` tag (which Google explicitly warns against). Skipped the AMP-specific instructions entirely since this site isn't built with AMP. Installed the Lead conversion event (`AW-16546427858/CN8BCPra5LsZENLn-dE9`) on `assessment.html` only, scoped inside the existing `if(window.location.search.includes('submitted=true'))` block that already shows the post-submit success message (the target of the FormSubmit `_next` redirect) — this fires the conversion exactly once per real completed Discovery Call booking, never on a normal page load, since Google's literal snippet (unconditional, dropped anywhere in `<head>`) would have fired on every visit to whatever page it was placed on. Verified in-browser: zero conversion events on a plain `assessment.html` visit, exactly one correctly-shaped event (`{event:'conversion', send_to:'AW-16546427858/CN8BCPra5LsZENLn-dE9'}`) on `assessment.html?submitted=true`.
+
 ## 2026-07-29 — Tag every primary/secondary CTA for GTM/GA4 click tracking
 **Type:** feature | infra
 **Files:** `cta-tracking.js` (new), all 70 non-demo HTML pages (293 CTA `<a>` tags + 1 new `<script>` tag each), `docs/FEATURES.md`, `docs/STRUCTURE.md`

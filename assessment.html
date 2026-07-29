@@ -16,6 +16,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('js', new Date());
 
   gtag('config', 'G-TVRF5M70ES');
+  gtag('config', 'AW-16546427858');
 </script>
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
@@ -418,6 +419,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 if(window.location.search.includes('submitted=true')){
   document.getElementById('form-wrap').style.display = 'none';
   document.getElementById('success-msg').style.display = 'block';
+  // Google Ads conversion - fires once, only on a real completed submission
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {'send_to': 'AW-16546427858/CN8BCPra5LsZENLn-dE9'});
+  }
 }
 
 // On submit: fire confirmation email to prospect, then let native form POST proceed

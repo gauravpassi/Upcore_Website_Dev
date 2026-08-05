@@ -311,7 +311,13 @@ export default async function handler(req, res) {
       overallScore: score.overall,
       dims: score.dims,
       peer,
-      routing: { lighterTrack }
+      routing: { lighterTrack },
+      // TEMPORARY diagnostic field — remove once email delivery is confirmed working.
+      _debug: {
+        sheetWrite: sheetResult.status,
+        teamNotify: notifyResult.status,
+        teamNotifyError: notifyResult.status === 'rejected' ? String(notifyResult.reason && notifyResult.reason.message || notifyResult.reason) : null
+      }
     });
 
   } catch (err) {

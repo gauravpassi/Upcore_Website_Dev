@@ -509,15 +509,27 @@ async function sendLeadNotification({ userName, email, phone, industry, companyN
     'Created At':  `${createdAt} IST`,
   };
 
+  // FormSubmit requires a Referer/Origin identifying a real website —
+  // without one it silently rejects the submission (still HTTP 200, with
+  // an "Unable to submit form... browsed as HTML files" error page as the
+  // body). Server-side fetch() calls don't send a browser Referer
+  // automatically, so it must be set explicitly on every call below.
+  const formSubmitHeaders = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Referer: 'https://www.upcoretech.com/',
+    Origin: 'https://www.upcoretech.com'
+  };
+
   const res = await fetch(`https://formsubmit.co/${NOTIFY_TO}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: formSubmitHeaders,
     body: JSON.stringify(payload)
   });
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`FormSubmit error ${res.status}: ${text}`);
+  const resText = await res.text();
+  if (!res.ok || resText.indexOf('Unable to submit form') !== -1) {
+    throw new Error(`FormSubmit error ${res.status}: ${resText.slice(0, 300)}`);
   }
 
   // 2 — Confirmation email to the prospect
@@ -537,7 +549,7 @@ async function sendLeadNotification({ userName, email, phone, industry, companyN
     // Fire-and-forget — don't let confirmation failure block the main notification
     fetch(`https://formsubmit.co/${email}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: formSubmitHeaders,
       body: JSON.stringify(confirmPayload)
     }).catch(err => console.error('Demo confirmation email failed:', err));
   }

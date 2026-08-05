@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Fix silent FormSubmit failures on server-side (Vercel function) calls
+**Type:** fix
+**Files:** `api/lead-magnet-submit.js`, `api/build-demo.js`
+User reported not receiving the lead-magnet "assessment complete" summary emails. Root-caused by testing FormSubmit.co directly: it requires a `Referer`/`Origin` header identifying a real website, and rejects requests without one — but returns **HTTP 200 with an HTML error page** ("Unable to submit form... Make sure you open this page through a web server") instead of a proper error status. Browser-side `fetch()` calls (contact.html, chat-widget.js, assessment.html's native form POST) send this header automatically, so those have always worked. Server-side calls from Vercel serverless functions do **not** send a Referer automatically — so `api/lead-magnet-submit.js`'s team notification, and (pre-existing, unrelated to this session's work) `api/build-demo.js`'s lead notification + prospect confirmation email, were silently failing every time despite the code's own `if (!res.ok)` check reporting success (`res.ok` was `true` — FormSubmit's 200 status hid the failure).
+
+Fixed by explicitly setting `Referer`/`Origin: https://www.upcoretech.com` on every server-side FormSubmit call in both files, and hardening the success check to also scan the response body for `"Unable to submit form"` (belt-and-suspenders — catches this failure mode even if FormSubmit ever changes its status-code behavior). Verified the fix directly: the same POST to FormSubmit.co returns FormSubmit's actual "Thanks!" confirmation page with the header set, vs. the silent error page without it.
+
+**Pre-existing bug, not introduced this session:** `api/build-demo.js`'s demo-lead team notifications and prospect confirmation emails have had this same silent-failure bug since that feature was built — worth mentioning in case past demo leads were never actually delivered by email (the demo itself and `demos/manifest.json` entry were never affected, only the email step).
+
 ## 2026-08-05 — Audit all forms send to both team inboxes; fix fake newsletter form
 **Type:** fix
 **Files:** `insights/index.html`

@@ -22,6 +22,7 @@ const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 const PEER_MIN_SAMPLE = 30; // matches the client's honest-FOMO rule — no fabricated averages below this
 const NOTIFY_TO = 'gaurav@upcoretechnologies.com';
 const NOTIFY_CC = 'saswata@upcoretechnologies.com';
+const SITE_URL = 'https://www.upcoretech.com/';
 
 // ─── Rate limit store (in-memory, resets on cold start — same pattern as build-demo.js) ───
 const rateLimitStore = {};
@@ -212,12 +213,22 @@ async function sendTeamNotification(row, niche) {
 
   const res = await fetch(`https://formsubmit.co/${NOTIFY_TO}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      // FormSubmit requires a Referer/Origin identifying a real website —
+      // without one it silently rejects the submission (still HTTP 200,
+      // with an "Unable to submit form... browsed as HTML files" error
+      // page as the body). Server-side fetch() calls don't send a browser
+      // Referer automatically, so it must be set explicitly here.
+      Referer: SITE_URL,
+      Origin: SITE_URL
+    },
     body: JSON.stringify(payload)
   });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`FormSubmit error ${res.status}: ${text}`);
+  const text = await res.text();
+  if (!res.ok || text.indexOf('Unable to submit form') !== -1) {
+    throw new Error(`FormSubmit error ${res.status}: ${text.slice(0, 300)}`);
   }
 }
 

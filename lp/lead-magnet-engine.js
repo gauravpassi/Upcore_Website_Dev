@@ -623,7 +623,44 @@
     this.state.apiResult = apiResult;
     this.state.screen = 'full';
     this.pushEvent('resultView', { tier: apiResult.tier });
+    this._sendTeamNotification(apiResult);
     this._render();
+  };
+
+  // Fires the team-notification email client-side (browser fetch — same
+  // pattern as contact.html/chat-widget.js). api/lead-magnet-submit.js
+  // deliberately does NOT send this itself: Cloudflare (fronting
+  // FormSubmit.co) returns a 403 bot-detection challenge to Vercel's
+  // serverless outbound IPs regardless of headers, so the request has to
+  // come from a real browser. Uses apiResult's server-verified
+  // tier/overallScore/dims/weakestDim, not the client-computed score.
+  LeadMagnetEngine.prototype._sendTeamNotification = function (apiResult) {
+    var c = this.config, contact = this.state.contact || {};
+    if (!apiResult || apiResult.ok === false) return;
+    var dims = apiResult.dims || {};
+    var dimLines = Object.keys(dims).map(function (id) { return id + ': ' + dims[id]; }).join(', ');
+
+    fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _subject: 'New Lead-Magnet Submission — ' + (contact.firstName || contact.email) + ' · ' + c.indexLabel,
+        _template: 'table',
+        _captcha: 'false',
+        _cc: 'saswata@upcoretechnologies.com',
+        'Index': c.indexLabel,
+        'Tier': apiResult.tier + ' (' + apiResult.overallScore + '/100)',
+        'Weakest Dimension': apiResult.weakestDim || '',
+        'Dimension Breakdown': dimLines,
+        'Lighter-Track Signal': apiResult.routing && apiResult.routing.lighterTrack ? 'Yes' : 'No',
+        'Name': contact.firstName || 'Not provided',
+        'Email': contact.email || '',
+        'Company': contact.company || 'Not provided',
+        'UTM Source': this.state.utm.utm_source || 'Not set',
+        'UTM Campaign': this.state.utm.utm_campaign || 'Not set',
+        'Submitted At': new Date().toISOString()
+      })
+    }).catch(function (err) { console.error('[lead-magnet] Team notification failed:', err); });
   };
 
   // ── Full result ──────────────────────────────────────────────────────────

@@ -12,17 +12,18 @@
 //    no Vercel Pro plan, so the Sheet itself is also the peer-benchmark
 //    store: the Apps Script computes and returns the niche aggregate in
 //    its response, no separate database needed).
-// 3. Notifies the team by email via FormSubmit.co — the same service
-//    already used by assessment.html / contact.html / chat-widget.js /
-//    api/build-demo.js, so this needs no new API key.
+//
+// The team-notification EMAIL is deliberately NOT sent from here — see
+// the note above sendTeamNotification's old location (now removed):
+// Cloudflare (fronting FormSubmit.co) returns a 403 bot-detection
+// challenge to Vercel's serverless outbound IPs no matter what headers
+// are set. lp/lead-magnet-engine.js sends it client-side instead, using
+// this function's own server-verified tier/overallScore/dims/weakestDim.
 // ═══════════════════════════════════════════════════════════════════════
 
 const GOOGLE_SHEETS_WEBHOOK_URL = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
 
 const PEER_MIN_SAMPLE = 30; // matches the client's honest-FOMO rule — no fabricated averages below this
-const NOTIFY_TO = 'gaurav@upcoretechnologies.com';
-const NOTIFY_CC = 'saswata@upcoretechnologies.com';
-const SITE_URL = 'https://www.upcoretech.com/';
 
 // ─── Rate limit store (in-memory, resets on cold start — same pattern as build-demo.js) ───
 const rateLimitStore = {};
@@ -188,49 +189,15 @@ async function writeToGoogleSheetAndGetPeerStats(row) {
   };
 }
 
-// ─── Team notification (FormSubmit.co — same service as every other lead form on this site) ──
-async function sendTeamNotification(row, niche) {
-  const cfg = NICHE_SCORING[niche];
-  const dimLines = cfg.dimOrder.map(id => `${id}: ${row.dims[id]}`).join(', ');
-
-  const payload = {
-    _subject: `New Lead-Magnet Submission — ${row.firstName || row.email} · ${cfg.label}`,
-    _template: 'table',
-    _captcha: 'false',
-    _cc: NOTIFY_CC,
-    'Index': cfg.label,
-    'Tier': `${row.tier} (${row.overallScore}/100)`,
-    'Weakest Dimension': row.weakestDim,
-    'Dimension Breakdown': dimLines,
-    'Lighter-Track Signal': row.lighterTrack ? 'Yes' : 'No',
-    'Name': row.firstName || 'Not provided',
-    'Email': row.email,
-    'Company': row.company || 'Not provided',
-    'UTM Source': row.utmSource || 'Not set',
-    'UTM Campaign': row.utmCampaign || 'Not set',
-    'Submitted At': row.timestamp
-  };
-
-  const res = await fetch(`https://formsubmit.co/${NOTIFY_TO}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      // FormSubmit requires a Referer/Origin identifying a real website —
-      // without one it silently rejects the submission (still HTTP 200,
-      // with an "Unable to submit form... browsed as HTML files" error
-      // page as the body). Server-side fetch() calls don't send a browser
-      // Referer automatically, so it must be set explicitly here.
-      Referer: SITE_URL,
-      Origin: SITE_URL
-    },
-    body: JSON.stringify(payload)
-  });
-  const text = await res.text();
-  if (!res.ok || text.indexOf('Unable to submit form') !== -1) {
-    throw new Error(`FormSubmit error ${res.status}: ${text.slice(0, 300)}`);
-  }
-}
+// ─── Team notification ─────────────────────────────────────────────────────
+// NOTE: the team-notification email is sent CLIENT-SIDE by lead-magnet-engine.js
+// after this function returns, not from here. Cloudflare (fronting FormSubmit.co)
+// returns a 403 "Just a moment..." bot-detection challenge to Vercel's serverless
+// IPs regardless of headers — it cannot be solved from a Node.js fetch() call.
+// Browser-side calls (this exact pattern already works in contact.html,
+// chat-widget.js, and assessment.html) aren't challenged, so the notification
+// is built from this function's own server-verified score/tier/dims and fired
+// from the visitor's browser instead. Confirmed via direct testing 2026-08-05.
 
 // ─── MAIN HANDLER ─────────────────────────────────────────────────────────────
 
@@ -289,20 +256,11 @@ export default async function handler(req, res) {
       liFatId: utm.li_fat_id || ''
     };
 
-    // Sheet write (+ peer stats in its response) and the team email run in
-    // parallel; neither blocks the other, and either one failing shouldn't
-    // stop the visitor from getting their score.
-    const [sheetResult, notifyResult] = await Promise.allSettled([
-      writeToGoogleSheetAndGetPeerStats(row),
-      sendTeamNotification(row, niche)
-    ]);
-
-    const peer = sheetResult.status === 'fulfilled' ? sheetResult.value : { sufficientData: false };
-    if (sheetResult.status === 'rejected') {
-      console.error('[lead-magnet-submit] Sheet write failed:', sheetResult.reason);
-    }
-    if (notifyResult.status === 'rejected') {
-      console.error('[lead-magnet-submit] Team notification failed:', notifyResult.reason);
+    let peer = { sufficientData: false };
+    try {
+      peer = await writeToGoogleSheetAndGetPeerStats(row);
+    } catch (err) {
+      console.error('[lead-magnet-submit] Sheet write failed:', err);
     }
 
     return res.status(200).json({
@@ -310,14 +268,9 @@ export default async function handler(req, res) {
       tier: score.tier ? score.tier.label : null,
       overallScore: score.overall,
       dims: score.dims,
+      weakestDim: score.weakestDim,
       peer,
-      routing: { lighterTrack },
-      // TEMPORARY diagnostic field — remove once email delivery is confirmed working.
-      _debug: {
-        sheetWrite: sheetResult.status,
-        teamNotify: notifyResult.status,
-        teamNotifyError: notifyResult.status === 'rejected' ? String(notifyResult.reason && notifyResult.reason.message || notifyResult.reason) : null
-      }
+      routing: { lighterTrack }
     });
 
   } catch (err) {

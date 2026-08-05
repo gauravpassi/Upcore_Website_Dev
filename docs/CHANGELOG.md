@@ -12,6 +12,17 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Real fix: move lead-magnet team notification to client-side (Cloudflare blocks Vercel server-side)
+**Type:** fix
+**Files:** `api/lead-magnet-submit.js`, `lp/lead-magnet-engine.js`
+The Referer-header fix (previous entry) turned out to be necessary but not sufficient. Added a temporary `_debug` field to the API response and re-tested — the real error was `FormSubmit error 403: <!DOCTYPE html>...<title>Just a moment...</title>...`, Cloudflare's bot-detection interstitial challenge (Cloudflare fronts FormSubmit.co). **Cloudflare returns this 403 challenge to Vercel's serverless outbound IPs regardless of headers** — it's not solvable from a Node.js `fetch()` call, only from an actual browser. Confirmed directly: the identical FormSubmit payload sent from a real browser tab succeeds every time; the same payload sent server-side from Vercel gets challenged every time.
+
+**Fix:** removed `sendTeamNotification` from `api/lead-magnet-submit.js` entirely (it can never work from a serverless function against this specific FormSubmit/Cloudflare combination) and moved it to `lp/lead-magnet-engine.js` as `_sendTeamNotification`, fired client-side from `_onSubmitResult` — the same working pattern already used by `contact.html` and `chat-widget.js`. It builds the email from `apiResult`'s server-verified `tier`/`overallScore`/`dims`/`weakestDim` (added `weakestDim` to the API response), not the client's own locally-computed score, so the notification content is still authoritative even though the request now originates from the browser. Removed the temporary `_debug` field and the now-unused `NOTIFY_TO`/`NOTIFY_CC`/`SITE_URL` constants from the API file.
+
+Verified end-to-end in-browser against the live production API: submitted the full 10-question flow twice, confirmed via `performance.getEntriesByType('resource')` that the client-side FormSubmit call fires and completes with no errors both times.
+
+**Known pre-existing risk, not fixed in this pass:** `api/build-demo.js`'s demo-lead notification and prospect-confirmation emails use the identical server-side FormSubmit pattern and almost certainly hit the same Cloudflare block — the Referer-header fix applied to that file (previous entry) is necessary but likely still insufficient, same as it was here. Moving it client-side would need a larger refactor of the demo-builder flow (the notification currently fires from inside the same function that generates and commits the demo HTML) — flagged as follow-up work, not addressed now since the user's immediate report was specifically about the lead-magnet pages.
+
 ## 2026-08-05 — Fix silent FormSubmit failures on server-side (Vercel function) calls
 **Type:** fix
 **Files:** `api/lead-magnet-submit.js`, `api/build-demo.js`

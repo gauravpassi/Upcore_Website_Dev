@@ -968,8 +968,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         function handleNewsletter(e) {
             e.preventDefault();
-            const email = e.target.querySelector('input').value;
-            e.target.innerHTML = '<p style="color:#0abfcc;font-weight:600;font-size:1rem;">✓ You\'re subscribed! New articles will arrive in your inbox.</p>';
+            const form = e.target;
+            const email = form.querySelector('input').value.trim();
+            const btn = form.querySelector('button');
+            btn.disabled = true;
+            btn.textContent = 'Subscribing…';
+
+            fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                body: JSON.stringify({
+                    _captcha: 'false',
+                    _template: 'table',
+                    _subject: 'New Newsletter Signup - Upcore Insights',
+                    _cc: 'saswata@upcoretechnologies.com',
+                    'Email': email,
+                    'Source': 'Insights Newsletter Form'
+                })
+            }).then(function () {
+                form.innerHTML = '<p style="color:#0abfcc;font-weight:600;font-size:1rem;">✓ You\'re subscribed! New articles will arrive in your inbox.</p>';
+            }).catch(function () {
+                btn.disabled = false;
+                btn.textContent = 'Get the Articles →';
+                alert('Something went wrong - please try again or email us directly.');
+            });
         }
     </script>
 <script src="/chat-widget.js?v=11" defer></script>

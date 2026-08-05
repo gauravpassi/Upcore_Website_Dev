@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Audit all forms send to both team inboxes; fix fake newsletter form
+**Type:** fix
+**Files:** `insights/index.html`
+Sitewide audit per user request: every form submission (and the new lead-magnet assessment-complete notifications) should reach both `gaurav@upcoretechnologies.com` and `saswata@upcoretechnologies.com`. Checked every FormSubmit.co call site: `assessment.html`'s main form (`_cc` hidden input), `contact.html`, `chat-widget.js` (`LEAD_EMAIL`/`LEAD_CC`), `api/build-demo.js` (`NOTIFY_TO`/`NOTIFY_CC`), and `api/lead-magnet-submit.js` (`NOTIFY_TO`/`NOTIFY_CC`, already sending the full score + tier + per-dimension breakdown + weakest area, built earlier this session) — all already correctly send to both addresses (one as primary, one as `_cc`). No changes needed there.
+
+Found one real bug while auditing: `insights/index.html`'s newsletter signup form (`handleNewsletter()`) was completely fake — it called `e.preventDefault()`, showed a "✓ You're subscribed!" success message, and never sent the email anywhere. Fixed to actually POST to FormSubmit.co (`gaurav@upcoretechnologies.com`, cc `saswata@upcoretechnologies.com`), matching the async fetch pattern already used in `contact.html`. Verified live in-browser — the fix works and the browser sandbox actually has network access to formsubmit.co (unlike Google's ad-tech domains, which are blocked), so a real one-off test submission (`test@example.com`) was sent to both inboxes during verification.
+
 ## 2026-08-05 — Fix "Book a Governance Review" buttons pointing to /assessment instead of Calendly
 **Type:** fix
 **Files:** `about.html`, `ai-engineering-governance.html`, `index.html`, `pricing.html`, `platform.html`, `privacy.html`, `terms.html`

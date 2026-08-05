@@ -133,13 +133,26 @@
     this._render();
   }
 
+  // Fires both to the dataLayer (for anyone who later wants to build GTM
+  // triggers/tags off it) AND directly via gtag() — this page already loads
+  // gtag.js straight for GA4 (G-TVRF5M70ES), so a direct gtag('event',...)
+  // call lands in GA4 immediately with no GTM trigger/tag configuration
+  // required. Same reasoning as the Google Ads conversion calls elsewhere
+  // on this site (assessment.html, chat-widget.js).
   LeadMagnetEngine.prototype.pushEvent = function (key, payload) {
     var eventName = this.config.events[key];
     if (!eventName) return;
+    var params = { niche: this.config.niche };
+    if (payload) Object.keys(payload).forEach(function (k) { params[k] = payload[k]; });
+
     window.dataLayer = window.dataLayer || [];
-    var data = { event: eventName, niche: this.config.niche };
-    if (payload) Object.keys(payload).forEach(function (k) { data[k] = payload[k]; });
-    window.dataLayer.push(data);
+    var dlData = { event: eventName };
+    Object.keys(params).forEach(function (k) { dlData[k] = params[k]; });
+    window.dataLayer.push(dlData);
+
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
   };
 
   LeadMagnetEngine.prototype._render = function () {
@@ -550,6 +563,15 @@
     var self = this, c = this.config;
     this.state.contact = contact;
     this.pushEvent('emailCaptured', { email_domain: (contact.email.split('@')[1] || '') });
+
+    // "Assessment complete" — the primary conversion: every question
+    // answered AND contact info handed over. Distinct from emailCaptured
+    // above so it reads unambiguously as THE conversion event in GA4/Ads
+    // reporting, not just a generic form-fill analytics event.
+    this.pushEvent('assessmentComplete', { tier: this.state.score.tier ? this.state.score.tier.label : null });
+    if (c.googleAdsConversionLabel && typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', { send_to: c.googleAdsConversionLabel });
+    }
 
     var body = {
       niche: c.niche,

@@ -171,10 +171,17 @@ var NICHE_CONFIG = {
     questionAnswered: 'maturity_question_answered',
     teaserView: 'maturity_teaser_view',
     emailCaptured: 'maturity_email_captured',
+    assessmentComplete: 'maturity_assessment_complete',
     resultView: 'maturity_result_view',
     pdfSent: 'maturity_pdf_sent',
     callBooked: 'maturity_call_booked'
   },
+  // Google Ads conversion action for "AI Maturity Index — Assessment Complete".
+  // Fill in after creating the conversion action in Google Ads (Tools & Settings
+  // → Conversions → New). Format: 'AW-16546427858/<conversion-label>'. Left null
+  // until then — pushEvent('assessmentComplete') / the GA4 event above still
+  // fires either way, only the Ads-specific conversion ping is gated on this.
+  googleAdsConversionLabel: null,
   api: { submit: '/api/lead-magnet-submit' },
   tierTable: [
     { min:0, max:25, label:'Fragmented', description:'Multiple uncoordinated pilots, no ownership, no ROI visibility.' },
@@ -224,7 +231,7 @@ var NICHE_CONFIG = {
       howItWorks: [
         'Answer 10 questions across the same 10 dimensions the Phase 1 Diagnostic runs on.',
         'See your Maturity Index Score and tier immediately, on-screen.',
-        'Get a full PDF report emailed — coordinated teams of specialized AI agents analyze your answers against the same framework used in paying engagements.',
+        'Download your full PDF report instantly — coordinated teams of specialized AI agents analyze your answers against the same framework used in paying engagements.',
         'Optional 45-minute call to walk through your 90-Day Plan, if you want one.'
       ],
       faq: [

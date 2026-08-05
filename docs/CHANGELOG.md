@@ -12,6 +12,20 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Lead-magnet pages: GA4 events + Google Ads "Assessment Complete" conversion, ad-landing-page copy fix
+**Type:** feature, fix
+**Files:** `lp/lead-magnet-engine.js` (`pushEvent`, `_submitContact`), `lp/governance-index.html` + `lp/ai-maturity-index.html` (`events.assessmentComplete`, `googleAdsConversionLabel`, howItWorks copy)
+User's ask: treat both pages as **ad landing pages** and add "assessment complete" as a Google Ads conversion with properly-named GA4 custom events. Two changes:
+
+1. **`pushEvent()` now fires directly via `gtag('event', name, params)`, not just `dataLayer.push`.** Both pages already load `gtag.js` straight for GA4, so this lands events in GA4 Realtime immediately — no GTM trigger/tag configuration needed to see them. `dataLayer.push` is kept alongside for anyone who later wants GTM-based triggers too. Full event list documented in `docs/FEATURES.md` B4 — 8 events per niche (`index_*`/`maturity_*`), covering the whole funnel from quiz start through call-booked.
+2. **New `{prefix}_assessment_complete` event** fires at the exact moment the email-gate form is submitted (same instant as the existing `email_captured`, distinctly named so it's unambiguous which event to mark as the GA4 key event / conversion). A `googleAdsConversionLabel` field was added to both `NICHE_CONFIG` objects (currently `null`) — once set to a real `AW-16546427858/<label>` string (from a new conversion action the user needs to create in Google Ads), the same moment also fires `gtag('event','conversion',{send_to:...})`, matching the exact pattern already used by `assessment.html` and `chat-widget.js`'s Calendly conversion. Left as a documented placeholder rather than fabricated — verified the code path is fully wired and doesn't error when the label is unset (skips the Ads ping, GA4 event still fires).
+
+Also fixed a real copy bug found while auditing these pages as ad landing pages: the "How it works" step 3 on both pages still said "Get a full PDF report emailed" — stale from before the Phase A simplification to immediate in-browser download (no email delivery at all). Now says "Download your full PDF report instantly."
+
+Checked mobile responsiveness of the new Typeform-style quiz (most ad-click traffic is mobile) — hero CTA is above the fold with no scroll needed, quiz question/options render cleanly at 375px width, no overflow.
+
+**Manual step still needed:** create a Google Ads conversion action named something like "Assessment Complete" (one shared or two per-niche — user's call), then set `googleAdsConversionLabel` on the relevant `NICHE_CONFIG`(s) to the resulting `AW-16546427858/<label>` string.
+
 ## 2026-08-05 — Fix jittery quiz re-render on every option click
 **Type:** fix
 **Files:** `lp/lead-magnet-engine.js`

@@ -175,10 +175,17 @@ var NICHE_CONFIG = {
     questionAnswered: 'index_question_answered',
     teaserView: 'index_teaser_view',
     emailCaptured: 'index_email_captured',
+    assessmentComplete: 'index_assessment_complete',
     resultView: 'index_result_view',
     pdfSent: 'index_pdf_sent',
     callBooked: 'index_call_booked'
   },
+  // Google Ads conversion action for "Governance Index — Assessment Complete".
+  // Fill in after creating the conversion action in Google Ads (Tools & Settings
+  // → Conversions → New). Format: 'AW-16546427858/<conversion-label>'. Left null
+  // until then — pushEvent('assessmentComplete') / the GA4 event above still
+  // fires either way, only the Ads-specific conversion ping is gated on this.
+  googleAdsConversionLabel: null,
   api: { submit: '/api/lead-magnet-submit' },
   tierTable: [
     { min:0, max:25, label:'Ungoverned', description:'AI code is shipping with no policy, no visibility, no audit trail.' },
@@ -224,7 +231,7 @@ var NICHE_CONFIG = {
       howItWorks: [
         'Answer 10 questions across the same 5 layers the FAO governs against.',
         'See your Index Score, tier, and how you compare to teams already assessed — immediately, on-screen.',
-        'Get a full PDF report emailed — your actual findings, not generic advice.',
+        'Download your full PDF report instantly — your actual findings, not generic advice.',
         'Optional 45-minute call to walk through a Day-30 roadmap, if you want one.'
       ],
       faq: [

@@ -24,10 +24,16 @@ upcore-website/
 │
 ├── api/                               # 🔌 Vercel serverless functions
 │   ├── chat.js                        # /api/chat — legacy Anthropic chatbot backend, UNUSED (see FEATURES.md B3)
-│   └── build-demo.js                  # /api/build-demo — demo generator pipeline
+│   ├── build-demo.js                  # /api/build-demo — demo generator pipeline
+│   └── lead-magnet-submit.js          # /api/lead-magnet-submit — score recompute + Google Sheets CRM + KV peer-benchmark (see FEATURES.md B4)
 │
 ├── chat-widget.js                     # Global vanilla-JS chat widget: one-click FAQ + email lead capture (loaded on every page)
 ├── cta-tracking.js                    # Listens for [data-gtm-cta] clicks, pushes cta_click to window.dataLayer (loaded on every page)
+│
+├── lp/                                # 🎯 Ad-only lead-magnet landing pages — noindex,nofollow, no nav, unlinked from sitemap
+│   ├── lead-magnet-engine.js          # Shared vanilla-JS IIFE: flow control, scoring, SVG charts, jsPDF, GTM events (see FEATURES.md B4)
+│   ├── governance-index.html          # Niche 1 — dark "console" skin, radar chart, CIO/CTO/VP Eng
+│   └── ai-maturity-index.html         # Niche 2 — light "scorecard" skin, maturity curve + radar, COO/CEO/CFO/CHRO
 │
 ├── index.html                         # Homepage — CANONICAL :root + nav block
 ├── about.html                         # About

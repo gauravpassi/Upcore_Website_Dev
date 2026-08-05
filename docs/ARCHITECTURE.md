@@ -97,6 +97,7 @@ Set in Vercel project settings:
 | `GITHUB_PAT` | `api/build-demo.js` | Contents-API token to commit demos. Needs `contents:write` on the repo. |
 | `GITHUB_REPO` | `api/build-demo.js` | Defaults to `gauravpassi/upcore-website`. |
 | `SITE_BASE_URL` | `api/build-demo.js` | Used to build the demo URL returned to the caller. Defaults to `https://upcore.ai`. |
+| `GOOGLE_SHEETS_WEBHOOK_URL` | `api/lead-magnet-submit.js` | Google Apps Script Web App URL (ends `/exec`) — the lead-magnet CRM **and** the peer-benchmark store. No service-account auth, no OAuth, no Vercel KV (this account has no Vercel Pro plan): the Apps Script appends one row per lead to a Google Sheet AND returns the niche's running aggregate (count/avgOverall/avgByDim) in the same response — the Sheet is the only data store this feature needs. Setup script + instructions in `lp/` (see FEATURES.md B4). If unset, the function logs a warning and returns `{sufficientData:false}` rather than failing the whole request. |
 
 The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-20251001`). If you bump it, bump it in both files and validate that the system prompt still produces the expected JSON / booking-marker shape.
 
@@ -117,6 +118,8 @@ The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-202510
 | Google Analytics 4 (`gtag.js`) | Pageview/traffic analytics | Property ID `G-TVRF5M70ES` hard-coded (script `src` + `gtag('config', ...)`) directly below the GTM block in `<head>` on all 70 non-demo pages. Bulk-replace if the property changes. |
 | Microsoft Clarity | Session recording / heatmaps | Project ID `xtvhi9nvqa` hard-coded in the inline snippet directly below the GA4 block on all 70 non-demo pages. Bulk-replace if the project changes. |
 | Vercel | Hosting + deploy + cron-relay-via-GitHub-Actions | `vercel.json` |
+| Google Apps Script (Web App) | Lead-magnet CRM **and** peer-benchmark store — `api/lead-magnet-submit.js` POSTs one row per submission to a Sheets-bound Apps Script webhook, which appends the row and returns the niche's running aggregate (count/avgOverall/avgByDim) computed from the sheet's own rows. No Vercel KV, no database — deliberately, since this account has no Vercel Pro plan. | Env var `GOOGLE_SHEETS_WEBHOOK_URL`; the Apps Script source lives outside this repo (given to the user directly, not committed — it's account-specific, not code this repo can own) |
+| jsPDF (CDN) | Client-side PDF generation for the two lead-magnet pages | `<script>` tag, `cdnjs.cloudflare.com/ajax/libs/jspdf` |
 
 ## 8. Things that look broken but aren't
 

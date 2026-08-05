@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Wire real Google Ads conversion labels for Assessment Complete
+**Type:** feature
+**Files:** `lp/lead-magnet-engine.js`, `lp/governance-index.html`, `lp/ai-maturity-index.html`
+User created two separate Google Ads conversion actions (their choice, over one shared action — lets each niche's ad campaign optimize independently) and supplied both labels. Set `googleAdsConversionLabel`/`Value`/`Currency` on both `NICHE_CONFIG` objects: Governance Index → `AW-16546427858/ozjeCPjqqNwcENLn-dE9`, AI Maturity Index → `AW-16546427858/Aa1UCPvqqNwcENLn-dE9`, both `value:1.0, currency:'INR'` (matching the snippets Google Ads generated). Also added `value`/`currency` to the `gtag('event','conversion',...)` call in the engine (previously only `send_to`). Verified both fire correctly in-browser with the right label/value/currency at the `assessment_complete` moment. No more manual step pending — the lead-magnet conversion tracking is fully live.
+
 ## 2026-08-05 — Lead-magnet pages: GA4 events + Google Ads "Assessment Complete" conversion, ad-landing-page copy fix
 **Type:** feature, fix
 **Files:** `lp/lead-magnet-engine.js` (`pushEvent`, `_submitContact`), `lp/governance-index.html` + `lp/ai-maturity-index.html` (`events.assessmentComplete`, `googleAdsConversionLabel`, howItWorks copy)

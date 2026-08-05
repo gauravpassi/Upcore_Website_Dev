@@ -176,12 +176,10 @@ var NICHE_CONFIG = {
     pdfSent: 'maturity_pdf_sent',
     callBooked: 'maturity_call_booked'
   },
-  // Google Ads conversion action for "AI Maturity Index — Assessment Complete".
-  // Fill in after creating the conversion action in Google Ads (Tools & Settings
-  // → Conversions → New). Format: 'AW-16546427858/<conversion-label>'. Left null
-  // until then — pushEvent('assessmentComplete') / the GA4 event above still
-  // fires either way, only the Ads-specific conversion ping is gated on this.
-  googleAdsConversionLabel: null,
+  // Google Ads conversion action: "AI Maturity Index — Assessment Complete"
+  googleAdsConversionLabel: 'AW-16546427858/Aa1UCPvqqNwcENLn-dE9',
+  googleAdsConversionValue: 1.0,
+  googleAdsConversionCurrency: 'INR',
   api: { submit: '/api/lead-magnet-submit' },
   tierTable: [
     { min:0, max:25, label:'Fragmented', description:'Multiple uncoordinated pilots, no ownership, no ROI visibility.' },

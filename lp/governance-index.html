@@ -180,12 +180,10 @@ var NICHE_CONFIG = {
     pdfSent: 'index_pdf_sent',
     callBooked: 'index_call_booked'
   },
-  // Google Ads conversion action for "Governance Index — Assessment Complete".
-  // Fill in after creating the conversion action in Google Ads (Tools & Settings
-  // → Conversions → New). Format: 'AW-16546427858/<conversion-label>'. Left null
-  // until then — pushEvent('assessmentComplete') / the GA4 event above still
-  // fires either way, only the Ads-specific conversion ping is gated on this.
-  googleAdsConversionLabel: null,
+  // Google Ads conversion action: "Governance Index — Assessment Complete"
+  googleAdsConversionLabel: 'AW-16546427858/ozjeCPjqqNwcENLn-dE9',
+  googleAdsConversionValue: 1.0,
+  googleAdsConversionCurrency: 'INR',
   api: { submit: '/api/lead-magnet-submit' },
   tierTable: [
     { min:0, max:25, label:'Ungoverned', description:'AI code is shipping with no policy, no visibility, no audit trail.' },

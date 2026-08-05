@@ -570,7 +570,11 @@
     // reporting, not just a generic form-fill analytics event.
     this.pushEvent('assessmentComplete', { tier: this.state.score.tier ? this.state.score.tier.label : null });
     if (c.googleAdsConversionLabel && typeof window.gtag === 'function') {
-      window.gtag('event', 'conversion', { send_to: c.googleAdsConversionLabel });
+      window.gtag('event', 'conversion', {
+        send_to: c.googleAdsConversionLabel,
+        value: c.googleAdsConversionValue,
+        currency: c.googleAdsConversionCurrency
+      });
     }
 
     var body = {

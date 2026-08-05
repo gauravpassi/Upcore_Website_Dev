@@ -127,6 +127,7 @@
       utm: captureUTM(),
       insightsShown: {}
     };
+    this._lastQuizRenderKey = null;
     this._buildStickyCTA();
     this._bindKeyboard();
     this._render();
@@ -348,6 +349,16 @@
     });
   };
 
+  // Re-rendering the quiz screen (e.g. to show a selected option, or to
+  // toggle a multiselect checkbox) must NOT replay the entrance animation —
+  // only an actual navigation (a new question, going back, or an insight
+  // interrupt) should slide in. Tracked via a render-key comparison.
+  LeadMagnetEngine.prototype._quizAnimClass = function (key) {
+    var isNew = key !== this._lastQuizRenderKey;
+    this._lastQuizRenderKey = key;
+    return isNew ? ' lm-quiz-anim' : '';
+  };
+
   LeadMagnetEngine.prototype._renderQuiz = function () {
     if (this.state.pendingInsight) { this._renderInsightScreen(); return; }
 
@@ -357,7 +368,7 @@
     var screen = this._findScreenForQuestion(q);
     var total = flat.length;
 
-    var wrap = el('div', { class: 'lm-quiz lm-quiz-anim' });
+    var wrap = el('div', { class: 'lm-quiz' + this._quizAnimClass('q' + this.state.qIndex) });
 
     var topbar = el('div', { class: 'lm-quiz-topbar' });
     topbar.appendChild(el('button', {
@@ -475,7 +486,7 @@
 
   LeadMagnetEngine.prototype._renderInsightScreen = function () {
     var self = this;
-    var wrap = el('div', { class: 'lm-quiz lm-quiz-anim' });
+    var wrap = el('div', { class: 'lm-quiz' + this._quizAnimClass('insight' + this.state.qIndex) });
     var body = el('div', { class: 'lm-quiz-body lm-insight-screen' });
     body.appendChild(el('div', { class: 'lm-insight-badge', text: 'Quick insight' }));
     body.appendChild(el('p', { class: 'lm-insight-copy', text: this.state.pendingInsight.copy }));

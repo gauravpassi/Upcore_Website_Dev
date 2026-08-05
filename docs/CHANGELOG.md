@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Fix jittery quiz re-render on every option click
+**Type:** fix
+**Files:** `lp/lead-magnet-engine.js`
+User reported the quiz "gitters a lot" after clicking each option. Cause: selecting a single-select option calls `_render()` immediately (to show the highlighted state) before the 280ms delayed advance to the next question — both that intermediate re-render and the real navigation rebuilt the same `.lm-quiz-anim` element, so the slide-in entrance animation played twice in quick succession on every click (same root cause would've hit multiselect toggling too). Fixed by tracking a `_lastQuizRenderKey` (`'q'+qIndex` or `'insight'+qIndex`) and only attaching the `lm-quiz-anim` class when that key actually changes — re-renders for the same question (selection highlight, multiselect toggle) skip the animation; real navigation (next question, back, insight interrupt) still plays it. Verified via direct class-presence checks before/after a click.
+
 ## 2026-08-05 — Lead-magnet quiz rebuilt as Typeform-style one-question-at-a-time flow
 **Type:** fix
 **Files:** `lp/lead-magnet-engine.js` (quiz rendering rewrite), `lp/governance-index.html` + `lp/ai-maturity-index.html` (quiz CSS + dropped now-unused `progressStyle`/`screensPerView` config fields)

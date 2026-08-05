@@ -83,21 +83,39 @@ a{text-decoration:none;color:inherit;}
 .lm-intro{text-align:center;padding-top:60px;}
 .lm-intro .lm-btn{margin-top:20px;}
 
-.lm-progress-screens{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#8e8e93;margin-bottom:24px;}
+/* ── Typeform-style one-question-at-a-time quiz ─────────────────────── */
+.lm-quiz{min-height:78vh;display:flex;flex-direction:column;}
+@keyframes lmQuizIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.lm-quiz-anim{animation:lmQuizIn .38s cubic-bezier(.2,.7,.3,1);}
 
-.lm-question-card{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:14px;padding:28px;}
-.lm-question{margin-bottom:22px;}
-.lm-question:last-of-type{margin-bottom:0;}
-.lm-question-text{font-size:17px;font-weight:700;margin-bottom:16px;line-height:1.4;color:#0a0a0a;}
-.lm-options{display:flex;flex-direction:column;gap:8px;}
-.lm-option{text-align:left;background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;padding:13px 16px;font-size:14px;color:#0a0a0a;cursor:pointer;transition:all .15s;}
-.lm-option:hover{border-color:#0ABFCC;background:rgba(10,191,204,.04);}
+.lm-quiz-topbar{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
+.lm-quiz-back{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid #e5e7eb;background:#fff;color:#45515e;font-size:16px;line-height:1;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
+.lm-quiz-back:hover{border-color:#0ABFCC;color:#089AAA;}
+.lm-quiz-back-hidden{visibility:hidden;pointer-events:none;}
+.lm-quiz-progress-track{flex:1;height:4px;border-radius:2px;background:#e5e7eb;overflow:hidden;}
+.lm-quiz-progress-fill{height:100%;background:#0ABFCC;border-radius:2px;transition:width .35s ease;}
+.lm-quiz-count{flex-shrink:0;font-size:12px;font-weight:600;color:#8e8e93;}
+
+.lm-quiz-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:640px;margin:0 auto;width:100%;padding:48px 0;}
+.lm-quiz-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#089AAA;margin-bottom:16px;}
+.lm-question{margin-bottom:0;}
+.lm-question-text{font-size:clamp(22px,3.6vw,32px);font-weight:700;margin-bottom:28px;line-height:1.35;letter-spacing:-.3px;color:#0a0a0a;}
+
+.lm-options{display:flex;flex-direction:column;gap:10px;}
+.lm-option{display:flex;align-items:center;gap:14px;text-align:left;background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;font:inherit;font-size:15px;color:#0a0a0a;cursor:pointer;transition:all .15s;}
+.lm-option:hover{border-color:#0ABFCC;background:rgba(10,191,204,.04);transform:translateX(4px);}
 .lm-option-selected{border-color:#0ABFCC;background:rgba(10,191,204,.08);}
-.lm-continue-btn{margin-top:20px;width:100%;}
+.lm-opt-num{flex-shrink:0;width:28px;height:28px;border-radius:7px;border:1px solid #d7dbe0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#8e8e93;transition:all .15s;}
+.lm-option-selected .lm-opt-num{background:#0ABFCC;border-color:#0ABFCC;color:#fff;}
+.lm-opt-text{flex:1;}
+.lm-opt-check{flex-shrink:0;color:#089AAA;font-weight:700;font-size:18px;}
+.lm-continue-btn{margin-top:24px;width:100%;}
+.lm-quiz-hint{margin-top:20px;font-size:11px;color:#8e8e93;}
 
-.lm-insight{background:rgba(10,191,204,.05);border:1px solid rgba(10,191,204,.18);border-radius:10px;padding:16px 18px;margin-top:16px;}
-.lm-insight-badge{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#089AAA;margin-bottom:6px;}
-.lm-insight p{font-size:13px;color:#45515e;line-height:1.6;}
+/* Insight interrupt (its own full screen, not a stacked card) */
+.lm-insight-screen{text-align:center;align-items:center;}
+.lm-insight-badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#089AAA;margin-bottom:18px;}
+.lm-insight-copy{font-size:19px;line-height:1.65;color:#0a0a0a;max-width:520px;margin:0 0 32px;}
 
 .lm-score-blur{font-size:48px;font-weight:700;color:#c4c9d4;filter:blur(6px);text-align:center;margin:20px 0;}
 .lm-weak-line,.lm-peer-line{font-size:14px;color:#45515e;text-align:center;margin:14px 0;line-height:1.6;}
@@ -144,8 +162,6 @@ var NICHE_CONFIG = {
   niche: 'ai-maturity-index',
   indexLabel: 'Maturity Index',
   visualFramework: 'scorecard',
-  progressStyle: 'screens',
-  screensPerView: 2,
   bookingHref: '/assessment',
   chart: { type: 'maturityCurve', stages: ['Fragmented','Emerging','Aligning','Orchestrated'], radarAxisLabels: ['Vision','Ownership','Inventory','Coordination','ROI','Budget','Visibility','Tooling','Adoption','Oversight'] },
   softDisqualifyQuestions: ['d2'],

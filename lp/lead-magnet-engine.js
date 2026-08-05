@@ -119,7 +119,8 @@
     this.root = document.getElementById('lm-root');
     this.state = {
       screen: 'hero',
-      screenIndex: 0,
+      qIndex: 0,
+      pendingInsight: null,
       answers: {},
       score: null,
       apiResult: null,
@@ -127,6 +128,7 @@
       insightsShown: {}
     };
     this._buildStickyCTA();
+    this._bindKeyboard();
     this._render();
   }
 
@@ -294,72 +296,99 @@
 
   LeadMagnetEngine.prototype._beginQuestions = function () {
     this.state.screen = 'quiz';
-    this.state.screenIndex = 0;
+    this.state.qIndex = 0;
+    this.state.pendingInsight = null;
     this.pushEvent('start');
     this._render();
   };
 
-  LeadMagnetEngine.prototype._renderQuiz = function () {
-    var self = this, c = this.config;
-    var screen = c.screens[this.state.screenIndex];
-    var wrap = el('div', { class: 'lm-quiz' });
-
-    wrap.appendChild(this._buildProgress());
-
-    if (c.progressStyle === 'chips') {
-      var log = el('div', { class: 'lm-scan-log' });
-      Object.keys(this.state.answers).forEach(function (qid) {
-        var q = findQuestion(c, qid);
-        var a = self.state.answers[qid];
-        if (!q || q.type === 'multiselect') return;
-        var line = q.logPrefix ? q.logPrefix : q.dimId.toUpperCase();
-        var val = a && q.options ? q.options[a.index] : '';
-        log.appendChild(el('div', { class: 'lm-scan-line lm-mono', text: '> ' + line + '.' + q.id.toUpperCase() + ': ' + val }));
-      });
-      if (log.children.length) wrap.appendChild(log);
+  // Flat, ordered list of every question across every screen — the quiz now
+  // shows exactly one question per view (Typeform-style), so screens are
+  // only used as metadata (category label, insight-interrupt triggers).
+  LeadMagnetEngine.prototype._findScreenForQuestion = function (q) {
+    var screens = this.config.screens;
+    for (var i = 0; i < screens.length; i++) {
+      if (screens[i].questions.indexOf(q) !== -1) return screens[i];
     }
-
-    var card = el('div', { class: 'lm-question-card' });
-    screen.questions.forEach(function (q) {
-      card.appendChild(self._buildQuestionBlock(q));
-    });
-
-    if (c.screensPerView > 1) {
-      var allAnswered = screen.questions.every(function (q) {
-        return q.type === 'multiselect' ? true : !!self.state.answers[q.id];
-      });
-      var continueBtn = el('button', {
-        class: 'lm-btn lm-btn-primary lm-continue-btn', text: 'Continue',
-        disabled: allAnswered ? null : 'disabled',
-        'data-gtm-cta': 'continue', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'quiz',
-        onclick: function () { self._advanceScreen(); }
-      });
-      card.appendChild(continueBtn);
-    }
-
-    wrap.appendChild(card);
-    this.root.appendChild(wrap);
-
-    var insight = screen.insightAfter;
-    if (insight && this.state.answers[insight.afterQuestionId] && !this.state.insightsShown[screen.id]) {
-      this.state.insightsShown[screen.id] = true;
-      this.root.appendChild(this._buildInsightInterrupt(insight));
-    }
+    return null;
   };
 
-  LeadMagnetEngine.prototype._buildProgress = function () {
-    var c = this.config;
-    if (c.progressStyle === 'screens') {
-      return el('div', { class: 'lm-progress lm-progress-screens', text: 'Screen ' + (this.state.screenIndex + 1) + ' of ' + c.screens.length });
+  LeadMagnetEngine.prototype._bindKeyboard = function () {
+    var self = this;
+    document.addEventListener('keydown', function (e) {
+      if (self.state.screen !== 'quiz') return;
+      if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+
+      if (self.state.pendingInsight) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); self._dismissInsight(); }
+        else if (e.key === 'Backspace') { e.preventDefault(); self.state.pendingInsight = null; self._render(); }
+        return;
+      }
+
+      var flat = allQuestions(self.config);
+      var q = flat[self.state.qIndex];
+      if (!q) return;
+
+      if (e.key === 'Backspace') {
+        e.preventDefault();
+        self._goBack();
+        return;
+      }
+      if (e.key === 'Enter' && q.type === 'multiselect') {
+        e.preventDefault();
+        self._afterQuestionAnswered(q);
+        return;
+      }
+      var num = parseInt(e.key, 10);
+      if (!isNaN(num) && num >= 1 && num <= q.options.length) {
+        e.preventDefault();
+        if (q.type === 'multiselect') self._toggleMultiselect(q, num - 1);
+        else self._answerQuestion(q, num - 1);
+      }
+    });
+  };
+
+  LeadMagnetEngine.prototype._renderQuiz = function () {
+    if (this.state.pendingInsight) { this._renderInsightScreen(); return; }
+
+    var self = this, c = this.config;
+    var flat = allQuestions(c);
+    var q = flat[this.state.qIndex];
+    var screen = this._findScreenForQuestion(q);
+    var total = flat.length;
+
+    var wrap = el('div', { class: 'lm-quiz lm-quiz-anim' });
+
+    var topbar = el('div', { class: 'lm-quiz-topbar' });
+    topbar.appendChild(el('button', {
+      class: 'lm-quiz-back' + (this.state.qIndex === 0 ? ' lm-quiz-back-hidden' : ''),
+      html: '&larr;', 'aria-label': 'Previous question',
+      onclick: function () { self._goBack(); }
+    }));
+    var track = el('div', { class: 'lm-quiz-progress-track' });
+    track.appendChild(el('div', { class: 'lm-quiz-progress-fill', style: 'width:' + Math.round((this.state.qIndex / total) * 100) + '%' }));
+    topbar.appendChild(track);
+    topbar.appendChild(el('span', { class: 'lm-quiz-count', text: (this.state.qIndex + 1) + ' / ' + total }));
+    wrap.appendChild(topbar);
+
+    var body = el('div', { class: 'lm-quiz-body' });
+    if (screen) body.appendChild(el('div', { class: 'lm-quiz-eyebrow', text: screen.chipLabel || screen.theme || '' }));
+    body.appendChild(this._buildQuestionBlock(q));
+
+    if (q.type === 'multiselect') {
+      var continueBtn = el('button', {
+        class: 'lm-btn lm-btn-primary lm-continue-btn', text: 'Continue',
+        'data-gtm-cta': 'continue', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'quiz',
+        onclick: function () { self._afterQuestionAnswered(q); }
+      });
+      body.appendChild(continueBtn);
+      body.appendChild(el('p', { class: 'lm-quiz-hint', text: 'Select any that apply, then press Enter or click Continue.' }));
+    } else {
+      body.appendChild(el('p', { class: 'lm-quiz-hint', text: 'Click an answer, or press 1–9 on your keyboard.' }));
     }
-    var wrap = el('div', { class: 'lm-progress lm-progress-chips' });
-    c.screens.forEach(function (s, i) {
-      var cls = 'lm-chip';
-      if (i < this.state.screenIndex) cls += ' lm-chip-done';
-      else if (i === this.state.screenIndex) cls += ' lm-chip-active';
-      wrap.appendChild(el('span', { class: cls, text: s.chipLabel || s.id }));
-    }, this);
-    return wrap;
+
+    wrap.appendChild(body);
+    this.root.appendChild(wrap);
   };
 
   LeadMagnetEngine.prototype._buildQuestionBlock = function (q) {
@@ -371,16 +400,23 @@
       if (q.type === 'multiselect') {
         var selected = self.state.answers[q.id] && self.state.answers[q.id].indices.indexOf(idx) !== -1;
         var btn = el('button', {
-          class: 'lm-option lm-option-multi' + (selected ? ' lm-option-selected' : ''), text: optText,
+          class: 'lm-option lm-option-multi' + (selected ? ' lm-option-selected' : ''),
           onclick: function () { self._toggleMultiselect(q, idx); }
-        });
+        }, [
+          el('span', { class: 'lm-opt-num', text: String(idx + 1) }),
+          el('span', { class: 'lm-opt-text', text: optText }),
+          el('span', { class: 'lm-opt-check', html: selected ? '&check;' : '' })
+        ]);
         opts.appendChild(btn);
       } else {
         var isSelected = self.state.answers[q.id] && self.state.answers[q.id].index === idx;
         opts.appendChild(el('button', {
-          class: 'lm-option' + (isSelected ? ' lm-option-selected' : ''), text: optText,
+          class: 'lm-option' + (isSelected ? ' lm-option-selected' : ''),
           onclick: function () { self._answerQuestion(q, idx); }
-        }));
+        }, [
+          el('span', { class: 'lm-opt-num', text: String(idx + 1) }),
+          el('span', { class: 'lm-opt-text', text: optText })
+        ]));
       }
     });
     block.appendChild(opts);
@@ -390,16 +426,9 @@
   LeadMagnetEngine.prototype._answerQuestion = function (q, idx) {
     this.state.answers[q.id] = { index: idx };
     this.pushEvent('questionAnswered', { question_id: q.id, dimension: q.dimId });
-    var screen = this.config.screens[this.state.screenIndex];
+    this._render(); // show the selected state immediately, then advance
     var self = this;
-    var allAnswered = screen.questions.every(function (sq) {
-      return sq.type === 'multiselect' ? true : !!self.state.answers[sq.id];
-    });
-    if (this.config.screensPerView === 1 && allAnswered) {
-      setTimeout(function () { self._advanceScreen(); }, 260);
-    } else {
-      this._render();
-    }
+    setTimeout(function () { self._afterQuestionAnswered(q); }, 280);
   };
 
   LeadMagnetEngine.prototype._toggleMultiselect = function (q, idx) {
@@ -410,20 +439,53 @@
     this._render();
   };
 
-  LeadMagnetEngine.prototype._advanceScreen = function () {
-    if (this.state.screenIndex < this.config.screens.length - 1) {
-      this.state.screenIndex++;
+  // Called once a question has a final answer — checks for an insight
+  // interrupt tied to this question before moving to the next one.
+  LeadMagnetEngine.prototype._afterQuestionAnswered = function (q) {
+    var screen = this._findScreenForQuestion(q);
+    var insight = screen && screen.insightAfter;
+    if (insight && insight.afterQuestionId === q.id && !this.state.insightsShown[screen.id]) {
+      this.state.insightsShown[screen.id] = true;
+      this.state.pendingInsight = insight;
+      this._render();
+      return;
+    }
+    this._advanceQuestion();
+  };
+
+  LeadMagnetEngine.prototype._advanceQuestion = function () {
+    var total = allQuestions(this.config).length;
+    if (this.state.qIndex < total - 1) {
+      this.state.qIndex++;
       this._render();
     } else {
       this._goToTeaser();
     }
   };
 
-  LeadMagnetEngine.prototype._buildInsightInterrupt = function (insight) {
-    return el('div', { class: 'lm-insight' }, [
-      el('div', { class: 'lm-insight-badge', text: 'Insight' }),
-      el('p', { text: insight.copy })
-    ]);
+  LeadMagnetEngine.prototype._goBack = function () {
+    if (this.state.pendingInsight) { this.state.pendingInsight = null; this._render(); return; }
+    if (this.state.qIndex > 0) { this.state.qIndex--; this._render(); }
+  };
+
+  LeadMagnetEngine.prototype._dismissInsight = function () {
+    this.state.pendingInsight = null;
+    this._advanceQuestion();
+  };
+
+  LeadMagnetEngine.prototype._renderInsightScreen = function () {
+    var self = this;
+    var wrap = el('div', { class: 'lm-quiz lm-quiz-anim' });
+    var body = el('div', { class: 'lm-quiz-body lm-insight-screen' });
+    body.appendChild(el('div', { class: 'lm-insight-badge', text: 'Quick insight' }));
+    body.appendChild(el('p', { class: 'lm-insight-copy', text: this.state.pendingInsight.copy }));
+    body.appendChild(el('button', {
+      class: 'lm-btn lm-btn-primary', text: 'Continue',
+      'data-gtm-cta': 'insight-continue', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'quiz',
+      onclick: function () { self._dismissInsight(); }
+    }));
+    wrap.appendChild(body);
+    this.root.appendChild(wrap);
   };
 
   // ── Teaser (email gate) ─────────────────────────────────────────────────

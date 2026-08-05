@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Lead-magnet quiz rebuilt as Typeform-style one-question-at-a-time flow
+**Type:** fix
+**Files:** `lp/lead-magnet-engine.js` (quiz rendering rewrite), `lp/governance-index.html` + `lp/ai-maturity-index.html` (quiz CSS + dropped now-unused `progressStyle`/`screensPerView` config fields)
+User feedback on the shipped quiz UI: **"Design wise terrible, make it more interactive questionnaire, beautiful design, more like typeform questionnaire."** Replaced the old grouped-screens-with-a-scan-log-or-Continue-button flow with a proper one-question-at-a-time experience on both niches: thin animated progress bar + "N / total" counter at the top, a `←` back button (re-shows the previous answer, editable), a category eyebrow label above each question, numbered option rows (1–9) with a hover micro-shift and a fade/slide-in transition between questions. Keyboard navigation added — press 1–9 to select (single-select auto-advances after a brief highlight, matching the click behavior), Enter confirms a multiselect question and continues, Backspace goes to the previous question. Insight interrupts (previously a small card stacked below the question) are now their own centered full-screen interstitial, shown at the same trigger point as before (right after the specific question that earns them is answered) via a new `state.pendingInsight` + `_dismissInsight()` mechanism, so their exact timing is unchanged.
+
+Internally this replaced screen-grouped rendering (`state.screenIndex` + `config.screens[i].questions.forEach`) with a flat question list (`allQuestions(config)` — already existed for scoring, now reused for the UI) driven by `state.qIndex`; `_findScreenForQuestion()` looks up a question's parent screen only for its category label and insight-interrupt config. `config.progressStyle` and `config.screensPerView` are no longer read by the engine and were removed from both pages' `NICHE_CONFIG` objects as dead config. One side effect, not a regression: `ai-maturity-index.html`'s 2-questions-per-screen grouping is gone — every question is now its own screen on both niches, which is the correct Typeform-style behavior the user asked for, not an accidental loss of the original design (the original 2-per-screen grouping was itself the layout being replaced).
+
+Verified end-to-end in-browser on both pages: full 10-question click-through, keyboard-only click-through (number keys + Enter + Backspace), the multiselect question (doesn't auto-advance, Enter/Continue confirms), and both niches' insight interrupts firing at the correct question.
+
 ## 2026-08-05 — Lead-magnet backend: drop Vercel KV, Sheet-computed peer stats + FormSubmit team notification + branded PDF
 **Type:** feature, fix
 **Files:** `api/lead-magnet-submit.js`, `lp/lead-magnet-engine.js` (`_generatePdf` + branding helpers), Apps Script source (given to user, not committed)

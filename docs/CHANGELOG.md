@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Fix "Book a Governance Review" buttons pointing to /assessment instead of Calendly
+**Type:** fix
+**Files:** `about.html`, `ai-engineering-governance.html`, `index.html`, `pricing.html`, `platform.html`, `privacy.html`, `terms.html`
+Sitewide audit per user request: every "Book a Governance Review" button should open the Calendly popup (`href="#book-governance"`, caught by `chat-widget.js`'s delegated click listener), not navigate to `/assessment`. Nav CTAs were already consistent (65+ instances, all correct) — the inconsistency was in 10 body/hero/final-CTA buttons across 5 pages that had drifted to `/assessment` at various points: `about.html` (hero, cta_final), `ai-engineering-governance.html` (journey, cta), `index.html` (hero, cta), `pricing.html` (hero, cta), `platform.html` (tab-governance secondary CTA, cta_final — the last one spans multiple lines with an inline SVG icon, easy to miss with a naive single-line search). All 10 switched to `href="#book-governance"`. Verified via `grep` that zero `data-gtm-cta="book-a-governance-review"` buttons still point to `/assessment` anywhere in the repo, and confirmed live in-browser that clicking a fixed button opens the Calendly iframe modal.
+
+Also fixed two stale content references found during the same audit, left over from this session's earlier Google Calendar → Calendly switch: `privacy.html`'s "Calendar bookings" section still described the flow as "Google Calendar Appointments"; `terms.html`'s third-party-links list still named "Google Calendar" instead of "Calendly". Both corrected to describe the actual current integration.
+
+**Not fixed in this pass, flagged separately:** `privacy.html`'s "AI chat with Kai" section still describes messages as being sent to Anthropic — stale since `chat-widget.js` was revamped into a client-side FAQ menu earlier this session with no AI backend call. Out of scope for this button audit; spun off as its own task.
+
 ## 2026-08-05 — Wire real Google Ads conversion labels for Assessment Complete
 **Type:** feature
 **Files:** `lp/lead-magnet-engine.js`, `lp/governance-index.html`, `lp/ai-maturity-index.html`

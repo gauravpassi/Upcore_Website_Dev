@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-05 — Bump lead-magnet-engine.js cache-buster (client-side notification fix wasn't loading)
+**Type:** fix
+**Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`
+The previous entry's client-side notification fix was live in the deployed file but not actually reaching visitors: `lead-magnet-engine.js?v=1` had never been bumped despite several substantive edits to that file across this session (jitter fix, GA4 events, Typeform redesign, this notification fix) — browsers/Vercel's CDN kept serving the stale cached copy. Confirmed directly on the live production page: `typeof engine._sendTeamNotification` was `undefined` even after the new code was deployed, because the cached script simply didn't have that method yet. Same cache-buster discipline `CLAUDE.md` already documents for `chat-widget.js` applies here too — now noted for this file as well. Bumped `?v=1` → `?v=2` on both pages.
+
 ## 2026-08-05 — Real fix: move lead-magnet team notification to client-side (Cloudflare blocks Vercel server-side)
 **Type:** fix
 **Files:** `api/lead-magnet-submit.js`, `lp/lead-magnet-engine.js`

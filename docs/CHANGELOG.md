@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-06 — Diagnose missing saswata@ notification on lp/maturity-review.html (FormSubmit activation gotcha, not a code bug)
+**Type:** decision, content
+**Files:** `CLAUDE.md`, `docs/CONVENTIONS.md`
+User reported saswata@upcoretechnologies.com didn't receive a real production submission from `lp/maturity-review.html`. Re-verified every FormSubmit.co call site sitewide (8 locations, up from the previously-documented 5 — `lp/maturity-review.html`, `lp/lead-magnet-engine.js`, and `insights/index.html`'s newsletter form were added in recent sessions and hadn't been folded into the CLAUDE.md/CONVENTIONS.md count) — all 8 correctly target `gaurav@upcoretechnologies.com` with `_cc: saswata@upcoretechnologies.com`. No code defect found.
+
+Diagnosed as FormSubmit's documented activation behavior instead: a brand-new (recipient, subject) combination's first-ever submission is silently withheld — no error, no bounce — until someone clicks FormSubmit's one-time "Activate your form" confirmation email, and this applies to the CC'd address independently of the primary recipient. `lp/maturity-review.html` only shipped this session, so the reported submission was very likely that page's first-ever real one. Recommended the user check saswata@'s inbox (and spam) for the activation email and confirm it; no further submissions from that page should need it once clicked. Documented the gotcha in both `CLAUDE.md` and `docs/CONVENTIONS.md` §8 as a required post-launch step for any future new FormSubmit-using page: do one real test submission and confirm both inboxes receive it before considering the form done.
+
 ## 2026-08-06 — Solutions nav dropdown + homepage cross-link + sitewide consistency audit fixes
 **Type:** feature, fix
 **Files:** all 71 nav-bearing pages (bulk), `index.html`, `about.html`, `platform.html`, `pricing.html`, `ai-engineering-governance.html`, `ai-adoption-strategy.html`, `docs/DESIGN-SYSTEM.md`, `docs/FEATURES.md`

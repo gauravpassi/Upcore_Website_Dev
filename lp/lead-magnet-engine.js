@@ -158,7 +158,6 @@
   LeadMagnetEngine.prototype._render = function () {
     this.root.innerHTML = '';
     if (this.state.screen === 'hero') this._renderHero();
-    else if (this.state.screen === 'intro') this._renderIntro();
     else if (this.state.screen === 'quiz') this._renderQuiz();
     else if (this.state.screen === 'teaser') this._renderTeaser();
     else if (this.state.screen === 'full') this._renderFull();
@@ -462,23 +461,10 @@
     return total;
   };
 
-  // ── Intro screen (between Hero and the first question) ─────────────────
+  // Hero CTA jumps straight into the first question — no separate intro
+  // screen, which only repeated the hero's own headline/subhead.
   LeadMagnetEngine.prototype._startQuiz = function () {
-    this.state.screen = 'intro';
-    this._render();
-  };
-
-  LeadMagnetEngine.prototype._renderIntro = function () {
-    var self = this, intro = this.config.copy.intro;
-    var wrap = el('div', { class: 'lm-intro' });
-    wrap.appendChild(el('h1', { class: 'lm-h1', text: intro.headline }));
-    wrap.appendChild(el('p', { class: 'lm-sub', text: intro.subhead }));
-    wrap.appendChild(el('button', {
-      class: 'lm-btn lm-btn-primary', text: intro.cta,
-      'data-gtm-cta': slugify(intro.cta), 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'intro',
-      onclick: function () { self._beginQuestions(); }
-    }));
-    this.root.appendChild(wrap);
+    this._beginQuestions();
   };
 
   LeadMagnetEngine.prototype._beginQuestions = function () {

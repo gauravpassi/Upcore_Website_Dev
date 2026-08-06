@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-06 — Remove redundant intro screen from both lead-magnet quizzes
+**Type:** fix
+**Files:** `lp/lead-magnet-engine.js` (?v=6), `lp/governance-index.html`, `lp/ai-maturity-index.html`
+User feedback: the hero CTA led to a separate "intro" screen that just re-showed the page title + a one-line restatement of the hero's own headline/subhead behind a second "Start" button — a redundant extra click before the quiz that already exists one click away. `_startQuiz()` now calls `_beginQuestions()` directly; `_renderIntro()`, the `'intro'` render branch, `.lm-intro` CSS, and each page's now-unused `copy.intro` config block were removed rather than left as dead code.
+
 ## 2026-08-06 — Visual overhaul of both lead-magnet landing pages (enterprise-grade, light theme, animated framework preview)
 **Type:** feature
 **Files:** `lp/lead-magnet-engine.js` (?v=5), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `docs/CHANGELOG.md`

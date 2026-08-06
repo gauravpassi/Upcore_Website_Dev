@@ -172,8 +172,8 @@ a{text-decoration:none;color:inherit;}img{max-width:100%;}
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
 .nav-logo img{height:60px;width:auto;}
-.nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
-.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0;}
+.nav-links a{display:inline-flex;align-items:center;padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
 .nav-dropdown-wrap{position:relative;}
 .nav-dropdown-caret{font-size:9px;opacity:.55;margin-left:2px;transition:transform .15s;}
@@ -184,6 +184,8 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;}
 .nav-dropdown-menu a:hover{background:rgba(255,255,255,.07);color:#fff;}
 .nav-dd-desc{display:block;font-size:11px;color:rgba(255,255,255,.35);font-weight:400;margin-top:2px;white-space:normal;}
+.nav-more-wrap{display:none;}
+@media(max-width:1240px) and (min-width:769px){.nav-item-extra{display:none;}.nav-more-wrap{display:block;}}
 @media(max-width:768px){.nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;background:none;border:none;padding:0 0 0 14px;margin-top:0;box-shadow:none;}.nav-dropdown-caret{display:none;}}
 .nav-links a.active{color:#ffffff;font-weight:600;}
 .nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
@@ -286,16 +288,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li><li class="nav-dropdown-wrap"><a href="/ai-engineering-governance" class="nav-dropdown-trigger">Solutions<span class="nav-dropdown-caret">&#9662;</span></a>
+    <li><a href="/">Home</a></li>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/ai-adoption-strategy">AI Strategy</a></li>
+    <li><a href="/platform">AI Agents</a></li>
+    <li class="nav-item-extra"><a href="/pricing">Pricing</a></li>
+    <li class="nav-item-extra"><a href="/industries">Industries</a></li>
+    <li class="nav-item-extra"><a href="/insights">Resources</a></li>
+    <li class="nav-item-extra"><a href="/about">About</a></li>
+    <li class="nav-dropdown-wrap nav-more-wrap"><a href="#" class="nav-dropdown-trigger" onclick="return false;">More<span class="nav-dropdown-caret">&#9662;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/ai-engineering-governance">AI Engineering Governance<span class="nav-dd-desc">Govern AI-generated code & spend</span></a>
-        <a href="/ai-adoption-strategy">AI Strategy & Adoption<span class="nav-dd-desc">Turn scattered AI pilots into ROI</span></a>
+        <a href="/pricing">Pricing</a>
+        <a href="/industries">Industries</a>
+        <a href="/insights">Resources</a>
+        <a href="/about">About</a>
       </div>
     </li>
-    <li><a href="/platform">AI Agents</a></li><li><a href="/pricing">Pricing</a></li>
-    <li><a href="/industries">Industries</a></li>
-    <li><a href="/insights">Resources</a></li>
-    <li><a href="/about">About</a></li>
   </ul>
   <div class="nav-right">
     <a data-gtm-cta="book-a-governance-review" data-gtm-cta-type="primary" data-gtm-cta-section="nav" href="#book-governance" class="nav-cta">Book a Governance Review</a>

@@ -264,7 +264,7 @@ The chat widget (`/chat-widget.js`) ships its own scoped CSS prefixed with `#upc
 
 Two Python scripts in `upcore-website/`:
 
-- **`propagate_design.py`** — replaces `:root`, nav CSS, and nav HTML on all 65 pages. Run after any change to the canonical nav or root tokens. SKIP set: `index.html`, `ai-engineering-governance.html`, `sdlc-agent.html`, `platform.html`, `about.html` (manually redesigned).
+- **`propagate_design.py`** — replaces `:root`, nav CSS, and nav HTML on all 65 pages. Run after any change to the canonical nav or root tokens. SKIP set: `index.html`, `ai-engineering-governance.html`, `ai-adoption-strategy.html`, `sdlc-agent.html`, `platform.html`, `about.html` (manually redesigned).
 - **`fix_all.py`** — comprehensive fix pass: footer tagline/hover, grad-text → `<strong>`, button class migration, insights article CSS injection.
 
 ## 8. Do / don't

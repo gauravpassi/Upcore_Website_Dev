@@ -12,6 +12,19 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-06 — New AI Adoption Strategy flagship page (Niche 2) + AI Engineering Governance enrichment from Grand Slam Offer docs
+**Type:** feature, fix, content
+**Files:** `ai-adoption-strategy.html` (new), `ai-engineering-governance.html`, `lp/ai-maturity-index.html`, `sitemap.xml`, footer Solutions column on 8 hub pages
+User supplied 5 strategy documents (an `AIGOV_Final_Output_Updated_v3.xlsx` master sheet, two "Grand Slam Offer" drafts for Niche 1/Niche 2, and two LinkedIn/Apollo prospecting playbooks) formalizing the two-niche split the lead-magnet funnels already implement structurally. The offer docs proposed a much higher-ticket pricing model ($5K–$195K, inconsistent even within the same document) — explicitly **rejected**; kept "starting from $1,999/month" everywhere, both niches. The docs' real value was the sharper pain-point framing, the Day-14/30/60/90 (Niche 1) and 3-phase Diagnose/Design/Deploy (Niche 2) program structure, and the hire-cost comparison — not their price tags or 5-bonus dollar-value stacks (explicitly rejected as inconsistent with this site's tone; deliverables folded into program substance instead, no invented dollar figures).
+
+Built **`ai-adoption-strategy.html`** — a new full flagship page for Niche 2 (AI Strategy & Adoption), mirroring `ai-engineering-governance.html`'s section architecture and `<style>` block exactly (added to `docs/DESIGN-SYSTEM.md` §7's `propagate_design.py` SKIP set). 3-phase framework (Diagnose & Decide / Design & De-Risk / Deploy & Prove) instead of governance's 5-layer one. No incidents-equivalent section and no monetized breach-cost stack — no real citable source exists for this niche, so those blocks were skipped rather than fabricated (only the MIT NANDA 95%-pilot-failure stat, already used in the quiz, and the already-approved $400K–$750K CAIO-hire and $500K+ Big-4 figures are reused). All CTAs route into the existing `lp/ai-maturity-index.html` quiz / `lp/maturity-review.html` booking funnel, **not** `#book-governance` (that opens the wrong, Niche-1-framed Calendly modal). No new nav slot — matches the `fde-engineers.html` precedent.
+
+Enriched `ai-engineering-governance.html`: 4 pain cards (was 3, added "No Inventory") each now carry a sharper first-person quote + a solution-title tag; L1 and L4 framework layers gained a capability each (closing real gaps — L1 had nothing about *what AI exists*, L4 had one fewer capability than every other layer); added the previously-missing Day-14 policy-live milestone to the 90-Day Journey, FAQ, and FAQPage JSON-LD; added a new "What exactly are you guaranteeing?" FAQ synthesizing the 4 conditional guarantees with an explicit non-guarantee closing line, and tightened the walk-away CTA copy to specify what's kept vs. owed.
+
+**Companion fix:** `lp/ai-maturity-index.html` (built the same day, earlier in this session) had 3 places quoting "$5K–$30K/mo" — a leftover from before today's pricing decision, and directly in this new page's CTA path. Fixed to "starting from $1,999/month" throughout.
+
+Added `/ai-adoption-strategy` to `sitemap.xml` and the footer Solutions column on 8 hub pages (`index.html`, `ai-engineering-governance.html`, `platform.html`, `pricing.html`, `fde-engineers.html`, `sdlc-agent.html`, `agent-builder.html`, `about.html`) — same rollout scope as the FDE Engineers page, not all 70 pages.
+
 ## 2026-08-06 — Fix CTA-mismatch: dedicated booking page for AI Maturity Index funnel + dead Calendly link fix on assessment.html
 **Type:** fix, feature
 **Files:** `assessment.html`, `lp/maturity-review.html` (new), `lp/ai-maturity-index.html`, `lp/lead-magnet-engine.js`

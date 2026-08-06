@@ -116,7 +116,6 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 html{scroll-behavior:smooth;}
 body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
-.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 /* HERO */
 .hero{
   min-height:100vh;padding:80px 48px 64px;
@@ -135,7 +134,7 @@ a{text-decoration:none;color:inherit;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.1);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;}
 .hero-badge .live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.8s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(74,222,128,.4);}50%{opacity:.7;box-shadow:0 0 0 6px rgba(74,222,128,0);}}
-.hero h1{font-size:clamp(32px,4.5vw,58px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:22px;}
+.hero h1{font-size:clamp(32px,4.5vw,58px);font-weight:700;letter-spacing:-2.5px;line-height:1.05;margin-bottom:22px;}
 .hero-sub{font-size:18px;color:var(--txt2);line-height:1.75;margin-bottom:16px;max-width:520px;}
 .hero-hook{font-size:15px;color:var(--teal);font-style:italic;padding:14px 18px;border-left:3px solid var(--teal);background:rgba(10,191,204,.05);border-radius:0 10px 10px 0;margin-bottom:36px;max-width:520px;}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px;}
@@ -146,7 +145,7 @@ a{text-decoration:none;color:inherit;}
 .gov-badge-band { display:flex; align-items:flex-start; gap:10px; background:rgba(10,191,204,.05); border-left:3px solid #0ABFCC; border-radius:0 8px 8px 0; padding:11px 15px; font-size:.78rem; color:var(--txt2); line-height:1.55; margin-bottom:24px; }
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
 .hstat{display:flex;flex-direction:column;}
-.hstat-num{font-size:26px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;}
+.hstat-num{font-size:26px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;}
 .hstat-lbl{font-size:11px;color:var(--txt3);font-weight:500;margin-top:1px;}
 
 /* BUILDER MOCKUP */
@@ -177,14 +176,14 @@ a{text-decoration:none;color:inherit;}
 .section-inner{max-width:1200px;margin:0 auto;}
 .section-bg2{background:var(--bg2);}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
-.section-title{font-size:clamp(26px,3.5vw,42px);font-weight:900;letter-spacing:-2px;line-height:1.1;margin-bottom:14px;}
+.section-title{font-size:clamp(26px,3.5vw,42px);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:14px;}
 .section-sub{font-size:16px;color:var(--txt2);line-height:1.75;max-width:600px;margin-bottom:48px;}
 .divider{height:1px;background:var(--border);margin:0;}
 
 /* HOW IT WORKS */
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .step-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;}
-.step-num{font-size:42px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-2px;line-height:1;margin-bottom:14px;}
+.step-num{font-size:42px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-2px;line-height:1;margin-bottom:14px;}
 .step-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
 .step-title{font-size:17px;font-weight:800;margin-bottom:8px;}
 .step-desc{font-size:13px;color:var(--txt2);line-height:1.65;}
@@ -206,7 +205,7 @@ a{text-decoration:none;color:inherit;}
 .ind-panel-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:32px;}
 .ind-meta{max-width:680px;}
 .ind-tag{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid var(--border);border-radius:100px;padding:5px 14px;margin-bottom:12px;}
-.ind-title{font-size:clamp(20px,2.5vw,30px);font-weight:900;letter-spacing:-1px;margin-bottom:10px;}
+.ind-title{font-size:clamp(20px,2.5vw,30px);font-weight:700;letter-spacing:-1px;margin-bottom:10px;}
 .ind-desc{font-size:15px;color:var(--txt2);line-height:1.75;}
 .ind-cta{flex-shrink:0;align-self:flex-end;}
 .agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
@@ -264,8 +263,8 @@ a{text-decoration:none;color:inherit;}
 .pricing-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px 28px;}
 .pricing-card.featured{border-color:var(--teal);background:linear-gradient(160deg,rgba(10,191,204,.07),rgba(8,145,178,.04));}
 .pricing-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.1);border:1px solid var(--border);border-radius:100px;padding:4px 12px;display:inline-block;margin-bottom:16px;}
-.pricing-name{font-size:22px;font-weight:900;margin-bottom:8px;}
-.pricing-price{font-size:32px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;margin-bottom:4px;}
+.pricing-name{font-size:22px;font-weight:700;margin-bottom:8px;}
+.pricing-price{font-size:32px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;margin-bottom:4px;}
 .pricing-note{font-size:12px;color:var(--txt3);margin-bottom:24px;}
 .pricing-feats{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
 .pf{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--txt2);}
@@ -274,7 +273,7 @@ a{text-decoration:none;color:inherit;}
 
 /* CTA SECTION */
 .cta-section{padding:100px 48px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(10,191,204,.08),transparent 60%),var(--bg);}
-.cta-title{font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-2.5px;line-height:1.1;margin-bottom:18px;}
+.cta-title{font-size:clamp(28px,4vw,52px);font-weight:700;letter-spacing:-2.5px;line-height:1.1;margin-bottom:18px;}
 .cta-sub{font-size:18px;color:var(--txt2);margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7;}
 .cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
 .btn-primary{display:inline-flex;align-items:center;gap:10px;background:#0ABFCC;color:#070B10;font-family:var(--ff);font-size:15px;font-weight:700;padding:16px 32px;border-radius:100px;transition:all .2s;}
@@ -304,12 +303,13 @@ footer p{font-size:12px;color:var(--txt3);}
 }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
-footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
-.footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-logo-wrap img{height:44px;width:auto;}
+.footer-tagline{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);line-height:1.55;margin-top:16px;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:6px;max-width:200px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
 .footer-soc-btn{
   display:flex;align-items:center;justify-content:center;
@@ -332,7 +332,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
 .footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:var(--teal);}
+.footer-links a:hover{color:#ffffff;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-certs { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:11px; font-weight:600; color:rgba(255,255,255,.28); letter-spacing:.3px; }
 .footer-cert-dot { color:rgba(255,255,255,.14); }
@@ -545,7 +545,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Catch Defects Early. Cut Procurement Costs. <strong>Move Faster.</strong></div>
           <div class="ind-desc">Manufacturing agents monitor quality, track procurement prices, accelerate feasibility studies, and keep your compliance certifications current — all running in the background while your team focuses on output.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-manufacturing" href="/industries/manufacturing" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-manufacturing" href="/industries/manufacturing" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -589,7 +589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Recover More Revenue. <strong>Handle More Customers.</strong></div>
           <div class="ind-desc">Ecommerce agents handle the work that falls through the cracks — cart abandonment, returns, review responses, inventory alerts. Your team can focus on growth, not operations.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-ecommerce" href="/industries/retail-d2c" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-ecommerce" href="/industries/retail-d2c" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -633,7 +633,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Higher Enrollment. Lower Dropout. <strong>Better Outcomes.</strong></div>
           <div class="ind-desc">EdTech agents support students 24/7, nurture prospects from inquiry to admission, and identify at-risk learners before they quit — all without adding headcount to your academic ops team.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-edtech" href="/industries/edtech" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-edtech" href="/industries/edtech" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -677,7 +677,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Faster Processing. Stronger Compliance. <strong>24/7 Customer Service.</strong></div>
           <div class="ind-desc">Banking agents handle KYC reviews, loan pre-qualification, customer FAQs, and compliance monitoring, reducing manual workload while keeping human oversight exactly where regulations require it.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-banking" href="/industries/banking-finance" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-banking" href="/industries/banking-finance" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -721,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Qualify More Leads. Chase Fewer Documents. <strong>Close Faster.</strong></div>
           <div class="ind-desc">Real estate agents handle the repetitive work across the buyer journey — from lead qualification and site visit scheduling to document collection and post-booking engagement. Your sales team only talks to buyers who matter.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-realestate" href="/industries/real-estate" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-realestate" href="/industries/real-estate" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -765,7 +765,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Process More Applications. Collect Better. <strong>Stay Compliant.</strong></div>
           <div class="ind-desc">NBFC agents handle the high-volume, high-stakes work across credit, collections, and compliance — operating within your risk policies while dramatically reducing manual effort per loan.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-nbfc" href="/industries/nbfc-loans" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-nbfc" href="/industries/nbfc-loans" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -809,7 +809,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Serve More Citizens. <strong>Reduce Grievance Backlogs.</strong></div>
           <div class="ind-desc">Government agents handle citizen queries, track grievances, verify documents, and communicate scheme updates at scale — improving service delivery without expanding the administrative headcount.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-govt" href="/industries/government" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-govt" href="/industries/government" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -853,7 +853,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Retain More. Onboard Faster. <strong>Grow Without Growing the Team.</strong></div>
           <div class="ind-desc">SaaS agents handle the touchpoints that determine whether a customer succeeds or churns — onboarding, feature adoption, churn signals, and renewal — running automatically across your entire user base.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-saas" href="/industries/saas-technology" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-saas" href="/industries/saas-technology" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -897,7 +897,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Better Patient Experience. Less Admin Burden. <strong>Zero Missed Follow-ups.</strong></div>
           <div class="ind-desc">Healthcare agents handle the administrative layer of patient care — appointments, billing queries, pre-consultation triage, and medication reminders — freeing your clinical staff to focus on care.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-healthcare" href="/industries/healthcare" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-healthcare" href="/industries/healthcare" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -941,7 +941,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Fewer Customer Calls. Faster Ops. <strong>Complete Visibility.</strong></div>
           <div class="ind-desc">Logistics agents proactively communicate shipment status, catch delays before customers notice, reconcile invoices, and collect proof-of-delivery — eliminating the manual work that slows down your ops floor.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-logistics" href="/industries/logistics" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-logistics" href="/industries/logistics" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -985,7 +985,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">Faster Reviews. Fewer Missed Deadlines. <strong>Better Client Communication.</strong></div>
           <div class="ind-desc">Legal agents handle the labour-intensive, repetitive work — contract review, research, document intake, deadline tracking. Your lawyers spend time on the work that actually requires a lawyer.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-legal" href="/industries/legal-compliance" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-legal" href="/industries/legal-compliance" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -1029,7 +1029,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="ind-title">More Leads Nurtured. Better Campaigns. <strong>Less Repetitive Work.</strong></div>
           <div class="ind-desc">Marketing agents automate the repetitive, high-volume work — lead nurturing sequences, campaign reporting, content briefs, event follow-ups. Your team focuses on strategy and creative, not execution.</div>
         </div>
-        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-marketing" href="/industries/marketing-agencies" class="btn btn-ghost">See Full Industry Page →</a></div>
+        <div class="ind-cta"><a data-gtm-cta="see-full-industry-page" data-gtm-cta-type="secondary" data-gtm-cta-section="panel-marketing" href="/industries/marketing-agencies" class="btn-ghost">See Full Industry Page →</a></div>
       </div>
       <div class="agents-grid">
         <div class="agent-card">
@@ -1293,7 +1293,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Written blueprint: what to build and expected outcomes</span></div>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Full sign-off before work starts</span></div>
         </div>
-        <a data-gtm-cta="start-here" data-gtm-cta-type="secondary" data-gtm-cta-section="engage" href="/assessment" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Start Here →</a>
+        <a data-gtm-cta="start-here" data-gtm-cta-type="secondary" data-gtm-cta-section="engage" href="/assessment" class="btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Start Here →</a>
       </div>
       <div class="pricing-card featured">
         <div class="pricing-badge">Phase 2</div>
@@ -1317,7 +1317,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>No lock-in - grow entirely at your own pace</span></div>
           <div class="pf"><div class="pf-check"><svg viewBox="0 0 9 9" fill="none"><path d="M1.5 4.5l2 2 4-4" stroke="#3ddcc4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Dedicated support throughout the partnership</span></div>
         </div>
-        <a data-gtm-cta="let-s-talk" data-gtm-cta-type="secondary" data-gtm-cta-section="engage" href="/assessment" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Let's Talk →</a>
+        <a data-gtm-cta="let-s-talk" data-gtm-cta-type="secondary" data-gtm-cta-section="engage" href="/assessment" class="btn-ghost" style="width:100%;justify-content:center;margin-top:24px;">Let's Talk →</a>
       </div>
     </div>
   </div>
@@ -1332,7 +1332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="invest-note">Exact pricing is scoped in your 45-minute discovery call, before you commit to anything. <a href="/pricing" style="color:var(--teal);font-weight:600;">See FAO governance pricing &rarr;</a></div>
     <div class="fde-callout">
       <div class="fde-callout-body"><strong>Want a dedicated engineer instead of a single project?</strong> A Forward Deployed Engineer (FDE) stays embedded on an ongoing monthly retainer &mdash; building, integrating, and maintaining agents as your needs grow. Starting from $2,499/month.</div>
-      <a data-gtm-cta="meet-the-fde" data-gtm-cta-type="secondary" data-gtm-cta-section="investment" href="/fde-engineers" class="btn btn-ghost" style="font-size:13px;padding:10px 20px;white-space:nowrap;flex-shrink:0;">Meet the FDE &rarr;</a>
+      <a data-gtm-cta="meet-the-fde" data-gtm-cta-type="secondary" data-gtm-cta-section="investment" href="/fde-engineers" class="btn-ghost" style="font-size:13px;padding:10px 20px;white-space:nowrap;flex-shrink:0;">Meet the FDE &rarr;</a>
     </div>
   </div>
 </section>
@@ -1344,7 +1344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="cta-sub">Book a 45-minute session. We identify your top agent opportunity, map the workflow, and give you a written plan you can act on.</p>
   <div class="cta-actions">
     <a data-gtm-cta="book-a-live-demo" data-gtm-cta-type="primary" data-gtm-cta-section="cta_final" href="/assessment" class="btn-primary">Book a Live Demo →</a>
-    <a data-gtm-cta="see-full-platform" data-gtm-cta-type="secondary" data-gtm-cta-section="cta_final" href="/platform" class="btn btn-ghost">See Full Platform</a>
+    <a data-gtm-cta="see-full-platform" data-gtm-cta-type="secondary" data-gtm-cta-section="cta_final" href="/platform" class="btn-ghost">See Full Platform</a>
   </div>
   <div style="margin-top:28px;font-size:13px;color:var(--txt3);">No pitch. No pressure. Just a clear plan you can act on.</div>
 </section>
@@ -1355,7 +1355,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Brand col -->
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
+      <p class="footer-tagline">Govern Your AI.<br />Then Build With It.</p>
+      <p class="footer-sub">Enterprise AI governance and agents,<br />built for your org.</p>
 
       <!-- Social icons -->
       <div class="footer-social-row">

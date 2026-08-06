@@ -134,7 +134,6 @@ img{display:block;max-width:100%;}
 }
 .info-eyebrow{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
 .info-panel h1{font-size:clamp(32px,3.5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px;}
-.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .info-panel p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:40px;}
 .info-includes{display:flex;flex-direction:column;gap:14px;margin-bottom:48px;}
 .info-item{display:flex;align-items:flex-start;gap:14px;}
@@ -143,7 +142,7 @@ img{display:block;max-width:100%;}
   background:var(--glow);border:1px solid var(--border);
   display:flex;align-items:center;justify-content:center;font-size:18px;
 }
-.info-text h4{font-size:14px;font-weight:700;margin-bottom:3px;}
+.info-text h3{font-size:14px;font-weight:700;margin-bottom:3px;}
 .info-text p{font-size:13px;color:var(--txt2);line-height:1.5;margin-bottom:0;}
 .info-note{
   padding:18px 22px;background:var(--glow);border:1px solid var(--border);
@@ -219,12 +218,13 @@ img{display:block;max-width:100%;}
   .form-row{grid-template-columns:1fr;}
   
 }
-footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
-.footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-logo-wrap img{height:44px;width:auto;}
+.footer-tagline{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);line-height:1.55;margin-top:16px;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:6px;max-width:200px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
 .footer-soc-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.5);text-decoration:none;transition:background .15s,border-color .15s,color .15s;}
 .footer-soc-btn:hover{background:rgba(10,191,204,0.10);border-color:rgba(10,191,204,0.28);color:var(--teal);}
@@ -235,7 +235,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
 .footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:var(--teal);}
+.footer-links a:hover{color:#ffffff;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-certs { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:11px; font-weight:600; color:rgba(255,255,255,.28); letter-spacing:.3px; }
 .footer-cert-dot { color:rgba(255,255,255,.14); }
@@ -315,28 +315,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="info-item">
           <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div class="info-text">
-            <h4>AI Risk Surface Mapping</h4>
+            <h3>AI Risk Surface Mapping</h3>
             <p>We identify every AI tool in use, every ungoverned code path, and every gap in your current AI review process.</p>
           </div>
         </div>
         <div class="info-item">
           <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
           <div class="info-text">
-            <h4>Compliance Gap Assessment</h4>
+            <h3>Compliance Gap Assessment</h3>
             <p>Your current AI posture against the frameworks that matter to you — EU AI Act, HIPAA, SOX, SOC 2, or GDPR.</p>
           </div>
         </div>
         <div class="info-item">
           <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
           <div class="info-text">
-            <h4>Day-30 Governance Roadmap</h4>
+            <h3>Day-30 Governance Roadmap</h3>
             <p>Concrete first steps: what to govern, in what order, and what you can defend to your board or auditor at 30 days.</p>
           </div>
         </div>
         <div class="info-item">
           <div class="info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
           <div class="info-text">
-            <h4>Honest Fit Assessment</h4>
+            <h3>Honest Fit Assessment</h3>
             <p>If FAO governance isn't the right move for your org right now, we'll tell you that. We only engage where we can deliver real outcomes.</p>
           </div>
         </div>
@@ -518,7 +518,8 @@ document.getElementById('assessment-form').addEventListener('submit', function(e
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
+      <p class="footer-tagline">Govern Your AI.<br />Then Build With It.</p>
+      <p class="footer-sub">Enterprise AI governance and agents,<br />built for your org.</p>
       <div class="footer-social-row">
         <a href="https://linkedin.com/company/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="LinkedIn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>

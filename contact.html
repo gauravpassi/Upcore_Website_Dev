@@ -97,7 +97,6 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 html{scroll-behavior:smooth;}
 body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
-.grad-text{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 
 /* HERO */
 .hero{padding:80px 48px 64px;text-align:center;position:relative;overflow:hidden;
@@ -105,7 +104,7 @@ a{text-decoration:none;color:inherit;}
 .hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,191,204,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(10,191,204,.025) 1px,transparent 1px);background-size:72px 72px;pointer-events:none;}
 .hero-inner{max-width:680px;margin:0 auto;position:relative;z-index:2;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);background:rgba(10,191,204,.1);border:1px solid var(--border);border-radius:100px;padding:7px 18px;margin-bottom:28px;}
-.hero h1{font-size:clamp(30px,5vw,56px);font-weight:900;letter-spacing:-3px;line-height:1.05;margin-bottom:18px;}
+.hero h1{font-size:clamp(30px,5vw,56px);font-weight:700;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px;}
 .hero-sub{font-size:17px;color:var(--txt2);line-height:1.8;}
 
 .divider{height:1px;background:var(--border);margin:0;}
@@ -125,7 +124,7 @@ a{text-decoration:none;color:inherit;}
 .method-action{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--teal);background:rgba(10,191,204,.08);border:1px solid var(--border);border-radius:8px;padding:7px 14px;transition:all .2s;}
 .method-action:hover{background:rgba(10,191,204,.14);border-color:var(--teal);}
 
-.response-note{background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2);border-radius:12px;padding:14px 18px;font-size:13px;color:#4ade80;display:flex;align-items:center;gap:10px;margin-top:20px;}
+.response-note{background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2);border-radius:12px;padding:14px 18px;font-size:13px;color:#15803d;display:flex;align-items:center;gap:10px;margin-top:20px;}
 .response-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
 
@@ -164,9 +163,6 @@ a{text-decoration:none;color:inherit;}
 
 /* FOOTER */
 
-footer p{font-size:12px;color:var(--txt3);}
-.footer-links{display:flex;gap:20px;}
-.footer-links a{font-size:12px;color:rgba(255,255,255,.52);}
 
 @media(max-width:1024px){
   .contact-inner{grid-template-columns:1fr;}
@@ -181,12 +177,13 @@ footer p{font-size:12px;color:var(--txt3);}
 }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
-footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64px 48px 0;}
+footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}
-.footer-logo-wrap img{height:56px;width:auto;opacity:.85;}
-.footer-tagline{font-size:13px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px;max-width:220px;}
+.footer-logo-wrap img{height:44px;width:auto;}
+.footer-tagline{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);line-height:1.55;margin-top:16px;}
+.footer-sub{font-size:12px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:6px;max-width:200px;}
 .footer-social-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;}
 .footer-soc-btn{
   display:flex;align-items:center;justify-content:center;
@@ -209,7 +206,7 @@ footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:64p
 .footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px;}
 .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
 .footer-links a{font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .15s;}
-.footer-links a:hover{color:var(--teal);}
+.footer-links a:hover{color:#ffffff;}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.09);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 .footer-certs { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:11px; font-weight:600; color:rgba(255,255,255,.28); letter-spacing:.3px; }
 .footer-cert-dot { color:rgba(255,255,255,.14); }
@@ -397,7 +394,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="map-inner">
     <div style="margin-bottom:24px;">
       <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Find Us</div>
-      <h2 style="font-size:clamp(22px,3vw,36px);font-weight:900;letter-spacing:-1.5px;">Where We're <strong>Based</strong></h2>
+      <h2 style="font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-1.5px;">Where We're <strong>Based</strong></h2>
     </div>
     <div class="map-grid">
       <div class="address-card">
@@ -468,7 +465,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Brand col -->
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
+      <p class="footer-tagline">Govern Your AI.<br />Then Build With It.</p>
+      <p class="footer-sub">Enterprise AI governance and agents,<br />built for your org.</p>
 
       <!-- Social icons -->
       <div class="footer-social-row">

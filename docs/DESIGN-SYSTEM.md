@@ -96,9 +96,9 @@ This is the canonical nav. **Do not edit one page's nav in isolation.** Propagat
 ```css
 nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
-.nav-logo img{height:40px;width:auto;}
-.nav-links{display:flex;gap:4px;list-style:none;padding:0;margin:0;}
-.nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
+.nav-logo img{height:60px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0;}
+.nav-links a{display:inline-flex;align-items:center;padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
 .nav-links a.active{color:#ffffff;font-weight:600;}
 .nav-dropdown-wrap{position:relative;}
@@ -109,46 +109,58 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .nav-dropdown-wrap:hover .nav-dropdown-menu,.nav-dropdown-wrap:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
 .nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;}
 .nav-dd-desc{display:block;font-size:11px;color:rgba(255,255,255,.35);font-weight:400;margin-top:2px;white-space:normal;}
+.nav-more-wrap{display:none;}
+@media(max-width:1240px) and (min-width:769px){.nav-item-extra{display:none;}.nav-more-wrap{display:block;}}
 @media(max-width:768px){.nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;background:none;border:none;padding:0 0 0 14px;margin-top:0;box-shadow:none;}.nav-dropdown-caret{display:none;}}
 .nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
 .nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
-@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
+.nav-right{display:flex;align-items:center;gap:8px;}
+.nav-burger{display:none;/* becomes flex ≤768px */}
+/* ≤768px: .nav-links becomes a fixed hamburger drawer toggled by .nav-burger — see index.html for the full mobile block */
 ```
 
 ```html
-<!-- Canonical nav (2026-08-06) — Home + Solutions dropdown + 5 flat links. active class varies per page. -->
+<!-- Canonical nav (2026-08-06, v2) — 4 always-visible links + 4 "extra" links that collapse into a
+     More dropdown between 769-1240px. All links are inline-flex + vertically centered. -->
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
     <li><a href="/">Home</a></li>
-    <li class="nav-dropdown-wrap"><a href="/ai-engineering-governance" class="nav-dropdown-trigger">Solutions<span class="nav-dropdown-caret">&#9662;</span></a>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/ai-adoption-strategy">AI Strategy</a></li>
+    <li><a href="/platform">AI Agents</a></li>
+    <li class="nav-item-extra"><a href="/pricing">Pricing</a></li>
+    <li class="nav-item-extra"><a href="/industries">Industries</a></li>
+    <li class="nav-item-extra"><a href="/insights">Resources</a></li>
+    <li class="nav-item-extra"><a href="/about">About</a></li>
+    <li class="nav-dropdown-wrap nav-more-wrap"><a href="#" class="nav-dropdown-trigger" onclick="return false;">More<span class="nav-dropdown-caret">&#9662;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/ai-engineering-governance">AI Engineering Governance<span class="nav-dd-desc">Govern AI-generated code &amp; spend</span></a>
-        <a href="/ai-adoption-strategy">AI Strategy &amp; Adoption<span class="nav-dd-desc">Turn scattered AI pilots into ROI</span></a>
+        <a href="/pricing">Pricing</a>
+        <a href="/industries">Industries</a>
+        <a href="/insights">Resources</a>
+        <a href="/about">About</a>
       </div>
     </li>
-    <li><a href="/platform">AI Agents</a></li>
-    <li><a href="/pricing">Pricing</a></li>
-    <li><a href="/industries">Industries</a></li>
-    <li><a href="/insights">Resources</a></li>
-    <li><a href="/about">About</a></li>
   </ul>
-  <a href="#book-governance" class="nav-cta">Book a Governance Review</a>
+  <div class="nav-right">
+    <a href="#book-governance" class="nav-cta">Book a Governance Review</a>
+    <button class="nav-burger" aria-label="Menu">&#9776;</button>
+  </div>
 </nav>
 ```
 
-**Why a dropdown:** the flat nav grew to 8 top-level items when `ai-adoption-strategy.html` shipped alongside `ai-engineering-governance.html`, which visibly crowded the nav-CTA button on laptop-width viewports (confirmed via measurement at 1150–1280px, well above the 768px mobile breakpoint). The two FAO flagship pages were merged into one "Solutions" dropdown trigger instead, keeping the nav at 7 top-level items with room for a future third flagship page without regrowing the crowding problem. On mobile (≤768px) the dropdown items render inline/stacked (no hover needed) rather than hidden behind a tap target.
+**Responsive behavior (2026-08-06 restructure):** Home, AI Governance, AI Strategy, and AI Agents are always directly visible on desktop. The four `.nav-item-extra` links are visible on wide viewports (>1240px) and collapse into the "More" dropdown between 769–1240px (`.nav-more-wrap` flips from `display:none` to `block`). On mobile (≤768px) the hamburger drawer shows all 8 links flat and the More item stays hidden. The old "Solutions" dropdown is gone — both flagship pages are now top-level links. `#book-governance` on the nav CTA is NOT a dead anchor: `chat-widget.js` intercepts clicks on `a[href="#book-governance"]` document-wide and opens the booking modal (intentional, do not "fix").
 
 **Active class mapping:**
 | URL prefix | Active element |
 |---|---|
 | `/` | Home |
-| `/ai-engineering-governance` | Solutions trigger (`.nav-dropdown-trigger.active`) |
-| `/ai-adoption-strategy` | Solutions trigger (`.nav-dropdown-trigger.active`) |
-| `/platform` | AI Agents |
+| `/ai-engineering-governance` | AI Governance |
+| `/ai-adoption-strategy` | AI Strategy |
+| `/platform`, `/sdlc-agent`, `/agent-builder`, `/fde-engineers`, `/platform/*` | AI Agents |
 | `/pricing` | Pricing |
-| `/industries` | Industries |
-| `/insights`, `/kw/` | Resources |
+| `/industries/*` | Industries |
+| `/insights/*` | Resources |
 | `/about` | About |
 
 **When editing the nav:**

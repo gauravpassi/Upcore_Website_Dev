@@ -156,8 +156,7 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     .pg-hero{padding:72px 0 56px;border-bottom:1px solid var(--border);}
     .pg-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,191,204,.1);border:1px solid rgba(10,191,204,.2);color:var(--teal);font-size:11px;font-weight:600;padding:4px 14px;border-radius:9999px;margin-bottom:24px;letter-spacing:.5px;text-transform:uppercase;}
     .pg-h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:600;line-height:1.1;letter-spacing:-1px;margin-bottom:20px;}
-    .grad-text{background:linear-gradient(135deg,#0891b2,#0abfcc,#3dddc4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-    .pg-sub{font-size:1.1rem;color:var(--txt2);max-width:680px;margin-bottom:32px;line-height:1.75;}
+        .pg-sub{font-size:1.1rem;color:var(--txt2);max-width:680px;margin-bottom:32px;line-height:1.75;}
     .pg-btns{display:flex;gap:16px;flex-wrap:wrap;}
     .btn-p{display:inline-flex;align-items:center;gap:8px;background:#0ABFCC;color:#070B10;font-weight:600;padding:12px 26px;border-radius:9999px;font-size:15px;transition:background .2s,transform .2s;}
     .btn-p:hover{background:#089AAA;transform:translateY(-1px);}
@@ -198,14 +197,14 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
     .pg-cta h2{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;letter-spacing:-.5px;margin-bottom:16px;}
     .pg-cta p{color:var(--txt2);max-width:540px;margin:0 auto 32px;line-height:1.75;}
     .pg-cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-    footer{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.06);padding:48px 48px 0;}
-    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
-    .footer-logo-wrap{margin-bottom:16px;}.footer-logo-wrap img{height:60px;width:auto;}
+    footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 48px 0;}
+    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
+    .footer-logo-wrap{margin-bottom:16px;}.footer-logo-wrap img{height:44px;width:auto;}
     .footer-tagline{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:16px;}
-    .footer-col-title{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+    .footer-col-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:18px;}
     .footer-links{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;}
     .footer-links a{font-size:.875rem;color:rgba(255,255,255,.55);transition:color .2s;}
-    .footer-links a:hover{color:var(--teal);}
+    .footer-links a:hover{color:#ffffff;}
     .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-top:1px solid rgba(255,255,255,.09);flex-wrap:wrap;gap:12px;}
 .footer-certs { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:11px; font-weight:600; color:rgba(255,255,255,.28); letter-spacing:.3px; }
 .footer-cert-dot { color:rgba(255,255,255,.14); }
@@ -383,15 +382,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer-grid">
     <div>
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Govern Your AI. Then Build With It.<br/>Enterprise-grade governance and agents, built for your org.</p>
+      <p class="footer-tagline">Govern Your AI.<br />Then Build With It.</p>
+      <p class="footer-sub">Enterprise AI governance and agents,<br />built for your org.</p>
     </div>
     <div>
-      <div class="footer-col-title">Industries</div>
+      <div class="footer-col-title">Company</div>
       <ul class="footer-links">
-        <li><a href="/industries/manufacturing">Manufacturing</a></li>
-        <li><a href="/industries/saas-technology">SaaS & Technology</a></li>
-        <li><a href="/industries/retail-d2c">Ecommerce & D2C</a></li>
-        <li><a href="/industries">View All →</a></li>
+        <li><a href="/about">About Upcore</a></li>
+        <li><a href="/security">Security &amp; Trust</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/insights">Insights &amp; Blog</a></li>
+        <li><a href="/contact">Contact Us</a></li>
       </ul>
     </div>
     <div>
@@ -403,13 +404,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Company</div>
+      <div class="footer-col-title">Industries</div>
       <ul class="footer-links">
-        <li><a href="/about">About Upcore</a></li>
-        <li><a href="/security">Security &amp; Trust</a></li>
-        <li><a href="/pricing">Pricing</a></li>
-        <li><a href="/insights">Insights &amp; Blog</a></li>
-        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/industries/manufacturing">Manufacturing</a></li>
+        <li><a href="/industries/saas-technology">SaaS & Technology</a></li>
+        <li><a href="/industries/retail-d2c">Ecommerce & D2C</a></li>
+        <li><a href="/industries">View All →</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="/kw">Resource Library</a></li>
+        <li><a href="/platform/custom-ai-agents">Custom AI Agents</a></li>
+        <li><a href="/platform/on-premise-deployment">On-Premise AI</a></li>
+        <li><a href="/platform/30-day-deployment">30-Day Deployment</a></li>
+        <li><a href="/learn/ai-data-governance">AI Data Governance</a></li>
+        <li><a href="/learn/enterprise-ai-strategy">Enterprise AI Strategy</a></li>
       </ul>
     </div>
   </div>

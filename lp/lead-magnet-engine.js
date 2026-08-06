@@ -834,14 +834,38 @@
     // answered AND contact info handed over. Distinct from emailCaptured
     // above so it reads unambiguously as THE conversion event in GA4/Ads
     // reporting, not just a generic form-fill analytics event.
-    this.pushEvent('assessmentComplete', { tier: this.state.score.tier ? this.state.score.tier.label : null });
+    var tierLabel = this.state.score.tier ? this.state.score.tier.label : null;
+    this.pushEvent('assessmentComplete', { tier: tierLabel });
+
+    if (typeof window.gtag === 'function') {
+      // Enhanced Conversions for Leads — gtag hashes this before sending.
+      // Also requires the "Enhanced conversions" toggle ON for the conversion
+      // action in Google Ads (Goals → Conversions → Settings).
+      window.gtag('set', 'user_data', {
+        email: contact.email,
+        address: { first_name: contact.firstName }
+      });
+    }
     if (c.googleAdsConversionLabel && typeof window.gtag === 'function') {
+      // Tier-weighted value so value-based bidding can tell a hot lead
+      // (low-maturity tier = most in need of the engagement) from a cold one.
+      var adsValue = (c.googleAdsTierValues && tierLabel && typeof c.googleAdsTierValues[tierLabel] === 'number')
+        ? c.googleAdsTierValues[tierLabel]
+        : c.googleAdsConversionValue;
       window.gtag('event', 'conversion', {
         send_to: c.googleAdsConversionLabel,
-        value: c.googleAdsConversionValue,
+        value: adsValue,
         currency: c.googleAdsConversionCurrency,
         transaction_id: this.sessionId
       });
+    }
+    // LinkedIn conversion — no-op until the Insight Tag is activated on the
+    // page (LINKEDIN_PARTNER_ID in the page head). With an event-specific
+    // conversion ID configured, fires that; otherwise the bare track ping
+    // still feeds retargeting audiences.
+    if (typeof window.lintrk === 'function') {
+      if (c.linkedinConversionId) window.lintrk('track', { conversion_id: c.linkedinConversionId });
+      else window.lintrk('track');
     }
 
     var body = {

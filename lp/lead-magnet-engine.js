@@ -489,24 +489,37 @@
     return card;
   };
 
-  // ── Sample question teaser — shows one real question from the quiz
-  // pre-signup (uses actual config data, not invented copy). Styled to
-  // match the real quiz options so the preview is an honest promise. ──────
+  // ── Sample question — one REAL question from the quiz, fully live:
+  // answering it starts the quiz with Q1 already recorded and drops the
+  // visitor on Q2. An interactive on-ramp, not a dead mockup. ─────────────
   LeadMagnetEngine.prototype._buildSampleQuestionTeaser = function () {
-    var c = this.config;
+    var self = this, c = this.config;
     var q = c.screens && c.screens[0] && c.screens[0].questions && c.screens[0].questions[0];
-    if (!q) return null;
+    if (!q || q.type === 'multiselect') return null;
     var card = el('div', { class: 'lm-sample-q' });
-    card.appendChild(el('div', { class: 'lm-sample-q-tag', text: 'Question 1 of ' + this._totalQuestions() }));
+    card.appendChild(el('div', { class: 'lm-sample-q-tag', text: 'Or just start here — question 1 of ' + this._totalQuestions() }));
     card.appendChild(el('p', { class: 'lm-sample-q-text', text: q.text }));
     var opts = el('div', { class: 'lm-sample-q-opts' });
     (q.options || []).forEach(function (opt, i) {
-      opts.appendChild(el('div', { class: 'lm-sample-q-opt' }, [
+      opts.appendChild(el('button', {
+        class: 'lm-sample-q-opt',
+        'data-gtm-cta': 'sample-question-answer', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'sample_question',
+        onclick: function () {
+          self.state.answers[q.id] = { index: i };
+          self.pushEvent('start', { cta_source: 'sample_question' });
+          self.pushEvent('questionAnswered', { question_id: q.id, dimension: q.dimId });
+          self.state.screen = 'quiz';
+          self.state.qIndex = 1;
+          self.state.pendingInsight = null;
+          self._render();
+        }
+      }, [
         el('span', { class: 'lm-opt-num', text: String(i + 1) }),
-        el('span', { text: opt })
+        el('span', { class: 'lm-opt-text', text: opt })
       ]));
     });
     card.appendChild(opts);
+    card.appendChild(el('p', { class: 'lm-sample-q-hint', text: 'Your answer counts — that\'s 1 of 10 done.' }));
     return card;
   };
 

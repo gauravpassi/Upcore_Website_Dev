@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-06 — LP type-scale bump + interactive sample question
+**Type:** feature + fix
+**Files:** `lp/lead-magnet-engine.js` (?v=11), `lp/governance-index.html`, `lp/ai-maturity-index.html`
+User feedback: the "How it works" + sample-question combo felt odd (the question card was a dead mockup that looked clickable), and the pages read too small overall. The sample question is now a **live on-ramp**: real `<button>` options — clicking one records the answer for Q1, fires start (cta_source `sample_question`) + questionAnswered, and drops the visitor on question 2 of 10, with the answer shown selected if they navigate back. Card re-labeled "Or just start here — question 1 of 10" with a "your answer counts" hint. Type scale raised across both pages (~1–2px everywhere): H1 clamp → 34–52px, sub 18px, body 15.5px, options/buttons 16px, how-it-works 16px with 30px number chips, FAQ 15.5/14.5px, proof bar 14px, gate copy 16px, inputs 16px (also kills iOS zoom-on-focus), report-card labels/tracks up. Buttons re-balanced to identical 48px heights. Mobile: hero CTAs go full-width under 600px, report labels/sub sizes tuned. Maturity stylesheet re-synced from the governance canonical block (mono-stripping transform). Verified live: fold intact at 1280×800, sample-question flow lands on Q2 with Q1 recorded, zero overflow at 375px.
+
 ## 2026-08-06 — LP measurement upgrades: Enhanced Conversions + tier-weighted conversion values
 **Type:** feature
 **Files:** `lp/lead-magnet-engine.js` (?v=10), `lp/governance-index.html`, `lp/ai-maturity-index.html`

@@ -926,6 +926,80 @@
     return [220, 38, 38];                             // bottom tier — red
   }
 
+  // Radar diagram of the score's dimensions, drawn with jsPDF vector
+  // primitives (the on-page SVG can't be reused inside the PDF).
+  function pdfRadar(doc, cx, cy, r, score) {
+    var n = score.dimOrder.length;
+    function pt(i, radius) {
+      var a = (Math.PI * 2 * i) / n - Math.PI / 2;
+      return [cx + radius * Math.cos(a), cy + radius * Math.sin(a)];
+    }
+    function polySegs(radiusFn) {
+      var start = pt(0, radiusFn(0)), segs = [], prev = start;
+      for (var i = 1; i < n; i++) {
+        var p = pt(i, radiusFn(i));
+        segs.push([p[0] - prev[0], p[1] - prev[1]]);
+        prev = p;
+      }
+      return { start: start, segs: segs };
+    }
+    doc.setDrawColor(223, 227, 232);
+    doc.setLineWidth(0.75);
+    [0.25, 0.5, 0.75, 1].forEach(function (f) {
+      var g = polySegs(function () { return r * f; });
+      doc.lines(g.segs, g.start[0], g.start[1], [1, 1], 'S', true);
+    });
+    for (var i = 0; i < n; i++) {
+      var sp = pt(i, r);
+      doc.line(cx, cy, sp[0], sp[1]);
+    }
+    var v = polySegs(function (i) {
+      var d = score.dims[score.dimOrder[i]];
+      return r * Math.max(d.pct, 4) / 100;
+    });
+    doc.setFillColor(200, 240, 244);
+    doc.setDrawColor.apply(doc, PDF_TEAL);
+    doc.setLineWidth(1.5);
+    doc.lines(v.segs, v.start[0], v.start[1], [1, 1], 'FD', true);
+    for (var j = 0; j < n; j++) {
+      var d2 = score.dims[score.dimOrder[j]];
+      var vp = pt(j, r * Math.max(d2.pct, 4) / 100);
+      doc.setFillColor.apply(doc, PDF_TEAL_DARK);
+      doc.circle(vp[0], vp[1], 2.4, 'F');
+    }
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5);
+    doc.setTextColor.apply(doc, PDF_GREY);
+    for (var k = 0; k < n; k++) {
+      var lp = pt(k, r + 16);
+      var lbl = score.dims[score.dimOrder[k]].label;
+      doc.text(lbl, lp[0], lp[1] + 3, { align: 'center' });
+    }
+    doc.setTextColor.apply(doc, PDF_INK);
+  }
+
+  // Horizontal tier scale with a marker at the reader's exact score.
+  function pdfTierBar(doc, x, y, w, tierTable, overall, tierColor) {
+    var n = tierTable.length, gap = 3, segW = (w - gap * (n - 1)) / n, segH = 12;
+    tierTable.forEach(function (t, i) {
+      var active = overall >= t.min && overall <= t.max;
+      var sx = x + i * (segW + gap);
+      if (active) doc.setFillColor.apply(doc, tierColor);
+      else doc.setFillColor.apply(doc, PDF_TRACK);
+      doc.roundedRect(sx, y, segW, segH, 4, 4, 'F');
+      doc.setFont('helvetica', active ? 'bold' : 'normal');
+      doc.setFontSize(8.5);
+      if (active) doc.setTextColor.apply(doc, tierColor);
+      else doc.setTextColor.apply(doc, PDF_GREY);
+      doc.text(t.label, sx + segW / 2, y + segH + 13, { align: 'center' });
+    });
+    var mx = x + w * (overall / 100);
+    doc.setFillColor.apply(doc, PDF_INK);
+    doc.triangle(mx - 4.5, y - 9, mx + 4.5, y - 9, mx, y - 2, 'F');
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5);
+    doc.setTextColor.apply(doc, PDF_INK);
+    doc.text('You: ' + overall, mx, y - 14, { align: 'center' });
+  }
+
   LeadMagnetEngine.prototype._generatePdf = function () {
     var c = this.config, score = this.state.score, contact = this.state.contact || {};
     var api = this.state.apiResult || {};
@@ -945,7 +1019,9 @@
     var y = 168;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
     doc.setTextColor.apply(doc, PDF_GREY);
-    var metaLine = (contact.company ? contact.company + '  ·  ' : '') + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    var metaLine = (contact.firstName ? 'Prepared for ' + contact.firstName + '  ·  ' : '') +
+      (contact.company ? contact.company + '  ·  ' : '') +
+      new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     doc.text(metaLine, margin, y);
     doc.setTextColor.apply(doc, PDF_INK);
     y += 40;
@@ -978,15 +1054,26 @@
       doc.setTextColor.apply(doc, PDF_INK);
     }
 
-    y += 150 + 36;
+    y += 150 + 44;
+
+    // Tier scale — where this score sits across all tiers
+    if (c.tierTable && c.tierTable.length) {
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(13);
+      doc.text('Where you sit', margin, y);
+      y += 34;
+      pdfTierBar(doc, margin, y, contentW, c.tierTable, score.overall, tierColor);
+      y += 52;
+    }
+
     doc.setFont('helvetica', 'bold'); doc.setFontSize(13);
+    doc.setTextColor.apply(doc, PDF_INK);
     doc.text('What this score means', margin, y);
     y += 22;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
-    var introBody = 'This report scores your organization across the ' + score.dimOrder.length + ' dimensions Upcore’s Fractional AI Officer framework governs against. The next page breaks down exactly where you’re strong and where the gaps are — the same lens we use in paying engagements.';
+    var introBody = 'This report scores your organization across the ' + score.dimOrder.length + ' dimensions Upcore’s Fractional AI Officer framework governs against. The following pages map your profile against the framework and break down exactly where you’re strong and where the gaps are — the same lens we use in paying engagements.';
     var introLines = doc.splitTextToSize(introBody, contentW);
     doc.text(introLines, margin, y);
-    y += introLines.length * 15 + 30;
+    y += introLines.length * 15 + 26;
 
     if (peer.sufficientData) {
       doc.setFillColor.apply(doc, PDF_CARD);
@@ -995,11 +1082,39 @@
       doc.text('Teams assessed so far average ' + peer.avgOverall + '/100 — you scored ' + (score.overall >= peer.avgOverall ? 'above' : 'below') + ' that.', margin + 16, y + 27);
     }
 
-    pdfFooter(doc, pageW, pageH, 1, 3);
+    pdfFooter(doc, pageW, pageH, 1, 4);
 
-    // ── PAGE 2 — Dimension breakdown ────────────────────────────────────
+    // ── PAGE 2 — Framework profile (radar diagram) ──────────────────────
     doc.addPage();
-    pdfHeaderBand(doc, pageW, c.indexLabel, 'Your Breakdown');
+    pdfHeaderBand(doc, pageW, c.indexLabel, 'Your Framework Profile');
+    y = 168;
+
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
+    doc.setTextColor.apply(doc, PDF_GREY);
+    doc.text('Your profile across all ' + score.dimOrder.length + ' framework dimensions. A balanced, wide shape is the goal.', margin, y);
+    doc.setTextColor.apply(doc, PDF_INK);
+
+    pdfRadar(doc, pageW / 2, y + 190, 130, score);
+    y += 380;
+
+    if (score.weakestDim && c.weakLineTemplates && c.weakLineTemplates[score.weakestDim]) {
+      doc.setFillColor.apply(doc, PDF_CARD);
+      var weakLines = doc.splitTextToSize(c.weakLineTemplates[score.weakestDim], contentW - 40);
+      var boxH = weakLines.length * 15 + 42;
+      doc.roundedRect(margin, y, contentW, boxH, 8, 8, 'F');
+      doc.setFillColor.apply(doc, PDF_TEAL);
+      doc.rect(margin, y, 4, boxH, 'F');
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+      doc.text('WEAKEST AREA: ' + (score.dims[score.weakestDim] ? score.dims[score.weakestDim].label.toUpperCase() : ''), margin + 20, y + 22);
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
+      doc.text(weakLines, margin + 20, y + 40);
+    }
+
+    pdfFooter(doc, pageW, pageH, 2, 4);
+
+    // ── PAGE 3 — Dimension breakdown ────────────────────────────────────
+    doc.addPage();
+    pdfHeaderBand(doc, pageW, c.indexLabel, 'Dimension Breakdown');
     y = 168;
 
     doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
@@ -1009,6 +1124,7 @@
     y += 30;
 
     var barW = contentW - 70;
+    var rowGap = score.dimOrder.length > 6 ? 26 : 34;
     score.dimOrder.forEach(function (id) {
       var d = score.dims[id];
       doc.setFont('helvetica', 'bold'); doc.setFontSize(11.5);
@@ -1031,26 +1147,12 @@
         doc.setLineWidth(1.5);
         doc.line(markerX, y - 3, markerX, y + 12);
       }
-      y += 30;
+      y += rowGap;
     });
 
-    y += 10;
-    if (score.weakestDim && c.weakLineTemplates && c.weakLineTemplates[score.weakestDim]) {
-      doc.setFillColor.apply(doc, PDF_CARD);
-      var weakLines = doc.splitTextToSize(c.weakLineTemplates[score.weakestDim], contentW - 40);
-      var boxH = weakLines.length * 15 + 30;
-      doc.roundedRect(margin, y, contentW, boxH, 8, 8, 'F');
-      doc.setFillColor.apply(doc, PDF_TEAL);
-      doc.rect(margin, y, 4, boxH, 'F');
-      doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
-      doc.text('WEAKEST AREA: ' + (score.dims[score.weakestDim] ? score.dims[score.weakestDim].label.toUpperCase() : ''), margin + 20, y + 20);
-      doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
-      doc.text(weakLines, margin + 20, y + 38);
-    }
+    pdfFooter(doc, pageW, pageH, 3, 4);
 
-    pdfFooter(doc, pageW, pageH, 2, 3);
-
-    // ── PAGE 3 — Next step ───────────────────────────────────────────────
+    // ── PAGE 4 — Next step ───────────────────────────────────────────────
     doc.addPage();
     pdfHeaderBand(doc, pageW, c.indexLabel, 'Your Next Step');
     y = 168;
@@ -1073,7 +1175,7 @@
     doc.text('No commitment required — we’ll walk through this exact report on the call.', margin + 24, y + 80);
     doc.setTextColor.apply(doc, PDF_INK);
 
-    pdfFooter(doc, pageW, pageH, 3, 3);
+    pdfFooter(doc, pageW, pageH, 4, 4);
 
     return doc;
   };

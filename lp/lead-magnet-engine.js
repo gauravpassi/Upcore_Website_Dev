@@ -195,8 +195,14 @@
       wrap.appendChild(el('p', { class: 'lm-guarantee-line', text: h.guaranteeLine }));
     }
 
-    if (c.chart && c.chart.type === 'maturityCurve') {
-      var curveCard = el('div', { class: 'lm-hero-visual-card' });
+    if (h.frameworkPreview && h.frameworkPreview.length) {
+      var fwCard = el('div', { class: 'lm-fw-preview-card lm-reveal' });
+      if (h.heroVisualLabel) fwCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
+      var fwPreview = this._buildFrameworkPreview();
+      if (fwPreview) fwCard.appendChild(fwPreview);
+      wrap.appendChild(fwCard);
+    } else if (c.chart && c.chart.type === 'maturityCurve') {
+      var curveCard = el('div', { class: 'lm-hero-visual-card lm-reveal' });
       if (h.heroVisualLabel) curveCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
       curveCard.appendChild(this._buildMaturityCurve(null));
       wrap.appendChild(curveCard);
@@ -204,9 +210,20 @@
       wrap.appendChild(this._buildHeroWidget());
     }
 
-    var proof = el('div', { class: 'lm-proof-bar' });
-    (h.proofBar || []).forEach(function (item) { proof.appendChild(el('span', { class: 'lm-proof-item', html: item })); });
+    var proof = el('div', { class: 'lm-proof-bar lm-reveal' });
+    (h.proofBar || []).forEach(function (item) {
+      proof.appendChild(el('span', { class: 'lm-proof-item' }, [
+        el('span', { class: 'lm-proof-icon', html: '&#10003;' }),
+        el('span', { html: item })
+      ]));
+    });
     wrap.appendChild(proof);
+
+    var sampleReport = this._buildSampleReportPreview();
+    if (sampleReport) {
+      sampleReport.classList.add('lm-reveal');
+      wrap.appendChild(sampleReport);
+    }
 
     if (h.whyNow) {
       var why = el('div', { class: 'lm-why-now' });
@@ -230,7 +247,7 @@
     }
 
     if (h.howItWorks && h.howItWorks.length) {
-      var hiw = el('div', { class: 'lm-how' });
+      var hiw = el('div', { class: 'lm-how lm-reveal' });
       hiw.appendChild(el('h2', { class: 'lm-h2', text: 'How it works' }));
       var steps = el('div', { class: 'lm-how-steps' });
       h.howItWorks.forEach(function (step, i) {
@@ -240,6 +257,8 @@
         ]));
       });
       hiw.appendChild(steps);
+      var sampleQ = this._buildSampleQuestionTeaser();
+      if (sampleQ) { sampleQ.classList.add('lm-reveal'); hiw.appendChild(sampleQ); }
       wrap.appendChild(hiw);
     }
 
@@ -271,6 +290,45 @@
     wrap.appendChild(footerCta);
 
     this.root.appendChild(wrap);
+    this._observeReveals();
+  };
+
+  // ── Scroll reveal + count-up (purposeful motion only: one-time reveal on
+  // first scroll into view, no loops, no gratuitous parallax) ──────────────
+  LeadMagnetEngine.prototype._observeReveals = function () {
+    var els = this.root.querySelectorAll('.lm-reveal:not(.lm-revealed)');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('lm-revealed'); runCountUps(el); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('lm-revealed');
+        runCountUps(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.2 });
+    els.forEach(function (el) { io.observe(el); });
+
+    function runCountUps(scope) {
+      var targets = scope.hasAttribute('data-countup') ? [scope] : Array.prototype.slice.call(scope.querySelectorAll('[data-countup]'));
+      targets.forEach(function (t) {
+        var end = parseInt(t.getAttribute('data-countup'), 10);
+        var suffix = t.getAttribute('data-countup-suffix') || '';
+        if (isNaN(end)) return;
+        var t0 = null, dur = 900;
+        function step(ts) {
+          if (!t0) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          t.textContent = Math.round(eased * end) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
   };
 
   LeadMagnetEngine.prototype._isHealthcareTraffic = function () {
@@ -294,6 +352,114 @@
     });
     box.appendChild(body);
     return box;
+  };
+
+  // ── Framework preview — animated SVG pentagon with L1-L5 badges. Reuses
+  // the sitewide numbered-badge convention (not invented icons). Draws in
+  // via stroke-dasharray once scrolled into view (handled by _observeReveals
+  // through the .lm-reveal wrapper, not a timed loop). ─────────────────────
+  LeadMagnetEngine.prototype._buildFrameworkPreview = function () {
+    var items = this.config.copy.hero.frameworkPreview || [];
+    if (!items.length) return null;
+    var n = items.length;
+    var size = 280, cx = size / 2, cy = size / 2 - 6, r = 92;
+    var SVG_NS = 'http://www.w3.org/2000/svg';
+    var pts = [];
+    for (var i = 0; i < n; i++) {
+      var angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+      pts.push({ x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) });
+    }
+    var pathD = pts.map(function (p, i) { return (i === 0 ? 'M' : 'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1); }).join(' ') + ' Z';
+
+    var wrap = el('div', { class: 'lm-fw-preview' });
+    var svgWrap = el('div', { class: 'lm-fw-svg-wrap' });
+    var svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + size + ' ' + size);
+    svg.setAttribute('class', 'lm-fw-svg');
+
+    var fill = document.createElementNS(SVG_NS, 'path');
+    fill.setAttribute('d', pathD);
+    fill.setAttribute('class', 'lm-fw-fill');
+    svg.appendChild(fill);
+
+    var stroke = document.createElementNS(SVG_NS, 'path');
+    stroke.setAttribute('d', pathD);
+    stroke.setAttribute('class', 'lm-fw-stroke');
+    svg.appendChild(stroke);
+
+    pts.forEach(function (p) {
+      var dot = document.createElementNS(SVG_NS, 'circle');
+      dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); dot.setAttribute('r', 4);
+      dot.setAttribute('class', 'lm-fw-dot');
+      svg.appendChild(dot);
+    });
+    svgWrap.appendChild(svg);
+
+    // Badges positioned in HTML (outside the SVG viewBox scale) so labels stay crisp at any size
+    pts.forEach(function (p, i) {
+      var pct = { left: (p.x / size * 100).toFixed(1) + '%', top: (p.y / size * 100).toFixed(1) + '%' };
+      var badge = el('div', { class: 'lm-fw-badge', style: 'left:' + pct.left + ';top:' + pct.top }, [
+        el('span', { class: 'lm-fw-badge-num', text: items[i].badge }),
+        el('span', { class: 'lm-fw-badge-label', text: items[i].label })
+      ]);
+      svgWrap.appendChild(badge);
+    });
+
+    wrap.appendChild(svgWrap);
+    return wrap;
+  };
+
+  // ── Sample report preview — honestly-labeled "Example" mockup of the
+  // gated report a visitor unlocks. Real tier/dimension data from config,
+  // never fabricated. ────────────────────────────────────────────────────
+  LeadMagnetEngine.prototype._buildSampleReportPreview = function () {
+    var c = this.config, sr = c.copy.sampleReport;
+    if (!sr) return null;
+    var card = el('div', { class: 'lm-sample-report' });
+    card.appendChild(el('div', { class: 'lm-sample-report-tag', text: 'Sample Report — Example' }));
+    var head = el('div', { class: 'lm-sr-head' });
+    head.appendChild(el('div', { class: 'lm-sr-score' }, [
+      el('span', { class: 'lm-sr-score-num', text: String(sr.score) }),
+      el('span', { class: 'lm-sr-score-max', text: '/100' })
+    ]));
+    head.appendChild(el('div', { class: 'lm-sr-tier', text: sr.tier }));
+    card.appendChild(head);
+    var dims = el('div', { class: 'lm-sr-dims' });
+    (sr.dims || []).forEach(function (d) {
+      var row = el('div', { class: 'lm-sr-dim-row' });
+      row.appendChild(el('span', { class: 'lm-sr-dim-label', text: d.label }));
+      var track = el('div', { class: 'lm-sr-dim-track' });
+      track.appendChild(el('div', { class: 'lm-sr-dim-fill', style: 'width:' + d.pct + '%' }));
+      row.appendChild(track);
+      row.appendChild(el('span', { class: 'lm-sr-dim-pct', text: d.pct + '%' }));
+      dims.appendChild(row);
+    });
+    card.appendChild(dims);
+    card.appendChild(el('p', { class: 'lm-sr-note', text: 'Illustrative scoring pattern — your real report is generated from your answers.' }));
+    return card;
+  };
+
+  // ── Sample question teaser — shows one real question from the quiz
+  // pre-signup (uses actual config data, not invented copy). ──────────────
+  LeadMagnetEngine.prototype._buildSampleQuestionTeaser = function () {
+    var c = this.config;
+    var q = c.screens && c.screens[0] && c.screens[0].questions && c.screens[0].questions[0];
+    if (!q) return null;
+    var card = el('div', { class: 'lm-sample-q' });
+    card.appendChild(el('div', { class: 'lm-sample-q-tag', text: 'Question 1 of ' + this._totalQuestions() }));
+    card.appendChild(el('p', { class: 'lm-sample-q-text', text: q.text }));
+    var opts = el('div', { class: 'lm-sample-q-opts' });
+    (q.options || []).forEach(function (opt) {
+      opts.appendChild(el('div', { class: 'lm-sample-q-opt', text: opt }));
+    });
+    card.appendChild(opts);
+    return card;
+  };
+
+  LeadMagnetEngine.prototype._totalQuestions = function () {
+    var total = 0;
+    (this.config.screens || []).forEach(function (s) { total += (s.questions || []).length; });
+    return total;
   };
 
   // ── Intro screen (between Hero and the first question) ─────────────────

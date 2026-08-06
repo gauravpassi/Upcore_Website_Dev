@@ -101,39 +101,59 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .nav-links a{padding:8px 16px;border-radius:6px;font-size:14px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s,background .2s;text-decoration:none;}
 .nav-links a:hover{color:#ffffff;background:rgba(255,255,255,.07);}
 .nav-links a.active{color:#ffffff;font-weight:600;}
+.nav-dropdown-wrap{position:relative;}
+.nav-dropdown-trigger{display:flex;align-items:center;}
+.nav-dropdown-caret{font-size:9px;opacity:.55;margin-left:2px;transition:transform .15s;}
+.nav-dropdown-wrap:hover .nav-dropdown-caret,.nav-dropdown-wrap:focus-within .nav-dropdown-caret{transform:rotate(180deg);}
+.nav-dropdown-menu{position:absolute;top:100%;left:0;min-width:250px;background:#0a0a0a;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:6px;margin-top:8px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .15s,transform .15s,visibility .15s;box-shadow:0 20px 40px rgba(0,0,0,.35);}
+.nav-dropdown-wrap:hover .nav-dropdown-menu,.nav-dropdown-wrap:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;}
+.nav-dd-desc{display:block;font-size:11px;color:rgba(255,255,255,.35);font-weight:400;margin-top:2px;white-space:normal;}
+@media(max-width:768px){.nav-dropdown-menu{position:static;opacity:1;visibility:visible;transform:none;background:none;border:none;padding:0 0 0 14px;margin-top:0;box-shadow:none;}.nav-dropdown-caret{display:none;}}
 .nav-cta{display:inline-flex;align-items:center;gap:8px;background:#ffffff;color:#0a0a0a;font-size:14px;font-weight:600;padding:10px 22px;border-radius:9999px;text-decoration:none;white-space:nowrap;transition:background .2s,transform .2s;}
 .nav-cta:hover{background:#f2f2f2;transform:translateY(-1px);}
 @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}}
 ```
 
 ```html
-<!-- Canonical 5-link nav — active class varies per page -->
+<!-- Canonical nav (2026-08-06) — Home + Solutions dropdown + 5 flat links. active class varies per page. -->
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/ai-engineering-governance">AI Governance</a></li>
-    <li><a href="/platform">Products</a></li>
+    <li><a href="/">Home</a></li>
+    <li class="nav-dropdown-wrap"><a href="/ai-engineering-governance" class="nav-dropdown-trigger">Solutions<span class="nav-dropdown-caret">&#9662;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/ai-engineering-governance">AI Engineering Governance<span class="nav-dd-desc">Govern AI-generated code &amp; spend</span></a>
+        <a href="/ai-adoption-strategy">AI Strategy &amp; Adoption<span class="nav-dd-desc">Turn scattered AI pilots into ROI</span></a>
+      </div>
+    </li>
+    <li><a href="/platform">AI Agents</a></li>
+    <li><a href="/pricing">Pricing</a></li>
     <li><a href="/industries">Industries</a></li>
     <li><a href="/insights">Resources</a></li>
     <li><a href="/about">About</a></li>
   </ul>
-  <a href="/assessment" class="nav-cta">Book a Call</a>
+  <a href="#book-governance" class="nav-cta">Book a Governance Review</a>
 </nav>
 ```
 
+**Why a dropdown:** the flat nav grew to 8 top-level items when `ai-adoption-strategy.html` shipped alongside `ai-engineering-governance.html`, which visibly crowded the nav-CTA button on laptop-width viewports (confirmed via measurement at 1150–1280px, well above the 768px mobile breakpoint). The two FAO flagship pages were merged into one "Solutions" dropdown trigger instead, keeping the nav at 7 top-level items with room for a future third flagship page without regrowing the crowding problem. On mobile (≤768px) the dropdown items render inline/stacked (no hover needed) rather than hidden behind a tap target.
+
 **Active class mapping:**
-| URL prefix | Active link |
+| URL prefix | Active element |
 |---|---|
-| `/ai-engineering-governance` | AI Governance |
-| `/platform` | Products |
+| `/` | Home |
+| `/ai-engineering-governance` | Solutions trigger (`.nav-dropdown-trigger.active`) |
+| `/ai-adoption-strategy` | Solutions trigger (`.nav-dropdown-trigger.active`) |
+| `/platform` | AI Agents |
+| `/pricing` | Pricing |
 | `/industries` | Industries |
-| `/insights` | Resources |
-| `/kw/` | Resources |
+| `/insights`, `/kw/` | Resources |
 | `/about` | About |
 
 **When editing the nav:**
 1. Edit `index.html` first.
-2. Run `python propagate_design.py` from `upcore-website/` to propagate to all 65 pages.
+2. Propagate to all 71 nav-bearing pages (the 3 `lp/*.html` ad pages deliberately have no nav — leave them alone). No `propagate_design.py` run currently covers the dropdown component; the 2026-08-06 rollout used a one-off idempotent PowerShell bulk-replace instead (see `docs/CHANGELOG.md`).
 3. Update this section if the spec changes.
 
 ### 4.2 Buttons — 3 classes

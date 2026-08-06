@@ -138,6 +138,11 @@ img{display:block;max-width:100%;}
   border-radius:12px;font-size:13px;color:var(--txt2);line-height:1.6;
 }
 .info-note strong{color:var(--teal);}
+.call-section{margin-top:24px;}
+.call-section h3{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--txt);margin-bottom:12px;}
+.call-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+.call-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--txt2);line-height:1.55;}
+.call-list li::before{content:"";flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-top:6px;}
 
 /* Right form panel */
 .form-panel{
@@ -146,6 +151,8 @@ img{display:block;max-width:100%;}
 }
 .form-panel h2{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;}
 .form-panel .form-sub{font-size:14px;color:var(--txt2);margin-bottom:36px;}
+.personalized-line{background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--txt2);margin-bottom:20px;display:none;}
+.personalized-line strong{color:var(--txt);}
 
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .form-group{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
@@ -314,6 +321,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="info-note">
         <strong>You meet your FAO before committing.</strong> The discovery call introduces the governance specialist who would work with your team. No surprise assignments — you decide if the fit is right.
       </div>
+      <div class="call-section">
+        <h3>What happens on the call</h3>
+        <ul class="call-list">
+          <li>We walk through your current AI tool stack and where the governance gaps actually are — not a generic checklist.</li>
+          <li>You'll see a live example of how we'd review an AI-generated commit or flag a risky package.</li>
+          <li>We map out what a Day-30 governance report would look like for your org, concretely.</li>
+          <li>No slide deck, no sales pitch — if it's not a fit, we'll say so on the call, not after.</li>
+        </ul>
+      </div>
     </div>
 
     <!-- RIGHT: Form -->
@@ -326,6 +342,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="form-sub">2 minutes to complete. Pick your slot immediately after — no waiting for a confirmation email.</p>
 
+        <div class="personalized-line" id="personalized-line"></div>
+
         <form id="assessment-form" action="https://formsubmit.co/gaurav@upcoretechnologies.com" method="POST">
           <!-- FormSubmit config -->
           <input type="hidden" name="_subject" value="New AI Governance Review Request via Upcore Website"/>
@@ -334,6 +352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="hidden" name="_honey" value=""/>
           <input type="hidden" name="_cc" value="saswata@upcoretechnologies.com"/>
           <input type="hidden" name="_next" value="https://www.upcoretech.com/assessment?submitted=true"/>
+          <input type="hidden" name="Index Score Context" id="index-score-field" value=""/>
 
           <div class="form-row">
             <div class="form-group">
@@ -401,9 +420,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h3>Request received.</h3>
           <p>Pick a slot below — your call is confirmed immediately. No waiting for a reply.</p>
         </div>
-        <!-- Calendly inline widget — replace YOUR-CALENDLY-LINK with the actual URL e.g. calendly.com/gaurav-upcore/governance-review -->
         <p class="calendly-label">Select a time that works for you:</p>
-        <div class="calendly-inline-widget" data-url="https://calendly.com/gaurav-upcore/governance-review?hide_gdpr_banner=1&primary_color=0abfcc" style="min-width:280px;height:660px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/saswata-upcoretechnologies/30min?hide_gdpr_banner=1&primary_color=0abfcc" style="min-width:280px;height:660px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         <div style="text-align:center;margin-top:20px;">
           <a href="/" class="btn-back">&#8592; Back to Home</a>
@@ -415,6 +433,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <script>
+// Personalized handoff — read tier/score passed from the Governance Index quiz, if present
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var tier = params.get('tier');
+  var score = params.get('score');
+  if (tier) {
+    var line = document.getElementById('personalized-line');
+    line.style.display = 'block';
+    line.innerHTML = 'Your Governance Index score: <strong>' + tier + (score ? ' (' + score + '/100)' : '') + '</strong> — we\'ll pick up from exactly there on the call.';
+    var field = document.getElementById('index-score-field');
+    if (field) field.value = tier + (score ? ' (' + score + '/100)' : '');
+  }
+})();
+
 // Show success message after form submission if URL has ?submitted=true
 if(window.location.search.includes('submitted=true')){
   document.getElementById('form-wrap').style.display = 'none';

@@ -12,6 +12,21 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-06 — Fix CTA-mismatch: dedicated booking page for AI Maturity Index funnel + dead Calendly link fix on assessment.html
+**Type:** fix, feature
+**Files:** `assessment.html`, `lp/maturity-review.html` (new), `lp/ai-maturity-index.html`, `lp/lead-magnet-engine.js`
+A CRO audit flagged that the AI Maturity Index quiz's "skip to booking" and post-quiz CTAs both routed to `/assessment` — a page titled "Book an AI Governance Review" with EU AI Act/HIPAA/SOX/GDPR compliance-framework qualifying questions, entirely mismatched to the Maturity Index's own portfolio-value/ROI framing. Per the exact spec supplied by Gaurav: built a dedicated `lp/maturity-review.html` booking page (portfolio-value headline/tiles/copy, a "What's driving this conversation now?" dropdown replacing the compliance-framework dropdown, zero GDPR/HIPAA/SOX/EU AI Act language anywhere) and re-pointed `lp/ai-maturity-index.html`'s `NICHE_CONFIG.bookingHref` to it — a one-line change that cascades to both the hero's pre-quiz "skip to booking" link and the post-quiz Full Result CTA via the shared engine. `/assessment` and the Governance Index funnel are untouched and still route there.
+
+Added score/tier handoff: `lead-magnet-engine.js` gained `_bookingUrl()`, which appends `?tier=&score=` to the booking link once the quiz result is known (pre-quiz links stay plain — no score yet). Both `assessment.html` and `lp/maturity-review.html` read those params on load and show a "we'll pick up from exactly there on the call" personalized line (plus a hidden form field so the value reaches the team-notification email). Verified end-to-end in-browser for both funnels: Governance Index → `/assessment?tier=...&score=...`, Maturity Index → `/lp/maturity-review?tier=...&score=...`.
+
+Added a "What happens on the call" section (4 bullets, adapted per-offer) to both booking pages per Gaurav's priority-2 instruction — cheap, reduces booking hesitation on both CTA paths.
+
+**Independently discovered, unrelated to the reported issue:** `assessment.html`'s post-submission Calendly widget pointed to `calendly.com/gaurav-upcore/governance-review` — confirmed via direct request to return **HTTP 404**, an unreplaced placeholder the code's own comment warned about. This means the site's primary lead form's Calendly step has never let a visitor actually book a real slot after submitting. Fixed to the known-working `calendly.com/saswata-upcoretechnologies/30min` link (confirmed 200 OK, already used correctly elsewhere via `chat-widget.js`'s `#book-governance` modal).
+
+`lp/lead-magnet-engine.js?v=2` → `?v=3` on both landing pages (cache-buster bump, required per this repo's established gotcha — see 2026-08-05 entries below).
+
+**Not done this pass (deprioritized by Gaurav as priority-4 polish):** hero scarcity line + FAQ #4 on the Maturity Index page — blocked on exact copy, not yet supplied.
+
 ## 2026-08-05 — Bump lead-magnet-engine.js cache-buster (client-side notification fix wasn't loading)
 **Type:** fix
 **Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`

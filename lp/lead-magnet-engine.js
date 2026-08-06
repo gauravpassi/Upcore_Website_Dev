@@ -663,6 +663,20 @@
     }).catch(function (err) { console.error('[lead-magnet] Team notification failed:', err); });
   };
 
+  // Booking link with the visitor's tier/score appended once known, so the
+  // booking page can show a personalized "we'll pick up from there" line
+  // instead of a cold, context-free form. Only used post-quiz (the hero's
+  // pre-quiz "skip to booking" link has no score yet, so stays plain).
+  LeadMagnetEngine.prototype._bookingUrl = function () {
+    var base = this.config.bookingHref || '/assessment';
+    var score = this.state.score;
+    if (!score) return base;
+    var params = new URLSearchParams();
+    if (score.tier) params.set('tier', score.tier.label);
+    params.set('score', String(score.overall));
+    return base + '?' + params.toString();
+  };
+
   // ── Full result ──────────────────────────────────────────────────────────
   LeadMagnetEngine.prototype._renderFull = function () {
     var self = this, c = this.config, score = this.state.score, api = this.state.apiResult;
@@ -688,7 +702,7 @@
 
     var ctaRow = el('div', { class: 'lm-cta-row' });
     var bookBtn = el('a', {
-      class: 'lm-btn lm-btn-primary', text: c.copy.fullResult.primaryCta, href: c.bookingHref || '/assessment',
+      class: 'lm-btn lm-btn-primary', text: c.copy.fullResult.primaryCta, href: this._bookingUrl(),
       'data-gtm-cta': slugify(c.copy.fullResult.primaryCta), 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'full_result',
       onclick: function () { self.pushEvent('callBooked'); }
     });

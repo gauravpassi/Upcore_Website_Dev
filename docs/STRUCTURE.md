@@ -31,9 +31,10 @@ upcore-website/
 ├── cta-tracking.js                    # Listens for [data-gtm-cta] clicks, pushes cta_click to window.dataLayer (loaded on every page)
 │
 ├── lp/                                # 🎯 Ad-only lead-magnet landing pages — noindex,nofollow, no nav, unlinked from sitemap
-│   ├── lead-magnet-engine.js          # Shared vanilla-JS IIFE: flow control, scoring, SVG charts, jsPDF, GTM events (see FEATURES.md B4)
-│   ├── governance-index.html          # Niche 1 — dark "console" skin, radar chart, CIO/CTO/VP Eng
-│   └── ai-maturity-index.html         # Niche 2 — light "scorecard" skin, maturity curve + radar, COO/CEO/CFO/CHRO
+│   ├── lead-magnet-engine.js          # Shared vanilla-JS IIFE: flow control, scoring, SVG charts, jsPDF, GTM events, booking-link tier/score handoff (see FEATURES.md B4)
+│   ├── governance-index.html          # Niche 1 — dark "console" skin, radar chart, CIO/CTO/VP Eng — booking CTA → /assessment
+│   ├── ai-maturity-index.html         # Niche 2 — light "scorecard" skin, maturity curve + radar, COO/CEO/CFO/CHRO — booking CTA → /lp/maturity-review
+│   └── maturity-review.html           # Dedicated booking page for the Niche 2 (AI Maturity Index) funnel — portfolio-value copy, no compliance-framework questions (see FEATURES.md B4)
 │
 ├── index.html                         # Homepage — CANONICAL :root + nav block
 ├── about.html                         # About

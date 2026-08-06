@@ -27,27 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xtvhi9nvqa");
 </script>
-<!-- LinkedIn Insight Tag — OFF until a Partner ID is pasted below.
-     Find it in LinkedIn Campaign Manager → Analyze → Insight Tag → "See tag".
-     Once set: retargeting audiences work immediately; for conversion
-     reporting also create a conversion in Campaign Manager and put its
-     event-specific ID in NICHE_CONFIG.linkedinConversionId below. -->
-<script>
-window.LINKEDIN_PARTNER_ID = ''; // e.g. '1234567'
-if (window.LINKEDIN_PARTNER_ID) {
-  window._linkedin_partner_id = window.LINKEDIN_PARTNER_ID;
-  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-  window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
-  (function(l){
-    if (!l){ window.lintrk = function(a,b){window.lintrk.q.push([a,b]);}; window.lintrk.q = []; }
-    var s = document.getElementsByTagName('script')[0];
-    var b = document.createElement('script');
-    b.type = 'text/javascript'; b.async = true;
-    b.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
-    s.parentNode.insertBefore(b, s);
-  })(window.lintrk);
-}
-</script>
 <title>The Upcore AI Maturity Index — Free AI Coordination Score in 2 Minutes</title>
 <meta name="description" content="Score your company's AI coordination across 10 dimensions in 2 minutes — instant Maturity Index, full PDF report, no sales call needed."/>
 <meta name="robots" content="noindex, nofollow"/>
@@ -62,7 +41,7 @@ if (window.LINKEDIN_PARTNER_ID) {
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=9"/>
+<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=10"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -314,7 +293,6 @@ var NICHE_CONFIG = {
   // the hotter the lead for the paid engagement.
   googleAdsTierValues: { 'Fragmented': 4.0, 'Emerging': 3.0, 'Aligning': 2.0, 'Orchestrated': 1.0 },
   googleAdsConversionCurrency: 'INR',
-  linkedinConversionId: null, // event-specific conversion ID from LinkedIn Campaign Manager (needs LINKEDIN_PARTNER_ID set above)
   api: { submit: '/api/lead-magnet-submit' },
   tierTable: [
     { min:0, max:25, label:'Fragmented', description:'Multiple uncoordinated pilots, no ownership, no ROI visibility.' },
@@ -439,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=9" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=10" defer></script>
 <script src="/cta-tracking.js" defer></script>
 <!-- jsPDF loads LAST so a slow/blocked CDN can never delay engine init -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>

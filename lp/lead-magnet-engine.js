@@ -859,14 +859,6 @@
         transaction_id: this.sessionId
       });
     }
-    // LinkedIn conversion — no-op until the Insight Tag is activated on the
-    // page (LINKEDIN_PARTNER_ID in the page head). With an event-specific
-    // conversion ID configured, fires that; otherwise the bare track ping
-    // still feeds retargeting audiences.
-    if (typeof window.lintrk === 'function') {
-      if (c.linkedinConversionId) window.lintrk('track', { conversion_id: c.linkedinConversionId });
-      else window.lintrk('track');
-    }
 
     var body = {
       niche: c.niche,

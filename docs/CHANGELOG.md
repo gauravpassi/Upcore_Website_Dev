@@ -12,10 +12,10 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
-## 2026-08-06 — LP measurement upgrades: Enhanced Conversions, tier-weighted values, LinkedIn Insight Tag scaffold
+## 2026-08-06 — LP measurement upgrades: Enhanced Conversions + tier-weighted conversion values
 **Type:** feature
-**Files:** `lp/lead-magnet-engine.js` (?v=9), `lp/governance-index.html`, `lp/ai-maturity-index.html`
-Closes the three measurement gaps flagged in the LP audit. (1) **Enhanced Conversions for Leads:** `gtag('set','user_data',{email, first_name})` fires before the Ads conversion on gate submit (gtag hashes it) — needs the "Enhanced conversions" toggle turned ON per conversion action in Google Ads to take effect. (2) **Tier-weighted conversion values:** new `googleAdsTierValues` config maps tier → value (Ungoverned/Fragmented 4.0 … Governed/Orchestrated 1.0, INR) so value-based bidding can distinguish hot low-maturity leads from cold high-maturity ones; falls back to the flat `googleAdsConversionValue`. Verified live: an all-zero run reports value 4.0 + transaction_id. (3) **LinkedIn Insight Tag:** full snippet on both pages gated behind `window.LINKEDIN_PARTNER_ID = ''` — completely inert (zero requests) until the Partner ID from Campaign Manager → Analyze → Insight Tag is pasted in; once set, retargeting audiences work immediately and the engine fires `lintrk('track')` on gate submit (or an event-specific conversion via `NICHE_CONFIG.linkedinConversionId` if configured). The engine already captured `li_fat_id` into the Sheet; this makes it actionable.
+**Files:** `lp/lead-magnet-engine.js` (?v=10), `lp/governance-index.html`, `lp/ai-maturity-index.html`
+Closes the Google Ads measurement gaps flagged in the LP audit. (1) **Enhanced Conversions for Leads:** `gtag('set','user_data',{email, first_name})` fires before the Ads conversion on gate submit (gtag hashes it) — needs the "Enhanced conversions" toggle turned ON per conversion action in Google Ads to take effect. (2) **Tier-weighted conversion values:** new `googleAdsTierValues` config maps tier → value (Ungoverned/Fragmented 4.0 … Governed/Orchestrated 1.0, INR) so value-based bidding can distinguish hot low-maturity leads from cold high-maturity ones; falls back to the flat `googleAdsConversionValue`. Verified live: an all-zero run reports value 4.0 + transaction_id. A LinkedIn Insight Tag scaffold was briefly added in the same pass and removed on user direction (no LinkedIn campaigns) — the passive `li_fat_id` URL-param capture into the Sheet remains, harmless, in case that ever changes.
 
 ## 2026-08-06 — Landing-page overhaul from a 3-lens audit (UI/UX, CRO/ads, copy/skeptic) — ~60 fixes
 **Type:** feature + fix

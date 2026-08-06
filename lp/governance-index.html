@@ -28,123 +28,145 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })(window, document, "clarity", "script", "xtvhi9nvqa");
 </script>
 <title>The Upcore Governance Index — Free AI Governance Score in 2 Minutes</title>
-<meta name="description" content="Score your AI code governance across 5 layers in 2 minutes — instant Index score, full PDF report, no sales pitch required."/>
+<meta name="description" content="Score your AI code governance across 5 layers in 2 minutes — instant Index score, full PDF report, no sales call needed."/>
 <meta name="robots" content="noindex, nofollow"/>
 <link rel="canonical" href="https://www.upcoretech.com/lp/governance-index"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="The Upcore Governance Index — Free AI Governance Score in 2 Minutes"/>
+<meta property="og:description" content="Score your AI code governance across 5 layers in 2 minutes — instant Index score, full PDF report, no sales call needed."/>
+<meta property="og:url" content="https://www.upcoretech.com/lp/governance-index"/>
+<meta property="og:image" content="https://www.upcoretech.com/upcore-logo.png"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The Upcore Governance Index — Free AI Governance Score in 2 Minutes"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=8"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:"DM Sans",sans-serif;background:#ffffff;color:#0a0a0a;line-height:1.6;overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
-.lm-mono{font-family:"JetBrains Mono",monospace;}
+/* Muted text is #6E7680 (4.6:1 on white — AA); teal TEXT is #077F8C (4.75:1).
+   #0ABFCC stays for fills/strokes where contrast rules don't apply. */
 
-#lm-root{max-width:720px;margin:0 auto;padding:56px 24px 120px;}
+#lm-root{max-width:720px;margin:0 auto;padding:56px 24px 32px;}
+body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar — hero only */
 
-.lm-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#089AAA;background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.18);border-radius:9999px;padding:5px 14px;margin-bottom:22px;}
+.lm-visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+:focus-visible{outline:2px solid #0ABFCC;outline-offset:2px;}
+
+.lm-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#077F8C;background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.18);border-radius:9999px;padding:5px 14px;margin-bottom:22px;}
 .lm-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:#0ABFCC;}
-.lm-h1{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:18px;color:#0a0a0a;}
-.lm-h2{font-size:clamp(22px,3.5vw,32px);font-weight:700;letter-spacing:-.5px;margin-bottom:14px;color:#0a0a0a;}
+.lm-h1{font-size:clamp(30px,5vw,48px);font-weight:700;letter-spacing:-.021em;line-height:1.1;margin-bottom:18px;color:#0a0a0a;}
+.lm-h2{font-size:clamp(22px,3.5vw,32px);font-weight:700;letter-spacing:-.016em;margin-bottom:14px;color:#0a0a0a;}
 .lm-sub{font-size:16px;color:#45515e;line-height:1.7;margin-bottom:30px;max-width:560px;}
 .lm-body{font-size:14px;color:#45515e;line-height:1.75;}
 
-.lm-cta-row{display:flex;flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:10px;margin-bottom:36px;}
-.lm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1 "DM Sans",sans-serif;padding:14px 28px;border-radius:9999px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;}
+.lm-cta-row{display:flex;flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:10px;margin-bottom:14px;}
+.lm-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 15px/1 "DM Sans",sans-serif;padding:14px 28px;border-radius:9999px;border:1px solid transparent;cursor:pointer;transition:all .2s;text-decoration:none;}
 .lm-btn-primary{background:#0ABFCC;color:#070B10;}
-.lm-btn-primary:hover{background:#089AAA;transform:translateY(-1px);}
-.lm-btn-primary:disabled{opacity:.35;cursor:not-allowed;}
-.lm-btn-ghost{background:transparent;color:#0a0a0a;border:1px solid #0a0a0a;}
-.lm-btn-ghost:hover{background:rgba(0,0,0,.04);}
-.lm-link-secondary{display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#0a0a0a;background:transparent;border:1px solid #0a0a0a;border-radius:9999px;padding:13px 26px;text-decoration:none;transition:all .2s;}
-.lm-link-secondary:hover{background:rgba(0,0,0,.05);transform:translateY(-1px);}
-.lm-guarantee-line{font-size:13px;color:#45515e;margin:-24px 0 32px;line-height:1.5;}
+.lm-btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+.lm-btn-ghost{background:transparent;color:#0a0a0a;border-color:#0a0a0a;}
+.lm-link-secondary{display:inline-flex;align-items:center;justify-content:center;font:600 14px/1 "DM Sans",sans-serif;color:#0a0a0a;background:transparent;border:1px solid #0a0a0a;border-radius:9999px;padding:14px 26px;text-decoration:none;transition:all .2s;}
+.lm-guarantee-line{font-size:13px;color:#45515e;margin:0 0 32px;line-height:1.5;}
+.lm-footer-guarantee{margin:14px 0 0;}
+.lm-result-guarantee{margin:-4px 0 28px;font-size:12px;}
 
-.lm-hero-widget{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;margin-bottom:32px;}
-.lm-hero-widget-header{padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8e8e93;border-bottom:1px solid #e5e7eb;font-family:"JetBrains Mono",monospace;}
-.lm-hero-widget-body{padding:12px 16px;}
-.lm-hero-widget-row{display:flex;justify-content:space-between;padding:6px 0;font-size:12px;color:#0a0a0a;}
-.lm-hero-widget-status{color:#089AAA;font-family:"JetBrains Mono",monospace;font-size:11px;}
-
-.lm-proof-bar{display:flex;flex-wrap:wrap;gap:10px 20px;padding:18px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;margin-bottom:40px;}
-.lm-proof-item{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#45515e;}
-.lm-proof-icon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;border-radius:50%;background:rgba(10,191,204,.12);color:#089AAA;font-size:9px;font-weight:700;}
+.lm-proof-bar{display:flex;flex-direction:column;gap:9px;padding:18px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;margin-bottom:32px;}
+.lm-proof-item{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:#45515e;line-height:1.5;}
+.lm-proof-icon{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;margin-top:2px;border-radius:50%;background:rgba(10,191,204,.12);color:#077F8C;font-size:9px;font-weight:700;}
+.lm-proof-certs{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.lm-proof-cert{font-size:11px;font-weight:600;color:#45515e;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:9999px;padding:4px 12px;}
 
 .lm-why-now,.lm-icp,.lm-how,.lm-faq{margin-bottom:44px;}
-.lm-why-now{background:#f7f8fa;border-radius:14px;padding:26px;}
+.lm-why-now{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:12px;padding:24px;}
 .lm-icp-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
 .lm-icp-line{font-size:14px;font-style:italic;color:#45515e;border-left:2px solid #0ABFCC;padding-left:14px;}
 .lm-icp-closing{font-size:14px;color:#0a0a0a;font-weight:600;}
 
 .lm-how-steps{display:flex;flex-direction:column;gap:14px;}
 .lm-how-step{display:flex;gap:14px;align-items:flex-start;}
-.lm-how-num{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:rgba(10,191,204,.1);color:#089AAA;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.lm-how-num{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:rgba(10,191,204,.1);color:#077F8C;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
 .lm-how-step p{font-size:14px;color:#45515e;line-height:1.6;padding-top:3px;}
 
-.lm-faq-q{width:100%;text-align:left;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;font-size:14px;font-weight:600;color:#0a0a0a;cursor:pointer;margin-bottom:6px;}
-.lm-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;margin-bottom:6px;}
-.lm-faq-a p{font-size:13px;color:#45515e;line-height:1.7;padding:4px 16px 14px;}
+.lm-faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:14px 16px;font-size:14px;font-weight:600;color:#0a0a0a;cursor:pointer;margin-bottom:8px;transition:border-color .15s,background .15s;}
+.lm-faq-q[aria-expanded="true"]{border-color:#0ABFCC;background:#fff;margin-bottom:0;border-radius:8px 8px 0 0;}
+.lm-faq-chevron{flex-shrink:0;font-size:11px;color:#6E7680;transition:transform .2s;}
+.lm-faq-q[aria-expanded="true"] .lm-faq-chevron{transform:rotate(180deg);}
+.lm-faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;margin-bottom:8px;}
+.lm-faq-q[aria-expanded="true"]+.lm-faq-a{border:1px solid #0ABFCC;border-top:none;border-radius:0 0 8px 8px;}
+.lm-faq-a p{font-size:13px;color:#45515e;line-height:1.7;padding:10px 16px 14px;}
 
 .lm-footer-strip{text-align:center;padding-top:20px;}
-.lm-legal{font-size:11px;color:#8e8e93;margin-top:12px;line-height:1.6;}
+.lm-legal{font-size:11px;color:#6E7680;margin-top:12px;line-height:1.6;}
 .lm-legal a{color:#45515e;text-decoration:underline;}
 
 /* ── Typeform-style one-question-at-a-time quiz ─────────────────────── */
-.lm-quiz{min-height:78vh;display:flex;flex-direction:column;}
+.lm-quiz{min-height:78vh;min-height:78dvh;display:flex;flex-direction:column;}
 @keyframes lmQuizIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .lm-quiz-anim{animation:lmQuizIn .38s cubic-bezier(.2,.7,.3,1);}
 
 .lm-quiz-topbar{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
 .lm-quiz-back{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid #e5e7eb;background:#fff;color:#45515e;font-size:16px;line-height:1;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
-.lm-quiz-back:hover{border-color:#0ABFCC;color:#089AAA;}
 .lm-quiz-back-hidden{visibility:hidden;pointer-events:none;}
 .lm-quiz-progress-track{flex:1;height:4px;border-radius:2px;background:#e5e7eb;overflow:hidden;}
 .lm-quiz-progress-fill{height:100%;background:#0ABFCC;border-radius:2px;transition:width .35s ease;}
-.lm-quiz-count{flex-shrink:0;font-family:"JetBrains Mono",monospace;font-size:12px;color:#8e8e93;}
+.lm-quiz-count{flex-shrink:0;font-family:"JetBrains Mono",monospace;font-size:12px;color:#6E7680;}
 
 .lm-quiz-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:640px;margin:0 auto;width:100%;padding:48px 0;}
-.lm-quiz-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#089AAA;margin-bottom:16px;font-family:"JetBrains Mono",monospace;}
+.lm-quiz-eyebrow{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#077F8C;margin-bottom:16px;font-family:"JetBrains Mono",monospace;}
 .lm-question{margin-bottom:0;}
-.lm-question-text{font-size:clamp(22px,3.6vw,32px);font-weight:600;margin-bottom:28px;line-height:1.35;letter-spacing:-.3px;color:#0a0a0a;}
+.lm-question-text{font-size:clamp(22px,3.6vw,32px);font-weight:600;margin-bottom:28px;line-height:1.35;letter-spacing:-.011em;color:#0a0a0a;outline:none;}
 
 .lm-options{display:flex;flex-direction:column;gap:10px;}
 .lm-option{display:flex;align-items:center;gap:14px;text-align:left;background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;font:inherit;font-size:15px;color:#0a0a0a;cursor:pointer;transition:all .15s;}
-.lm-option:hover{border-color:#0ABFCC;background:rgba(10,191,204,.05);transform:translateX(4px);}
 .lm-option-selected{border-color:#0ABFCC;background:rgba(10,191,204,.1);}
-.lm-opt-num{flex-shrink:0;width:28px;height:28px;border-radius:7px;border:1px solid #d7dbe0;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:#8e8e93;transition:all .15s;}
+.lm-opt-num{flex-shrink:0;width:28px;height:28px;border-radius:7px;border:1px solid #d7dbe0;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:#6E7680;transition:all .15s;}
+.lm-option-multi .lm-opt-num{border-radius:4px;} /* square = checkbox, round-ish = radio */
 .lm-option-selected .lm-opt-num{background:#0ABFCC;border-color:#0ABFCC;color:#070B10;}
 .lm-opt-text{flex:1;}
-.lm-opt-check{flex-shrink:0;color:#089AAA;font-weight:700;font-size:18px;}
+.lm-opt-check{flex-shrink:0;color:#077F8C;font-weight:700;font-size:18px;}
 .lm-continue-btn{margin-top:24px;width:100%;}
-.lm-quiz-hint{margin-top:20px;font-size:11px;color:#8e8e93;}
+.lm-quiz-hint{margin-top:20px;font-size:11px;color:#6E7680;}
+.lm-quiz-body .lm-quiz-hint+ .lm-continue-btn{margin-top:14px;}
 
 /* Insight interrupt (its own full screen, not a stacked card) */
 .lm-insight-screen{text-align:center;align-items:center;}
-.lm-insight-badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#089AAA;margin-bottom:18px;font-family:"JetBrains Mono",monospace;}
+.lm-insight-badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#077F8C;margin-bottom:18px;font-family:"JetBrains Mono",monospace;}
 .lm-insight-copy{font-size:19px;line-height:1.65;color:#0a0a0a;max-width:520px;margin:0 0 32px;}
 
 /* Teaser / Full result */
-.lm-score-blur{font-family:"JetBrains Mono",monospace;font-size:48px;font-weight:700;color:#c4c9d4;filter:blur(6px);text-align:center;margin:20px 0;}
+.lm-teaser,.lm-full-result{max-width:640px;margin:0 auto;}
+.lm-teaser .lm-h2,.lm-full-result .lm-h2{text-align:center;}
+.lm-score-blur{font-family:"JetBrains Mono",monospace;font-size:48px;font-weight:700;color:#c4c9d4;filter:blur(6px);text-align:center;margin:20px 0;user-select:none;}
 .lm-weak-line,.lm-peer-line{font-size:14px;color:#45515e;text-align:center;margin:14px 0;line-height:1.6;}
 .lm-weak-callout{background:#f7f8fa;border-left:3px solid #0ABFCC;border-radius:0 8px 8px 0;padding:16px 18px;margin:20px 0;}
 .lm-weak-callout p{font-size:13px;color:#45515e;line-height:1.65;}
+.lm-next-step p{font-size:14px;}
+.lm-result-card{margin:24px 0;}
+.lm-result-desc{text-align:center;margin-bottom:20px;}
+.lm-full-result .lm-cta-row{justify-content:center;}
+.lm-full-result .lm-result-guarantee{text-align:center;}
 
-.lm-email-gate{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:14px;padding:26px;margin-top:26px;}
+.lm-email-gate{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin-top:26px;}
+.lm-gate-done{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#077F8C;margin-bottom:8px;}
 .lm-gate-copy{font-size:14px;color:#45515e;margin-bottom:16px;}
 .lm-gate-form{display:flex;flex-direction:column;gap:10px;}
+.lm-gate-form .lm-legal{margin-top:0;}
 .lm-input{background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;padding:12px 14px;font-size:14px;color:#0a0a0a;font-family:inherit;}
-.lm-input:focus{outline:none;border-color:#0ABFCC;}
-.lm-input::placeholder{color:#8e8e93;}
+.lm-input:focus{outline:none;border-color:#0ABFCC;box-shadow:0 0 0 3px rgba(10,191,204,.22);}
+.lm-input::placeholder{color:#6E7680;}
 
-.lm-radar-svg{display:block;margin:20px auto;width:100%;max-width:320px;}
+.lm-radar-svg{display:block;margin:20px auto;width:100%;max-width:320px;overflow:visible;}
 .lm-radar-grid{fill:none;stroke:#e5e7eb;stroke-width:1;}
 .lm-radar-data{fill:rgba(10,191,204,.14);stroke:#0ABFCC;stroke-width:2;}
-.lm-radar-label{font-size:9px;fill:#45515e;font-family:"JetBrains Mono",monospace;}
+.lm-radar-label{font-size:12px;fill:#45515e;font-family:"JetBrains Mono",monospace;}
 .lm-blurred{filter:blur(5px);opacity:.6;}
 
 /* Sticky CTA */
-.lm-sticky-cta{position:fixed;left:0;right:0;bottom:-80px;background:#ffffff;border-top:1px solid #e5e7eb;box-shadow:0 -4px 16px rgba(0,0,0,.06);padding:12px 20px;display:flex;justify-content:center;z-index:999;transition:bottom .25s ease;}
-.lm-sticky-visible{bottom:0;}
+.lm-sticky-cta{position:fixed;left:0;right:0;bottom:0;background:#ffffff;border-top:1px solid #e5e7eb;box-shadow:0 -4px 16px rgba(0,0,0,.06);padding:12px 20px calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:center;z-index:999;transform:translateY(110%);transition:transform .25s ease;}
+.lm-sticky-visible{transform:none;}
 .lm-sticky-cta .lm-btn{width:100%;max-width:340px;}
 
 /* ── Scroll reveal (purposeful, one-time on scroll-into-view) ───────── */
@@ -152,7 +174,8 @@ a{text-decoration:none;color:inherit;}
 .lm-revealed{opacity:1;transform:translateY(0);}
 
 /* ── Framework preview — animated SVG pentagon, L1-L5 badges ────────── */
-.lm-fw-preview-card{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:14px;padding:24px 20px 14px;margin-bottom:32px;}
+.lm-fw-preview-card{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:12px;padding:24px 20px 14px;margin-bottom:32px;}
+.lm-hero-visual-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6E7680;margin-bottom:4px;text-align:center;}
 .lm-fw-preview{display:flex;justify-content:center;}
 .lm-fw-svg-wrap{position:relative;width:100%;max-width:280px;}
 .lm-fw-svg{display:block;width:100%;height:auto;overflow:visible;}
@@ -160,44 +183,78 @@ a{text-decoration:none;color:inherit;}
 .lm-fw-stroke{fill:none;stroke:#0ABFCC;stroke-width:2;stroke-dasharray:520;stroke-dashoffset:520;transition:stroke-dashoffset 1.3s cubic-bezier(.4,0,.2,1) .15s;}
 .lm-revealed .lm-fw-stroke{stroke-dashoffset:0;}
 .lm-fw-dot{fill:#0ABFCC;}
-.lm-fw-badge{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:3px;width:78px;}
-.lm-fw-badge-num{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#0ABFCC;color:#070B10;font-size:10px;font-weight:800;font-family:"JetBrains Mono",monospace;box-shadow:0 2px 6px rgba(10,191,204,.35);}
-.lm-fw-badge-label{font-size:10px;font-weight:700;color:#0a0a0a;text-align:center;background:#fff;padding:1px 6px;border-radius:4px;white-space:nowrap;}
+.lm-fw-badge{position:absolute;transform:translate(-50%,-115%);display:flex;flex-direction:column;align-items:center;gap:3px;width:clamp(62px,22vw,78px);}
+.lm-fw-badge-num{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#0ABFCC;color:#070B10;font-size:10px;font-weight:700;font-family:"JetBrains Mono",monospace;box-shadow:0 2px 6px rgba(10,191,204,.35);}
+.lm-fw-badge-label{font-size:10px;font-weight:700;color:#0a0a0a;text-align:center;background:#fff;padding:1px 6px;border-radius:4px;}
 
-/* ── Sample report preview — honestly-labeled "Example" mockup ──────── */
-.lm-sample-report{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px;margin-bottom:40px;}
-.lm-sample-report-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8e8e93;margin-bottom:16px;}
+/* ── Report card (sample preview on the hero, real card on the result) ── */
+.lm-sample-report{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;margin-bottom:40px;}
+.lm-sample-report-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6E7680;margin-bottom:16px;}
 .lm-sr-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid #e5e7eb;}
 .lm-sr-score{display:flex;align-items:baseline;gap:2px;}
-.lm-sr-score-num{font-size:40px;font-weight:800;color:#0ABFCC;letter-spacing:-1px;}
-.lm-sr-score-max{font-size:15px;color:#8e8e93;font-weight:600;}
-.lm-sr-tier{font-size:12px;font-weight:700;color:#089AAA;background:rgba(10,191,204,.1);padding:6px 14px;border-radius:9999px;}
+.lm-sr-score-num{font-size:40px;font-weight:800;color:#0ABFCC;letter-spacing:-.025em;}
+.lm-sr-score-max{font-size:15px;color:#6E7680;font-weight:600;}
+.lm-sr-tier{font-size:12px;font-weight:700;color:#077F8C;background:rgba(10,191,204,.1);padding:6px 14px;border-radius:9999px;}
 .lm-sr-dims{display:flex;flex-direction:column;gap:11px;}
 .lm-sr-dim-row{display:flex;align-items:center;gap:10px;}
 .lm-sr-dim-label{width:84px;flex-shrink:0;font-size:11px;color:#45515e;font-weight:600;}
 .lm-sr-dim-track{flex:1;height:6px;border-radius:3px;background:#e5e7eb;overflow:hidden;}
-.lm-sr-dim-fill{height:100%;background:#0ABFCC;border-radius:3px;}
-.lm-sr-dim-pct{width:34px;flex-shrink:0;text-align:right;font-size:11px;color:#8e8e93;font-family:"JetBrains Mono",monospace;}
-.lm-sr-note{font-size:11px;color:#8e8e93;font-style:italic;margin-top:16px;}
+.lm-sr-dim-fill{height:100%;background:#0ABFCC;border-radius:3px;transition:width .9s cubic-bezier(.4,0,.2,1);}
+.lm-sr-dim-pct{width:34px;flex-shrink:0;text-align:right;font-size:11px;color:#6E7680;font-family:"JetBrains Mono",monospace;}
+.lm-sr-note{font-size:11px;color:#6E7680;font-style:italic;margin-top:16px;}
 
-/* ── Sample question teaser — one real question, pre-signup ─────────── */
-.lm-sample-q{margin-top:26px;background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:22px;}
-.lm-sample-q-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8e8e93;margin-bottom:12px;}
+/* ── Sample question teaser — matches the real quiz options ─────────── */
+.lm-sample-q{margin-top:26px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:24px;}
+.lm-sample-q-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6E7680;margin-bottom:12px;}
 .lm-sample-q-text{font-size:16px;font-weight:600;color:#0a0a0a;margin-bottom:14px;line-height:1.4;}
 .lm-sample-q-opts{display:flex;flex-direction:column;gap:8px;}
-.lm-sample-q-opt{font-size:13px;color:#45515e;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;padding:10px 14px;}
+.lm-sample-q-opt{display:flex;align-items:center;gap:12px;font-size:14px;color:#0a0a0a;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:12px 14px;}
+.lm-sample-q-opt .lm-opt-num{width:24px;height:24px;font-size:11px;}
 
-@media(max-width:600px){ #lm-root{padding:40px 18px 120px;} }
+/* Hover states only where hover exists — iOS otherwise sticks them on tap */
+@media (hover:hover) and (pointer:fine){
+  .lm-btn-primary:hover{background:#089AAA;transform:translateY(-1px);}
+  .lm-btn-ghost:hover{background:rgba(0,0,0,.04);}
+  .lm-link-secondary:hover{background:rgba(0,0,0,.05);transform:translateY(-1px);}
+  .lm-option:hover{border-color:#0ABFCC;background:rgba(10,191,204,.05);transform:translateX(4px);}
+  .lm-quiz-back:hover{border-color:#0ABFCC;color:#077F8C;}
+  .lm-faq-q:hover{border-color:#0ABFCC;}
+}
+
+@media(max-width:600px){
+  #lm-root{padding:40px 18px 32px;}
+  body.lm-on-hero #lm-root{padding-bottom:120px;}
+  .lm-quiz-back{width:44px;height:44px;}
+  .lm-sample-report{padding:18px;}
+  .lm-sr-dim-label{width:72px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  .lm-reveal{opacity:1;transform:none;}
+  .lm-fw-stroke{stroke-dashoffset:0;}
+}
 </style>
 </head>
 <body>
-<div id="lm-root"></div>
+<div id="lm-root">
+  <!-- Static above-the-fold fallback: paints before JS and survives a JS
+       failure (the engine wipes and re-renders it identically on init).
+       KEEP IN SYNC with NICHE_CONFIG.copy.hero below. -->
+  <div class="lm-hero">
+    <div class="lm-eyebrow"><span class="lm-eyebrow-dot"></span><span>Fractional AI Officer · Governance</span></div>
+    <h1 class="lm-h1">How governed is your AI-generated code, really?</h1>
+    <p class="lm-sub">Ten questions, two minutes. Score your AI code governance across the same five layers a Fractional AI Officer runs — Align, Accelerate, Protect, Comply, Optimise — and see your gaps before an auditor, a customer, or a diligence team finds them.</p>
+    <div class="lm-cta-row"><button class="lm-btn lm-btn-primary" onclick="location.reload()">Get My Governance Index Score</button></div>
+    <p class="lm-guarantee-line">Free · 10 questions · about 2 minutes · instant PDF. No credit card, no call required.</p>
+    <noscript><p class="lm-body">This assessment needs JavaScript. Enable it and reload, or email gaurav@upcoretechnologies.com for the questionnaire.</p></noscript>
+  </div>
+</div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MH5PB32L"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <script>
 var NICHE_CONFIG = {
   niche: 'governance-index',
@@ -224,33 +281,26 @@ var NICHE_CONFIG = {
   api: { submit: '/api/lead-magnet-submit' },
   tierTable: [
     { min:0, max:25, label:'Ungoverned', description:'AI code is shipping with no policy, no visibility, no audit trail.' },
-    { min:26, max:50, label:'Reactive', description:'Some ad hoc controls exist but nothing systematic across layers.' },
+    { min:26, max:50, label:'Reactive', description:'Policy or scanning exists somewhere, but no layer is covered end-to-end — controls depend on who set them up.' },
     { min:51, max:75, label:'Structured', description:'Policy and review exist; gaps usually concentrate in spend visibility or audit-readiness.' },
-    { min:76, max:100, label:'Governed', description:'Mature, enforced, board-visible governance across most layers.', lighterCTA:true }
+    { min:76, max:100, label:'Governed', description:'Policy, review, scanning, and audit trail are all enforced and reported upward — the gaps left are refinements, not exposures.', lighterCTA:true }
   ],
   weakLineTemplates: {
-    align: 'Your biggest exposure right now is in policy and ownership — see exactly where, and what it\'s costing you.',
-    accelerate: 'Your biggest exposure right now is in code review — see exactly where, and what it\'s costing you.',
-    protect: 'Your biggest exposure right now is in code security — see exactly where, and what it\'s costing you.',
-    comply: 'Your biggest exposure right now is in audit-readiness — see exactly where, and what it\'s costing you.',
-    optimise: 'Your biggest exposure right now is in spend visibility — see exactly where, and what it\'s costing you.'
+    align: 'Your weakest layer is Align — AI policy exists in people\'s heads, not in a document anyone is accountable for.',
+    accelerate: 'Your weakest layer is Accelerate — AI-written code is entering main through the same review bar as hand-written code, with none of the same assumptions.',
+    protect: 'Your weakest layer is Protect — nothing is currently scanning specifically for the failure modes AI-generated code introduces.',
+    comply: 'Your weakest layer is Comply — if an auditor or an enterprise customer asked for an AI-code audit trail this week, you\'d be assembling it by hand.',
+    optimise: 'Your weakest layer is Optimise — AI tool spend is a line item, not a managed budget, so you can\'t tell which teams are getting value from it.'
   },
   copy: {
     hero: {
       eyebrow: 'Fractional AI Officer · Governance',
-      headline: 'Govern every AI-generated commit — and every AI dollar — in 72 hours.',
-      subhead: '50+ engineering teams already have their Governance Index Score. Yours takes 2 minutes — see where you\'d rank before your next audit, board meeting, or funding round asks.',
+      headline: 'How governed is your AI-generated code, really?',
+      subhead: 'Ten questions, two minutes. Score your AI code governance across the same five layers a Fractional AI Officer runs — Align, Accelerate, Protect, Comply, Optimise — and see your gaps before an auditor, a customer, or a diligence team finds them.',
       primaryCta: 'Get My Governance Index Score',
       secondaryCta: 'Or skip straight to booking a call',
-      guaranteeLine: 'If your Day-30 risk report doesn\'t justify continuing, you walk away — no further obligation.',
-      dashboardWidgetHeader: 'Governance Index — 5 Layers Scored',
-      dashboardWidget: [
-        { label: 'Align', status: 'Policy & ownership' },
-        { label: 'Accelerate', status: 'AI code review' },
-        { label: 'Protect', status: 'Security scanning' },
-        { label: 'Comply', status: 'Audit-readiness' },
-        { label: 'Optimise', status: 'Spend visibility' }
-      ],
+      guaranteeLine: 'Free · 10 questions · about 2 minutes · instant PDF. No credit card, no call required.',
+      heroVisualLabel: 'The 5 Layers You\'ll Be Scored On',
       frameworkPreview: [
         { badge: 'L1', label: 'Align' },
         { badge: 'L2', label: 'Accelerate' },
@@ -261,46 +311,51 @@ var NICHE_CONFIG = {
       proofBar: [
         '45% of AI-generated code contains an exploitable vulnerability — Veracode, 2025',
         '$4.7M average breach cost when AI code is in the attack path — IBM, 2024',
-        'CVE-2025-48757',
-        'CMMI Level 3', 'ISO 27001', 'ISO 9001', 'ISO 42001'
+        '50+ engineering teams scored · FAO engagements from $1,999/month'
       ],
+      proofCerts: ['CMMI Level 3', 'ISO 27001', 'ISO 9001', 'ISO 42001'],
       whyNow: {
-        headline: 'The EU AI Act\'s high-risk deadline just moved — to December 2, 2027.',
-        body: 'The original August 2026 deadline for high-risk AI system obligations was delayed 16 months this year under the EU\'s Digital Omnibus package — confirmed, not proposed. That\'s real breathing room, not a reason to wait: audit trails, policy, and review gates take longer to stand up properly than most teams assume, and "we have until 2027" is exactly the assumption that turns into a scramble in late 2027.'
+        headline: '45% of AI-generated code ships with an exploitable vulnerability.',
+        body: 'That\'s Veracode\'s 2025 research across real coding tasks, and CVE-2025-48757 shows what it looks like when one reaches production. IBM puts the average breach at $4.7M when AI-generated code is in the attack path. None of this waits for a regulatory deadline: your customers\' vendor-security reviews are already asking how AI-written code gets reviewed.'
       },
       icpMirror: [
         'AI-generated code is 30%+ of what ships, and nobody\'s reviewing it differently than human code.',
         'We raised our Series B and the first diligence question was: how do you govern AI-written code? We didn\'t have an answer.',
         'Our security team found out about a new AI coding tool from a Slack message, not a review.'
       ],
-      icpClosing: 'If any of this sounds familiar, the 50+ teams already scored are ahead of you on this — the Index takes 2 minutes and shows you exactly where you stand.',
+      icpClosing: 'If any of this sounds familiar, the Index shows you which of the five layers is actually exposed — not a sales pitch.',
       howItWorks: [
-        'Answer 10 questions across the same 5 layers the FAO governs against.',
-        'See your Index Score, tier, and how you compare to teams already assessed — immediately, on-screen.',
+        'Answer 10 questions across the 5 layers a Fractional AI Officer governs: Align, Accelerate, Protect, Comply, Optimise.',
+        'Enter your work email to unlock your Index Score and tier — immediately, on-screen.',
         'Download your full PDF report instantly — your actual findings, not generic advice.',
-        'Optional 45-minute call to walk through a Day-30 roadmap, if you want one.'
+        'Optional 45-minute call to build your Day-30 roadmap, if you want one.'
       ],
+      footerCtaHeadline: 'Two minutes. Ten questions. Your score.',
       faq: [
         { q: 'Is this actually free?', a: 'Yes — the Index, your on-screen score, and the PDF report are free, no credit card, no obligation. The only ask afterward is whether you want a 45-minute call, and there\'s no pressure either way.' },
         { q: 'Can\'t we just build this ourselves?', a: 'Some teams do — usually by hiring a dedicated AI governance lead ($180K–$250K+ fully loaded) or spending 3–6 engineering months building policy, scanning, and audit tooling in-house. The FAO gets the same outcome in 72 hours at a fraction of that cost, month-to-month, with a 30-day exit clause.' },
-        { q: 'We\'re not regulated / this isn\'t material yet.', a: 'If your Index comes back Structured or Governed, we\'ll tell you that directly — the report doesn\'t oversell risk that isn\'t there. But at 100+ engineers selling to enterprise customers, your customers\' own vendor-security reviews don\'t wait for a regulatory deadline, and the EU AI Act\'s high-risk obligations — now due December 2, 2027 after this year\'s delay — are still real, just less imminent than a lot of teams assume.' },
-        { q: 'Won\'t this slow our engineering team down?', a: 'The FAO runs alongside your existing PR workflow, not a separate approval queue — most teams experience it as guardrails, not friction. Your Index result shows exactly where the current gaps are before anything changes.' },
+        { q: 'We\'re not regulated / this isn\'t material yet.', a: 'If your Index comes back Structured or Governed, we\'ll tell you that directly — the report doesn\'t oversell risk that isn\'t there. But if you\'re selling to enterprise customers, their vendor-security reviews don\'t wait for a regulatory deadline, and the EU AI Act\'s high-risk obligations (now due December 2, 2027 after this year\'s delay) are still real, just less imminent than a lot of teams assume.' },
+        { q: 'Won\'t this slow our engineering team down?', a: 'The FAO runs alongside your existing PR workflow, not a separate approval queue. It works as guardrails, not a second review board — and your Index result shows exactly where the current gaps are before anything changes.' },
         { q: 'Can 10 questions really assess something this complex?', a: 'No — and we don\'t pretend they can. The Index is a fast diagnostic signal across the same 5 layers a full engagement governs against, built to show you where to look first. The full picture — actual code, actual policy, actual audit trails — is what the 45-minute call and a real engagement are for.' }
       ]
     },
+    teaser: {
+      urgencyLine: 'Your customers\' vendor-security reviews already ask how AI-written code gets reviewed. This is that answer, scored.'
+    },
     fullResult: {
-      primaryCta: 'Book your 45-min governance review',
-      pdfNextStep: 'Your FAO embeds in 72 hours and owns your AI governance from Day 1. Starting from $1,999/month. Book a free 45-minute review to walk through your Day-30 roadmap.'
+      primaryCta: 'Walk me through my Day-30 roadmap',
+      primaryCtaLighter: 'Get a second opinion on my lowest layers',
+      pdfNextStep: 'In 45 minutes, a Fractional AI Officer candidate walks this report layer by layer, maps your actual AI risk surface, and hands you a concrete Day-30 roadmap. No pitch, no pressure. If you engage, the FAO embeds in 72 hours from $1,999/month, and if the Day-30 report doesn\'t justify continuing, you walk away.'
     },
     sampleReport: {
-      score: 58,
+      score: 48,
       tier: 'Reactive',
       dims: [
-        { label: 'Align', pct: 45 },
-        { label: 'Accelerate', pct: 60 },
-        { label: 'Protect', pct: 35 },
-        { label: 'Comply', pct: 70 },
-        { label: 'Optimise', pct: 80 }
+        { label: 'Align', pct: 40 },
+        { label: 'Accelerate', pct: 55 },
+        { label: 'Protect', pct: 30 },
+        { label: 'Comply', pct: 50 },
+        { label: 'Optimise', pct: 65 }
       ]
     }
   },
@@ -308,30 +363,30 @@ var NICHE_CONFIG = {
     {
       id: 'l1', chipLabel: 'Align',
       questions: [
-        { id: 'q1', dimId: 'align', dimLabel: 'Align', logPrefix: 'L1', text: 'Do you have a written AI usage policy that\'s actually enforced?', options: ['No policy','Informal guidelines only','Written, but not enforced','Written and enforced'], type: 'single' },
+        { id: 'q1', dimId: 'align', dimLabel: 'Align', logPrefix: 'L1', text: 'Do you have a written AI usage policy, and is it enforced?', options: ['No policy','Informal guidelines only','Written, but not enforced','Written and enforced'], type: 'single' },
         { id: 'q2', dimId: 'align', dimLabel: 'Align', logPrefix: 'L1', text: 'Who owns AI policy decisions at your company today?', options: ['No one — it\'s ad hoc','Engineering leadership only','Security/Compliance only','A dedicated, cross-functional owner'], type: 'single' }
       ]
     },
     {
       id: 'l2', chipLabel: 'Accelerate',
       questions: [
-        { id: 'q3', dimId: 'accelerate', dimLabel: 'Accelerate', logPrefix: 'L2', text: 'Is AI-generated code reviewed differently than human-written code in your PR process?', options: ['No difference','Sometimes, manually','Always, manually','Yes — an automated gate catches it'], type: 'single' },
-        { id: 'q4', dimId: 'accelerate', dimLabel: 'Accelerate', logPrefix: 'L2', text: 'Do you actually know which AI tools each engineer is using, right now?', options: ['No visibility','Self-reported only','Partial logging','Full usage dashboard'], type: 'single' }
+        { id: 'q3', dimId: 'accelerate', dimLabel: 'Accelerate', logPrefix: 'L2', text: 'How does AI-generated code get identified in your PR process?', options: ['We don\'t distinguish AI code from human code','We flag it informally when someone notices','Reviewers are required to flag it manually','An automated gate tags AI-assisted PRs before review'], type: 'single' },
+        { id: 'q4', dimId: 'accelerate', dimLabel: 'Accelerate', logPrefix: 'L2', text: 'Do you know which AI tools each engineer is using right now?', options: ['No visibility','Self-reported only','Partial logging','Full usage dashboard'], type: 'single' }
       ]
     },
     {
       id: 'l3', chipLabel: 'Protect',
       questions: [
-        { id: 'q5', dimId: 'protect', dimLabel: 'Protect', logPrefix: 'L3', text: 'When did you last scan specifically for AI-introduced vulnerabilities?', options: ['Never','Once, ad hoc','Regularly, manually','Continuous, automated'], type: 'single' },
-        { id: 'q6', dimId: 'protect', dimLabel: 'Protect', logPrefix: 'L3', text: 'Has an AI coding tool ever caused a security incident or near-miss you\'re aware of?', options: ['No, not that I know of','Suspected, never confirmed','Yes, minor','Yes, significant'], type: 'single' }
+        { id: 'q5', dimId: 'protect', dimLabel: 'Protect', logPrefix: 'L3', text: 'How do you scan for vulnerabilities in AI-generated code?', options: ['We don\'t scan for this','Once, ad hoc','Regularly, but manually triggered','Continuous and automated on every PR'], type: 'single' },
+        { id: 'q6', dimId: 'protect', dimLabel: 'Protect', logPrefix: 'L3', text: 'If an AI coding tool introduced a vulnerability last quarter, would you know?', options: ['No — we\'d have no way to tell','Only if it caused a visible incident','Probably — we\'d catch it in review or scanning','Yes — we\'d have the commit, the tool, and the scan result'], type: 'single' }
       ],
       insightAfter: { afterQuestionId: 'q6', copy: 'Veracode\'s 2025 research found AI-generated code introduces at least one exploitable vulnerability in 45% of coding tasks. If you answered "Never" to scanning, that\'s not a hypothetical.' }
     },
     {
       id: 'l4', chipLabel: 'Comply',
       questions: [
-        { id: 'q7', dimId: 'comply', dimLabel: 'Comply', logPrefix: 'L4', text: 'Could you produce a full audit trail of AI-assisted code changes today, on demand?', options: ['Not confident at all','Somewhat — would take weeks','Somewhat — would take days','Fully confident, on demand'], type: 'single' },
-        { id: 'q8', dimId: 'comply', dimLabel: 'Comply', logPrefix: 'L4', text: 'Which of these actually apply to you? (select all that matter)', options: ['EU AI Act','GDPR','HIPAA','SOC 2','SOX','ISO 42001','None yet'], type: 'multiselect', modifierFor: 'q7', capValue: 3 }
+        { id: 'q7', dimId: 'comply', dimLabel: 'Comply', logPrefix: 'L4', text: 'Could you produce a full audit trail of AI-assisted code changes today?', options: ['Not confident at all','Somewhat — would take weeks','Somewhat — would take days','Fully confident, on demand'], type: 'single' },
+        { id: 'q8', dimId: 'comply', dimLabel: 'Comply', logPrefix: 'L4', text: 'Which of these does your company have to answer to today? (select all that apply)', options: ['EU AI Act','GDPR','HIPAA','SOC 2','SOX','ISO 42001','None of these yet'], type: 'multiselect' }
       ]
     },
     {
@@ -347,6 +402,9 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=7" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=8" defer></script>
+<script src="/cta-tracking.js" defer></script>
+<!-- jsPDF loads LAST so a slow/blocked CDN can never delay engine init -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 </body>
 </html>

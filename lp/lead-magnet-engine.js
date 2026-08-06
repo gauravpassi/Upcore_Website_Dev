@@ -61,12 +61,13 @@
     var dims = {}; // dimId -> {raw, maxRaw, label}
     var order = [];
     allQuestions(config).forEach(function (q) {
-      if (q.type === 'multiselect') return; // handled as a modifier below
+      if (q.type === 'multiselect') return; // segmentation only — never scored
       if (!dims[q.dimId]) { dims[q.dimId] = { raw: 0, maxRaw: 0, label: q.dimLabel }; order.push(q.dimId); }
       var ans = answers[q.id];
-      var raw = ans && typeof ans.index === 'number' ? ans.index : 0;
+      var max = q.options.length - 1;
+      var raw = ans && typeof ans.index === 'number' ? Math.min(ans.index, max) : 0;
       dims[q.dimId].raw += raw;
-      dims[q.dimId].maxRaw += 3;
+      dims[q.dimId].maxRaw += max;
     });
     allQuestions(config).forEach(function (q) {
       if (q.type !== 'multiselect' || !q.modifierFor) return;
@@ -127,7 +128,12 @@
       utm: captureUTM(),
       insightsShown: {}
     };
+    // Per-pageview token — dedupes the Ads conversion if the gate is ever
+    // double-submitted, and ties dataLayer events to one session.
+    this.sessionId = 'lm-' + Math.random().toString(36).slice(2, 10) + '-' + Math.random().toString(36).slice(2, 6);
     this._lastQuizRenderKey = null;
+    this._submitting = false;
+    this._advancing = false;
     this._buildStickyCTA();
     this._bindKeyboard();
     this._render();
@@ -142,7 +148,9 @@
   LeadMagnetEngine.prototype.pushEvent = function (key, payload) {
     var eventName = this.config.events[key];
     if (!eventName) return;
-    var params = { niche: this.config.niche };
+    var params = { niche: this.config.niche, lm_session: this.sessionId };
+    var utm = this.state.utm || {};
+    Object.keys(utm).forEach(function (k) { params[k] = utm[k]; });
     if (payload) Object.keys(payload).forEach(function (k) { params[k] = payload[k]; });
 
     window.dataLayer = window.dataLayer || [];
@@ -157,12 +165,16 @@
 
   LeadMagnetEngine.prototype._render = function () {
     this.root.innerHTML = '';
+    this._advancing = false;
+    document.body.classList.toggle('lm-on-hero', this.state.screen === 'hero');
     if (this.state.screen === 'hero') this._renderHero();
     else if (this.state.screen === 'quiz') this._renderQuiz();
     else if (this.state.screen === 'teaser') this._renderTeaser();
     else if (this.state.screen === 'full') this._renderFull();
     this._updateStickyCTA();
-    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    // Literal 'instant' — anything else falls back to the page's
+    // scroll-behavior:smooth and animates on every question advance.
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   // ── HERO ─────────────────────────────────────────────────────────────────
@@ -180,7 +192,7 @@
     var primaryBtn = el('button', {
       class: 'lm-btn lm-btn-primary', text: h.primaryCta,
       'data-gtm-cta': slugify(h.primaryCta), 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'hero',
-      onclick: function () { self._startQuiz(); }
+      onclick: function () { self._startQuiz('hero'); }
     });
     var secondaryLink = el('a', {
       class: 'lm-link-secondary', text: h.secondaryCta, href: c.bookingHref || '/assessment',
@@ -194,6 +206,24 @@
       wrap.appendChild(el('p', { class: 'lm-guarantee-line', text: h.guaranteeLine }));
     }
 
+    // Proof directly under the CTA — credibility shouldn't hide below a
+    // 300px decorative visual. Stats read as lines, certifications as chips.
+    var proof = el('div', { class: 'lm-proof-bar' });
+    (h.proofBar || []).forEach(function (item) {
+      proof.appendChild(el('span', { class: 'lm-proof-item' }, [
+        el('span', { class: 'lm-proof-icon', html: '&#10003;' }),
+        el('span', { html: item })
+      ]));
+    });
+    if (h.proofCerts && h.proofCerts.length) {
+      var certs = el('div', { class: 'lm-proof-certs' });
+      h.proofCerts.forEach(function (item) {
+        certs.appendChild(el('span', { class: 'lm-proof-cert', text: item }));
+      });
+      proof.appendChild(certs);
+    }
+    wrap.appendChild(proof);
+
     if (h.frameworkPreview && h.frameworkPreview.length) {
       var fwCard = el('div', { class: 'lm-fw-preview-card lm-reveal' });
       if (h.heroVisualLabel) fwCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
@@ -205,18 +235,7 @@
       if (h.heroVisualLabel) curveCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
       curveCard.appendChild(this._buildMaturityCurve(null));
       wrap.appendChild(curveCard);
-    } else if (h.dashboardWidget) {
-      wrap.appendChild(this._buildHeroWidget());
     }
-
-    var proof = el('div', { class: 'lm-proof-bar lm-reveal' });
-    (h.proofBar || []).forEach(function (item) {
-      proof.appendChild(el('span', { class: 'lm-proof-item' }, [
-        el('span', { class: 'lm-proof-icon', html: '&#10003;' }),
-        el('span', { html: item })
-      ]));
-    });
-    wrap.appendChild(proof);
 
     var sampleReport = this._buildSampleReportPreview();
     if (sampleReport) {
@@ -264,14 +283,27 @@
     if (h.faq && h.faq.length) {
       var faqWrap = el('div', { class: 'lm-faq' });
       faqWrap.appendChild(el('h2', { class: 'lm-h2', text: 'Frequently asked' }));
-      h.faq.forEach(function (item) {
-        var q = el('button', { class: 'lm-faq-q', text: item.q, onclick: function (e) {
-          var body = e.currentTarget.nextElementSibling;
-          var open = body.style.maxHeight;
-          document.querySelectorAll('.lm-faq-a').forEach(function (b) { b.style.maxHeight = ''; });
-          if (!open) body.style.maxHeight = body.scrollHeight + 'px';
-        } });
-        var a = el('div', { class: 'lm-faq-a' }, [el('p', { text: item.a })]);
+      h.faq.forEach(function (item, fi) {
+        var aId = 'lm-faq-a-' + fi;
+        var q = el('button', {
+          class: 'lm-faq-q', 'aria-expanded': 'false', 'aria-controls': aId,
+          onclick: function (e) {
+            var btn = e.currentTarget;
+            var body = btn.nextElementSibling;
+            var wasOpen = btn.getAttribute('aria-expanded') === 'true';
+            faqWrap.querySelectorAll('.lm-faq-a').forEach(function (b) { b.style.maxHeight = ''; b.style.visibility = 'hidden'; });
+            faqWrap.querySelectorAll('.lm-faq-q').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+            if (!wasOpen) {
+              body.style.maxHeight = body.scrollHeight + 'px';
+              body.style.visibility = 'visible';
+              btn.setAttribute('aria-expanded', 'true');
+            }
+          }
+        }, [
+          el('span', { class: 'lm-faq-q-text', text: item.q }),
+          el('span', { class: 'lm-faq-chevron', 'aria-hidden': 'true', html: '&#9662;' })
+        ]);
+        var a = el('div', { class: 'lm-faq-a', id: aId, style: 'visibility:hidden;' }, [el('p', { text: item.a })]);
         faqWrap.appendChild(q);
         faqWrap.appendChild(a);
       });
@@ -279,22 +311,31 @@
     }
 
     var footerCta = el('div', { class: 'lm-footer-strip' });
+    if (h.footerCtaHeadline) footerCta.appendChild(el('h2', { class: 'lm-h2', text: h.footerCtaHeadline }));
     var footerBtn = el('button', {
       class: 'lm-btn lm-btn-primary', text: h.primaryCta,
       'data-gtm-cta': slugify(h.primaryCta), 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'footer',
-      onclick: function () { self._startQuiz(); }
+      onclick: function () { self._startQuiz('footer'); }
     });
     footerCta.appendChild(footerBtn);
-    footerCta.appendChild(el('p', { class: 'lm-legal', html: 'By continuing you agree to our <a href="/privacy">Privacy Policy</a>.' }));
+    if (h.guaranteeLine) footerCta.appendChild(el('p', { class: 'lm-guarantee-line lm-footer-guarantee', text: h.guaranteeLine }));
+    footerCta.appendChild(el('p', { class: 'lm-legal', html: 'By continuing you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.' }));
     wrap.appendChild(footerCta);
 
     this.root.appendChild(wrap);
+    this._footerCtaEl = footerBtn;
     this._observeReveals();
   };
 
   // ── Scroll reveal + count-up (purposeful motion only: one-time reveal on
   // first scroll into view, no loops, no gratuitous parallax) ──────────────
   LeadMagnetEngine.prototype._observeReveals = function () {
+    // Bars/count-ups can live outside .lm-reveal wrappers too (e.g. the real
+    // result card) — animate those immediately.
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var loose = this.root.querySelectorAll('[data-fill], [data-countup]');
+    loose.forEach(function (t) { if (!t.closest('.lm-reveal')) animateEl(t); });
+
     var els = this.root.querySelectorAll('.lm-reveal:not(.lm-revealed)');
     if (!els.length) return;
     if (!('IntersectionObserver' in window)) {
@@ -311,22 +352,31 @@
     }, { threshold: 0.2 });
     els.forEach(function (el) { io.observe(el); });
 
+    function animateEl(t) {
+      if (t.hasAttribute('data-fill')) {
+        t.style.width = parseInt(t.getAttribute('data-fill'), 10) + '%';
+        return;
+      }
+      var end = parseInt(t.getAttribute('data-countup'), 10);
+      var suffix = t.getAttribute('data-countup-suffix') || '';
+      if (isNaN(end)) return;
+      if (reduceMotion) { t.textContent = end + suffix; return; }
+      var t0 = null, dur = 900;
+      function step(ts) {
+        if (!t0) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        t.textContent = Math.round(eased * end) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
     function runCountUps(scope) {
-      var targets = scope.hasAttribute('data-countup') ? [scope] : Array.prototype.slice.call(scope.querySelectorAll('[data-countup]'));
-      targets.forEach(function (t) {
-        var end = parseInt(t.getAttribute('data-countup'), 10);
-        var suffix = t.getAttribute('data-countup-suffix') || '';
-        if (isNaN(end)) return;
-        var t0 = null, dur = 900;
-        function step(ts) {
-          if (!t0) t0 = ts;
-          var p = Math.min((ts - t0) / dur, 1);
-          var eased = 1 - Math.pow(1 - p, 3);
-          t.textContent = Math.round(eased * end) + suffix;
-          if (p < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      });
+      var targets = (scope.hasAttribute('data-countup') || scope.hasAttribute('data-fill'))
+        ? [scope]
+        : Array.prototype.slice.call(scope.querySelectorAll('[data-countup], [data-fill]'));
+      targets.forEach(animateEl);
     }
   };
 
@@ -418,7 +468,7 @@
     card.appendChild(el('div', { class: 'lm-sample-report-tag', text: 'Sample Report — Example' }));
     var head = el('div', { class: 'lm-sr-head' });
     head.appendChild(el('div', { class: 'lm-sr-score' }, [
-      el('span', { class: 'lm-sr-score-num', text: String(sr.score) }),
+      el('span', { class: 'lm-sr-score-num', 'data-countup': String(sr.score), text: String(sr.score) }),
       el('span', { class: 'lm-sr-score-max', text: '/100' })
     ]));
     head.appendChild(el('div', { class: 'lm-sr-tier', text: sr.tier }));
@@ -428,7 +478,8 @@
       var row = el('div', { class: 'lm-sr-dim-row' });
       row.appendChild(el('span', { class: 'lm-sr-dim-label', text: d.label }));
       var track = el('div', { class: 'lm-sr-dim-track' });
-      track.appendChild(el('div', { class: 'lm-sr-dim-fill', style: 'width:' + d.pct + '%' }));
+      // Width applied by _observeReveals so the bars animate in on reveal.
+      track.appendChild(el('div', { class: 'lm-sr-dim-fill', 'data-fill': String(d.pct), style: 'width:0%' }));
       row.appendChild(track);
       row.appendChild(el('span', { class: 'lm-sr-dim-pct', text: d.pct + '%' }));
       dims.appendChild(row);
@@ -439,7 +490,8 @@
   };
 
   // ── Sample question teaser — shows one real question from the quiz
-  // pre-signup (uses actual config data, not invented copy). ──────────────
+  // pre-signup (uses actual config data, not invented copy). Styled to
+  // match the real quiz options so the preview is an honest promise. ──────
   LeadMagnetEngine.prototype._buildSampleQuestionTeaser = function () {
     var c = this.config;
     var q = c.screens && c.screens[0] && c.screens[0].questions && c.screens[0].questions[0];
@@ -448,8 +500,11 @@
     card.appendChild(el('div', { class: 'lm-sample-q-tag', text: 'Question 1 of ' + this._totalQuestions() }));
     card.appendChild(el('p', { class: 'lm-sample-q-text', text: q.text }));
     var opts = el('div', { class: 'lm-sample-q-opts' });
-    (q.options || []).forEach(function (opt) {
-      opts.appendChild(el('div', { class: 'lm-sample-q-opt', text: opt }));
+    (q.options || []).forEach(function (opt, i) {
+      opts.appendChild(el('div', { class: 'lm-sample-q-opt' }, [
+        el('span', { class: 'lm-opt-num', text: String(i + 1) }),
+        el('span', { text: opt })
+      ]));
     });
     card.appendChild(opts);
     return card;
@@ -463,15 +518,15 @@
 
   // Hero CTA jumps straight into the first question — no separate intro
   // screen, which only repeated the hero's own headline/subhead.
-  LeadMagnetEngine.prototype._startQuiz = function () {
-    this._beginQuestions();
+  LeadMagnetEngine.prototype._startQuiz = function (source) {
+    this._beginQuestions(source);
   };
 
-  LeadMagnetEngine.prototype._beginQuestions = function () {
+  LeadMagnetEngine.prototype._beginQuestions = function (source) {
     this.state.screen = 'quiz';
     this.state.qIndex = 0;
     this.state.pendingInsight = null;
-    this.pushEvent('start');
+    this.pushEvent('start', { cta_source: source || 'unknown' });
     this._render();
   };
 
@@ -548,42 +603,53 @@
       html: '&larr;', 'aria-label': 'Previous question',
       onclick: function () { self._goBack(); }
     }));
-    var track = el('div', { class: 'lm-quiz-progress-track' });
-    track.appendChild(el('div', { class: 'lm-quiz-progress-fill', style: 'width:' + Math.round((this.state.qIndex / total) * 100) + '%' }));
+    // (qIndex+1)/(total+1): never 0% on Q1, never claims done before the gate.
+    var track = el('div', { class: 'lm-quiz-progress-track', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(total), 'aria-valuenow': String(this.state.qIndex + 1), 'aria-label': 'Quiz progress' });
+    track.appendChild(el('div', { class: 'lm-quiz-progress-fill', style: 'width:' + Math.round(((this.state.qIndex + 1) / (total + 1)) * 100) + '%' }));
     topbar.appendChild(track);
     topbar.appendChild(el('span', { class: 'lm-quiz-count', text: (this.state.qIndex + 1) + ' / ' + total }));
     wrap.appendChild(topbar);
 
-    var body = el('div', { class: 'lm-quiz-body' });
+    var body = el('div', { class: 'lm-quiz-body', 'aria-live': 'polite' });
     if (screen) body.appendChild(el('div', { class: 'lm-quiz-eyebrow', text: screen.chipLabel || screen.theme || '' }));
     body.appendChild(this._buildQuestionBlock(q));
 
     if (q.type === 'multiselect') {
+      var hasSelection = this.state.answers[q.id] && this.state.answers[q.id].indices.length > 0;
+      body.appendChild(el('p', { class: 'lm-quiz-hint', text: 'Select every one that applies, then continue.' }));
       var continueBtn = el('button', {
         class: 'lm-btn lm-btn-primary lm-continue-btn', text: 'Continue',
+        disabled: hasSelection ? null : 'disabled',
         'data-gtm-cta': 'continue', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'quiz',
         onclick: function () { self._afterQuestionAnswered(q); }
       });
       body.appendChild(continueBtn);
-      body.appendChild(el('p', { class: 'lm-quiz-hint', text: 'Select any that apply, then press Enter or click Continue.' }));
-    } else {
-      body.appendChild(el('p', { class: 'lm-quiz-hint', text: 'Click an answer, or press 1–9 on your keyboard.' }));
+    } else if (this.state.qIndex < 2) {
+      body.appendChild(el('p', { class: 'lm-quiz-hint', text: 'Tap an answer, or press 1–' + q.options.length + ' on your keyboard. About 2 minutes total.' }));
     }
 
     wrap.appendChild(body);
     this.root.appendChild(wrap);
+    var qText = wrap.querySelector('.lm-question-text');
+    if (qText) { qText.setAttribute('tabindex', '-1'); try { qText.focus({ preventScroll: true }); } catch (e) { /* older browsers */ } }
   };
 
   LeadMagnetEngine.prototype._buildQuestionBlock = function (q) {
     var self = this;
     var block = el('div', { class: 'lm-question' });
-    block.appendChild(el('p', { class: 'lm-question-text', text: q.text }));
-    var opts = el('div', { class: 'lm-options' });
+    var qTextId = 'lm-q-' + q.id;
+    block.appendChild(el('p', { class: 'lm-question-text', id: qTextId, text: q.text }));
+    var opts = el('div', {
+      class: 'lm-options',
+      role: q.type === 'multiselect' ? 'group' : 'radiogroup',
+      'aria-labelledby': qTextId
+    });
     q.options.forEach(function (optText, idx) {
       if (q.type === 'multiselect') {
         var selected = self.state.answers[q.id] && self.state.answers[q.id].indices.indexOf(idx) !== -1;
         var btn = el('button', {
           class: 'lm-option lm-option-multi' + (selected ? ' lm-option-selected' : ''),
+          'aria-pressed': selected ? 'true' : 'false',
           onclick: function () { self._toggleMultiselect(q, idx); }
         }, [
           el('span', { class: 'lm-opt-num', text: String(idx + 1) }),
@@ -595,6 +661,7 @@
         var isSelected = self.state.answers[q.id] && self.state.answers[q.id].index === idx;
         opts.appendChild(el('button', {
           class: 'lm-option' + (isSelected ? ' lm-option-selected' : ''),
+          role: 'radio', 'aria-checked': isSelected ? 'true' : 'false',
           onclick: function () { self._answerQuestion(q, idx); }
         }, [
           el('span', { class: 'lm-opt-num', text: String(idx + 1) }),
@@ -607,9 +674,13 @@
   };
 
   LeadMagnetEngine.prototype._answerQuestion = function (q, idx) {
+    if (this._advancing) return; // rapid double-answer would skip a question
+    this._advancing = true;
+    var firstAnswer = !this.state.answers[q.id];
     this.state.answers[q.id] = { index: idx };
-    this.pushEvent('questionAnswered', { question_id: q.id, dimension: q.dimId });
+    if (firstAnswer) this.pushEvent('questionAnswered', { question_id: q.id, dimension: q.dimId });
     this._render(); // show the selected state immediately, then advance
+    this._advancing = true; // _render resets it; re-arm for the timeout window
     var self = this;
     setTimeout(function () { self._afterQuestionAnswered(q); }, 280);
   };
@@ -625,6 +696,11 @@
   // Called once a question has a final answer — checks for an insight
   // interrupt tied to this question before moving to the next one.
   LeadMagnetEngine.prototype._afterQuestionAnswered = function (q) {
+    if (q.type === 'multiselect') {
+      var ans = this.state.answers[q.id];
+      if (!ans || !ans.indices.length) return; // Continue is disabled, but guard Enter too
+      if (!ans._eventSent) { ans._eventSent = true; this.pushEvent('questionAnswered', { question_id: q.id, dimension: q.dimId }); }
+    }
     var screen = this._findScreenForQuestion(q);
     var insight = screen && screen.insightAfter;
     if (insight && insight.afterQuestionId === q.id && !this.state.insightsShown[screen.id]) {
@@ -658,7 +734,22 @@
 
   LeadMagnetEngine.prototype._renderInsightScreen = function () {
     var self = this;
+    var total = allQuestions(this.config).length;
     var wrap = el('div', { class: 'lm-quiz' + this._quizAnimClass('insight' + this.state.qIndex) });
+
+    // Keep the topbar so progress context survives the interrupt.
+    var topbar = el('div', { class: 'lm-quiz-topbar' });
+    topbar.appendChild(el('button', {
+      class: 'lm-quiz-back', html: '&larr;', 'aria-label': 'Back to the question',
+      onclick: function () { self.state.pendingInsight = null; self._render(); }
+    }));
+    var track = el('div', { class: 'lm-quiz-progress-track', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(total), 'aria-valuenow': String(this.state.qIndex + 1) });
+    track.appendChild(el('div', { class: 'lm-quiz-progress-fill', style: 'width:' + Math.round(((this.state.qIndex + 1) / (total + 1)) * 100) + '%' }));
+    topbar.appendChild(track);
+    topbar.appendChild(el('span', { class: 'lm-quiz-count', text: (this.state.qIndex + 1) + ' / ' + total }));
+    wrap.appendChild(topbar);
+
+    if (!this._insightViewSent) { this._insightViewSent = true; this.pushEvent('questionAnswered', { question_id: 'insight_interrupt', dimension: 'insight' }); }
     var body = el('div', { class: 'lm-quiz-body lm-insight-screen' });
     body.appendChild(el('div', { class: 'lm-insight-badge', text: 'Quick insight' }));
     body.appendChild(el('p', { class: 'lm-insight-copy', text: this.state.pendingInsight.copy }));
@@ -674,8 +765,10 @@
   // ── Teaser (email gate) ─────────────────────────────────────────────────
   LeadMagnetEngine.prototype._goToTeaser = function () {
     this.state.score = computeScore(this.config, this.state.answers);
+    this.state.score.weakestDim = weakestDim(this.state.score);
     this.state.screen = 'teaser';
     this.pushEvent('teaserView', { tier: this.state.score.tier ? this.state.score.tier.label : null });
+    if (typeof window.clarity === 'function') { window.clarity('set', 'lm_step', 'teaser'); }
     this._render();
   };
 
@@ -683,33 +776,45 @@
     var self = this, c = this.config, score = this.state.score;
     var wrap = el('div', { class: 'lm-teaser' });
 
-    wrap.appendChild(el('h2', { class: 'lm-h2', text: 'Your ' + c.indexLabel + ': ' + (score.tier ? score.tier.label : '') }));
-    wrap.appendChild(el('div', { class: 'lm-score-blur', text: score.overall + '/100' }));
+    // Tier and score both stay hidden until the gate — revealing the tier
+    // here gave away most of the value the email unlocks.
+    wrap.appendChild(el('h1', { class: 'lm-h2', text: 'Your ' + c.indexLabel + ' is ready.' }));
+    wrap.appendChild(el('div', { class: 'lm-score-blur', 'aria-hidden': 'true', text: '··/100' }));
     wrap.appendChild(this._buildChart(score, true));
 
-    var weakest = weakestDim(score);
-    if (weakest && c.weakLineTemplates && c.weakLineTemplates[weakest]) {
-      wrap.appendChild(el('p', { class: 'lm-weak-line', text: c.weakLineTemplates[weakest] }));
+    wrap.appendChild(el('p', { class: 'lm-weak-line', text: 'One of your ' + score.dimOrder.length + ' areas scored materially below the rest — your report names it, and what to do about it first.' }));
+    if (c.copy.teaser && c.copy.teaser.urgencyLine) {
+      wrap.appendChild(el('p', { class: 'lm-peer-line', text: c.copy.teaser.urgencyLine }));
     }
-    wrap.appendChild(el('p', { class: 'lm-peer-line', text: 'Enterprise buyers are already asking vendors for a score like this one. See yours before they ask you.' }));
 
     var gate = el('div', { class: 'lm-email-gate' });
-    gate.appendChild(el('p', { class: 'lm-gate-copy', text: 'Enter your work email to unlock your full ' + c.indexLabel + ', breakdown, peer comparison, and PDF report.' }));
+    gate.appendChild(el('p', { class: 'lm-gate-done', text: '10 of 10 answered — one step left.' }));
+    gate.appendChild(el('p', { class: 'lm-gate-copy', text: 'Enter your work email to unlock your score, your full breakdown, and your PDF report.' }));
     var form = el('form', { class: 'lm-gate-form' });
-    var fName = el('input', { type: 'text', placeholder: 'First name', required: 'required', class: 'lm-input' });
-    var fEmail = el('input', { type: 'email', placeholder: 'Work email', required: 'required', class: 'lm-input' });
-    var fCompany = el('input', { type: 'text', placeholder: 'Company', required: 'required', class: 'lm-input' });
-    form.appendChild(fName);
-    form.appendChild(fEmail);
-    form.appendChild(fCompany);
+    function labeled(input, id, labelText) {
+      input.setAttribute('id', id);
+      input.setAttribute('name', id);
+      var lab = el('label', { for: id, class: 'lm-visually-hidden', text: labelText });
+      form.appendChild(lab);
+      form.appendChild(input);
+    }
+    var fName = el('input', { type: 'text', placeholder: 'First name', required: 'required', class: 'lm-input', autocomplete: 'given-name' });
+    var fEmail = el('input', { type: 'email', placeholder: 'Work email', required: 'required', class: 'lm-input', autocomplete: 'email', inputmode: 'email', autocapitalize: 'off' });
+    var fCompany = el('input', { type: 'text', placeholder: 'Company', required: 'required', class: 'lm-input', autocomplete: 'organization' });
+    labeled(fName, 'lm-first-name', 'First name');
+    labeled(fEmail, 'lm-email', 'Work email');
+    labeled(fCompany, 'lm-company', 'Company');
+    form.appendChild(el('p', { class: 'lm-legal', text: "Your report generates instantly in your browser. We won't share your details, and there's no obligation." }));
     var submitBtn = el('button', {
       type: 'submit', class: 'lm-btn lm-btn-primary', text: 'Unlock My ' + c.indexLabel,
       'data-gtm-cta': 'unlock-my-index', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'teaser'
     });
     form.appendChild(submitBtn);
-    form.appendChild(el('p', { class: 'lm-legal', text: "We'll use this to generate your report. We won't share it, and you can unsubscribe from any follow-up at any time." }));
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (self._submitting) return;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Unlocking…';
       self._submitContact({ firstName: fName.value.trim(), email: fEmail.value.trim(), company: fCompany.value.trim() });
     });
     gate.appendChild(form);
@@ -720,6 +825,8 @@
 
   LeadMagnetEngine.prototype._submitContact = function (contact) {
     var self = this, c = this.config;
+    if (this._submitting) return;
+    this._submitting = true;
     this.state.contact = contact;
     this.pushEvent('emailCaptured', { email_domain: (contact.email.split('@')[1] || '') });
 
@@ -732,7 +839,8 @@
       window.gtag('event', 'conversion', {
         send_to: c.googleAdsConversionLabel,
         value: c.googleAdsConversionValue,
-        currency: c.googleAdsConversionCurrency
+        currency: c.googleAdsConversionCurrency,
+        transaction_id: this.sessionId
       });
     }
 
@@ -782,6 +890,10 @@
     this.state.apiResult = apiResult;
     this.state.screen = 'full';
     this.pushEvent('resultView', { tier: apiResult.tier });
+    if (typeof window.clarity === 'function') {
+      window.clarity('set', 'lm_step', 'full');
+      if (apiResult.tier) window.clarity('set', 'lm_tier', apiResult.tier);
+    }
     this._sendTeamNotification(apiResult);
     this._render();
   };
@@ -791,12 +903,22 @@
   // deliberately does NOT send this itself: Cloudflare (fronting
   // FormSubmit.co) returns a 403 bot-detection challenge to Vercel's
   // serverless outbound IPs regardless of headers, so the request has to
-  // come from a real browser. Uses apiResult's server-verified
-  // tier/overallScore/dims/weakestDim, not the client-computed score.
+  // come from a real browser. Prefers apiResult's server-verified
+  // tier/overallScore/dims/weakestDim, but ALWAYS fires — even when the API
+  // call failed — falling back to the client-computed score, so a network
+  // blip never silently destroys a fully-qualified lead.
   LeadMagnetEngine.prototype._sendTeamNotification = function (apiResult) {
     var c = this.config, contact = this.state.contact || {};
-    if (!apiResult || apiResult.ok === false) return;
+    if (!apiResult) apiResult = { ok: false };
+    var apiFailed = apiResult.ok === false;
+    var score = this.state.score || {};
+    var tier = apiResult.tier || (score.tier ? score.tier.label : '');
+    var overall = (typeof apiResult.overallScore === 'number') ? apiResult.overallScore : score.overall;
+    var weakest = apiResult.weakestDim || score.weakestDim || '';
     var dims = apiResult.dims || {};
+    if (!Object.keys(dims).length && score.dims) {
+      Object.keys(score.dims).forEach(function (id) { dims[id] = score.dims[id].pct; });
+    }
     var dimLines = Object.keys(dims).map(function (id) { return id + ': ' + dims[id]; }).join(', ');
 
     fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
@@ -808,10 +930,11 @@
         _captcha: 'false',
         _cc: 'saswata@upcoretechnologies.com',
         'Index': c.indexLabel,
-        'Tier': apiResult.tier + ' (' + apiResult.overallScore + '/100)',
-        'Weakest Dimension': apiResult.weakestDim || '',
+        'Tier': tier + ' (' + overall + '/100)',
+        'Weakest Dimension': weakest,
         'Dimension Breakdown': dimLines,
         'Lighter-Track Signal': apiResult.routing && apiResult.routing.lighterTrack ? 'Yes' : 'No',
+        'Delivery Note': apiFailed ? 'API failed — score is the client-side fallback, lead is NOT in the Sheet' : 'Server-verified',
         'Name': contact.firstName || 'Not provided',
         'Email': contact.email || '',
         'Company': contact.company || 'Not provided',
@@ -841,47 +964,81 @@
     var self = this, c = this.config, score = this.state.score, api = this.state.apiResult;
     var wrap = el('div', { class: 'lm-full-result' });
 
-    wrap.appendChild(el('h2', { class: 'lm-h2', text: 'Your ' + c.indexLabel + ': ' + score.overall + '/100 — ' + (score.tier ? score.tier.label : '') }));
-    if (score.tier && score.tier.description) wrap.appendChild(el('p', { class: 'lm-body', text: score.tier.description }));
+    wrap.appendChild(el('h1', { class: 'lm-h2', text: 'Your ' + c.indexLabel }));
 
-    wrap.appendChild(this._buildChart(score, false));
+    // Real score card — same styled component as the hero's sample preview,
+    // now with the reader's actual numbers.
+    var card = el('div', { class: 'lm-sample-report lm-result-card' });
+    var head = el('div', { class: 'lm-sr-head' });
+    head.appendChild(el('div', { class: 'lm-sr-score' }, [
+      el('span', { class: 'lm-sr-score-num', 'data-countup': String(score.overall), text: String(score.overall) }),
+      el('span', { class: 'lm-sr-score-max', text: '/100' })
+    ]));
+    if (score.tier) head.appendChild(el('div', { class: 'lm-sr-tier', text: score.tier.label }));
+    card.appendChild(head);
+    var dims = el('div', { class: 'lm-sr-dims' });
+    score.dimOrder.forEach(function (id) {
+      var d = score.dims[id];
+      var row = el('div', { class: 'lm-sr-dim-row' });
+      row.appendChild(el('span', { class: 'lm-sr-dim-label', text: d.label }));
+      var track = el('div', { class: 'lm-sr-dim-track' });
+      track.appendChild(el('div', { class: 'lm-sr-dim-fill', 'data-fill': String(d.pct), style: 'width:0%' }));
+      row.appendChild(track);
+      row.appendChild(el('span', { class: 'lm-sr-dim-pct', text: d.pct + '%' }));
+      dims.appendChild(row);
+    });
+    card.appendChild(dims);
+    wrap.appendChild(card);
 
-    var peer = el('p', { class: 'lm-peer-line' });
-    if (api.peer && api.peer.sufficientData) {
-      peer.textContent = 'Teams assessed so far average ' + api.peer.avgOverall + '/100 — you scored ' + (score.overall >= api.peer.avgOverall ? 'above' : 'below') + ' that.';
-    } else {
-      peer.textContent = 'Not enough peer responses yet to show a reliable comparison — check back soon.';
-    }
-    wrap.appendChild(peer);
+    if (score.tier && score.tier.description) wrap.appendChild(el('p', { class: 'lm-body lm-result-desc', text: score.tier.description }));
 
-    var weakest = weakestDim(score);
+    var weakest = score.weakestDim || weakestDim(score);
     if (weakest && c.weakLineTemplates && c.weakLineTemplates[weakest]) {
       wrap.appendChild(el('div', { class: 'lm-weak-callout' }, [el('p', { text: c.weakLineTemplates[weakest] })]));
     }
 
+    // Booking CTA sits high, while motivation is peak — chart + sell copy follow.
+    var lighter = api.routing && api.routing.lighterTrack;
+    var ctaLabel = (lighter && c.copy.fullResult.primaryCtaLighter) || c.copy.fullResult.primaryCta;
     var ctaRow = el('div', { class: 'lm-cta-row' });
     var bookBtn = el('a', {
-      class: 'lm-btn lm-btn-primary', text: c.copy.fullResult.primaryCta, href: this._bookingUrl(),
-      'data-gtm-cta': slugify(c.copy.fullResult.primaryCta), 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'full_result',
+      class: 'lm-btn lm-btn-primary', text: ctaLabel, href: this._bookingUrl(),
+      target: '_blank', rel: 'noopener',
+      'data-gtm-cta': slugify(ctaLabel), 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'full_result',
       onclick: function () { self.pushEvent('callBooked'); }
     });
     var pdfBtn = el('button', {
       class: 'lm-btn lm-btn-ghost', text: 'Download PDF Report',
       'data-gtm-cta': 'download-pdf-report', 'data-gtm-cta-type': 'secondary', 'data-gtm-cta-section': 'full_result',
-      onclick: function () { self._downloadPdf(); }
+      onclick: function () { self._downloadPdf(this); }
     });
     ctaRow.appendChild(bookBtn);
     ctaRow.appendChild(pdfBtn);
     wrap.appendChild(ctaRow);
+    wrap.appendChild(el('p', { class: 'lm-guarantee-line lm-result-guarantee', text: 'If the Day-30 report doesn’t justify continuing, you walk away — no lock-in, no exit fee.' }));
 
-    wrap.appendChild(el('p', { class: 'lm-legal', html: 'Your data is used only to generate this report and isn\'t shared. See our <a href="/privacy">Privacy Policy</a>.' }));
+    wrap.appendChild(this._buildChart(score, false));
+
+    if (api.peer && api.peer.sufficientData) {
+      wrap.appendChild(el('p', { class: 'lm-peer-line', text: 'Teams assessed so far average ' + api.peer.avgOverall + '/100 — you scored ' + (score.overall >= api.peer.avgOverall ? 'above' : 'below') + ' that.' }));
+    }
+
+    if (c.copy.fullResult.pdfNextStep) {
+      wrap.appendChild(el('div', { class: 'lm-weak-callout lm-next-step' }, [el('p', { text: c.copy.fullResult.pdfNextStep })]));
+    }
+
+    wrap.appendChild(el('p', { class: 'lm-legal', html: 'Your data is used only to generate this report and isn\'t shared. See our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.' }));
 
     this.root.appendChild(wrap);
+    this._observeReveals();
   };
 
-  LeadMagnetEngine.prototype._downloadPdf = function () {
-    var self = this;
-    if (typeof window.jspdf === 'undefined') { console.error('[lead-magnet] jsPDF not loaded'); return; }
+  LeadMagnetEngine.prototype._downloadPdf = function (btn) {
+    if (typeof window.jspdf === 'undefined') {
+      console.error('[lead-magnet] jsPDF not loaded');
+      if (btn) { btn.textContent = 'PDF blocked by your browser — book the call and we’ll bring it'; btn.disabled = true; }
+      return;
+    }
     var blob = this._generatePdf();
     blob.save((this.config.niche + '-report.pdf'));
     this.pushEvent('pdfSent');
@@ -1070,7 +1227,7 @@
     doc.text('What this score means', margin, y);
     y += 22;
     doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
-    var introBody = 'This report scores your organization across the ' + score.dimOrder.length + ' dimensions Upcore’s Fractional AI Officer framework governs against. The following pages map your profile against the framework and break down exactly where you’re strong and where the gaps are — the same lens we use in paying engagements.';
+    var introBody = 'This report scores your organisation across the ' + score.dimOrder.length + ' dimensions Upcore’s Fractional AI Officer framework governs against. The following pages map your profile against the framework and break down exactly where you’re strong and where the gaps are — the same lens we use in paying engagements.';
     var introLines = doc.splitTextToSize(introBody, contentW);
     doc.text(introLines, margin, y);
     y += introLines.length * 15 + 26;
@@ -1169,7 +1326,9 @@
     doc.text(c.copy.fullResult.primaryCta || 'Book a 45-minute review', margin + 24, y + 38);
     doc.setFont('helvetica', 'normal'); doc.setFontSize(11);
     doc.setTextColor.apply(doc, PDF_TEAL);
-    doc.text('upcoretech.com' + (c.bookingHref || '/assessment'), margin + 24, y + 62);
+    doc.textWithLink('www.upcoretech.com' + (c.bookingHref || '/assessment'), margin + 24, y + 62, {
+      url: 'https://www.upcoretech.com' + (c.bookingHref || '/assessment') + '?utm_source=pdf_report&utm_medium=pdf&utm_campaign=' + c.niche
+    });
     doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5);
     doc.setTextColor(200, 205, 210);
     doc.text('No commitment required — we’ll walk through this exact report on the call.', margin + 24, y + 80);
@@ -1194,7 +1353,7 @@
     var svgNs = 'http://www.w3.org/2000/svg';
     var svg = document.createElementNS(svgNs, 'svg');
     svg.setAttribute('viewBox', '0 0 ' + size + ' ' + size);
-    svg.setAttribute('class', 'lm-radar-svg' + (blurred ? ' lm-blurred' : ''));
+    svg.setAttribute('class', 'lm-radar-svg');
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'Score radar chart');
 
@@ -1229,7 +1388,9 @@
     }
     var poly = document.createElementNS(svgNs, 'polygon');
     poly.setAttribute('points', dataPts.join(' '));
-    poly.setAttribute('class', 'lm-radar-data');
+    // Blur only the data polygon — the axis labels explain what the chart
+    // is; hiding them made the teaser read as a broken image.
+    poly.setAttribute('class', 'lm-radar-data' + (blurred ? ' lm-blurred' : ''));
     svg.appendChild(poly);
 
     return svg;
@@ -1283,23 +1444,44 @@
   };
 
   // ── Sticky CTA ───────────────────────────────────────────────────────────
+  // Shows on the hero (start the quiz) AND on the full result (book the
+  // call) — the two screens with real scroll depth. Hidden while the hero's
+  // own footer CTA is on screen so the same button never appears twice.
   LeadMagnetEngine.prototype._buildStickyCTA = function () {
     var self = this;
     var bar = el('div', { class: 'lm-sticky-cta' });
     var btn = el('button', {
       class: 'lm-btn lm-btn-primary', text: this.config.copy.hero.primaryCta,
       'data-gtm-cta': 'sticky-cta', 'data-gtm-cta-type': 'primary', 'data-gtm-cta-section': 'sticky',
-      onclick: function () { if (self.state.screen === 'hero') self._startQuiz(); }
+      onclick: function () {
+        if (self.state.screen === 'hero') self._startQuiz('sticky');
+        else if (self.state.screen === 'full') { self.pushEvent('callBooked'); window.open(self._bookingUrl(), '_blank', 'noopener'); }
+      }
     });
     bar.appendChild(btn);
     document.body.appendChild(bar);
     this._stickyBar = bar;
+    this._stickyBtn = btn;
     window.addEventListener('scroll', function () { self._updateStickyCTA(); }, { passive: true });
   };
 
   LeadMagnetEngine.prototype._updateStickyCTA = function () {
     if (!this._stickyBar) return;
-    var show = this.state.screen === 'hero' && window.scrollY > 400;
+    var screen = this.state.screen;
+    var show = false;
+    if (screen === 'hero' && window.scrollY > 400) {
+      show = true;
+      this._stickyBtn.textContent = this.config.copy.hero.primaryCta;
+      // Suppress while the hero's own footer CTA is in view — identical
+      // buttons stacked on screen read as a rendering bug.
+      if (this._footerCtaEl) {
+        var r = this._footerCtaEl.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) show = false;
+      }
+    } else if (screen === 'full' && window.scrollY > 300) {
+      show = true;
+      this._stickyBtn.textContent = this.config.copy.fullResult.primaryCta;
+    }
     this._stickyBar.classList.toggle('lm-sticky-visible', show);
   };
 

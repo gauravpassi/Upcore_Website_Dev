@@ -61,7 +61,10 @@ const NICHE_SCORING = {
       { id: 'q5', dimId: 'protect' },
       { id: 'q6', dimId: 'protect' },
       { id: 'q7', dimId: 'comply' },
-      { id: 'q8', dimId: 'comply', type: 'multiselect', modifierFor: 'q7', capValue: 3 },
+      // q8 is a segmentation multiselect (which regulations apply) — it is
+      // deliberately UNSCORED: counting ticked frameworks scored regulatory
+      // exposure as if it were audit-readiness, and gave "None yet" a point.
+      { id: 'q8', dimId: 'comply', type: 'multiselect' },
       { id: 'q9', dimId: 'optimise' },
       { id: 'q10', dimId: 'optimise' }
     ],
@@ -85,7 +88,7 @@ const NICHE_SCORING = {
       { id: 'd6', dimId: 'budget' },
       { id: 'd7', dimId: 'visibility' },
       { id: 'd8', dimId: 'tooling' },
-      { id: 'd9', dimId: 'adoption' },
+      { id: 'd9', dimId: 'adoption', maxIndex: 4 }, // 5 options — "haven't rolled out yet" added as a true zero
       { id: 'd10', dimId: 'oversight' }
     ],
     dimOrder: ['vision', 'ownership', 'inventory', 'coordination', 'roi', 'budget', 'visibility', 'tooling', 'adoption', 'oversight'],
@@ -109,11 +112,12 @@ function computeScore(niche, answers) {
   cfg.dimOrder.forEach(id => { dims[id] = { raw: 0, maxRaw: 0 }; });
 
   cfg.questions.forEach(q => {
-    if (q.type === 'multiselect') return; // handled as a modifier below
+    if (q.type === 'multiselect') return; // segmentation only — never scored
     const ans = answerById[q.id];
-    const raw = ans && typeof ans.index === 'number' ? ans.index : 0;
+    const max = q.maxIndex || 3;
+    const raw = ans && typeof ans.index === 'number' ? Math.min(ans.index, max) : 0;
     dims[q.dimId].raw += raw;
-    dims[q.dimId].maxRaw += 3;
+    dims[q.dimId].maxRaw += max;
   });
 
   cfg.questions.forEach(q => {

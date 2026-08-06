@@ -58,6 +58,7 @@ a{text-decoration:none;color:inherit;}
 .lm-btn-ghost:hover{border-color:rgba(255,255,255,.5);}
 .lm-link-secondary{font-size:13px;color:rgba(255,255,255,.45);text-decoration:underline;}
 .lm-link-secondary:hover{color:rgba(255,255,255,.7);}
+.lm-guarantee-line{font-size:13px;color:rgba(255,255,255,.5);margin:-24px 0 32px;line-height:1.5;}
 
 .lm-hero-widget{background:#111417;border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;margin-bottom:32px;}
 .lm-hero-widget-header{padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);border-bottom:1px solid rgba(255,255,255,.07);font-family:"JetBrains Mono",monospace;}
@@ -210,6 +211,15 @@ var NICHE_CONFIG = {
       subhead: '50+ engineering teams already have their Governance Index Score. Yours takes 2 minutes — see where you\'d rank before your next audit, board meeting, or funding round asks.',
       primaryCta: 'Get My Governance Index Score',
       secondaryCta: 'Or skip straight to booking a call',
+      guaranteeLine: 'If your Day-30 risk report doesn\'t justify continuing, you walk away — no further obligation.',
+      dashboardWidgetHeader: 'Governance Index — 5 Layers Scored',
+      dashboardWidget: [
+        { label: 'Align', status: 'Policy & ownership' },
+        { label: 'Accelerate', status: 'AI code review' },
+        { label: 'Protect', status: 'Security scanning' },
+        { label: 'Comply', status: 'Audit-readiness' },
+        { label: 'Optimise', status: 'Spend visibility' }
+      ],
       proofBar: [
         '45% of AI-generated code contains an exploitable vulnerability — Veracode, 2025',
         '$4.7M average breach cost when AI code is in the attack path — IBM, 2024',
@@ -236,7 +246,8 @@ var NICHE_CONFIG = {
         { q: 'Is this actually free?', a: 'Yes — the Index, your on-screen score, and the PDF report are free, no credit card, no obligation. The only ask afterward is whether you want a 45-minute call, and there\'s no pressure either way.' },
         { q: 'Can\'t we just build this ourselves?', a: 'Some teams do — usually by hiring a dedicated AI governance lead ($180K–$250K+ fully loaded) or spending 3–6 engineering months building policy, scanning, and audit tooling in-house. The FAO gets the same outcome in 72 hours at a fraction of that cost, month-to-month, with a 30-day exit clause.' },
         { q: 'We\'re not regulated / this isn\'t material yet.', a: 'If your Index comes back Structured or Governed, we\'ll tell you that directly — the report doesn\'t oversell risk that isn\'t there. But at 100+ engineers selling to enterprise customers, your customers\' own vendor-security reviews don\'t wait for a regulatory deadline, and the EU AI Act\'s high-risk obligations — now due December 2, 2027 after this year\'s delay — are still real, just less imminent than a lot of teams assume.' },
-        { q: 'Won\'t this slow our engineering team down?', a: 'The FAO runs alongside your existing PR workflow, not a separate approval queue — most teams experience it as guardrails, not friction. Your Index result shows exactly where the current gaps are before anything changes.' }
+        { q: 'Won\'t this slow our engineering team down?', a: 'The FAO runs alongside your existing PR workflow, not a separate approval queue — most teams experience it as guardrails, not friction. Your Index result shows exactly where the current gaps are before anything changes.' },
+        { q: 'Can 10 questions really assess something this complex?', a: 'No — and we don\'t pretend they can. The Index is a fast diagnostic signal across the same 5 layers a full engagement governs against, built to show you where to look first. The full picture — actual code, actual policy, actual audit trails — is what the 45-minute call and a real engagement are for.' }
       ]
     },
     fullResult: {
@@ -287,6 +298,6 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=3" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=4" defer></script>
 </body>
 </html>

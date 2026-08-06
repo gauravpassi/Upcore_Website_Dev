@@ -12,6 +12,19 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-06 — CRO audit + revamp of both lead-magnet landing pages (governance-index, ai-maturity-index)
+**Type:** feature, content
+**Files:** `lp/lead-magnet-engine.js`, `lp/governance-index.html`, `lp/ai-maturity-index.html`
+Ran a structured CRO audit (5-second test, PAS/emotion, structure, scannability, verifiable proof, visual hierarchy, convention) against both pages, then an interview to confirm facts before writing anything — no invented stats, testimonials, or numbers. Key confirmed inputs: the "50+" respondent count is real and current (keep as-is); quiz completion is the primary conversion goal (the "skip to booking" link was already correctly demoted to small text, not a competing button — audit score corrected on review); traffic is Google + LinkedIn Ads with no specific ad copy to mirror; add the same real Day-30 walk-away guarantee already live on `/assessment`/`ai-engineering-governance.html` and `/lp/maturity-review`/`ai-adoption-strategy.html` (not a new claim); add a hero visual as a "framework snapshot," not a fabricated product screenshot; add an FAQ addressing score-accuracy skepticism.
+
+Engine changes (`lead-magnet-engine.js`, affects both pages): generalized `_buildHeroWidget()`'s header from a hardcoded FDE-specific string to `c.copy.hero.dashboardWidgetHeader`; added a `h.guaranteeLine` render hook under the hero CTA row; wrapped the already-existing (but previously bare/unstyled) maturity-curve hero visual in a labeled `.lm-hero-visual-card`. Cache-buster bumped `?v=3` → `?v=4` on both pages per this repo's established gotcha.
+
+`governance-index.html`: added a real hero widget ("Governance Index — 5 Layers Scored") listing the actual 5 framework layers (Align/Accelerate/Protect/Comply/Optimise) with short honest descriptors — no fake scores, just naming what the report assesses. Added the guarantee line and the new methodology FAQ (5th item).
+
+`ai-maturity-index.html`: labeled the existing 4-stage maturity curve ("Where You'll Land — 4 Stages") in a new light-card wrapper — same real Fragmented/Emerging/Aligning/Orchestrated data already in `NICHE_CONFIG.chart.stages`, just polished. Added the guarantee line and the new methodology FAQ (4th item).
+
+Verified live in-browser end-to-end on both pages after a sandbox-specific hurdle: the `jsPDF` CDN script (`cdnjs.cloudflare.com`) is unreachable from this session's browser sandbox, and since it's `defer`red before the engine script, it blocked `DOMContentLoaded` (and therefore rendering) on the first several load attempts — unrelated to these edits, confirmed via `node --check` + isolated config parsing first, then a clean server/tab restart got a load through. Quiz flow click-tested end-to-end, zero console errors from actual page execution, zero mobile overflow at 375px.
+
 ## 2026-08-06 — Diagnose missing saswata@ notification on lp/maturity-review.html (FormSubmit activation gotcha, not a code bug)
 **Type:** decision, content
 **Files:** `CLAUDE.md`, `docs/CONVENTIONS.md`

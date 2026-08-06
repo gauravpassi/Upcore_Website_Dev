@@ -57,6 +57,9 @@ a{text-decoration:none;color:inherit;}
 .lm-btn-ghost:hover{background:rgba(0,0,0,.04);}
 .lm-link-secondary{font-size:13px;color:#8e8e93;text-decoration:underline;}
 .lm-link-secondary:hover{color:#45515e;}
+.lm-guarantee-line{font-size:13px;color:#45515e;margin:-24px 0 32px;line-height:1.5;}
+.lm-hero-visual-card{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:14px;padding:20px;margin-bottom:32px;}
+.lm-hero-visual-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8e8e93;margin-bottom:4px;text-align:center;}
 
 .lm-proof-bar{display:flex;flex-wrap:wrap;gap:10px 20px;padding:18px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;margin-bottom:40px;}
 .lm-proof-item{font-size:12px;color:#45515e;}
@@ -211,6 +214,8 @@ var NICHE_CONFIG = {
       subhead: 'Take the Upcore AI Maturity Index — 10 questions, 2 minutes — and see exactly which of your AI pilots are worth keeping, before your board asks you to justify all twenty.',
       primaryCta: 'Get My Maturity Index Score',
       secondaryCta: 'Or skip straight to booking a call',
+      guaranteeLine: 'If your Day-30 findings don\'t justify continuing, you walk away — no further obligation.',
+      heroVisualLabel: 'Where You\'ll Land — 4 Stages',
       proofBar: [
         'Starting from $1,999/month vs. $400K–$750K+ for a full-time Chief AI Officer hire',
         'CMMI Level 3', 'ISO 27001', 'ISO 9001', 'ISO 42001', '50+ enterprise teams'
@@ -235,7 +240,8 @@ var NICHE_CONFIG = {
       faq: [
         { q: 'We already have a CIO / IT leader.', a: 'This isn\'t about IT infrastructure — it\'s about coordinating AI initiatives across departments (ops, finance, HR, customer-facing teams) that a CIO typically isn\'t chartered to own end-to-end. Most companies that take this Index still don\'t have anyone accountable for AI ROI across the whole business, CIO or not.' },
         { q: 'We\'re not ready for a Chief AI Officer.', a: 'Good — this isn\'t a pitch to hire one. It\'s a 90-day engagement, delivered by Upcore\'s coordinated AI agent teams under a fractional model, starting from $1,999/month against a $400K–$750K+ full-time hire. If your Index score comes back Orchestrated, we\'ll say so directly rather than oversell.' },
-        { q: 'We\'re still experimenting — it\'s early days.', a: 'That\'s exactly the stage this is built for. MIT\'s NANDA research found 95% of enterprise AI pilots fail to show measurable ROI — mostly not from bad tools, but from nobody coordinating across departments early enough. The Index tells you which of your current experiments are worth doubling down on before you\'ve sunk more budget into the wrong five.' }
+        { q: 'We\'re still experimenting — it\'s early days.', a: 'That\'s exactly the stage this is built for. MIT\'s NANDA research found 95% of enterprise AI pilots fail to show measurable ROI — mostly not from bad tools, but from nobody coordinating across departments early enough. The Index tells you which of your current experiments are worth doubling down on before you\'ve sunk more budget into the wrong five.' },
+        { q: 'Can 10 questions really tell you anything about a company our size?', a: 'Not everything — and we\'re not claiming to. The Index is a fast signal across the same 10 dimensions a full Diagnostic engagement runs on, built to show you your biggest coordination gap, not replace an actual portfolio review. Think of it as the first data point, not the final word.' }
       ]
     },
     fullResult: {
@@ -287,6 +293,6 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=3" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=4" defer></script>
 </body>
 </html>

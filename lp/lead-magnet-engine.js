@@ -191,8 +191,15 @@
     ctaRow.appendChild(secondaryLink);
     wrap.appendChild(ctaRow);
 
+    if (h.guaranteeLine) {
+      wrap.appendChild(el('p', { class: 'lm-guarantee-line', text: h.guaranteeLine }));
+    }
+
     if (c.chart && c.chart.type === 'maturityCurve') {
-      wrap.appendChild(this._buildMaturityCurve(null));
+      var curveCard = el('div', { class: 'lm-hero-visual-card' });
+      if (h.heroVisualLabel) curveCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
+      curveCard.appendChild(this._buildMaturityCurve(null));
+      wrap.appendChild(curveCard);
     } else if (h.dashboardWidget) {
       wrap.appendChild(this._buildHeroWidget());
     }
@@ -277,7 +284,7 @@
   LeadMagnetEngine.prototype._buildHeroWidget = function () {
     var c = this.config;
     var box = el('div', { class: 'lm-hero-widget' });
-    box.appendChild(el('div', { class: 'lm-hero-widget-header', text: 'FDE Delivery Log — Example' }));
+    box.appendChild(el('div', { class: 'lm-hero-widget-header', text: c.copy.hero.dashboardWidgetHeader || 'Overview — Example' }));
     var body = el('div', { class: 'lm-hero-widget-body' });
     (c.copy.hero.dashboardWidget || []).forEach(function (row) {
       body.appendChild(el('div', { class: 'lm-hero-widget-row' }, [

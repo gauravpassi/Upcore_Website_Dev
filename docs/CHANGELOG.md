@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Maturity headline pass 4 (final): fix message-match with the quiz mechanic
+**Type:** content
+**Files:** `lp/ai-maturity-index.html`
+Flagged an issue with pass 3's "glorified tool" headline before the user asked: the quiz scores portfolio *coordination* (ownership, budget, visibility across pilots), not whether one AI tool is good — a single-tool-skepticism headline creates a message-match gap between what the ad promises and what the quiz delivers. Proposed 2 alternatives that keep the same skeptical energy but point at the portfolio itself; user picked: **"You're Paying for a Dozen AI Tools. Is Any of It Actually Working — or Just Expensive Theater?"** "A dozen AI tools" ties directly to the scattered-pilots problem the quiz actually measures, closing the gap. Verified live at 1440px (clean 4-line wrap) and 375px (no overflow).
+
 ## 2026-08-07 — Maturity headline pass 3: user-directed angle change (glorified-tool skepticism)
 **Type:** content
 **Files:** `lp/ai-maturity-index.html`

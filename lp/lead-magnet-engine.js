@@ -1473,6 +1473,32 @@
     svg.setAttribute('role', 'img');
     svg.setAttribute('aria-label', 'Score radar chart');
 
+    // Structure-only preview (score === null, e.g. the hero widget before
+    // anyone has answered): a real data polygon would collapse to a single
+    // point at the center (every axis at 0%) and read as a blank/broken
+    // chart. Instead fill the outer ring and draw spokes to each vertex —
+    // same "populated structure, no data yet" treatment the pentagon
+    // preview uses on the governance page.
+    if (!score) {
+      var outer = [];
+      for (var oi = 0; oi < n; oi++) {
+        var oAng = (Math.PI * 2 * oi) / n - Math.PI / 2;
+        outer.push((cx + Math.cos(oAng) * r) + ',' + (cy + Math.sin(oAng) * r));
+      }
+      var fill = document.createElementNS(svgNs, 'polygon');
+      fill.setAttribute('points', outer.join(' '));
+      fill.setAttribute('class', 'lm-radar-preview-fill');
+      svg.appendChild(fill);
+      for (var si = 0; si < n; si++) {
+        var sAng = (Math.PI * 2 * si) / n - Math.PI / 2;
+        var spoke = document.createElementNS(svgNs, 'line');
+        spoke.setAttribute('x1', cx); spoke.setAttribute('y1', cy);
+        spoke.setAttribute('x2', cx + Math.cos(sAng) * r); spoke.setAttribute('y2', cy + Math.sin(sAng) * r);
+        spoke.setAttribute('class', 'lm-radar-spoke');
+        svg.appendChild(spoke);
+      }
+    }
+
     // grid rings
     [0.25, 0.5, 0.75, 1].forEach(function (frac) {
       var pts = [];
@@ -1486,7 +1512,7 @@
       svg.appendChild(ring);
     });
 
-    // data polygon
+    // data polygon + axis labels
     var dimOrder = score ? score.dimOrder : [];
     var dataPts = [];
     for (var i = 0; i < n; i++) {
@@ -1502,12 +1528,16 @@
       label.textContent = axisLabels[i];
       svg.appendChild(label);
     }
-    var poly = document.createElementNS(svgNs, 'polygon');
-    poly.setAttribute('points', dataPts.join(' '));
-    // Blur only the data polygon — the axis labels explain what the chart
-    // is; hiding them made the teaser read as a broken image.
-    poly.setAttribute('class', 'lm-radar-data' + (blurred ? ' lm-blurred' : ''));
-    svg.appendChild(poly);
+    // Only draw the data polygon when there's real data — with score null
+    // it would just be a degenerate point at the center.
+    if (score) {
+      var poly = document.createElementNS(svgNs, 'polygon');
+      poly.setAttribute('points', dataPts.join(' '));
+      // Blur only the data polygon — the axis labels explain what the chart
+      // is; hiding them made the teaser read as a broken image.
+      poly.setAttribute('class', 'lm-radar-data' + (blurred ? ' lm-blurred' : ''));
+      svg.appendChild(poly);
+    }
 
     return svg;
   };

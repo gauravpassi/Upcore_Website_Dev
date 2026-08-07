@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Fix missing spacing after visual-pair + empty-looking maturity radar (?v=19)
+**Type:** fix
+**Files:** `lp/lead-magnet-engine.js` (?v=19), `lp/governance-index.html`, `lp/ai-maturity-index.html`
+Two more issues from user screenshots, both regressions from the v=17/v=18 passes. **Missing spacing:** the v=17 change zeroed `margin-bottom` on the pentagon/radar and sample-report cards (so `gap` inside the grid could handle spacing between them) but never added a replacement margin to `.lm-visual-pair` itself — so at desktop widths the section right after it ("45% of AI-generated code ships...") butted directly against the cards with 0px gap. Added `margin-bottom:32px` to `.lm-visual-pair`'s desktop rule; mobile is unaffected since it was never zeroed there (children keep their own natural margin at that width). **Empty-looking radar:** swapping maturity's hero widget to `_buildRadar(null, false)` in the last pass technically worked, but a null score means every axis defaults to 0% — the "data polygon" collapses to a single point at dead center, so the hero preview showed only faint grey grid rings and no visible shape at all. Fixed by giving the `score === null` case its own treatment in `_buildRadar`: fill the outer ring with the same light-teal wash the governance page's pentagon preview uses, and draw spokes from center to each vertex — same "populated structure, no data yet" visual language, just generalized from 5 axes to n axes instead of being pentagon-specific. The degenerate single-point data polygon is no longer drawn at all when score is null. Verified live at 1440px and 375px on both pages: visible gap now exists between the visual-pair and the next section, radar renders as a filled 10-axis shape with visible spokes (was blank rings only), no overflow, no console errors.
+
 ## 2026-08-07 — Fix proof-cert row, visual-pair card heights, swap maturity's curve for the PDF radar (?v=18)
 **Type:** fix
 **Files:** `lp/lead-magnet-engine.js` (?v=18), `lp/governance-index.html`, `lp/ai-maturity-index.html`

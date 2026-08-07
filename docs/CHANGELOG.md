@@ -12,6 +12,17 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Sharper headlines on both LPs: lead with stakes, not jargon
+**Type:** content
+**Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`
+User asked for "much stronger, more understandable" headlines that "catch them" — the two originals were decent but soft: **governance's** "Could you prove your AI-generated code is governed — right now?" leaned on the word "governed," which is internal jargon a CTO understands but a cold ad-click visitor has to stop and parse. **Maturity's** "Twenty AI pilots. Which are actually worth scaling?" was already a strong concrete-number hook; sharpened rather than replaced. New copy (headline + subhead updated together so they read as one hook, not two disconnected lines — 4 spots total, static HTML fallback + JS config, both files):
+
+**Governance:** "45% of AI-Generated Code Ships With a Security Hole. Is Yours One of Them?" — leads with the same Veracode stat already sourced and used in the proof bar below (no new claim introduced), turns a vague "is it governed" question into a specific, personal, high-stakes one. Subhead unchanged (already did its job well as the "here's the offer" payoff after the scarier headline).
+
+**Maturity:** "You're Running 20 AI Pilots. The Board Wants to Know Which 2 Are Actually Working." — kept the vivid "20 pilots" image from the original (it worked), added the real accountability stake (the board) that was previously buried in the subhead. Subhead correspondingly de-duplicated — no longer repeats "the board" (headline owns that now) — and picked up a sharper dual-outcome close: "which pilots deserve next quarter's budget — and which ones to quietly kill" (replaces the flatter "before the board asks you to justify every one of them").
+
+Scoped narrowly to headline + subhead — left FAQ, testimonials, proof-bar stats, and PDF copy untouched since those were already through multiple fact-check/legal passes this session and touching them wasn't part of what was asked. Verified live at 375px and 800px: both headlines render without overflow or awkward wrapping, quiz flow unaffected, no engine.js change so no cache-buster bump needed.
+
 ## 2026-08-07 — Fix missing spacing after visual-pair + empty-looking maturity radar (?v=19)
 **Type:** fix
 **Files:** `lp/lead-magnet-engine.js` (?v=19), `lp/governance-index.html`, `lp/ai-maturity-index.html`

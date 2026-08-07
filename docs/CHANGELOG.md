@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Document the AdsBot/robots.txt trap; note it in both ad briefs
+**Type:** docs
+**Files:** `robots.txt`, `docs/ad-brief-governance-index.md`, `docs/ad-brief-ai-maturity-index.md`
+User flagged a real landmine: `robots.txt`'s `Disallow: /lp/` sits under the generic `User-agent: *` block, which Google's AdsBot explicitly ignores per Google's own docs — so Google Ads can still crawl and approve `/lp/` pages today. But if anyone ever adds an explicit `User-agent: AdsBot-Google` block with its own Disallow, every ad in both lead-magnet campaigns gets disapproved instantly as "landing page unreachable." Added a comment directly in `robots.txt` warning against that edit — **no rule change, per explicit instruction not to touch the actual Disallow**. Also added a note to both ad-brief docs' funnel section: since Googlebot is blocked, Google Ads can't auto-generate assets from crawling the page, so campaigns need all headlines/descriptions/images supplied manually with automatically-created assets / final URL expansion turned off.
+
 ## 2026-08-07 — Ad campaign design briefs for both LPs
 **Type:** docs
 **Files:** `docs/ad-brief-governance-index.md` (new), `docs/ad-brief-ai-maturity-index.md` (new)

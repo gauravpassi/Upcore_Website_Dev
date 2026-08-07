@@ -186,6 +186,7 @@ L1 Align · L2 Accelerate · L3 Protect · L4 Comply · L5 Optimise
 - Quiz start → in-page (no URL change)
 - "Skip to booking a call" / nav CTA → `/assessment`
 - Calendly event used downstream: `calendly.com/saswata-upcoretechnologies/ai-governance-review` (45 min)
+- **robots.txt note:** `/lp/` is disallowed under the generic `User-agent: *` block (deliberate — keeps these pages out of search). Google's AdsBot ignores that wildcard block and crawls `/lp/` fine, so ads still get approved — but Google also can't read the page to auto-generate assets for you. Supply all headlines/descriptions/images manually in Google Ads and turn off automatically-created assets / final URL expansion for these campaigns.
 - Google Ads conversion action: "Governance Index — Assessment Complete"
 
 ---

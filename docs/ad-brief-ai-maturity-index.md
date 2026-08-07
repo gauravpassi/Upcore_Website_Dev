@@ -186,6 +186,7 @@ Vision · Ownership · Inventory · Coordination · ROI · Budget · Visibility 
 - Quiz start → in-page (no URL change)
 - "Skip to booking a call" / nav CTA → `/lp/maturity-review` (dedicated "AI Portfolio Value Review" booking page — NOT the same booking page as the governance quiz)
 - Calendly event used downstream: `calendly.com/saswata-upcoretechnologies/ai-strategy-review` (45 min) — this page has its **own** Calendly event, distinct from governance's `ai-governance-review`
+- **robots.txt note:** `/lp/` is disallowed under the generic `User-agent: *` block (deliberate — keeps these pages out of search). Google's AdsBot ignores that wildcard block and crawls `/lp/` fine, so ads still get approved — but Google also can't read the page to auto-generate assets for you. Supply all headlines/descriptions/images manually in Google Ads and turn off automatically-created assets / final URL expansion for these campaigns.
 - Google Ads conversion action: "AI Maturity Index — Assessment Complete"
 - Healthcare-segment traffic detection: UTM params containing `healthtech` or `healthcare` trigger an extra compliance-deadline line in the "Why Now" section
 

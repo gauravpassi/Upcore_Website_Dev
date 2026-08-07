@@ -5,5 +5,17 @@ Disallow: /demos/
 Disallow: /build-your-demo
 Disallow: /api/
 Disallow: /lp/
+# ^ Deliberately blocks Googlebot (and search) from these ad-only landing
+# pages — that's the intent, not a bug. This Disallow lives under the
+# generic `User-agent: *` block, which Google's AdsBot explicitly does NOT
+# obey (per Google's own docs: AdsBot ignores the wildcard `*` group and
+# only respects a rule that names an AdsBot user-agent directly). So Google
+# Ads can still crawl and approve /lp/ URLs today.
+#
+# DO NOT add a `User-agent: AdsBot-Google` (or AdsBot-Google-Mobile) block
+# with its own Disallow — doing so would instantly get every ad in both
+# lead-magnet campaigns disapproved as "landing page unreachable." If /lp/
+# ever needs to be blocked from AdsBot too, that's a deliberate call to
+# make with whoever owns the ad accounts, not a routine robots.txt edit.
 
 Sitemap: https://www.upcoretech.com/sitemap.xml

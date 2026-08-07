@@ -228,23 +228,30 @@
     }
     wrap.appendChild(proof);
 
+    // Visual (framework pentagon or maturity curve) + sample report sit side
+    // by side on desktop (.lm-visual-pair grid) — stacked on mobile. Paired
+    // so the two most "spacious" hero blocks fill the wider desktop column
+    // instead of reading as one long, narrow scroll.
+    var visualCard = null;
     if (h.frameworkPreview && h.frameworkPreview.length) {
-      var fwCard = el('div', { class: 'lm-fw-preview-card lm-reveal' });
-      if (h.heroVisualLabel) fwCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
+      visualCard = el('div', { class: 'lm-fw-preview-card lm-reveal' });
+      if (h.heroVisualLabel) visualCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
       var fwPreview = this._buildFrameworkPreview();
-      if (fwPreview) fwCard.appendChild(fwPreview);
-      wrap.appendChild(fwCard);
+      if (fwPreview) visualCard.appendChild(fwPreview);
     } else if (c.chart && c.chart.type === 'maturityCurve') {
-      var curveCard = el('div', { class: 'lm-hero-visual-card lm-reveal' });
-      if (h.heroVisualLabel) curveCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
-      curveCard.appendChild(this._buildMaturityCurve(null));
-      wrap.appendChild(curveCard);
+      visualCard = el('div', { class: 'lm-hero-visual-card lm-reveal' });
+      if (h.heroVisualLabel) visualCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
+      visualCard.appendChild(this._buildMaturityCurve(null));
     }
 
     var sampleReport = this._buildSampleReportPreview();
-    if (sampleReport) {
-      sampleReport.classList.add('lm-reveal');
-      wrap.appendChild(sampleReport);
+    if (sampleReport) sampleReport.classList.add('lm-reveal');
+
+    if (visualCard || sampleReport) {
+      var pairWrap = el('div', { class: 'lm-visual-pair' });
+      if (visualCard) pairWrap.appendChild(visualCard);
+      if (sampleReport) pairWrap.appendChild(sampleReport);
+      wrap.appendChild(pairWrap);
     }
 
     if (h.whyNow) {

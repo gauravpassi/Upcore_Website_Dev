@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Second Calendly event: maturity-review funnel gets its own booking link
+**Type:** fix
+**Files:** `lp/maturity-review.html`
+The COO/CFO "AI Portfolio Value Review" booking page was sharing `ai-governance-review` (an engineering-governance-named event) with the CTO funnel — a mismatch at the highest-friction moment, flagged in the prior audit. User confirmed the event is 45 minutes and supplied a dedicated event: `calendly.com/saswata-upcoretechnologies/ai-strategy-review`. Swapped in. `assessment.html` and `chat-widget.js`'s sitewide governance modal stay on `ai-governance-review` (correct for their CTO/engineering audience).
+
 ## 2026-08-07 — Trust hardening part 2: real answers from the founder
 **Type:** fix + content
 **Files:** `security.html`, `about.html`, `contact.html`, `privacy.html`, `terms.html`, `assessment.html`, `lp/maturity-review.html`, `chat-widget.js` (?v=12 on all 71 pages), + 18 pages' Organization JSON-LD

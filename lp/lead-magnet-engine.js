@@ -812,7 +812,7 @@
 
     var gate = el('div', { class: 'lm-email-gate' });
     gate.appendChild(el('p', { class: 'lm-gate-done', text: '10 of 10 answered — one step left.' }));
-    gate.appendChild(el('p', { class: 'lm-gate-copy', text: 'Enter your work email to unlock your score, your full breakdown, and your PDF report.' }));
+    gate.appendChild(el('p', { class: 'lm-gate-copy', text: 'You’re done. Enter your work email and your score, your weakest spot, and your PDF report unlock instantly — right here, no waiting on an inbox.' }));
     var form = el('form', { class: 'lm-gate-form' });
     function labeled(input, id, labelText) {
       input.setAttribute('id', id);

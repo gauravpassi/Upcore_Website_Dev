@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — CRO/copywriter pass on both LP heroes + shared gate copy (?v=13)
+**Type:** content
+**Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`, `lp/lead-magnet-engine.js` (?v=13)
+Both pages already carried heavy prior CRO work (2026-08-06 batches); this pass targeted three specific weak spots rather than a wholesale rewrite. **Eyebrow:** both pages led with the product name ("Fractional AI Officer · Governance") before the offer — cold ad traffic needs the free-tool match confirmed in the first line it reads, so both now lead "Free 2-Minute Diagnostic · [topic]" instead. **Governance headline:** "How governed is your AI-generated code, really?" was a neutral self-assessment question with no stakes; replaced with "Could you prove your AI-generated code is governed — right now?" — ties directly to the audit/diligence/customer-review fear already established in the subhead and icpMirror quotes, same self-diagnostic framing (doesn't regress the 2026-08-06 "sell the free score" fix), just raises the stakes. Maturity headline ("Twenty AI pilots...") was already strong and left untouched. **Subhead redundancy:** governance subhead named all 5 layers in prose immediately above the visual framework preview that shows the same 5 badges — cut the enumeration, kept "the same five layers a Fractional AI Officer runs." Maturity subhead dropped a redundant "Take the free AI Maturity Index —" lead-in now covered by the new eyebrow. **Gate copy** (shared, fires at the highest-friction moment — the email wall): "Enter your work email to unlock your score, your full breakdown, and your PDF report" was accurate but flat; rewrote to lead with completion ("You're done") and name the actual payoff pieces, using niche-neutral "weakest spot" instead of governance's "layer" (the shared string can't say "layer" — maturity's own weakLineTemplates use "area"/"dimension"). Verified live: v=13 loads on both pages, new copy renders, full quiz-to-gate flow shows the new gate copy correctly.
+
 ## 2026-08-07 — Second Calendly event: maturity-review funnel gets its own booking link
 **Type:** fix
 **Files:** `lp/maturity-review.html`

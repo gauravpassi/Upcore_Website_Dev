@@ -238,10 +238,13 @@
       if (h.heroVisualLabel) visualCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
       var fwPreview = this._buildFrameworkPreview();
       if (fwPreview) visualCard.appendChild(fwPreview);
-    } else if (c.chart && c.chart.type === 'maturityCurve') {
+    } else if (c.chart && c.chart.axisLabels) {
+      // Same radar the PDF report and quiz result screen use — was a
+      // separate "curve" widget for the maturity niche until 2026-08-07,
+      // replaced for visual consistency with the rest of the funnel.
       visualCard = el('div', { class: 'lm-hero-visual-card lm-reveal' });
       if (h.heroVisualLabel) visualCard.appendChild(el('div', { class: 'lm-hero-visual-label', text: h.heroVisualLabel }));
-      visualCard.appendChild(this._buildMaturityCurve(null));
+      visualCard.appendChild(this._buildRadar(null, false));
     }
 
     var sampleReport = this._buildSampleReportPreview();
@@ -1456,8 +1459,6 @@
 
   // ── Charts (hand-rolled inline SVG, no external library) ────────────────
   LeadMagnetEngine.prototype._buildChart = function (score, blurred) {
-    var c = this.config;
-    if (c.chart.type === 'maturityCurve') return this._buildMaturityCurve(score, blurred);
     return this._buildRadar(score, blurred);
   };
 
@@ -1507,53 +1508,6 @@
     // is; hiding them made the teaser read as a broken image.
     poly.setAttribute('class', 'lm-radar-data' + (blurred ? ' lm-blurred' : ''));
     svg.appendChild(poly);
-
-    return svg;
-  };
-
-  LeadMagnetEngine.prototype._buildMaturityCurve = function (score, blurred) {
-    var stages = this.config.chart.stages || ['Fragmented', 'Emerging', 'Aligning', 'Orchestrated'];
-    var w = 560, h = 140, pad = 40;
-    var svgNs = 'http://www.w3.org/2000/svg';
-    var svg = document.createElementNS(svgNs, 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    svg.setAttribute('class', 'lm-maturity-curve-svg' + (blurred ? ' lm-blurred' : ''));
-    svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', 'Maturity stage progression');
-
-    var line = document.createElementNS(svgNs, 'line');
-    line.setAttribute('x1', pad); line.setAttribute('y1', h / 2);
-    line.setAttribute('x2', w - pad); line.setAttribute('y2', h / 2);
-    line.setAttribute('class', 'lm-curve-line');
-    svg.appendChild(line);
-
-    var step = (w - pad * 2) / (stages.length - 1);
-    stages.forEach(function (label, i) {
-      var x = pad + step * i;
-      var dot = document.createElementNS(svgNs, 'circle');
-      dot.setAttribute('cx', x); dot.setAttribute('cy', h / 2); dot.setAttribute('r', 6);
-      dot.setAttribute('class', 'lm-curve-dot');
-      svg.appendChild(dot);
-      var t = document.createElementNS(svgNs, 'text');
-      t.setAttribute('x', x); t.setAttribute('y', h / 2 + 28);
-      t.setAttribute('text-anchor', 'middle'); t.setAttribute('class', 'lm-curve-label');
-      t.textContent = label;
-      svg.appendChild(t);
-    });
-
-    if (score) {
-      var idx = Math.min(3, Math.floor(score.overall / 25));
-      var mx = pad + step * idx;
-      var marker = document.createElementNS(svgNs, 'text');
-      marker.setAttribute('x', mx); marker.setAttribute('y', h / 2 - 18);
-      marker.setAttribute('text-anchor', 'middle'); marker.setAttribute('class', 'lm-curve-marker');
-      marker.textContent = 'You are here';
-      svg.appendChild(marker);
-      var markerDot = document.createElementNS(svgNs, 'circle');
-      markerDot.setAttribute('cx', mx); markerDot.setAttribute('cy', h / 2); markerDot.setAttribute('r', 9);
-      markerDot.setAttribute('class', 'lm-curve-dot lm-curve-dot-active');
-      svg.appendChild(markerDot);
-    }
 
     return svg;
   };

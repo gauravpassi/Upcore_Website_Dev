@@ -54,7 +54,7 @@
       a: 'Yes &mdash; we operate under ISO 27001 and CMMI Level 3 practices, and every engagement runs under your FAO\'s governance framework from day one. <a href="/security" target="_blank" rel="noopener">See our Security page &rarr;</a>' },
     { id: 'trust-certs', cat: 'trust',
       q: 'What certifications do you hold?',
-      a: 'ISO 27001, ISO 9001, and CMMI Level 3 &mdash; plus a 4.9 rating on Clutch. <a href="/security" target="_blank" rel="noopener">Full details on our Security page &rarr;</a>' }
+      a: 'ISO 27001, ISO 9001, and CMMI Level 3 &mdash; plus a 5.0 rating on Clutch across 5 verified reviews. <a href="/security" target="_blank" rel="noopener">Full details on our Security page &rarr;</a>' }
   ];
 
   function faqById(id) { for (var i = 0; i < FAQ.length; i++) if (FAQ[i].id === id) return FAQ[i]; return null; }
@@ -748,7 +748,7 @@
 // real "calendly.event_scheduled" event, letting us fire the Google Ads
 // primary conversion only on an actually-completed booking.
 (function () {
-  var CAL_URL = 'https://calendly.com/saswata-upcoretechnologies/30min';
+  var CAL_URL = 'https://calendly.com/saswata-upcoretechnologies/ai-governance-review';
 
   var overlay = null;
   var calIframe = null;

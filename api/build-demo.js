@@ -11,7 +11,7 @@
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 const GITHUB_PAT        = process.env.GITHUB_PAT;
 const GITHUB_REPO       = process.env.GITHUB_REPO || 'gauravpassi/upcore-website';
-const SITE_BASE_URL     = process.env.SITE_BASE_URL || 'https://upcore.ai';
+const SITE_BASE_URL     = process.env.SITE_BASE_URL || 'https://www.upcoretech.com';
 
 // ─── Rate limit store (in-memory, resets on cold start — good enough for MVP) ───
 const rateLimitStore = {};

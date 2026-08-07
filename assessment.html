@@ -263,7 +263,7 @@ footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 
     "url": "https://www.upcoretech.com",
     "logo": "https://www.upcoretech.com/upcore-logo.png",
     "sameAs": [
-      "https://www.linkedin.com/company/upcore-technologies"
+      "https://www.linkedin.com/company/upcoretech"
     ]
   }
 }
@@ -361,7 +361,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Book a Governance Review</h2>
         <div style="display:flex;align-items:center;gap:8px;margin:8px 0 12px;font-size:12px;color:var(--txt3);">
           <span style="color:#f59e0b;">★★★★★</span>
-          <span><strong style="color:var(--txt2);">4.9</strong> on Clutch &nbsp;·&nbsp; ISO 27001 Certified &nbsp;·&nbsp; 50+ Enterprise Deployments</span>
+          <span><strong style="color:var(--txt2);">4.9</strong> on Clutch &nbsp;·&nbsp; ISO 27001 Certified &nbsp;·&nbsp; 50+ Enterprise Teams Assessed</span>
         </div>
         <p class="form-sub">2 minutes to complete. Pick your slot immediately after — no waiting for a confirmation email.</p>
 
@@ -398,6 +398,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="text" id="company" name="Company" placeholder="Acme Corp" required/>
           </div>
 
+          <div class="form-group">
+            <label for="role">Your role *</label>
+            <select id="role" name="Role" required>
+              <option value="" disabled selected>Select one</option>
+              <option>CTO / VP Engineering</option>
+              <option>CISO / Security</option>
+              <option>CEO / Founder</option>
+              <option>COO / Operations</option>
+              <option>CFO / Finance</option>
+              <option>Other</option>
+            </select>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
               <label for="ai-tools">AI tools in use today *</label>
@@ -429,7 +442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <textarea id="challenge" name="What Is Driving This" rows="2" placeholder="e.g. Board asked for an AI risk report. CISO flagged Copilot in our code review. EU AI Act deadline."></textarea>
           </div>
 
-          <p class="form-privacy">No commitment required. Form handled by FormSubmit.co — your data is not stored or used for any purpose other than routing this request to our team. <a href="/privacy" style="color:var(--teal)">Privacy Policy</a>.</p>
+          <p class="form-privacy">No commitment required. This form is routed via FormSubmit.co to our team inbox and used only to arrange your call. <a href="/privacy" style="color:var(--teal)">Privacy Policy</a>.</p>
           <button type="submit" class="form-submit" id="submit-btn">
             Book My Governance Review &#8594;
           </button>
@@ -502,11 +515,11 @@ document.getElementById('assessment-form').addEventListener('submit', function(e
         _template: 'table',
         _subject: 'Your Discovery Call Request - Upcore Technologies',
         'Hi': fname + ' ' + lname,
-        'What happens next': "We'll reach out within 24 hours to confirm your session time.",
-        'Your session will cover': '1) Current AI Posture Audit  2) Top 3 Agent Opportunities  3) Draft Architecture Blueprint  4) ROI Estimate',
+        'What happens next': 'Your slot is confirmed the moment you pick it in the calendar - this email is your reference copy.',
+        'Your session will cover': '1) AI Risk Surface Mapping  2) Compliance Gap Assessment  3) Day-30 Governance Roadmap  4) Honest Fit Assessment',
         'Company': company,
         'Your challenge': challenge,
-        'Questions?': 'Reply to this email or WhatsApp Gaurav directly at +91 99881 35327.',
+        'Questions?': 'Reply to this email, or message our team on WhatsApp: +91 99881 35327.',
         'Team': 'Upcore Technologies - upcoretech.com'
       })
     }).catch(function(){});

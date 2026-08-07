@@ -182,6 +182,16 @@
     var self = this, c = this.config, h = c.copy.hero;
     var wrap = el('div', { class: 'lm-hero' });
 
+    // Company identity above the fold — opens in a new tab so a cold ad
+    // click can vet who's asking for their data without losing the funnel.
+    wrap.appendChild(el('a', {
+      class: 'lm-wordmark', href: 'https://www.upcoretech.com', target: '_blank', rel: 'noopener',
+      'aria-label': 'Upcore Technologies — company site'
+    }, [
+      el('span', { class: 'lm-wordmark-name', text: 'UPCORE' }),
+      el('span', { class: 'lm-wordmark-domain', text: 'upcoretech.com' })
+    ]));
+
     wrap.appendChild(el('div', { class: 'lm-eyebrow' }, [
       el('span', { class: 'lm-eyebrow-dot' }), el('span', { text: h.eyebrow })
     ]));
@@ -1023,7 +1033,11 @@
 
     var weakest = score.weakestDim || weakestDim(score);
     if (weakest && c.weakLineTemplates && c.weakLineTemplates[weakest]) {
-      wrap.appendChild(el('div', { class: 'lm-weak-callout' }, [el('p', { text: c.weakLineTemplates[weakest] })]));
+      var weakKids = [el('p', { text: c.weakLineTemplates[weakest] })];
+      if (c.nextStepTemplates && c.nextStepTemplates[weakest]) {
+        weakKids.push(el('p', { class: 'lm-next-action', text: c.nextStepTemplates[weakest] }));
+      }
+      wrap.appendChild(el('div', { class: 'lm-weak-callout' }, weakKids));
     }
 
     // Booking CTA sits high, while motivation is peak — chart + sell copy follow.
@@ -1286,7 +1300,10 @@
     if (score.weakestDim && c.weakLineTemplates && c.weakLineTemplates[score.weakestDim]) {
       doc.setFillColor.apply(doc, PDF_CARD);
       var weakLines = doc.splitTextToSize(c.weakLineTemplates[score.weakestDim], contentW - 40);
-      var boxH = weakLines.length * 15 + 42;
+      var nextLines2 = (c.nextStepTemplates && c.nextStepTemplates[score.weakestDim])
+        ? doc.splitTextToSize(c.nextStepTemplates[score.weakestDim], contentW - 40)
+        : [];
+      var boxH = weakLines.length * 15 + 42 + (nextLines2.length ? nextLines2.length * 14 + 12 : 0);
       doc.roundedRect(margin, y, contentW, boxH, 8, 8, 'F');
       doc.setFillColor.apply(doc, PDF_TEAL);
       doc.rect(margin, y, 4, boxH, 'F');
@@ -1294,6 +1311,12 @@
       doc.text('WEAKEST AREA: ' + (score.dims[score.weakestDim] ? score.dims[score.weakestDim].label.toUpperCase() : ''), margin + 20, y + 22);
       doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5);
       doc.text(weakLines, margin + 20, y + 40);
+      if (nextLines2.length) {
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+        doc.setTextColor.apply(doc, PDF_TEAL_DARK);
+        doc.text(nextLines2, margin + 20, y + 40 + weakLines.length * 15 + 8);
+        doc.setTextColor.apply(doc, PDF_INK);
+      }
     }
 
     pdfFooter(doc, pageW, pageH, 2, 4);

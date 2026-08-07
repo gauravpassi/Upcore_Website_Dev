@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=11"/>
+<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=12"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -55,6 +55,11 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar �
 
 .lm-visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 :focus-visible{outline:2px solid #0ABFCC;outline-offset:2px;}
+
+.lm-wordmark{display:inline-flex;align-items:baseline;gap:8px;margin-bottom:18px;text-decoration:none;}
+.lm-wordmark-name{font-size:15px;font-weight:800;letter-spacing:.18em;color:#0a0a0a;}
+.lm-wordmark-domain{font-size:12px;color:#6E7680;}
+.lm-next-action{margin-top:8px;font-weight:700;color:#077F8C;font-size:14px;}
 
 .lm-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#077F8C;background:rgba(10,191,204,.08);border:1px solid rgba(10,191,204,.18);border-radius:9999px;padding:5px 14px;margin-bottom:22px;}
 .lm-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:#0ABFCC;}
@@ -260,6 +265,7 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar �
        failure (the engine wipes and re-renders it identically on init).
        KEEP IN SYNC with NICHE_CONFIG.copy.hero below. -->
   <div class="lm-hero">
+    <a class="lm-wordmark" href="https://www.upcoretech.com" target="_blank" rel="noopener" aria-label="Upcore Technologies - company site"><span class="lm-wordmark-name">UPCORE</span><span class="lm-wordmark-domain">upcoretech.com</span></a>
     <div class="lm-eyebrow"><span class="lm-eyebrow-dot"></span><span>Fractional AI Officer · Strategy &amp; Coordination</span></div>
     <h1 class="lm-h1">Twenty AI pilots. Which are actually worth scaling?</h1>
     <p class="lm-sub">Take the free AI Maturity Index — 10 questions, 2 minutes. Score your company's AI coordination across 10 dimensions and see which pilots deserve next quarter's budget, before the board asks you to justify every one of them.</p>
@@ -317,6 +323,18 @@ var NICHE_CONFIG = {
     adoption: 'Your weakest area is Adoption — the tools got bought; the behaviour change didn\'t follow. That\'s a change-management gap, not a tooling one.',
     oversight: 'Your weakest area is Oversight — nobody owns AI risk across departments, so it defaults to whoever notices first.'
   },
+  nextStepTemplates: {
+    vision: 'Where to start: write the AI strategy down — one page, three priorities, one owner. A document beats a consensus.',
+    ownership: 'Where to start: name one person accountable for AI outcomes across departments — even interim beats nobody.',
+    inventory: 'Where to start: list every AI pilot, tool, and vendor in one sheet — you can\'t prioritise what you can\'t see.',
+    coordination: 'Where to start: a monthly 30-minute cross-department AI sync — the cheapest duplicate-work detector that exists.',
+    roi: 'Where to start: pick your top 2 pilots and set one measurable baseline each — money or hours, this quarter.',
+    budget: 'Where to start: pool next quarter\'s AI spend into one budget line with one approver.',
+    visibility: 'Where to start: put AI on the next board or exec agenda with three numbers — spend, pilots running, pilots working.',
+    tooling: 'Where to start: survey each department head for their AI tools in one email — visibility precedes consolidation.',
+    adoption: 'Where to start: pick the one tool that matters most and give its users 30 minutes of real training.',
+    oversight: 'Where to start: give AI risk a named cross-department owner and a one-page escalation path.'
+  },
   copy: {
     hero: {
       eyebrow: 'Fractional AI Officer · Strategy & Coordination',
@@ -331,7 +349,7 @@ var NICHE_CONFIG = {
         'Starting from $1,999/month vs. $400K–$750K+ for a full-time Chief AI Officer hire',
         '50+ enterprise teams scored'
       ],
-      proofCerts: ['CMMI Level 3', 'ISO 27001', 'ISO 9001', 'ISO 42001'],
+      proofCerts: ['ISO 27001 Certified', 'ISO 9001', 'CMMI Level 3 Appraised'],
       whyNow: {
         headline: '95% of enterprise generative AI pilots fail to deliver measurable ROI.',
         body: 'That\'s MIT\'s NANDA initiative research, 2025 — widely reported since. It\'s not a reason to stop experimenting. It\'s the reason scattered pilots rarely turn into the few that matter without someone coordinating them across departments.',
@@ -346,7 +364,7 @@ var NICHE_CONFIG = {
       howItWorks: [
         'Work through the same 10 dimensions we score in a paid diagnostic engagement.',
         'Enter your work email to unlock your Maturity Index Score and tier — immediately, on-screen.',
-        'Download your full PDF report instantly — your answers scored against the 10-dimension framework, with your weakest dimension called out.',
+        'Download your PDF report instantly — your scores, your weakest dimension, and where to start first.',
         'Optional 45-minute call to walk through your 90-Day Plan, if you want one.'
       ],
       footerCtaHeadline: 'Two minutes. Ten questions. Your score.',
@@ -422,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=11" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=12" defer></script>
 <script src="/cta-tracking.js" defer></script>
 <!-- jsPDF loads LAST so a slow/blocked CDN can never delay engine init -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>

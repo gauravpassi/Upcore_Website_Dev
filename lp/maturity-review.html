@@ -210,7 +210,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!-- LEFT: Info panel -->
     <div class="info-panel">
-      <a href="/lp/ai-maturity-index"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies" class="info-logo"/></a>
+      <a href="https://www.upcoretech.com" target="_blank" rel="noopener"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies" class="info-logo"/></a>
       <div class="info-eyebrow-label">Free AI Portfolio Value Review</div>
       <h1>Book Your 45-Minute<br/><strong>AI Portfolio Value Review</strong></h1>
       <p>Your Fractional AI Officer candidate walks through what AI activity actually exists across your company, where it's costing you, and whether two or three initiatives are worth funding in the next 90 days. No pitch. No pressure.</p>
@@ -264,7 +264,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Book Your Portfolio Value Review</h2>
         <div style="display:flex;align-items:center;gap:8px;margin:8px 0 12px;font-size:12px;color:var(--txt3);">
           <span style="color:#f59e0b;">★★★★★</span>
-          <span><strong style="color:var(--txt2);">4.9</strong> on Clutch &nbsp;·&nbsp; ISO 27001 Certified &nbsp;·&nbsp; 50+ Enterprise Deployments</span>
+          <span><strong style="color:var(--txt2);">4.9</strong> on Clutch &nbsp;·&nbsp; ISO 27001 Certified &nbsp;·&nbsp; 50+ Enterprise Teams Assessed</span>
         </div>
         <p class="form-sub">2 minutes to complete. Pick your slot immediately after — no waiting for a confirmation email.</p>
 
@@ -301,6 +301,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="text" id="company" name="Company" placeholder="Acme Corp" required/>
           </div>
 
+          <div class="form-group">
+            <label for="role">Your role *</label>
+            <select id="role" name="Role" required>
+              <option value="" disabled selected>Select one</option>
+              <option>CEO / Founder</option>
+              <option>COO / Operations</option>
+              <option>CFO / Finance</option>
+              <option>CHRO / People</option>
+              <option>CTO / CIO</option>
+              <option>Other</option>
+            </select>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
               <label for="ai-tools">AI tools/pilots running today *</label>
@@ -331,7 +344,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <textarea id="challenge" name="Anything Specific To Look At" rows="2" placeholder="e.g. We have 5 pilots across marketing and ops and no idea which to keep."></textarea>
           </div>
 
-          <p class="form-privacy">No commitment required. Form handled by FormSubmit.co — your data is not stored or used for any purpose other than routing this request to our team. <a href="/privacy" style="color:var(--teal)">Privacy Policy</a>.</p>
+          <p class="form-privacy">No commitment required. This form is routed via FormSubmit.co to our team inbox and used only to arrange your call. <a href="/privacy" style="color:var(--teal)">Privacy Policy</a>.</p>
           <button type="submit" class="form-submit" id="submit-btn">
             Book My Portfolio Value Review &#8594;
           </button>
@@ -355,7 +368,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
   </div>
-  <div class="mini-footer">Upcore Technologies &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms</a></div>
+  <div class="mini-footer">Upcore Technologies &middot; <a href="/about" target="_blank" rel="noopener">About</a> &middot; <a href="/security" target="_blank" rel="noopener">Security &amp; Trust</a> &middot; <a href="/pricing" target="_blank" rel="noopener">Pricing</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms</a></div>
 </div>
 
 <script>
@@ -405,11 +418,11 @@ document.getElementById('review-form').addEventListener('submit', function(e){
         _template: 'table',
         _subject: 'Your AI Portfolio Value Review Request - Upcore Technologies',
         'Hi': fname + ' ' + lname,
-        'What happens next': "We'll reach out within 24 hours to confirm your session time.",
+        'What happens next': 'Your slot is confirmed the moment you pick it in the calendar - this email is your reference copy.',
         'Your session will cover': '1) AI Pilot & Spend Inventory  2) Ownership Gaps  3) Fastest-Value Workflows  4) Honest Fit Assessment',
         'Company': company,
         'What you want us to look at': challenge,
-        'Questions?': 'Reply to this email or WhatsApp Gaurav directly at +91 99881 35327.',
+        'Questions?': 'Reply to this email, or message our team on WhatsApp: +91 99881 35327.',
         'Team': 'Upcore Technologies - upcoretech.com'
       })
     }).catch(function(){});

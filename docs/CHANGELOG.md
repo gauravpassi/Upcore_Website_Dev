@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Maturity headline pass 3: user-directed angle change (glorified-tool skepticism)
+**Type:** content
+**Files:** `lp/ai-maturity-index.html`
+User rejected the stat-led v2 headline outright and supplied the actual angle to use: skepticism about whether AI spend is buying real improvement or just an expensive-looking tool. Landed on: **"You're Paying for AI Automation. Is It Actually Better — or Just a Glorified Tool?"** — tightened from the user's own phrasing ("does it really improve the quality or speed or just a glorified tool"), folding "quality or speed" into the single word "better" to keep it short as requested. Subhead unchanged again — it's headline-agnostic by design (always reads as "here's how you find out"). Verified live at 375px and 1440px: no overflow, clean 3-line wrap on desktop.
+
 ## 2026-08-07 — Maturity headline pass 2: match governance's stat-led pattern exactly
 **Type:** content
 **Files:** `lp/ai-maturity-index.html`

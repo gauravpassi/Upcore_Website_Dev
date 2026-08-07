@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Fix 2 visual bugs: eyebrow pill wrap + L1 badge overlapping its own label
+**Type:** fix
+**Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`
+User-reported screenshots showed two layout bugs. **Eyebrow pill:** the "Free 2-Minute Diagnostic · [topic]" eyebrow text added in the earlier CRO pass is long enough to wrap to 2 lines at mobile widths (375px), and `border-radius:9999px` on a wrapped 2-line pill produces a distorted stadium shape rather than a clean chip. Added a `max-width:600px` override (`border-radius:14px`, smaller font/letter-spacing/padding) so a wrapped eyebrow reads as an intentional rounded rectangle instead of a broken pill — same fix on both pages since both eyebrows are similarly long. **Pentagon L1 badge overlap (governance-index.html only):** the "THE 5 LAYERS YOU'LL BE SCORED ON" framework-preview visual positions its L1 badge at the pentagon's top vertex, then shifts it up via `transform:translateY(-115%)` to sit above the point — with no top clearance reserved in the card, that shift put the L1 badge directly on top of the label text above it. Added `margin-top:46px` to `.lm-fw-preview` to give the topmost badge room to sit above the pentagon without touching the label. (`ai-maturity-index.html` uses a different visual — a maturity curve, not the pentagon/badge layout — so it was never affected.) Verified live at both 375px and desktop: eyebrow renders as a clean 1-2 line chip, L1/Align badge sits cleanly below "THE 5 LAYERS YOU'LL BE SCORED ON" with visible gap, no overlap.
+
 ## 2026-08-07 — Real testimonials + trust badges on both LPs (?v=15)
 **Type:** feature + content
 **Files:** `lp/lead-magnet-engine.js` (?v=15, new testimonials renderer), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `docs/CHANGELOG.md`

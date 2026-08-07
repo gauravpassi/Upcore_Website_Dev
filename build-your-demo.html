@@ -661,6 +661,61 @@ function showDoneState(result) {
   document.getElementById('open-demo-btn').href = demoUrl;
   document.getElementById('done-note').textContent = 'Demo link sent to ' + formData.email + '. Available for 14 days.';
   showState('state-done');
+  sendDemoLeadEmails(demoUrl, slug);
+}
+
+// ─── LEAD NOTIFICATION (client-side) ────────
+// Fires from the browser, not the server: api/build-demo.js used to send
+// this itself via server-side fetch(), but Cloudflare (fronting
+// FormSubmit.co) challenges Vercel's serverless outbound IPs regardless of
+// headers, so those calls silently failed. Same fix as
+// lp/lead-magnet-engine.js's _sendTeamNotification — the browser has a real
+// Referer/Origin and isn't behind that block.
+function sendDemoLeadEmails(demoUrl, slug) {
+  var INDUSTRY_LABELS = { manufacturing: 'Manufacturing', ecommerce: 'eCommerce' };
+  var industryLabel = INDUSTRY_LABELS[formData.industry] || formData.industry;
+  var formSubmitHeaders = { 'Content-Type': 'application/json', Accept: 'application/json' };
+
+  fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+    method: 'POST',
+    headers: formSubmitHeaders,
+    body: JSON.stringify({
+      _subject: 'New Demo Lead — ' + (formData.userName || formData.email) + ' · ' + industryLabel,
+      _template: 'table',
+      _captcha: 'false',
+      _cc: 'saswata@upcoretechnologies.com',
+      'Name': formData.userName || 'Not provided',
+      'Email': formData.email || 'Not provided',
+      'Phone': formData.phone || 'Not provided',
+      'Company': formData.companyName || 'Not provided',
+      'Industry': industryLabel,
+      'Agent Name': formData.agentName,
+      'Actions': (formData.actions || []).join(', ') || 'Not specified',
+      'Pain Point': formData.painPoint,
+      'Demo URL': demoUrl,
+      'Demo ID': slug,
+      'Created At': new Date().toISOString()
+    })
+  }).catch(function (err) { console.error('[build-demo] Team notification failed:', err); });
+
+  if (formData.email && formData.email.indexOf('@') !== -1) {
+    fetch('https://formsubmit.co/' + formData.email, {
+      method: 'POST',
+      headers: formSubmitHeaders,
+      body: JSON.stringify({
+        _subject: 'Your Upcore AI Agent Demo is Ready',
+        _template: 'table',
+        _captcha: 'false',
+        'Hi': formData.userName || 'there',
+        'Your demo is live': demoUrl,
+        'Industry': industryLabel,
+        'Agent': formData.agentName,
+        'What happens next': 'A member of our team will reach out within 24 hours to walk you through the demo and discuss how a custom agent could work for your business.',
+        'Questions?': 'Reply to this email or WhatsApp us at +91 99881 35327.',
+        'Team': 'Upcore Technologies — upcoretech.com'
+      })
+    }).catch(function (err) { console.error('[build-demo] Confirmation email failed:', err); });
+  }
 }
 
 // ─── COPY URL ────────────────────────────

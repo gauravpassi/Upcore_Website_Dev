@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
-<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=13"/>
+<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=14"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -118,6 +118,7 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar â€
 .lm-quiz-progress-track{flex:1;height:4px;border-radius:2px;background:#e5e7eb;overflow:hidden;}
 .lm-quiz-progress-fill{height:100%;background:#0ABFCC;border-radius:2px;transition:width .35s ease;}
 .lm-quiz-count{flex-shrink:0;font-family:"JetBrains Mono",monospace;font-size:13px;color:#6E7680;}
+.lm-quiz-exit{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid #e5e7eb;background:#fff;color:#6E7680;font-size:20px;line-height:1;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center;}
 
 .lm-quiz-body{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:640px;margin:0 auto;width:100%;padding:48px 0;}
 .lm-quiz-eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#077F8C;margin-bottom:16px;font-family:"JetBrains Mono",monospace;}
@@ -225,6 +226,7 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar â€
   .lm-option:hover{border-color:#0ABFCC;background:rgba(10,191,204,.05);transform:translateX(4px);}
   .lm-sample-q-opt:hover{border-color:#0ABFCC;background:rgba(10,191,204,.05);transform:translateX(4px);}
   .lm-quiz-back:hover{border-color:#0ABFCC;color:#077F8C;}
+  .lm-quiz-exit:hover{border-color:#0ABFCC;color:#077F8C;}
   .lm-faq-q:hover{border-color:#0ABFCC;}
 }
 
@@ -423,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=13" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=14" defer></script>
 <script src="/cta-tracking.js" defer></script>
 <!-- jsPDF loads LAST so a slow/blocked CDN can never delay engine init -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>

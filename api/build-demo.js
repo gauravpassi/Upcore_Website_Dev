@@ -244,6 +244,14 @@ function assembleDemoHTML(data, industry, slug, expiryDate) {
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xtvhi9nvqa");
+</script>
 <title>${esc(agentName)} — ${esc(companyName)} Agent Demo · Upcore</title>
 <meta name="description" content="Live AI agent demo for ${esc(companyName)} built by Upcore Technologies. Uses simulated demo data."/>
 <meta name="robots" content="noindex,nofollow"/>
@@ -477,83 +485,15 @@ async function updateManifest(entry) {
 }
 
 // ─── EMAIL NOTIFICATION ───────────────────────────────────────────────────────
-// Uses FormSubmit.co — same service used by assessment.html.
-// No API keys needed. Already confirmed for gaurav@upcoretechnologies.com.
-
-const NOTIFY_TO = 'gaurav@upcoretechnologies.com';
-const NOTIFY_CC = 'saswata@upcoretechnologies.com';
-
-async function sendLeadNotification({ userName, email, phone, industry, companyName, agentName, painPoint, actions, demoUrl, slug }) {
-  const cfg = INDUSTRY_CONFIG[industry] || {};
-  const actionsStr = (actions || []).join(', ') || 'Not specified';
-  const createdAt = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' });
-
-  // 1 — Notify the Upcore team (both inboxes via _cc)
-  const payload = {
-    _subject:  `New Demo Lead — ${userName || email} · ${cfg.label || industry}`,
-    _template: 'table',
-    _captcha:  'false',
-    _cc:       NOTIFY_CC,
-    // Contact fields
-    'Name':        userName    || 'Not provided',
-    'Email':       email       || 'Not provided',
-    'Phone':       phone       || 'Not provided',
-    'Company':     companyName || 'Not provided',
-    // Demo fields
-    'Industry':    `${cfg.emoji || ''} ${cfg.label || industry}`,
-    'Agent Name':  agentName,
-    'Actions':     actionsStr,
-    'Pain Point':  painPoint,
-    'Demo URL':    demoUrl,
-    'Demo ID':     slug,
-    'Created At':  `${createdAt} IST`,
-  };
-
-  // FormSubmit requires a Referer/Origin identifying a real website —
-  // without one it silently rejects the submission (still HTTP 200, with
-  // an "Unable to submit form... browsed as HTML files" error page as the
-  // body). Server-side fetch() calls don't send a browser Referer
-  // automatically, so it must be set explicitly on every call below.
-  const formSubmitHeaders = {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-    Referer: 'https://www.upcoretech.com/',
-    Origin: 'https://www.upcoretech.com'
-  };
-
-  const res = await fetch(`https://formsubmit.co/${NOTIFY_TO}`, {
-    method: 'POST',
-    headers: formSubmitHeaders,
-    body: JSON.stringify(payload)
-  });
-
-  const resText = await res.text();
-  if (!res.ok || resText.indexOf('Unable to submit form') !== -1) {
-    throw new Error(`FormSubmit error ${res.status}: ${resText.slice(0, 300)}`);
-  }
-
-  // 2 — Confirmation email to the prospect
-  if (email && email.includes('@')) {
-    const confirmPayload = {
-      _subject:  'Your Upcore AI Agent Demo is Ready',
-      _template: 'table',
-      _captcha:  'false',
-      'Hi': userName || 'there',
-      'Your demo is live': demoUrl,
-      'Industry': `${cfg.emoji || ''} ${cfg.label || industry}`,
-      'Agent': agentName,
-      'What happens next': 'A member of our team will reach out within 24 hours to walk you through the demo and discuss how a custom agent could work for your business.',
-      'Questions?': 'Reply to this email or WhatsApp us at +91 99881 35327.',
-      'Team': 'Upcore Technologies — upcoretech.com'
-    };
-    // Fire-and-forget — don't let confirmation failure block the main notification
-    fetch(`https://formsubmit.co/${email}`, {
-      method: 'POST',
-      headers: formSubmitHeaders,
-      body: JSON.stringify(confirmPayload)
-    }).catch(err => console.error('Demo confirmation email failed:', err));
-  }
-}
+// Lead notification + prospect confirmation emails are sent CLIENT-SIDE from
+// build-your-demo.html after this API returns {url, slug} — see that file's
+// showDoneState(). Cloudflare (fronting FormSubmit.co) challenges Vercel's
+// serverless outbound IPs regardless of headers set here, so a server-side
+// fetch() to formsubmit.co silently fails (a 403 "Just a moment..." challenge
+// page, sometimes even under a 200) even with Referer/Origin set. The same
+// failure mode was confirmed for api/lead-magnet-submit.js and fixed there
+// by moving the FormSubmit call into the browser (see
+// lp/lead-magnet-engine.js's _sendTeamNotification) — same fix applied here.
 
 // ─── MAIN HANDLER ─────────────────────────────────────────────────────────────
 
@@ -629,11 +569,8 @@ export default async function handler(req, res) {
 
     updateManifest(manifestEntry).catch(err => console.error('Manifest update failed:', err));
 
-    sendLeadNotification({
-      userName, email, phone, industry, companyName, agentName,
-      painPoint, actions, demoUrl, slug
-    }).catch(err => console.error('Lead notification email failed:', err));
-
+    // Lead notification + prospect confirmation now fire client-side from
+    // build-your-demo.html's showDoneState() — see the comment above.
     return res.status(200).json({ url: demoUrl, slug });
 
   } catch(err) {

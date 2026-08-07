@@ -631,6 +631,11 @@
     track.appendChild(el('div', { class: 'lm-quiz-progress-fill', style: 'width:' + Math.round(((this.state.qIndex + 1) / (total + 1)) * 100) + '%' }));
     topbar.appendChild(track);
     topbar.appendChild(el('span', { class: 'lm-quiz-count', text: (this.state.qIndex + 1) + ' / ' + total }));
+    topbar.appendChild(el('button', {
+      class: 'lm-quiz-exit', html: '&times;', 'aria-label': 'Exit the quiz',
+      'data-gtm-cta': 'quiz-exit', 'data-gtm-cta-type': 'ghost', 'data-gtm-cta-section': 'quiz',
+      onclick: function () { self._exitQuiz(); }
+    }));
     wrap.appendChild(topbar);
 
     var body = el('div', { class: 'lm-quiz-body', 'aria-live': 'polite' });
@@ -750,6 +755,18 @@
     if (this.state.qIndex > 0) { this.state.qIndex--; this._render(); }
   };
 
+  // Exit the quiz back to the hero — a visitor mid-quiz has no nav on this
+  // page to fall back on, so this is the only way out besides closing the tab.
+  LeadMagnetEngine.prototype._exitQuiz = function () {
+    this.pushEvent('questionAnswered', { question_id: 'quiz_exit', dimension: 'exit', answer_index: this.state.qIndex });
+    this.state.screen = 'hero';
+    this.state.qIndex = 0;
+    this.state.answers = {};
+    this.state.pendingInsight = null;
+    this.state.score = null;
+    this._render();
+  };
+
   LeadMagnetEngine.prototype._dismissInsight = function () {
     this.state.pendingInsight = null;
     this._advanceQuestion();
@@ -770,6 +787,11 @@
     track.appendChild(el('div', { class: 'lm-quiz-progress-fill', style: 'width:' + Math.round(((this.state.qIndex + 1) / (total + 1)) * 100) + '%' }));
     topbar.appendChild(track);
     topbar.appendChild(el('span', { class: 'lm-quiz-count', text: (this.state.qIndex + 1) + ' / ' + total }));
+    topbar.appendChild(el('button', {
+      class: 'lm-quiz-exit', html: '&times;', 'aria-label': 'Exit the quiz',
+      'data-gtm-cta': 'quiz-exit', 'data-gtm-cta-type': 'ghost', 'data-gtm-cta-section': 'quiz',
+      onclick: function () { self._exitQuiz(); }
+    }));
     wrap.appendChild(topbar);
 
     if (!this._insightViewSent) { this._insightViewSent = true; this.pushEvent('questionAnswered', { question_id: 'insight_interrupt', dimension: 'insight' }); }

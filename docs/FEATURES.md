@@ -155,12 +155,13 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 *(No AI-powered chat feature is currently live — see B3's "Legacy" note. `api/chat.js` remains deployable but unused.)*
 
 ### C1. Personalised Demo Builder
-- **What:** User picks an industry + describes pain point + agent name → in ~60s a live, personalised demo HTML is generated, committed to GitHub, deployed by Vercel, and the URL is returned. Lead notification email sent to Upcore.
+- **What:** User picks an industry + describes pain point + agent name → in ~60s a live, personalised demo HTML is generated, committed to GitHub, deployed by Vercel, and the URL is returned. Lead notification + prospect confirmation emails fire.
 - **Where:**
-  - Frontend: [`build-your-demo.html`](../build-your-demo.html) (multi-step UI, POSTs to `/api/build-demo`).
-  - Backend: [`api/build-demo.js`](../api/build-demo.js).
+  - Frontend: [`build-your-demo.html`](../build-your-demo.html) (multi-step UI, POSTs to `/api/build-demo`, then calls `sendDemoLeadEmails()` client-side in `showDoneState()`).
+  - Backend: [`api/build-demo.js`](../api/build-demo.js) — returns `{url, slug}` only, does **not** send email itself.
   - Output: `demos/<slug>.html` + entry in `demos/manifest.json`.
-- **Touches:** Anthropic API, GitHub Contents API, Vercel auto-deploy, FormSubmit, daily cleanup cron.
+- **Touches:** Anthropic API, GitHub Contents API, Vercel auto-deploy, FormSubmit (client-side), daily cleanup cron.
+- **FormSubmit is client-side, not server-side:** `api/build-demo.js` used to `fetch()` FormSubmit.co itself; Cloudflare (fronting FormSubmit) challenges Vercel's serverless outbound IPs regardless of Referer/Origin headers, so those calls silently failed. Fixed 2026-08-07 by moving both emails (team notification + prospect confirmation) into `build-your-demo.html`'s `sendDemoLeadEmails()`, fired from the browser after the API returns — same fix already applied to the lead-magnet funnel (`lp/lead-magnet-engine.js`'s `_sendTeamNotification`). Any future FormSubmit integration on this site should be client-side from the start.
 - **Currently supported industries:** **manufacturing, ecommerce only** (driven by `INDUSTRY_CONFIG` in `api/build-demo.js`). The `build-your-demo.html` form only exposes those two as radio options.
 - **Rate limits:** 3 demos / IP / 30min, 100 demos / day globally (in-memory, resets on cold start).
 - **Env:** `ANTHROPIC_API_KEY`, `GITHUB_PAT`, `GITHUB_REPO`, `SITE_BASE_URL`.

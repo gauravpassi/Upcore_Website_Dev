@@ -12,6 +12,19 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Founder feedback round 2: dial back 2 claims, fix demo-builder email 403s, quiz exit button
+**Type:** fix + content
+**Files:** `security.html`, 8 pages' Clutch mentions + `chat-widget.js`, `api/build-demo.js`, `build-your-demo.html`, `lp/lead-magnet-engine.js` (?v=14), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `docs/FEATURES.md`
+**Dial back two claims per founder direction (no code correctness issue, just positioning):** (1) dropped "(5 reviews)" everywhere it was added in the prior pass — "5.0 on Clutch" alone reads stronger than a number small enough to undercut itself. (2) security.html's SOC 2 FAQ no longer states outright "we are not SOC 2 Type II audited" — reworded to "What's Upcore's compliance and audit posture?" listing the real certs held (ISO 27001, ISO 9001, CMMI L3) and pointing to the Security Review Pack on request, without an explicit negative claim either way.
+
+**Fixed a real bug: demo-builder emails were silently dying, same root cause already fixed once for the lead-magnet funnel.** `api/build-demo.js`'s `sendLeadNotification()` POSTed to FormSubmit.co server-side; Cloudflare (fronting FormSubmit) challenges Vercel's serverless outbound IPs regardless of Referer/Origin headers, so the call either 403'd or silently no-op'd — every demo lead's team notification and prospect confirmation email was never actually delivered. Removed the function entirely from the API (now returns only `{url, slug}`); moved both emails to a new `sendDemoLeadEmails()` in `build-your-demo.html`, fired from the browser in `showDoneState()` after the API call resolves — mirrors the already-working fix in `lp/lead-magnet-engine.js`'s `_sendTeamNotification`. Verified via `performance.getEntriesByType('resource')`: both FormSubmit calls fire from the browser and complete (~2.2s), confirming this is the same failure mode and the same fix. Also added the Microsoft Clarity snippet to the auto-generated demo-page `<head>` template (`assembleDemoHTML`) — every other page on the site has it, generated demo pages never did.
+
+**Verified privacy.html's Kai/Anthropic description was already fixed** — this session had already rewritten it (2026-08-06/07 batches) to the accurate client-side-FAQ-plus-FormSubmit-relay description; grepped for `Anthropic` in the file, zero matches remain.
+
+**Quiz exit button:** both LP quizzes had no way to leave mid-flow except closing the tab (the page has no nav). Added a "×" exit button next to the progress bar/count on both the question screen and the insight-interrupt screen (`_exitQuiz()` in the shared engine) — resets qIndex/answers/score and returns to the hero, firing a `quiz_exit` event first so partial-completion drop-off is visible in analytics.
+
+**Regression sweep before shipping:** confirmed all 4 distinct Google Ads conversion actions are intact and correctly wired (assessment.html + lp/maturity-review.html share the "Lead Tracking" action; chat-widget.js's booking modal has its own; each LP quiz has its own `googleAdsConversionLabel`). Confirmed the booking modal opens with the correct `ai-governance-review` Calendly URL from the homepage nav CTA; confirmed lp/maturity-review.html's Calendly embed correctly uses `ai-strategy-review` with the Role select and FormSubmit action intact; confirmed assessment.html's submit handler wasn't touched by the earlier Role-field addition (fires against unchanged field IDs). No conversion or form regressions found.
+
 ## 2026-08-07 — CRO/copywriter pass on both LP heroes + shared gate copy (?v=13)
 **Type:** content
 **Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`, `lp/lead-magnet-engine.js` (?v=13)

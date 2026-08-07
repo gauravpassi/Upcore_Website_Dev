@@ -182,15 +182,9 @@
     var self = this, c = this.config, h = c.copy.hero;
     var wrap = el('div', { class: 'lm-hero' });
 
-    // Company identity above the fold — opens in a new tab so a cold ad
-    // click can vet who's asking for their data without losing the funnel.
-    wrap.appendChild(el('a', {
-      class: 'lm-wordmark', href: 'https://www.upcoretech.com', target: '_blank', rel: 'noopener',
-      'aria-label': 'Upcore Technologies — company site'
-    }, [
-      el('span', { class: 'lm-wordmark-name', text: 'UPCORE' }),
-      el('span', { class: 'lm-wordmark-domain', text: 'upcoretech.com' })
-    ]));
+    // Company identity is now handled by the sitewide nav's logo (added
+    // 2026-08-07) — the standalone wordmark that used to live here was a
+    // stopgap for when this page had no nav at all.
 
     wrap.appendChild(el('div', { class: 'lm-eyebrow' }, [
       el('span', { class: 'lm-eyebrow-dot' }), el('span', { text: h.eyebrow })

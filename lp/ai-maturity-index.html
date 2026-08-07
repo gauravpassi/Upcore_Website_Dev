@@ -41,7 +41,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=14"/>
+<link rel="preload" as="script" href="/lp/lead-magnet-engine.js?v=15"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -89,6 +89,18 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar �
 .lm-icp-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
 .lm-icp-line{font-size:16px;font-style:italic;color:#45515e;border-left:2px solid #0ABFCC;padding-left:14px;}
 .lm-icp-closing{font-size:16px;color:#0a0a0a;font-weight:600;}
+
+.lm-testimonials{margin-bottom:44px;}
+.lm-testimonial-grid{display:flex;flex-direction:column;gap:14px;margin-top:14px;}
+.lm-testimonial-card{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:12px;padding:20px 22px;}
+.lm-testimonial-quote{font-size:15.5px;color:#0a0a0a;line-height:1.65;margin-bottom:12px;}
+.lm-testimonial-attr{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;}
+.lm-testimonial-who{font-size:13px;font-weight:600;color:#45515e;}
+.lm-testimonial-src{font-size:12.5px;font-weight:600;color:#077F8C;white-space:nowrap;}
+.lm-testimonial-video{display:inline-flex;align-items:center;gap:10px;margin-top:16px;font-size:14.5px;font-weight:600;color:#0a0a0a;background:#fff;border:1px solid #e5e7eb;border-radius:9999px;padding:10px 18px;transition:all .15s;}
+.lm-testimonial-video-icon{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#0ABFCC;color:#070B10;font-size:9px;flex-shrink:0;}
+.lm-testimonial-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.lm-testimonial-badge{font-size:12px;font-weight:600;color:#45515e;background:#fff;border:1px solid #e5e7eb;border-radius:9999px;padding:5px 14px;}
 
 .lm-how-steps{display:flex;flex-direction:column;gap:18px;}
 .lm-how-step{display:flex;gap:14px;align-items:flex-start;}
@@ -363,6 +375,17 @@ var NICHE_CONFIG = {
         'The board asked what we\'re getting for our AI spend this year. I didn\'t have a real answer.'
       ],
       icpClosing: 'If any of this sounds familiar, the Index tells you exactly where your coordination gaps are — not a sales pitch.',
+      testimonials: [
+        { quote: 'They spent a large amount of time understanding every aspect of our vision — critical in shaping the project’s direction.', attribution: 'Managing Director, Retail — App Development engagement', source: 'DesignRush', sourceUrl: 'https://www.designrush.com/agency/profile/upcore-technologies' },
+        { quote: 'Upcore was adaptable, offering regular updates and fielding inquiries quickly — a genuinely collaborative process.', attribution: 'Founder & CEO, Retail — App Development engagement', source: 'DesignRush', sourceUrl: 'https://www.designrush.com/agency/profile/upcore-technologies' },
+        { quote: 'Upcore Technologies delivered a solution using machine learning and NLP that showed significant, measurable improvement.', attribution: 'Managing Director, Healthcare — Generative AI engagement', source: 'DesignRush', sourceUrl: 'https://www.designrush.com/agency/profile/upcore-technologies' }
+      ],
+      testimonialVideo: { label: 'Watch a client testimonial', url: 'https://vimeo.com/960114218' },
+      testimonialBadges: [
+        { label: 'Clutch — 5.0 rating', url: 'https://clutch.co/profile/upcore-technologies' },
+        { label: 'DesignRush — 5.0, 16 reviews', url: 'https://www.designrush.com/agency/profile/upcore-technologies' },
+        { label: 'Google — 5.0 rating', url: 'https://share.google/JzIMy06h6McZ3bwWw' }
+      ],
       howItWorks: [
         'Work through the same 10 dimensions we score in a paid diagnostic engagement.',
         'Enter your work email to unlock your Maturity Index Score and tier — immediately, on-screen.',
@@ -442,7 +465,7 @@ document.addEventListener('DOMContentLoaded', function () {
   LeadMagnetEngine.init(NICHE_CONFIG);
 });
 </script>
-<script src="/lp/lead-magnet-engine.js?v=14" defer></script>
+<script src="/lp/lead-magnet-engine.js?v=15" defer></script>
 <script src="/cta-tracking.js" defer></script>
 <!-- jsPDF loads LAST so a slow/blocked CDN can never delay engine init -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>

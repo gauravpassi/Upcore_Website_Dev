@@ -274,6 +274,46 @@
       wrap.appendChild(icp);
     }
 
+    if (h.testimonials && h.testimonials.length) {
+      var tWrap = el('div', { class: 'lm-testimonials lm-reveal' });
+      tWrap.appendChild(el('h2', { class: 'lm-h2', text: 'What clients say' }));
+      var tGrid = el('div', { class: 'lm-testimonial-grid' });
+      h.testimonials.forEach(function (t) {
+        var card = el('div', { class: 'lm-testimonial-card' });
+        card.appendChild(el('p', { class: 'lm-testimonial-quote', text: '“' + t.quote + '”' }));
+        var attrRow = el('div', { class: 'lm-testimonial-attr' });
+        attrRow.appendChild(el('span', { class: 'lm-testimonial-who', text: t.attribution }));
+        if (t.sourceUrl) {
+          attrRow.appendChild(el('a', {
+            class: 'lm-testimonial-src', href: t.sourceUrl, target: '_blank', rel: 'noopener nofollow',
+            text: 'See on ' + t.source + ' →'
+          }));
+        } else if (t.source) {
+          attrRow.appendChild(el('span', { class: 'lm-testimonial-src', text: t.source }));
+        }
+        card.appendChild(attrRow);
+        tGrid.appendChild(card);
+      });
+      tWrap.appendChild(tGrid);
+      if (h.testimonialVideo) {
+        tWrap.appendChild(el('a', {
+          class: 'lm-testimonial-video', href: h.testimonialVideo.url, target: '_blank', rel: 'noopener nofollow',
+          'data-gtm-cta': 'testimonial-video', 'data-gtm-cta-type': 'secondary', 'data-gtm-cta-section': 'testimonials'
+        }, [
+          el('span', { class: 'lm-testimonial-video-icon', html: '&#9654;' }),
+          el('span', { text: h.testimonialVideo.label || 'Watch a client testimonial' })
+        ]));
+      }
+      if (h.testimonialBadges && h.testimonialBadges.length) {
+        var badgeRow = el('div', { class: 'lm-testimonial-badges' });
+        h.testimonialBadges.forEach(function (b) {
+          badgeRow.appendChild(el('a', { class: 'lm-testimonial-badge', href: b.url, target: '_blank', rel: 'noopener nofollow', text: b.label }));
+        });
+        tWrap.appendChild(badgeRow);
+      }
+      wrap.appendChild(tWrap);
+    }
+
     if (h.howItWorks && h.howItWorks.length) {
       var hiw = el('div', { class: 'lm-how lm-reveal' });
       hiw.appendChild(el('h2', { class: 'lm-h2', text: 'How it works' }));

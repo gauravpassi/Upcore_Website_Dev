@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Maturity headline pass 2: match governance's stat-led pattern exactly
+**Type:** content
+**Files:** `lp/ai-maturity-index.html`
+User pushback: the "You're Running 20 AI Pilots. The Board Wants to Know Which 2 Are Actually Working." headline from the previous pass wasn't as strong as governance's. Replaced with the same structural pattern governance uses — sourced stat + stakes + direct personal question: **"95% of Enterprise AI Pilots Fail to Deliver ROI. Is Yours Next?"** Reuses the already-verified MIT NANDA 2025 stat that was already sitting in this page's own proof bar and `whyNow` section (no new claim introduced, same fact just promoted to the headline). Subhead left unchanged — it already reads as the "here's how you find out" payoff regardless of which headline sits above it. Verified live at 375px and 800px: no overflow, clean wrap on both.
+
 ## 2026-08-07 — Sharper headlines on both LPs: lead with stakes, not jargon
 **Type:** content
 **Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`

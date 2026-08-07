@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-07 — Ad campaign design briefs for both LPs
+**Type:** docs
+**Files:** `docs/ad-brief-governance-index.md` (new), `docs/ad-brief-ai-maturity-index.md` (new)
+Two standalone reference docs for designing ad creative/graphics for `/lp/governance-index` and `/lp/ai-maturity-index` — full verbatim page copy (headline, subhead, proof bar, testimonials, FAQ, quiz questions, PDF closing pitch), brand assets (logo path, favicons, cert badges, review-platform ratings), design tokens (hex palette, fonts, button/card styles, each page's signature chart visual), verified stats safe to reuse in ads, funnel/CTA destinations with Calendly event names, and tone notes distinguishing the two pages' target buyers (CTO/CISO console aesthetic vs. COO/CFO executive-scorecard aesthetic). Not linked from CLAUDE.md's doc table since these are marketing-facing, not engineering-facing — kept in `docs/` for discoverability alongside the rest of the site documentation.
+
 ## 2026-08-07 — Maturity headline pass 4 (final): fix message-match with the quiz mechanic
 **Type:** content
 **Files:** `lp/ai-maturity-index.html`

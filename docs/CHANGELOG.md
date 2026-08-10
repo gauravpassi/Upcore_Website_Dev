@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-10 — Add Josh Fitheringham testimonial; strip $1,999/mo pricing from both LPs
+**Type:** content
+**Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`
+Added a 4th testimonial (Josh Fitheringham, CEO, Oragen USA — adapted from a personal reference into an Upcore-company testimonial) to `NICHE_CONFIG.copy.hero.testimonials` on both pages. Removed all 3 Upcore-specific "$1,999/month" mentions per page (proof bar stat, FAQ answer, PDF-next-step copy) — replaced with price-agnostic framing ("a fraction of the cost", "month-to-month"). On governance-index.html, left the `$180K–$250K+` full-time-hire comparison figure in place (describes the alternative's cost, not Upcore's price); on ai-maturity-index.html the `$400K–$750K+` figure was embedded in the same sentences as the price and was removed along with them.
+
 ## 2026-08-07 — Document the AdsBot/robots.txt trap; note it in both ad briefs
 **Type:** docs
 **Files:** `robots.txt`, `docs/ad-brief-governance-index.md`, `docs/ad-brief-ai-maturity-index.md`

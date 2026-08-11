@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-11 — Equal-height testimonial cards with Read more/Show less toggle
+**Type:** fix
+**Files:** `lp/lead-magnet-engine.js`, `lp/governance-index.html`, `lp/ai-maturity-index.html`
+Testimonial quotes over 220 chars (Josh Fitheringham's) now get `-webkit-line-clamp:6` + a "Read more"/"Show less" toggle button instead of running long and unbalancing the grid. `.lm-testimonial-card` is a flex column with `margin-top:auto` on the attribution row so it pins to the bottom, and the grid uses `align-items:stretch` so every card in a row matches the tallest — cards are now uniform height per row. Bumped `lead-magnet-engine.js` cache-buster to `?v=20` on both pages (must always bump when this shared file changes).
+
 ## 2026-08-10 — Add Josh Fitheringham testimonial; strip $1,999/mo pricing from both LPs
 **Type:** content
 **Files:** `lp/governance-index.html`, `lp/ai-maturity-index.html`

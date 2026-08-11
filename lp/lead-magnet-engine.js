@@ -284,7 +284,18 @@
       var tGrid = el('div', { class: 'lm-testimonial-grid' });
       h.testimonials.forEach(function (t) {
         var card = el('div', { class: 'lm-testimonial-card' });
-        card.appendChild(el('p', { class: 'lm-testimonial-quote', text: '“' + t.quote + '”' }));
+        var isLong = t.quote.length > 220;
+        var quoteEl = el('p', { class: 'lm-testimonial-quote' + (isLong ? ' lm-clamped' : ''), text: '“' + t.quote + '”' });
+        card.appendChild(quoteEl);
+        if (isLong) {
+          card.appendChild(el('button', {
+            type: 'button', class: 'lm-testimonial-more', text: 'Read more',
+            onclick: function () {
+              var expanded = card.classList.toggle('lm-expanded');
+              this.textContent = expanded ? 'Show less' : 'Read more';
+            }
+          }));
+        }
         var attrRow = el('div', { class: 'lm-testimonial-attr' });
         attrRow.appendChild(el('span', { class: 'lm-testimonial-who', text: t.attribution }));
         if (t.sourceUrl) {

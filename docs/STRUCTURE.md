@@ -40,6 +40,7 @@ upcore-website/
 ├── about.html                         # About
 ├── ai-engineering-governance.html     # FLAGSHIP — AI Engineering Governance / Fractional AI Officer (Niche 1)
 ├── ai-adoption-strategy.html          # FLAGSHIP — AI Strategy & Adoption / Fractional AI Officer (Niche 2, mirrors ai-engineering-governance.html)
+├── ai-operations.html                 # Free lead-magnet: AI Operations Plug-and-Play Toolkit (10 Kits, 30+ Custom GPTs/Claude Skills). No nav slot — cross-sells into /ai-adoption-strategy
 ├── platform.html                      # "Four Products. One AI Partner." overview (incl. AI Governance)
 ├── agent-builder.html                 # Studio — agent builder marketing page
 ├── fde-engineers.html                 # FLAGSHIP — Forward Deployed Engineers (Studio delivery model)

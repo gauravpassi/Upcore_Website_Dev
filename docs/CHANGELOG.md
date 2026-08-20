@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-13 — New page: AI Operations Toolkit (`/ai-operations`), free lead magnet
+**Type:** feature
+**Files:** `ai-operations.html` (new), `sitemap.xml`, `docs/STRUCTURE.md`, `docs/FEATURES.md`
+Cloned `https://ops-finder-pro.lovable.app/` (a teammate's real product page for "The AI Operations Plug-and-Play Toolkit," 10 Kits / 30+ Custom GPTs & Claude Skills) 1:1 for content/structure, reskinned onto Upcore's design system (same tokens/component patterns as `ai-adoption-strategy.html`), and changed the price from $3 to free per explicit instruction. CTAs point to an on-page `#get-access` email-capture form (FormSubmit.co, same pattern as `contact.html`) rather than a payment processor — delivery of the actual Toolkit is manual (email within 24h), not automated, since this repo doesn't host the underlying GPTs/Skills. Ends with a cross-sell into the real FAO service at `/ai-adoption-strategy`. No nav slot added (fde-engineers.html precedent).
+
 ## 2026-08-11 — Equal-height testimonial cards with Read more/Show less toggle
 **Type:** fix
 **Files:** `lp/lead-magnet-engine.js`, `lp/governance-index.html`, `lp/ai-maturity-index.html`

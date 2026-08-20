@@ -233,6 +233,20 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .pstep h4 { font-size:15px; font-weight:800; color:var(--txt); margin-bottom:8px; }
 .pstep p { font-size:12.5px; color:var(--txt2); line-height:1.6; }
 
+/* ── INLINE HIGHLIGHT ──────────────────────────────────────── */
+.hl { color:var(--teal2); font-weight:800; }
+.hl-dark { background:rgba(10,191,204,.12); color:var(--teal2); font-weight:700; padding:1px 6px; border-radius:4px; }
+
+/* ── DON'T ASK / ASK INSTEAD ───────────────────────────────── */
+.ask-contrast { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0 40px; }
+.ask-col { border-radius:10px; padding:22px 24px; border:1px solid; }
+.ask-col.dont { background:rgba(239,68,68,.05); border-color:rgba(239,68,68,.22); }
+.ask-col.instead { background:rgba(10,191,204,.07); border-color:rgba(10,191,204,.3); }
+.ask-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; }
+.ask-col.dont .ask-label { color:var(--red); }
+.ask-col.instead .ask-label { color:var(--teal); }
+.ask-quote { font-size:16px; font-weight:700; font-style:italic; color:var(--txt); }
+
 /* ── ARROW LIST ────────────────────────────────────────────── */
 .arrow-list { display:flex; flex-direction:column; gap:4px; margin-top:8px; }
 .arrow-item { display:flex; align-items:center; gap:12px; font-size:14px; font-weight:700; color:var(--txt); padding:14px 18px; background:rgba(10,191,204,.06); border:1px solid rgba(10,191,204,.22); border-radius:8px; }
@@ -315,6 +329,7 @@ footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 
   .steps-grid,.kit-grid,.lever-grid,.process-grid { grid-template-columns:repeat(2,1fr); }
   .stat-band { grid-template-columns:repeat(2,1fr); }
   .obj-grid { grid-template-columns:1fr; }
+  .ask-contrast { grid-template-columns:1fr; }
   .ga-layout { grid-template-columns:1fr; gap:32px; }
   .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
 }
@@ -378,7 +393,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero-left">
       <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>AI Operations Plug-and-Play Toolkit</div>
       <h1 class="hero-h1">Stop Wasting Expensive <br/>Human Hours on <strong>Work AI <br/>Can Handle.</strong></h1>
-      <p class="hero-sub">Get the complete AI Operations Plug-and-Play Toolkit and discover which repetitive workflows to eliminate, automate, AI-assist, redesign, or keep human. 30+ plug-and-play Custom GPTs &amp; Claude Skills to help you uncover, score, simplify, prioritize, and plan your highest-value AI operations opportunities.</p>
+      <p class="hero-sub">Get the complete AI Operations Plug-and-Play Toolkit and discover which repetitive workflows to <span class="hl">eliminate, automate, AI-assist, redesign, or keep human</span>. 30+ plug-and-play Custom GPTs &amp; Claude Skills to help you uncover, score, simplify, prioritize, and plan your highest-value AI operations opportunities.</p>
       <div class="hero-ctas">
         <a data-gtm-cta="get-free-toolkit" data-gtm-cta-type="primary" data-gtm-cta-section="hero" href="#get-access" class="btn btn-teal">Get Lifetime Access — Free &rarr;</a>
       </div>
@@ -419,7 +434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section-inner">
     <span class="eyebrow">The Real Problem &middot; The Diagnosis</span>
     <h2 class="section-title">Your Team Doesn't Have an AI Problem.<br/>You Have a Repetitive-Work Problem.</h2>
-    <p class="section-sub">Your people are probably spending hours on the same repetitive operational work, week after week — and the frustrating part is, you probably don't know which of these processes should be automated first.</p>
+    <p class="section-sub">Your people are probably spending hours on the same repetitive operational work, <span class="hl">week after week</span> — and the frustrating part is, you probably don't know which of these processes should be automated first.</p>
     <div class="tag-cloud">
       <span class="tag-pill">Copying information between systems</span>
       <span class="tag-pill">Updating spreadsheets</span>
@@ -450,7 +465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section-inner">
     <span class="eyebrow">Introducing</span>
     <h2 class="section-title">The AI Operations Plug-and-Play Toolkit</h2>
-    <p class="section-sub">Your complete AI-powered workflow discovery and automation planning system. Instead of spending weeks trying to figure out where AI fits into your operation, use a collection of specialized AI tools built around the operational problems companies face every day — instead of an expensive AI consultant, complicated prompt engineering, a 40-hour AI course, or a giant strategy document. Just open the tool, answer the questions, get an actionable output.</p>
+    <p class="section-sub">Your complete AI-powered workflow discovery and automation planning system. Instead of spending weeks trying to figure out where AI fits into your operation, use a collection of specialized AI tools built around the operational problems companies face every day — instead of an expensive AI consultant, complicated prompt engineering, a 40-hour AI course, or a giant strategy document. <span class="hl">Just open the tool, answer the questions, get an actionable output.</span></p>
     <a data-gtm-cta="get-free-toolkit" data-gtm-cta-type="primary" data-gtm-cta-section="introducing" href="#get-access" class="btn btn-teal">Yes — Give Me the Toolkit, Free</a>
   </div>
 </section>
@@ -557,7 +572,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="notneed-item">You don't need to learn prompt engineering.</div>
       <div class="notneed-item">You don't need to figure out which tool to use.</div>
     </div>
-    <p class="section-sub">You simply give the tools your real operational problem — and they help you work through it.</p>
+    <p class="section-sub">You simply give the tools <span class="hl">your real operational problem</span> — and they help you work through it.</p>
     <div class="stat-band">
       <div class="stat-cell"><div class="stat-cell-num">30&ndash;60%</div><div class="stat-cell-lbl">Less repetitive work in 30 days</div></div>
       <div class="stat-cell"><div class="stat-cell-num">Minutes</div><div class="stat-cell-lbl">From workflow to analysis</div></div>
@@ -687,7 +702,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section-inner">
     <span class="eyebrow">Imagine Finding Just One Workflow</span>
     <h2 class="section-title">One Repetitive Process. 20 Hours a Week.</h2>
-    <p class="section-sub">That's 1,040 hours a year — before even considering the loaded cost of that labor, or the opportunity cost of what your team could have been doing instead. What if you could identify that workflow in minutes? Don't ask "How can we use AI?" Ask instead: "What repetitive operational work should AI handle?"</p>
+    <p class="section-sub" style="margin-bottom:28px;">That's <span class="hl">1,040 hours a year</span> — before even considering the loaded cost of that labor, or the opportunity cost of what your team could have been doing instead. What if you could identify that workflow in minutes?</p>
+    <div class="ask-contrast">
+      <div class="ask-col dont">
+        <div class="ask-label">Don't Ask</div>
+        <div class="ask-quote">"How can we use AI?"</div>
+      </div>
+      <div class="ask-col instead">
+        <div class="ask-label">Ask Instead</div>
+        <div class="ask-quote">"What repetitive operational work should AI handle?"</div>
+      </div>
+    </div>
     <div class="stat-band" style="grid-template-columns:repeat(3,1fr);margin-bottom:40px;">
       <div class="stat-cell"><div class="stat-cell-num">20 hrs/wk</div><div class="stat-cell-lbl">One repetitive process</div></div>
       <div class="stat-cell"><div class="stat-cell-num">1,040 hrs/yr</div><div class="stat-cell-lbl">Per workflow, per year</div></div>
@@ -752,7 +777,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="cta-inner">
     <span class="eyebrow" style="display:block;text-align:center;">A Final Question</span>
     <h2 class="cta-title">How Much Is One Hour of<br/>Your Team's Time Worth?</h2>
-    <p class="cta-sub">Now compare that with a free toolkit designed to help you find where hundreds or thousands of hours of repetitive operational work may be hiding. Start with one workflow. Find the opportunity. Score it. Simplify it. Calculate it. Then decide.</p>
+    <p class="cta-sub">Now compare that with a <span class="hl">free</span> toolkit designed to help you find where hundreds or thousands of hours of repetitive operational work may be hiding. Start with one workflow. Find the opportunity. Score it. Simplify it. Calculate it. Then decide.</p>
     <div class="cta-btns">
       <a data-gtm-cta="get-free-toolkit" data-gtm-cta-type="primary" data-gtm-cta-section="cta" href="#get-access" class="btn btn-teal">Get My Toolkit, Free &rarr;</a>
     </div>

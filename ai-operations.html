@@ -195,6 +195,11 @@ nav{width:100%;background:#0a0a0a;border-bottom:1px solid rgba(255,255,255,.08);
 .kit-tool-tag { font-size:11px; font-weight:600; color:var(--txt2); background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:4px 10px; }
 .kit-outcome { font-size:12.5px; color:var(--teal2); font-weight:600; line-height:1.55; padding-top:14px; border-top:1px solid var(--border); }
 
+/* ── NOT-A-COURSE LIST ─────────────────────────────────────── */
+.notneed-list { display:flex; flex-direction:column; gap:2px; max-width:520px; margin-bottom:20px; }
+.notneed-item { font-size:16px; font-weight:600; color:var(--txt2); padding:12px 0; border-bottom:1px solid var(--border); }
+.notneed-item:last-child { border-bottom:none; }
+
 /* ── STAT BAND (reused across sections) ───────────────────── */
 .stat-band { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
 .stat-cell { padding:28px 22px; border-right:1px solid var(--border); text-align:center; }
@@ -546,7 +551,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section-inner">
     <span class="eyebrow">Not a Course</span>
     <h2 class="section-title">It's an AI Operations Toolbox.</h2>
-    <p class="section-sub">You don't need to sit through 12 hours of videos. You don't need to become an AI engineer. You don't need to learn prompt engineering. You don't need to figure out which tool to use. You simply give the tools your real operational problem — and they help you work through it.</p>
+    <div class="notneed-list">
+      <div class="notneed-item">You don't need to sit through 12 hours of videos.</div>
+      <div class="notneed-item">You don't need to become an AI engineer.</div>
+      <div class="notneed-item">You don't need to learn prompt engineering.</div>
+      <div class="notneed-item">You don't need to figure out which tool to use.</div>
+    </div>
+    <p class="section-sub">You simply give the tools your real operational problem — and they help you work through it.</p>
     <div class="stat-band">
       <div class="stat-cell"><div class="stat-cell-num">30&ndash;60%</div><div class="stat-cell-lbl">Less repetitive work in 30 days</div></div>
       <div class="stat-cell"><div class="stat-cell-num">Minutes</div><div class="stat-cell-lbl">From workflow to analysis</div></div>

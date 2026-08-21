@@ -700,7 +700,9 @@ The system's load-bearing visual. Promotes V1's `.gov-dash` / `.fao-explorer` / 
 
 ### Bands
 
-**`proof-strip`** — `{colors.canvas-deep}`, `{typography.label-mono}` `{colors.muted}`, hairline top and bottom. Certifications and ratings, dot-separated.
+**`proof-strip`** — `{colors.canvas-deep}`, `{typography.label-mono}` `{colors.muted}`, hairline top and bottom. Certification marks with mono captions beneath.
+
+> **Never filter, desaturate, or dim a third-party certification mark.** Upcore's accolade SVGs (`images/accolades/*.svg`) already ship with white marks plus brand accents — CMMI blue `#1a9dd9`, ISO gold `#d4a017`, Clutch red `#FF3D2E`, SelectedFirms blue/green — so they are authored for a dark canvas and render correctly with no treatment at all. A `brightness(0) invert(1)` or reduced-opacity "logo strip" wash flattens them into uniform grey, which reads as a *disabled state* and actively weakens the trust signal these badges exist to carry. The greyscale-logo-strip convention exists for *customer* logos of wildly varying colour; it is the wrong tool for certifications. Render them as authored.
 
 **`cta-band`** — `{colors.surface}` with hairline top, `{typography.display-xl}` in `{colors.ink}`, one `{component.button-primary}`, reassurance line in `{typography.caption}` `{colors.muted}`.
 

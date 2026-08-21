@@ -153,8 +153,10 @@ nav{position:sticky;top:0;z-index:99;height:var(--nav-h);background:var(--canvas
 .proof-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;}
 .proof-label{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);width:100%;text-align:center;margin-bottom:4px;}
 .proof-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
-.proof-item img{height:34px;width:auto;filter:brightness(0) invert(1);opacity:.55;transition:opacity .2s;}
-.proof-item:hover img{opacity:.9;}
+/* Accolade SVGs ship with white marks + brand accents — render them as authored.
+   Never filter/desaturate a third-party certification mark: it reads as a
+   disabled state and weakens the trust signal these badges exist to carry. */
+.proof-item img{height:38px;width:auto;}
 .proof-item span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
 
 /* ── TWO PATHS ──────────────────────────────────────────────── */

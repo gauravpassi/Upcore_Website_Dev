@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>Upcore V2 Preview | AI Engineering Governance</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="description" content="V2 dark design system preview — not the live homepage." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   UPCORE-INSTRUMENT — V2 DARK DESIGN SYSTEM
+   Spec: docs/DESIGN-SYSTEM-V2.md
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  /* Brand voltage */
+  --primary:#0ABFCC; --primary-bright:#22D3E0; --primary-pressed:#089AAA;
+  --on-primary:#04070B;
+  --primary-wash:rgba(10,191,204,.08); --primary-wash-strong:rgba(10,191,204,.14);
+  --primary-line:rgba(10,191,204,.28); --primary-line-strong:rgba(10,191,204,.45);
+  /* Surface ladder — elevation steps UP, never down */
+  --canvas-deep:#05070A; --canvas:#0A0C10; --surface:#0F1218;
+  --surface-raised:#151922; --surface-overlay:#1C212B;
+  /* Hairlines */
+  --hairline:#1E232C; --hairline-strong:#2B3240;
+  /* Text ladder (ratios vs --canvas) */
+  --ink:#F5F7FA;      /* 17.1:1 */
+  --body:#C3CAD5;     /* 11.86:1 */
+  --muted:#8B95A5;    /*  6.47:1 — lowest tier for small text */
+  --faint:#5C6675;    /*  3.37:1 — LARGE TEXT / DECORATIVE ONLY */
+  --disabled:#3F4855;
+  /* RAG semantic — product vocabulary, not decoration */
+  --ok:#4ADE80; --ok-wash:rgba(74,222,128,.10); --ok-line:rgba(74,222,128,.28);
+  --warn:#FBBF24; --warn-wash:rgba(251,191,36,.10); --warn-line:rgba(251,191,36,.28);
+  --risk:#F87171; --risk-wash:rgba(248,113,113,.10); --risk-line:rgba(248,113,113,.28);
+  --insight:#A78BFA; --insight-wash:rgba(167,139,250,.10);
+  /* Atmospheric — the ENTIRE decorative system */
+  --grid-line:rgba(10,191,204,.045); --hero-halo:rgba(10,191,204,.055);
+  /* Type */
+  --ff:'DM Sans',sans-serif; --mono:'JetBrains Mono',monospace;
+  --nav-h:64px; --max:1240px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--ff); background:var(--canvas); color:var(--body);
+  line-height:1.65; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  /* Blueprint grid — 72px, fixed at every breakpoint */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size:72px 72px, 72px 72px;
+}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+::selection{background:var(--primary-wash-strong);color:var(--ink);}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:4px;}
+
+/* ── TYPE SCALE ─────────────────────────────────────────────── */
+.display-hero{font-size:clamp(40px,5.4vw,64px);font-weight:700;line-height:1.04;letter-spacing:-.025em;color:var(--ink);}
+.display-xl{font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.06;letter-spacing:-.02em;color:var(--ink);}
+.display-lg{font-size:clamp(27px,3.2vw,36px);font-weight:700;line-height:1.1;letter-spacing:-.015em;color:var(--ink);}
+.title-lg{font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-.005em;color:var(--ink);}
+.title-md{font-size:17px;font-weight:700;line-height:1.35;color:var(--ink);}
+.body-lg{font-size:17px;line-height:1.65;color:var(--body);}
+.body-md{font-size:15px;line-height:1.65;color:var(--body);}
+.body-sm{font-size:13.5px;line-height:1.6;color:var(--body);}
+.caption{font-size:12px;font-weight:500;line-height:1.5;color:var(--muted);}
+/* Mono register — every number, every technical label */
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);margin-bottom:18px;}
+.eyebrow::before{content:'';width:6px;height:6px;background:var(--primary);flex-shrink:0;} /* square, not dot */
+.label-mono{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--muted);}
+.data-xl{font-family:var(--mono);font-size:clamp(34px,4vw,44px);font-weight:700;line-height:1;letter-spacing:-.02em;color:var(--primary);font-variant-numeric:tabular-nums;}
+.data-lg{font-family:var(--mono);font-size:28px;font-weight:700;line-height:1;letter-spacing:-.01em;color:var(--primary);font-variant-numeric:tabular-nums;}
+.data-md{font-family:var(--mono);font-size:16px;font-weight:600;line-height:1.4;font-variant-numeric:tabular-nums;}
+.code{font-family:var(--mono);font-size:12.5px;line-height:1.6;}
+
+/* ── LAYOUT ─────────────────────────────────────────────────── */
+.section{padding:96px 0;position:relative;}
+.section-alt{background:var(--surface);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);}
+.inner{width:100%;max-width:var(--max);margin:0 auto;padding:0 48px;}
+.section-head{max-width:720px;margin-bottom:48px;}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head.center .eyebrow{justify-content:center;}
+.section-head p{margin-top:16px;font-size:17px;color:var(--body);}
+
+/* ── BUTTONS — 8px squares, never pills, never glowing ─────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--ff);font-size:14.5px;font-weight:600;line-height:1;padding:12px 22px;min-height:44px;border-radius:8px;border:1px solid transparent;cursor:pointer;transition:background .16s,border-color .16s,color .16s;}
+.btn-primary{background:var(--primary);color:var(--on-primary);}
+.btn-primary:hover{background:var(--primary-bright);}
+.btn-primary:active{background:var(--primary-pressed);}
+.btn-secondary{background:var(--surface-raised);color:var(--ink);border-color:var(--hairline-strong);}
+.btn-secondary:hover{border-color:var(--primary-line);background:var(--surface-overlay);}
+.btn-ghost{background:transparent;color:var(--body);padding:12px 18px;}
+.btn-ghost:hover{color:var(--ink);}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:99;height:var(--nav-h);background:var(--canvas);border-bottom:1px solid var(--hairline);display:flex;align-items:center;justify-content:space-between;padding:0 48px;}
+.nav-logo img{height:56px;width:auto;}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none;}
+.nav-links a{display:inline-flex;padding:8px 14px;border-radius:6px;font-size:14px;font-weight:500;color:var(--muted);transition:color .16s,background .16s;}
+.nav-links a:hover{color:var(--ink);background:var(--surface-raised);}
+.nav-links a.active{color:var(--ink);font-weight:600;}
+.nav-cta{display:inline-flex;align-items:center;background:var(--primary);color:var(--on-primary);font-size:14px;font-weight:600;padding:10px 18px;border-radius:8px;white-space:nowrap;transition:background .16s;}
+.nav-cta:hover{background:var(--primary-bright);}
+.nav-cta-short{display:none;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-burger{display:none;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:6px 8px;}
+
+/* ── HERO ───────────────────────────────────────────────────── */
+#hero{padding:88px 0 96px;position:relative;overflow:hidden;}
+#hero::before{content:'';position:absolute;top:-10%;right:-5%;width:70%;height:80%;pointer-events:none;
+  background:radial-gradient(ellipse at center, var(--hero-halo), transparent 65%);} /* the ONE halo, 5.5% */
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;position:relative;z-index:2;}
+.hero-h1{font-size:clamp(40px,5.4vw,64px);font-weight:700;line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px;}
+.hero-h1 em{font-style:normal;color:var(--primary);}
+.hero-sub{font-size:17px;line-height:1.7;color:var(--body);max-width:520px;margin-bottom:30px;}
+.hero-trust{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:30px;padding-top:24px;border-top:1px solid var(--hairline);font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--muted);}
+.hero-trust .stars{color:var(--warn);letter-spacing:1px;}
+.hero-trust .sep{color:var(--faint);}
+
+/* ── CONSOLE PANEL — the signature component ───────────────── */
+.console{background:var(--surface);border:1px solid var(--hairline-strong);border-radius:16px;overflow:hidden;}
+.console-header{background:var(--canvas-deep);padding:13px 18px;display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--hairline);}
+.console-dot{width:7px;height:7px;border-radius:50%;background:var(--primary);opacity:.75;flex-shrink:0;} /* static, never animated */
+.console-body{padding:12px;display:flex;flex-direction:column;gap:8px;}
+.console-row{background:var(--surface-raised);border:1px solid var(--hairline);border-radius:8px;padding:13px 15px;}
+.console-row.alert{background:var(--risk-wash);border-color:var(--risk-line);}
+.console-row.warn{background:var(--warn-wash);border-color:var(--warn-line);}
+.console-row.insight{background:var(--insight-wash);border-color:rgba(167,139,250,.28);}
+.cr-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px;}
+.cr-sev{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
+.cr-sev::before{content:'';width:8px;height:8px;border-radius:2px;background:currentColor;flex-shrink:0;}
+.cr-sev.risk{color:var(--risk);} .cr-sev.warn{color:var(--warn);} .cr-sev.insight{color:var(--insight);}
+.cr-title{font-size:14px;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:5px;}
+.cr-meta{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.03em;}
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;}
+.status-pill.risk{background:var(--risk-wash);color:var(--risk);}
+.status-pill.warn{background:var(--warn-wash);color:var(--warn);}
+.status-pill.ok{background:var(--ok-wash);color:var(--ok);}
+.status-pill.insight{background:var(--insight-wash);color:var(--insight);}
+.console-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 18px;background:var(--canvas-deep);border-top:1px solid var(--hairline);font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.04em;}
+.console-footer strong{color:var(--primary);font-weight:700;}
+.console-badge{background:var(--primary-wash);color:var(--primary);border:1px solid var(--primary-line);padding:3px 10px;border-radius:6px;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+
+/* ── PROOF STRIP ────────────────────────────────────────────── */
+.proof-strip{background:var(--canvas-deep);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:26px 48px;}
+.proof-inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:center;gap:44px;flex-wrap:wrap;}
+.proof-label{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);width:100%;text-align:center;margin-bottom:4px;}
+.proof-item{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.proof-item img{height:34px;width:auto;filter:brightness(0) invert(1);opacity:.55;transition:opacity .2s;}
+.proof-item:hover img{opacity:.9;}
+.proof-item span{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;}
+
+/* ── TWO PATHS ──────────────────────────────────────────────── */
+.tp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.tp-card{display:block;background:var(--surface-raised);border:1px solid var(--hairline);border-radius:12px;padding:32px;position:relative;overflow:hidden;transition:border-color .18s,background .18s;}
+.tp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--primary);}
+.tp-card:hover{border-color:var(--primary-line);background:var(--surface-overlay);}
+.tp-tag{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);background:var(--primary-wash);border:1px solid var(--primary-line);padding:4px 10px;border-radius:6px;margin-bottom:16px;}
+.tp-card h3{font-size:24px;font-weight:700;letter-spacing:-.015em;color:var(--ink);margin-bottom:6px;}
+.tp-who{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--muted);margin-bottom:16px;}
+.tp-desc{font-size:14.5px;line-height:1.7;color:var(--body);margin-bottom:20px;}
+.tp-link{font-size:14px;font-weight:600;color:var(--primary);}
+
+/* ── CRISIS STATS ───────────────────────────────────────────── */
+.stat-band{display:grid;grid-template-columns:repeat(3,1fr);background:var(--surface);border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.stat-cell{padding:32px 28px;border-right:1px solid var(--hairline);}
+.stat-cell:last-child{border-right:none;}
+.stat-cell .data-xl{margin-bottom:12px;display:block;}
+.stat-cell p{font-size:14px;line-height:1.6;color:var(--body);}
+.stat-src{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--faint);margin-top:10px;text-transform:uppercase;}
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.persona-card{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;padding:26px;}
+.persona-role{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:14px;}
+.persona-pain{font-size:14.5px;line-height:1.65;color:var(--body);margin-bottom:16px;}
+.persona-quote{font-size:13.5px;line-height:1.6;color:var(--muted);font-style:italic;padding-left:14px;border-left:2px solid var(--primary-line);}
+.persona-quote cite{display:block;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--faint);margin-top:8px;text-transform:uppercase;}
+.unifier{text-align:center;margin-top:36px;font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--ink);}
+
+/* ── FAO EXPLORER (accordion console) ───────────────────────── */
+.fao-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start;}
+.fao-wins{display:flex;flex-direction:column;gap:2px;margin:28px 0;}
+.fao-win{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--hairline);}
+.fao-win:last-child{border-bottom:none;}
+.fao-win-key{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--primary);background:var(--primary-wash);border:1px solid var(--primary-line);border-radius:6px;min-width:52px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-variant-numeric:tabular-nums;}
+.fao-win-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:3px;}
+.fao-win-sub{font-size:13.5px;color:var(--muted);line-height:1.55;}
+.exp-rows{padding:12px;display:flex;flex-direction:column;gap:6px;}
+.exp-row{border:1px solid var(--hairline);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .18s;background:var(--surface-raised);}
+.exp-row:hover,.exp-row.open{border-color:var(--primary-line);}
+.exp-row.alert{border-color:var(--risk-line);} .exp-row.alert.open{border-color:var(--risk);}
+.exp-row.review{border-color:var(--warn-line);} .exp-row.review.open{border-color:var(--warn);}
+.exp-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;}
+.exp-left{display:flex;align-items:center;gap:13px;}
+.exp-badge{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--primary);background:var(--primary-wash);border-radius:4px;padding:3px 8px;flex-shrink:0;}
+.exp-row.alert .exp-badge{color:var(--risk);background:var(--risk-wash);}
+.exp-row.review .exp-badge{color:var(--warn);background:var(--warn-wash);}
+.exp-name{font-size:14.5px;font-weight:700;color:var(--ink);}
+.exp-sub{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em;margin-top:2px;}
+.exp-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.exp-chevron{font-size:10px;color:var(--faint);transition:transform .22s;}
+.exp-row.open .exp-chevron{transform:rotate(180deg);}
+.exp-panel{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.exp-panel-inner{padding:0 15px 15px 56px;}
+.exp-summary{font-size:13.5px;line-height:1.6;color:var(--body);margin-bottom:12px;}
+.log-block{background:var(--canvas-deep);border:1px solid var(--hairline);border-radius:8px;padding:13px 15px;margin-bottom:11px;}
+.log-label{font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;}
+.log-text{font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--body);}
+.log-ts{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:6px;letter-spacing:.05em;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.chip-mono{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.05em;color:var(--body);background:var(--surface-overlay);border:1px solid var(--hairline);border-radius:4px;padding:3px 8px;}
+.exp-more{display:block;text-align:center;padding:14px;border-top:1px solid var(--hairline);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--primary);background:var(--canvas-deep);}
+
+/* ── RIBBON ─────────────────────────────────────────────────── */
+.ribbon{display:grid;grid-template-columns:repeat(4,1fr);background:var(--canvas-deep);border:1px solid var(--hairline);border-radius:12px;overflow:hidden;margin-top:48px;}
+.ribbon-cell{padding:28px 24px;border-right:1px solid var(--hairline);text-align:center;}
+.ribbon-cell:last-child{border-right:none;}
+.ribbon-num{font-family:var(--mono);font-size:30px;font-weight:700;color:var(--primary);letter-spacing:-.01em;line-height:1;margin-bottom:9px;font-variant-numeric:tabular-nums;}
+.ribbon-lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+
+/* ── BRIDGE ─────────────────────────────────────────────────── */
+#bridge{background:var(--canvas-deep);border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);padding:72px 0;text-align:center;}
+.bridge-h{font-size:clamp(26px,3.4vw,38px);font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1.2;}
+.bridge-h em{font-style:normal;color:var(--primary);}
+
+/* ── TIMELINE ───────────────────────────────────────────────── */
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tl-card{background:var(--surface);border:1px solid var(--hairline);border-radius:12px;padding:30px 26px;position:relative;}
+.tl-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--primary);}
+.tl-day{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;}
+.tl-head{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:11px;line-height:1.35;}
+.tl-body{font-size:14px;line-height:1.65;color:var(--body);}
+
+/* ── ADD-ONS ────────────────────────────────────────────────── */
+.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.addon-card{background:var(--surface-raised);border:1px solid var(--hairline);border-radius:12px;padding:28px;transition:border-color .18s;}
+.addon-card:hover{border-color:var(--primary-line);}
+.addon-icon{width:38px;height:38px;border-radius:8px;background:var(--primary-wash);border:1px solid var(--primary-line);display:flex;align-items:center;justify-content:center;color:var(--primary);margin-bottom:16px;}
+.addon-label{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.addon-desc{font-size:14px;line-height:1.65;color:var(--body);margin-bottom:18px;}
+.addon-link{font-size:13.5px;font-weight:600;color:var(--primary);}
+
+/* ── CTA + FOOTER ───────────────────────────────────────────── */
+#cta{background:var(--surface);border-top:1px solid var(--hairline);text-align:center;}
+.cta-proof{margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+footer{background:var(--canvas-deep);border-top:3px solid var(--primary-line);padding:64px 48px 0;}
+.footer-grid{max-width:var(--max);margin:0 auto 48px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+.footer-tagline{font-size:14px;font-weight:600;color:var(--body);line-height:1.6;margin-top:14px;}
+.footer-sub{font-size:12.5px;color:var(--faint);margin-top:8px;line-height:1.7;}
+.footer-col-title{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.footer-links a{font-size:13.5px;color:var(--muted);transition:color .16s;}
+.footer-links a:hover{color:var(--ink);}
+.footer-bottom{max-width:var(--max);margin:0 auto;border-top:1px solid var(--hairline);padding:22px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--faint);}
+.footer-bottom a{color:var(--faint);}
+.footer-bottom a:hover{color:var(--primary);}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-grid,.fao-grid{grid-template-columns:1fr;gap:48px;}
+  .tp-grid,.persona-grid,.tl-grid,.addon-grid{grid-template-columns:1fr;}
+  .stat-band,.ribbon{grid-template-columns:1fr 1fr;}
+  .stat-cell,.ribbon-cell{border-right:none;border-bottom:1px solid var(--hairline);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .section{padding:64px 0;}
+}
+@media(max-width:768px){
+  nav,.inner,footer,.proof-strip{padding-left:24px;padding-right:24px;}
+  .nav-links{display:none;flex-direction:column;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--canvas);border-bottom:1px solid var(--hairline);padding:12px 24px 18px;z-index:98;}
+  .nav-links.open{display:flex;}
+  .nav-links.open li a{display:block;padding:13px 4px;border-bottom:1px solid var(--hairline);font-size:15px;border-radius:0;}
+  .nav-burger{display:flex;}
+  .nav-logo img{height:44px;}
+  .nav-cta{font-size:13px;padding:9px 14px;}
+  .nav-cta-full{display:none;} .nav-cta-short{display:inline;}
+  .stat-band,.ribbon{grid-template-columns:1fr;}
+  .section{padding:56px 0;}
+  .footer-grid{grid-template-columns:1fr;gap:28px;}
+  .exp-panel-inner{padding-left:15px;}
+  .proof-inner{gap:28px;}
+}
+</style>
+</head>
+<body>
+
+<div style="background:var(--warn-wash);border-bottom:1px solid var(--warn-line);padding:9px 24px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);">
+  V2 Design-System Preview &nbsp;·&nbsp; not the live homepage &nbsp;·&nbsp; noindex
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies" /></a></div>
+  <ul class="nav-links">
+    <li><a href="/" class="active">Home</a></li>
+    <li><a href="/ai-engineering-governance">AI Governance</a></li>
+    <li><a href="/ai-adoption-strategy">AI Strategy</a></li>
+    <li><a href="/platform">AI Agents</a></li>
+    <li><a href="/pricing">Pricing</a></li>
+    <li><a href="/industries">Industries</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="/assessment" class="nav-cta"><span class="nav-cta-full">Book a Governance Review</span><span class="nav-cta-short">Book Review</span></a>
+    <button class="nav-burger" aria-label="Menu" onclick="var n=document.querySelector('.nav-links');n.classList.toggle('open');this.innerHTML=n.classList.contains('open')?'&#10005;':'&#9776;';">&#9776;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="inner hero-grid">
+    <div>
+      <div class="eyebrow">Fractional AI Officer &nbsp;·&nbsp; Live in 72 Hours</div>
+      <h1 class="hero-h1">AI Writes Your Code.<br /><em>Who Reviews the Risk?</em></h1>
+      <p class="hero-sub">Upcore embeds a specialist Fractional AI Officer into your engineering org — auditing every AI-generated commit, blocking vulnerabilities, and keeping you compliant as you scale.</p>
+      <div class="btn-row">
+        <a href="/assessment" class="btn btn-primary">Book a Governance Review &rarr;</a>
+        <a href="/ai-engineering-governance" class="btn btn-secondary">See the Framework</a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars">★★★★★</span><span>5.0 Clutch</span>
+        <span class="sep">/</span><span>ISO 27001</span>
+        <span class="sep">/</span><span>50+ enterprise teams</span>
+        <span class="sep">/</span><span>Walk away at Day 30</span>
+      </div>
+    </div>
+
+    <!-- CONSOLE PANEL — page chrome, not decoration -->
+    <div class="console">
+      <div class="console-header"><span class="console-dot"></span>FAO Risk Monitor &mdash; Example</div>
+      <div class="console-body">
+        <div class="console-row alert">
+          <div class="cr-top">
+            <span class="cr-sev risk">High Risk</span>
+            <span class="status-pill risk">Blocked</span>
+          </div>
+          <div class="cr-title">Prompt Injection Vector — PR #247</div>
+          <div class="cr-meta">847 lines · AI-generated · Claude Sonnet</div>
+        </div>
+        <div class="console-row warn">
+          <div class="cr-top">
+            <span class="cr-sev warn">Medium Risk</span>
+            <span class="status-pill warn">Review</span>
+          </div>
+          <div class="cr-title">Hardcoded API Key — auth.py : line 34</div>
+          <div class="cr-meta">12 lines · AI-generated · GitHub Copilot</div>
+        </div>
+        <div class="console-row insight">
+          <div class="cr-top">
+            <span class="cr-sev insight">Spend Insight · L5</span>
+            <span class="status-pill insight">Optimise</span>
+          </div>
+          <div class="cr-title">18-engineer team · $18.7K in AI token waste — last month</div>
+          <div class="cr-meta">Redundant completions · no model routing · 60–70% reducible</div>
+        </div>
+      </div>
+      <div class="console-footer">
+        <span>Today: <strong>23</strong> risks blocked</span>
+        <span class="console-badge">100% commit coverage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-inner">
+    <span class="proof-label">Certified &amp; Recognized</span>
+    <div class="proof-item"><img src="/images/accolades/cmmi.svg" alt="CMMI Level 3" /><span>CMMI Level 3</span></div>
+    <a class="proof-item" href="/security"><img src="/images/accolades/iso27001.svg" alt="ISO 27001" /><span>ISO 27001</span></a>
+    <div class="proof-item"><img src="/images/accolades/iso9001.svg" alt="ISO 9001" /><span>ISO 9001</span></div>
+    <div class="proof-item"><img src="/images/accolades/clutch.svg" alt="Clutch" /><span>Top AI Company</span></div>
+    <div class="proof-item"><img src="/images/accolades/selectedfirms.svg" alt="SelectedFirms" /><span>Top Enterprise</span></div>
+  </div>
+</div>
+
+<!-- TWO PATHS -->
+<section class="section section-alt">
+  <div class="inner">
+    <div class="section-head center">
+      <div class="eyebrow">Two Engagements · One Fractional AI Officer</div>
+      <h2 class="display-xl">Govern the Code.<br />Coordinate the Strategy.</h2>
+      <p>Upcore's FAO runs two flagship engagements. Pick the one that matches where AI is hurting you today — or combine both.</p>
+    </div>
+    <div class="tp-grid">
+      <a href="/ai-engineering-governance" class="tp-card">
+        <span class="tp-tag">Engineering · Govern</span>
+        <h3>AI Engineering Governance</h3>
+        <p class="tp-who">For CTOs, VPs of Engineering &amp; CISOs</p>
+        <p class="tp-desc">AI writes a growing share of your production code. Your FAO reviews every AI-generated commit, blocks vulnerabilities before they ship, builds your audit trail, and tracks AI spend to the team level — embedded in 72 hours.</p>
+        <span class="tp-link">Explore AI Governance &rarr;</span>
+      </a>
+      <a href="/ai-adoption-strategy" class="tp-card">
+        <span class="tp-tag">Strategy · Coordinate</span>
+        <h3>AI Strategy &amp; Adoption</h3>
+        <p class="tp-who">For CEOs, COOs &amp; CFOs</p>
+        <p class="tp-desc">Twenty scattered AI pilots, no single owner, no ROI number. Your FAO inventories every initiative in 10 business days, decides what to stop, consolidate, or scale — and owns 2–3 implementations through to proven ROI in 90 days.</p>
+        <span class="tp-link">Explore AI Strategy &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="inner">
+    <div class="section-head">
+      <div class="eyebrow">The AI Code Crisis</div>
+      <h2 class="display-xl">Your Engineers Ship AI Code Daily.<br />No One Signs Off On It.</h2>
+    </div>
+    <div class="stat-band">
+      <div class="stat-cell">
+        <span class="data-xl">45%</span>
+        <p>of AI-generated code contains at least one exploitable vulnerability<span class="stat-src">Veracode, 2025</span></p>
+      </div>
+      <div class="stat-cell">
+        <span class="data-xl">$4.7M</span>
+        <p>average cost of a data breach when AI code is in the attack path<span class="stat-src">IBM Cost of a Data Breach, 2024</span></p>
+      </div>
+      <div class="stat-cell">
+        <span class="data-xl">0</span>
+        <p>teams that can name a single person accountable for AI code risk<span class="stat-src">Upcore client intake, n=50+</span></p>
+      </div>
+    </div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-role">For the CTO</div>
+        <p class="persona-pain">You see the total AI tool spend. Zero visibility into which team, which PR, or which prompt caused it.</p>
+        <p class="persona-quote">"I know we're burning budget on AI. I can't tell you where."<cite>CTO, $80M SaaS company</cite></p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">For the CISO</div>
+        <p class="persona-pain">Your scanners miss AI-generated vulnerabilities. They were built for human code — hallucinated packages, inverted auth, injected credentials all slip through.</p>
+        <p class="persona-quote">"Our scanners were built for human code. They catch nothing that Copilot hallucinates."<cite>CISO, Series B fintech</cite></p>
+      </div>
+      <div class="persona-card">
+        <div class="persona-role">For the CFO / Board</div>
+        <p class="persona-pain">When the auditor asks who owns AI risk, the room goes quiet. No audit trail. No policy. No one accountable.</p>
+        <p class="persona-quote">"EU AI Act 2026 goes live in six months. We have no position."<cite>CFO, healthcare enterprise</cite></p>
+      </div>
+    </div>
+    <p class="unifier">Everyone's problem. Nobody's job. Until now.</p>
+  </div>
+</section>
+
+<!-- FAO SOLUTION -->
+<section class="section section-alt">
+  <div class="inner">
+    <div class="fao-grid">
+      <div>
+        <div class="eyebrow">The Solution</div>
+        <h2 class="display-lg" style="margin-bottom:18px;">Introducing the<br /><span style="color:var(--primary)">Fractional AI Officer.</span></h2>
+        <p class="body-md">Your developers ship AI-generated code every day. Nobody reviews it for vulnerabilities, compliance gaps, or hallucinated packages. The FAO embeds in 72 hours and owns every line — from the first AI prompt to your next board report.</p>
+        <div class="fao-wins">
+          <div class="fao-win"><span class="fao-win-key">72h</span><div><div class="fao-win-title">Embedded in 72 hours</div><div class="fao-win-sub">No recruiting, no ramp. Active before your next sprint ends.</div></div></div>
+          <div class="fao-win"><span class="fao-win-key">L3</span><div><div class="fao-win-title">Every AI commit reviewed</div><div class="fao-win-sub">Hallucinated packages, prompt injection, auth bypass — caught before merge.</div></div></div>
+          <div class="fao-win"><span class="fao-win-key">D30</span><div><div class="fao-win-title">Day 30 walk-away clause</div><div class="fao-win-sub">First risk report at Day 30. Exit at no obligation if ROI isn't clear.</div></div></div>
+          <div class="fao-win"><span class="fao-win-key">19</span><div><div class="fao-win-title">EU AI Act &amp; HIPAA ready</div><div class="fao-win-sub">19 capabilities across ISO 27001, SOX, HIPAA, and EU AI Act.</div></div></div>
+        </div>
+        <div class="btn-row">
+          <a href="/assessment" class="btn btn-primary">Book a Governance Review &rarr;</a>
+          <a href="/ai-engineering-governance" class="btn btn-secondary">Full Framework</a>
+        </div>
+      </div>
+
+      <div class="console">
+        <div class="console-header"><span class="console-dot"></span>FAO Governance Explorer &mdash; Example</div>
+        <div class="exp-rows">
+          <div class="exp-row" onclick="toggleLayer(this)">
+            <div class="exp-trigger">
+              <div class="exp-left"><span class="exp-badge">L1</span><div><div class="exp-name">Align</div><div class="exp-sub">AI Policy &amp; Standards</div></div></div>
+              <div class="exp-right"><span class="status-pill ok">Active</span><span class="exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="exp-panel"><div class="exp-panel-inner">
+              <p class="exp-summary">Every AI tool your team uses — inventoried, classified, and governed before it touches your codebase.</p>
+              <div class="log-block"><div class="log-label">Flagged this quarter</div><div class="log-text">"Undocumented GPT-4 integration found in payments module — flagged before board audit"</div><div class="log-ts">3 hr ago</div></div>
+              <div class="exp-tags"><span class="chip-mono">EU AI Act Art. 9</span><span class="chip-mono">ISO 27001</span></div>
+            </div></div>
+          </div>
+          <div class="exp-row review" onclick="toggleLayer(this)">
+            <div class="exp-trigger">
+              <div class="exp-left"><span class="exp-badge">L2</span><div><div class="exp-name">Accelerate</div><div class="exp-sub">Dev Governance · PR #847</div></div></div>
+              <div class="exp-right"><span class="status-pill warn">Review</span><span class="exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="exp-panel"><div class="exp-panel-inner">
+              <p class="exp-summary">Every AI-assisted PR reviewed against your policy before it merges.</p>
+              <div class="log-block"><div class="log-label">Under review</div><div class="log-text">"Copilot-generated auth helper — 2 issues flagged, pending remediation before merge"</div><div class="log-ts">14 min ago</div></div>
+              <div class="exp-tags"><span class="chip-mono">OWASP LLM Top 10</span><span class="chip-mono">SOX</span></div>
+            </div></div>
+          </div>
+          <div class="exp-row alert" onclick="toggleLayer(this)">
+            <div class="exp-trigger">
+              <div class="exp-left"><span class="exp-badge">L3</span><div><div class="exp-name">Protect</div><div class="exp-sub">Security · 2 blocked today</div></div></div>
+              <div class="exp-right"><span class="status-pill risk">Scanning</span><span class="exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="exp-panel"><div class="exp-panel-inner">
+              <p class="exp-summary">Hallucinated packages and prompt injection — caught before they ship.</p>
+              <div class="log-block"><div class="log-label">Blocked today</div><div class="log-text">"npm pkg 'ai-helpers@3.2.1' blocked — Copilot-suggested, no security review, 0 downloads"</div><div class="log-ts">just now</div></div>
+              <div class="exp-tags"><span class="chip-mono">CVE Monitoring</span><span class="chip-mono">HIPAA §164.312</span></div>
+            </div></div>
+          </div>
+          <div class="exp-row" onclick="toggleLayer(this)">
+            <div class="exp-trigger">
+              <div class="exp-left"><span class="exp-badge">L4</span><div><div class="exp-name">Comply</div><div class="exp-sub">Audit &amp; Regulatory</div></div></div>
+              <div class="exp-right"><span class="status-pill ok">Active</span><span class="exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="exp-panel"><div class="exp-panel-inner">
+              <p class="exp-summary">EU AI Act, HIPAA, SOX — audit trail generated automatically, not assembled after the fact.</p>
+              <div class="log-block"><div class="log-label">Recent action</div><div class="log-text">"SOX attestation gap identified and closed 48h before board review — zero findings"</div><div class="log-ts">yesterday</div></div>
+              <div class="exp-tags"><span class="chip-mono">EU AI Act</span><span class="chip-mono">SOX</span><span class="chip-mono">HIPAA</span></div>
+            </div></div>
+          </div>
+          <div class="exp-row" onclick="toggleLayer(this)">
+            <div class="exp-trigger">
+              <div class="exp-left"><span class="exp-badge">L5</span><div><div class="exp-name">Optimise</div><div class="exp-sub">Intelligence &amp; ROI</div></div></div>
+              <div class="exp-right"><span class="status-pill ok">Active</span><span class="exp-chevron">&#9660;</span></div>
+            </div>
+            <div class="exp-panel"><div class="exp-panel-inner">
+              <p class="exp-summary">AI spend tracked to the team and feature level, with quarterly ROI reporting.</p>
+              <div class="log-block"><div class="log-label">Recent win</div><div class="log-text">"LLM API spend reduced 31% via intelligent model routing — $18k saved in Q3"</div><div class="log-ts">2 days ago</div></div>
+              <div class="exp-tags"><span class="chip-mono">ROI Reporting</span><span class="chip-mono">ISO 42001</span></div>
+            </div></div>
+          </div>
+        </div>
+        <a href="/ai-engineering-governance#framework" class="exp-more">See the full framework, capability-by-capability &rarr;</a>
+      </div>
+    </div>
+
+    <div class="ribbon">
+      <div class="ribbon-cell"><div class="ribbon-num">72h</div><div class="ribbon-lbl">To embed &amp; govern</div></div>
+      <div class="ribbon-cell"><div class="ribbon-num">Day 30</div><div class="ribbon-lbl">First risk report</div></div>
+      <div class="ribbon-cell"><div class="ribbon-num" data-target="19">0</div><div class="ribbon-lbl">Integrated capabilities</div></div>
+      <div class="ribbon-cell"><div class="ribbon-num" data-target="5">0</div><div class="ribbon-lbl">Governance layers</div></div>
+    </div>
+    <p style="text-align:center;margin-top:26px;" class="caption">Scattered AI pilots, not code governance risk? <a href="/ai-adoption-strategy" style="color:var(--primary);font-weight:600;">See AI Strategy &amp; Adoption &rarr;</a></p>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<section id="bridge">
+  <div class="inner">
+    <h2 class="bridge-h">Once Your AI Is Governed, <em>You Can Build Fearlessly.</em></h2>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="inner">
+    <div class="section-head">
+      <div class="eyebrow">How It Works</div>
+      <h2 class="display-xl">From First Call to<br />Full Operation in 90 Days.</h2>
+    </div>
+    <div class="tl-grid">
+      <div class="tl-card">
+        <div class="tl-day">Week 01</div>
+        <div class="tl-head">Govern from Day One</div>
+        <p class="tl-body">Your FAO embeds. AI risk surface mapped across your org. Governance layer active on your first PR within 72 hours of the first call.</p>
+      </div>
+      <div class="tl-card">
+        <div class="tl-day">Day 30</div>
+        <div class="tl-head">First Risk Report — Walk-Away Clause</div>
+        <p class="tl-body">First AI Risk Report delivered. Vulnerabilities blocked. Budget attribution live. ROI data in hand — walk away if it doesn't justify continuing.</p>
+      </div>
+      <div class="tl-card">
+        <div class="tl-day">Day 90</div>
+        <div class="tl-head">Full AI Workforce Operational</div>
+        <p class="tl-body">AI workforce deployed across your highest-ROI workflows — governed, attributed, and delivering measurable ROI. Full governance report delivered.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="/ai-engineering-governance#journey" class="btn btn-secondary">See the Full 90-Day Journey &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ADD-ONS -->
+<section class="section section-alt">
+  <div class="inner">
+    <div class="section-head">
+      <div class="eyebrow">Also Available</div>
+      <h2 class="display-xl">Industry-Specific<br />AI Agent Suites</h2>
+      <p>Once your AI code is governed, Upcore deploys purpose-built agent teams for your vertical. Optional add-ons — start with governance alone and add agents when you're ready.</p>
+    </div>
+    <div class="addon-grid">
+      <div class="addon-card">
+        <div class="addon-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V8l6 4V8l6 4V8l4 3v9"/></svg></div>
+        <div class="addon-label">Manufacturing</div>
+        <p class="addon-desc">Predictive maintenance, procurement intelligence, and quality escalation agents — built for shop-floor workflows and OT/IT integration.</p>
+        <a href="/industries/manufacturing" class="addon-link">See Manufacturing Suite &rarr;</a>
+      </div>
+      <div class="addon-card">
+        <div class="addon-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="addon-label">SaaS &amp; Technology</div>
+        <p class="addon-desc">Onboarding intelligence, churn prediction, and AI cost attribution agents — built for product-led SaaS teams shipping fast.</p>
+        <a href="/industries/saas-technology" class="addon-link">See SaaS Suite &rarr;</a>
+      </div>
+      <div class="addon-card">
+        <div class="addon-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+        <div class="addon-label">Ecommerce &amp; D2C</div>
+        <p class="addon-desc">Returns intelligence, inventory forecasting, and AI spend governance agents — built for high-SKU, high-velocity operations.</p>
+        <a href="/industries/retail-d2c" class="addon-link">See Ecommerce Suite &rarr;</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px;"><a href="/industries" style="font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--primary)">EXPLORE ALL AGENT SUITES &rarr;</a></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" id="cta">
+  <div class="inner">
+    <div class="section-head center" style="margin-bottom:32px;">
+      <div class="eyebrow">Ready to Start</div>
+      <h2 class="display-xl">The Window to Govern<br />AI Code Is Closing.</h2>
+      <p>EU AI Act 2026. SOX. HIPAA. The audit trail requirements don't wait — and neither does the risk already inside your engineering org.</p>
+    </div>
+    <a href="/assessment" class="btn btn-primary">Book a Governance Review &rarr;</a>
+    <div class="cta-proof">CMMI Level 3 · ISO 27001 · 50+ teams assessed · Walk away at Day 30</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img src="/upcore-logo.png" alt="Upcore Technologies" style="height:48px;width:auto;opacity:.85;" />
+      <p class="footer-tagline">Govern Your AI.<br />Then Build With It.</p>
+      <p class="footer-sub">Enterprise AI governance and agents,<br />built for your org.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="/about">About Upcore</a></li><li><a href="/platform">How It Works</a></li>
+        <li><a href="/security">Security &amp; Trust</a></li><li><a href="/pricing">Pricing</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Solutions</div>
+      <ul class="footer-links">
+        <li><a href="/ai-engineering-governance">AI Engineering Governance</a></li>
+        <li><a href="/ai-adoption-strategy">AI Adoption Strategy</a></li>
+        <li><a href="/ai-operations">AI Operations Toolkit</a></li>
+        <li><a href="/sdlc-agent">Forge · SDLC Agent</a></li>
+        <li><a href="/agent-builder">Upcore Studio</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Industries</div>
+      <ul class="footer-links">
+        <li><a href="/industries/manufacturing">Manufacturing</a></li>
+        <li><a href="/industries/saas-technology">SaaS &amp; Technology</a></li>
+        <li><a href="/industries/retail-d2c">Ecommerce &amp; D2C</a></li>
+        <li><a href="/industries/healthcare">Healthcare</a></li>
+        <li><a href="/industries">View All &rarr;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>CMMI LEVEL 3 · ISO 27001 · ISO 9001 · NASSCOM MEMBER</span>
+    <span>&copy; 2026 Upcore Technologies Pvt. Ltd. · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
+  </div>
+</footer>
+
+<script>
+function toggleLayer(row){
+  var panel=row.querySelector('.exp-panel');
+  var isOpen=row.classList.contains('open');
+  document.querySelectorAll('.exp-row').forEach(function(r){
+    r.classList.remove('open'); r.querySelector('.exp-panel').style.maxHeight='0px';
+  });
+  if(!isOpen){ row.classList.add('open'); panel.style.maxHeight=panel.scrollHeight+'px'; }
+}
+document.addEventListener('DOMContentLoaded',function(){
+  var rows=document.querySelectorAll('.exp-row');
+  if(rows[2]) toggleLayer(rows[2]); // pre-open L3 Protect
+});
+// Count-up on the ribbon, respecting reduced-motion
+(function(){
+  var done=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els=document.querySelectorAll('.ribbon-num[data-target]');
+  if(reduce){ els.forEach(function(el){el.textContent=el.dataset.target;}); return; }
+  var obs=new IntersectionObserver(function(e){
+    if(done||!e[0].isIntersecting)return; done=true;
+    els.forEach(function(el){
+      var end=+el.dataset.target, t0=performance.now(), dur=1100;
+      (function step(now){
+        var p=Math.min((now-t0)/dur,1);
+        el.textContent=Math.round((1-Math.pow(1-p,3))*end);
+        if(p<1)requestAnimationFrame(step);
+      })(t0);
+    });
+    obs.disconnect();
+  },{threshold:.35});
+  var r=document.querySelector('.ribbon'); if(r)obs.observe(r);
+})();
+</script>
+</body>
+</html>

@@ -603,9 +603,19 @@ The page alternates `{component.section-band}` (canvas) and `{component.section-
 
 **Level 3 is the only shadow in the system.** Everything else is brightness. A card that needs to "pop" gets a teal ring, not a glow.
 
-**Explicitly banned:** teal-tinted drop shadows, `box-shadow` glows on buttons, `backdrop-filter: blur()` glassmorphism, and multi-stop mesh gradients. All four are the visual signature of template-built AI marketing sites and all four are what the brief means by "AI-looking."
+**Explicitly banned:** `backdrop-filter: blur()` glassmorphism, multi-stop mesh gradients, and glow on *any* surface other than the primary CTA. These are the visual signature of template-built AI marketing sites and are what the brief means by "AI-looking."
 
-> This bans the teal glow-shadow that was added to `/ai-operations` buttons. That page is V2's closest ancestor but predates this spec; when it migrates, the glow comes off and the pill CTAs square down to 8px.
+### The primary-CTA glow exception (amended 2026-08-21)
+V2 originally banned button glow outright. That was overruled deliberately — a governance brand can still be *inviting*, and a completely inert primary action reads cold. The exception is tightly scoped so it stays professional rather than decorative:
+
+- **Only `{component.button-primary}`.** Never cards, sections, secondary buttons, or the nav CTA's resting state.
+- **Idle:** a slow `cta-breathe` ring — 3.4s, `rgba(10,191,204,.30)` expanding to 7px at zero alpha. Slow enough to read as a heartbeat, not a blink.
+- **Hover:** breathing pauses, replaced by a directional `0 8px 26px rgba(10,191,204,.34)` lift with `translateY(-2px)`.
+- **Active:** shadow collapses to `0 2px 8px` and the lift returns to 0 — the button physically presses.
+- **Alpha ceiling 0.42.** Above that it stops reading as depth and starts reading as neon.
+- **All of it disappears under `prefers-reduced-motion: reduce`.**
+
+The distinction that keeps this enterprise-grade: the glow is *reactive* (it responds to the pointer and confirms the press), not *ambient* (it isn't a decorative aura sitting on a static page).
 
 ---
 

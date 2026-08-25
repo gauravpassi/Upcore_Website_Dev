@@ -12,6 +12,12 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-21 — Rebuild /ai-operations from user-supplied bespoke design; reverts to $3
+**Type:** content
+**Files:** `ai-operations.html`, `docs/FEATURES.md`
+Replaced the whole page with a bespoke standalone design the user supplied (own dark navy/cyan `#071A26`/`#21D2ED` system, Space Grotesk + DM Sans + JetBrains Mono, animated marquee, JS-rendered kit cards). Per explicit instruction, kept the supplied `<style>`/body/script byte-for-byte and swapped only the page's own `<header>`/`<footer>` for this site's real sitewide nav/footer. Two inline base64 logo blobs were dropped in the process (file went from ~240KB → ~74KB). Pricing reverts to $3 (the supplied design's own price), superseding the prior session's "$3 → free" change.
+**Flagged, not fixed:** every CTA on the page is an anchor link to `#get` — there's no real checkout or lead-capture form anywhere, including inside `#get` itself. The page cannot currently convert a visitor. See `docs/FEATURES.md` A3d for the decision needed (real $3 checkout vs. revert to the free email-gate pattern) before sending traffic.
+
 ## 2026-08-13 — New page: AI Operations Toolkit (`/ai-operations`), free lead magnet
 **Type:** feature
 **Files:** `ai-operations.html` (new), `sitemap.xml`, `docs/STRUCTURE.md`, `docs/FEATURES.md`

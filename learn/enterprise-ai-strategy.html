@@ -205,7 +205,7 @@ nav{width:100%;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.0
 .btn-p{display:inline-flex;align-items:center;gap:8px;background:#0ABFCC;color:#070B10;font-weight:600;padding:12px 26px;border-radius:9999px;font-size:15px;transition:background .2s,transform .2s;}
 .btn-p:hover{background:#089AAA;transform:translateY(-1px);}
 .btn-o{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.3);color:var(--txt);padding:11px 24px;border-radius:9999px;font-size:14px;transition:border-color .2s,background .2s;}
-.btn-o:hover{border-color:rgba(255,255,255,.55);background:rgba(0,0,0,.04);}
+.btn-o:hover{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.04);}
 .pg-section{padding:64px 0;}
 .pg-section+.pg-section{border-top:1px solid var(--border);}
 .sec-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
@@ -276,7 +276,21 @@ footer{background:var(--ink);border-top:3px solid rgba(10,191,204,.2);padding:64
 .decision-block{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:24px;}
 .decision-block h3{font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--txt);}
 .decision-num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:rgba(10,191,204,.12);border:1.5px solid rgba(10,191,204,.3);color:var(--teal);font-weight:800;font-size:.85rem;margin-right:12px;flex-shrink:0;vertical-align:middle;}
-  </style>
+  
+/* == PRIMARY CTA GLOW (V3 motion, sitewide) == */
+@keyframes cta-breathe{0%,100%{box-shadow:0 0 16px rgba(33,210,237,.22)}50%{box-shadow:0 0 32px rgba(33,210,237,.42)}}
+.nav-cta,.btn-fill,.btn-primary,.btn-hero-primary,.btn-teal,.btn-white,.lm-btn-primary,.btn-cta,.btn-p,.btn-open,.btn-back,.form-submit,.toc-cta{animation:cta-breathe 3.6s ease-in-out infinite;}
+.nav-cta:hover,.btn-fill:hover,.btn-primary:hover,.btn-hero-primary:hover,.btn-teal:hover,.btn-white:hover,.lm-btn-primary:hover{animation-play-state:paused;}
+@media(prefers-reduced-motion:reduce){.nav-cta,.btn-fill,.btn-primary,.btn-hero-primary,.btn-teal,.btn-white,.lm-btn-primary,.btn-cta,.btn-p,.btn-open,.btn-back,.form-submit,.toc-cta{animation:none;}}
+
+/* == CARD HOVER-LIFT (V3 motion, sitewide) == */
+.tp-card,.addon-card,.prob-card,.article-card,.related-card,.pricing-card,.case-card,.cs-card,.step-card,.team-card,.persona-card,.testimonial-card,.pain-card,.industry-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}
+.tp-card:hover,.addon-card:hover,.prob-card:hover,.article-card:hover,.related-card:hover,.pricing-card:hover,.case-card:hover,.cs-card:hover,.step-card:hover,.team-card:hover,.persona-card:hover,.testimonial-card:hover,.pain-card:hover,.industry-card:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 28px rgba(0,0,0,.28);}
+@media(prefers-reduced-motion:reduce){
+  .tp-card,.addon-card,.prob-card,.article-card,.related-card,.pricing-card,.case-card,.cs-card,.step-card,.team-card,.persona-card,.testimonial-card,.pain-card,.industry-card{transition:none;}
+  .tp-card:hover,.addon-card:hover,.prob-card:hover,.article-card:hover,.related-card:hover,.pricing-card:hover,.case-card:hover,.cs-card:hover,.step-card:hover,.team-card:hover,.persona-card:hover,.testimonial-card:hover,.pain-card:hover,.industry-card:hover{transform:none;}
+}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -380,10 +394,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="sec-p" style="margin-top:12px;margin-bottom:0;">Building governance in from the start - defining the audit log schema before the first agent goes live, establishing the human override mechanism before the first automated decision is made, defining the escalation path before the first edge case is encountered - adds days to the deployment timeline, not months. Retrofitting governance onto a live system that was built without it can take months and often requires redeployment from scratch. Upcore's 30-day deployment model is built around this principle: governance is not a phase that comes after deployment. It is a design constraint that shapes the architecture from day one, which is why the 30-day timeline is achievable without compromising on compliance requirements that would otherwise take months to address.</p>
     </div>
 
-    <div style="background:#f7f8fa;border:1px solid rgba(10,191,204,.25);border-left:3px solid #0ABFCC;border-radius:12px;padding:24px 28px;margin:24px 0;">
+    <div style="background:var(--card);border:1px solid rgba(33,210,237,.25);border-left:3px solid var(--teal);border-radius:12px;padding:24px 28px;margin:24px 0;">
       <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#0ABFCC;margin-bottom:10px;">Related: AI Engineering Governance</div>
       <p style="font-size:15px;font-weight:700;color:var(--txt);margin:0 0 8px;line-height:1.4;">The Fractional AI Officer puts Decision 5 into practice in 72 hours.</p>
-      <p style="font-size:13px;color:#6b7280;margin:0 0 14px;line-height:1.7;">Governance as a day-one design constraint, not a post-deployment retrofit. A dedicated accountability layer embedded in your engineering org - covering AI budget, security, and compliance from the first prompt to the last deployment.</p>
+      <p style="font-size:13px;color:var(--txt2);margin:0 0 14px;line-height:1.7;">Governance as a day-one design constraint, not a post-deployment retrofit. A dedicated accountability layer embedded in your engineering org - covering AI budget, security, and compliance from the first prompt to the last deployment.</p>
       <a href="/ai-engineering-governance" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#0ABFCC;text-decoration:none;">See the AI Engineering Governance Framework <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </section>

@@ -315,8 +315,8 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar â€
 /* Hover states only where hover exists â€” iOS otherwise sticks them on tap */
 @media (hover:hover) and (pointer:fine){
   .lm-btn-primary:hover{background:#3ee1f5;transform:translateY(-1px);}
-  .lm-btn-ghost:hover{background:rgba(0,0,0,.04);}
-  .lm-link-secondary:hover{background:rgba(0,0,0,.05);transform:translateY(-1px);}
+  .lm-btn-ghost:hover{background:rgba(255,255,255,.04);}
+  .lm-link-secondary:hover{background:rgba(255,255,255,.05);transform:translateY(-1px);}
   .lm-option:hover{border-color:var(--teal);background:rgba(33,210,237,.05);transform:translateX(4px);}
   .lm-sample-q-opt:hover{border-color:var(--teal);background:rgba(33,210,237,.05);transform:translateX(4px);}
   .lm-quiz-back:hover{border-color:var(--teal);color:#3ee1f5;}
@@ -341,6 +341,20 @@ body.lm-on-hero #lm-root{padding-bottom:120px;} /* reserve for the sticky bar â€
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}
   .lm-reveal{opacity:1;transform:none;}
   .lm-fw-stroke{stroke-dashoffset:0;}
+}
+
+/* == PRIMARY CTA GLOW (V3 motion, sitewide) == */
+@keyframes cta-breathe{0%,100%{box-shadow:0 0 16px rgba(33,210,237,.22)}50%{box-shadow:0 0 32px rgba(33,210,237,.42)}}
+.nav-cta,.btn-fill,.btn-primary,.btn-hero-primary,.btn-teal,.btn-white,.lm-btn-primary,.btn-cta,.btn-p,.btn-open,.btn-back,.form-submit,.toc-cta{animation:cta-breathe 3.6s ease-in-out infinite;}
+.nav-cta:hover,.btn-fill:hover,.btn-primary:hover,.btn-hero-primary:hover,.btn-teal:hover,.btn-white:hover,.lm-btn-primary:hover{animation-play-state:paused;}
+@media(prefers-reduced-motion:reduce){.nav-cta,.btn-fill,.btn-primary,.btn-hero-primary,.btn-teal,.btn-white,.lm-btn-primary,.btn-cta,.btn-p,.btn-open,.btn-back,.form-submit,.toc-cta{animation:none;}}
+
+/* == CARD HOVER-LIFT (V3 motion, sitewide) == */
+.tp-card,.addon-card,.prob-card,.article-card,.related-card,.pricing-card,.case-card,.cs-card,.step-card,.team-card,.persona-card,.testimonial-card,.pain-card,.industry-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}
+.tp-card:hover,.addon-card:hover,.prob-card:hover,.article-card:hover,.related-card:hover,.pricing-card:hover,.case-card:hover,.cs-card:hover,.step-card:hover,.team-card:hover,.persona-card:hover,.testimonial-card:hover,.pain-card:hover,.industry-card:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 28px rgba(0,0,0,.28);}
+@media(prefers-reduced-motion:reduce){
+  .tp-card,.addon-card,.prob-card,.article-card,.related-card,.pricing-card,.case-card,.cs-card,.step-card,.team-card,.persona-card,.testimonial-card,.pain-card,.industry-card{transition:none;}
+  .tp-card:hover,.addon-card:hover,.prob-card:hover,.article-card:hover,.related-card:hover,.pricing-card:hover,.case-card:hover,.cs-card:hover,.step-card:hover,.team-card:hover,.persona-card:hover,.testimonial-card:hover,.pain-card:hover,.industry-card:hover{transform:none;}
 }
 </style>
 </head>

@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-25 — Sitewide CTA glow, card hover-lift, and audit-driven bug fixes
+**Type:** feature / fix
+**Files:** all ~76 pages (CTA glow + hover-lift CSS), `pricing.html`, `security.html`, `privacy.html`, `terms.html` (`--ink` token), `insights/index.html` (industry tag colors + featured-cta), `contact.html`, `sdlc-agent.html` (`--rose`→`--red`), `industries/index.html`, `learn/enterprise-ai-strategy.html`, `learn/ai-data-governance.html`, `lp/ai-maturity-index.html` (JetBrains Mono), `docs/DESIGN-SYSTEM-V3.md`
+Added a breathing cyan glow to every primary CTA and a hover-lift to every explorable card, sitewide — then ran a fleet of parallel audit agents across every page category to verify the whole V3 migration end-to-end. Found and fixed real bugs, several introduced by the glow/lift injection itself (a PowerShell string-interpolation gotcha stripped `:hover` from the card-lift CSS; the CTA glow selector list didn't cover ~6 of the site's ~13 actual primary-button class names) and several pre-existing from the original migration (`--ink` undefined in 4 files' `:root`, invisible-text bugs from leftover light-theme hex on 17+ files, wrong-direction ghost-button hover fills on 60 files, one live-ad quiz page missing a font the other one has). Full list in `docs/DESIGN-SYSTEM-V3.md` Known Gaps. Not committed by way of a single mechanical script — verified in-browser with `getAnimations()`/screenshots after each fix category.
+
+---
+
 ## 2026-08-25 — Full-site migration to Upcore-Ops (V3) design system
 **Type:** feature / decision
 **Files:** all ~74 non-demo `.html` pages (`:root` blocks + nav/footer CSS + Google Fonts link), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `lp/maturity-review.html`, `docs/DESIGN-SYSTEM-V3.md`

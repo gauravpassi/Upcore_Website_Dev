@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -235,8 +235,8 @@ h1,h2,h3{font-family:'Space Grotesk',var(--ff),sans-serif;}
         .featured-card p { color: var(--txt2); font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
         .featured-meta { font-size: 13px; color: var(--txt3); }
         .featured-cta {
-            background: #0a0a0a;
-            color: #ffffff;
+            background: var(--teal);
+            color: #04121C;
             padding: 12px 28px;
             border-radius: 9999px;
             font-weight: 600;
@@ -245,7 +245,7 @@ h1,h2,h3{font-family:'Space Grotesk',var(--ff),sans-serif;}
             display: inline-block;
             transition: background 0.2s;
         }
-        .featured-cta:hover { background: #222222; }
+        .featured-cta:hover { background: #3ee1f5; }
 
         /* ========== ARTICLES GRID ========== */
         .articles-section {
@@ -292,20 +292,20 @@ h1,h2,h3{font-family:'Space Grotesk',var(--ff),sans-serif;}
             width: fit-content;
             margin-bottom: 14px;
         }
-        /* Industry tag colors - dark text on light backgrounds for white-canvas system */
-        .tag-manufacturing { background: rgba(234,88,12,0.08); color: #c2410c; border: 1px solid rgba(234,88,12,0.18); }
-        .tag-ecommerce { background: rgba(219,39,119,0.08); color: #be185d; border: 1px solid rgba(219,39,119,0.18); }
-        .tag-nbfc { background: rgba(21,128,61,0.08); color: #166534; border: 1px solid rgba(21,128,61,0.18); }
-        .tag-edtech { background: rgba(29,78,216,0.08); color: #1e40af; border: 1px solid rgba(29,78,216,0.18); }
-        .tag-platform { background: rgba(124,58,237,0.08); color: #6d28d9; border: 1px solid rgba(124,58,237,0.18); }
-        .tag-banking { background: rgba(22,163,74,0.08); color: #15803d; border: 1px solid rgba(22,163,74,0.18); }
-        .tag-realestate { background: rgba(220,38,38,0.08); color: #b91c1c; border: 1px solid rgba(220,38,38,0.18); }
-        .tag-healthcare { background: rgba(236,72,153,0.08); color: #9d174d; border: 1px solid rgba(236,72,153,0.18); }
-        .tag-logistics { background: rgba(13,148,136,0.08); color: #0f766e; border: 1px solid rgba(13,148,136,0.18); }
-        .tag-saas { background: rgba(124,58,237,0.08); color: #7c3aed; border: 1px solid rgba(124,58,237,0.18); }
-        .tag-legal { background: rgba(79,70,229,0.08); color: #4338ca; border: 1px solid rgba(79,70,229,0.18); }
-        .tag-government { background: rgba(37,99,235,0.08); color: #1d4ed8; border: 1px solid rgba(37,99,235,0.18); }
-        .tag-marketing { background: rgba(225,29,72,0.08); color: #be123c; border: 1px solid rgba(225,29,72,0.18); }
+        /* Industry tag colors - light-on-dark, tuned for the navy card background */
+        .tag-manufacturing { background: rgba(251,146,60,0.14); color: #fb923c; border: 1px solid rgba(251,146,60,0.3); }
+        .tag-ecommerce { background: rgba(244,114,182,0.14); color: #f472b6; border: 1px solid rgba(244,114,182,0.3); }
+        .tag-nbfc { background: rgba(74,222,128,0.14); color: #4ade80; border: 1px solid rgba(74,222,128,0.3); }
+        .tag-edtech { background: rgba(96,165,250,0.14); color: #60a5fa; border: 1px solid rgba(96,165,250,0.3); }
+        .tag-platform { background: rgba(167,139,250,0.14); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); }
+        .tag-banking { background: rgba(52,211,153,0.14); color: #34d399; border: 1px solid rgba(52,211,153,0.3); }
+        .tag-realestate { background: rgba(248,113,113,0.14); color: #f87171; border: 1px solid rgba(248,113,113,0.3); }
+        .tag-healthcare { background: rgba(251,113,133,0.14); color: #fb7185; border: 1px solid rgba(251,113,133,0.3); }
+        .tag-logistics { background: rgba(45,212,191,0.14); color: #2dd4bf; border: 1px solid rgba(45,212,191,0.3); }
+        .tag-saas { background: rgba(196,181,253,0.14); color: #c4b5fd; border: 1px solid rgba(196,181,253,0.3); }
+        .tag-legal { background: rgba(129,140,248,0.14); color: #818cf8; border: 1px solid rgba(129,140,248,0.3); }
+        .tag-government { background: rgba(147,197,253,0.14); color: #93c5fd; border: 1px solid rgba(147,197,253,0.3); }
+        .tag-marketing { background: rgba(253,164,175,0.14); color: #fda4af; border: 1px solid rgba(253,164,175,0.3); }
 
         .article-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; color: var(--txt); }
         .article-card > p { font-size: 14px; color: var(--txt2); margin-bottom: 20px; flex-grow: 1; line-height: 1.65; }
@@ -363,8 +363,8 @@ h1,h2,h3{font-family:'Space Grotesk',var(--ff),sans-serif;}
         .newsletter-form input:focus { outline: none; border-color: var(--teal); }
         .newsletter-form button {
             padding: 12px 28px;
-            background: #0a0a0a;
-            color: #ffffff;
+            background: var(--teal);
+            color: #04121C;
             border: none;
             border-radius: 9999px;
             font-weight: 600;
@@ -373,7 +373,7 @@ h1,h2,h3{font-family:'Space Grotesk',var(--ff),sans-serif;}
             font-size: 14px;
             transition: background 0.2s, transform 0.2s;
         }
-        .newsletter-form button:hover { background: #222222; transform: translateY(-1px); }
+        .newsletter-form button:hover { background: #3ee1f5; transform: translateY(-1px); }
         .quality-badge {
             margin-top: 16px;
             font-size: 12px;
@@ -446,6 +446,20 @@ footer{background:var(--ink);border-top:3px solid rgba(10,191,204,.2);padding:64
 @media(max-width:560px){
   .footer-grid{grid-template-columns:1fr;}
   .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;}
+}
+
+/* == PRIMARY CTA GLOW (V3 motion, sitewide) == */
+@keyframes cta-breathe{0%,100%{box-shadow:0 0 16px rgba(33,210,237,.22)}50%{box-shadow:0 0 32px rgba(33,210,237,.42)}}
+.nav-cta,.btn-fill,.btn-primary,.btn-hero-primary,.btn-teal,.btn-white,.lm-btn-primary,.btn-cta,.btn-p,.btn-open,.btn-back,.form-submit,.toc-cta{animation:cta-breathe 3.6s ease-in-out infinite;}
+.nav-cta:hover,.btn-fill:hover,.btn-primary:hover,.btn-hero-primary:hover,.btn-teal:hover,.btn-white:hover,.lm-btn-primary:hover{animation-play-state:paused;}
+@media(prefers-reduced-motion:reduce){.nav-cta,.btn-fill,.btn-primary,.btn-hero-primary,.btn-teal,.btn-white,.lm-btn-primary,.btn-cta,.btn-p,.btn-open,.btn-back,.form-submit,.toc-cta{animation:none;}}
+
+/* == CARD HOVER-LIFT (V3 motion, sitewide) == */
+.tp-card,.addon-card,.prob-card,.article-card,.related-card,.pricing-card,.case-card,.cs-card,.step-card,.team-card,.persona-card,.testimonial-card,.pain-card,.industry-card{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}
+.tp-card:hover,.addon-card:hover,.prob-card:hover,.article-card:hover,.related-card:hover,.pricing-card:hover,.case-card:hover,.cs-card:hover,.step-card:hover,.team-card:hover,.persona-card:hover,.testimonial-card:hover,.pain-card:hover,.industry-card:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 12px 28px rgba(0,0,0,.28);}
+@media(prefers-reduced-motion:reduce){
+  .tp-card,.addon-card,.prob-card,.article-card,.related-card,.pricing-card,.case-card,.cs-card,.step-card,.team-card,.persona-card,.testimonial-card,.pain-card,.industry-card{transition:none;}
+  .tp-card:hover,.addon-card:hover,.prob-card:hover,.article-card:hover,.related-card:hover,.pricing-card:hover,.case-card:hover,.cs-card:hover,.step-card:hover,.team-card:hover,.persona-card:hover,.testimonial-card:hover,.pain-card:hover,.industry-card:hover{transform:none;}
 }
 </style>
   <link rel="icon" type="image/x-icon" href="/favicon.ico">

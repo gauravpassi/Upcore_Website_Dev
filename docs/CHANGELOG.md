@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-21 — /ai-operations: make nav/footer navy-native (resolve V3's flagged gap)
+**Type:** fix, docs
+**Files:** `ai-operations.html`, `docs/DESIGN-SYSTEM-V3.md`
+Resolved the gap flagged in the V3 extraction: nav/footer were reusing the sitewide black (`#0a0a0a`) chrome with raw `rgba(255,255,255,X)` colors and a plain white pill CTA — visibly foreign against the page's own navy/cyan palette. Re-themed both onto the page's own tokens: `background:var(--ink)` (#04121C) instead of black, nav/footer links and labels now use `{colors.muted}`/`{colors.ink}` instead of hand-picked white-opacity values, hover states glow cyan (`rgba(33,210,237,.08–.3)`) instead of just brightening to white, and **`.nav-cta` is now a real cyan-filled `{rounded.lg}` button matching every other primary CTA on the page**, not a white pill. Footer's top border switched from a 3px old-site-teal line to a 1px `rgba(33,210,237,.22)` hairline matching the page's own accent. Removed the now-dead `--teal:#0ABFCC` token (zero remaining references after the swap).
+
+Verified in-browser on a fresh tab: computed nav/footer background is `rgb(4,18,28)` (= var(--ink)), nav-cta background/text/radius all resolve to the design-system tokens, nav link color resolves to `{colors.muted}`, mobile nav drawer background matches, zero console errors, no new horizontal-scroll regression (the pre-existing marquee `scrollWidth` artifact, confirmed harmless in an earlier session pass, is unchanged).
+
+Updated `docs/DESIGN-SYSTEM-V3.md` to document the now-native nav/footer components and removed the corresponding item from Known Gaps.
+
 ## 2026-08-21 — Extract Upcore-Ops design system (V3, chosen direction) + logo asset
 **Type:** decision, docs
 **Files:** `docs/DESIGN-SYSTEM-V3.md` (new), `docs/DESIGN-SYSTEM-V2.md` (marked superseded), `docs/STRUCTURE.md`, `images/upcore-logo-ops-toolkit.png` (new)

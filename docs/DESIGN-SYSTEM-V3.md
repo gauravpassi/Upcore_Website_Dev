@@ -364,7 +364,7 @@ This is the system's most distinctive layer and deserves its own section (the re
 ## Components
 
 ### Navigation
-**`nav-bar`** — Background `#0a0a0a` (note: black, not navy — the nav/footer chrome on the one live page currently reuses the sitewide site nav rather than a navy-native nav; a fully-native Upcore-Ops nav has not been built yet and should probably sit on `{colors.canvas-deep}` instead of pure black when this system is rolled out for real — flagged in Known Gaps).
+**`nav-bar`** — Background `{colors.canvas-deep}` (#04121C — this page's own `--ink` token), 1px hairline bottom border, sticky. Re-themed 2026-08-21: originally reused the sitewide black (`#0a0a0a`) nav, which visibly fought this page's navy/cyan palette — link colors were raw `rgba(255,255,255,X)` instead of the page's own text ladder, and the nav CTA was a white pill instead of the system's cyan button. Now fully native: nav links use `{colors.muted}` → `{colors.ink}` on hover with a cyan-tinted hover fill (`rgba(33,210,237,.08)`), the dropdown menu sits on `{colors.canvas-deep}` with a hairline border, and **`nav-cta` is a real `{component.button-primary}`** — cyan fill, `{colors.on-primary}` text, `{rounded.lg}` (not a pill), with the same glow-on-hover treatment as every other primary button, so it no longer reads as a foreign component bolted onto the page.
 
 **`sticky-cta-bar`** — `rgba(4,10,18,.92)` + 10px backdrop blur, hairline top border, slides up from `translateY(100%)` to `0` over 0.35s. Holds a compact text label (hidden below 640px) plus a small `.cta.sm`.
 
@@ -391,7 +391,7 @@ This is the system's most distinctive layer and deserves its own section (the re
 **Lead-capture form pattern** — name + email, POSTs via FormSubmit.co to the team inbox plus a confirmation email to the prospect, button swaps to a `{colors.success}` fill with a checkmark label on completion. This is the system's only real conversion mechanism today and should be the template for any new lead-gen surface built in this system, rather than a bare CTA link.
 
 ### Footer
-**`footer`** — `{colors.canvas-deep}` background, JetBrains Mono uppercase column headers (`.foot-cols h4`), DM Sans links. Bottom bar is JetBrains Mono uppercase, space-between layout.
+**`footer`** — `{colors.canvas-deep}` background (re-themed 2026-08-21 from the sitewide black `#0a0a0a` for the same reason as the nav), top border `1px solid rgba(33,210,237,.22)` (was a 3px teal border referencing the *old* site's teal, now the page's own cyan at a hairline weight). Column headers are JetBrains Mono uppercase in `{colors.muted}` (`.footer-col-title` — previously a raw `rgba(255,255,255,.35)` unrelated to any token); body links, social buttons, and review badges all pull from `{colors.muted}`/`{colors.ink}`/`{colors.primary}` rather than hand-picked white-opacity values, so hover states now glow cyan instead of just brightening to white. Bottom bar is JetBrains Mono uppercase, space-between layout.
 
 ---
 
@@ -445,7 +445,6 @@ This is the system's most distinctive layer and deserves its own section (the re
 ## Known Gaps
 
 - **Only one page is built in this system.** Every token above is extracted from `ai-operations.html`; nothing has been validated across a second implementation yet.
-- **Nav/footer are not navy-native.** The current nav/footer on `ai-operations.html` are the sitewide black (`#0a0a0a`) chrome reused from the rest of the site, not a purpose-built Upcore-Ops nav. When this system rolls out for real, decide whether the nav should move to `{colors.canvas-deep}` for tighter visual integration, or whether keeping the black sitewide chrome as a deliberate "this is still Upcore" anchor is preferable.
 - **Spacing was not strictly tokenized in the source.** The cleaned-up scale in this doc's frontmatter is a reasonable reconstruction, not a byte-for-byte extraction — expect minor rem-level drift if you diff against the live page's raw CSS.
 - **DESIGN-SYSTEM-V2.md is now superseded.** Its dark near-black/teal/brightness-ladder direction was the previous exploration; V3 (this doc) is the chosen direction going forward. V2 is kept for reference, not deleted, in case its accessibility research (the #0ABFCC-on-white contrast finding) is needed again.
 - **PPT/deck usage** — this doc gives you the palette, type, and logo assets needed to build slides, but no slide-template component (title slide, section divider, stat slide) has been designed yet. Ask before assuming a specific deck layout.

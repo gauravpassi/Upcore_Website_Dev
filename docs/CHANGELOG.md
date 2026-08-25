@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-25 — Full-site migration to Upcore-Ops (V3) design system
+**Type:** feature / decision
+**Files:** all ~74 non-demo `.html` pages (`:root` blocks + nav/footer CSS + Google Fonts link), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `lp/maturity-review.html`, `docs/DESIGN-SYSTEM-V3.md`
+Migrated the entire site from the light "MiniMax" system to the navy/cyan Upcore-Ops (V3) system, previously only shipped on `ai-operations.html`. Mechanical approach: swapped `:root` token *values* only (names unchanged, so every existing `var(--x)` usage kept working with no other edits), re-themed the shared nav/footer chrome from black/white to navy/cyan (same pattern already proven on `ai-operations.html`), added Space Grotesk for headings. Along the way, fixed real contrast bugs the swap would otherwise have introduced — several `.btn-ghost` variants and stray inline styles used hardcoded near-black text/borders that would have been invisible sitting directly on the new dark background. The two live-paid-ad quiz pages (`lp/governance-index.html`, `lp/ai-maturity-index.html`) were included per explicit decision, along with their shared booking page (`lp/maturity-review.html`) — all three use a bespoke hardcoded-hex palette (not the shared token system) so they got a dedicated hex-context-aware re-theme instead of the mechanical `:root` swap; quiz mechanics (option selection, progress, radar chart) were verified working after the change. Added new V3 doc sections for the quiz-specific components (option cards, progress bar, SVG radar chart, score-blur teaser) that didn't exist in any prior system. Not done: the motion layer (breathing glow, hover-lift, sticky bar, count-ups) beyond `ai-operations.html`, and the client-side jsPDF report on both quiz pages (left on its original light styling — open decision, not yet made, on whether it should follow the page to dark or stay light for printability).
+
+---
+
 ## 2026-08-21 — /ai-operations: make nav/footer navy-native (resolve V3's flagged gap)
 **Type:** fix, docs
 **Files:** `ai-operations.html`, `docs/DESIGN-SYSTEM-V3.md`

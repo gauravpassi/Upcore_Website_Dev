@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-21 — /ai-operations: fix systemic low-contrast text (--faint failed WCAG AA everywhere)
+**Type:** fix
+**Files:** `ai-operations.html`
+The page's `--faint` token (`#5B667D`) was used as the text color in 13 places — every `.mono-label` eyebrow (incl. "What It Would Cost Separately"), stat captions, step descriptions, footer labels, the "Instead" callout, form placeholder/note text — and it failed WCAG AA contrast against **every background used on the page**, ranging 2.36:1 to 3.29:1 against a 4.5:1 minimum. Changed `--faint` to `#8FA0B8`, which clears AA with margin everywhere it's used (5.11:1 to 7.12:1). Also bumped the smallest mono-label font sizes (10–11px → ~11.5–12.5px: `.mono-label`, `.stat-tile .l`, `.foot-cols h4`, `.get-tags span`, `.foot-bottom`, `.hero-nope`, `.hero-down a`) for extra comfort on top of the contrast fix. One token change fixed all 13 usages at once. Verified computed color/contrast in-browser on a fresh tab (no console errors).
+
 ## 2026-08-21 — /ai-operations: real conversion form, motion pass, fix a scroll-crashing bug
 **Type:** fix, feature
 **Files:** `ai-operations.html`, `docs/FEATURES.md`

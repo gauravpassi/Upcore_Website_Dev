@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-25 — Homepage hero redesign + sitewide glass nav / glow footer / aurora background
+**Type:** feature
+**Files:** `index.html` (hero), all ~73 non-bespoke pages (`nav`/`footer`/`body` chrome), `docs/DESIGN-SYSTEM-V3.md`
+Two visual passes: (1) rebuilt the homepage hero's right-side panel from stacked text alert-cards into a "Governance Command Center" — animated circular gauge, count-up stats, condensed activity feed, and a 30-day risk-trend sparkline, all hand-rolled SVG with a staggered hero entrance animation. (2) Sitewide chrome upgrade: nav became a translucent `backdrop-filter:blur` glass bar with a cyan hairline border, footer gained a soft top-down cyan glow (and its border color got corrected from a leftover pre-migration teal RGB to the real V3 cyan), and the flat body background became a 3-blob ambient "aurora" gradient with `background-attachment:fixed`. All applied as pure `background`/`backdrop-filter` CSS with zero new stacking contexts, verified in-browser with DOM checks after hitting a stale-screenshot tool quirk.
+
+---
+
 ## 2026-08-25 — Sitewide CTA glow, card hover-lift, and audit-driven bug fixes
 **Type:** feature / fix
 **Files:** all ~76 pages (CTA glow + hover-lift CSS), `pricing.html`, `security.html`, `privacy.html`, `terms.html` (`--ink` token), `insights/index.html` (industry tag colors + featured-cta), `contact.html`, `sdlc-agent.html` (`--rose`→`--red`), `industries/index.html`, `learn/enterprise-ai-strategy.html`, `learn/ai-data-governance.html`, `lp/ai-maturity-index.html` (JetBrains Mono), `docs/DESIGN-SYSTEM-V3.md`

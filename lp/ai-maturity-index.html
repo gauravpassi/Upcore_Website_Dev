@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 h1,h2,h3{font-family:'Space Grotesk',"DM Sans",sans-serif;}
 
 /* ── Navigation (sitewide) ─────────────────────────────────────── */
-nav{width:100%;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.08);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+nav{width:100%;background:rgba(4,18,28,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(33,210,237,.14);padding:0 48px;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 1px 30px rgba(0,0,0,.3);}
 .nav-logo a{display:flex;align-items:center;}
 .nav-logo img{height:60px;width:auto;}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0;}
@@ -71,7 +71,7 @@ nav{width:100%;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.0
 .nav-right{display:flex;align-items:center;gap:8px;}.nav-burger{display:none;background:none;border:none;color:rgba(255,255,255,.75);font-size:20px;cursor:pointer;padding:6px 8px;line-height:1;flex-shrink:0;}@media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;flex-direction:column;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--ink);border-bottom:1px solid rgba(255,255,255,.1);padding:12px 20px 18px;gap:0;z-index:98;list-style:none;}.nav-links.open{display:flex;}.nav-links.open li a{display:block;padding:13px 4px;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px;color:rgba(255,255,255,.75);}.nav-links.open li:last-child a{border-bottom:none;}.nav-burger{display:flex;align-items:center;}}
 
 /* ── Footer (sitewide) ─────────────────────────────────────────── */
-footer{background:var(--ink);border-top:3px solid rgba(33,210,237,.2);padding:64px 48px 0;}
+footer{background:radial-gradient(ellipse 620px 160px at 50% 0%,rgba(33,210,237,.09),transparent 70%),var(--ink);border-top:1px solid rgba(33,210,237,.28);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px;}
 .footer-brand{}
 .footer-logo-wrap a{display:inline-block;}

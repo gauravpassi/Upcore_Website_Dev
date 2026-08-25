@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-25 — ai-operations.html: match the sitewide glass nav / glow footer / aurora background
+**Type:** fix
+**Files:** `ai-operations.html`, `docs/DESIGN-SYSTEM-V3.md`
+User flagged the live dev deploy of `/ai-operations` as looking inconsistent with the rest of the site. Root cause: this page was the original V3 reference implementation, so it was deliberately skipped in the sitewide chrome-enhancement pass — meaning it kept its pre-upgrade opaque nav (no blur), flat footer (no glow), and single-glow body background while every other page moved to the glass/glow/aurora treatment. Brought its nav/footer/body CSS in line with the current sitewide standard; its own hand-built CTA-breathe animation and card hover-lift were left untouched since they already work correctly. Also verified the two `lp/*` quiz pages against the same standard — they were already correct from the original bulk pass.
+
+---
+
 ## 2026-08-25 — Homepage hero redesign + sitewide glass nav / glow footer / aurora background
 **Type:** feature
 **Files:** `index.html` (hero), all ~73 non-bespoke pages (`nav`/`footer`/`body` chrome), `docs/DESIGN-SYSTEM-V3.md`

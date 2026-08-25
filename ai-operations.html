@@ -73,7 +73,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:var(--bg) radial-gradient(1200px 800px at 50% 0%,rgba(33,210,237,.06),transparent 70%);
+  background:radial-gradient(ellipse 60% 40% at 10% 0%,rgba(33,210,237,.05),transparent 60%),radial-gradient(ellipse 45% 35% at 95% 60%,rgba(33,210,237,.035),transparent 55%),radial-gradient(ellipse 55% 35% at 50% 100%,rgba(33,210,237,.03),transparent 60%),var(--bg);
+  background-attachment:fixed;
   color:var(--fg);
   font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;
   font-size:16px;line-height:1.6;
@@ -340,7 +341,7 @@ footer{border-top:1px solid var(--border);padding:3.5rem 0 2.5rem;background:var
    Re-themed 2026-08-21: previously reused the sitewide black (#0a0a0a) chrome,
    which fought this page's own --ink/--card/--primary tokens. Now built from
    the page's own palette for tight integration — see docs/DESIGN-SYSTEM-V3.md. */
-nav{width:100%;background:var(--ink);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+nav{width:100%;background:rgba(4,18,28,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(33,210,237,.14);box-shadow:0 1px 30px rgba(0,0,0,.3);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
 .nav-logo a{display:flex;align-items:center;}
 .nav-logo img{height:45px;width:auto;}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;padding:0;margin:0;}
@@ -372,7 +373,7 @@ nav{width:100%;background:var(--ink);border-bottom:1px solid var(--border);paddi
   .nav-dropdown-caret{display:none;}
 }
 
-footer{background:var(--ink);border-top:1px solid rgba(33,210,237,.22);padding:64px 48px 0;}
+footer{background:radial-gradient(ellipse 620px 160px at 50% 0%,rgba(33,210,237,.09),transparent 70%),var(--ink);border-top:1px solid rgba(33,210,237,.28);padding:64px 48px 0;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
 .footer-logo-wrap a{display:inline-block;}
 .footer-logo-wrap img{height:39px;width:auto;opacity:.85;}

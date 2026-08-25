@@ -456,6 +456,10 @@ These two lead-magnet quiz pages share one engine (`lp/lead-magnet-engine.js`) a
 
 ---
 
+## ai-operations.html brought in line with the sitewide chrome (2026-08-25)
+
+`ai-operations.html` was the original reference implementation this whole system was extracted from, so it was deliberately excluded from the sitewide chrome-enhancement pass below — but that meant it was left running the *pre-upgrade* nav/footer/body treatment while the rest of the site moved on, a real visible inconsistency (flagged directly against the live dev deploy). Fixed: its `nav` now uses the same `backdrop-filter:blur(14px)` glass treatment, its `footer` now has the same top-down cyan glow layer, and its `body` now uses the same 3-blob fixed-attachment aurora instead of its older single top-center glow. Its own bespoke `.cta` breathing animation and `.kit/.vcard/.obj/.step/.qcard/.tb-row/.tstat` hover-lift (hand-built before the sitewide motion pass existed) were left as-is — they already work and don't need to match the shared selector list. The two `lp/*` quiz pages were checked too and are already correct (they got the glass nav/glow footer in the original bulk pass; their body keeps its own grid+glow background by deliberate design, not an oversight).
+
 ## Chrome + background enhancement (2026-08-25)
 
 Sitewide `nav`, `footer`, and `body` were upgraded from flat fills to a more "alive" glass/glow treatment, applied mechanically to all ~73 non-bespoke pages (`ai-operations.html` and the two `lp/*` quiz pages already had their own dynamic backgrounds and were left as-is):

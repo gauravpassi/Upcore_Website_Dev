@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-21 — Restore the original base64 logo blobs on /ai-operations
+**Type:** content
+**Files:** `ai-operations.html`, `docs/FEATURES.md`
+The rebuild below had dropped the two inline `data:image/png;base64` Upcore-logo blobs from the supplied design (swapped for `/upcore-logo.png` to cut file size). Explicit follow-up: keep them. Restored both — nav and footer `<img>` tags now use the original ~86KB base64 data URI again, matching the supplied file exactly.
+
 ## 2026-08-21 — Rebuild /ai-operations from user-supplied bespoke design; reverts to $3
 **Type:** content
 **Files:** `ai-operations.html`, `docs/FEATURES.md`

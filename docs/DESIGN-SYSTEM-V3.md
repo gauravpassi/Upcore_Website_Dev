@@ -1,0 +1,452 @@
+---
+version: alpha
+name: Upcore-Ops — dark navy/cyan design system (V3, chosen direction)
+status: CANONICAL SPECIFICATION — chosen 2026-08-21 to become the site's real design system. Only implemented today on ai-operations.html. Supersedes DESIGN-SYSTEM-V2.md (dark near-black/teal-instrument system) — V2's exploration is preserved for reference but is no longer the target. docs/DESIGN-SYSTEM.md still describes what's actually live everywhere else and remains accurate until migration happens.
+description: |
+  A dark, glow-driven, developer-product-adjacent system built around a deep navy canvas (#071A26) and one
+  saturated cyan voltage (#21D2ED). Where V2 built elevation from a brightness ladder and banned shadows,
+  V3 does the opposite: cards sit on one or two navy surface steps and depth comes from soft cyan glow —
+  breathing on primary buttons, ambient on the two big price panels, and from a subtle top-down radial wash
+  behind the whole page. Type runs three families with distinct jobs: Space Grotesk for every heading (a
+  geometric, slightly technical display face), DM Sans for body copy, and JetBrains Mono for every label,
+  price, and eyebrow that should read as data rather than prose. The brand mark is a wordmark with an
+  integrated "o" — two overlapping rings forming an eye/target — available in two lockups: a dark-on-light
+  version for white surfaces and a glowing light-on-dark version for navy surfaces. Motion is a first-class
+  part of the system: breathing glows, hover-lift on every explorable card, a sticky bottom conversion bar,
+  and count-up numbers — all gated behind prefers-reduced-motion.
+
+colors:
+  primary: "#21D2ED"
+  primary-soft: "rgba(33,210,237,0.14)"
+  primary-glow: "rgba(33,210,237,0.45)"
+  canvas: "#071A26"
+  canvas-deep: "#04121C"
+  surface: "#0E2231"
+  surface-raised: "#0B1B29"
+  surface-elevated: "#143047"
+  ink: "#F4F7FB"
+  body: "#8A9BB4"
+  muted: "#8FA0B8"
+  hairline: "rgba(255,255,255,0.09)"
+  on-primary: "#04121C"
+  success: "#22c55e"
+
+typography:
+  display-hero:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 5.2vw, 3.9rem)"
+    fontWeight: 600
+    lineHeight: 1.06
+    letterSpacing: "-0.02em"
+  display-lg:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.9rem, 3.6vw, 2.6rem)"
+    fontWeight: 600
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  display-md:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2rem, 4.5vw, 3rem)"
+    fontWeight: 600
+    lineHeight: 1.15
+    letterSpacing: "-0.02em"
+  title-lg:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.3rem"
+    fontWeight: 600
+    lineHeight: 1.3
+    letterSpacing: "-0.02em"
+  title-md:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.12rem"
+    fontWeight: 600
+    lineHeight: 1.35
+    letterSpacing: "-0.02em"
+  body-lg:
+    fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.08rem"
+    fontWeight: 400
+    lineHeight: 1.6
+  body-md:
+    fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.95rem"
+    fontWeight: 400
+    lineHeight: 1.6
+  body-sm:
+    fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.85rem"
+    fontWeight: 400
+    lineHeight: 1.6
+  button:
+    fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 700
+    lineHeight: 1
+  eyebrow-mono:
+    fontFamily: "'JetBrains Mono', ui-monospace, monospace"
+    fontSize: "0.74rem"
+    fontWeight: 400
+    lineHeight: 1.4
+    letterSpacing: "0.14em"
+    textTransform: uppercase
+  data-lg:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.6rem"
+    fontWeight: 700
+    lineHeight: 1
+  data-xl:
+    fontFamily: "'Space Grotesk', ui-sans-serif, system-ui, sans-serif"
+    fontSize: "3.6rem"
+    fontWeight: 700
+    lineHeight: 1
+
+rounded:
+  xs: "0.5rem"
+  sm: "0.65rem"
+  md: "0.75rem"
+  lg: "0.875rem"
+  xl: "1.25rem"
+  pill: "9999px"
+
+spacing:
+  2xs: "0.25rem"
+  xs: "0.5rem"
+  sm: "0.75rem"
+  md: "1rem"
+  lg: "1.5rem"
+  xl: "2rem"
+  2xl: "2.5rem"
+  3xl: "4rem"
+  section: "6rem"
+
+components:
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    typography: "{typography.button}"
+    rounded: "{rounded.md}"
+    padding: "0.9rem 1.6rem"
+  button-ghost:
+    backgroundColor: "rgba(33,210,237,0.08)"
+    textColor: "{colors.primary}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "0.75rem 1.25rem"
+    borderColor: "rgba(33,210,237,0.35)"
+  pill-badge:
+    backgroundColor: "rgba(33,210,237,0.05)"
+    textColor: "{colors.primary}"
+    typography: "{typography.eyebrow-mono}"
+    rounded: "{rounded.pill}"
+    padding: "0.4rem 1rem"
+    borderColor: "rgba(33,210,237,0.4)"
+  chip:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.pill}"
+    padding: "0.7rem 1.3rem"
+    borderColor: "{colors.hairline}"
+  tag:
+    backgroundColor: "{colors.surface-elevated}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body-sm}"
+    rounded: "{rounded.pill}"
+    padding: "0.32rem 0.85rem"
+    borderColor: "{colors.hairline}"
+  card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.body}"
+    rounded: "{rounded.lg}"
+    borderColor: "{colors.hairline}"
+  price-panel:
+    backgroundColor: "linear-gradient(180deg, rgba(33,210,237,0.06), rgba(18,26,48,0.4))"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.xl}"
+    borderColor: "rgba(33,210,237,0.35)"
+    padding: "3.4rem 2.5rem"
+  input-text:
+    backgroundColor: "{colors.surface-raised}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.sm}"
+    padding: "0.85rem 1rem"
+    borderColor: "{colors.hairline}"
+  nav-bar:
+    backgroundColor: "#0a0a0a"
+    textColor: "rgba(255,255,255,0.65)"
+    height: "64px"
+  footer:
+    backgroundColor: "#0a0a0a"
+    textColor: "rgba(255,255,255,0.55)"
+  sticky-cta-bar:
+    backgroundColor: "rgba(4,10,18,0.92)"
+    borderColor: "{colors.hairline}"
+    padding: "0.75rem 1.25rem"
+---
+
+## Overview
+
+Upcore-Ops is a dark, glow-driven system built for a page that needs to feel like a live product, not a brochure. The canvas is a deep desaturated navy (`{colors.canvas}` — #071A26) rather than true black — warm enough to hold the cyan accent without competing with it, cool enough to still read as "serious." One voltage carries the whole brand: `{colors.primary}` (#21D2ED), a bright cyan that appears as button fills, glows, active icons, and price highlights, and nowhere else.
+
+Three type families do three distinct jobs. **Space Grotesk** — a geometric sans with a slightly technical, almost schematic character — sets every heading, every price, and every big stat number. **DM Sans** carries all running body copy. **JetBrains Mono** sets every label that should read as *data* rather than prose: eyebrows, captions, footer labels, price sub-labels, stat units. This three-way split is the system's most distinctive typographic decision and should never collapse to one or two faces — a heading in DM Sans or a price in Space Grotesk instead of a data label immediately reads as off-brand.
+
+Depth comes from **glow, not elevation.** Cards sit on one of three navy surface steps (`{colors.surface}`, `{colors.surface-raised}`, `{colors.surface-elevated}`) with a 1px hairline border — flat, no shadow ladder. The two moments that matter most (primary CTAs, the two big price panels) get a soft, animated cyan glow instead: a slow "breathe" that pulses blur radius and alpha, pausing on hover so it never fights the hover state. This is a deliberate contrast with a shadow-based or brightness-laddered system — glow says "alive," a shadow ladder says "engineered." Upcore-Ops chooses alive.
+
+**Key characteristics:**
+- Navy canvas (#071A26) with a barely-there radial cyan wash at the top of the page — the only page-level atmospheric effect.
+- One accent color, `{colors.primary}` (#21D2ED), on chrome. No secondary or tertiary brand hue.
+- Three-family type split: Space Grotesk (display/data), DM Sans (body), JetBrains Mono (labels/eyebrows).
+- Flat cards (hairline border, no shadow) — depth is glow, applied sparingly to CTAs and price panels only.
+- Fully-rounded pills for badges/chips/tags; softer `.875rem`–`1.25rem` radii for cards and buttons — never a hard 0px edge except full-bleed bands.
+- An idle "breathing" glow animation on every primary button, capped in alpha and paused on hover — the system's signature motion.
+- Hover-lift (translateY + border brighten) on every card that represents something explorable; deliberately withheld from static framing blocks and "don't do this" lists.
+- A sticky bottom conversion bar that appears once the visitor scrolls past the hero and disappears once they reach the real conversion point.
+- The wordmark ships in two lockups — dark-ink-on-light for white surfaces, glowing-white-on-dark for navy surfaces (see **Logo** below). Never place the wrong lockup on the wrong background.
+
+---
+
+## Colors
+
+> Source: `ai-operations.html`, the only page currently built in this system.
+
+### Brand
+- **Cyan** (`{colors.primary}` — #21D2ED): the only brand color on chrome. Button fills, active states, glows, price highlights, active icon strokes, links inside dark cards.
+- **Cyan Soft** (`{colors.primary-soft}` — rgba(33,210,237,.14)): tinted fills for badges/icon tiles.
+- **Cyan Glow** (`{colors.primary-glow}` — rgba(33,210,237,.45)): the color fed into every `box-shadow` glow. Never used as a flat fill — glow only.
+
+### Surface (navy ladder)
+- **Canvas** (`{colors.canvas}` — #071A26): page background.
+- **Canvas Deep** (`{colors.canvas-deep}` — #04121C): footer background, the darkest surface on the page.
+- **Surface** (`{colors.surface}` — #0E2231): the default card fill (`.card`).
+- **Surface Raised** (`{colors.surface-raised}` — #0B1B29): input fields, some card variants.
+- **Surface Elevated** (`{colors.surface-elevated}` — #143047): tags/chips, focused-input fill, the brightest navy step.
+- **Hairline** (`{colors.hairline}` — rgba(255,255,255,.09)): the only border treatment in the system. No card uses a shadow instead of or in addition to this.
+
+### Text
+- **Ink** (`{colors.ink}` — #F4F7FB): headings, high-emphasis text, text on dark cards.
+- **Body** (`{colors.body}` — #8A9BB4): default running copy — muted blue-gray, legible at 4.5:1+ against every navy surface.
+- **Muted / Caption** (`{colors.muted}` — #8FA0B8): eyebrows, captions, stat labels, footer nav, form notes. **This value was corrected from an earlier #5B667D that failed WCAG AA (2.36–3.29:1) against every surface on the page** — #8FA0B8 clears AA with margin everywhere (5.11–7.12:1). Any future component using a "de-emphasized label" color must use this token, not a fresh guess.
+- **On Primary** (`{colors.on-primary}` — #04121C): dark text on the cyan button fill. Never white-on-cyan — cyan is bright enough that dark text is the only combination that reads cleanly.
+
+### Semantic
+- **Success** (`{colors.success}` — #22c55e): the one non-cyan color in the system, reserved strictly for the form's post-submit success state (button fill after a successful lead capture). Do not use it decoratively.
+
+---
+
+## Logo
+
+Two lockups exist, both wordmark-with-integrated-mark ("upcore" with an eye/target icon built from two overlapping circles forming the "o"). **They are not interchangeable — using the wrong one on the wrong background is the single easiest way to make this system look broken.**
+
+### 1. Light-surface lockup — `upcore-logo.png`
+- **File:** `/upcore-logo.png` (repo root) — 360×240px, RGBA/transparent.
+- **Rendering:** black wordmark with a white outline stroke on each letter; the "o" mark is a black crescent behind a cyan ring with a white center dot.
+- **Use on:** white or light backgrounds only. This is the mark used everywhere else on the current live site (nav, footer, favicons context).
+- **Native aspect ratio:** 3:2 (360:240) — but it renders visually wider than that because of internal padding; treat the *wordmark* as roughly 4:1 within the canvas.
+
+### 2. Dark-surface lockup — `images/upcore-logo-ops-toolkit.png`
+- **File:** `images/upcore-logo-ops-toolkit.png` — 629×160px, RGBA/transparent. Extracted 2026-08-21 from an inline base64 blob in `ai-operations.html` into a real, reusable asset (the inline copy remains in that page's HTML; new pages/decks should reference this file instead of re-embedding base64).
+- **Rendering:** near-white wordmark with a soft cyan *glow* treatment (no black anywhere) — the "o" mark reads as a glowing cyan ring on a white base.
+- **Use on:** navy/dark backgrounds — this is the correct lockup for every Upcore-Ops component (nav, footer, any dark slide in a deck, any dark section on a future page).
+- **Native aspect ratio:** ~3.93:1 — noticeably flatter/wider than the light lockup. Do not stretch one lockup's box to match the other's proportions.
+
+### Sizing used on `ai-operations.html`
+- Nav: 45px tall (auto width, ~177px at native ratio).
+- Footer: 39px tall (auto width, ~153px at native ratio).
+
+### Clear space & don'ts
+- Maintain clear space around the mark equal to roughly the height of the "u" in "upcore" on all sides — the glow on the dark lockup needs room to fall off before another element starts.
+- Don't recolor either lockup. Don't drop a colored background behind the dark lockup expecting the glow to still read — it's calibrated against navy specifically.
+- Don't use the light lockup at less than ~32px tall (the outline stroke on the letters gets muddy); the dark lockup holds up smaller since it has no fine stroke detail.
+
+---
+
+## Typography
+
+### Families
+- **Space Grotesk** (weights 500/600/700 loaded) — every `h1`/`h2`/`h3`, every price figure, every large stat number. Weight 600 is the system's default heading weight; 700 is reserved for the very largest price displays (`.price-box .big`, 3.6rem). **500 is loaded but not currently used anywhere in the live CSS** — available for a lighter display treatment if a future component needs it, but don't introduce it casually; the system currently speaks entirely in 600/700.
+- **DM Sans** (weights 400/500/600/700 loaded) — every paragraph, every button label (700), nav links (500 via `.nav-links a`).
+- **JetBrains Mono** (weights 400/500/600 loaded) — every eyebrow (`.pill`, `.mono-label`), every stat/price caption, footer column headers, footer bottom bar, form placeholder/note text, price "was" strikethrough.
+
+All three are Google Fonts — loaded together in one `<link>`:
+```
+family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600
+```
+Reuse this exact query string on any new page adopting the system rather than re-deriving weights — every weight referenced below is confirmed to actually load (no fake-bold risk).
+
+### Hierarchy
+
+| Token | Size | Weight | Family | Use |
+|---|---|---|---|---|
+| `{typography.display-hero}` | clamp(2.5rem,5.2vw,3.9rem) | 600 | Space Grotesk | Hero H1 |
+| `{typography.display-md}` | clamp(2rem,4.5vw,3rem) | 600 | Space Grotesk | Section H2 |
+| `{typography.display-lg}` | clamp(1.9rem,3.6vw,2.6rem) | 600 | Space Grotesk | Sub-section H2 (service/workflow blocks) |
+| `{typography.title-lg}` | 1.3rem | 600 | Space Grotesk | Card-group titles (kit card `h3`) |
+| `{typography.title-md}` | 1.12rem | 600 | Space Grotesk | Smaller card titles (question cards) |
+| `{typography.body-lg}` | 1.08rem | 400 | DM Sans | Hero subhead |
+| `{typography.body-md}` | 0.95rem | 400 | DM Sans | Default body copy |
+| `{typography.body-sm}` | 0.85rem | 400 | DM Sans | Card body, tags |
+| `{typography.button}` | 1rem | 700 | DM Sans | Button labels |
+| `{typography.eyebrow-mono}` | 0.74rem | 400 | JetBrains Mono, 0.14em tracking, uppercase | Pills, section eyebrows, labels |
+| `{typography.data-lg}` | 1.6rem | 700 | Space Grotesk | Mid-size price/stat |
+| `{typography.data-xl}` | 3.6rem | 700 | Space Grotesk | The single largest price display |
+
+### Principles
+1. **Numbers and labels are never DM Sans.** A price is always Space Grotesk; a caption under a price is always JetBrains Mono. If a new component needs a number, reach for one of those two — never set a number in the body font.
+2. **Uppercase + wide tracking (0.1–0.16em) marks a label as JetBrains Mono territory.** This is the fastest visual tell for "this is metadata," and it's used consistently across every eyebrow, tag, and footer heading.
+3. **Heading weight is binary: 600 default, 700 only for the largest price figure.** There is no 500 or 800 heading in the live system — don't introduce one without a real reason.
+4. **Negative tracking (-0.02em) only on Space Grotesk headings** — DM Sans body and JetBrains Mono labels carry zero or positive tracking.
+
+### Note on substitutes
+All three faces are freely available via Google Fonts — load them directly, no licensing concern. If Space Grotesk is ever unavailable, **Space Mono** (same foundry family, monospace) is the wrong substitute — prefer a plain geometric sans like **General Sans** or fall back to **DM Sans at 700** rather than losing the technical character entirely.
+
+---
+
+## Layout
+
+### Spacing
+The source page was not built against a strict token scale — most values are one-off rem numbers (`.55rem`, `.65rem`, `1.9rem`, `2.6rem`, etc.). For any *new* page adopting this system, use the cleaned-up scale in the frontmatter (`{spacing.*}`, a 4px/0.25rem base) rather than continuing the ad hoc pattern — it reproduces the same visual rhythm without the drift. Section vertical padding is consistently **6rem** (`{spacing.section}`) top and bottom; card internal padding ranges 1.5–2.6rem depending on card weight (small cards ~1.5rem, feature cards ~2–2.6rem); inline gaps run 0.5–1rem.
+
+### Grid & Container
+- Content max-width: **80rem** (1280px), with 1.25rem gutters on mobile widening to 2rem at ≥640px.
+- Two-column split sections (hero, service, workflow) go to a single column below 1000–1024px depending on the section.
+- Card grids: kit cards 2-up ≥900px / 1-up below; question/value/objection grids similarly collapse at 768–900px.
+
+### Whitespace Philosophy
+Generous section padding (6rem) does the primary separating work between bands; there are no divider rules between sections except the deliberate `.grid-bg` treatment (a faint 56px graph-paper grid + top/bottom hairline) used to mark a small number of "technical" sections apart from the plain-navy ones.
+
+---
+
+## Elevation & Depth
+
+| Level | Treatment | Use |
+|---|---|---|
+| Flat | `{colors.surface}`/`{colors.surface-raised}`/`{colors.surface-elevated}` + 1px hairline | Every standard card, input, tag |
+| Glow — breathing | Animated `box-shadow` cycling blur/alpha on `{colors.primary-glow}` | Primary buttons (`.cta`), paused on hover |
+| Glow — ambient | Slower, larger-radius animated glow | The two big price panels (`.get-card`, `.price-box`) |
+| Overlay | `backdrop-filter: blur()` + near-black translucent fill | Sticky bottom conversion bar only |
+
+There is **no shadow ladder** in this system — nothing "lifts" via a static drop shadow. The only static-shadow-like moment is the sticky bar's blur backdrop, which exists for legibility over scrolling content, not for depth signaling. Depth-via-glow is capped: idle glow uses `{colors.primary-glow}` at ≤45% alpha in the token, and the `@keyframes` implementations never exceed roughly 40–48% alpha at their brightest frame — glow should read as "warm," never as a neon sign.
+
+---
+
+## Shapes
+
+| Token | Value | Use |
+|---|---|---|
+| `{rounded.xs}` | 0.5rem | Icon tiles |
+| `{rounded.sm}` | 0.65rem | Ghost buttons, form inputs |
+| `{rounded.md}` | 0.75rem | Primary buttons, stat tiles |
+| `{rounded.lg}` | 0.875rem | Standard cards |
+| `{rounded.xl}` | 1.25rem | The two big price panels |
+| `{rounded.pill}` | 9999px | Badges, chips, tags — never CTAs |
+
+Radius is soft throughout (0.5–1.25rem) — there is no hard 0px edge anywhere except full-bleed section bands. This is a meaningfully rounder system than V2's 8px-square-CTA convention; keep it that way rather than importing V2's tighter radii if the two systems are ever compared.
+
+---
+
+## Motion
+
+This is the system's most distinctive layer and deserves its own section (the reference systems studied earlier in this project — Raycast, Expo, Composio, Vercel — mostly document motion as "not captured"; Upcore-Ops treats it as core).
+
+1. **Breathing glow (`cta-breathe`)** — every `.cta` idles with a 3.6s glow pulse (28px→46px blur, alpha rising with it), pauses on hover/focus, and collapses to a tight low-alpha glow on `:active` (the "press" feedback). This is the system's signature micro-interaction.
+2. **Ambient price-panel breathe (`price-breathe`)** — a slower (4.2s), larger-radius version reserved for the two highest-intent panels only. Never apply this to a regular card — it should read as "this is where the offer lives," not as generic decoration.
+3. **Hover-lift** — `translateY(-5px)` + border brighten + a soft drop shadow on every card that represents something explorable (kit cards, value props, objections, process steps, question cards, toolbox stats). Deliberately **not** applied to static framing blocks (`.antipitch`, `.cost-card`, `.get-card`) or the "don't do this" list (`.nope-row`) — lift should always mean "hover me," never "here's some text."
+4. **Arrow slide** — the trailing arrow icon inside `.cta`/`.cta-ghost` slides 4px on hover, reinforcing directionality.
+5. **Scroll reveal** — every major block carries a `.reveal` class (`opacity:0; translateY(18px)`) that resolves via `IntersectionObserver` on first scroll-into-view, one-shot (unobserves after firing).
+6. **Sticky bottom conversion bar** — appears once the visitor scrolls past the hero, disappears once they reach the real conversion point, so there is never a duplicate CTA stacked on screen.
+7. **Count-up numbers** — numeric stat/price call-outs animate from 0 to their target value once scrolled into view, via a generic parser that extracts the leading integer from the element's text and preserves any prefix/suffix (`$3`, `30+`, `10 Kits`) — this makes the pattern trivially reusable on any future numeric stat without bespoke per-element code.
+
+**Every motion effect above is gated behind `prefers-reduced-motion: reduce`** — glows and animations are disabled outright, reveals render fully visible immediately, count-ups jump straight to their final value. This is not optional polish; treat it as part of the component spec, not an afterthought.
+
+---
+
+## Components
+
+### Navigation
+**`nav-bar`** — Background `#0a0a0a` (note: black, not navy — the nav/footer chrome on the one live page currently reuses the sitewide site nav rather than a navy-native nav; a fully-native Upcore-Ops nav has not been built yet and should probably sit on `{colors.canvas-deep}` instead of pure black when this system is rolled out for real — flagged in Known Gaps).
+
+**`sticky-cta-bar`** — `rgba(4,10,18,.92)` + 10px backdrop blur, hairline top border, slides up from `translateY(100%)` to `0` over 0.35s. Holds a compact text label (hidden below 640px) plus a small `.cta.sm`.
+
+### Buttons
+**`button-primary`** (`.cta`) — cyan fill, `{colors.on-primary}` text, `{typography.button}`, `{rounded.md}`, breathing glow idle, arrow-slide on hover, tight-glow press state.
+
+**`button-ghost`** (`.cta-ghost`) — `rgba(33,210,237,.08)` fill, cyan text, 1px `rgba(33,210,237,.35)` border, `{rounded.sm}`, no glow, no breathe — this is the lower-emphasis sibling and should never carry the primary's animation.
+
+### Badges & Tags
+**`pill-badge`** (`.pill`) — the section eyebrow. Fully rounded, cyan text on a near-invisible cyan wash, with a small glowing dot (`.pill .dot`) as a leading accent.
+
+**`chip`** — used only in the marquee ticker; a pill-shaped card-surface chip with a small cyan dot, animated in an infinite horizontal scroll (`@keyframes scroll`, 40s linear, `width:max-content`, masked at both edges with a linear-gradient fade). The track duplicates its content once for a seamless loop.
+
+**`tag`** — small pill on `{colors.surface-elevated}`, used for tool/kit names inside cards. Not animated, not interactive.
+
+### Cards
+**`card`** (`.card`, base) — `{colors.surface}` fill, 1px hairline, `{rounded.lg}`. Every specific card variant (`.kit`, `.vcard`, `.obj`, `.qcard`, `.tb-row`, `.tstat`, `.step`) extends this base with its own internal layout but shares the fill/border/radius contract.
+
+**`price-panel`** (`.get-card`, `.price-box`) — the two highest-emphasis surfaces in the system: a subtle cyan-tinted gradient fill, a brighter `rgba(33,210,237,.35–.4)` border, `{rounded.xl}`, and the ambient breathing glow. Reserve this treatment for genuine "here's the offer" moments — using it decoratively dilutes its signal value.
+
+### Forms
+**`input-text`** (`.get-input`) — `{colors.surface-raised}` fill, hairline border, `{rounded.sm}`, focuses to a brighter `{colors.surface-elevated}` fill with a cyan-tinted border. Placeholder text uses `{colors.muted}`.
+
+**Lead-capture form pattern** — name + email, POSTs via FormSubmit.co to the team inbox plus a confirmation email to the prospect, button swaps to a `{colors.success}` fill with a checkmark label on completion. This is the system's only real conversion mechanism today and should be the template for any new lead-gen surface built in this system, rather than a bare CTA link.
+
+### Footer
+**`footer`** — `{colors.canvas-deep}` background, JetBrains Mono uppercase column headers (`.foot-cols h4`), DM Sans links. Bottom bar is JetBrains Mono uppercase, space-between layout.
+
+---
+
+## Do's and Don'ts
+
+### Do
+- Use `{colors.primary}` as the only chromatic accent on chrome. Everything else is navy + off-white + one cyan.
+- Set every number and every label in Space Grotesk or JetBrains Mono respectively — never in DM Sans.
+- Reserve the ambient price-panel glow for genuine high-intent offer moments; reserve the CTA breathe for real primary actions.
+- Apply hover-lift only to cards that represent something explorable. A "don't do this" list or a static framing block should never lift.
+- Gate every animation behind `prefers-reduced-motion`.
+- Use the dark-surface logo lockup (`images/upcore-logo-ops-toolkit.png`) on navy backgrounds and the light-surface lockup (`/upcore-logo.png`) on white ones — never the reverse.
+- Give every lead-capture CTA a real form behind it, following the FormSubmit.co pattern already proven on this page — a CTA that just anchors to its own section is a bug, not a placeholder.
+
+### Don't
+- Don't introduce a second brand hue. If a section feels flat, the fix is glow/motion/type-weight, not a new color.
+- Don't put white text on the cyan button fill — use `{colors.on-primary}` (near-black).
+- Don't use `{colors.muted}`'s predecessor value (#5B667D) anywhere — it fails WCAG AA on every surface in this system. Always reference the token, never a hand-picked gray.
+- Don't apply the breathing/glow animation to more than the primary CTA and the two price panels — it loses meaning if every card breathes.
+- Don't stretch one logo lockup to match the other's aspect ratio (3:2 light vs. ~3.93:1 dark).
+- Don't set a CTA as a fully-rounded pill — pills are for badges/tags only; buttons use `{rounded.md}`/`{rounded.sm}`.
+
+---
+
+## Responsive Behavior
+
+| Breakpoint | Width | Key changes |
+|---|---|---|
+| Mobile | <640px | Single column throughout; hero art/stats stack; sticky-cta text label hidden (icon+button only) |
+| Tablet | 640–900px | Two-column grids still mostly 1-up; section padding holds at 6rem |
+| Small desktop | 900–1024px | Card grids go 2-up; hero/service/workflow two-column splits still stacked below ~1000–1024px depending on section |
+| Desktop | ≥1024px | Full two-column hero/service/workflow layouts; 2-up/3-up/4-up card grids per section |
+
+**Touch targets:** form inputs and the primary submit button sit at 53–65px effective height — comfortably above WCAG AAA. The nav hamburger and CTA buttons should be verified at ≥44px on any new implementation.
+
+**Sticky bar:** the trigger logic compares the hero's bottom edge and the `#get`-equivalent section's top edge against the viewport — reuse that pattern (not a fixed scroll-position number) so it stays correct if hero height changes on a new page.
+
+---
+
+## Iteration Guide
+
+1. Reference tokens directly (`{colors.primary}`, `{typography.eyebrow-mono}`, `{rounded.md}`) when building a new component — don't eyeball a "close enough" navy or cyan.
+2. Every new numeric display gets Space Grotesk (large) or JetBrains Mono (small/label) — check this before shipping any new stat.
+3. New cards default to `{component.card}` (`{colors.surface}` + hairline + `{rounded.lg}`) unless they're a genuine high-intent moment, in which case use `{component.price-panel}`.
+4. New primary CTAs get the breathing glow by default; only suppress it (`.sticky-cta .cta` does this) when the CTA already lives inside a persistently-visible surface where breathing would be redundant.
+5. Any "de-emphasized" text reaches for `{colors.muted}` (#8FA0B8), never a fresh gray — that's the corrected, AA-passing token.
+6. Before adding a new page to this system, decide where the nav/footer live on the navy palette (see Known Gaps) rather than reusing the black sitewide chrome by default.
+
+---
+
+## Known Gaps
+
+- **Only one page is built in this system.** Every token above is extracted from `ai-operations.html`; nothing has been validated across a second implementation yet.
+- **Nav/footer are not navy-native.** The current nav/footer on `ai-operations.html` are the sitewide black (`#0a0a0a`) chrome reused from the rest of the site, not a purpose-built Upcore-Ops nav. When this system rolls out for real, decide whether the nav should move to `{colors.canvas-deep}` for tighter visual integration, or whether keeping the black sitewide chrome as a deliberate "this is still Upcore" anchor is preferable.
+- **Spacing was not strictly tokenized in the source.** The cleaned-up scale in this doc's frontmatter is a reasonable reconstruction, not a byte-for-byte extraction — expect minor rem-level drift if you diff against the live page's raw CSS.
+- **DESIGN-SYSTEM-V2.md is now superseded.** Its dark near-black/teal/brightness-ladder direction was the previous exploration; V3 (this doc) is the chosen direction going forward. V2 is kept for reference, not deleted, in case its accessibility research (the #0ABFCC-on-white contrast finding) is needed again.
+- **PPT/deck usage** — this doc gives you the palette, type, and logo assets needed to build slides, but no slide-template component (title slide, section divider, stat slide) has been designed yet. Ask before assuming a specific deck layout.
+- **No light-mode variant exists or is planned** for this system — it is dark-only, matching the one page it's built from.

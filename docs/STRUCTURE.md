@@ -81,14 +81,15 @@ upcore-website/
 │   └── manufacturing-myagent-w6ihwp.html
 │
 ├── images/
-│   └── accolades/                     # Trust-strip badge SVGs (7 files)
-│       ├── clutch.svg
-│       ├── cmmi.svg
-│       ├── iso27001.svg
-│       ├── iso9001.svg
-│       ├── nasscom.svg
-│       ├── selectedfirms.svg
-│       └── upwork.svg
+│   ├── accolades/                     # Trust-strip badge SVGs (7 files)
+│   │   ├── clutch.svg
+│   │   ├── cmmi.svg
+│   │   ├── iso27001.svg
+│   │   ├── iso9001.svg
+│   │   ├── nasscom.svg
+│   │   ├── selectedfirms.svg
+│   │   └── upwork.svg
+│   └── upcore-logo-ops-toolkit.png    # Dark-surface logo lockup (629×160, glowing white-on-navy) — see docs/DESIGN-SYSTEM-V3.md "Logo". Extracted 2026-08-21 from a base64 blob inline in ai-operations.html; use this file for any new dark-navy page/deck instead of re-embedding base64.
 │
 └── (root assets)
     ├── upcore-logo.svg                # Primary logo (used in nav across all pages)

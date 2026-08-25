@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-21 — Extract Upcore-Ops design system (V3, chosen direction) + logo asset
+**Type:** decision, docs
+**Files:** `docs/DESIGN-SYSTEM-V3.md` (new), `docs/DESIGN-SYSTEM-V2.md` (marked superseded), `docs/STRUCTURE.md`, `images/upcore-logo-ops-toolkit.png` (new)
+Extracted the full navy/cyan design system built on `ai-operations.html` (colors, 3-family typography, spacing/radius scale, glow-based elevation, motion patterns, component specs) into `docs/DESIGN-SYSTEM-V3.md`, written in the same YAML-frontmatter + prose format as the external reference systems studied earlier this session (Raycast/Expo/Composio/Vercel). Per explicit decision, **V3 replaces V2** as the site's chosen future direction — `DESIGN-SYSTEM-V2.md` is now marked superseded (kept for its #0ABFCC-on-white contrast research, not as a target).
+
+Also decoded the page's inline base64 logo blob into a real, reusable asset: `images/upcore-logo-ops-toolkit.png` (629×160, glowing white-on-navy lockup). The site's existing `/upcore-logo.png` (360×240, dark-on-light) is documented as the companion light-surface lockup — the two are not interchangeable; V3 §Logo covers correct usage per background.
+
+**Still only implemented on one page.** No other page has been migrated to V3 yet — this is documentation + a decision record, not a rollout.
+
 ## 2026-08-21 — /ai-operations: fix systemic low-contrast text (--faint failed WCAG AA everywhere)
 **Type:** fix
 **Files:** `ai-operations.html`

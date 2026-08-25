@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Upcore-Instrument — dark design system (V2)
-status: SPECIFICATION — not yet implemented. `docs/DESIGN-SYSTEM.md` still describes the live site.
+status: SUPERSEDED 2026-08-21 — see docs/DESIGN-SYSTEM-V3.md (Upcore-Ops, navy/cyan). V3 was chosen as the site's real direction after ai-operations.html shipped in that style. This document is kept for reference (in particular the #0ABFCC-on-white contrast research), not as a target to implement. `docs/DESIGN-SYSTEM.md` still describes what's actually live everywhere else.
 description: |
   A dark, high-contrast, instrumentation-grade system for an AI-governance company. The page floor is a
   cool near-black (#0A0C10) and elevation is built entirely from a five-step surface ladder — never from

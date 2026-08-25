@@ -396,6 +396,77 @@ footer{background:#0a0a0a;border-top:3px solid rgba(10,191,204,.2);padding:64px 
 @media(max-width:768px){footer{padding:48px 24px 0;}.footer-grid{grid-template-columns:1fr;gap:28px;}}
 @media(max-width:560px){.footer-bottom{flex-direction:column;align-items:flex-start;}}
 
+/* ══════════════ LIVELINESS + CONVERSION PASS (2026) ══════════════ */
+
+/* Idle breathing glow on primary CTAs — reuses the page's own
+   negative-spread box-shadow convention, alpha-capped, pauses on
+   hover/focus so it never fights the existing hover treatment. */
+@keyframes cta-breathe{
+  0%,100%{box-shadow:0 0 28px -8px var(--primary-glow),0 8px 24px -12px rgba(0,0,0,.6);}
+  50%    {box-shadow:0 0 46px -4px var(--primary-glow),0 10px 28px -10px rgba(0,0,0,.55);}
+}
+.cta{animation:cta-breathe 3.6s ease-in-out infinite;}
+.cta:hover,.cta:focus-visible{animation-play-state:paused;}
+.cta:active{transform:translateY(0);box-shadow:0 0 18px -8px var(--primary-glow),0 4px 12px -10px rgba(0,0,0,.6);}
+.cta svg,.cta-ghost svg{transition:transform .22s cubic-bezier(.34,1.4,.64,1);}
+.cta:hover svg,.cta-ghost:hover svg{transform:translateX(4px);}
+
+/* Slow ambient breathe on the two big price panels — much subtler,
+   just enough to keep the highest-intent moment from feeling static. */
+@keyframes price-breathe{
+  0%,100%{box-shadow:0 0 90px -30px var(--primary-glow);}
+  50%    {box-shadow:0 0 120px -22px var(--primary-glow);}
+}
+.get-card,.price-box{animation:price-breathe 4.2s ease-in-out infinite;}
+
+/* Hover lift on every interactive content card — skipped deliberately
+   on .nope-row (a "don't" list), .get-card/.cost-card/.antipitch
+   (static framing blocks), so lift always means "this is explorable". */
+.kit,.vcard,.obj,.step,.qcard,.tb-row,.tstat,.svc-mini .card,.testimonial-card{
+  transition:transform .26s cubic-bezier(.34,1.15,.64,1),border-color .26s ease,box-shadow .26s ease;
+}
+.kit:hover,.vcard:hover,.obj:hover,.step:hover,.qcard:hover,.tb-row:hover,.tstat:hover,.svc-mini .card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(33,210,237,.32);
+  box-shadow:0 18px 36px -22px rgba(0,0,0,.55);
+}
+
+/* Sticky bottom conversion bar — appears once the visitor scrolls past
+   the hero, hides again once they reach the real #get form so it never
+   stacks a second CTA on top of the one they're already looking at. */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:rgba(4,10,18,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid var(--border);
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.22,.61,.36,1);
+}
+.sticky-cta.show{transform:translateY(0);}
+.sticky-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.25rem;}
+.sticky-cta-text{font-size:.85rem;color:var(--muted);display:none;}
+.sticky-cta-text strong{color:var(--fg);}
+@media(min-width:640px){.sticky-cta-text{display:block;}}
+.sticky-cta .cta{animation:none;box-shadow:0 4px 16px -6px var(--primary-glow);}
+
+/* Real lead-capture form inside #get */
+.get-form{max-width:30rem;margin:0 auto;}
+.get-form-row{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;}
+.get-input{
+  flex:1;min-width:12rem;background:var(--panel);border:1px solid var(--border);
+  border-radius:.65rem;padding:.85rem 1rem;color:var(--fg);font:inherit;font-size:.92rem;
+  transition:border-color .2s ease,background .2s ease;
+}
+.get-input::placeholder{color:var(--faint);}
+.get-input:focus{outline:none;border-color:rgba(33,210,237,.6);background:var(--panel-2);}
+.get-submit{width:100%;justify-content:center;}
+.get-form-note{margin-top:.9rem;font-size:.75rem;color:var(--faint);}
+
+/* Count-up numbers respect the OS reduced-motion setting like everything else below */
+@media(prefers-reduced-motion:reduce){
+  .cta,.get-card,.price-box{animation:none!important;}
+  .reveal{opacity:1!important;transform:none!important;}
+}
+
 </style>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -435,6 +506,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 
+<!-- STICKY CONVERSION BAR -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="wrap sticky-cta-inner">
+    <span class="sticky-cta-text"><strong>AI Operations Toolkit</strong> &mdash; 10 Kits, 30+ AI tools, lifetime access</span>
+    <a class="cta sm" href="#get">Get it for $3
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</div>
+
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="wrap">
@@ -452,7 +533,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a class="cta" href="#get">Get lifetime access for $3
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <span class="price-inline"><span class="lbl">LIFETIME ACCESS</span><span class="now">$3</span><span class="was">$97</span></span>
+          <span class="price-inline"><span class="lbl">LIFETIME ACCESS</span><span class="now count">$3</span><span class="was">$97</span></span>
         </div>
         <p class="hero-nope">NO CONSULTANT &nbsp;·&nbsp; NO PROMPT ENGINEERING &nbsp;·&nbsp; NO 40-HOUR COURSE</p>
       </div>
@@ -509,9 +590,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </svg>
         </div>
         <div class="hero-stats">
-          <div class="stat-tile"><div class="n">10</div><div class="l">Kits</div></div>
-          <div class="stat-tile"><div class="n">30+</div><div class="l">AI Tools</div></div>
-          <div class="stat-tile"><div class="n">$3</div><div class="l">Lifetime</div></div>
+          <div class="stat-tile"><div class="n count">10</div><div class="l">Kits</div></div>
+          <div class="stat-tile"><div class="n count">30+</div><div class="l">AI Tools</div></div>
+          <div class="stat-tile"><div class="n count">$3</div><div class="l">Lifetime</div></div>
         </div>
       </div>
     </div>
@@ -607,7 +688,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="tstats reveal">
       <div class="card tstat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17 13.5 8.5 8.5 13.5 2 7"/><path d="M16 17h6v-6"/></svg></div><div class="n">30–60%</div><div class="c">Less repetitive work in 30 days</div></div>
       <div class="card tstat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6M22 6l-3-3"/></svg></div><div class="n">Minutes</div><div class="c">From workflow to analysis</div></div>
-      <div class="card tstat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></div><div class="n">10 Kits</div><div class="c">Specialized per problem</div></div>
+      <div class="card tstat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg></div><div class="n count">10 Kits</div><div class="c">Specialized per problem</div></div>
       <div class="card tstat"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></div><div class="n">0 setup</div><div class="c">No technical background</div></div>
     </div>
   </div>
@@ -657,7 +738,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="price-box">
         <span class="mono-label on">The Entire Toolkit</span>
-        <div class="big">$3</div>
+        <div class="big count">$3</div>
         <div class="sub">One payment · Lifetime access</div>
         <a class="cta" href="#get">Yes — get lifetime access for $3
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -758,7 +839,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <br>
-        <a class="svc-link" href="#service">Want full implementation? Talk to our engineers
+        <a class="svc-link" href="/assessment">Want full implementation? Talk to our engineers
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -829,9 +910,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><span class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Lifetime access</li>
         <li><span class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Future updates to the Toolkit</li>
       </ul>
-      <a class="cta" href="#get">Get the complete toolkit for $3
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <form id="getForm" class="get-form" onsubmit="return handleGetSubmit(event)">
+        <div class="get-form-row">
+          <input type="text" id="getName" class="get-input" placeholder="Your name" autocomplete="name" required>
+          <input type="email" id="getEmail" class="get-input" placeholder="Work email" autocomplete="email" required>
+        </div>
+        <button type="submit" class="cta get-submit" id="getSubmitBtn">
+          <span id="getSubmitText">Get the complete toolkit for $3</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="get-form-note">We'll email you a secure $3 payment link within a few minutes. No spam, ever.</p>
+      </form>
       <div class="get-tags">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>Lifetime Access</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Future Updates Included</span>
@@ -934,10 +1023,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
-/* header scroll state */
-const hdr=document.getElementById('hdr');
-addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>10),{passive:true});
-
 /* marquee chips (duplicated for seamless loop) */
 const items=["Copying information between systems","Updating spreadsheets","Creating recurring reports","Moving data between tools","Searching for information","Writing repetitive emails","Following the same SOPs","Checking and formatting information","Performing routine customer operations","Repeating the same administrative workflows"];
 const track=document.getElementById('ticker');
@@ -972,6 +1057,111 @@ document.getElementById('kits').innerHTML=kits.map(k=>`
 /* scroll reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+<script>
+/* ── Sticky conversion bar: show after hero, hide once #get is reached ── */
+(function(){
+  var bar=document.getElementById('stickyCta');
+  var hero=document.getElementById('top');
+  var getSec=document.getElementById('get');
+  if(!bar||!hero) return;
+  function onScroll(){
+    var heroBottom=hero.getBoundingClientRect().bottom;
+    var pastHero=heroBottom<0;
+    var reachedGet=getSec?getSec.getBoundingClientRect().top<window.innerHeight*0.55:false;
+    bar.classList.toggle('show', pastHero && !reachedGet);
+  }
+  addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+/* ── Count-up on stat/price numbers, gated behind prefers-reduced-motion ── */
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var done = new WeakSet();
+  function animate(el){
+    if (done.has(el)) return;
+    done.add(el);
+    var text = el.textContent;
+    var m = text.match(/\d+/);
+    if (!m) return;
+    var target = parseInt(m[0], 10);
+    var prefix = text.slice(0, m.index);
+    var suffix = text.slice(m.index + m[0].length);
+    var t0 = null, dur = 1000;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var els = document.querySelectorAll('.count');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); }
+    });
+  }, {threshold:.4});
+  els.forEach(function(el){ obs.observe(el); });
+})();
+
+/* ── #get lead-capture form: FormSubmit.co, same pattern as contact.html ── */
+async function handleGetSubmit(e){
+  e.preventDefault();
+  var btn = document.getElementById('getSubmitBtn');
+  var txt = document.getElementById('getSubmitText');
+  var name = document.getElementById('getName').value.trim();
+  var email = document.getElementById('getEmail').value.trim();
+
+  btn.style.opacity = '.7';
+  btn.disabled = true;
+  txt.textContent = 'Sending…';
+
+  var base = { _captcha: 'false', _template: 'table' };
+
+  try {
+    await fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(Object.assign({}, base, {
+        _subject: 'AI Operations Toolkit ($3) request - ' + name,
+        _cc: 'saswata@upcoretechnologies.com',
+        'Name': name,
+        'Email': email,
+        'Source': 'AI Operations Toolkit (/ai-operations)'
+      }))
+    });
+
+    if (email.indexOf('@') > -1) {
+      fetch('https://formsubmit.co/' + email, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.assign({}, base, {
+          _subject: 'Your AI Operations Toolkit — payment link',
+          'Hi': name,
+          'What happens next': 'We will send your secure $3 payment link shortly. Once paid, you get instant lifetime access to all 10 Kits and 30+ Custom GPTs & Claude Skills.',
+          'Questions?': 'Reply to this email or WhatsApp us directly at +91 99881 35327.',
+          'Team': 'Upcore Technologies - upcoretech.com'
+        }))
+      }).catch(function(){});
+    }
+
+    txt.textContent = '✓ Check your email for the payment link';
+    btn.style.background = '#22c55e';
+    btn.style.opacity = '1';
+    btn.style.animation = 'none';
+  } catch (err) {
+    btn.style.opacity = '1';
+    btn.disabled = false;
+    txt.textContent = 'Get the complete toolkit for $3';
+    alert('Something went wrong. Please email us directly at gaurav@upcoretechnologies.com');
+  }
+  return false;
+}
 </script>
 <script src="/chat-widget.js?v=12" defer></script>
 <script src="/cta-tracking.js?v=1" defer></script>

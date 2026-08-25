@@ -12,6 +12,17 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-21 — /ai-operations: real conversion form, motion pass, fix a scroll-crashing bug
+**Type:** fix, feature
+**Files:** `ai-operations.html`, `docs/FEATURES.md`
+Closed the conversion gap flagged in the rebuild below: the `#get` section's CTA was `<a href="#get">` pointing at its own section — a dead loop with no way to capture a lead. Replaced it with a real FormSubmit.co form (name + email, same pattern as `contact.html`), verified end-to-end with a mocked `fetch` (fires both the team-notification and prospect-confirmation POSTs, updates button to a green success state). Also fixed `href="#service"` (another self-referencing link, "Talk to our engineers") → `/assessment`.
+
+Added a liveliness/motion pass: idle breathing glow on `.cta` (alpha-capped, pauses on hover, extends the page's own box-shadow convention), hover-lift on all explorable cards, arrow slide-on-hover, a sticky bottom conversion bar (shows past the hero, hides at `#get`), and count-up animation on the 6 numeric stat/price call-outs — all gated behind `prefers-reduced-motion`.
+
+**Two real bugs caught in review, not just polish:**
+1. A heredoc escaping mistake left `'What happens next': 'We'll send...'` with the apostrophe unescaped — a JS string-literal syntax error that would have killed the *entire* inline `<script>` block (count-up, sticky bar, and the new form handler all together). Caught via `grep`, not by eyeballing; fixed by rewording to "We will send" rather than fighting escaping again.
+2. The supplied file's own script had `document.getElementById('hdr')` referencing the original `<header id="hdr">`, which no longer exists after the earlier nav/footer swap — it threw `Cannot read properties of null` on **every single scroll event**, sitewide, since the day of that rebuild. Removed the dead code.
+
 ## 2026-08-21 — Restore the original base64 logo blobs on /ai-operations
 **Type:** content
 **Files:** `ai-operations.html`, `docs/FEATURES.md`

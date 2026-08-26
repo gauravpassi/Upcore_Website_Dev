@@ -307,6 +307,9 @@ section{position:relative;padding:6rem 0}
 #rzpPayBtn{width:100%;justify-content:center}
 #rzpPayBtn:disabled{opacity:.6;cursor:not-allowed}
 .rzp-note{font-size:.78rem;color:var(--faint);margin-top:.9rem}
+.rzp-error{font-size:.85rem;font-weight:600;color:#ef4444;margin-top:.7rem}
+@keyframes rzpShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.rzp-shake{animation:rzpShake .4s ease}
 .rzp-success{max-width:30rem;margin:0 auto;padding:1.6rem 1.4rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35);border-radius:1rem}
 .rzp-success-icon{width:2.6rem;height:2.6rem;line-height:2.6rem;border-radius:50%;background:rgba(34,197,94,.18);color:#22c55e;font-size:1.3rem;font-weight:700;margin:0 auto .8rem}
 .rzp-success-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.5rem}
@@ -718,12 +721,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <form id="rzpForm" class="rzp-form" onsubmit="return false;">
         <div class="rzp-form-row">
           <input type="text" id="rzpName" class="rzp-input" placeholder="Your name" autocomplete="name">
-          <input type="email" id="rzpEmail" class="rzp-input" placeholder="Work email" autocomplete="email" required>
+          <input type="email" id="rzpEmail" class="rzp-input" placeholder="Work email" autocomplete="email" required oninput="this.style.borderColor='';document.getElementById('rzpError').style.display='none';">
         </div>
         <button type="button" class="cta" id="rzpPayBtn" onclick="startRazorpayCheckout()">
           <span id="rzpPayBtnText">Pay $3 &amp; get instant access</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
+        <p id="rzpError" class="rzp-error" style="display:none;">Enter a valid email above so we know where to send your Kit access.</p>
         <p class="rzp-note">Secure payment via Razorpay. We'll email your Kit access within a few minutes of payment.</p>
       </form>
       <div id="rzpSuccess" class="rzp-success" style="display:none;">
@@ -852,14 +856,21 @@ function notifyTeamOfPurchase(name, email, paymentId){
 function startRazorpayCheckout(){
   const nameEl = document.getElementById('rzpName');
   const emailEl = document.getElementById('rzpEmail');
+  const errorEl = document.getElementById('rzpError');
   const name = nameEl.value.trim();
   const email = emailEl.value.trim();
 
   if(!email || !email.includes('@')){
     emailEl.focus();
     emailEl.style.borderColor = '#ef4444';
+    errorEl.style.display = 'block';
+    emailEl.classList.remove('rzp-shake');
+    void emailEl.offsetWidth; // restart animation if clicked repeatedly
+    emailEl.classList.add('rzp-shake');
     return;
   }
+  errorEl.style.display = 'none';
+  emailEl.style.borderColor = '';
 
   if(typeof Razorpay === 'undefined'){
     alert('Payment system is still loading — please try again in a moment.');

@@ -12,10 +12,10 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
-## 2026-08-25 — ai-operations.html replaced verbatim with user-supplied file
-**Type:** content / decision
+## 2026-08-25 — ai-operations.html replaced verbatim with user-supplied file, tracking restored
+**Type:** content / fix
 **Files:** `ai-operations.html`
-User uploaded `upcore-ops-toolkit-completed_4.html` (a Razorpay-integrated version of the toolkit page) and asked to replace the live file exactly, no edits. Done as a straight file copy, byte-verified identical to the upload. Not yet reconciled with the rest of the site: **the new file has zero tracking/chat scripts** — no GTM, no GA4, no Clarity, no `chat-widget.js`, no `cta-tracking.js` — a deviation from the sitewide convention (`chat-widget.js` is supposed to be on every non-demo page per `CLAUDE.md`). Also not verified against the V3 design system (nav/footer chrome, `:root` tokens, CTA glow) — this file may or may not match; nobody has checked. Flag before this page gets real ad traffic.
+User uploaded `upcore-ops-toolkit-completed_4.html` (a Razorpay-integrated version of the toolkit page) and asked to replace the live file exactly, no edits. Done as a straight file copy, byte-verified identical to the upload. That upload had zero tracking/chat scripts — no GTM, no GA4, no Clarity, no `chat-widget.js`, no `cta-tracking.js` — so added all five back in the standard sitewide positions/versions (GTM+noscript, gtag, Clarity in `<head>`; `chat-widget.js?v=12` + `cta-tracking.js?v=1` before `</body>`), matching `index.html` exactly. Verified in-browser: dataLayer populated, `window.clarity` defined, chat button (`#upcore-chat-btn`) renders, zero console errors. Still **not verified against the V3 design system** (nav/footer chrome, `:root` tokens, CTA glow) — this file may or may not match; nobody has checked that yet.
 
 ---
 

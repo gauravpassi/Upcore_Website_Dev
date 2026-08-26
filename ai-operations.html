@@ -310,7 +310,7 @@ section{position:relative;padding:6rem 0}
 .rzp-error{font-size:.85rem;font-weight:600;color:#ef4444;margin-top:.7rem}
 @keyframes rzpShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 .rzp-shake{animation:rzpShake .4s ease}
-.rzp-success{max-width:30rem;margin:0 auto;padding:1.6rem 1.4rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35);border-radius:1rem}
+.rzp-success{max-width:30rem;margin:0 auto;padding:1.6rem 1.4rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35);border-radius:1rem;display:flex;flex-direction:column;align-items:center}
 .rzp-success-icon{width:2.6rem;height:2.6rem;line-height:2.6rem;border-radius:50%;background:rgba(34,197,94,.18);color:#22c55e;font-size:1.3rem;font-weight:700;margin:0 auto .8rem}
 .rzp-success-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.5rem}
 .rzp-success-sub{font-size:.88rem;color:var(--muted);line-height:1.6}
@@ -732,8 +732,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </form>
       <div id="rzpSuccess" class="rzp-success" style="display:none;">
         <div class="rzp-success-icon">✓</div>
-        <div class="rzp-success-title">Payment received — check your email</div>
-        <p class="rzp-success-sub">We're sending your full Kit access to <strong id="rzpSuccessEmail"></strong> now. If it doesn't land in a few minutes, check spam or WhatsApp us.</p>
+        <div class="rzp-success-title">Payment received — you're in</div>
+        <p class="rzp-success-sub">We've also sent a copy of this link to <strong id="rzpSuccessEmail"></strong>. If it doesn't land in a few minutes, check spam or WhatsApp us.</p>
+        <a id="rzpSuccessLink" class="cta" href="#" target="_blank" rel="noopener" style="margin-top:1.2rem;">
+          Access your Toolkit now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
       <div class="get-tags">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>Lifetime Access</span>
@@ -835,6 +839,28 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 <script>
 const RAZORPAY_KEY_ID = 'rzp_live_TUNJ4qVMw8RcyG';
 
+// TODO: replace with the real hosted doc/folder containing all 10 Kits' GPT/Claude Skill links
+const TOOLKIT_RESOURCE_URL = 'https://www.google.com';
+
+function sendResourceToCustomer(name, email, paymentId){
+  fetch('https://formsubmit.co/' + email, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      _captcha: 'false',
+      _template: 'table',
+      _subject: 'Your AI Operations Toolkit — access inside',
+      'Hi': name || 'there',
+      'Thanks for your purchase': 'Your $3 payment went through — here is your full AI Operations Plug-and-Play Toolkit.',
+      'Access your Toolkit here': TOOLKIT_RESOURCE_URL,
+      'What you get': '10 specialized Kits, 30+ Custom GPTs & Claude Skills, lifetime access including future updates.',
+      'Payment reference': paymentId,
+      'Questions?': 'Reply to this email or WhatsApp us directly.',
+      'Team': 'Upcore Technologies - upcoretech.com'
+    })
+  }).catch(()=>{});
+}
+
 function notifyTeamOfPurchase(name, email, paymentId){
   fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
     method: 'POST',
@@ -893,8 +919,10 @@ function startRazorpayCheckout(){
     theme: { color: '#21D2ED' },
     handler: function(response){
       notifyTeamOfPurchase(name, email, response.razorpay_payment_id);
+      sendResourceToCustomer(name, email, response.razorpay_payment_id);
       document.getElementById('rzpForm').style.display = 'none';
       document.getElementById('rzpSuccessEmail').textContent = email;
+      document.getElementById('rzpSuccessLink').href = TOOLKIT_RESOURCE_URL;
       document.getElementById('rzpSuccess').style.display = 'block';
       if(window.dataLayer){ window.dataLayer.push({event:'ai_ops_toolkit_purchase', value:3, currency:'USD'}); }
     },

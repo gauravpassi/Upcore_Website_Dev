@@ -299,6 +299,19 @@ section{position:relative;padding:6rem 0}
 .get-tags span{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.13em;color:var(--faint);text-transform:uppercase}
 .get-tags svg{width:.9rem;height:.9rem;color:var(--primary)}
 
+.rzp-form{max-width:30rem;margin:0 auto}
+.rzp-form-row{display:flex;gap:.7rem;margin-bottom:.9rem;flex-wrap:wrap}
+.rzp-input{flex:1;min-width:11rem;background:var(--panel);border:1px solid rgba(255,255,255,.12);color:var(--fg);font-family:inherit;font-size:.92rem;padding:.85rem 1rem;border-radius:.65rem;transition:border-color .15s,background .15s}
+.rzp-input::placeholder{color:var(--faint)}
+.rzp-input:focus{outline:none;border-color:var(--primary);background:var(--panel-2)}
+#rzpPayBtn{width:100%;justify-content:center}
+#rzpPayBtn:disabled{opacity:.6;cursor:not-allowed}
+.rzp-note{font-size:.78rem;color:var(--faint);margin-top:.9rem}
+.rzp-success{max-width:30rem;margin:0 auto;padding:1.6rem 1.4rem;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35);border-radius:1rem}
+.rzp-success-icon{width:2.6rem;height:2.6rem;line-height:2.6rem;border-radius:50%;background:rgba(34,197,94,.18);color:#22c55e;font-size:1.3rem;font-weight:700;margin:0 auto .8rem}
+.rzp-success-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:.5rem}
+.rzp-success-sub{font-size:.88rem;color:var(--muted);line-height:1.6}
+
 /* ---------- final ---------- */
 .final{text-align:center;padding:5.5rem 0 7rem}
 .final .k{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;color:var(--primary);text-transform:uppercase}
@@ -702,9 +715,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <li><span class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Lifetime access</li>
         <li><span class="check-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Future updates to the Toolkit</li>
       </ul>
-      <a class="cta" href="#get">Get the complete toolkit for $3
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <form id="rzpForm" class="rzp-form" onsubmit="return false;">
+        <div class="rzp-form-row">
+          <input type="text" id="rzpName" class="rzp-input" placeholder="Your name" autocomplete="name">
+          <input type="email" id="rzpEmail" class="rzp-input" placeholder="Work email" autocomplete="email" required>
+        </div>
+        <button type="button" class="cta" id="rzpPayBtn" onclick="startRazorpayCheckout()">
+          <span id="rzpPayBtnText">Pay $3 &amp; get instant access</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p class="rzp-note">Secure payment via Razorpay. We'll email your Kit access within a few minutes of payment.</p>
+      </form>
+      <div id="rzpSuccess" class="rzp-success" style="display:none;">
+        <div class="rzp-success-icon">✓</div>
+        <div class="rzp-success-title">Payment received — check your email</div>
+        <p class="rzp-success-sub">We're sending your full Kit access to <strong id="rzpSuccessEmail"></strong> now. If it doesn't land in a few minutes, check spam or WhatsApp us.</p>
+      </div>
       <div class="get-tags">
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></svg>Lifetime Access</span>
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg>Future Updates Included</span>
@@ -799,6 +825,87 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   tiers.forEach(card=>card.addEventListener('click',()=>select(card)));
 })();
 </script>
+
+<!-- ============ RAZORPAY CHECKOUT ============ -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+// TODO: replace with your real Key ID from Razorpay Dashboard -> Settings -> API Keys
+const RAZORPAY_KEY_ID = 'rzp_live_REPLACE_WITH_YOUR_KEY_ID';
+
+function notifyTeamOfPurchase(name, email, paymentId){
+  fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      _captcha: 'false',
+      _template: 'table',
+      _subject: 'AI Ops Toolkit purchase - $3 - ' + email,
+      _cc: 'saswata@upcoretechnologies.com',
+      'Name': name || '(not given)',
+      'Email': email,
+      'Amount': '$3.00 USD',
+      'Razorpay Payment ID': paymentId,
+      'Source': 'ai-operations.html - #get section'
+    })
+  }).catch(()=>{});
+}
+
+function startRazorpayCheckout(){
+  const nameEl = document.getElementById('rzpName');
+  const emailEl = document.getElementById('rzpEmail');
+  const name = nameEl.value.trim();
+  const email = emailEl.value.trim();
+
+  if(!email || !email.includes('@')){
+    emailEl.focus();
+    emailEl.style.borderColor = '#ef4444';
+    return;
+  }
+
+  if(typeof Razorpay === 'undefined'){
+    alert('Payment system is still loading — please try again in a moment.');
+    return;
+  }
+
+  const btn = document.getElementById('rzpPayBtn');
+  const btnText = document.getElementById('rzpPayBtnText');
+  btn.disabled = true;
+  btnText.textContent = 'Opening secure checkout…';
+
+  const rzp = new Razorpay({
+    key: RAZORPAY_KEY_ID,
+    amount: 300, // $3.00 in cents (smallest currency unit)
+    currency: 'USD',
+    name: 'Upcore Technologies',
+    description: 'AI Operations Plug-and-Play Toolkit — Lifetime Access',
+    image: 'https://www.upcoretech.com/upcore-logo.png',
+    prefill: { name: name, email: email },
+    theme: { color: '#21D2ED' },
+    handler: function(response){
+      notifyTeamOfPurchase(name, email, response.razorpay_payment_id);
+      document.getElementById('rzpForm').style.display = 'none';
+      document.getElementById('rzpSuccessEmail').textContent = email;
+      document.getElementById('rzpSuccess').style.display = 'block';
+      if(window.dataLayer){ window.dataLayer.push({event:'ai_ops_toolkit_purchase', value:3, currency:'USD'}); }
+    },
+    modal: {
+      ondismiss: function(){
+        btn.disabled = false;
+        btnText.textContent = 'Pay $3 & get instant access';
+      }
+    }
+  });
+
+  rzp.on('payment.failed', function(response){
+    btn.disabled = false;
+    btnText.textContent = 'Pay $3 & get instant access';
+    alert('Payment failed: ' + (response.error && response.error.description ? response.error.description : 'please try again.'));
+  });
+
+  rzp.open();
+}
+</script>
+
 <script src="/chat-widget.js?v=12" defer></script>
 <script src="/cta-tracking.js?v=1" defer></script>
 </body>

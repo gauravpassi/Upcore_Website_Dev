@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-08-25 — ai-operations.html: Razorpay checkout wired into the #get section
+**Type:** feature
+**Files:** `ai-operations.html`
+Replaced the dead self-referencing `href="#get"` anchor inside the `#get` section with a real payment flow: a small name/email form, client-side Razorpay Checkout (`checkout.js`, $3.00 USD, no backend/order-creation needed), a success state, and a FormSubmit POST notifying the team (payment ID + email) for manual Kit-access fulfillment — matching the site's existing FormSubmit convention. Verified end-to-end in-browser: email validation, Razorpay modal opening, and its failure path (with a placeholder key, Razorpay correctly shows its own invalid-key error and the button re-enables on dismiss) — zero JS errors.
+
+**Not yet done — blocking real payments:** `RAZORPAY_KEY_ID` in the script is a placeholder (`rzp_live_REPLACE_WITH_YOUR_KEY_ID`) pending the real Key ID from the user's Razorpay Dashboard. **Also unconfirmed: whether International/Export payments (needed for USD) are enabled on this Razorpay account** — if not, the currency needs to change to INR or that feature needs enabling first. Not pushed to production (`origin`) for this reason — shipping a placeholder key live would show real customers a broken checkout. Committed to `main`/`dev` only.
+
+---
+
 ## 2026-08-25 — ai-operations.html replaced verbatim with user-supplied file, tracking restored
 **Type:** content / fix
 **Files:** `ai-operations.html`

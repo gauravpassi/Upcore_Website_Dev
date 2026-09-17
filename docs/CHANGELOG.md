@@ -35,6 +35,15 @@ User flagged the live dev deploy of `/ai-operations` as looking inconsistent wit
 
 ---
 
+## 2026-09-17 — Switch every Calendly booking link/embed to Google Calendar Appointment Scheduling
+**Type:** decision / fix
+**Files:** `chat-widget.js` (bumped cache-buster to `?v=13` across all 72 non-demo pages in the same commit), `assessment.html`, `lp/maturity-review.html`, `contact.html`, `privacy.html`, `terms.html`, `docs/FEATURES.md`, `docs/ARCHITECTURE.md`, `docs/ad-brief-governance-index.md`, `docs/ad-brief-ai-maturity-index.md`
+Explicit user instruction, reversing the 2026-07-29 Calendly switch. All four real Calendly integrations replaced with the same Google Calendar link (`calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn`): the sitewide "Book a Governance Review" modal (`chat-widget.js`), the inline widgets on `assessment.html` and `lp/maturity-review.html` (now a plain iframe, no external widget.js), and `contact.html`'s "Book a Discovery Session" link (short link `calendar.app.google/CzXYWP3MTZfaED2A8`). Privacy/terms policy language and technical docs updated to describe Google Calendar as the actual data processor.
+
+**Two real regressions, not fixed, flagged in FEATURES.md/ARCHITECTURE.md and both ad-brief docs:** (1) the primary Google Ads conversion (`AW-16546427858/_Q5SCO7LodgcENLn-dE9`) fired on Calendly's `calendly.event_scheduled` postMessage event on real completed bookings only — Google Calendar's public scheduling iframe has no documented equivalent, so that conversion tag no longer fires at all from this modal. (2) The two live-ad-campaign funnels (`lp/governance-index.html`, `lp/ai-maturity-index.html`) used distinct Calendly event slugs (`ai-governance-review` vs `ai-strategy-review`) specifically to attribute bookings back to the right campaign — one shared Google Calendar link means that per-funnel attribution is gone. Both need a real fix (a different observable completion signal, or per-funnel Google Calendar links) before this is back to where it was.
+
+---
+
 ## 2026-08-25 — Homepage hero redesign + sitewide glass nav / glow footer / aurora background
 **Type:** feature
 **Files:** `index.html` (hero), all ~73 non-bespoke pages (`nav`/`footer`/`body` chrome), `docs/DESIGN-SYSTEM-V3.md`

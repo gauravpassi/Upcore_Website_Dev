@@ -13,7 +13,7 @@ A free, 2-minute, 10-question interactive diagnostic quiz. Visitor answers quest
 
 **What the quiz measures:** AI portfolio coordination maturity across **10 dimensions** — Vision, Ownership, Inventory, Coordination, ROI, Budget, Visibility, Tooling, Adoption, Oversight.
 
-**Funnel:** Ad → this page → quiz (10 Q) → email gate → instant score + PDF download → optional 45-min call booked via Calendly (`ai-strategy-review` event) → dedicated booking page at `/lp/maturity-review` ("AI Portfolio Value Review").
+**Funnel:** Ad → this page → quiz (10 Q) → email gate → instant score + PDF download → optional call booked via Google Calendar Appointment Scheduling (switched from Calendly 2026-09-17) → dedicated booking page at `/lp/maturity-review` ("AI Portfolio Value Review"). The dedicated `ai-strategy-review` event that distinguished this funnel's bookings from the Governance Index funnel's no longer exists — both now share one Google Calendar link.
 
 **Relationship to the sibling page:** This is the COO/CFO-facing counterpart to `/lp/governance-index` (the CTO/CISO-facing engineering governance quiz). Same mechanics, different buyer and different measured dimensions — keep visual language consistent with that page's design system, but this one skews slightly more "executive scorecard" than "engineering console."
 
@@ -185,7 +185,7 @@ Vision · Ownership · Inventory · Coordination · ROI · Budget · Visibility 
 
 - Quiz start → in-page (no URL change)
 - "Skip to booking a call" / nav CTA → `/lp/maturity-review` (dedicated "AI Portfolio Value Review" booking page — NOT the same booking page as the governance quiz)
-- Calendly event used downstream: `calendly.com/saswata-upcoretechnologies/ai-strategy-review` (45 min) — this page has its **own** Calendly event, distinct from governance's `ai-governance-review`
+- Booking mechanism used downstream: Google Calendar Appointment Scheduling (shared link, `calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn`) — replaced the dedicated Calendly event on 2026-09-17. This funnel no longer has its own distinct booking event — it shares the same Google Calendar link as the Governance Index funnel.
 - **robots.txt note:** `/lp/` is disallowed under the generic `User-agent: *` block (deliberate — keeps these pages out of search). Google's AdsBot ignores that wildcard block and crawls `/lp/` fine, so ads still get approved — but Google also can't read the page to auto-generate assets for you. Supply all headlines/descriptions/images manually in Google Ads and turn off automatically-created assets / final URL expansion for these campaigns.
 - Google Ads conversion action: "AI Maturity Index — Assessment Complete"
 - Healthcare-segment traffic detection: UTM params containing `healthtech` or `healthcare` trigger an extra compliance-deadline line in the "Why Now" section

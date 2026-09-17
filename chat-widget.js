@@ -741,25 +741,21 @@
 
 })();
 
-// ── Governance Calendar (Calendly modal) ──────────────────────────────────
-// Calendly is embedded in our own modal chrome (not their popup widget) so
-// the "Book a Governance Review" experience looks identical everywhere. Its
-// postMessage API (unlike Google Calendar's appointment scheduler) exposes a
-// real "calendly.event_scheduled" event, letting us fire the Google Ads
-// primary conversion only on an actually-completed booking.
+// ── Governance Calendar (Google Calendar modal) ────────────────────────────
+// Switched from Calendly to Google Calendar Appointment Scheduling (2026-09-17).
+// KNOWN GAP: Calendly's postMessage API exposed a real "calendly.event_scheduled"
+// event, which fired the Google Ads primary conversion only on an actually-
+// completed booking. Google Calendar's scheduling iframe has no documented
+// equivalent completion event, so that listener is removed below and the
+// AW-16546427858/_Q5SCO7LodgcENLn-dE9 conversion no longer fires from this
+// modal. Needs a real fix (e.g. a Google Calendar "push" notification webhook,
+// or switching this conversion to fire on a different, real signal) before
+// this ad-spend conversion tracking is trustworthy again.
 (function () {
-  var CAL_URL = 'https://calendly.com/saswata-upcoretechnologies/ai-governance-review';
+  var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
 
   var overlay = null;
   var calIframe = null;
-
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://calendly.com') return;
-    if (!e.data || e.data.event !== 'calendly.event_scheduled') return;
-    if (typeof gtag === 'function') {
-      gtag('event', 'conversion', { send_to: 'AW-16546427858/_Q5SCO7LodgcENLn-dE9' });
-    }
-  });
 
   function buildModal() {
     overlay = document.createElement('div');
@@ -825,7 +821,7 @@
   function openModal() {
     if (!overlay) buildModal();
     if (calIframe && !calIframe.src) {
-      calIframe.src = CAL_URL + '?embed_domain=' + window.location.hostname + '&embed_type=Inline';
+      calIframe.src = CAL_URL;
     }
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';

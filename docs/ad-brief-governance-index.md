@@ -13,7 +13,7 @@ A free, 2-minute, 10-question interactive diagnostic quiz. Visitor answers quest
 
 **What the quiz measures:** AI code governance maturity across 5 layers — **Align, Accelerate, Protect, Comply, Optimise** (the "L1–L5" framework, same one used in the main flagship page `/ai-engineering-governance`).
 
-**Funnel:** Ad → this page → quiz (10 Q) → email gate → instant score + PDF download → optional 45-min call booked via Calendly (`ai-governance-review` event).
+**Funnel:** Ad → this page → quiz (10 Q) → email gate → instant score + PDF download → optional call booked via Google Calendar Appointment Scheduling (switched from Calendly 2026-09-17 — see note near the bottom of this doc: the dedicated `ai-governance-review` event name, used to distinguish this funnel's bookings from the AI Maturity Index funnel's, no longer exists; both funnels now share one Google Calendar link).
 
 ---
 
@@ -185,7 +185,7 @@ L1 Align · L2 Accelerate · L3 Protect · L4 Comply · L5 Optimise
 
 - Quiz start → in-page (no URL change)
 - "Skip to booking a call" / nav CTA → `/assessment`
-- Calendly event used downstream: `calendly.com/saswata-upcoretechnologies/ai-governance-review` (45 min)
+- Booking mechanism used downstream: Google Calendar Appointment Scheduling (shared link, `calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn`) — replaced the dedicated Calendly event on 2026-09-17; no per-funnel event distinction anymore, see §16 above.
 - **robots.txt note:** `/lp/` is disallowed under the generic `User-agent: *` block (deliberate — keeps these pages out of search). Google's AdsBot ignores that wildcard block and crawls `/lp/` fine, so ads still get approved — but Google also can't read the page to auto-generate assets for you. Supply all headlines/descriptions/images manually in Google Ads and turn off automatically-created assets / final URL expansion for these campaigns.
 - Google Ads conversion action: "Governance Index — Assessment Complete"
 

@@ -1141,4 +1141,5 @@ a.card:active{transform:translateY(-1px);transition-duration:.1s;}
 .consent-btns button[data-consent="granted"]{background:var(--band);color:#fff;}
 .consent-btns button:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
 html.consent-open .mcta{visibility:hidden;}
+@media (max-width:560px){html.consent-open #upcore-chat-btn,html.consent-open #upcore-chat-badge{visibility:hidden;}}
 @media (max-width:560px){.consent{left:12px;right:12px;bottom:12px;width:auto;}}

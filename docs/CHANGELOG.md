@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — Homepage rethink (CRO/UX) + new /results page (dev)
+**Type:** feature (structure + design)
+**Files:** `tools/v4-build/build_home.py` (new), `tools/v4-build/build_results.py` (new), `index.html`, `results.html` (new), `tools/v4-build/chrome.py` (menu: Results replaces How we engage; `spine`/`main_cls` options), `css/upcore-v5.css` (calm block), `js/upcore-v5.js` (PR-gate animation), `sitemap.xml`
+Feedback: "information overload". After a 10-competitor teardown (Thoughtworks, Fractional AI, Tribe, Distyl, V2 AI, Factory, Qodo, CodeRabbit, LinearB, Faros) the homepage became one story with one action: hero with an animated pull-request gate artifact + proof strip, problem, four checkpoints with mini artifacts, number-led anonymised proof + one quote, the pilot, a compact router, four objection FAQs, final CTA with the people you'll meet and the assessment as the only secondary action. 15,833px/2,176 words/12 sections -> 6,758px/746 words/8 sections. Depth moved to /ai-native-engineering and the new /results (all nine anonymised results + all testimonials). Decisions: artifact hero, anonymous-but-specific proof, assessment as 2nd action, full site consolidation to follow page by page.
+
 ## 2026-10-06 — V5 "Flow" redesign of the V4 pages (dev)
 **Type:** feature (design)
 **Files:** `css/upcore-v5.css` (new), `js/upcore-v5.js` (new), `tools/v4-build/flow.py` (new), `tools/v4-build/{build_v41,segments,segment_copy,v4parts,tools,chrome}.py`, the six V4 pages, `docs/DESIGN-SYSTEM-V4.md`

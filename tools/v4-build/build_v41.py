@@ -1,4 +1,4 @@
-"""Build the V4.1 homepage (AI-Native Engineering flagship) and the AI-Native Engineering page.
+"""Build the AI-Native Engineering page (the homepage moved to build_home.py).
 Post-audit version (2026-10-06): CRO, copy, design/motion and GTM fixes applied."""
 import os, sys, re, html as H
 sys.path.insert(0, os.path.dirname(__file__))
@@ -211,33 +211,7 @@ ROUTER = ('<p class="router" data-reveal style="--d:5">Not leading an engineerin
           f'<a href="{C.URL["ecommerce-retail"]}">ecommerce &amp; retail</a>, <a href="{C.URL["operations-heavy"]}">operations-heavy businesses</a> '
           f'and <a href="{C.URL["professional-services"]}">professional services firms</a>.</p>')
 
-# ===================================================================== HOME
-home = '\n'.join([
-    f'''<section class="hero hero--flow" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
-<p class="badge" data-reveal><i aria-hidden="true"></i><span><b>AI-Native Engineering</b><span class="opt"> for CTOs and CIOs</span></span></p>
-<h1 id="hero-h" class="t-hero" data-split>AI writes the code. <span class="hl">Your architecture stays in charge.</span></h1>
-<p class="t-lead" data-reveal style="--d:3">Upcore installs a governed delivery pipeline inside your Jira or Linear, GitHub and CI/CD, and embeds a Claude Certified Architect to run it with your team. Every AI-written change is checked against your architecture, gated and risk-scored. Start with a pilot on one team.</p>
-<div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pipeline">See the pipeline</a></div>
-<p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>
-{ROUTER}
-</div>{hero_flow()}</section>''',
-    TRUST,
-    vs_section(NB('Vibe coding is not <span class="ul-draw">AI-native engineering.</span>')),
-    pipeline(compact=True, link=True),
-    engage(),
-    proof_band([('AI-Native Engineering', ENG_PROOF), ('Business Process Automation', OPS_PROOF)], 'Shipped, <span class="hl">and still running.</span>', 'Engineering and automation work in production for clients in the US, UK, South Africa and India.'),
-    F.suite(order=['loop', 'ladder', 'matrix', 'compress'], lead='Four working models behind every engagement, each grounded in established research. They govern how agents behave, how much autonomy they earn, what we automate and where the time comes back.'),
-    TL.stack(TL.HOME, 'Integrations', 'Runs inside the stack <span class="ul-draw">you have today.</span>', 'Pipelines and agents connect to your planning, code, CI/CD, cloud and business systems, and to the AI models your teams already use. No rip-and-replace.', sid='integrations'),
-    beyond(),
-    F.controls(),
-    faq_sec(HOME_FAQ, 'What engineering leaders <span class="ul-draw">want to know.</span>', 'Not covered here? Ask Gaurav or Saswata on the discovery call.'),
-    cta('Make AI-written code something <span class="hl">your architects can sign off on.</span>', 'Book a 45-minute discovery call. We&rsquo;ll review your current delivery process and outline what a pilot on one team would look like.',
-        '/lp/governance-index', 'Get your AI Governance Score in 2 minutes', 'home', leaders=True),
-])
-ld = C.graph('home', [{'@type': 'WebSite', '@id': C.SITE + '/#website', 'url': C.SITE + '/', 'name': 'Upcore Technologies', 'publisher': {'@id': C.ORG_ID}}])
-print('home', C.write('index.html', 'home', 'AI-Native Engineering &amp; Automation | Upcore Technologies',
-      'Governed AI-native software delivery inside Jira or Linear, GitHub and CI/CD, plus AI agents for the operations around your product. ISO 27001 certified.',
-      home, active='home', ld=ld, group='home'))
+# The homepage is built by build_home.py (2026-10-06 rethink); this file builds the AI-Native Engineering page.
 
 # ===================================================================== AINE PAGE
 aine = '\n'.join([

@@ -164,6 +164,55 @@
   $$('[data-marquee]').forEach(offWatch);
   $$('.cta-band').forEach(offWatch);
 
+
+  /* ------------------------------------------------------------ hero artifact: pull-request gate (homepage) */
+  $$('[data-gate]').forEach(function (fig) {
+    var G = function (k) { return $('[data-g="' + k + '"]', fig); };
+    var lis = $$('.gate-checks li', fig), meter = $('.meter i', fig), toggle = $('.gate-toggle', fig);
+    var SC = [
+      { repo: 'payments-service', pr: 'PR #418', title: 'Add partial refunds to checkout', branch: 'main \u2190 feat/refunds',
+        c: [['ok', 'PAY-418 \u00b7 template complete'], ['ok', 'ADR-012 \u00b7 API v2 conventions'], ['ok', 'SAST \u00b7 0 findings'], ['ok', '87% \u00b7 threshold 80%']],
+        risk: 12, riskT: '12 \u00b7 Low', hi: false, tag: 'Auto-merged', out: 'Within your threshold \u00b7 decision logged' },
+      { repo: 'identity-service', pr: 'PR #77', title: 'Refactor session handling', branch: 'main \u2190 chore/sessions',
+        c: [['ok', 'AUTH-77 \u00b7 template complete'], ['fail', 'Shared auth module outside spec'], ['ok', 'SAST \u00b7 0 findings'], ['ok', '91% \u00b7 threshold 80%']],
+        risk: 78, riskT: '78 \u00b7 High', hi: true, tag: 'Held', out: 'Above your threshold \u00b7 architect review requested' }
+    ];
+    if (reduce) { if (toggle) toggle.hidden = true; return; }
+    var paused = false, off = false, k = 0;
+    var sleep = function (ms) {
+      return new Promise(function (res) {
+        var left = ms, last = performance.now();
+        (function tick(now) {
+          if (!paused && !off && !document.hidden) left -= now - last;
+          last = now;
+          if (left <= 0) res(); else requestAnimationFrame(tick);
+        })(last);
+      });
+    };
+    async function run() {
+      await sleep(900);
+      for (;;) {
+        var s = SC[k++ % SC.length];
+        G('repo').textContent = s.repo; G('pr').textContent = s.pr; G('title').textContent = s.title; G('branch').textContent = s.branch;
+        lis.forEach(function (li, i) { li.className = 'wait'; G('c' + i).textContent = s.c[i][1]; });
+        meter.style.setProperty('--v', '0%'); fig.classList.toggle('is-hi', s.hi); G('risk').textContent = '\u2014';
+        var ow = G('outwrap'); ow.classList.add('is-hidden');
+        await sleep(500);
+        for (var i = 0; i < lis.length; i++) { lis[i].className = 'run'; await sleep(520); lis[i].className = s.c[i][0]; await sleep(140); }
+        meter.style.setProperty('--v', s.risk + '%'); await sleep(900);
+        G('risk').textContent = s.riskT;
+        G('tag').textContent = s.tag; G('out').textContent = s.out;
+        ow.classList.toggle('hold', s.hi); ow.classList.toggle('ok', !s.hi); ow.classList.remove('is-hidden');
+        await sleep(s.hi ? 3600 : 3000);
+      }
+    }
+    if (hasIO) new IntersectionObserver(function (es) { es.forEach(function (e) { off = !e.isIntersecting; }); }).observe(fig);
+    if (toggle) toggle.addEventListener('click', function () {
+      paused = !paused; toggle.textContent = paused ? 'Play' : 'Pause'; toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+    });
+    run();
+  });
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

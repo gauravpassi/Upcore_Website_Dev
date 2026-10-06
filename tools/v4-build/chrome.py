@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 8          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 9          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 17    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
@@ -16,11 +16,13 @@ PREVIEW_URL = {
     'home': '/preview/home-v4', 'aine': '/preview/ai-native-engineering',
     'tech-software': '/preview/who-we-help-tech-software', 'ecommerce-retail': '/preview/who-we-help-ecommerce-retail',
     'operations-heavy': '/preview/who-we-help-operations-heavy', 'professional-services': '/preview/who-we-help-professional-services',
+    'results': '/preview/results',
 }
 FINAL_URL = {
     'home': '/', 'aine': '/ai-native-engineering',
     'tech-software': '/who-we-help/tech-software', 'ecommerce-retail': '/who-we-help/ecommerce-retail',
     'operations-heavy': '/who-we-help/operations-heavy', 'professional-services': '/who-we-help/professional-services',
+    'results': '/results',
 }
 URL = dict(FINAL_URL if LIVE else PREVIEW_URL)
 URL.update({'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/ai-adoption-strategy'})
@@ -69,7 +71,7 @@ def nav(active=''):
       <li><a class="flag" href="{URL['aine']}"{cur('aine')}>AI-Native Engineering</a></li>
       <li><button type="button" aria-expanded="false" aria-controls="drop-solutions">Solutions {CHEV}</button><div class="drop" id="drop-solutions">{sol}</div></li>
       <li><button type="button" aria-expanded="false" aria-controls="drop-who">Who we help {CHEV}</button><div class="drop" id="drop-who">{seg}</div></li>
-      <li><a href="{URL['aine']}#engagement">How we engage</a></li>
+      <li><a href="{URL['results']}"{cur('results')}>Results</a></li>
       <li><a href="/about">About</a></li>
     </ul></nav>
     <div class="nav-cta">
@@ -90,7 +92,7 @@ def footer():
       <nav class="foot-nav" aria-label="Footer">
         <div><h2 class="foot-h">Solutions</h2><ul>{sol}</ul></div>
         <div><h2 class="foot-h">Who we help</h2><ul>{seg}</ul></div>
-        <div><h2 class="foot-h">Company</h2><ul><li><a href="/about">About</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/security">Security</a></li></ul></div>
+        <div><h2 class="foot-h">Company</h2><ul><li><a href="/about">About</a></li><li><a href="/results">Results</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/security">Security</a></li></ul></div>
         <div><h2 class="foot-h">Legal</h2><ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><button type="button" class="foot-link" data-consent-open>Cookie settings</button></li></ul></div>
       </nav>
     </div>
@@ -138,7 +140,7 @@ def graph(key, nodes, crumb=None):
     return {'@context': 'https://schema.org', '@graph': g}
 
 
-def write(fname, key, title, meta, body, active='', ld=None, og=None, group='page', annc_kind=ANNC_ENG):
+def write(fname, key, title, meta, body, active='', ld=None, og=None, group='page', annc_kind=ANNC_ENG, spine=True, main_cls=''):
     canon = SITE + FINAL_URL[key]
     ld_tag = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n' if ld else ''
     robots = '<meta name="robots" content="index, follow, max-image-preview:large" />\n<link rel="canonical" href="' + canon + '" />' if LIVE else '<meta name="robots" content="noindex, nofollow" />'
@@ -179,8 +181,8 @@ def write(fname, key, title, meta, body, active='', ld=None, og=None, group='pag
 <a class="skip" href="#main">Skip to content</a>
 {annc(annc_kind, key)}
 {nav(active)}
-<main id="main" class="flow-main">
-<div class="spine" aria-hidden="true"><span class="spine-fill"></span></div>
+<main id="main" class="flow-main{(' ' + main_cls) if main_cls else ''}">
+{'<div class="spine" aria-hidden="true"><span class="spine-fill"></span></div>' if spine else ''}
 {body_html}
 </main>
 {footer()}

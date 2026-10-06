@@ -55,6 +55,14 @@ Built by `frameworks.py` (generator, kept outside the repo) into static HTML; an
 | The effort principle | Consumer behaviour | `.ef` customer steps before/after + effort meter | Dixon, Freeman & Toman, HBR 2010 |
 Homepage shows four as an auto-advancing tab suite (`[data-fw]`, pauses on hover, stops on click). Segment pages show one each (`.fw-single`): ecommerce → effort, operations-heavy → compression, professional services → ladder, tech → loop.
 
+## Motion rules (post-audit)
+- State class for running steps is `is-run` (never `run`; `.run` is the hero panel).
+- Every looping region pauses off-screen (`.is-off`), when the tab is hidden, and via its Pause button (`.run-toggle`). Loops settle: CTA pulse twice, then rest.
+- Animate `transform`/`opacity`/`clip-path` only. The spotlight moves via `translate3d`, the pipeline fill via `scaleY(--pp)`, the ladder meter via `scaleX(--ev)`.
+- Framework panels are stacked in one grid cell (`.fw-stage`) so tab changes never shift the page; autoplay is off on touch and stops on focus.
+- Reveal travel 14px, 0.7s, `--ease-out`. Hero items animate on load (no opacity fade) so the LCP is not delayed. The headline word reveal waits for fonts (`.fonts-ready`, 700ms cap).
+- Surfaces: one dark color (`--band`) for bands, footer, announcement and flagship card. Rounded bands float with equal inset. Consecutive white sections share a hairline (no paper/grey sections).
+
 ## Accessibility & performance checklist
 - Contrast: all text tokens ≥ 4.5:1 on their surface; focus ring `--focus`.
 - Each animated visual has `role="img"` + `aria-label`; tabs are real `role="tab"` with arrow-key support.

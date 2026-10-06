@@ -57,6 +57,43 @@
       a: 'ISO 27001, ISO 9001, and CMMI Level 3 &mdash; plus a 5.0 rating on Clutch. <a href="/security" target="_blank" rel="noopener">Full details on our Security page &rarr;</a>' }
   ];
 
+  // V4.1 pages (html.v4): AI-Native Engineering-led answers, no published prices.
+  if (document.documentElement.classList.contains('v4')) {
+    var PRE = location.pathname.indexOf('/preview') === 0;
+    var AINE_URL = PRE ? '/preview/ai-native-engineering' : '/ai-native-engineering';
+    var HOME_URL = PRE ? '/preview/home-v4' : '/';
+    INITIAL_MESSAGE = "Hi, I'm Kai. Tap a question for an instant answer, or type your own and I'll pass it to our team for a personal reply.";
+    CATEGORIES = [
+      { id: 'aine', icon: '\uD83E\uDDED', label: 'AI-Native Engineering' },
+      { id: 'auto', icon: '\u2699\uFE0F', label: 'Automation' },
+      { id: 'cost', icon: '\uD83D\uDCC4', label: 'Cost & engagement' },
+      { id: 'trust', icon: '\uD83D\uDD12', label: 'Trust & security' },
+      { id: 'talk', icon: '\uD83D\uDCDE', label: 'Talk to a person' }
+    ];
+    FAQ = [
+      { id: 'aine-what', cat: 'aine', popular: true, q: 'What is AI-Native Engineering?',
+        a: 'A governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: spec templates, architecture guardrails, automated gates, risk-scored merges and feature-flagged releases, with every deviation logged for leadership. A senior architect works inside the pipeline with your team. <a href="' + AINE_URL + '">See the pipeline &rarr;</a>' },
+      { id: 'aine-copilot', cat: 'aine', q: 'How is it different from Copilot or Cursor?',
+        a: 'Those tools generate code. AI-native engineering is the delivery process around them, so AI-written code can be trusted without a senior engineer reading every line.' },
+      { id: 'aine-pilot', cat: 'aine', popular: true, q: 'How does a pilot work?',
+        a: 'One team, one service, a real backlog. We agree success measures against your current process, install the pipeline end to end and review the results with you before any wider rollout. <a href="' + AINE_URL + '#engagement">How we engage &rarr;</a>' },
+      { id: 'auto-what', cat: 'auto', popular: true, q: 'Do you also automate business operations?',
+        a: 'Yes. AI agents run follow-ups, documents, reconciliations and customer updates inside your CRM, ERP, email and messaging tools, with people approving what matters. <a href="/platform">Explore the agent library &rarr;</a>' },
+      { id: 'auto-who', cat: 'auto', q: 'Which businesses do you help?',
+        a: 'Tech and software companies, ecommerce and retail brands, operations-heavy mid-market businesses, and professional services firms such as accounting, law, wealth and staffing. <a href="' + HOME_URL + '#segments">See who we help &rarr;</a>' },
+      { id: 'cost-how', cat: 'cost', popular: true, q: 'How much does it cost?',
+        a: "We don't publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded senior architect. Automation is scoped per workflow. After the discovery call you get a written proposal with a fixed scope and price." },
+      { id: 'cost-speed', cat: 'cost', q: 'How fast can you start?',
+        a: 'Our standard is a first agent live within 30 days of design sign-off. Engineering pilots start with one team and one service, with success measures agreed up front.' },
+      { id: 'cost-call', cat: 'cost', q: 'What happens on the discovery call?',
+        a: '45 minutes on your current process and highest-value opportunities. You get a written plan you can act on, whether or not we work together.' },
+      { id: 'trust-security', cat: 'trust', popular: true, q: 'Is our code and data secure?',
+        a: 'Code stays in your repositories, agents run with scoped, revocable permissions and every action is logged. Model providers are configured so your data is not used to train their models. Our security and quality management are certified to ISO 27001 and ISO 9001, and we deliver to CMMI Level 3 processes. <a href="/security">Security details &rarr;</a>' },
+      { id: 'trust-certs', cat: 'trust', q: 'What certifications do you hold?',
+        a: 'ISO 27001, ISO 9001 and CMMI Level 3, with 5.0 ratings on Clutch and DesignRush. <a href="/security">Details &rarr;</a>' }
+    ];
+  }
+
   function faqById(id) { for (var i = 0; i < FAQ.length; i++) if (FAQ[i].id === id) return FAQ[i]; return null; }
   function faqByCat(catId) { return FAQ.filter(function (f) { return f.cat === catId; }); }
   function popularFaq() { return FAQ.filter(function (f) { return f.popular; }); }
@@ -601,6 +638,9 @@
       onClick: function () {
         var a = document.createElement('a');
         a.href = '#book-governance';
+        a.setAttribute('data-gtm-cta', 'book-a-discovery-call');
+        a.setAttribute('data-gtm-cta-type', 'primary');
+        a.setAttribute('data-gtm-cta-section', 'chat_widget');
         document.body.appendChild(a);
         a.click();
         a.remove();
@@ -710,8 +750,13 @@
         'Page': window.location.href,
         'Source': 'Website Chat Widget (Kai) — Custom Question'
       })
-    }).catch(function () {}).then(function () {
+    }).then(function (r) { return !!(r && r.ok); }).catch(function () { return false; }).then(function (ok) {
       hideTyping();
+      if (!ok) {
+        addBanner('\u26A0\uFE0F', 'Message not sent', 'Please email ' + LEAD_EMAIL + ' and we will reply within one business day.');
+        return;
+      }
+      if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_source: 'chat_widget', page_path: location.pathname });
       addBanner('📨', 'Message Sent!', "We'll reply to your question by email within 24 hours.");
       var q = pendingQuestion, n = pendingName, e = pendingEmail;
       pendingQuestion = ''; pendingName = ''; pendingEmail = '';
@@ -754,93 +799,92 @@
 (function () {
   var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
 
-  var overlay = null;
-  var calIframe = null;
+  var overlay = null, calIframe = null, closeBtn = null, returnFocus = null, ctx = {}, openedAt = 0, engaged = false, loads = 0;
+  function track(n, p) {
+    p = Object.assign({ page_path: location.pathname }, ctx, p || {});
+    if (typeof gtag === 'function') gtag('event', n, p);
+    if (typeof clarity === 'function') clarity('event', n);
+  }
+  function setInert(on) { [].forEach.call(document.body.children, function (el) { if (el !== overlay) el.inert = on; }); }
 
   function buildModal() {
     overlay = document.createElement('div');
     overlay.id = '_gov_cal_overlay';
     overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Book a Discovery Call');
-    overlay.style.cssText = [
-      'position:fixed;inset:0;z-index:999999;',
-      'background:rgba(10,10,10,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);',
-      'display:none;align-items:center;justify-content:center;',
-      'padding:16px;box-sizing:border-box;'
-    ].join('');
-
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(7,26,38,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;';
     var box = document.createElement('div');
-    box.style.cssText = [
-      'background:#fff;border-radius:14px;overflow:hidden;',
-      'width:min(820px,100%);height:min(700px,90vh);',
-      'display:flex;flex-direction:column;',
-      'box-shadow:0 24px 80px rgba(0,0,0,.5);'
-    ].join('');
-
+    box.style.cssText = 'background:#fff;border-radius:16px;overflow:hidden;width:min(820px,100%);height:min(720px,92vh);display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.45);';
     var hdr = document.createElement('div');
-    hdr.style.cssText = [
-      'background:#0a0a0a;padding:13px 18px;flex-shrink:0;',
-      'display:flex;align-items:center;justify-content:space-between;gap:12px;'
-    ].join('');
-
+    hdr.style.cssText = 'background:#071A26;padding:12px 16px 12px 18px;flex-shrink:0;display:flex;align-items:center;gap:12px;';
     var dot = document.createElement('span');
-    dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#0ABFCC;flex-shrink:0;';
-
-    var lbl = document.createElement('span');
+    dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#21D2ED;flex-shrink:0;';
+    var txt = document.createElement('div');
+    txt.style.cssText = 'flex:1;min-width:0;';
+    var lbl = document.createElement('div');
     lbl.textContent = 'Book a Discovery Call';
-    lbl.style.cssText = 'color:#fff;font:600 13px/1 "DM Sans",system-ui,sans-serif;flex:1;';
-
-    var cls = document.createElement('button');
-    cls.innerHTML = '&#x2715;';
-    cls.setAttribute('aria-label', 'Close');
-    cls.style.cssText = [
-      'background:none;border:none;cursor:pointer;padding:2px 8px;',
-      'color:rgba(255,255,255,.5);font-size:20px;line-height:1;'
-    ].join('');
-    cls.onclick = closeModal;
-
-    hdr.appendChild(dot);
-    hdr.appendChild(lbl);
-    hdr.appendChild(cls);
-
+    lbl.style.cssText = 'color:#fff;font:600 14px/1.3 Geist,"DM Sans",system-ui,sans-serif;';
+    var sub = document.createElement('div');
+    sub.textContent = '45 minutes · a written plan, whether or not we work together';
+    sub.style.cssText = 'color:#9AAEB8;font:400 12px/1.4 Geist,"DM Sans",system-ui,sans-serif;margin-top:2px;';
+    txt.appendChild(lbl); txt.appendChild(sub);
+    closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.innerHTML = '&#x2715;';
+    closeBtn.setAttribute('aria-label', 'Close booking');
+    closeBtn.style.cssText = 'background:none;border:1px solid rgba(255,255,255,.18);border-radius:999px;cursor:pointer;width:32px;height:32px;color:#E6EEF1;font-size:15px;line-height:1;';
+    closeBtn.onclick = closeModal;
+    hdr.appendChild(dot); hdr.appendChild(txt); hdr.appendChild(closeBtn);
     calIframe = document.createElement('iframe');
-    calIframe.setAttribute('title', 'Book a Discovery Call');
+    calIframe.setAttribute('title', 'Book a Discovery Call: Google Calendar scheduling');
     calIframe.setAttribute('frameborder', '0');
     calIframe.style.cssText = 'flex:1;width:100%;border:none;display:block;';
-
-    box.appendChild(hdr);
-    box.appendChild(calIframe);
+    calIframe.addEventListener('load', function () { if (++loads > 1) track('booking_iframe_navigated', { load_count: loads }); });
+    box.appendChild(hdr); box.appendChild(calIframe);
     overlay.appendChild(box);
     document.body.appendChild(overlay);
-
-    overlay.addEventListener('click', function (e) {
-      if (e.target === overlay) closeModal();
-    });
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
   }
 
-  function openModal() {
+  function openModal(trigger) {
     if (!overlay) buildModal();
-    if (calIframe && !calIframe.src) {
-      calIframe.src = CAL_URL;
-    }
+    returnFocus = trigger || document.activeElement;
+    ctx = { cta_id: (trigger && trigger.getAttribute('data-gtm-cta')) || 'book-a-discovery-call', cta_section: (trigger && trigger.getAttribute('data-gtm-cta-section')) || 'unknown' };
+    engaged = false; openedAt = Date.now();
+    if (calIframe && !calIframe.src) calIframe.src = CAL_URL;
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    setInert(true);
+    closeBtn.focus();
+    track('booking_modal_open');
   }
 
   function closeModal() {
-    if (!overlay) return;
+    if (!overlay || overlay.style.display !== 'flex') return;
     overlay.style.display = 'none';
     document.body.style.overflow = '';
+    setInert(false);
+    track('booking_modal_close', { open_seconds: Math.round((Date.now() - openedAt) / 1000), iframe_engaged: engaged ? 'yes' : 'no' });
+    var f = returnFocus && document.contains(returnFocus) ? returnFocus : (document.getElementById('upcore-chat-btn') || document.body);
+    if (f && f.focus) f.focus();
   }
 
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeModal();
+  window.addEventListener('blur', function () {
+    setTimeout(function () {
+      if (!engaged && overlay && overlay.style.display === 'flex' && document.activeElement === calIframe) {
+        engaged = true;
+        track('booking_iframe_engaged', { seconds_to_engage: Math.round((Date.now() - openedAt) / 1000) });
+      }
+    }, 0);
   });
+
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
   document.addEventListener('click', function (e) {
     var anchor = e.target.closest('a[href="#book-governance"]');
     if (!anchor) return;
     e.preventDefault();
-    openModal();
+    openModal(anchor);
   });
 })();

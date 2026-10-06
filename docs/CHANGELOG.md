@@ -12,6 +12,19 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — V4.1 preview: multi-discipline audit applied (CRO, copy, UI/UX, motion, GTM)
+**Type:** fix / feature (preview pages + two sitewide scripts)
+**Files:** `preview/*.html` (now extensionless URLs `/preview/home-v4` etc.), `css/upcore-v4.css`, `js/upcore-v4.js`, new `js/v4-analytics.js`, `cta-tracking.js` (v2), `chat-widget.js` (v15), `docs/DESIGN-SYSTEM-V4.md`
+Four parallel reviews, consolidated:
+- **CRO:** nav Pricing became "How we engage". The pilot is now a concrete spec, placed directly after the pipeline. Non-CTO visitors get a router line in the hero. Approved testimonials were added (from the LPs). Proof labels are clearer ("In production", "Rehired", ≈$210K). There is a secondary path to the Governance/Maturity Index LPs with UTMs, plus leadership in the final CTA.
+- **Copy:** unsupported claims ("most clients", "reversible", ISO scope) removed. US English throughout. "Risk score" standardized; jargon explained. Titles ≤60 and metas ≤155 characters.
+- **UI/UX and motion:** fixed the `.run` class collision that made the hero steps jitter, the sticky pipeline, and the framework-tab layout shift (panels are now stacked). Single dark surface and floating slabs. Controls moved to white. Numbered pipeline with a governed packet that pauses at human stages. Hero "change → deviation log" handoff with three outcomes. Off-screen pause, pause buttons, transform-only animations, true-375px mobile fixes.
+- **GTM/a11y:** primary nav landmark, disclosure dropdowns (no menu roles), breadcrumbs, the booking modal is now `aria-modal` with focus management/inert, booking intent events (`booking_modal_open`/`booking_iframe_engaged`/`close`), `cta_click` via gtag plus first-touch attribution capture, engagement events, JSON-LD @graph with Organization/BreadcrumbList/Service/FAQPage, and a `LIVE` flag in the generator for the canonical/index/analytics head at rollout.
+**Chat widget:** V4 pages (`html.v4`) get an AINE-led FAQ with no published prices; old pages are unchanged until rollout. Lead submission now reports failures instead of always showing "sent".
+**Open (rollout decisions):** final URLs + redirects from `/industries/{cpa-firms,law-firms,insurance,legal-compliance}`, sitemap, restoring GA4/GTM/Clarity (GTM container is empty), privacy/consent wording, a real booking-completion conversion, og:image (`/images/og-default.png` 404s sitewide).
+
+---
+
 ## 2026-10-06 — Preview: visible accolade logos + real tool/integration logos
 **Type:** design (preview only)
 **Files:** `images/accolades/light/*.svg`, `css/upcore-v4.css`, `preview/*.html`

@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — V4.1 design system preview: AI-Native Engineering as flagship, "Who we help" segments
+**Type:** feature / design (preview only)
+**Files:** `css/upcore-v4.css`, `js/upcore-v4.js`, `images/upcore-logo-ink.png`, `preview/*.html`, `docs/DESIGN-SYSTEM-V4.md`
+New enterprise design system (Geist, single cyan accent, white editorial canvas + petrol bands) in one shared stylesheet and one motion script. Preview pages (noindex, not linked from the live nav): homepage led by AI-Native Engineering, a V4.1 AI-Native Engineering page, and four "Who we help" segment pages (Tech & Software, Ecommerce & Retail, Operations-heavy, Professional Services) that replace the CPA/Law/Insurance verticals once approved. Includes five research-cited Upcore frameworks (fit matrix, control loop, autonomy ladder, lead-time compression, effort principle). Not yet rolled out sitewide; analytics tags intentionally omitted from previews.
+
+---
+
 ## 2026-10-06 — Repositioning: BPA-led homepage, AI-Native Engineering, CPA/Law/Insurance verticals
 **Type:** content / feature
 **Files:** `index.html`, `ai-native-engineering.html`, `industries/{cpa-firms,law-firms,insurance,index}.html`, `vercel.json`, `sitemap.xml`, `chat-widget.js`, nav/footer on 71 pages

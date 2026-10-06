@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — Preview: visible accolade logos + real tool/integration logos
+**Type:** design (preview only)
+**Files:** `images/accolades/light/*.svg`, `css/upcore-v4.css`, `preview/*.html`
+Accolade SVGs were white-on-dark and invisible on the new white canvas; added light-surface variants. Added real tool logos (Simple Icons, CC0) as an integrations stack on the homepage and AI-Native Engineering page, logo chips in the pipeline band, and a "Connects to" strip per segment page, with a trademark/compatibility disclaimer.
+
+---
+
 ## 2026-10-06 — V4.1 design system preview: AI-Native Engineering as flagship, "Who we help" segments
 **Type:** feature / design (preview only)
 **Files:** `css/upcore-v4.css`, `js/upcore-v4.js`, `images/upcore-logo-ink.png`, `preview/*.html`, `docs/DESIGN-SYSTEM-V4.md`

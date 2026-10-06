@@ -235,9 +235,9 @@ _TABS = [
 ]
 _tablist = '<div class="tabs" role="tablist" aria-label="Firm type">' + ''.join(
     f'<button class="tab" role="tab" id="t-{k}" aria-controls="p-{k}" aria-selected="{"true" if i == 0 else "false"}" tabindex="{0 if i == 0 else -1}">{n}</button>' for i, (k, n, _) in enumerate(_TABS)) + '</div>'
+import flow as _FL  # noqa: E402
 _panels = ''.join(
-    f'<div class="tabpanel{" on" if i == 0 else ""}" id="p-{k}" role="tabpanel" aria-labelledby="t-{k}"><div class="wf">' + ''.join(
-        f'<div class="card{" card--feature" if j == 1 else ""}"><h3 class="t-h3">{t}</h3><p>{p}</p><div class="out">{o}</div></div>' for j, (t, p, o) in enumerate(ws)) + '</div></div>'
+    f'<div class="tabpanel{" on" if i == 0 else ""}" id="p-{k}" role="tabpanel" aria-labelledby="t-{k}">' + _FL.outcome_rows(ws) + '</div>'
     for i, (k, n, ws) in enumerate(_TABS))
 COPY['professional-services']['wf_custom'] = _tablist + _panels
 

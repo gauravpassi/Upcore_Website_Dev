@@ -62,12 +62,19 @@ DISCLAIMER = 'Logos are trademarks of their respective owners and show integrati
 
 
 def stack(cats, eyebrow, h2, lead, sid='stack', alt=False):
-    rows = ''.join(f'<div class="stack-row"><div class="stack-k"><h3>{k}</h3><p>{d}</p></div>{row(sl)}</div>' for k, d, sl in cats)
-    cls = 'sec'
-    return f'''<section class="{cls}" id="{sid}" aria-labelledby="{sid}-h"><div class="wrap">
-<div class="sec-head sec-head--split"><div><div class="eyebrow" data-reveal>{eyebrow}</div><h2 id="{sid}-h" class="t-h2" data-reveal>{h2}</h2></div><p class="t-lead" data-reveal style="--d:1">{lead}</p></div>
-<div class="stack" data-reveal>{rows}</div><p class="fine">{DISCLAIMER}</p></div></section>'''
+    """Each category is one slow logo marquee; rows alternate direction so the section reads as moving streams."""
+    import flow as FL
+    rows = ''.join(
+        f'<div class="mq-row" data-reveal style="--d:{i % 3}"><div class="mq-k"><h3>{k}</h3><p>{d}</p></div>'
+        + FL.marquee(''.join(logo(x) for x in sl), dur=34 + 6 * len(sl) // 2, reverse=bool(i % 2)) + '</div>'
+        for i, (k, d, sl) in enumerate(cats))
+    return f'''<section class="sec sec--stack" id="{sid}" aria-labelledby="{sid}-h"><div class="wrap">
+<div class="sec-head sec-head--split"><div><div class="eyebrow" data-reveal>{eyebrow}</div><h2 id="{sid}-h" class="t-h2" data-reveal>{h2}</h2></div><p class="t-lead" data-reveal style="--d:1">{lead}</p></div></div>
+<div class="streams">{rows}</div><div class="wrap"><p class="fine">{DISCLAIMER}</p></div></section>'''
 
 
 def strip(slugs, label):
-    return f'<div class="tool-strip" data-reveal><span class="t-mono">{label}</span>{row(slugs, small=True)}<p class="fine">Logos show integration compatibility, not partnership.</p></div>'
+    import flow as FL
+    return (f'<div class="tool-strip" data-reveal><span class="t-mono">{label}</span>'
+            + FL.marquee(''.join(logo(s, small=True) for s in slugs), dur=30 + 3 * len(slugs))
+            + '<p class="fine">Logos show integration compatibility, not partnership.</p></div>')

@@ -33,9 +33,11 @@ upcore-website/
 ├── chat-widget.js                     # Global vanilla-JS chat widget: one-click FAQ + email lead capture (loaded on every page)
 ├── cta-tracking.js                    # [data-gtm-cta] clicks → cta_click (gtag or dataLayer) + first-touch attribution capture (loaded on every page)
 │
-├── css/upcore-v4.css                  # V4.1 shared stylesheet (V4 pages only)
+├── css/upcore-v4.css                  # V4.1 shared stylesheet: tokens, type, nav, framework visuals (V4 pages only)
+├── css/upcore-v5.css                  # V5 "Flow" layer loaded after it: de-boxed layouts, spine, flow components
 ├── js/
 │   ├── upcore-v4.js                   # V4.1 motion, nav, tabs, frameworks, consent banner
+│   ├── upcore-v5.js                   # V5 Flow motion: spine, hero flowline, word reveals, count-ups, scrollytelling, quote carousel
 │   └── v4-analytics.js                # V4.1 engagement events (scroll, sections, tabs, FAQ, nav)
 │
 ├── who-we-help/                       # V4.1 segment pages (generated — see tools/v4-build)
@@ -45,7 +47,7 @@ upcore-website/
 │   └── professional-services.html
 │
 ├── tools/                             # Not deployed (.vercelignore)
-│   ├── v4-build/                      # Python generators for the V4 pages + GTM container (run from repo root)
+│   ├── v4-build/                      # Python generators for the V4 pages + GTM container (run from repo root); flow.py = V5 Flow components
 │   ├── gtm-container-upcore-v4.json   # GTM import file (see docs/TRACKING.md §3)
 │   └── booking-conversions.gs         # Google Apps Script: booking intents → GA4/Ads conversions
 │

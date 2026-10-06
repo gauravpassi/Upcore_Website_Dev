@@ -5,6 +5,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import chrome as C
 import frameworks as F
 import tools as TL
+import flow as FL
 from v4parts import TRUST, TESTIMONIALS, quotes, faq_sec, LEADERS, cta
 
 ARROW = C.ARROW
@@ -42,8 +43,9 @@ def pipeline(compact, link=False):
         for i, (t, d, g) in enumerate(STAGES, 1))
     logos = TL.row(PIPE_LOGOS, small=True)[:-6] + '<span class="logo logo--sm"><span>Feature flags</span></span></div>'
     more = f'<p style="margin-top:26px"><a class="link" href="{C.URL["aine"]}#pipeline">See every stage in detail</a></p>' if link else ''
-    return f'''<section class="band band--rounded sec" id="pipeline" aria-labelledby="pipe-h"><div class="spot" aria-hidden="true"></div><div class="grid-bg" aria-hidden="true"></div><div class="wrap">
+    return f'''<section class="band band--flow sec sec--pipe" id="pipeline" aria-labelledby="pipe-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
 <div class="pipe-wrap"><div class="pipe-intro"><div class="eyebrow">The pipeline</div><h2 id="pipe-h" class="t-h2">Spec to production in <span class="hl">nine governed stages.</span></h2>
+<div class="pipe-count" aria-hidden="true"><b>01</b><span>/ {len(STAGES):02d}</span><em>{STAGES[0][0]}</em></div>
 <p class="t-lead" style="margin-top:18px">Every stage runs inside the tools your teams already use. Gates are automated where the rules are clear and human where judgment matters.</p>
 <div class="pipe-tools">{logos}</div>
 <div class="pipe-legend"><span><i class="auto"></i>Automated gate</span><span><i class="human"></i>Human decision</span><span><i class="ai"></i>AI step</span></div>{more}</div>
@@ -61,6 +63,10 @@ VS = [
 
 
 def vs_table():
+    return FL.strike(VS, 'Vibe coding', 'AI-native engineering')
+
+
+def _old_vs_table():
     rows = '<div class="vs-row head" aria-hidden="true"><div class="k"></div><div class="a">Vibe coding</div><div class="b">AI-native engineering</div></div>' + ''.join(
         f'<div class="vs-row"><div class="k">{k}</div><div class="a"><span class="sr">Vibe coding</span>{a}</div><div class="b"><span class="sr">AI-native engineering</span>{b}</div></div>' for k, a, b in VS)
     return f'<div class="vs" data-reveal>{rows}</div>'
@@ -111,8 +117,8 @@ def proof_band(groups, h2, lead, q='eng'):
     for label, rows in groups:
         if label:
             r += f'<div class="rows-label">{label}</div>'
-        r += ''.join(f'<div class="row"><div class="row-num">{n}</div><div class="row-who">{w}</div><div class="row-desc">{t}</div></div>' for n, w, t in rows)
-    return f'''<section class="band band--rounded sec" aria-labelledby="proof-h"><div class="spot" aria-hidden="true"></div><div class="grid-bg" aria-hidden="true"></div><div class="wrap">
+        r += ''.join(f'<div class="row" data-reveal><div class="row-num" data-count>{n}</div><div class="row-who">{w}</div><div class="row-desc">{t}</div></div>' for n, w, t in rows)
+    return f'''<section class="band band--flow sec sec--proof" aria-labelledby="proof-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
 {head("Proof", h2, lead, hid="proof-h")}<div class="rows" data-reveal>{r}</div>
 <p class="fine" style="color:var(--on-band-2)">Client names are withheld. Results are as reported from our engagements. Ask us for a reference call.</p>
 {quotes(q)}</div></section>'''
@@ -132,15 +138,15 @@ PATH = [('One-time implementation', 'A fixed fee, scaled to your company size an
 
 
 def engage(sid='engagement'):
-    pod = ''.join(f'<div class="card{" card--feature" if k == "arch" else ""}" data-reveal style="--d:{j}"><span class="role"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{POD_ICONS[k]}</svg></span><h3 class="t-h3">{t}</h3><p>{p}</p></div>' for j, (k, t, p) in enumerate(POD))
+    pod = ''.join(f'<li class="pod-p{" is-lead" if k == "arch" else ""}" data-reveal style="--d:{j}"><span class="pod-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{POD_ICONS[k]}</svg></span><h3 class="t-h3">{t}</h3><p>{p}</p></li>' for j, (k, t, p) in enumerate(POD))
     spec = ''.join(f'<div><dt>{k}</dt><dd>{v}</dd></div>' for k, v in PILOT)
-    path = ''.join(f'<div class="card" data-reveal style="--d:{j+1}"><span class="k">Step {j+2:02d}</span><h3 class="t-h3">{t}</h3><p>{p}</p></div>' for j, (t, p) in enumerate(PATH))
-    return f'''<section class="sec" id="{sid}" aria-labelledby="eng-h"><div class="wrap">
+    steps = [('Pilot on one team', 'Prove it on real work before you commit further.')] + PATH
+    return f'''<section class="sec sec--engage" id="{sid}" aria-labelledby="eng-h"><div class="wrap">
 {head("How we engage", 'Start with a pilot. <span class="ul-draw">Scale on evidence.</span>', 'No price list: every engagement is scoped after the discovery call, and you get a written proposal with a fixed scope and price before any build starts.', hid="eng-h")}
-<div class="pilot" data-reveal><div class="pilot-k"><span class="k">Step 01</span><h3 class="t-h3">Pilot on one team</h3><p>Prove it on real work before you commit further.</p>{C.btn("engagement", cls="btn btn--sm")}</div><dl class="pilot-spec">{spec}</dl></div>
-<div class="path path--2">{path}</div>
-<div class="subhead"><h3 class="t-h3">Your pod: three people, embedded in your delivery.</h3><p>To scale, we add pods rather than enlarging one. Each pod brings the pipeline, the rules and the judgment.</p></div>
-<div class="pod">{pod}</div></div></section>'''
+{FL.timeline(steps)}
+<div class="pilot-spec-wrap" data-reveal><div class="pilot-spec-k"><span class="t-mono">The pilot, specified</span>{C.btn("engagement", cls="btn btn--sm")}</div><dl class="pilot-spec">{spec}</dl></div>
+<div class="pod-wrap"><div class="pod-head"><h3 class="t-h2 t-h2--sm">Your pod: three people, embedded in your delivery.</h3><p>To scale, we add pods rather than enlarging one. Each pod brings the pipeline, the rules and the judgment.</p></div>
+<div class="pod-line"><span class="pod-wire" aria-hidden="true"></span><ol>{pod}</ol></div></div></div></section>'''
 
 
 COST_FAQ = ('What does it cost?', 'We don&rsquo;t publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded Claude Certified Architect. Pilot duration and commercials are agreed on the discovery call, based on your scope and requirements. Automation work is scoped per workflow. After the discovery call you get a written proposal with a fixed scope and price before any build starts.')
@@ -165,24 +171,40 @@ SEG_CARDS = [('tech-software', 'Tech &amp; Software', 'Ship AI-written code you 
 
 
 def beyond():
-    flag = f'''<a class="card card--ink flag-card" href="{C.URL["aine"]}" data-reveal><div><span class="badge-f">Flagship</span><span class="k">Engineer</span><h3 class="t-h3">AI-Native Engineering</h3>
-<p>A governed spec-to-production pipeline installed inside the tools your engineering teams already use, with an embedded Claude Certified Architect.</p>
-<span class="more">Explore the pipeline {ARROW}</span></div>
-<ul class="feat"><li>Spec templates and architecture guardrails</li><li>Plan signed off by an architect</li><li>Automated architecture, security and coverage gates</li><li>Risk-scored merges against your thresholds</li><li>Feature-flagged, monitored releases</li><li>A deviation log for leadership</li></ul></a>'''
-    others = [('gov', 'Govern', 'AI Governance', 'Spend visibility, data controls and audit trails for the AI tools already in use across your business.', 'Explore AI governance'),
-              ('bpa', 'Automate', 'Business Process Automation', 'Pre-built and custom agents that run follow-ups, documents, reconciliations and customer updates inside your systems.', 'Explore the agent library'),
-              ('fao', 'Lead', 'Fractional AI Officer', 'An embedded AI lead on retainer who owns the roadmap and reports results to leadership.', 'Meet the Fractional AI Officer')]
-    rest = ''.join(f'<a class="card" href="{C.URL[k]}" data-reveal style="--d:{i+1}"><span class="k">{kk}</span><h3 class="t-h3">{t}</h3><p>{p}</p><span class="more">{l} {ARROW}</span></a>' for i, (k, kk, t, p, l) in enumerate(others))
-    segs = ''.join(f'<a class="card" href="{C.URL[k]}" data-reveal style="--d:{i}"><span class="k">{who}</span><h3 class="t-h3">{n}</h3><p class="seg-h">{h}</p><ul>{"".join(f"<li>{x}</li>" for x in ls)}</ul><span class="more">{short} {ARROW}</span></a>' for i, (k, n, h, ls, who, short) in enumerate([c + ({'tech-software': 'See the engineering page', 'ecommerce-retail': 'See the retail page', 'operations-heavy': 'See the operations page', 'professional-services': 'See the firms page'}[c[0]],) for c in SEG_CARDS]))
-    return f'''<section class="sec" id="who-we-help" aria-labelledby="disc-h"><div class="wrap">
+    feats = ''.join(f'<li>{x}</li>' for x in ['Spec templates and architecture guardrails', 'Plan signed off by an architect', 'Automated architecture, security and coverage gates', 'Risk-scored merges against your thresholds', 'Feature-flagged, monitored releases', 'A deviation log for leadership'])
+    flag = f'''<a class="flag-line" href="{C.URL["aine"]}" data-reveal><span class="flag-k"><span class="badge-f">Flagship</span>Engineer</span>
+<span class="flag-t">AI-Native Engineering <span class="flag-go">{ARROW}</span></span>
+<span class="flag-p">A governed spec-to-production pipeline installed inside the tools your engineering teams already use, with an embedded Claude Certified Architect.</span>
+<ul class="flag-feat">{feats}</ul></a>'''
+    others = [dict(href=C.URL['gov'], k='Govern', title='AI Governance', text='Spend visibility, data controls and audit trails for the AI tools already in use across your business.', more='Explore AI governance'),
+              dict(href=C.URL['bpa'], k='Automate', title='Business Process Automation', text='Pre-built and custom agents that run follow-ups, documents, reconciliations and customer updates inside your systems.', more='Explore the agent library'),
+              dict(href=C.URL['fao'], k='Lead', title='Fractional AI Officer', text='An embedded AI lead on retainer who owns the roadmap and reports results to leadership.', more='Meet the Fractional AI Officer')]
+    short = {'tech-software': 'See the engineering page', 'ecommerce-retail': 'See the retail page', 'operations-heavy': 'See the operations page', 'professional-services': 'See the firms page'}
+    segs = [dict(href=C.URL[k], k=who, title=n, text=f'<b>{h}.</b> ' + ' &middot; '.join(ls), more=short[k]) for k, n, h, ls, who in SEG_CARDS]
+    return f'''<section class="sec sec--beyond" id="who-we-help" aria-labelledby="disc-h"><div class="wrap">
 {head("Beyond engineering", 'Engineering leads. <span class="ul-draw">Everything around it, governed.</span>', 'Engineering is where we lead. The same governed discipline extends to the AI already in your business and to the operations around your product.', hid="disc-h")}
-<div class="disc">{flag}{rest}</div>
-<div class="subhead" id="segments"><h3 class="t-h3">Who we help</h3><p>Four kinds of business, one governed approach. Each page shows the workflows, proof and model that fit.</p></div>
-<div class="cards cards--4">{segs}</div></div></section>'''
+{flag}{FL.index_rows(others, cls="ix--services")}
+<div class="subhead subhead--seg" id="segments"><h3 class="t-h2 t-h2--sm">Who we help</h3><p>Four kinds of business, one governed approach. Each page shows the workflows, proof and model that fit.</p></div>
+{FL.index_rows(segs, cls="ix--segments")}</div></section>'''
 
 
 def vs_section(h2, eyebrow='The gap'):
-    return f'<section class="sec" aria-labelledby="gap-h"><div class="wrap">{head(eyebrow, h2, "Most teams use AI as a faster keyboard: prompts in an editor, then a senior engineer reviews everything by hand because nothing else can be trusted. The speed gain disappears in review, and the risk moves to production.", hid="gap-h")}{vs_table()}</div></section>'
+    lead = "Most teams use AI as a faster keyboard: prompts in an editor, then a senior engineer reviews everything by hand because nothing else can be trusted. The speed gain disappears in review, and the risk moves to production."
+    return f'<section class="sec sec--gap" aria-labelledby="gap-h"><div class="wrap gap-grid"><div class="gap-side">{head(eyebrow, h2, lead, split=False, hid="gap-h")}</div>{vs_table()}</div></section>'
+
+
+HERO_STEPS = [('Spec from template', 'Linear', False), ('Guardrails checked', 'ADRs &middot; schema &middot; API', False), ('Plan approved', 'architect', True),
+              ('Built in sandbox', 'AI-written tests', False), ('Gates passed', 'fitness &middot; SAST &middot; coverage', False),
+              ('Risk-scored merge', 'thresholds you set', False), ('Released', 'feature flag &middot; monitored', False)]
+HERO_TICKETS = [dict(id='PAY-418', title='Add partial refunds to checkout', risk='lo', out='Low risk &middot; auto-merged, released behind a flag'),
+                dict(id='ORD-190', title='Add delivery-window field to orders', risk='md', out='Medium risk &middot; spec amended, then approved'),
+                dict(id='AUTH-77', title='Refactor session handling', risk='hi', branch=True, out='High risk &middot; held at plan sign-off for an architect')]
+
+
+def hero_flow():
+    return FL.flowline(HERO_STEPS, HERO_TICKETS, 'Governed change pipeline',
+                       'Example: changes move through the governed pipeline. Low-risk changes are auto-merged and released behind a flag; a high-risk change is held at plan sign-off for an architect, and every decision is logged.',
+                       branch_label='Held &middot; architect review', end_label='Released &middot; logged')
 
 
 ROUTER = ('<p class="router" data-reveal style="--d:5">Not leading an engineering team? See how we help '
@@ -191,15 +213,14 @@ ROUTER = ('<p class="router" data-reveal style="--d:5">Not leading an engineerin
 
 # ===================================================================== HOME
 home = '\n'.join([
-    f'''<section class="hero" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
+    f'''<section class="hero hero--flow" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
 <p class="badge" data-reveal><i aria-hidden="true"></i><span><b>AI-Native Engineering</b><span class="opt"> for CTOs and CIOs</span></span></p>
 <h1 id="hero-h" class="t-hero" data-split>AI writes the code. <span class="hl">Your architecture stays in charge.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">Upcore installs a governed delivery pipeline inside your Jira or Linear, GitHub and CI/CD, and embeds a Claude Certified Architect to run it with your team. Every AI-written change is checked against your architecture, gated and risk-scored. Start with a pilot on one team.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pipeline">See the pipeline</a></div>
 <p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>
 {ROUTER}
-<div class="hero-stage hero-stage--eng">{run_panel(handoff=True)}{dlog(4, hero=True)}</div>
-</div></section>''',
+</div>{hero_flow()}</section>''',
     TRUST,
     vs_section(NB('Vibe coding is not <span class="ul-draw">AI-native engineering.</span>')),
     pipeline(compact=True, link=True),
@@ -220,19 +241,19 @@ print('home', C.write('index.html', 'home', 'AI-Native Engineering &amp; Automat
 
 # ===================================================================== AINE PAGE
 aine = '\n'.join([
-    f'''<section class="hero hero--split" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
-<div><nav class="crumb" aria-label="Breadcrumb" data-reveal><ol><li><a href="{C.URL["home"]}">Home</a></li><li aria-current="page">AI-Native Engineering</li></ol></nav>
+    f'''<section class="hero hero--flow hero--left" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
+<div class="hero-copy"><nav class="crumb" aria-label="Breadcrumb" data-reveal><ol><li><a href="{C.URL["home"]}">Home</a></li><li aria-current="page">AI-Native Engineering</li></ol></nav>
 <div class="eyebrow" data-reveal>AI-Native Engineering &middot; For CTOs and CIOs</div>
 <h1 id="hero-h" class="t-display" data-split>AI-native engineering, <span class="hl">governed from spec to production.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline inside your Jira or Linear, GitHub and CI/CD and embed a Claude Certified Architect to run it with your team. Every deviation from your architecture is recorded, explained and decided. Start with a pilot on one team.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pipeline">See the pipeline</a></div>
 <p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p></div>
-{run_panel()}</div></section>''',
+</div>{hero_flow()}</section>''',
     TRUST,
     vs_section('AI writes more of your code every quarter. <span class="ul-draw">Your review process hasn&rsquo;t changed.</span>', eyebrow='Vibe coding vs AI-native engineering'),
     pipeline(compact=False),
     engage(),
-    f'''<section class="sec" aria-labelledby="dash-h"><div class="wrap"><div class="split">
+    f'''<section class="sec sec--dash" aria-labelledby="dash-h"><div class="wrap"><div class="split">
 <div><div class="eyebrow" data-reveal>Leadership visibility</div><h2 id="dash-h" class="t-h2" data-reveal>Know delivery is under control <span class="ul-draw">without reading pull requests.</span></h2>
 <p class="t-lead" data-reveal style="--d:1;margin-top:18px">The CTO/CIO dashboard records every deviation from your architecture rules: where it was caught, why it happened, its risk score and who decided what to do about it.</p>
 <ul class="ticks" data-reveal style="--d:2"><li>A deviation log with the reasoning and decision for each one</li><li>Gate pass and fail trends by team and service</li><li>The share of changes auto-merged versus approved by a person</li><li>Release outcomes, promoted or rolled back, and why</li><li>One view you can take to a board, an auditor or a customer&rsquo;s security review</li></ul></div>

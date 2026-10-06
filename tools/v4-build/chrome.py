@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 7          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 8          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 17    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
@@ -172,19 +172,22 @@ def write(fname, key, title, meta, body, active='', ld=None, og=None, group='pag
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/css/upcore-v4.css?v={V}" />
+<link rel="stylesheet" href="/css/upcore-v5.css?v={V}" />
 {ld_tag}</head>
 <body>
 {noscript}<div class="progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
 {annc(annc_kind, key)}
 {nav(active)}
-<main id="main">
+<main id="main" class="flow-main">
+<div class="spine" aria-hidden="true"><span class="spine-fill"></span></div>
 {body_html}
 </main>
 {footer()}
 <div class="mcta">{btn('mobile_sticky', magnetic=False)}</div>
 {TL.sprite()}
 <script src="/js/upcore-v4.js?v={V}" defer></script>
+<script src="/js/upcore-v5.js?v={V}" defer></script>
 <script src="/js/v4-analytics.js?v={V}" defer></script>
 <script src="/cta-tracking.js?v={CTA_V}" defer></script>
 <script src="/chat-widget.js?v={CHAT_V}" defer></script>

@@ -1,6 +1,14 @@
 # Upcore Design System V4.1 — "Enterprise Editorial"
 
-Status: **preview** (2026-10-06). Lives in `/preview/*.html`; not yet rolled out sitewide. Once approved, this file supersedes `DESIGN-SYSTEM-V3.md` and the older V1/V2 docs.
+Status: **live on dev** (2026-10-06) at `/`, `/ai-native-engineering`, `/who-we-help/*`. Supersedes `DESIGN-SYSTEM-V3.md` and the older V1/V2 docs for those pages.
+
+> **V5 "Flow" layer (2026-10-06).** After review feedback ("too boxy, too many rounded rectangles, repetitive"), the V4 pages now load a second layer, [`css/upcore-v5.css`](../css/upcore-v5.css) + [`js/upcore-v5.js`](../js/upcore-v5.js), with components in [`tools/v4-build/flow.py`](../tools/v4-build/flow.py). Rules of the Flow layer:
+> - **No boxes.** Containers have no background, border or radius; hairlines (`--hair`, ink top rules) carry structure. Radii are flattened globally (`--r-sm..--r-xl` = 4–10px). Only the primary CTA keeps its pill shape; avatars and nodes stay circular.
+> - **One thread.** A cyan spine draws down the left margin with scroll (≥1360px); each section's eyebrow is a numbered stage (`01`, `02`…, a CSS counter) with a dot on the spine.
+> - **No two sections share a layout.** Hero flowline (SVG pipeline with travelling tickets and a held-for-approval branch, decision log beneath), trust marquee, strike-through comparison (`.sk`), sticky scrollytelling pipeline with a big stage counter, horizontal timeline (`.tl`) + open pilot spec + pod line, proof rows with count-up numbers + crossfading pull quote (`.qc`), open framework stage (diagrams on canvas, no panels), logo streams (`.mq-row` marquees), typographic index rows with hover sweep (`.ix`), flagship line, open controls grid, sticky-side FAQ, CTA band with flowing lines.
+> - **Dark bands are full-bleed** (`.band--flow`), never inset slabs, with a thin cyan seam at the top edge.
+> - **Motion:** heading word-mask reveals, scroll-drawn spine, flowline tickets, marquees, count-ups, timeline draw, strike-through, quote crossfade, CTA line streams. Everything pauses off-screen, has a pause control where it loops, and is static under `prefers-reduced-motion`.
+> - Where this file and the Flow layer disagree about layout or containers, the Flow layer wins; tokens, type, colour and framework visuals below still apply.
 
 Source of truth for code: [`css/upcore-v4.css`](../css/upcore-v4.css) (one shared stylesheet) and [`js/upcore-v4.js`](../js/upcore-v4.js) (one vanilla motion layer). There is no per-page `:root` block any more. Pages link both files with a `?v=N` cache-buster, which must be bumped when either changes.
 

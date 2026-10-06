@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — V5 "Flow" redesign of the V4 pages (dev)
+**Type:** feature (design)
+**Files:** `css/upcore-v5.css` (new), `js/upcore-v5.js` (new), `tools/v4-build/flow.py` (new), `tools/v4-build/{build_v41,segments,segment_copy,v4parts,tools,chrome}.py`, the six V4 pages, `docs/DESIGN-SYSTEM-V4.md`
+Feedback: "too boxy, unnecessary rounded rectangles, highly repetitive; want flowy, structured, high-end motion". Cards and inset slabs are gone; a scroll-drawn cyan spine numbers every section as a pipeline stage; each section has its own composition (hero SVG flowline with travelling tickets and an approval branch, strike-through comparison, scrollytelling pipeline counter, engagement timeline, logo streams, index rows, pull-quote carousel, CTA line streams). Copy and claims unchanged. All motion pauses off-screen and is static under reduced motion.
+
 ## 2026-10-06 — V4.1 rollout (dev): final URLs, who-we-help, booking conversions, GTM-only tagging, consent
 **Type:** feature / infra / content
 **Files:** `index.html`, `ai-native-engineering.html`, `who-we-help/*.html` (new), `lp/maturity-review.html`, `vercel.json`, `sitemap.xml`, `industries/index.html`, 69 legacy pages (nav/footer), `chat-widget.js` (v17), `cta-tracking.js` (v3), `js/*`, `css/upcore-v4.css`, `api/booking-intent.js` (new), `assessment.html`, `privacy.html`, `tools/` (new: `v4-build/`, `gtm-container-upcore-v4.json`, `booking-conversions.gs`), `images/og/`, `docs/TRACKING.md` (new)

@@ -172,8 +172,12 @@ function appendAdsRow_(p, row, col, created) {
 
 /** Run once after pasting the script: creates the sheets and the 10-minute trigger. */
 function setup() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (ss.getName() !== 'Upcore bookings') ss.rename('Upcore bookings');
   sheet_('Intents', INTENT_HEADERS);
   sheet_('Bookings', BOOKING_HEADERS);
+  var blank = ss.getSheetByName('Sheet1');
+  if (blank && ss.getSheets().length > 1) ss.deleteSheet(blank);
   ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === 'matchBookings') ScriptApp.deleteTrigger(t); });
   ScriptApp.newTrigger('matchBookings').timeBased().everyMinutes(10).create();
   Logger.log('Sheets ready and matchBookings scheduled every 10 minutes. Now deploy as a Web App (Execute as: Me, Who has access: Anyone).');

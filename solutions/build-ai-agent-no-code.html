@@ -306,25 +306,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav>
   <div class="nav-logo"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/ai-engineering-governance">AI Governance</a></li>
-    <li><a href="/ai-adoption-strategy">AI Strategy</a></li>
-    <li><a href="/platform">AI Agents</a></li>
-    <li class="nav-item-extra"><a href="/pricing">Pricing</a></li>
-    <li class="nav-item-extra"><a href="/industries">Industries</a></li>
+    <li class="nav-dropdown-wrap"><a href="/platform" class="nav-dropdown-trigger active">Solutions<span class="nav-dropdown-caret">&#9662;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/platform">Business Process Automation<span class="nav-dd-desc">60+ pre-built agents, deployed into the tools you already run</span></a>
+        <a href="/ai-native-engineering">AI-Native Engineering<span class="nav-dd-desc">A governed spec-to-production pipeline for engineering teams</span></a>
+        <a href="/ai-engineering-governance">AI Governance<span class="nav-dd-desc">Review, audit trails and controls for AI-written code</span></a>
+        <a href="/ai-adoption-strategy">Fractional AI Officer<span class="nav-dd-desc">An embedded AI lead who owns the roadmap and the results</span></a>
+      </div>
+    </li>
+    <li class="nav-dropdown-wrap"><a href="/industries" class="nav-dropdown-trigger">Industries<span class="nav-dropdown-caret">&#9662;</span></a>
+      <div class="nav-dropdown-menu">
+        <a href="/industries/cpa-firms">CPA &amp; Accounting Firms</a>
+        <a href="/industries/law-firms">Law Firms</a>
+        <a href="/industries/insurance">Insurance</a>
+        <a href="/industries">All industries &#8594;</a>
+      </div>
+    </li>
+    <li><a href="/pricing">Pricing</a></li>
     <li class="nav-item-extra"><a href="/insights">Resources</a></li>
     <li class="nav-item-extra"><a href="/about">About</a></li>
     <li class="nav-dropdown-wrap nav-more-wrap"><a href="#" class="nav-dropdown-trigger" onclick="return false;">More<span class="nav-dropdown-caret">&#9662;</span></a>
       <div class="nav-dropdown-menu">
-        <a href="/pricing">Pricing</a>
-        <a href="/industries">Industries</a>
         <a href="/insights">Resources</a>
         <a href="/about">About</a>
       </div>
     </li>
   </ul>
   <div class="nav-right">
-    <a data-gtm-cta="book-a-governance-review" data-gtm-cta-type="primary" data-gtm-cta-section="nav" href="#book-governance" class="nav-cta">Book a Governance Review</a>
+    <a data-gtm-cta="book-a-discovery-call" data-gtm-cta-type="primary" data-gtm-cta-section="nav" href="#book-governance" class="nav-cta">Book a Discovery Call</a>
     <button class="nav-burger" aria-label="Menu" onclick="var nl=document.querySelector('.nav-links');nl.classList.toggle('open');this.innerHTML=nl.classList.contains('open')?'&#10005;':'&#9776;';">&#9776;</button>
   </div>
 </nav>
@@ -636,8 +645,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo-wrap"><a href="/"><img src="/upcore-logo.png" width="360" height="240" alt="Upcore Technologies"/></a></div>
-      <p class="footer-tagline">Govern Your AI.<br />Then Build With It.</p>
-      <p class="footer-sub">Enterprise AI governance and agents,<br />built for your org.</p>
+      <p class="footer-tagline">Business processes that run themselves.<br />Results you can measure.</p>
+      <p class="footer-sub">AI agents, AI-native engineering<br />and governance, as one system.</p>
       <div class="footer-social-row">
         <a href="https://linkedin.com/company/upcoretech" target="_blank" rel="noopener" class="footer-soc-btn" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
       </div>
@@ -662,22 +671,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div>
       <div class="footer-col-title">Solutions</div>
       <ul class="footer-links">
+        <li><a href="/platform">Business Process Automation</a></li>
+        <li><a href="/ai-native-engineering">AI-Native Engineering</a></li>
+        <li><a href="/ai-engineering-governance">AI Governance</a></li>
+        <li><a href="/ai-adoption-strategy">Fractional AI Officer</a></li>
         <li><a href="/agent-builder">Upcore Studio</a></li>
-        <li><a href="/sdlc-agent">SDLC Agent</a></li>
         <li><a href="/build-your-demo">Build a Free Demo</a></li>
-        <li><a href="/industries">All Industries</a></li>
-        <li><a href="/assessment">Free AI Assessment</a></li>
       </ul>
     </div>
     <div>
       <div class="footer-col-title">Industries</div>
       <ul class="footer-links">
+        <li><a href="/industries/cpa-firms">CPA &amp; Accounting Firms</a></li>
+        <li><a href="/industries/law-firms">Law Firms</a></li>
+        <li><a href="/industries/insurance">Insurance</a></li>
         <li><a href="/industries/manufacturing">Manufacturing</a></li>
         <li><a href="/industries/retail-d2c">eCommerce / D2C</a></li>
-        <li><a href="/industries/banking-finance">Banking &amp; Finance</a></li>
-        <li><a href="/industries/nbfc-loans">NBFCs &amp; Loans</a></li>
         <li><a href="/industries/healthcare">Healthcare</a></li>
-        <li><a href="/industries/saas-technology">SaaS &amp; Tech</a></li>
         <li><a href="/industries">View All &#8594;</a></li>
       </ul>
     </div>
@@ -712,7 +722,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 function toggleFaq(btn){var a=btn.nextElementSibling;var isOpen=a.classList.contains('open');document.querySelectorAll('.faq-a.open').forEach(function(el){el.classList.remove('open');el.previousElementSibling.querySelector('.faq-icon').textContent='+';});if(!isOpen){a.classList.add('open');btn.querySelector('.faq-icon').textContent='−';}}
 </script>
-<script src="/chat-widget.js?v=13" defer></script>
+<script src="/chat-widget.js?v=14" defer></script>
 <script src="/cta-tracking.js?v=1" defer></script>
 </body>
 </html>

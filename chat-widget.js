@@ -597,7 +597,7 @@
 
   function bookChip() {
     return {
-      label: '📅 Book a Governance Review', cls: 'accent',
+      label: '📅 Book a Discovery Call', cls: 'accent',
       onClick: function () {
         var a = document.createElement('a');
         a.href = '#book-governance';
@@ -761,7 +761,7 @@
     overlay = document.createElement('div');
     overlay.id = '_gov_cal_overlay';
     overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-label', 'Book a Governance Review');
+    overlay.setAttribute('aria-label', 'Book a Discovery Call');
     overlay.style.cssText = [
       'position:fixed;inset:0;z-index:999999;',
       'background:rgba(10,10,10,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);',
@@ -787,7 +787,7 @@
     dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#0ABFCC;flex-shrink:0;';
 
     var lbl = document.createElement('span');
-    lbl.textContent = 'Book a Governance Review';
+    lbl.textContent = 'Book a Discovery Call';
     lbl.style.cssText = 'color:#fff;font:600 13px/1 "DM Sans",system-ui,sans-serif;flex:1;';
 
     var cls = document.createElement('button');
@@ -804,7 +804,7 @@
     hdr.appendChild(cls);
 
     calIframe = document.createElement('iframe');
-    calIframe.setAttribute('title', 'Book a Governance Review');
+    calIframe.setAttribute('title', 'Book a Discovery Call');
     calIframe.setAttribute('frameborder', '0');
     calIframe.style.cssText = 'flex:1;width:100%;border:none;display:block;';
 

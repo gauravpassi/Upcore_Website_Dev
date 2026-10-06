@@ -56,6 +56,11 @@
   ],
   "redirects": [
     {
+      "source": "/industries/legal-compliance",
+      "destination": "/industries/law-firms",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
       "permanent": true

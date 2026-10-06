@@ -47,16 +47,19 @@ upcore-website/
 ├── sdlc-agent.html                    # Forge — software-without-a-dev-team page
 ├── pricing.html                       # FAO pricing + Forge/Studio/FDE add-on pointers
 ├── build-your-demo.html               # Interactive UI → POSTs to /api/build-demo
+├── ai-native-engineering.html         # AI-Native Engineering service page (2026-10-06)
 ├── assessment.html                    # Discovery Call form → FormSubmit
 ├── contact.html                       # Contact form ⚠️ currently INERT (see FEATURES.md)
 │
 ├── industries/
 │   ├── index.html                     # Industries hub
-│   ├── banking-finance.html           # 12 vertical pages, one per industry:
+│   ├── cpa-firms.html                 # 2026-10-06 BPA verticals (u-* components): CPA, Law, Insurance
+│   ├── law-firms.html                 # replaces legal-compliance (301 in vercel.json)
+│   ├── insurance.html
+│   ├── banking-finance.html           # older vertical pages, one per industry:
 │   ├── edtech.html
 │   ├── government.html
 │   ├── healthcare.html
-│   ├── legal-compliance.html
 │   ├── logistics.html
 │   ├── manufacturing.html
 │   ├── marketing-agencies.html

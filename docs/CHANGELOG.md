@@ -12,6 +12,13 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — Repositioning: BPA-led homepage, AI-Native Engineering, CPA/Law/Insurance verticals
+**Type:** content / feature
+**Files:** `index.html`, `ai-native-engineering.html`, `industries/{cpa-firms,law-firms,insurance,index}.html`, `vercel.json`, `sitemap.xml`, `chat-widget.js`, nav/footer on 71 pages
+Site now leads with AI-powered business process automation; governance and Fractional AI Officer stay as supporting services. New homepage, new AI-Native Engineering page, three vertical LPs. Nav gains Solutions (4) + Industries dropdowns; CTA everywhere is "Book a Discovery Call" (chat-widget labels too, `?v=14` sitewide). `industries/legal-compliance.html` deleted with a 301 to `/industries/law-firms`. Client names anonymized; all numbers from live site + Sierra pre-read. LPs (`lp/`) and `ai-operations.html` header untouched. CPA/Insurance agent lists are drafts for review.
+
+---
+
 ## 2026-08-25 — ai-operations.html: Razorpay checkout wired into the #get section
 **Type:** feature
 **Files:** `ai-operations.html`

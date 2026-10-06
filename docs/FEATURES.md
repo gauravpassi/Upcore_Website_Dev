@@ -15,7 +15,7 @@ How each entry is structured:
 These are pure HTML. To add a new one, follow the page-add checklist in [CONVENTIONS.md §3](CONVENTIONS.md#3-adding-a-new-page-checklist).
 
 ### A1. Homepage
-- **What:** Hero, trust strip (animated marquee of accolade logos), product overview, industry grid, social proof, CTAs to Discovery Call + Demo Builder.
+- **What:** (Rebuilt 2026-10-06 — BPA-led umbrella.) Hero "Business processes that run themselves. Results you can measure." with an animated SVG system diagram linking the four services (BPA → /platform, AI-Native Engineering, AI Governance, Fractional AI Officer); trust bar; 6 anonymized outcome cards; services; data-driven industries grid (CPA, Law, Insurance + "More industries"); agent library; how we work; credentials + leadership; single CTA "Book a Discovery Call" (`#book-governance`). Generated from the scratchpad `page_home.py` pattern — edit the HTML directly now.
 - **Where:** [`index.html`](../index.html)
 - **Touches:** `images/accolades/*.svg`, `chat-widget.js`. Hosts the **canonical** `:root` and `<nav>` blocks (see [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md)).
 - **Extend by:** Hero/CTA copy edits go inline. New trust-strip logos: drop SVG into `images/accolades/` and add to the marquee track.
@@ -70,13 +70,23 @@ These are pure HTML. To add a new one, follow the page-add checklist in [CONVENT
 - **Where:** [`sdlc-agent.html`](../sdlc-agent.html)
 - **Touches:** Standard nav, chat widget. No API calls.
 
+### A3c. AI-Native Engineering
+- **What:** Service page for CTO/CIO/CDO buyers — "Vibe-coding is not AI-native engineering." 9-stage governed spec-to-production pipeline (`#pipeline`), CTO/CIO dashboard mock (labelled "Example view"), lean pod of three, engagement model (pilot → one-time implementation → monthly retainer, no prices), anonymized proof, 6 FAQs.
+- **Where:** [`ai-native-engineering.html`](../ai-native-engineering.html) (URL `/ai-native-engineering`). In nav under Solutions.
+- **Touches:** u-* component CSS inline in the page (see DESIGN-SYSTEM-V3.md "u-* page components"), Service + FAQPage JSON-LD, chat widget booking modal.
+
 ### A6. Industries hub
-- **What:** Directory of all 12 vertical pages.
+- **What:** Directory of all vertical pages. CPA & Accounting Firms, Law Firms and Insurance cards (status "New") sit first; the old Legal & Compliance card was removed.
 - **Where:** [`industries/index.html`](../industries/index.html)
 - **Touches:** Links to each `industries/<vertical>.html`. **Must** be updated when adding a new vertical.
 
-### A7. Industry vertical pages (×12)
-- **What:** One page per vertical: Banking & Finance, EdTech, Government, Healthcare, Legal & Compliance, Logistics, Manufacturing, Marketing Agencies, NBFC/Loans, Real Estate, Retail/D2C, SaaS/Technology.
+### A7a. BPA vertical landing pages (×3, 2026-10-06)
+- **What:** Outcome-led landing pages: CPA & Accounting Firms, Law Firms, Insurance. Each: hero + animated workflow panel, trust bar, 5 automated processes, before/after, 5 pre-built agents, adjacent anonymized proof (honestly labelled — no vertical case studies yet), 6 FAQs, one CTA (Discovery Call).
+- **Where:** [`industries/cpa-firms.html`](../industries/cpa-firms.html), [`industries/law-firms.html`](../industries/law-firms.html), [`industries/insurance.html`](../industries/insurance.html). `/industries/legal-compliance` 301s to `/industries/law-firms`.
+- **Note:** CPA and Insurance agent lists and "typical connections" are drafts pending Upcore review.
+
+### A7. Industry vertical pages (older set)
+- **What:** One page per vertical: Banking & Finance, EdTech, Government, Healthcare, Logistics, Manufacturing, Marketing Agencies, NBFC/Loans, Real Estate, Retail/D2C, SaaS/Technology.
 - **Where:** [`industries/*.html`](../industries/)
 - **Touches:** Each page typically links to: relevant insight articles, the demo builder (if supported), and the assessment page.
 - **Note:** `/industries/ecommerce` is a rewrite to `retail-d2c` (see `vercel.json`).

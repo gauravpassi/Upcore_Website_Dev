@@ -1,8 +1,19 @@
-/* V4.1 engagement analytics. No-ops until gtag/clarity are present (they are omitted on previews).
-   Events: scroll_depth, section_view, framework_tab_select, content_tab_select, nav_menu_open, faq_open. */
+/* V4.1 engagement analytics.
+   Events: scroll_depth, section_view, framework_tab_select, content_tab_select, nav_menu_open, faq_open.
+   GTM pages (window.upcGTM) push {event, event_params} to dataLayer for the GA4 event tag in
+   tools/gtm-container-upcore-v4.json; event_params is reset first so values never leak between events.
+   Pages that load gtag.js directly send through gtag instead. */
 (function () {
   'use strict';
-  function send(n, p) { if (typeof gtag === 'function') gtag('event', n, p || {}); if (typeof clarity === 'function') clarity('event', n); }
+  function send(n, p) {
+    p = p || {};
+    if (window.upcGTM || typeof gtag !== 'function') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event_params: null });
+      window.dataLayer.push({ event: n, event_params: p });
+    } else gtag('event', n, p);
+    if (typeof clarity === 'function') clarity('event', n);
+  }
 
   var hit = {}, q = false;
   function sc() {

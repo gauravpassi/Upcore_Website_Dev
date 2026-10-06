@@ -6,7 +6,7 @@
     <loc>https://www.upcoretech.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-10-06</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/ai-engineering-governance</loc>
@@ -325,19 +325,25 @@
     <lastmod>2026-07-02</lastmod>
   </url>
   <url>
-    <loc>https://www.upcoretech.com/industries/law-firms</loc>
+    <loc>https://www.upcoretech.com/who-we-help/tech-software</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-10-06</lastmod>
   </url>
   <url>
-    <loc>https://www.upcoretech.com/industries/cpa-firms</loc>
+    <loc>https://www.upcoretech.com/who-we-help/ecommerce-retail</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-10-06</lastmod>
   </url>
   <url>
-    <loc>https://www.upcoretech.com/industries/insurance</loc>
+    <loc>https://www.upcoretech.com/who-we-help/operations-heavy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-10-06</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/who-we-help/professional-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <lastmod>2026-10-06</lastmod>

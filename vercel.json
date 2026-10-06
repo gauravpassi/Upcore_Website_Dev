@@ -14,6 +14,10 @@
     "api/lead-magnet-submit.js": {
       "maxDuration": 15,
       "memory": 256
+    },
+    "api/booking-intent.js": {
+      "maxDuration": 15,
+      "memory": 256
     }
   },
   "headers": [
@@ -57,7 +61,42 @@
   "redirects": [
     {
       "source": "/industries/legal-compliance",
-      "destination": "/industries/law-firms",
+      "destination": "/who-we-help/professional-services",
+      "permanent": true
+    },
+    {
+      "source": "/industries/law-firms",
+      "destination": "/who-we-help/professional-services",
+      "permanent": true
+    },
+    {
+      "source": "/industries/cpa-firms",
+      "destination": "/who-we-help/professional-services",
+      "permanent": true
+    },
+    {
+      "source": "/industries/insurance",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/who-we-help",
+      "destination": "/#who-we-help",
+      "permanent": false
+    },
+    {
+      "source": "/preview/home-v4",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/preview/ai-native-engineering",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/preview/who-we-help-:slug",
+      "destination": "/who-we-help/:slug",
       "permanent": true
     },
     {

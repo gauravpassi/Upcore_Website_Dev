@@ -1,6 +1,8 @@
-/* CTA click tracking (v2, 2026-10-06).
-   - Sends cta_click through gtag (GA4) when available; falls back to a dataLayer push.
-     Do not also create a GA4 event tag for cta_click in GTM, or clicks are counted twice.
+/* CTA click tracking (v3, 2026-10-06).
+   - Pages that load gtag.js directly send cta_click through gtag.
+   - GTM pages (window.upcGTM, the V4 pages) push {event:'cta_click', event_params} to dataLayer;
+     the GTM GA4 event tag only fires where the page also pushed {tagging:'gtm'}, so a click is
+     never counted twice.
    - Captures first-touch attribution (gclid/gbraid/wbraid/utm_*) with the landing page
      into localStorage 'upc_attrib' for later lead/booking matching. */
 (function () {
@@ -24,7 +26,7 @@
       cta_url: el.getAttribute('href') || '',
       page_path: location.pathname
     };
-    if (typeof gtag === 'function') gtag('event', 'cta_click', p);
-    else window.dataLayer.push(Object.assign({ event: 'cta_click' }, p));
+    if (!window.upcGTM && typeof gtag === 'function') gtag('event', 'cta_click', p);
+    else { window.dataLayer.push({ event_params: null }); window.dataLayer.push({ event: 'cta_click', event_params: p }); }
   }, true);
 })();

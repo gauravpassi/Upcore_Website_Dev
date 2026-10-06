@@ -378,3 +378,51 @@
 
   onScroll();
 })();
+
+/* Consent Mode v2 banner. Defaults are set in <head> before GTM; this only records a choice.
+   Shown automatically to visitors whose timezone is in Europe (UK/EEA/CH defaults are denied),
+   and to anyone who clicks "Cookie settings" in the footer. */
+(function () {
+  'use strict';
+  var KEY = 'upc_consent';
+  function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function apply(v) {
+    try { localStorage.setItem(KEY, v); } catch (e) { /* storage unavailable */ }
+    window.dataLayer = window.dataLayer || [];
+    (function () { dataLayer.push(arguments); })('consent', 'update', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+    dataLayer.push({ event: 'consent_update', consent_choice: v });
+  }
+  var box = null, opener = null;
+  function close() { if (box) box.hidden = true; document.documentElement.classList.remove('consent-open'); if (opener && opener.focus) opener.focus(); opener = null; }
+  function open(from) {
+    opener = from || null;
+    if (!box) {
+      box = document.createElement('section');
+      box.className = 'consent';
+      box.setAttribute('aria-labelledby', 'consent-h');
+      box.innerHTML = '<h2 id="consent-h">Cookies on upcoretech.com</h2>'
+        + '<p>We use analytics and advertising cookies to measure how the site is used and which campaigns bring visitors. You can change this at any time under Cookie settings. <a href="/privacy#cookies">Privacy policy</a></p>'
+        + '<div class="consent-btns"><button type="button" data-consent="denied">Decline</button><button type="button" data-consent="granted">Accept</button></div>';
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-consent]');
+        if (b) { apply(b.getAttribute('data-consent')); close(); }
+      });
+      box.addEventListener('keydown', function (e) { if (e.key === 'Escape' && stored()) close(); });
+      document.body.appendChild(box);
+    }
+    box.hidden = false;
+    document.documentElement.classList.add('consent-open');
+    if (from) { var f = box.querySelector('button'); if (f) f.focus(); }
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-consent-open]');
+    if (t) { e.preventDefault(); open(t); }
+  });
+  var tz = '';
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* old browser */ }
+  var europe = /^Europe\//.test(tz) || /^Atlantic\/(Reykjavik|Canary|Madeira|Faroe|Azores)$/.test(tz);
+  if (window.upcGTM && europe && !stored()) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { open(); });
+    else open();
+  }
+})();

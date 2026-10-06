@@ -1127,3 +1127,18 @@ a.card:active{transform:translateY(-1px);transition-duration:.1s;}
 .foot .foot-certs{flex-direction:row;gap:8px 18px;}
 @media (max-width:560px){.hero:not(.hero--split) .t-lead{text-align:left;}}
 .hero--split .wrap>*,.hero-stage>*,.split>*,.pipe-wrap>*{min-width:0;}
+
+/* ---- Consent banner (Consent Mode v2; shown to UK/EEA-timezone visitors and via Cookie settings) ---- */
+.foot-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-align:left;transition:color var(--dur-1);}
+.foot-link:hover{color:var(--cyan);}
+.consent{position:fixed;left:16px;bottom:16px;z-index:90;width:min(380px,calc(100vw - 32px));background:var(--canvas);color:var(--ink);border:1px solid var(--hair);border-radius:14px;box-shadow:0 24px 60px -20px rgba(7,26,38,.35);padding:18px 18px 16px;font-size:14px;line-height:1.5;}
+.consent[hidden]{display:none;}
+.consent h2{font-size:15px;font-weight:600;margin:0 0 6px;}
+.consent p{margin:0 0 14px;color:var(--ink-2);}
+.consent a{color:var(--cyan-ink);text-decoration:underline;text-underline-offset:2px;}
+.consent-btns{display:flex;gap:8px;}
+.consent-btns button{flex:1;font:600 14px/1 var(--f-sans);padding:11px 14px;border-radius:999px;cursor:pointer;border:1px solid var(--band);background:var(--canvas);color:var(--band);}
+.consent-btns button[data-consent="granted"]{background:var(--band);color:#fff;}
+.consent-btns button:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+html.consent-open .mcta{visibility:hidden;}
+@media (max-width:560px){.consent{left:12px;right:12px;bottom:12px;width:auto;}}

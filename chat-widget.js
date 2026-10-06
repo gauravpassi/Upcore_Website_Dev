@@ -72,21 +72,21 @@
     ];
     FAQ = [
       { id: 'aine-what', cat: 'aine', popular: true, q: 'What is AI-Native Engineering?',
-        a: 'A governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: spec templates, architecture guardrails, automated gates, risk-scored merges and feature-flagged releases, with every deviation logged for leadership. A senior architect works inside the pipeline with your team. <a href="' + AINE_URL + '">See the pipeline &rarr;</a>' },
+        a: 'A governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: spec templates, architecture guardrails, automated gates, risk-scored merges and feature-flagged releases, with every deviation logged for leadership. A Claude Certified Architect works inside the pipeline with your team. <a href="' + AINE_URL + '">See the pipeline &rarr;</a>' },
       { id: 'aine-copilot', cat: 'aine', q: 'How is it different from Copilot or Cursor?',
         a: 'Those tools generate code. AI-native engineering is the delivery process around them, so AI-written code can be trusted without a senior engineer reading every line.' },
       { id: 'aine-pilot', cat: 'aine', popular: true, q: 'How does a pilot work?',
-        a: 'One team, one service, a real backlog. We agree success measures against your current process, install the pipeline end to end and review the results with you before any wider rollout. <a href="' + AINE_URL + '#engagement">How we engage &rarr;</a>' },
+        a: 'One team, one service, a real backlog. We agree success measures against your current process, install the pipeline end to end and review the results with you before any wider rollout. Duration and commercials are agreed on the discovery call, based on your scope and requirements. <a href="' + AINE_URL + '#engagement">How we engage &rarr;</a>' },
       { id: 'auto-what', cat: 'auto', popular: true, q: 'Do you also automate business operations?',
         a: 'Yes. AI agents run follow-ups, documents, reconciliations and customer updates inside your CRM, ERP, email and messaging tools, with people approving what matters. <a href="/platform">Explore the agent library &rarr;</a>' },
       { id: 'auto-who', cat: 'auto', q: 'Which businesses do you help?',
         a: 'Tech and software companies, ecommerce and retail brands, operations-heavy mid-market businesses, and professional services firms such as accounting, law, wealth and staffing. <a href="' + HOME_URL + '#segments">See who we help &rarr;</a>' },
       { id: 'cost-how', cat: 'cost', popular: true, q: 'How much does it cost?',
-        a: "We don't publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded senior architect. Automation is scoped per workflow. After the discovery call you get a written proposal with a fixed scope and price." },
+        a: "We don't publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded Claude Certified Architect. Pilot duration and commercials are agreed on the discovery call, based on your scope and requirements. Automation is scoped per workflow. After the discovery call you get a written proposal with a fixed scope and price." },
       { id: 'cost-speed', cat: 'cost', q: 'How fast can you start?',
         a: 'Our standard is a first agent live within 30 days of design sign-off. Engineering pilots start with one team and one service, with success measures agreed up front.' },
       { id: 'cost-call', cat: 'cost', q: 'What happens on the discovery call?',
-        a: '45 minutes on your current process and highest-value opportunities. You get a written plan you can act on, whether or not we work together.' },
+        a: '45 minutes with Gaurav or Saswata on your current process and highest-value opportunities. You get a written plan you can act on, whether or not we work together.' },
       { id: 'trust-security', cat: 'trust', popular: true, q: 'Is our code and data secure?',
         a: 'Code stays in your repositories, agents run with scoped, revocable permissions and every action is logged. Model providers are configured so your data is not used to train their models. Our security and quality management are certified to ISO 27001 and ISO 9001, and we deliver to CMMI Level 3 processes. <a href="/security">Security details &rarr;</a>' },
       { id: 'trust-certs', cat: 'trust', q: 'What certifications do you hold?',
@@ -756,7 +756,9 @@
         addBanner('\u26A0\uFE0F', 'Message not sent', 'Please email ' + LEAD_EMAIL + ' and we will reply within one business day.');
         return;
       }
-      if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_source: 'chat_widget', page_path: location.pathname });
+      var lp = { lead_source: 'chat_widget', page_path: location.pathname };
+      if (window.upcGTM || typeof gtag !== 'function') { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event_params: null }); window.dataLayer.push({ event: 'generate_lead', event_params: lp }); }
+      else gtag('event', 'generate_lead', lp);
       addBanner('📨', 'Message Sent!', "We'll reply to your question by email within 24 hours.");
       var q = pendingQuestion, n = pendingName, e = pendingEmail;
       pendingQuestion = ''; pendingName = ''; pendingEmail = '';
@@ -786,26 +788,150 @@
 
 })();
 
-// ── Governance Calendar (Google Calendar modal) ────────────────────────────
-// Switched from Calendly to Google Calendar Appointment Scheduling (2026-09-17).
-// KNOWN GAP: Calendly's postMessage API exposed a real "calendly.event_scheduled"
-// event, which fired the Google Ads primary conversion only on an actually-
-// completed booking. Google Calendar's scheduling iframe has no documented
-// equivalent completion event, so that listener is removed below and the
-// AW-16546427858/_Q5SCO7LodgcENLn-dE9 conversion no longer fires from this
-// modal. Needs a real fix (e.g. a Google Calendar "push" notification webhook,
-// or switching this conversion to fire on a different, real signal) before
-// this ad-spend conversion tracking is trustworthy again.
+// ── Discovery-call booking modal (Google Calendar Appointment Scheduling) ───
+// Google Calendar's scheduling iframe exposes no "booking completed" event, so
+// booking conversions are measured server-side instead (2026-10-06):
+//   1. Before the calendar, the modal asks for a work email (one field, skippable).
+//   2. That email + first-touch attribution (gclid/utm from cta-tracking.js's
+//      'upc_attrib') + the GA client ID go to /api/booking-intent, which writes
+//      them to the booking Google Sheet (BOOKING_SHEETS_WEBHOOK_URL).
+//   3. tools/booking-conversions.gs watches the booking calendar, matches new
+//      bookings to intents by attendee email, then sends GA4 'booking_completed'
+//      (Measurement Protocol) and writes a Google Ads offline-conversion row.
+// The team also gets a FormSubmit notification so a started-but-unbooked call
+// can be followed up. No email or other PII is ever pushed to dataLayer/gtag.
+// The old AW-16546427858/_Q5SCO7LodgcENLn-dE9 label is deliberately not fired
+// here: a modal open is not a booking. See docs/TRACKING.md.
 (function () {
   var CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1_obz6QaD_10QlHvG7azfJ3015e7AdPmNiUtAgdK99p_9msqj5vR6pEnHV4KsEzNBRevBOFtPn?gv=true';
+  var NOTIFY_TO = 'gaurav@upcoretechnologies.com';
+  var NOTIFY_CC = 'saswata@upcoretechnologies.com';
+  var DONE_KEY = 'upc_book_gate';
+  var FONT = 'Geist,"DM Sans",system-ui,sans-serif';
 
-  var overlay = null, calIframe = null, closeBtn = null, returnFocus = null, ctx = {}, openedAt = 0, engaged = false, loads = 0;
+  var overlay = null, calIframe = null, closeBtn = null, gate = null, emailIn = null, errEl = null;
+  var returnFocus = null, ctx = {}, openedAt = 0, engaged = false, loads = 0, focusing = false;
+
   function track(n, p) {
     p = Object.assign({ page_path: location.pathname }, ctx, p || {});
-    if (typeof gtag === 'function') gtag('event', n, p);
+    if (window.upcGTM || typeof gtag !== 'function') {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event_params: null });
+      window.dataLayer.push({ event: n, event_params: p });
+    } else gtag('event', n, p);
     if (typeof clarity === 'function') clarity('event', n);
   }
   function setInert(on) { [].forEach.call(document.body.children, function (el) { if (el !== overlay) el.inert = on; }); }
+  function gateDone() { try { return sessionStorage.getItem(DONE_KEY) === '1'; } catch (e) { return false; } }
+  function markGateDone() { try { sessionStorage.setItem(DONE_KEY, '1'); } catch (e) { /* storage unavailable */ } }
+  function attrib() { try { return JSON.parse(localStorage.getItem('upc_attrib') || '{}') || {}; } catch (e) { return {}; } }
+  // Ad-consent state travels with the intent so the Ads upload can respect it.
+  function consentState() {
+    var c = null;
+    try { c = localStorage.getItem('upc_consent'); } catch (e) { /* storage unavailable */ }
+    if (c === 'granted' || c === 'denied') return c;
+    var tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* old browser */ }
+    return /^Europe\//.test(tz) ? 'unknown_eu' : 'default_granted';
+  }
+  function cookie(re) { var m = document.cookie.match(re); return m ? m[1] : ''; }
+
+  function el(tag, css, text) {
+    var e = document.createElement(tag);
+    if (css) e.style.cssText = css;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function buildGate() {
+    gate = el('form', 'flex:1;overflow:auto;display:flex;align-items:center;justify-content:center;padding:28px 22px;box-sizing:border-box;background:#fff;');
+    gate.noValidate = true;
+    var card = el('div', 'width:min(440px,100%);font-family:' + FONT + ';color:#0A1419;');
+    var k = el('div', 'font:500 11px/1 "Geist Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#0A6F82;margin-bottom:12px;', 'Step 1 of 2');
+    var h = el('h2', 'font:600 22px/1.25 ' + FONT + ';margin:0 0 8px;letter-spacing:-.01em;', 'Where should we send the call plan?');
+    h.id = '_book_gate_h';
+    var p = el('p', 'font:400 15px/1.55 ' + FONT + ';color:#34434B;margin:0 0 20px;', 'Pick a time on the next screen. We send the agenda before the call and a written plan after it, whether or not we work together.');
+    var lab = el('label', 'display:block;font:600 13px/1.3 ' + FONT + ';margin-bottom:6px;', 'Work email');
+    lab.setAttribute('for', '_book_email');
+    emailIn = el('input', 'width:100%;box-sizing:border-box;font:400 16px/1.3 ' + FONT + ';padding:12px 14px;border:1px solid #C9D3D8;border-radius:10px;color:#0A1419;background:#fff;');
+    emailIn.type = 'email'; emailIn.id = '_book_email'; emailIn.name = 'email';
+    emailIn.autocomplete = 'email'; emailIn.required = true; emailIn.placeholder = 'you@company.com';
+    emailIn.setAttribute('aria-describedby', '_book_err _book_note');
+    errEl = el('div', 'min-height:18px;font:400 13px/1.4 ' + FONT + ';color:#C2361F;margin:6px 0 10px;');
+    errEl.id = '_book_err'; errEl.setAttribute('role', 'alert');
+    var go = el('button', 'width:100%;font:600 15px/1 ' + FONT + ';padding:14px 18px;border:0;border-radius:999px;background:#071A26;color:#fff;cursor:pointer;');
+    go.type = 'submit'; go.innerHTML = 'Continue to the calendar &rarr;';
+    var note = el('p', 'font:400 12px/1.5 ' + FONT + ';color:#5D6B73;margin:14px 0 0;');
+    note.id = '_book_note';
+    note.innerHTML = 'Your call is with Gaurav or Saswata. We use this email only for your booking and the call plan. <a href="/privacy" style="color:#0A6F82;">Privacy policy</a>';
+    var skip = el('button', 'background:none;border:0;padding:0;margin-top:14px;font:500 13px/1.4 ' + FONT + ';color:#5D6B73;text-decoration:underline;text-underline-offset:2px;cursor:pointer;', 'Skip and go straight to the calendar');
+    skip.type = 'button';
+    skip.onclick = function () { track('booking_email_skipped'); showCalendar(); };
+    card.appendChild(k); card.appendChild(h); card.appendChild(p); card.appendChild(lab); card.appendChild(emailIn);
+    card.appendChild(errEl); card.appendChild(go); card.appendChild(note); card.appendChild(skip);
+    gate.appendChild(card);
+    gate.setAttribute('aria-labelledby', '_book_gate_h');
+    gate.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = (emailIn.value || '').trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) {
+        errEl.textContent = 'Please enter a valid email address.';
+        emailIn.setAttribute('aria-invalid', 'true');
+        emailIn.focus();
+        return;
+      }
+      emailIn.removeAttribute('aria-invalid'); errEl.textContent = '';
+      sendIntent(v);
+      markGateDone();
+      track('generate_lead', { lead_source: 'booking_modal' });
+      showCalendar();
+    });
+    return gate;
+  }
+
+  function sendIntent(email) {
+    var a = attrib();
+    var payload = {
+      email: email,
+      page: location.pathname,
+      cta_id: ctx.cta_id || '', cta_section: ctx.cta_section || '',
+      attrib: a,
+      ga_client_id: cookie(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/),
+      ga_session_id: cookie(/(?:^|;\s*)_ga_TVRF5M70ES=GS\d\.\d\.s?(\d+)/),
+      consent: consentState(),
+      referrer: document.referrer || ''
+    };
+    try {
+      fetch('/api/booking-intent', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), keepalive: true }).catch(function () {});
+    } catch (e) { /* network unavailable */ }
+    try {
+      fetch('https://formsubmit.co/' + NOTIFY_TO, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Discovery call started: ' + email,
+          _template: 'table',
+          _captcha: 'false',
+          _cc: NOTIFY_CC,
+          'Email': email,
+          'Page': location.href,
+          'Button': (ctx.cta_section || '') + ' / ' + (ctx.cta_id || ''),
+          'Source / medium / campaign': [a.utm_source, a.utm_medium, a.utm_campaign].filter(Boolean).join(' / ') || 'direct or unknown',
+          'Google Ads click': a.gclid || a.gbraid || a.wbraid ? 'Yes' : 'No',
+          'Next step': 'They are now choosing a time in the calendar. If no booking arrives for this email within a day, follow up.',
+          'Source': 'Website booking modal (email step)'
+        })
+      }).catch(function () {});
+    } catch (e) { /* network unavailable */ }
+  }
+
+  function showCalendar() {
+    if (calIframe && !calIframe.src) calIframe.src = CAL_URL;
+    if (gate) gate.style.display = 'none';
+    calIframe.style.display = 'block';
+    focusing = true; calIframe.focus(); setTimeout(function () { focusing = false; }, 60);
+    track('booking_calendar_view');
+  }
 
   function buildModal() {
     overlay = document.createElement('div');
@@ -814,34 +940,25 @@
     overlay.setAttribute('aria-modal', 'true');
     overlay.setAttribute('aria-label', 'Book a Discovery Call');
     overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(7,26,38,.72);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;';
-    var box = document.createElement('div');
-    box.style.cssText = 'background:#fff;border-radius:16px;overflow:hidden;width:min(820px,100%);height:min(720px,92vh);display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.45);';
-    var hdr = document.createElement('div');
-    hdr.style.cssText = 'background:#071A26;padding:12px 16px 12px 18px;flex-shrink:0;display:flex;align-items:center;gap:12px;';
-    var dot = document.createElement('span');
-    dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:#21D2ED;flex-shrink:0;';
-    var txt = document.createElement('div');
-    txt.style.cssText = 'flex:1;min-width:0;';
-    var lbl = document.createElement('div');
-    lbl.textContent = 'Book a Discovery Call';
-    lbl.style.cssText = 'color:#fff;font:600 14px/1.3 Geist,"DM Sans",system-ui,sans-serif;';
-    var sub = document.createElement('div');
-    sub.textContent = '45 minutes · a written plan, whether or not we work together';
-    sub.style.cssText = 'color:#9AAEB8;font:400 12px/1.4 Geist,"DM Sans",system-ui,sans-serif;margin-top:2px;';
+    var box = el('div', 'background:#fff;border-radius:16px;overflow:hidden;width:min(820px,100%);height:min(720px,92vh);display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.45);');
+    var hdr = el('div', 'background:#071A26;padding:12px 16px 12px 18px;flex-shrink:0;display:flex;align-items:center;gap:12px;');
+    var dot = el('span', 'width:7px;height:7px;border-radius:50%;background:#21D2ED;flex-shrink:0;');
+    var txt = el('div', 'flex:1;min-width:0;');
+    var lbl = el('div', 'color:#fff;font:600 14px/1.3 ' + FONT + ';', 'Book a Discovery Call');
+    var sub = el('div', 'color:#9AAEB8;font:400 12px/1.4 ' + FONT + ';margin-top:2px;', '45 minutes with Gaurav or Saswata · a written plan, whether or not we work together');
     txt.appendChild(lbl); txt.appendChild(sub);
-    closeBtn = document.createElement('button');
+    closeBtn = el('button', 'background:none;border:1px solid rgba(255,255,255,.18);border-radius:999px;cursor:pointer;width:32px;height:32px;color:#E6EEF1;font-size:15px;line-height:1;flex-shrink:0;');
     closeBtn.type = 'button';
     closeBtn.innerHTML = '&#x2715;';
     closeBtn.setAttribute('aria-label', 'Close booking');
-    closeBtn.style.cssText = 'background:none;border:1px solid rgba(255,255,255,.18);border-radius:999px;cursor:pointer;width:32px;height:32px;color:#E6EEF1;font-size:15px;line-height:1;';
     closeBtn.onclick = closeModal;
     hdr.appendChild(dot); hdr.appendChild(txt); hdr.appendChild(closeBtn);
     calIframe = document.createElement('iframe');
     calIframe.setAttribute('title', 'Book a Discovery Call: Google Calendar scheduling');
     calIframe.setAttribute('frameborder', '0');
-    calIframe.style.cssText = 'flex:1;width:100%;border:none;display:block;';
+    calIframe.style.cssText = 'flex:1;width:100%;border:none;display:none;';
     calIframe.addEventListener('load', function () { if (++loads > 1) track('booking_iframe_navigated', { load_count: loads }); });
-    box.appendChild(hdr); box.appendChild(calIframe);
+    box.appendChild(hdr); box.appendChild(buildGate()); box.appendChild(calIframe);
     overlay.appendChild(box);
     document.body.appendChild(overlay);
     overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
@@ -852,12 +969,14 @@
     returnFocus = trigger || document.activeElement;
     ctx = { cta_id: (trigger && trigger.getAttribute('data-gtm-cta')) || 'book-a-discovery-call', cta_section: (trigger && trigger.getAttribute('data-gtm-cta-section')) || 'unknown' };
     engaged = false; openedAt = Date.now();
-    if (calIframe && !calIframe.src) calIframe.src = CAL_URL;
+    // Preload the calendar behind the email step so it appears instantly.
+    if (!calIframe.src) calIframe.src = CAL_URL;
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     setInert(true);
-    closeBtn.focus();
     track('booking_modal_open');
+    if (gateDone()) { gate.style.display = 'none'; calIframe.style.display = 'block'; closeBtn.focus(); }
+    else { gate.style.display = 'flex'; calIframe.style.display = 'none'; errEl.textContent = ''; emailIn.focus(); }
   }
 
   function closeModal() {
@@ -872,7 +991,7 @@
 
   window.addEventListener('blur', function () {
     setTimeout(function () {
-      if (!engaged && overlay && overlay.style.display === 'flex' && document.activeElement === calIframe) {
+      if (!engaged && !focusing && overlay && overlay.style.display === 'flex' && document.activeElement === calIframe) {
         engaged = true;
         track('booking_iframe_engaged', { seconds_to_engage: Math.round((Date.now() - openedAt) / 1000) });
       }

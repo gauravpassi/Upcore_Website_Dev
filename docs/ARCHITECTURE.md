@@ -13,7 +13,9 @@ This stack is intentional. **Do not introduce React/Vue/Svelte, a bundler, Tailw
 ## 2. Page layer
 
 ```
-/                        → index.html
+/                        → index.html  (V4.1, generated)
+/ai-native-engineering   → ai-native-engineering.html  (V4.1 flagship, generated)
+/who-we-help/<segment>   → who-we-help/{tech-software,ecommerce-retail,operations-heavy,professional-services}.html  (V4.1, generated)
 /about                   → about.html
 /platform                → platform.html
 /contact                 → contact.html
@@ -21,7 +23,7 @@ This stack is intentional. **Do not introduce React/Vue/Svelte, a bundler, Tailw
 /build-your-demo         → build-your-demo.html  (calls /api/build-demo)
 /agent-builder           → agent-builder.html
 /sdlc-agent              → sdlc-agent.html
-/industries              → industries/index.html + 12 vertical pages
+/industries              → industries/index.html + 11 older vertical pages
 /insights                → insights/index.html + long-form articles
 /demos/<slug>            → demos/<slug>.html  (generated, ephemeral)
 ```
@@ -29,7 +31,8 @@ This stack is intentional. **Do not introduce React/Vue/Svelte, a bundler, Tailw
 Routing rules (all in [`vercel.json`](../vercel.json)):
 
 - `cleanUrls: true` — internal links **must omit** `.html`.
-- Permanent redirects: `/home → /`, `/blog → /insights`, `/blog/:slug → /insights/:slug`, `/contact-us → /contact`, `/about-us → /about`.
+- Permanent redirects: `/home → /`, `/blog → /insights`, `/blog/:slug → /insights/:slug`, `/contact-us → /contact`, `/about-us → /about`; `/industries/{cpa-firms,law-firms,legal-compliance} → /who-we-help/professional-services`, `/industries/insurance → /who-we-help/operations-heavy`; `/preview/home-v4 → /`, `/preview/ai-native-engineering → /ai-native-engineering`, `/preview/who-we-help-:slug → /who-we-help/:slug`.
+- Temporary redirect: `/who-we-help → /#who-we-help` (no hub page; the home section is the hub).
 - One rewrite: `/industries/ecommerce → /industries/retail-d2c` (alias, not a redirect).
 
 The chat widget (`<script src="/chat-widget.js" defer>`) is included on **every** non-demo page.
@@ -81,6 +84,10 @@ Vercel function: `memory: 256MB`, `maxDuration: 60s`. Slowest step is step 2.
 
 **`demos/manifest.json`** is the contract between the builder and the cleanup workflow. It is an array of `{ slug, expires, ... }`. **Do not hand-edit it.** When no demos are live, `[]` is the correct state.
 
+### 3.3 `/api/booking-intent` — booking attribution
+
+[`api/booking-intent.js`](../api/booking-intent.js) receives the email a visitor enters before the Google Calendar scheduler (booking modal in `chat-widget.js`, and the `/assessment` form), with first-touch attribution (`gclid`/`utm_*` from `localStorage.upc_attrib`), GA client/session IDs and consent state. It validates and clips the fields, then POSTs one `intent` row (plus `BOOKING_WEBHOOK_TOKEN`) to the booking Apps Script Web App (`BOOKING_SHEETS_WEBHOOK_URL`, source [`tools/booking-conversions.gs`](../tools/booking-conversions.gs)). That script later matches calendar bookings by attendee email and sends GA4 `booking_completed` + Google Ads offline-conversion rows. In-memory rate limit (8 per IP per 30 min). If the env var is unset it returns `202 {stored:false}` and the site keeps working. Deliberately separate from `/api/lead-magnet-submit` (different Sheet). Full flow and setup: [TRACKING.md §5](TRACKING.md#5-booking-conversions).
+
 ## 4. Cleanup cron ([`.github/workflows`](../.github/workflows))
 
 - Schedule: daily at `30 20 * * *` UTC (02:00 IST). Manual trigger also available via `workflow_dispatch`.
@@ -99,6 +106,9 @@ Set in Vercel project settings:
 | `SITE_BASE_URL` | `api/build-demo.js` | Used to build the demo URL returned to the caller. Defaults to `https://upcore.ai`. |
 | `GOOGLE_SHEETS_WEBHOOK_URL` | `api/lead-magnet-submit.js` | Google Apps Script Web App URL (ends `/exec`) — the lead-magnet CRM **and** the peer-benchmark store. No service-account auth, no OAuth, no Vercel KV (this account has no Vercel Pro plan): the Apps Script appends one row per lead to a Google Sheet AND returns the niche's running aggregate (count/avgOverall/avgByDim) in the same response — the Sheet is the only data store this feature needs. Setup script + instructions in `lp/` (see FEATURES.md B4). If unset, the function logs a warning and returns `{sufficientData:false}` rather than failing the whole request. |
 
+| `BOOKING_SHEETS_WEBHOOK_URL` | `api/booking-intent.js` | Apps Script Web App URL (ends `/exec`) for the booking Sheet — see [TRACKING.md §5](TRACKING.md#5-booking-conversions). Unset = intents are not stored (endpoint returns 202). |
+| `BOOKING_WEBHOOK_TOKEN` | `api/booking-intent.js` | Shared secret sent with every intent; must equal the Apps Script property `WEBHOOK_TOKEN`. |
+
 The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-20251001`). If you bump it, bump it in both files and validate that the system prompt still produces the expected JSON / booking-marker shape.
 
 ## 6. Local development
@@ -114,11 +124,12 @@ The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-202510
 | GitHub Contents API | Writing demo HTML + manifest | Env var `GITHUB_PAT`, `GITHUB_REPO` |
 | FormSubmit.co | Static forms + chat lead capture + demo lead emails | Email is hard-coded as `gaurav@upcoretechnologies.com` in: `assessment.html`, `contact.html`, `chat-widget.js` (`LEAD_EMAIL`, client-side `submitLead()`), `api/build-demo.js` (`NOTIFY_TO`). Change all together. (`api/chat.js`'s `sendBookingEmails` is unused legacy.) |
 | Google Fonts | Poppins | `<link>` on every page |
-| Google Tag Manager | Tag/pixel management container | Container ID `GTM-MH5PB32L` hard-coded in two places per page: the loader `<script>` as the very first thing in `<head>` (above GA4/Clarity), and the `<noscript><iframe>` fallback immediately after the opening `<body>` tag. Both on all 70 non-demo pages. Bulk-replace both if the container changes. |
-| Google Analytics 4 (`gtag.js`) | Pageview/traffic analytics | Property ID `G-TVRF5M70ES` hard-coded (script `src` + `gtag('config', ...)`) directly below the GTM block in `<head>` on all 70 non-demo pages. Bulk-replace if the property changes. |
-| Microsoft Clarity | Session recording / heatmaps | Project ID `xtvhi9nvqa` hard-coded in the inline snippet directly below the GA4 block on all 70 non-demo pages. Bulk-replace if the project changes. |
+| Google Tag Manager | Tag/pixel management container. **V4 pages load all tags through it** (GA4, Ads, Conversion Linker, Clarity) behind the `{tagging:'gtm'}` flag; the container definition is [`tools/gtm-container-upcore-v4.json`](../tools/gtm-container-upcore-v4.json). See [TRACKING.md](TRACKING.md). | Container ID `GTM-MH5PB32L` hard-coded in two places per page: the loader `<script>` as the very first thing in `<head>` (above GA4/Clarity), and the `<noscript><iframe>` fallback immediately after the opening `<body>` tag. Both on all 70 non-demo pages. Bulk-replace both if the container changes. |
+| Google Analytics 4 (`gtag.js`) | Pageview/traffic analytics | Legacy pages: property ID `G-TVRF5M70ES` hard-coded (script `src` + `gtag('config', ...)`) directly below the GTM block in `<head>`. V4 pages: via GTM only (never add `gtag.js` to them). Bulk-replace if the property changes. |
+| Microsoft Clarity | Session recording / heatmaps | Legacy pages: project ID `xtvhi9nvqa` hard-coded in the inline snippet directly below the GA4 block. V4 pages: GTM Custom HTML tag, only after `analytics_storage` consent. Bulk-replace if the project changes. |
 | Vercel | Hosting + deploy + cron-relay-via-GitHub-Actions | `vercel.json` |
 | Google Apps Script (Web App) | Lead-magnet CRM **and** peer-benchmark store — `api/lead-magnet-submit.js` POSTs one row per submission to a Sheets-bound Apps Script webhook, which appends the row and returns the niche's running aggregate (count/avgOverall/avgByDim) computed from the sheet's own rows. No Vercel KV, no database — deliberately, since this account has no Vercel Pro plan. | Env var `GOOGLE_SHEETS_WEBHOOK_URL`; the Apps Script source lives outside this repo (given to the user directly, not committed — it's account-specific, not code this repo can own) |
+| Google Apps Script (Web App) — bookings | Booking intents Sheet + calendar matching → GA4 Measurement Protocol `booking_completed` and Google Ads offline-conversion rows | Env vars `BOOKING_SHEETS_WEBHOOK_URL`, `BOOKING_WEBHOOK_TOKEN`; source committed at [`tools/booking-conversions.gs`](../tools/booking-conversions.gs) (secrets live in Script properties, never in the repo) |
 | jsPDF (CDN) | Client-side PDF generation for the two lead-magnet pages | `<script>` tag, `cdnjs.cloudflare.com/ajax/libs/jspdf` |
 
 ## 8. Things that look broken but aren't

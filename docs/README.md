@@ -11,6 +11,7 @@ This folder is the **single source of truth** for how this website is built, sty
 | [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) | Touching anything visual: colors, fonts, nav, buttons, cards, spacing, gradients. |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Working on serverless functions, the demo builder pipeline, the chat widget, deploys, env vars. |
 | [CONVENTIONS.md](CONVENTIONS.md) | Adding/renaming a page, writing internal links, adding a vertical, deciding *how* something is done. |
+| [TRACKING.md](TRACKING.md) | Touching analytics, GTM, consent, conversions or the booking flow. |
 | [CHANGELOG.md](CHANGELOG.md) | After shipping a feature or learning a non-obvious fact. **Append, don't overwrite.** |
 
 > **For a brand-new session:** read [STRUCTURE.md](STRUCTURE.md) and [FEATURES.md](FEATURES.md) first to get oriented, then jump to whichever of the others fits the task.

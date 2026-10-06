@@ -12,6 +12,16 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-06 — V4.1 rollout (dev): final URLs, who-we-help, booking conversions, GTM-only tagging, consent
+**Type:** feature / infra / content
+**Files:** `index.html`, `ai-native-engineering.html`, `who-we-help/*.html` (new), `lp/maturity-review.html`, `vercel.json`, `sitemap.xml`, `industries/index.html`, 69 legacy pages (nav/footer), `chat-widget.js` (v16), `cta-tracking.js` (v3), `js/*`, `css/upcore-v4.css`, `api/booking-intent.js` (new), `assessment.html`, `privacy.html`, `tools/` (new: `v4-build/`, `gtm-container-upcore-v4.json`, `booking-conversions.gs`), `images/og/`, `docs/TRACKING.md` (new)
+- **URLs:** V4 pages live at `/`, `/ai-native-engineering`, `/who-we-help/<segment>`; `/preview/*` and `industries/{cpa-firms,law-firms,insurance}` removed with 301s; `/who-we-help → /#who-we-help`. Legacy nav: "Who we help" (4 segments + All industries) and "How we engage" replace Industries and Pricing. `/pricing` stays live (FAO pricing), unlinked from the main nav.
+- **Booking conversions:** one-field email step before the calendar (skippable) + `/assessment` form both feed `/api/booking-intent` → Apps Script, which matches calendar bookings by email and sends GA4 `booking_completed` + Ads offline rows. Old primary label still not fired from the modal.
+- **Tagging:** V4 pages are GTM-only behind `{tagging:'gtm'}` with Consent Mode v2 (denied by default in UK/EEA/CH) and a consent banner + Cookie settings. Container JSON committed; **must be imported and published before production.** Privacy policy updated for Ads, Clarity, consent and booking records (needs legal review).
+- **Copy:** pod role "Claude Certified Architect"; pilot duration and commercials "agreed on the discovery call"; calls with Gaurav or Saswata. New OG image (`og-default.png` previously 404'd).
+- **Generators** moved into the repo (`tools/v4-build/`, excluded from deploy).
+- Correction to an earlier note: the LPs don't load `chat-widget.js`, so the modal email step doesn't appear on them; Governance Index bookings go through `/assessment` and AI Maturity Index bookings through `/lp/maturity-review`; both forms now record the intent silently (no visible change).
+
 ## 2026-10-06 — V4.1 preview: multi-discipline audit applied (CRO, copy, UI/UX, motion, GTM)
 **Type:** fix / feature (preview pages + two sitewide scripts)
 **Files:** `preview/*.html` (now extensionless URLs `/preview/home-v4` etc.), `css/upcore-v4.css`, `js/upcore-v4.js`, new `js/v4-analytics.js`, `cta-tracking.js` (v2), `chat-widget.js` (v15), `docs/DESIGN-SYSTEM-V4.md`

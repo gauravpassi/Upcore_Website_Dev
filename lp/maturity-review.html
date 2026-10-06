@@ -442,6 +442,26 @@ document.getElementById('review-form').addEventListener('submit', function(e){
         'Team': 'Upcore Technologies - upcoretech.com'
       })
     }).catch(function(){});
+    // Booking attribution (fire-and-forget, keepalive survives the native POST navigation):
+    // the email + first-touch gclid/utm let tools/booking-conversions.gs match the calendar
+    // booking made on the next screen. No visible change. See docs/TRACKING.md.
+    try {
+      var a = {}; try { a = JSON.parse(localStorage.getItem('upc_attrib') || '{}') || {}; } catch(_) {}
+      var ck = function(re){ var m = document.cookie.match(re); return m ? m[1] : ''; };
+      var cs = ''; try { cs = localStorage.getItem('upc_consent') || ''; } catch(_) {}
+      if (cs !== 'granted' && cs !== 'denied') {
+        var tz = ''; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch(_) {}
+        cs = /^Europe\//.test(tz) ? 'unknown_eu' : 'default_granted';
+      }
+      fetch('/api/booking-intent', {
+        method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email, page: location.pathname, cta_id: 'maturity-review-form', cta_section: 'maturity_review_page', attrib: a,
+          ga_client_id: ck(/(?:^|;\s*)_ga=GA\d\.\d\.(\d+\.\d+)/), ga_session_id: ck(/(?:^|;\s*)_ga_TVRF5M70ES=GS\d\.\d\.s?(\d+)/),
+          consent: cs, referrer: document.referrer || ''
+        })
+      }).catch(function(){});
+    } catch(_) {}
   }
   // Native form POST to FormSubmit.co (for the team notification) continues normally
 });

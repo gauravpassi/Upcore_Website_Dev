@@ -13,6 +13,7 @@ Before making changes, **read the relevant files in [`docs/`](docs/)**. They are
 | Touching anything visual (colors, fonts, nav, buttons, cards) | [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) |
 | Working on serverless functions, demo builder, deploys, env vars | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | Adding/renaming pages, internal links, new industries | [docs/CONVENTIONS.md](docs/CONVENTIONS.md) |
+| Analytics, GTM, consent, booking conversions | [docs/TRACKING.md](docs/TRACKING.md) |
 | Catching up on what's shipped recently | [docs/CHANGELOG.md](docs/CHANGELOG.md) |
 | Lost / not sure where to start | [docs/README.md](docs/README.md) |
 
@@ -33,8 +34,9 @@ This is part of every change, not an afterthought:
 These are the gotchas that have actually bitten this repo. The full context is in the docs above; this is the survival kit:
 
 - **No build step, no framework, no `package.json`.** Pure static HTML + 2 Vercel functions. Don't introduce React/Vite/Tailwind/etc. without explicit approval.
-- **The `:root` CSS block and the `<nav>` block are duplicated across all 37 pages and MUST stay in sync.** Recent commits had to repair nav damage from per-page edits. When changing either, propagate to every page in the same commit. Canonical source: `index.html`.
+- **The `:root` CSS block and the `<nav>` block are duplicated across all 37 pages and MUST stay in sync.** Recent commits had to repair nav damage from per-page edits. When changing either, propagate to every page in the same commit. Canonical source for legacy pages: `about.html` (`index.html` is now a generated V4 page).
 - **`cleanUrls: true`** — internal links omit `.html` (`/about`, not `/about.html`).
+- **V4 pages (`/`, `/ai-native-engineering`, `/who-we-help/*`) are generated** by `tools/v4-build/` (run from repo root). Edit the generator, never the HTML. They tag through **GTM only** behind a `{tagging:'gtm'}` flag with Consent Mode v2 — never add `gtag.js` or inline Clarity to them. See `docs/TRACKING.md` and `docs/DESIGN-SYSTEM-V4.md`.
 - **Anthropic model `claude-haiku-4-5-20251001` is hard-pinned in two places** (`api/chat.js`, `api/build-demo.js`). Bump both together.
 - **`demos/manifest.json` is owned by the demo builder + nightly cleanup cron** — don't hand-edit. `[]` is a valid state.
 - **All form/booking emails go to `gaurav@upcoretechnologies.com`, CC `saswata@upcoretechnologies.com`** via FormSubmit, hard-coded in 8 places (7 live + 1 unused legacy). Change all together — see `docs/CONVENTIONS.md` §8. New FormSubmit forms need a real test submission + inbox check after launch — FormSubmit silently withholds delivery until a first-time activation link is clicked (bit `lp/maturity-review.html` on launch day, see CHANGELOG 2026-08-06).
@@ -44,4 +46,4 @@ These are the gotchas that have actually bitten this repo. The full context is i
 
 - Run with `vercel dev` (required for `api/` functions, `cleanUrls`, and redirects to behave like prod).
 - No tests, no lint. Save → reload.
-- Required env vars: `ANTHROPIC_API_KEY`, `GITHUB_PAT`, `GITHUB_REPO`, `SITE_BASE_URL`. See [docs/ARCHITECTURE.md §5](docs/ARCHITECTURE.md#5-environment-variables).
+- Required env vars: `ANTHROPIC_API_KEY`, `GITHUB_PAT`, `GITHUB_REPO`, `SITE_BASE_URL`; plus `GOOGLE_SHEETS_WEBHOOK_URL` (LP leads) and `BOOKING_SHEETS_WEBHOOK_URL` + `BOOKING_WEBHOOK_TOKEN` (booking conversions, optional — see `docs/TRACKING.md`). See [docs/ARCHITECTURE.md §5](docs/ARCHITECTURE.md#5-environment-variables).

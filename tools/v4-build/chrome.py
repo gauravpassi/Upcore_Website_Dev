@@ -7,7 +7,7 @@ import tools as TL
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
 V = 6          # cache-buster for css/js/upcore-v4 + v4-analytics
-CHAT_V = 16    # chat-widget.js (bump sitewide when it changes)
+CHAT_V = 17    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
 OG_IMAGE = SITE + '/images/og/upcore-v4.png'

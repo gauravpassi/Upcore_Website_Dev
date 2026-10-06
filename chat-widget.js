@@ -810,7 +810,7 @@
   var FONT = 'Geist,"DM Sans",system-ui,sans-serif';
 
   var overlay = null, calIframe = null, closeBtn = null, gate = null, emailIn = null, errEl = null;
-  var returnFocus = null, ctx = {}, openedAt = 0, engaged = false, loads = 0, focusing = false;
+  var returnFocus = null, ctx = {}, openedAt = 0, engaged = false, loads = 0, baseLoads = 0, srcSetAt = 0, focusing = false;
 
   function track(n, p) {
     p = Object.assign({ page_path: location.pathname }, ctx, p || {});
@@ -926,7 +926,7 @@
   }
 
   function showCalendar() {
-    if (calIframe && !calIframe.src) calIframe.src = CAL_URL;
+    if (calIframe && !calIframe.src) { srcSetAt = Date.now(); calIframe.src = CAL_URL; }
     if (gate) gate.style.display = 'none';
     calIframe.style.display = 'block';
     focusing = true; calIframe.focus(); setTimeout(function () { focusing = false; }, 60);
@@ -957,7 +957,12 @@
     calIframe.setAttribute('title', 'Book a Discovery Call: Google Calendar scheduling');
     calIframe.setAttribute('frameborder', '0');
     calIframe.style.cssText = 'flex:1;width:100%;border:none;display:none;';
-    calIframe.addEventListener('load', function () { if (++loads > 1) track('booking_iframe_navigated', { load_count: loads }); });
+    // Google's scheduler reloads itself while it first loads; only later loads are real navigation.
+    calIframe.addEventListener('load', function () {
+      loads++;
+      if (Date.now() - srcSetAt < 6000) { baseLoads = loads; return; }
+      if (loads > baseLoads) track('booking_iframe_navigated', { load_count: loads - baseLoads });
+    });
     box.appendChild(hdr); box.appendChild(buildGate()); box.appendChild(calIframe);
     overlay.appendChild(box);
     document.body.appendChild(overlay);
@@ -970,7 +975,7 @@
     ctx = { cta_id: (trigger && trigger.getAttribute('data-gtm-cta')) || 'book-a-discovery-call', cta_section: (trigger && trigger.getAttribute('data-gtm-cta-section')) || 'unknown' };
     engaged = false; openedAt = Date.now();
     // Preload the calendar behind the email step so it appears instantly.
-    if (!calIframe.src) calIframe.src = CAL_URL;
+    if (!calIframe.src) { srcSetAt = Date.now(); calIframe.src = CAL_URL; }
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
     setInert(true);

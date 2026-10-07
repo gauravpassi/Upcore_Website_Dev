@@ -27,16 +27,16 @@
       a: "Because your engineers are already shipping AI-generated code, and most orgs have zero review process for it. Roughly 45% of AI-generated code carries security vulnerabilities (Veracode, 2025), and most teams have no audit trail ready for the EU AI Act, HIPAA, or SOX. Your FAO owns that risk end to end." },
     { id: 'fde-what', cat: 'agents', popular: true,
       q: 'What is a Forward Deployed Engineer?',
-      a: 'A dedicated engineer embedded in your workflow to build, integrate, and maintain custom AI agents against your real systems — not a demo, not a project-and-vanish agency engagement. Starting from $2,499/month. <a href="/fde-engineers" target="_blank" rel="noopener">Meet the FDE Engineers &rarr;</a>' },
+      a: 'A dedicated engineer embedded in your workflow to build, integrate, and maintain custom AI agents against your real systems — not a demo, not a project-and-vanish agency engagement. Starting from $2,499/month. <a href="/platform" target="_blank" rel="noopener">Meet the FDE Engineers &rarr;</a>' },
     { id: 'studio-vs-nocode', cat: 'agents',
       q: 'How is Studio different from a no-code tool?',
-      a: 'A no-code tool hands you a config UI and leaves integration to you. Studio is a managed service — describe a workflow in plain English, and your Forward Deployed Engineer builds, integrates, and deploys it into your actual CRM, ERP, or channels, governed by your FAO. <a href="/agent-builder" target="_blank" rel="noopener">Explore Studio &rarr;</a>' },
+      a: 'A no-code tool hands you a config UI and leaves integration to you. Studio is a managed service — describe a workflow in plain English, and your Forward Deployed Engineer builds, integrates, and deploys it into your actual CRM, ERP, or channels, governed by your FAO. <a href="/platform" target="_blank" rel="noopener">Explore Studio &rarr;</a>' },
     { id: 'industries', cat: 'agents', popular: true,
       q: 'What industries do you work with?',
-      a: 'We serve 12+ verticals, including Manufacturing, SaaS, Ecommerce/D2C, Banking &amp; Finance, Healthcare, Real Estate, Logistics, Legal &amp; Compliance, EdTech, Government, NBFC/Loans, and Marketing Agencies. <a href="/industries" target="_blank" rel="noopener">See all industries &rarr;</a>' },
+      a: 'We serve 12+ verticals, including Manufacturing, SaaS, Ecommerce/D2C, Banking &amp; Finance, Healthcare, Real Estate, Logistics, Legal &amp; Compliance, EdTech, Government, NBFC/Loans, and Marketing Agencies. <a href="/#who-we-help" target="_blank" rel="noopener">See all industries &rarr;</a>' },
     { id: 'pricing-how-much', cat: 'pricing', popular: true,
       q: 'How much does this cost?',
-      a: 'AI Governance (the FAO) starts from $1,999/month. Studio and Forge agents start from $799. A dedicated FDE Engineer retainer starts from $2,499/month. Exact pricing depends on scope — confirmed for free on your Discovery Call. <a href="/pricing" target="_blank" rel="noopener">See full pricing &rarr;</a>' },
+      a: 'AI Governance (the FAO) starts from $1,999/month. Studio and Forge agents start from $799. A dedicated FDE Engineer retainer starts from $2,499/month. Exact pricing depends on scope — confirmed for free on your Discovery Call. <a href="/fractional-ai-officer#economics" target="_blank" rel="noopener">See full pricing &rarr;</a>' },
     { id: 'pricing-lockin', cat: 'pricing',
       q: 'Is there a minimum commitment?',
       a: "No lock-in on the FAO engagement. You get your first AI risk report at Day 30 — if it doesn't justify continuing, you walk away. No exit fee, no minimum term after that." },
@@ -57,8 +57,8 @@
       a: 'ISO 27001, ISO 9001, and CMMI Level 3 &mdash; plus a 5.0 rating on Clutch. <a href="/security" target="_blank" rel="noopener">Full details on our Security page &rarr;</a>' }
   ];
 
-  // V4.1 pages (html.v4): AI-Native Engineering-led answers, no published prices.
-  if (document.documentElement.classList.contains('v4')) {
+  // Site-wide (2026-10-07): AI-Native Engineering-led answers; the only published price is the Fractional AI Officer's.
+  if (true) {
     var PRE = location.pathname.indexOf('/preview') === 0;
     var AINE_URL = PRE ? '/preview/ai-native-engineering' : '/ai-native-engineering';
     var HOME_URL = PRE ? '/preview/home-v4' : '/';
@@ -82,7 +82,7 @@
       { id: 'auto-who', cat: 'auto', q: 'Which businesses do you help?',
         a: 'Tech and software companies, ecommerce and retail brands, operations-heavy mid-market businesses, and professional services firms such as accounting, law, wealth and staffing. <a href="' + HOME_URL + '#segments">See who we help &rarr;</a>' },
       { id: 'cost-how', cat: 'cost', popular: true, q: 'How much does it cost?',
-        a: "We don't publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded Claude Certified Architect. Pilot duration and commercials are agreed on the discovery call, based on your scope and requirements. Automation is scoped per workflow. After the discovery call you get a written proposal with a fixed scope and price." },
+        a: "We don't publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded Claude Certified Architect. Pilot duration and commercials are agreed on the discovery call, based on your scope and requirements. Automation is scoped per workflow. The Fractional AI Officer starts from $1,999 a month. After the discovery call you get a written proposal with a fixed scope and price. <a href=\"/fractional-ai-officer\">Fractional AI Officer &rarr;</a>" },
       { id: 'cost-speed', cat: 'cost', q: 'How fast can you start?',
         a: 'Our standard is a first agent live within 30 days of design sign-off. Engineering pilots start with one team and one service, with success measures agreed up front.' },
       { id: 'cost-call', cat: 'cost', q: 'What happens on the discovery call?',

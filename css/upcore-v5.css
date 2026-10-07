@@ -939,3 +939,6 @@ a.btn--cyan:hover{box-shadow:0 14px 40px -12px var(--cyan-glow);}
   .h-sec-list svg *{stroke-dashoffset:0;transition:none;}
   .h-measures li::before{transform:none;transition:none;}
 }
+
+/* 404 page */
+.h-router--one{grid-template-columns:minmax(0,1fr);max-width:820px;margin-top:0;}

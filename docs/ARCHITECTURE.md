@@ -33,6 +33,7 @@ Routing rules (all in [`vercel.json`](../vercel.json)):
 - `cleanUrls: true` — internal links **must omit** `.html`.
 - Permanent redirects: `/home → /`, `/blog → /insights`, `/blog/:slug → /insights/:slug`, `/contact-us → /contact`, `/about-us → /about`; `/industries/{cpa-firms,law-firms,legal-compliance} → /who-we-help/professional-services`, `/industries/insurance → /who-we-help/operations-heavy`; `/preview/home-v4 → /`, `/preview/ai-native-engineering → /ai-native-engineering`, `/preview/who-we-help-:slug → /who-we-help/:slug`.
 - Temporary redirect: `/who-we-help → /#who-we-help` (no hub page; the home section is the hub).
+- 2026-10-07 restructure: 35 more 301s for retired pages (Forge, Studio, FDE, `/platform/*`, `/solutions/*`, `/industries/*`, `/kw/*`, `/pricing`, `/ai-adoption-strategy` → `/fractional-ai-officer`, `/index-v2`). Full list: site map in [STRUCTURE.md](STRUCTURE.md). The `/industries/ecommerce` rewrite was replaced by a redirect. Unknown paths get `404.html`.
 - One rewrite: `/industries/ecommerce → /industries/retail-d2c` (alias, not a redirect).
 
 The chat widget (`<script src="/chat-widget.js" defer>`) is included on **every** non-demo page.

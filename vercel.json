@@ -52,13 +52,182 @@
       ]
     }
   ],
-  "rewrites": [
+  "redirects": [
+    {
+      "source": "/sdlc-agent",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/industries/tech-sdlc",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/agent-builder",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/platform/ai-agent-builder",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/build-ai-agent-no-code",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/platform/custom-ai-agents",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/platform/30-day-deployment",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/fde-engineers",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/platform/on-premise-deployment",
+      "destination": "/security",
+      "permanent": true
+    },
+    {
+      "source": "/industries/compliance-governance",
+      "destination": "/security",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/consolidate-ai-tools",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/compare/ai-workforce-vs-ai-tools",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/industries",
+      "destination": "/#who-we-help",
+      "permanent": false
+    },
+    {
+      "source": "/industries/retail-d2c",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true
+    },
     {
       "source": "/industries/ecommerce",
-      "destination": "/industries/retail-d2c"
-    }
-  ],
-  "redirects": [
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true
+    },
+    {
+      "source": "/industries/saas-technology",
+      "destination": "/who-we-help/tech-software",
+      "permanent": true
+    },
+    {
+      "source": "/industries/real-estate",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/manufacturing",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/logistics",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/healthcare",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/banking-finance",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/nbfc-loans",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/edtech",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/government",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/industries/marketing-agencies",
+      "destination": "/who-we-help/professional-services",
+      "permanent": true
+    },
+    {
+      "source": "/kw",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/kw/ecommerce-ai-agents",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true
+    },
+    {
+      "source": "/kw/saas-ai-agents",
+      "destination": "/who-we-help/tech-software",
+      "permanent": true
+    },
+    {
+      "source": "/kw/manufacturing-ai-agents",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/kw/real-estate-ai-workforce",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/kw/healthcare-ai-agents",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/kw/financial-services-ai-agents",
+      "destination": "/who-we-help/operations-heavy",
+      "permanent": true
+    },
+    {
+      "source": "/pricing",
+      "destination": "/fractional-ai-officer#economics",
+      "permanent": true
+    },
+    {
+      "source": "/ai-adoption-strategy",
+      "destination": "/fractional-ai-officer",
+      "permanent": true
+    },
+    {
+      "source": "/index-v2",
+      "destination": "/",
+      "permanent": true
+    },
     {
       "source": "/industries/legal-compliance",
       "destination": "/who-we-help/professional-services",
@@ -122,11 +291,6 @@
     {
       "source": "/about-us",
       "destination": "/about",
-      "permanent": true
-    },
-    {
-      "source": "/fractional-ai-officer",
-      "destination": "/ai-engineering-governance",
       "permanent": true
     },
     {

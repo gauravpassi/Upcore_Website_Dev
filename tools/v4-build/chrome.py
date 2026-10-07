@@ -6,8 +6,8 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 11          # cache-buster for css/js/upcore-v4 + v4-analytics
-CHAT_V = 17    # chat-widget.js (bump sitewide when it changes)
+V = 12          # cache-buster for css/js/upcore-v4 + v4-analytics
+CHAT_V = 18    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
 OG_IMAGE = SITE + '/images/og/upcore-v4.png'
@@ -16,16 +16,16 @@ PREVIEW_URL = {
     'home': '/preview/home-v4', 'aine': '/preview/ai-native-engineering',
     'tech-software': '/preview/who-we-help-tech-software', 'ecommerce-retail': '/preview/who-we-help-ecommerce-retail',
     'operations-heavy': '/preview/who-we-help-operations-heavy', 'professional-services': '/preview/who-we-help-professional-services',
-    'results': '/preview/results',
+    'results': '/preview/results', '404': '/preview/404',
 }
 FINAL_URL = {
     'home': '/', 'aine': '/ai-native-engineering',
     'tech-software': '/who-we-help/tech-software', 'ecommerce-retail': '/who-we-help/ecommerce-retail',
     'operations-heavy': '/who-we-help/operations-heavy', 'professional-services': '/who-we-help/professional-services',
-    'results': '/results',
+    'results': '/results', '404': '/404',
 }
 URL = dict(FINAL_URL if LIVE else PREVIEW_URL)
-URL.update({'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/ai-adoption-strategy'})
+URL.update({'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/fractional-ai-officer'})
 
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 ICON = {
@@ -72,6 +72,7 @@ def nav(active=''):
       <li><button type="button" aria-expanded="false" aria-controls="drop-solutions">Solutions {CHEV}</button><div class="drop" id="drop-solutions">{sol}</div></li>
       <li><button type="button" aria-expanded="false" aria-controls="drop-who">Who we help {CHEV}</button><div class="drop" id="drop-who">{seg}</div></li>
       <li><a href="{URL['results']}"{cur('results')}>Results</a></li>
+      <li><a href="/insights">Insights</a></li>
       <li><a href="/about">About</a></li>
     </ul></nav>
     <div class="nav-cta">
@@ -140,10 +141,12 @@ def graph(key, nodes, crumb=None):
     return {'@context': 'https://schema.org', '@graph': g}
 
 
-def write(fname, key, title, meta, body, active='', ld=None, og=None, group='page', annc_kind=ANNC_ENG, spine=True, main_cls=''):
+def write(fname, key, title, meta, body, active='', ld=None, og=None, group='page', annc_kind=ANNC_ENG, spine=True, main_cls='', noindex=False):
     canon = SITE + FINAL_URL[key]
     ld_tag = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n' if ld else ''
     robots = '<meta name="robots" content="index, follow, max-image-preview:large" />\n<link rel="canonical" href="' + canon + '" />' if LIVE else '<meta name="robots" content="noindex, nofollow" />'
+    if noindex:
+        robots = '<meta name="robots" content="noindex, follow" />'
     track = TRACKING.replace('__GROUP__', group) if LIVE else ''
     noscript = '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MH5PB32L" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>\n' if LIVE else ''
     body_html = body  # sprite must be generated after body is built

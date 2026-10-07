@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Site restructure, phase 1: 81 pages to 51, one menu, one story
+**Type:** structure
+**Files:** `vercel.json` (50 redirects), 35 retired files, `fractional-ai-officer.html` (renamed), `404.html` + `tools/v4-build/build_404.py` (new), 37 older pages (menu, footer, links), `chat-widget.js` (v18: the new FAQ on every page, AI Officer price), `tools/v4-build/chrome.py` (Insights in the menu, AI Officer URL), `sitemap.xml` (42 URLs), docs
+Audit found four conflicting stories (old About, Platform, Studio/Forge at $799, Pricing at $1,999 vs "no price list") and six product names. Decisions: AI Officer price only, retire Studio/Forge/FDE names, redirect industry and keyword pages to the four segments, keep the demo builder and $3 toolkit off-menu. Phase 2 rebuilds AI-Native Engineering, About, Security, Contact, Automation, AI Governance, AI Officer and the segments in the calm style; phase 3 adds case studies, a category guide, comparison pages and one Insights hub.
+
 ## 2026-10-07 — Homepage: what a buyer still needed
 **Type:** content + design
 **Files:** `tools/v4-build/build_home.py`, `css/upcore-v5.css` (customer-lens block), `js/upcore-v5.js` (estimator), `tools/v4-build/chrome.py` (V=11)

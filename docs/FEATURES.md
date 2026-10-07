@@ -12,6 +12,8 @@ How each entry is structured:
 
 ## A. Brand & marketing pages (static, no API)
 
+> **2026-10-07 restructure:** sections A3c (AI Adoption Strategy, now `/fractional-ai-officer`), A4 Studio, A4b FDE, A5 Forge, A6 Industries hub and A7 industry pages describe pages that were retired or moved. See the site map at the top of [STRUCTURE.md](STRUCTURE.md). Kept below for history until those sections are rewritten.
+
 These are pure HTML. To add a new one, follow the page-add checklist in [CONVENTIONS.md §3](CONVENTIONS.md#3-adding-a-new-page-checklist).
 
 ### A1. Homepage

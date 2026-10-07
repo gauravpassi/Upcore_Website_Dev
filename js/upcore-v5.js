@@ -415,6 +415,51 @@
     mode(); show(0);
   });
 
+  /* ------------------------------------------------------------ About: statement lights up word by word as it scrolls through */
+  $$('[data-lit]').forEach(function (el) {
+    if (reduce) return;
+    var words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(function (w) { return '<span class="lw">' + w.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span>'; }).join(' ');
+    var spans = $$('.lw', el), raf = 0;
+    el.classList.add('is-live');
+    var upd = function () {
+      raf = 0;
+      var r = el.getBoundingClientRect(), vh = innerHeight;
+      var n = Math.round(clamp((vh * 0.88 - r.top) / (r.height + vh * 0.38), 0, 1) * spans.length);
+      spans.forEach(function (s, i) { s.classList.toggle('on', i < n); });
+    };
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
+    addEventListener('resize', upd);
+    upd();
+  });
+
+  /* ------------------------------------------------------------ About: the conviction nearest the middle of the screen is the one in focus */
+  $$('[data-beliefs]').forEach(function (ol) {
+    if (reduce || !hasIO) return;
+    var items = $$('li', ol);
+    var set = function (li) { items.forEach(function (x) { x.classList.toggle('is-cur', x === li); }); };
+    ol.classList.add('is-live');
+    set(items[0]);
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) set(e.target); }); }, { rootMargin: '-42% 0px -42% 0px' });
+    items.forEach(function (li) { io.observe(li); li.addEventListener('mouseenter', function () { set(li); }); });
+  });
+
+  /* ------------------------------------------------------------ About: hovering a country (list or map) highlights its route */
+  $$('[data-map]').forEach(function (fig) {
+    var sec = fig.closest('section');
+    var on = function (c) { if (c && c !== 'in') fig.setAttribute('data-hl', c); };
+    var off = function () { fig.removeAttribute('data-hl'); };
+    $$('.ab-places li[data-c]', sec || document).forEach(function (li) {
+      li.addEventListener('mouseenter', function () { on(li.getAttribute('data-c')); });
+      li.addEventListener('mouseleave', off);
+    });
+    $$('.ab-node', fig).forEach(function (g) {
+      var c = (g.getAttribute('class').match(/c-(\w+)/) || [])[1];
+      g.addEventListener('mouseenter', function () { on(c); });
+      g.addEventListener('mouseleave', off);
+    });
+  });
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

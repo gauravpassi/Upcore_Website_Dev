@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 13          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 14          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 18    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
@@ -16,13 +16,13 @@ PREVIEW_URL = {
     'home': '/preview/home-v4', 'aine': '/preview/ai-native-engineering',
     'tech-software': '/preview/who-we-help-tech-software', 'ecommerce-retail': '/preview/who-we-help-ecommerce-retail',
     'operations-heavy': '/preview/who-we-help-operations-heavy', 'professional-services': '/preview/who-we-help-professional-services',
-    'results': '/preview/results', '404': '/preview/404',
+    'results': '/preview/results', '404': '/preview/404', 'about': '/preview/about',
 }
 FINAL_URL = {
     'home': '/', 'aine': '/ai-native-engineering',
     'tech-software': '/who-we-help/tech-software', 'ecommerce-retail': '/who-we-help/ecommerce-retail',
     'operations-heavy': '/who-we-help/operations-heavy', 'professional-services': '/who-we-help/professional-services',
-    'results': '/results', '404': '/404',
+    'results': '/results', '404': '/404', 'about': '/about',
 }
 URL = dict(FINAL_URL if LIVE else PREVIEW_URL)
 URL.update({'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/fractional-ai-officer'})
@@ -73,7 +73,7 @@ def nav(active=''):
       <li><button type="button" aria-expanded="false" aria-controls="drop-who">Who we help {CHEV}</button><div class="drop" id="drop-who">{seg}</div></li>
       <li><a href="{URL['results']}"{cur('results')}>Results</a></li>
       <li><a href="/insights">Insights</a></li>
-      <li><a href="/about">About</a></li>
+      <li><a href="{URL['about']}"{cur('about')}>About</a></li>
     </ul></nav>
     <div class="nav-cta">
       {btn('nav', cls='btn btn--sm')}
@@ -93,7 +93,7 @@ def footer():
       <nav class="foot-nav" aria-label="Footer">
         <div><h2 class="foot-h">Solutions</h2><ul>{sol}</ul></div>
         <div><h2 class="foot-h">Who we help</h2><ul>{seg}</ul></div>
-        <div><h2 class="foot-h">Company</h2><ul><li><a href="/about">About</a></li><li><a href="/results">Results</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/security">Security</a></li></ul></div>
+        <div><h2 class="foot-h">Company</h2><ul><li><a href="{URL['about']}">About</a></li><li><a href="/results">Results</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/security">Security</a></li></ul></div>
         <div><h2 class="foot-h">Legal</h2><ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><button type="button" class="foot-link" data-consent-open>Cookie settings</button></li></ul></div>
       </nav>
     </div>

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Phase 2: About rebuilt in the calm style
+**Type:** content
+**Files:** `tools/v4-build/build_about.py` (new), `about.html` (now generated), `tools/v4-build/chrome.py` (`about` URL key, nav marks About as current, `V` 13→14), `css/upcore-v5.css` (`.ab-*`), `js/upcore-v5.js` (scroll-lit statement, convictions focus, map highlight), all generated pages rebuilt for the cache-buster, docs
+The old About told the retired story (72-hour FAO, "four products", Studio/Forge/FDE, 12 industry verticals). The new page: key facts, why we exist, the four services, four convictions, leadership with initials avatars (no headshots, per Gaurav), a client map from the India delivery team, office address and credentials. Only facts already on the site are used. `contact.html` replaces `about.html` as the canonical source for the legacy `:root`/nav block.
+
 ## 2026-10-07 — Phase 2: AI-Native Engineering page rebuilt in the calm style
 **Type:** design + content
 **Files:** `tools/v4-build/build_aine.py` (new; `build_v41.py` removed), `ai-native-engineering.html`, `css/upcore-v5.css` (AI-Native Engineering block), `js/upcore-v5.js` (leadership view, stage explorer), `chrome.py` (V=13)

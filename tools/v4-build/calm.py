@@ -43,7 +43,7 @@ def hero_page(trail, eb, h1, lead, extra=''):
 {crumb(trail)}
 <p class="h-eyebrow" data-reveal>{eb}</p>
 <h1 id="hero-h" class="t-display" data-split>{h1}</h1>
-<p class="t-lead" data-reveal style="--d:3">{lead}</p>{extra}
+{f'<p class="t-lead" data-reveal style="--d:3">{lead}</p>' if lead else ''}{extra}
 </div></section>'''
 
 

@@ -707,8 +707,8 @@
       var h = document.getElementById(s.getAttribute('aria-labelledby'));
       return { el: s, t: h ? h.textContent.replace(/\s+/g, ' ').trim() : '' };
     }).filter(function (x) { return x.t; });
-    var crumb = $('.crumb [aria-current]');
-    var page = crumb ? crumb.textContent.trim() : document.title.split('|')[0].split(':')[0].trim();
+    var crumb = $('.crumb [aria-current]'), named = $('[data-island-label]');
+    var page = named ? named.getAttribute('data-island-label') : crumb ? crumb.textContent.trim() : document.title.split('|')[0].split(':')[0].trim();
     var lastY = scrollY, acc = 0, peek = false, label = '';
     var anyOpen = function () { return nav.classList.contains('menu-open') || !!$('.nav [aria-expanded="true"]'); };
     var setCompact = function (v) { nav.classList.toggle('is-compact', !!v && !peek && !anyOpen()); };

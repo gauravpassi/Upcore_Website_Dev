@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Legacy pages moved onto the new design
+**Type:** design + structure
+**Files:** `tools/v4-build/build_library.py` + `content/*.json` (new, 28 pages), `build_booking.py` (new), `lp_chrome.py` (new), `build_all.py`, `article.py`, `calm.py`, `chrome.py` (`V` 19), `insights/*`, `learn/*`, `compare/ai-agents-vs-copilot-financial-services.html`, `privacy.html`, `terms.html`, `assessment.html`, `lp/*.html`, `css/upcore-v5.css` (`library`, `booking`), `js/upcore-v5.js` (island `data-island-label`)
+Every article, guide, the financial-services comparison and the legal pages are now generated from JSON in the calm article layout (same URLs). `/assessment` and `/lp/maturity-review` are generated calm booking pages with field-for-field identical FormSubmit forms; their "Lead Tracking" conversion now goes through GTM (verify in Tag Assistant). The two quiz LPs keep their engine and direct gtag tracking but use the island nav, site footer and a calm light theme; a duplicated "50+ enterprise teams scored" proof line on the Maturity Index was removed. Only `/ai-operations` and `/build-your-demo` remain hand-built.
+
 ## 2026-10-07 — Pre-launch: named case studies, navigation island, AI assistant, polish
 **Type:** design + content + feature
 **Files:** `tools/v4-build/cases.py`, `build_results.py`, `segment_copy.py`, `build_home.py`, `build_aine.py`, `calm.py`, `chrome.py` (island markup, `V` 18, `CHAT_V` 19), every generated page, `css/upcore-v5.css` (`.cx-*`, `.cv-*`, `island`), `js/upcore-v5.js` (case filters, navigation island; old hide-on-scroll module folded in), `chat-widget.js` (rebuilt chat, booking modal unchanged), `api/chat.js` (rewritten), `vercel.json` (chat `maxDuration` 30), all legacy pages (`chat-widget.js?v=19`), `privacy.html` + `terms.html` (assistant described, Groq listed as a provider), `ai-operations.html` (no horizontal scroll), `tools/v4-build/gtm_build.py` + `tools/gtm-container-upcore-v4.json` (chat + estimator events), docs

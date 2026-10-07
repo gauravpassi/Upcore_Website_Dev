@@ -1,0 +1,113 @@
+{
+ "file": "learn/ai-agent-skills.html",
+ "path": "/learn/ai-agent-skills",
+ "title": "AI Agent Skills: Tool Use, Memory & Capabilities | Upcore",
+ "meta": "Tool use, web search, API calls, memory retrieval, form filling - each AI agent skill defined in plain English and mapped to a real enterprise use case…",
+ "robots": "",
+ "published": "2025-01-01",
+ "faq": [
+  [
+   "What is tool use in an AI agent?",
+   "<p>Tool use in an AI agent is the ability to invoke external functions, APIs, or services as part of completing a task. When an AI agent is reasoning through a problem and determines it needs information or needs to take an action that requires interacting with an external system, it calls a tool - which might be a REST API call to your CRM, a database query, a web search, a file read, or a form submission. Tool use is what distinguishes an AI agent from a conversational AI model: a model produces text in response to a prompt; an agent uses tools to take real actions in the world. Every enterprise AI agent depends on tool use to deliver outcomes beyond generating text.</p>"
+  ],
+  [
+   "Can an AI agent write to my database?",
+   "<p>Yes - an AI agent can write to your database, provided it has been given the appropriate tool wrappers and access credentials to do so. Database write access is one of the most common production agent capabilities: a customer service agent that resolves a case needs to update the ticket status; a loan origination agent that approves an application needs to write the record. Write access is managed through standard access controls - the agent is given the minimum permissions it needs for its specific tasks, and every write action is logged with timestamp, data modified, and the reasoning that triggered the action.</p>"
+  ],
+  [
+   "What is the difference between an AI agent's skills and its training?",
+   "<p>An AI agent's training refers to the knowledge embedded in the underlying language model - the facts, reasoning patterns, and domain knowledge that were learned during the model's training process. This is static: it was determined before deployment. An AI agent's skills, by contrast, are the capabilities added through tool integrations, memory systems, and workflow configuration after training. Skills are dynamic - they can be added, removed, or updated without retraining the model. Training determines what the agent knows; skills determine what it can do.</p>"
+  ],
+  [
+   "How do I know what skills my enterprise AI agent needs?",
+   "<p>Skills are determined by mapping each step in the workflow the agent will automate to the data it needs to access, the systems it needs to interact with, and the decisions it needs to make. Start by documenting the complete workflow as a human currently executes it: what information does a person look up, what systems do they open, what do they write, what decisions do they make, and what do they do when they are unsure? Each of those steps maps to a required skill. The full skill map for a production enterprise agent typically includes 6–12 distinct skill categories. <a href=\"/assessment\">Upcore conducts a structured workflow analysis</a> as the first step in every deployment engagement.</p>"
+  ],
+  [
+   "Can an AI agent learn new skills after deployment?",
+   "<p>Yes - new skills can be added to a deployed AI agent without retraining the underlying model. Adding a skill typically means adding a new tool integration: writing an API connector, a database query function, or a form-fill script, and registering it with the agent's tool execution layer. The agent can then call the new tool as part of its reasoning process. This is one of the key advantages of the tool-use architecture: the agent's capability set is extensible without the time and cost of model retraining. Enterprise agents are regularly updated to add new system integrations and data sources as the scope of the deployment expands.</p>"
+  ],
+  [
+   "What is a \"human-in-the-loop\" skill in AI?",
+   "<p>Human-in-the-loop (HITL) is the agent's ability to recognise when a task is outside its authority or confidence threshold and pause to route it to a human reviewer - along with the context needed for the human to make a decision quickly. It is a skill because it requires active judgment: the agent must evaluate its confidence in a proposed action, compare it against a policy for when autonomous action is appropriate, and trigger a structured handoff if the threshold is not met. A well-designed HITL skill includes detection logic, routing to the right person or queue, a context package summarising what the agent has done, and a mechanism to resume the workflow once the human has responded. HITL is not a fallback for poor agent performance - it is a deliberate architectural feature that defines the agent's operating boundaries.</p>"
+  ],
+  [
+   "Can an AI agent execute code?",
+   "<p>Yes - code execution is one of the twelve standard skill categories for enterprise AI agents. A code execution skill gives the agent the ability to write and run code within a sandboxed execution environment, typically Python. This is essential for data analysis agents, financial modelling agents, and any use case where the answer requires computation rather than information retrieval. The code runs in a controlled sandbox with appropriate resource limits, and the output is returned to the agent for use in its response. Code execution is added when the use case requires computation, and the sandbox configuration is hardened to match the security requirements of the deployment environment.</p>"
+  ],
+  [
+   "How are AI agent skills tested before production?",
+   "<p>Each skill is tested through a structured process covering three areas. First, functional correctness: does the skill produce the expected output given a range of inputs, including edge cases and malformed inputs? Second, integration reliability: does the tool call succeed consistently under load, with appropriate retry and error handling for API failures or timeouts? Third, trust calibration: what is the agent's confidence when it uses this skill, and at what confidence threshold should it escalate to a human rather than act autonomously? Trust calibration is particularly important for skills that write to production systems or make decisions with downstream consequences. Upcore runs a dedicated pre-production testing phase for every skill in the agent's toolkit.</p>"
+  ]
+ ],
+ "related": [
+  [
+   "/learn/how-ai-agents-work",
+   "AI Fundamentals",
+   "How AI Agents Work",
+   "The perception–reasoning–action loop explained - the architectural foundation beneath every skill."
+  ],
+  [
+   "/platform",
+   "Custom AI",
+   "Custom AI Agents",
+   "How Upcore designs fully-skilled enterprise agents from workflow analysis to production deployment."
+  ],
+  [
+   "/platform",
+   "Platform",
+   "AI Agent Builder",
+   "The Upcore platform for configuring, testing, and deploying enterprise agent skill sets."
+  ],
+  [
+   "/learn/ai-agent-vs-llm",
+   "AI Fundamentals",
+   "AI Agent vs LLM",
+   "Why an LLM without skills is not an agent - and why that distinction matters for enterprise outcomes."
+  ]
+ ],
+ "stats": [
+  [
+   "12+",
+   "Distinct capability categories in a production enterprise agent"
+  ],
+  [
+   "100%",
+   "Of enterprise workflows require at least 3 agent skills"
+  ],
+  [
+   "30 days",
+   "Upcore deployment time for a fully-skilled enterprise agent"
+  ]
+ ],
+ "sections": [
+  [
+   "the-6-foundational-skills-every-enterprise-agent",
+   "The 6 Foundational Skills Every Enterprise Agent Needs",
+   "<p>These six skill categories form the foundation of every production enterprise AI agent. They are not optional features - they are the architectural requirements that separate an agent capable of running a business process from a language model that can describe one. Each skill corresponds to a specific category of real-world action.</p>\n\n      <div class=\"lx-cards\">\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">01</span>\n          <h3>Tool Use / API Calling</h3>\n          <p>The agent's ability to invoke external tools: REST APIs, database queries, third-party services. This is how an agent reads your CRM, writes to your ERP, sends a notification, or checks inventory. Without tool use, an agent can only produce text - it cannot act. Every production enterprise agent has a toolkit of registered tools it can call as part of its reasoning process.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Customer service agent calls CRM API to retrieve order history before responding to a refund request.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">02</span>\n          <h3>Memory Retrieval</h3>\n          <p>The ability to query stored knowledge: vector databases for semantic search, SQL databases for structured facts, document stores for SOPs and policies. Memory retrieval is how an agent answers \"what is our current pricing for Enterprise plan customers?\" with your actual pricing rather than a generic answer. Memory is the difference between an agent that knows general facts and one that knows your business.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Loan origination agent retrieves current product eligibility rules from the knowledge base before assessing an application.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">03</span>\n          <h3>Web Search &amp; Real-Time Data</h3>\n          <p>For use cases that require current information - news, market data, regulatory updates, competitor pricing - agents can be equipped with web search tools. Enterprise agents in regulated sectors typically restrict this to internal data sources only or curated external feeds, ensuring that external information is controlled and auditable.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Compliance monitoring agent retrieves the latest RBI circular updates to check against current operational policies.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">04</span>\n          <h3>Form Filling &amp; Data Entry</h3>\n          <p>The agent's ability to navigate structured interfaces: filling in forms, submitting records, updating fields in connected systems. This is core to workflow automation use cases - loan origination, ticket creation, record updates, onboarding steps. It is the skill that enables the agent to complete tasks rather than simply recommend what should be done.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> NBFC agent completes the loan application record in the core banking system after document verification is complete.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">05</span>\n          <h3>Code Execution</h3>\n          <p>The ability to write and run code within a sandboxed environment. Used in data analysis agents, financial modelling agents, and any use case where computation is required to produce an answer. The code runs in a controlled sandbox - it can perform calculations but cannot access external systems beyond what is explicitly permitted.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Financial reporting agent writes Python to calculate amortisation schedules and net present values for a portfolio analysis request.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">06</span>\n          <h3>Human-in-the-Loop Escalation</h3>\n          <p>The skill of knowing when to stop and ask for help. An enterprise agent that cannot escalate is dangerous. The human escalation skill defines the conditions under which the agent pauses, routes to a human, and provides all context needed for the human to make a decision quickly. It is not a failure condition - it is a designed boundary of autonomous operation.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Claims processing agent flags a case with conflicting documents for human review rather than making an autonomous approval decision.</p>\n        </div>\n      </div>"
+  ],
+  [
+   "6-advanced-skills-for-full-enterprise-deployment",
+   "6 Advanced Skills for Full Enterprise Deployment",
+   "<p>Beyond the foundational six, production enterprise agents in complex organisations require additional capability categories. These advanced skills enable agents to handle multi-modal inputs, coordinate with other agents, maintain regulatory audit trails, and translate business questions into database queries - the capabilities that make enterprise AI genuinely self-sufficient.</p>\n\n      <div class=\"lx-cards\">\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">07</span>\n          <h3>Multi-Modal Input Processing</h3>\n          <p>Understanding images, PDFs, tables, and audio alongside text. Essential for document processing use cases: invoice reading, insurance claim documents, medical imaging reports, scanned forms. Multi-modal capability allows the agent to process the inputs that business processes actually generate - not just the clean text that APIs produce.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Insurance agent reads uploaded claim photos and repair estimates to validate a vehicle insurance claim.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">08</span>\n          <h3>Long-Horizon Task Planning</h3>\n          <p>Breaking a complex goal into a sequence of steps and executing them over time. Required for multi-step workflows where completing the goal requires 10+ sequential actions across multiple systems: onboarding a new customer involves identity verification, account creation, document collection, welcome communication, and initial product configuration - each step depending on the previous one.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Customer onboarding agent plans and executes a 14-step onboarding workflow across KYC, CRM, and communication systems.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">09</span>\n          <h3>Cross-Agent Communication</h3>\n          <p>Sending tasks to and receiving results from other agents in a multi-agent workflow. The orchestration skill that enables enterprise AI workforces. An orchestrator agent decomposes a complex request, delegates sub-tasks to specialist agents, collects their results, and synthesises a final output - enabling parallel execution and specialised capability across agent teams.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Procurement orchestrator agent delegates supplier research to a research agent, pricing analysis to a financial agent, and contract review to a compliance agent simultaneously.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">10</span>\n          <h3>Compliance &amp; Audit Logging</h3>\n          <p>The skill of recording every action taken, every data point accessed, and every decision made - in a format suitable for regulatory audit. Not optional in BFSI or healthcare. Every tool call, every retrieved document, every autonomous decision, and every escalation must be logged with timestamp, user context, and data lineage. This is the foundation of defensible AI governance.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> AML monitoring agent logs every transaction flag, every data source consulted, and every decision rationale in tamper-evident audit format.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">11</span>\n          <h3>Anomaly Detection &amp; Alerting</h3>\n          <p>Recognising when a data pattern deviates from expected norms and triggering an appropriate response. Core to fraud detection, quality control, and operational monitoring. The agent continuously or periodically evaluates incoming data against learned or defined baseline patterns and escalates deviations through the configured alerting pathway.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> Manufacturing quality agent detects statistical deviation in sensor readings from a production line and triggers a maintenance alert before a defect run occurs.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">12</span>\n          <h3>Natural Language to SQL / Query Generation</h3>\n          <p>Translating a business question - \"how many loans were approved last week in Maharashtra?\" - into a correctly formed database query and returning a structured answer. This skill makes enterprise data accessible to non-technical users without requiring a BI analyst or data team involvement, dramatically expanding the number of people who can get answers from organisational data.</p>\n          <p class=\"lx-note\"><strong>Enterprise use case:</strong> CFO asks the financial intelligence agent \"show me gross margin by product line for Q1\" and receives a formatted table from the data warehouse within seconds.</p>\n        </div>\n      </div>"
+  ],
+  [
+   "which-skills-does-each-enterprise-use-case-requi",
+   "Which Skills Does Each Enterprise Use Case Require?",
+   "<p>The skills an agent needs depend entirely on the workflow it is designed to automate. The table below maps eight common enterprise AI use cases to their required skill sets, based on Upcore's production deployments. Most production agents require 4–8 active skill categories.</p>\n\n      <div class=\"lx-table\">\n        <table>\n          <thead>\n            <tr>\n              <th>Use Case</th>\n              <th class=\"is-hi\">Required Skills</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td>Customer service agent</td>\n              <td>Memory retrieval, Tool use (CRM), Human escalation, Form filling</td>\n            </tr>\n            <tr>\n              <td>Loan origination</td>\n              <td>API calling, Memory retrieval, Compliance logging, Human escalation, Form filling</td>\n            </tr>\n            <tr>\n              <td>AML monitoring</td>\n              <td>Anomaly detection, API calling, Compliance logging, Alerting, Human escalation</td>\n            </tr>\n            <tr>\n              <td>Document processing</td>\n              <td>Multi-modal input, Memory retrieval, Form filling, Compliance logging</td>\n            </tr>\n            <tr>\n              <td>SDLC automation</td>\n              <td>Code execution, API calling, Long-horizon planning, Cross-agent communication</td>\n            </tr>\n            <tr>\n              <td>Supply chain coordination</td>\n              <td>API calling, Anomaly detection, Cross-agent communication, Long-horizon planning</td>\n            </tr>\n            <tr>\n              <td>Clinical documentation</td>\n              <td>Multi-modal input, Memory retrieval, Compliance logging, Human escalation</td>\n            </tr>\n            <tr>\n              <td>Financial reporting</td>\n              <td>Code execution, NL-to-SQL, API calling, Compliance logging, Memory retrieval</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>"
+  ],
+  [
+   "how-skills-are-built-into-enterprise-agents",
+   "How Skills Are Built Into Enterprise Agents",
+   "<p>Adding skills to an enterprise AI agent is a structured engineering process. It is not a matter of toggling a feature - each skill requires design, implementation, integration testing, and trust calibration before it can operate autonomously in production. The three-step process below is how Upcore implements skills in every enterprise deployment.</p>\n\n      <ol class=\"lx-steps\">\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 1 - Skill Selection</b>\n          <p>During workflow design, every step in the target business process is mapped to a required capability. What data does the agent need to access? What systems must it read or write? At what points can it act autonomously, and at what points must it escalate? This produces a complete skill specification: a list of tools the agent needs, the data sources it will query, and the escalation conditions that define its operating boundaries.</p>\n        </li>\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 2 - Tool Implementation</b>\n          <p>Each skill is implemented as a tool wrapper: an API connector that handles authentication, request formatting, error handling, and response parsing; a database query function that enforces access control and returns structured data; a form-fill script that submits records to the correct system; or an escalation handler that packages context and routes to the right queue. Every tool is versioned, documented, and tested independently before it is integrated into the agent's toolkit.</p>\n        </li>\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 3 - Testing &amp; Trust Calibration</b>\n          <p>For each skill, a confidence threshold is defined: the minimum certainty level at which the agent will act autonomously, versus escalate to a human. This threshold is calibrated through scenario testing against a representative sample of production inputs - including edge cases, adversarial inputs, and low-confidence situations. Trust calibration ensures the agent's autonomous operation boundaries are well-defined and defensible before it handles live business processes.</p>\n        </li>\n      </ol>"
+  ]
+ ],
+ "lead": "An AI agent's \"skills\" are the capabilities it has been equipped with beyond reasoning: the tools it can call, the systems it can access, the actions it can take. Understanding what skills a production enterprise agent needs - and how they are implemented - is the difference between buying an AI demo and buying an AI that runs your business.",
+ "eyebrow": "AI Fundamentals · Capabilities",
+ "date_label": "",
+ "kind": "guide",
+ "h1": "What Are AI Agent Skills? <span class=\"hl\">Capabilities Explained</span>",
+ "aside": [
+  "Business Process Automation",
+  "/platform"
+ ]
+}

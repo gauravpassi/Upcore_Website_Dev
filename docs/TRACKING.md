@@ -8,8 +8,8 @@ How analytics, consent and booking conversions work on upcoretech.com, and the o
 
 | Pages | How tags load | Who sends events |
 |---|---|---|
-| **V4 pages**: `/`, `/ai-native-engineering`, `/who-we-help/*` | **GTM only.** `<head>` sets Consent Mode v2 defaults, `window.upcGTM = true` and pushes `{tagging:'gtm', content_group}` before the GTM loader. No direct `gtag.js`, no inline Clarity. | Site scripts push `{event, event_params}` to `dataLayer`; GTM's GA4 event tag sends them. |
-| **Legacy pages** (everything else, incl. LPs) | Direct `gtag.js` (GA4 + Ads) and inline Clarity, plus the GTM loader. | Site scripts call `gtag('event', …)` directly. |
+| **Generated pages**: every page built by `tools/v4-build/` (since 2026-10-07 that includes `/assessment`, `/lp/maturity-review`, all articles and the legal pages) | **GTM only.** `<head>` sets Consent Mode v2 defaults, `window.upcGTM = true` and pushes `{tagging:'gtm', content_group}` before the GTM loader. No direct `gtag.js`, no inline Clarity. | Site scripts push `{event, event_params}` to `dataLayer`; GTM's GA4 event tag sends them. |
+| **Legacy pages**: the two quiz LPs (`/lp/governance-index`, `/lp/ai-maturity-index`, which use the site design but keep their own tags), `/ai-operations`, `/build-your-demo` | Direct `gtag.js` (GA4 + Ads) and inline Clarity, plus the GTM loader. | Site scripts call `gtag('event', …)` directly. |
 
 **The `tagging` flag is the safety catch.** Every trigger in the GTM container requires `{{DLV - tagging}} equals gtm`, so publishing the container never adds a second GA4/Ads/Clarity tag to a legacy page. When a legacy page is moved to V4, it gets the flag and stops loading `gtag.js` itself in the same change.
 
@@ -31,7 +31,7 @@ Shared senders (all check `window.upcGTM` first):
 | `nav_menu_open` | V4 nav dropdowns | `menu` |
 | `faq_open` | FAQ `<details>` | `faq_question` |
 | `booking_modal_open` | booking modal | `cta_id`, `cta_section`, `page_path` |
-| `generate_lead` | booking email submitted (`lead_source: booking_modal`), chat question sent (`lead_source: chat_widget`) contact form sent (`lead_source: contact_form`, plus `topic`) or newsletter signup on `/insights` (`lead_source: newsletter`) | `lead_source`, `topic` |
+| `generate_lead` | booking email submitted (`lead_source: booking_modal`), chat question sent (`lead_source: chat_widget`) contact form sent (`lead_source: contact_form`, plus `topic`), newsletter signup on `/insights` (`lead_source: newsletter`) or a booking page form sent (`assessment_form` / `maturity_review_form`, on the `?submitted=true` view) | `lead_source`, `topic` |
 | `booking_email_skipped` | "Skip and go straight to the calendar" | |
 | `booking_calendar_view` | calendar shown after the email step | |
 | `booking_iframe_engaged` / `booking_iframe_navigated` | first interaction / navigation inside the scheduler | `seconds_to_engage`, `load_count` |
@@ -110,7 +110,7 @@ Also on each modal email: a FormSubmit notification to gaurav@ (CC saswata@), su
    Redeploy. Without these the endpoint returns `202 {stored:false}` and the site keeps working.
 7. **Test on dev:** click Book, enter a test email, confirm a row in `Intents`. Book a real slot in the calendar with the same email; within 10 minutes `Bookings` shows it as matched and the intent's Status becomes `booked`. Also confirm both inboxes received the "Discovery call started" FormSubmit email (first-time activation, see [CONVENTIONS.md §8](CONVENTIONS.md#8-forms--email-destinations)). Delete the test rows and cancel the test booking afterwards.
 8. **Google Ads → Goals → Conversions → New conversion action → Import → CRMs, files or other data sources → Track conversions from clicks.** Name it exactly as `ADS_CONVERSION_NAME`, category "Book appointment", count **One**. Make it **Primary**. Then **Uploads → Schedules → Google Sheets** → the `Ads conversions` tab, daily.
-9. Set the old **"Book governance review"** action (`_Q5SCO7LodgcENLn-dE9`, no longer fires) to **Secondary** or remove it, so bidding isn't starved by a dead primary. Keep **"Lead Tracking"** (assessment form submit) as Secondary.
+9. Set the old **"Book governance review"** action (`_Q5SCO7LodgcENLn-dE9`, no longer fires) to **Secondary** or remove it, so bidding isn't starved by a dead primary. Keep **"Lead Tracking"** (booking page form submit: `/assessment` and `/lp/maturity-review`, sent through GTM's Ads Google tag since 2026-10-07; confirm it in Tag Assistant after publishing the container) as Secondary.
 10. Optional: link GA4 to Ads and import `booking_completed` as a **Secondary** (observation) action. Never make both it and the offline upload Primary, or bookings count twice.
 
 ### Notes

@@ -1809,3 +1809,36 @@ a.btn--cyan:hover{box-shadow:0 14px 40px -12px var(--cyan-glow);}
 }
 .hb-feat-sec[hidden],.hb-list li[hidden],.hb-empty[hidden]{display:none!important;}
 /* @end hub */
+
+/* @block cases */
+/* ==========================================================================
+   Results: brief case studies (2026-10-07). Markup: tools/v4-build/build_results.py + cases.py
+   ========================================================================== */
+.cs-sec{padding-top:clamp(20px,3vw,40px);}
+.cs-list{border-top:1px solid var(--ink);}
+.cs{position:relative;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:18px clamp(28px,5vw,72px);padding:clamp(30px,4vw,48px) 0;border-bottom:1px solid var(--hair);scroll-margin-top:100px;}
+.cs::before{content:'';position:absolute;left:0;top:-1px;height:2px;width:100%;background:var(--thread);transform:scaleX(0);transform-origin:0 50%;transition:transform .8s var(--ease-out);}
+.cs:hover::before,.cs:target::before{transform:scaleX(1);}
+.cs[hidden]{display:none!important;}
+.cs-tags{display:flex;flex-wrap:wrap;gap:6px 14px;}
+.cs .h-tag{margin:0;color:var(--cyan-ink);}
+.cs-n{display:block;margin-top:14px;font-size:clamp(44px,4.6vw,66px);font-weight:600;line-height:.95;letter-spacing:-.05em;color:var(--ink);font-variant-numeric:tabular-nums;transition:color .4s;}
+.cs-n.is-word{font-size:clamp(32px,3.2vw,44px);letter-spacing:-.04em;}
+.cs:hover .cs-n{color:var(--cyan-ink);}
+.cs-what{display:block;margin-top:10px;font-size:16px;font-weight:500;line-height:1.4;color:var(--ink);}
+.cs-who{margin-top:14px;font-size:14px;font-weight:400;line-height:1.5;letter-spacing:0;color:var(--muted);}
+.cs-body>div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:20px;padding:13px 0;border-top:1px solid var(--hair-2);}
+.cs-body>div:first-child{border-top:0;padding-top:4px;}
+.cs-body dt{padding-top:4px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.cs-body dd{font-size:16px;line-height:1.6;color:var(--ink-2);}
+.cs-res dt{color:var(--cyan-ink);}
+.cs-res dd{font-weight:500;color:var(--ink);}
+.cs-links{grid-column:2;display:flex;flex-wrap:wrap;gap:10px 26px;}
+.cs-links .link{font-size:14px;}
+.cs-fine{margin-top:22px;}
+@media (max-width:900px){
+  .cs{grid-template-columns:1fr;}
+  .cs-links{grid-column:1;}
+  .cs-body>div{grid-template-columns:1fr;gap:4px;}
+}
+/* @end cases */

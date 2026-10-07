@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Case studies on /results; landing pages brought up to date
+**Type:** content + fix
+**Files:** `tools/v4-build/cases.py` (new), `tools/v4-build/build_results.py`, `results.html`, `css/upcore-v5.css` (`.cs-*`), `js/upcore-v5.js` (case filters), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `lp/maturity-review.html`, `assessment.html`, `chrome.py` (`V` 16→17), docs
+`/results` now carries ten brief case studies from the Sierra Living Concepts pre-read (retail order-status agent, compliance-check agent, developer follow-ups, campaign briefs, hospitality agent, dental network, wealth client view, staffing operations, field-service delivery agents, booking app), filterable by Automation / Engineering, client names withheld by default. No ads are running (Gaurav), so the landing pages were updated: current menu and footer links instead of Pricing, Industries, Forge, Studio, AI Strategy and the retired `/platform/*` and `/kw` paths. `/lp/maturity-review` and `/assessment` no longer post a FormSubmit "confirmation" to the visitor's own address (FormSubmit sends an unknown address an activation request instead); team notification and booking attribution are unchanged. `ai-operations.html` and `build-your-demo.html` still do this and were left alone.
+
 ## 2026-10-07 — Phase 3: category guide, two comparisons, one Insights hub
 **Type:** content + structure
 **Files:** `tools/v4-build/` (new `article.py`, `build_guide.py`, `build_compare.py`, `build_insights.py`; `build_aine.py` links to them; `chrome.py` `V` 15→16), `learn/what-is-ai-native-engineering.html`, `compare/ai-native-engineering-vs-ai-coding-tools.html`, `compare/upcore-vs-building-in-house.html`, `insights/index.html` (now generated), 5 `learn/*.html` (no "2025" in titles, H1s, social titles), `vercel.json` (`/learn`, `/compare` → `/insights`), `sitemap.xml` (45 URLs, lastmod for rebuilt pages), CSS/JS (`.ar-*`, `.hb-*`, articles, hub, newsletter), US spelling across the phase 2 generators, docs

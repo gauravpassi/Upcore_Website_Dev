@@ -688,6 +688,20 @@
   });
   /* @end hub */
 
+  /* @block cases */
+  /* ------------------------------------------------------------ Results: case filters (automation / engineering) */
+  $$('[data-cases]').forEach(function (root) {
+    var chips = $$('.hb-chip', root), items = $$('.cs', root);
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var f = c.getAttribute('data-filter');
+        chips.forEach(function (x) { var on = x === c; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        items.forEach(function (a) { a.hidden = f !== 'all' && (' ' + a.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') < 0; if (!a.hidden) a.classList.add('is-in'); });
+      });
+    });
+  });
+  /* @end cases */
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

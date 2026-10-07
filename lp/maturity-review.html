@@ -384,7 +384,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
   </div>
-  <div class="mini-footer">Upcore Technologies &middot; <a href="/about" target="_blank" rel="noopener">About</a> &middot; <a href="/security" target="_blank" rel="noopener">Security &amp; Trust</a> &middot; <a href="/pricing" target="_blank" rel="noopener">Pricing</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms</a></div>
+  <div class="mini-footer">Upcore Technologies &middot; <a href="/about" target="_blank" rel="noopener">About</a> &middot; <a href="/security" target="_blank" rel="noopener">Security &amp; Trust</a> &middot; <a href="/results" target="_blank" rel="noopener">Results</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms</a></div>
 </div>
 
 <script>
@@ -412,7 +412,7 @@ if(window.location.search.includes('submitted=true')){
   }
 }
 
-// On submit: fire confirmation email to prospect, then let native form POST proceed
+// On submit: record booking attribution, then let the native form POST proceed
 document.getElementById('review-form').addEventListener('submit', function(e){
   var btn    = document.getElementById('submit-btn');
   var fname  = document.getElementById('fname').value.trim();
@@ -423,25 +423,9 @@ document.getElementById('review-form').addEventListener('submit', function(e){
 
   btn.textContent = 'Submitting...';
   btn.disabled = true;
-
-  // Fire confirmation to prospect (fire-and-forget - don't block form POST)
+  // (2026-10-07) The FormSubmit "confirmation" to the visitor's own address was removed: FormSubmit asks an
+  // unknown address to activate a form instead of delivering the message. The team notification is unchanged.
   if(email && email.includes('@')){
-    fetch('https://formsubmit.co/' + email, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _captcha: 'false',
-        _template: 'table',
-        _subject: 'Your AI Portfolio Value Review Request - Upcore Technologies',
-        'Hi': fname + ' ' + lname,
-        'What happens next': 'Your slot is confirmed the moment you pick it in the calendar - this email is your reference copy.',
-        'Your session will cover': '1) AI Pilot & Spend Inventory  2) Ownership Gaps  3) Fastest-Value Workflows  4) Honest Fit Assessment',
-        'Company': company,
-        'What you want us to look at': challenge,
-        'Questions?': 'Reply to this email, or message our team on WhatsApp: +91 99881 35327.',
-        'Team': 'Upcore Technologies - upcoretech.com'
-      })
-    }).catch(function(){});
     // Booking attribution (fire-and-forget, keepalive survives the native POST navigation):
     // the email + first-touch gclid/utm let tools/booking-conversions.gs match the calendar
     // booking made on the next screen. No visible change. See docs/TRACKING.md.

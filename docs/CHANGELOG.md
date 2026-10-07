@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Phase 2: AI-Native Engineering page rebuilt in the calm style
+**Type:** design + content
+**Files:** `tools/v4-build/build_aine.py` (new; `build_v41.py` removed), `ai-native-engineering.html`, `css/upcore-v5.css` (AI-Native Engineering block), `js/upcore-v5.js` (leadership view, stage explorer), `chrome.py` (V=13)
+Eight sections: leadership-view hero, nine-stage explorer, options compared (AI tools alone / build it yourself / Upcore), the pod, how we engage, engineering results, FAQ, CTA. Copy from the approved text, rewritten plainly (no ADR/SAST shorthand); no new claims. 14,300px/2,780 words → 8,500px/1,100 words. `#pipeline` and `#engagement` anchors kept for links from the homepage and the announcement bar.
+
 ## 2026-10-07 — Site restructure, phase 1: 81 pages to 51, one menu, one story
 **Type:** structure
 **Files:** `vercel.json` (50 redirects), 35 retired files, `fractional-ai-officer.html` (renamed), `404.html` + `tools/v4-build/build_404.py` (new), 37 older pages (menu, footer, links), `chat-widget.js` (v18: the new FAQ on every page, AI Officer price), `tools/v4-build/chrome.py` (Insights in the menu, AI Officer URL), `sitemap.xml` (42 URLs), docs

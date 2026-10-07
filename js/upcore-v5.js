@@ -336,6 +336,85 @@
     render(false);
   });
 
+
+  /* ------------------------------------------------------------ AI-Native Engineering: leadership view (hero)
+     Rows rotate: the oldest deviation slides out, a "new" one arrives on top; the change count ticks up. */
+  $$('[data-dash]').forEach(function (fig) {
+    var list = $('.dv', fig), toggle = $('.dash-toggle', fig), shipped = $('.dash-kpis b', fig);
+    var hero = fig.closest('.h-hero') || fig.parentNode;
+    if (reduce || !list) { if (toggle) toggle.hidden = true; return; }
+    var paused = false, off = false, timer = 0;
+    var cycle = function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (!paused && !off && !document.hidden) {
+          var rows = $$('.dv-row', list), pos = new Map();
+          rows.forEach(function (r) { pos.set(r, r.getBoundingClientRect().top); });
+          var last = rows[rows.length - 1];
+          list.insertBefore(last, list.firstChild);
+          rows = $$('.dv-row', list);
+          rows.forEach(function (r) {
+            if (r === last) { r.animate([{ opacity: 0, transform: 'translateY(-10px)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.16,1,.3,1)' }); return; }
+            var dy = pos.get(r) - r.getBoundingClientRect().top;
+            if (dy) r.animate([{ transform: 'translateY(' + dy + 'px)' }, { transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.16,1,.3,1)' });
+          });
+          rows.forEach(function (r) { r.classList.remove('is-new'); }); last.classList.add('is-new');
+          if (shipped && /^\d+$/.test(shipped.textContent)) { shipped.textContent = (+shipped.textContent + 1); shipped.classList.add('bump'); setTimeout(function () { shipped.classList.remove('bump'); }, 900); }
+        }
+        cycle();
+      }, 3400);
+    };
+    if (hasIO) new IntersectionObserver(function (es) { es.forEach(function (e) { off = !e.isIntersecting; }); }).observe(fig);
+    if (toggle) toggle.addEventListener('click', function () {
+      paused = !paused; toggle.textContent = paused ? 'Play' : 'Pause'; toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+    });
+    cycle();
+    var hov = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (hov) {
+      var raf = 0, px = 0, py = 0;
+      hero.addEventListener('pointermove', function (e) {
+        var r = fig.getBoundingClientRect();
+        px = clamp((e.clientX - (r.left + r.width / 2)) / r.width, -1, 1); py = clamp((e.clientY - (r.top + r.height / 2)) / r.height, -1, 1);
+        if (!raf) raf = requestAnimationFrame(function () { raf = 0; fig.classList.add('is-tracking'); fig.style.setProperty('--ry', (px * 5).toFixed(2) + 'deg'); fig.style.setProperty('--rx', (-py * 4).toFixed(2) + 'deg'); });
+      }, { passive: true });
+      hero.addEventListener('pointerleave', function () { fig.classList.remove('is-tracking'); fig.style.setProperty('--rx', '0deg'); fig.style.setProperty('--ry', '0deg'); });
+    }
+    addEventListener('scroll', function () { var y = scrollY; if (y > innerHeight * 1.2) return; fig.style.setProperty('--py', (-y * 0.06).toFixed(1) + 'px'); }, { passive: true });
+  });
+
+  /* ------------------------------------------------------------ AI-Native Engineering: nine-stage explorer (tabs on desktop, list on phones) */
+  $$('[data-stages]').forEach(function (stx) {
+    var tabs = $$('.stx-tab', stx), panels = $$('.stx-panel', stx), rail = $('.stx-rail', stx), cur = 0;
+    var mq = matchMedia('(max-width: 900px)');
+    var moveRail = function () { var t = tabs[cur]; if (!rail || !t) return; rail.style.setProperty('--ry', t.offsetTop + 'px'); rail.style.setProperty('--rh', t.offsetHeight + 'px'); };
+    var show = function (i, focus) {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach(function (t, j) { var on = j === cur; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; });
+      panels.forEach(function (pn, j) { var on = j === cur; pn.classList.toggle('is-on', on); if (!mq.matches) pn.hidden = !on; });
+      moveRail();
+      if (focus) tabs[cur].focus();
+    };
+    var mode = function () {
+      stx.classList.toggle('is-list', mq.matches);
+      panels.forEach(function (pn, j) { pn.hidden = mq.matches ? false : j !== cur; });
+      moveRail();
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        var k = e.key;
+        if (k === 'ArrowDown' || k === 'ArrowRight') { e.preventDefault(); show(cur + 1, true); }
+        else if (k === 'ArrowUp' || k === 'ArrowLeft') { e.preventDefault(); show(cur - 1, true); }
+        else if (k === 'Home') { e.preventDefault(); show(0, true); }
+        else if (k === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+      });
+    });
+    if (mq.addEventListener) mq.addEventListener('change', mode); else mq.addListener(mode);
+    addEventListener('resize', moveRail);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(moveRail);
+    mode(); show(0);
+  });
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

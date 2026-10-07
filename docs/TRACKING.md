@@ -45,7 +45,7 @@ Shared senders (all check `window.upcGTM` first):
 
 File: [`tools/gtm-container-upcore-v4.json`](../tools/gtm-container-upcore-v4.json) (regenerate with `python tools/v4-build/gtm_build.py`).
 
-Contents: Google tag GA4 `G-TVRF5M70ES` (with `content_group` and `traffic_type`), Google tag Ads `AW-16546427858`, Conversion Linker, one GA4 event tag (`{{Event}}`) for every event in §2 except `booking_completed`, Microsoft Clarity (Custom HTML, requires `analytics_storage`, re-fires on `consent_update`), 4 triggers, 25 variables. Regenerated 2026-10-07 with the chat and estimator events: re-import and publish to start sending them.
+Contents: Google tag GA4 `G-TVRF5M70ES` (with `content_group` and `traffic_type`), Google tag Ads `AW-16546427858`, Conversion Linker, one GA4 event tag (`{{Event}}`) for every event in §2 except `booking_completed`, Microsoft Clarity (Custom HTML, requires `analytics_storage`, re-fires on `consent_update`), 4 triggers, 25 variables. **Published:** version 3 "V4 site tagging + website assistant events (2026-10-07)" is live in GTM-MH5PB32L (imported from this file with Overwrite into Default Workspace, then published). After changing `gtm_build.py`, re-import the regenerated file the same way and publish a new version.
 
 1. tagmanager.google.com → container **GTM-MH5PB32L** → **Admin → Import container**.
 2. Choose the JSON file. Workspace: **New** ("V4 rollout"). Option: **Merge → Rename conflicting tags, triggers and variables**.

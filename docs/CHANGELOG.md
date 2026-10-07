@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — GTM container published
+**Type:** infra
+**Files:** `tools/gtm-container-upcore-v4.json` (unchanged), `docs/TRACKING.md`
+Imported the container into GTM-MH5PB32L and published it as version 3: GA4 + Ads Google tags, Conversion Linker, the site-events GA4 tag (now incl. chat and estimator events, booking-page `generate_lead`) and Clarity, all gated on `tagging=gtm`. The live gtm.js was checked for the new events. Production pages don't send the flag, so nothing changes there until the redesign ships.
+
 ## 2026-10-07 — Toolkit and demo builder on the new design
 **Type:** design
 **Files:** `tools/v4-build/lp_chrome.py` (now covers four pages, writes `css/upcore-chrome.css`), `ai-operations.html`, `build-your-demo.html`, `css/upcore-chrome.css` (new, generated), `css/upcore-v4.css` (mobile menu flag item), `chrome.py` (`V` 20), all generated pages

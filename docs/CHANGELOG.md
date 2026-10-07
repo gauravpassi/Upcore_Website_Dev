@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Toolkit and demo builder on the new design
+**Type:** design
+**Files:** `tools/v4-build/lp_chrome.py` (now covers four pages, writes `css/upcore-chrome.css`), `ai-operations.html`, `build-your-demo.html`, `css/upcore-chrome.css` (new, generated), `css/upcore-v4.css` (mobile menu flag item), `chrome.py` (`V` 20), all generated pages
+`/ai-operations` and `/build-your-demo` now have the island nav, site footer, Geist and a calm light theme; their bodies, Razorpay checkout and demo-builder scripts are unchanged apart from removing the old header's scroll handler. They load a generated chrome-only stylesheet because their class names clash with the full site CSS. The demo builder's "Book a Discovery Call" now opens the booking modal. Flagged, not fixed: the toolkit's `TOOLKIT_RESOURCE_URL` is still a Google placeholder and its buyer email depends on FormSubmit activation (FEATURES A3d).
+
 ## 2026-10-07 — Legacy pages moved onto the new design
 **Type:** design + structure
 **Files:** `tools/v4-build/build_library.py` + `content/*.json` (new, 28 pages), `build_booking.py` (new), `lp_chrome.py` (new), `build_all.py`, `article.py`, `calm.py`, `chrome.py` (`V` 19), `insights/*`, `learn/*`, `compare/ai-agents-vs-copilot-financial-services.html`, `privacy.html`, `terms.html`, `assessment.html`, `lp/*.html`, `css/upcore-v5.css` (`library`, `booking`), `js/upcore-v5.js` (island `data-island-label`)

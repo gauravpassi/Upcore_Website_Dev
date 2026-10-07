@@ -594,6 +594,7 @@ a.card--ink:hover{background:#13222A;}
   .nav.menu-open .nav-menu{display:flex;position:fixed;inset:var(--navb,68px) 0 0 0;z-index:80;background:var(--canvas);flex-direction:column;justify-content:flex-start;padding:20px var(--gutter);gap:2px;overflow:auto;overflow-x:hidden;}
   .nav.menu-open .nav-menu>li{width:100%;}
   .nav.menu-open .nav-menu>li>a,.nav.menu-open .nav-menu>li>button{font-size:20px;font-weight:600;color:var(--ink);padding:14px 0;width:100%;justify-content:space-between;border-radius:0;border-bottom:1px solid var(--hair);}
+  .nav.menu-open .nav-menu>li>a.flag{justify-content:flex-start;gap:12px;}
   .nav.menu-open .nav-menu>li>button:hover,.nav.menu-open .nav-menu>li.open>button,.nav.menu-open .nav-menu>li>a:hover{background:none;}
   .nav.menu-open .drop{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:0 0 8px;min-width:0;display:none;}
   .nav.menu-open li.open .drop{display:block;transform:none;}

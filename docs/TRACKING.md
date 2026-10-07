@@ -9,7 +9,7 @@ How analytics, consent and booking conversions work on upcoretech.com, and the o
 | Pages | How tags load | Who sends events |
 |---|---|---|
 | **Generated pages**: every page built by `tools/v4-build/` (since 2026-10-07 that includes `/assessment`, `/lp/maturity-review`, all articles and the legal pages) | **GTM only.** `<head>` sets Consent Mode v2 defaults, `window.upcGTM = true` and pushes `{tagging:'gtm', content_group}` before the GTM loader. No direct `gtag.js`, no inline Clarity. | Site scripts push `{event, event_params}` to `dataLayer`; GTM's GA4 event tag sends them. |
-| **Legacy pages**: the two quiz LPs (`/lp/governance-index`, `/lp/ai-maturity-index`, which use the site design but keep their own tags), `/ai-operations`, `/build-your-demo` | Direct `gtag.js` (GA4 + Ads) and inline Clarity, plus the GTM loader. | Site scripts call `gtag('event', …)` directly. |
+| **Legacy-tagged pages**: the two quiz LPs (`/lp/governance-index`, `/lp/ai-maturity-index`), `/ai-operations`, `/build-your-demo` (all four use the site design but keep their own tags) | Direct `gtag.js` (GA4 + Ads) and inline Clarity, plus the GTM loader. | Site scripts call `gtag('event', …)` directly. |
 
 **The `tagging` flag is the safety catch.** Every trigger in the GTM container requires `{{DLV - tagging}} equals gtm`, so publishing the container never adds a second GA4/Ads/Clarity tag to a legacy page. When a legacy page is moved to V4, it gets the flag and stops loading `gtag.js` itself in the same change.
 

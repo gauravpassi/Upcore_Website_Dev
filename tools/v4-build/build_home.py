@@ -8,6 +8,7 @@ import os, sys, re, html as H
 sys.path.insert(0, os.path.dirname(__file__))
 import chrome as C
 import tools as TL
+import flow as FL
 from v4parts import TESTIMONIALS
 
 ARROW = C.ARROW
@@ -19,21 +20,27 @@ def eyebrow(t):
 
 
 # ------------------------------------------------------------------ 1. hero + artifact
-GATE = f'''<figure class="gate" data-gate role="img" aria-label="Example pull request inside the governed pipeline. A low-risk change passes every check and auto-merges within your threshold; a high-risk change breaks an architecture rule and is held for an architect. Every decision is logged.">
+GATE = f'''<div class="gate-stage" data-tilt>
+<figure class="gate" data-gate>
+<div class="gate-tabs" role="group" aria-label="Example scenario">
+<button type="button" class="gate-tab" data-sc="0" aria-pressed="true">Routine change</button>
+<button type="button" class="gate-tab" data-sc="1" aria-pressed="false">Risky change</button><span class="gate-ink" aria-hidden="true"></span></div>
+<p class="sr">Example. A routine change passes every check and merges automatically because its risk score is under your limit. A risky change breaks one of your architecture rules, scores above your limit and is held for an architect. Both decisions are logged.</p>
 <div class="gate-win" aria-hidden="true">
-<div class="gate-top"><span class="gate-dots"><i></i><i></i><i></i></span><span data-g="repo">payments-service</span><span class="gate-pr" data-g="pr">PR #418</span></div>
-<div class="gate-title"><b data-g="title">Add partial refunds to checkout</b><span data-g="branch">main &larr; feat/refunds</span></div>
+<div class="gate-top"><span class="gate-dots"><i></i><i></i><i></i></span><span data-g="repo">Payments service</span><span class="gate-pr" data-g="pr">Pull request #418</span></div>
+<div class="gate-title"><b data-g="title">Add partial refunds to checkout</b><span data-g="sub">Written with AI &middot; checked by your pipeline</span></div>
 <ul class="gate-checks">
-<li class="ok"><i class="st"></i><span class="k">Spec linked</span><span class="v" data-g="c0">PAY-418 &middot; template complete</span></li>
-<li class="ok"><i class="st"></i><span class="k">Architecture rules</span><span class="v" data-g="c1">ADR-012 &middot; API v2 conventions</span></li>
-<li class="ok"><i class="st"></i><span class="k">Security scan</span><span class="v" data-g="c2">SAST &middot; 0 findings</span></li>
-<li class="ok"><i class="st"></i><span class="k">Test coverage</span><span class="v" data-g="c3">87% &middot; threshold 80%</span></li>
+<li class="ok"><i class="st"></i><span class="k">Linked to its spec</span><span class="v" data-g="c0">Template complete</span></li>
+<li class="ok"><i class="st"></i><span class="k">Architecture rules</span><span class="v" data-g="c1">Follows your API conventions</span></li>
+<li class="ok"><i class="st"></i><span class="k">Security scan</span><span class="v" data-g="c2">No issues found</span></li>
+<li class="ok"><i class="st"></i><span class="k">Test coverage</span><span class="v" data-g="c3">87% (minimum 80%)</span></li>
 </ul>
-<div class="gate-risk"><span class="k">Risk score</span><span class="meter"><i style="--v:12%"></i><b title="Your threshold"></b></span><span class="v" data-g="risk">12 &middot; Low</span></div>
-<div class="gate-out ok" data-g="outwrap"><span class="tag" data-g="tag">Auto-merged</span><span data-g="out">Within your threshold &middot; decision logged</span></div>
+<div class="gate-risk"><span class="k">Risk score</span><span class="meter"><i style="--v:12%"></i><b><em>Your limit</em></b></span><span class="v" data-g="risk">12 / 100</span></div>
+<div class="gate-out ok" data-g="outwrap"><span class="tag" data-g="tag">Merged</span><span data-g="out">Under your risk limit, so it merged automatically</span></div>
 </div>
-<figcaption><span>Example pull request</span><button class="gate-toggle" type="button" aria-label="Pause animation">Pause</button></figcaption>
-</figure>'''
+<div class="gate-log" data-g="log" aria-hidden="true"><span class="gl-dot"></span><span class="gl-k">Decision log</span><span class="gl-t" data-g="logt">#418 merged automatically &middot; risk 12</span></div>
+<figcaption><span>Example with illustrative data</span><button class="gate-toggle" type="button" aria-label="Pause animation">Pause</button></figcaption>
+</figure></div>'''
 
 PROOF_STRIP = '''<ul class="h-proof" aria-label="Certifications and ratings">
 <li><img src="/images/accolades/light/iso27001.svg" alt="" width="26" height="26" /><span>ISO 27001</span></li>
@@ -57,10 +64,15 @@ hero = f'''<section class="h-hero" aria-labelledby="hero-h"><div class="hero-glo
 <div class="wrap">{PROOF_STRIP}</div></section>'''
 
 # ------------------------------------------------------------------ 2. problem
-PAINS = [('Review becomes the bottleneck', 'Someone senior reads every AI-written line, so the speed you gained disappears in review.'),
-         ('Architecture drifts quietly', 'Models don&rsquo;t know your conventions. Small deviations pile up until they are expensive to unwind.'),
-         ('Leadership can&rsquo;t see the risk', 'Nobody can say what AI changed, why it changed, or who approved it.')]
-pains = ''.join(f'<li data-reveal style="--d:{i}"><span class="h-n">0{i + 1}</span><h3>{t}</h3><p>{p}</p></li>' for i, (t, p) in enumerate(PAINS))
+ICON = {
+    'neck': '<path pathLength="1" d="M3 5h18l-7 8v6l-4 2v-8z"/>',
+    'drift': '<path pathLength="1" d="M3 17h18"/><path pathLength="1" d="M3 17c5 0 8-1.5 11-5s4.5-6 7-7"/>',
+    'blind': '<path pathLength="1" d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle pathLength="1" cx="12" cy="12" r="3"/><path pathLength="1" d="M4 4l16 16"/>',
+}
+PAINS = [('neck', 'Review becomes the bottleneck', 'Someone senior reads every AI-written line, so the speed you gained disappears in review.'),
+         ('drift', 'Architecture drifts quietly', 'Models don&rsquo;t know your conventions. Small deviations pile up until they are expensive to unwind.'),
+         ('blind', 'Leadership can&rsquo;t see the risk', 'Nobody can say what AI changed, why it changed, or who approved it.')]
+pains = ''.join(f'<li data-reveal style="--d:{i}"><svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{ICON[k]}</svg><span class="h-n">0{i + 1}</span><h3>{t}</h3><p>{p}</p></li>' for i, (k, t, p) in enumerate(PAINS))
 problem = f'''<section class="h-sec" aria-labelledby="prob-h"><div class="wrap">
 {eyebrow("The problem")}
 <h2 id="prob-h" class="h-h2" data-reveal>Your team ships more AI-written code every week. <span class="mute">Review hasn&rsquo;t caught up.</span></h2>
@@ -68,26 +80,46 @@ problem = f'''<section class="h-sec" aria-labelledby="prob-h"><div class="wrap">
 
 # ------------------------------------------------------------------ 3. how it works (4 checkpoints, each with a small artifact)
 MINI = {
-    'spec': '''<div class="mini" aria-hidden="true"><div class="mini-h"><code>PAY-418</code><span>Spec</span></div>
-<div class="mini-r ok"><i></i>Scope</div><div class="mini-r ok"><i></i>Acceptance criteria</div><div class="mini-r ok"><i></i>Affected services</div></div>''',
-    'gate': '''<div class="mini" aria-hidden="true"><div class="mini-h"><code>PR #418</code><span>Checks</span></div>
-<div class="mini-r ok"><i></i>Architecture rules</div><div class="mini-r ok"><i></i>Security scan</div><div class="mini-r ok"><i></i>Coverage 87%</div></div>''',
-    'merge': '''<div class="mini" aria-hidden="true"><div class="mini-h"><code>Risk</code><span>Your threshold: 30</span></div>
-<div class="mini-meter"><i style="--v:12%"></i><b></b></div><div class="mini-r ok"><i></i>Low risk &rarr; auto-merge</div><div class="mini-r hold"><i></i>High risk &rarr; named approver</div></div>''',
-    'release': '''<div class="mini" aria-hidden="true"><div class="mini-h"><code>Flag</code><span>refunds_v2</span></div>
-<div class="mini-steps"><span class="on">5%</span><span class="on">25%</span><span>100%</span></div><div class="mini-r ok"><i></i>Errors, latency, cost</div></div>''',
+    'spec': '''<div class="mini" aria-hidden="true"><div class="mini-h"><b>Spec</b><span>Partial refunds</span></div>
+<div class="mini-r ok"><i></i>Scope written</div><div class="mini-r ok"><i></i>Acceptance criteria</div><div class="mini-r ok"><i></i>Matches your architecture rules</div></div>''',
+    'gate': '''<div class="mini" aria-hidden="true"><div class="mini-h"><b>Checks</b><span>Pull request #418</span></div>
+<div class="mini-r ok"><i></i>Architecture rules</div><div class="mini-r ok"><i></i>Security scan</div><div class="mini-r ok"><i></i>Test coverage 87%</div></div>''',
+    'merge': '''<div class="mini" aria-hidden="true"><div class="mini-h"><b>Risk score</b><span>Your limit: 30</span></div>
+<div class="mini-meter"><i style="--v:12%"></i><b></b></div><div class="mini-r ok"><i></i>Low risk: merged automatically</div><div class="mini-r hold"><i></i>High risk: sent to a named approver</div></div>''',
+    'release': '''<div class="mini" aria-hidden="true"><div class="mini-h"><b>Release</b><span>Behind a feature flag</span></div>
+<div class="mini-steps"><span class="on">5%</span><span class="on">25%</span><span>100%</span></div><div class="mini-r ok"><i></i>Errors, speed and cost watched</div></div>''',
 }
-STEPS = [('spec', 'Spec', 'Every change starts from a standard spec in Jira or Linear, checked against your architecture rules before code exists.'),
-         ('gate', 'Gate', 'Automated checks run on every pull request: architecture fitness, security scanning and test coverage.'),
-         ('merge', 'Merge', 'Each change gets a risk score. Low risk merges on its own; anything above your threshold goes to a named approver.'),
-         ('release', 'Release', 'Changes ship behind a feature flag, monitored against baseline, and every decision is logged for leadership.')]
-steps = ''.join(f'<li data-reveal style="--d:{i}">{MINI[k]}<span class="h-n">0{i + 1}</span><h3>{t}</h3><p>{p}</p></li>' for i, (k, t, p) in enumerate(STEPS))
+STEPS = [('spec', 'Spec', 'Every change starts from a standard spec in Jira or Linear, checked against your architecture rules before any code exists.'),
+         ('gate', 'Gate', 'Automated checks run on every pull request: your architecture rules, security scanning and test coverage.'),
+         ('merge', 'Merge', 'Each change gets a risk score. Low risk merges on its own; anything over your limit goes to a named approver.'),
+         ('release', 'Release', 'Changes go out behind a feature flag, watched against your normal error rates, speed and cost, and every decision is logged for leadership.')]
+
+ROW = lambda c, k, v: f'<div class="sv-row {c}"><i class="st"></i><span class="k">{k}</span><span class="v">{v}</span></div>'
+PANELS = [
+    ROW('ok', 'Scope', 'Partial refunds for card payments') + ROW('ok', 'Acceptance criteria', 'Three, written and testable') + ROW('ok', 'Services affected', 'Payments and orders') + ROW('ok', 'Architecture rules', 'No conflicts found'),
+    ROW('ok', 'Architecture rules', 'Follows your API conventions') + ROW('ok', 'Security scan', 'No issues found') + ROW('ok', 'Test coverage', '87% (minimum 80%)') + ROW('ok', 'Linked to its spec', 'Template complete'),
+    '<div class="sv-meter"><div class="sv-meter-h"><span>Risk score</span><b>12 / 100</b></div><span class="meter"><i style="--v:12%"></i><b><em>Your limit: 30</em></b></span></div>'
+    + '<div class="sv-lane is-hot"><span class="tag">Under your limit</span>Merged automatically</div><div class="sv-lane"><span class="tag tag--hold">Over your limit</span>Sent to a named approver</div>',
+    '<div class="sv-roll"><span class="sv-roll-k">Rollout</span><div class="sv-bars"><span style="--w:5%"><em>5%</em></span><span style="--w:25%"><em>25%</em></span><span style="--w:100%"><em>100%</em></span></div></div>'
+    + ROW('ok', 'Error rate', 'Normal') + ROW('ok', 'Speed', 'Normal') + ROW('ok', 'Cost per request', 'Normal')
+    + '<div class="sv-logged"><i class="st st--ok"></i>Decision logged for leadership</div>',
+]
+story_steps = ''.join(
+    f'<li class="story-step{" is-on" if i == 0 else ""}" data-step="{i}"><button type="button" class="story-btn" aria-label="Show step {i + 1}: {t}"><span class="h-n">0{i + 1}</span><span class="story-t">{t}</span></button><p>{p}</p><div class="story-mini" data-reveal>{MINI[k]}</div></li>'
+    for i, (k, t, p) in enumerate(STEPS))
+pips = ''.join(f'<span class="sv-pip{" on" if i == 0 else ""}">{t}</span>' for i, (_, t, _) in enumerate(STEPS))
+panels = ''.join(f'<div class="sv-panel{" on" if i == 0 else ""}" data-p="{i}">{pn}</div>' for i, pn in enumerate(PANELS))
+STORY = f'''<div class="story" data-story><ol class="story-steps">{story_steps}</ol>
+<div class="story-vis" aria-hidden="true"><div class="story-sticky"><div class="sv">
+<div class="sv-top"><span class="gate-dots"><i></i><i></i><i></i></span><b>Add partial refunds to checkout</b><span>Pull request #418</span></div>
+<div class="sv-pips">{pips}<span class="sv-track"><i></i></span></div>
+<div class="sv-body">{panels}</div></div></div></div></div>'''
 works_logos = ''.join(TL.logo(s, small=True) for s in ['jira', 'linear', 'github', 'gitlab', 'githubactions', 'claude', 'githubcopilot', 'cursor'])
 how = f'''<section class="h-sec h-sec--alt" id="how" aria-labelledby="how-h"><div class="wrap">
 {eyebrow("How it works")}
 <div class="h-head"><h2 id="how-h" class="h-h2" data-reveal>Every AI-written change passes four checkpoints.</h2>
 <p class="h-lead" data-reveal style="--d:1">Installed inside the tools your teams already use. You set the rules; the pipeline enforces them and a Claude Certified Architect keeps them current.</p></div>
-<ol class="h-steps">{steps}</ol>
+{STORY}
 <div class="h-works"><span>Works with</span><div class="logos">{works_logos}</div><a class="link" href="{C.URL["aine"]}#pipeline">See all nine stages</a></div>
 </div></section>'''
 
@@ -102,7 +134,7 @@ proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><di
 {eyebrow("Results")}
 <h2 id="res-h" class="h-h2" data-reveal>Already running in production.</h2>
 <ul class="h-results">{res}</ul>
-<figure class="h-quote" data-reveal><blockquote><p>&ldquo;{quote_txt}&rdquo;</p></blockquote><figcaption>{q[1]}</figcaption></figure>
+<figure class="h-quote" data-reveal><span class="h-qmark" aria-hidden="true">&ldquo;</span><blockquote><p>{quote_txt}</p></blockquote><figcaption>{q[1]}</figcaption></figure>
 <div class="h-proof-foot"><a class="link" href="/results">See all results</a><span>Client names withheld. Results as reported from our engagements; ask us for a reference call.</span></div>
 </div></section>'''
 
@@ -145,7 +177,7 @@ faq = f'''<section class="h-sec" aria-labelledby="faq-h"><div class="wrap h-faq"
 # ------------------------------------------------------------------ 8. final CTA
 PEOPLE = [('GP', 'Gaurav Passi', 'Co-Founder &amp; CEO &middot; Claude Certified Architect'), ('SS', 'Saswata Sengupta', 'Leads discovery calls')]
 ppl = ''.join(f'<div class="person"><span class="avatar">{i}</span><div><b>{n}</b><span>{r}</span></div></div>' for i, n, r in PEOPLE)
-final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
+final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta-h">{FL.cta_lines()}<div class="spot" aria-hidden="true"></div><div class="wrap">
 <h2 id="cta-h" class="t-display" data-reveal>Make AI-written code something <span class="hl">your architects can sign off on.</span></h2>
 <p class="t-lead" data-reveal style="--d:1">Book a 45-minute discovery call. We&rsquo;ll review your delivery process and send a written plan for a pilot on one team, whether or not we work together.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("cta_final", cls="btn btn--cyan")}</div>

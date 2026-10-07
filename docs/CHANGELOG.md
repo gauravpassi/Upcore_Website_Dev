@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Homepage polish: plain-English artifacts, interaction and motion
+**Type:** design
+**Files:** `tools/v4-build/build_home.py`, `css/upcore-v5.css` (polish block), `js/upcore-v5.js`, `tools/v4-build/chrome.py` (V=10)
+No developer shorthand left in the mockups (no ticket codes, branch names, ADR/SAST labels). Hero pull-request mockup gains a Routine/Risky switch, 3D pointer tilt, scroll drift and a decision-log toast. "How it works" is now a pinned scroll story: one change moves spec → gate → merge → release in a single window, steps clickable; stacked with inline mockups on phones. Problem icons and rules draw in, proof rows and router links get hover sweeps, CTA band gets flowing lines, buttons a sheen, the menu hides while reading down, and V4 pages use cross-page view transitions. All motion respects reduced-motion and pauses off-screen.
+
 ## 2026-10-06 — Homepage rethink (CRO/UX) + new /results page (dev)
 **Type:** feature (structure + design)
 **Files:** `tools/v4-build/build_home.py` (new), `tools/v4-build/build_results.py` (new), `index.html`, `results.html` (new), `tools/v4-build/chrome.py` (menu: Results replaces How we engage; `spine`/`main_cls` options), `css/upcore-v5.css` (calm block), `js/upcore-v5.js` (PR-gate animation), `sitemap.xml`

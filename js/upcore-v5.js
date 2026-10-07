@@ -48,7 +48,7 @@
     h.classList.add('wr');
   }
   if (!reduce && hasIO) {
-    $$('.flow-main .sec-head .t-h2, .flow-main .pipe-intro .t-h2, .flow-main .subhead .t-h2, .flow-main .pod-head .t-h2, .cta-band .t-display').forEach(function (h) {
+    $$('.flow-main .sec-head .t-h2, .flow-main .pipe-intro .t-h2, .flow-main .subhead .t-h2, .flow-main .pod-head .t-h2, .cta-band .t-display, .is-calm .h-h2').forEach(function (h) {
       splitWords(h);
       onView(h, function () { h.classList.add('is-in'); }, { threshold: 0.3 });
     });
@@ -165,53 +165,140 @@
   $$('.cta-band').forEach(offWatch);
 
 
-  /* ------------------------------------------------------------ hero artifact: pull-request gate (homepage) */
+  /* ------------------------------------------------------------ hero artifact: pull-request gate (homepage)
+     Auto-plays two scenarios; the "Routine / Risky" switch takes over (manual mode). Tilts with the pointer,
+     drifts with scroll, and a decision-log toast slides out after each decision. */
   $$('[data-gate]').forEach(function (fig) {
     var G = function (k) { return $('[data-g="' + k + '"]', fig); };
     var lis = $$('.gate-checks li', fig), meter = $('.meter i', fig), toggle = $('.gate-toggle', fig);
+    var tabs = $$('.gate-tab', fig), ink = $('.gate-ink', fig), log = G('log'), stage = fig.closest('[data-tilt]');
     var SC = [
-      { repo: 'payments-service', pr: 'PR #418', title: 'Add partial refunds to checkout', branch: 'main \u2190 feat/refunds',
-        c: [['ok', 'PAY-418 \u00b7 template complete'], ['ok', 'ADR-012 \u00b7 API v2 conventions'], ['ok', 'SAST \u00b7 0 findings'], ['ok', '87% \u00b7 threshold 80%']],
-        risk: 12, riskT: '12 \u00b7 Low', hi: false, tag: 'Auto-merged', out: 'Within your threshold \u00b7 decision logged' },
-      { repo: 'identity-service', pr: 'PR #77', title: 'Refactor session handling', branch: 'main \u2190 chore/sessions',
-        c: [['ok', 'AUTH-77 \u00b7 template complete'], ['fail', 'Shared auth module outside spec'], ['ok', 'SAST \u00b7 0 findings'], ['ok', '91% \u00b7 threshold 80%']],
-        risk: 78, riskT: '78 \u00b7 High', hi: true, tag: 'Held', out: 'Above your threshold \u00b7 architect review requested' }
+      { repo: 'Payments service', pr: 'Pull request #418', title: 'Add partial refunds to checkout', sub: 'Written with AI \u00b7 checked by your pipeline',
+        c: [['ok', 'Template complete'], ['ok', 'Follows your API conventions'], ['ok', 'No issues found'], ['ok', '87% (minimum 80%)']],
+        risk: 12, riskT: '12 / 100', hi: false, tag: 'Merged', out: 'Under your risk limit, so it merged automatically', log: '#418 merged automatically \u00b7 risk 12' },
+      { repo: 'Sign-in service', pr: 'Pull request #77', title: 'Refactor session handling', sub: 'Written with AI \u00b7 checked by your pipeline',
+        c: [['ok', 'Template complete'], ['fail', 'Changes a shared module outside the spec'], ['ok', 'No issues found'], ['ok', '91% (minimum 80%)']],
+        risk: 78, riskT: '78 / 100', hi: true, tag: 'Held', out: 'Over your risk limit, so an architect must approve it', log: '#77 held for architect review \u00b7 risk 78' }
     ];
-    if (reduce) { if (toggle) toggle.hidden = true; return; }
-    var paused = false, off = false, k = 0;
-    var sleep = function (ms) {
-      return new Promise(function (res) {
+    var placeInk = function (i) {
+      var t = tabs[i]; if (!t || !ink) return;
+      ink.style.setProperty('--ink-x', t.offsetLeft + 'px'); ink.style.setProperty('--ink-w', t.offsetWidth + 'px');
+      tabs.forEach(function (b, j) { b.setAttribute('aria-pressed', j === i ? 'true' : 'false'); });
+    };
+    placeInk(0);
+    addEventListener('resize', function () { placeInk(cur); });
+    var cur = 0, paused = false, off = false, manual = false, token = 0;
+    var sleep = function (ms, tk) {
+      return new Promise(function (res, rej) {
         var left = ms, last = performance.now();
         (function tick(now) {
+          if (tk !== token) { rej('cancel'); return; }
           if (!paused && !off && !document.hidden) left -= now - last;
           last = now;
           if (left <= 0) res(); else requestAnimationFrame(tick);
         })(last);
       });
     };
-    async function run() {
-      await sleep(900);
-      for (;;) {
-        var s = SC[k++ % SC.length];
-        G('repo').textContent = s.repo; G('pr').textContent = s.pr; G('title').textContent = s.title; G('branch').textContent = s.branch;
-        lis.forEach(function (li, i) { li.className = 'wait'; G('c' + i).textContent = s.c[i][1]; });
-        meter.style.setProperty('--v', '0%'); fig.classList.toggle('is-hi', s.hi); G('risk').textContent = '\u2014';
-        var ow = G('outwrap'); ow.classList.add('is-hidden');
-        await sleep(500);
-        for (var i = 0; i < lis.length; i++) { lis[i].className = 'run'; await sleep(520); lis[i].className = s.c[i][0]; await sleep(140); }
-        meter.style.setProperty('--v', s.risk + '%'); await sleep(900);
-        G('risk').textContent = s.riskT;
-        G('tag').textContent = s.tag; G('out').textContent = s.out;
-        ow.classList.toggle('hold', s.hi); ow.classList.toggle('ok', !s.hi); ow.classList.remove('is-hidden');
-        await sleep(s.hi ? 3600 : 3000);
-      }
+    var setText = function (s) {
+      G('repo').textContent = s.repo; G('pr').textContent = s.pr; G('title').textContent = s.title; G('sub').textContent = s.sub;
+      lis.forEach(function (li, i) { G('c' + i).textContent = s.c[i][1]; });
+    };
+    var final = function (s) {
+      setText(s);
+      lis.forEach(function (li, i) { li.className = s.c[i][0]; });
+      meter.style.setProperty('--v', s.risk + '%'); fig.classList.toggle('is-hi', s.hi); G('risk').textContent = s.riskT;
+      G('tag').textContent = s.tag; G('out').textContent = s.out;
+      var ow = G('outwrap'); ow.classList.toggle('hold', s.hi); ow.classList.toggle('ok', !s.hi); ow.classList.remove('is-hidden');
+      if (log) { G('logt').textContent = s.log; }
+    };
+    async function play(idx, tk) {
+      var s = SC[idx]; cur = idx; placeInk(idx);
+      setText(s);
+      lis.forEach(function (li) { li.className = 'wait'; });
+      meter.style.setProperty('--v', '0%'); fig.classList.toggle('is-hi', s.hi); G('risk').textContent = '\u2014';
+      var ow = G('outwrap'); ow.classList.add('is-hidden'); if (log) log.classList.remove('show');
+      await sleep(450, tk);
+      for (var i = 0; i < lis.length; i++) { lis[i].className = 'run'; await sleep(560, tk); lis[i].className = s.c[i][0]; await sleep(150, tk); }
+      meter.style.setProperty('--v', s.risk + '%'); await sleep(950, tk);
+      G('risk').textContent = s.riskT; G('tag').textContent = s.tag; G('out').textContent = s.out;
+      ow.classList.toggle('hold', s.hi); ow.classList.toggle('ok', !s.hi); ow.classList.remove('is-hidden');
+      await sleep(500, tk);
+      if (log) { G('logt').textContent = s.log; log.classList.add('show'); }
     }
+    async function loop() {
+      var tk = ++token;
+      try {
+        await sleep(900, tk);
+        for (var n = 0; ; n++) { await play(n % SC.length, tk); await sleep(SC[n % SC.length].hi ? 3800 : 3200, tk); }
+      } catch (e) { /* cancelled by the user switching scenario */ }
+    }
+    tabs.forEach(function (b, i) {
+      b.addEventListener('click', function () {
+        manual = true; var tk = ++token;
+        if (reduce) { placeInk(i); cur = i; final(SC[i]); return; }
+        play(i, tk).catch(function () {});
+      });
+    });
+    if (reduce) { if (toggle) toggle.hidden = true; final(SC[0]); return; }
     if (hasIO) new IntersectionObserver(function (es) { es.forEach(function (e) { off = !e.isIntersecting; }); }).observe(fig);
     if (toggle) toggle.addEventListener('click', function () {
       paused = !paused; toggle.textContent = paused ? 'Play' : 'Pause'; toggle.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+      if (!paused && manual) { manual = false; loop(); }
     });
-    run();
+    loop();
+    // pointer tilt (fine pointers only) and a slow drift while the hero scrolls away
+    var hover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var hero = fig.closest('.h-hero') || fig.parentNode;
+    if (hover && stage) {
+      var raf = 0, px = 0, py = 0;
+      hero.addEventListener('pointermove', function (e) {
+        var r = stage.getBoundingClientRect();
+        px = clamp((e.clientX - (r.left + r.width / 2)) / r.width, -1, 1); py = clamp((e.clientY - (r.top + r.height / 2)) / r.height, -1, 1);
+        if (!raf) raf = requestAnimationFrame(function () { raf = 0; fig.classList.add('is-tracking'); fig.style.setProperty('--ry', (px * 6).toFixed(2) + 'deg'); fig.style.setProperty('--rx', (-py * 5).toFixed(2) + 'deg'); });
+      }, { passive: true });
+      hero.addEventListener('pointerleave', function () { fig.classList.remove('is-tracking'); fig.style.setProperty('--rx', '0deg'); fig.style.setProperty('--ry', '0deg'); });
+    }
+    addEventListener('scroll', function () {
+      var y = scrollY; if (y > innerHeight * 1.2) return;
+      fig.style.setProperty('--py', (-y * 0.08).toFixed(1) + 'px');
+    }, { passive: true });
   });
+
+  /* ------------------------------------------------------------ how it works: scroll story (homepage) */
+  $$('[data-story]').forEach(function (story) {
+    var steps = $$('.story-step', story), panels = $$('.sv-panel', story), pips = $$('.sv-pip', story), track = $('.sv-track i', story);
+    var cur = -1;
+    var set = function (i) {
+      if (i === cur || i < 0) return; cur = i;
+      steps.forEach(function (s, j) { s.classList.toggle('is-on', j === i); });
+      panels.forEach(function (p, j) { p.classList.toggle('on', j === i); });
+      pips.forEach(function (p, j) { p.classList.toggle('on', j <= i); });
+      if (track) track.style.setProperty('--sv', ((i + 1) / steps.length * 100) + '%');
+    };
+    if (hasIO) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) set(steps.indexOf(e.target)); }); }, { rootMargin: '-45% 0px -50% 0px' });
+      steps.forEach(function (s) { io.observe(s); });
+    }
+    steps.forEach(function (s, i) {
+      var b = $('.story-btn', s);
+      if (b) b.addEventListener('click', function () { set(i); s.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); });
+    });
+    set(0);
+  });
+
+  /* ------------------------------------------------------------ menu hides while reading down, returns on the way up */
+  (function () {
+    var nav = $('.nav'); if (!nav || reduce) return;
+    var lastY = scrollY, acc = 0;
+    addEventListener('scroll', function () {
+      var y = scrollY, dy = y - lastY; lastY = y;
+      if (nav.classList.contains('menu-open') || nav.matches(':focus-within') || $('.nav [aria-expanded="true"]')) { nav.classList.remove('is-hidden'); return; }
+      acc = (dy > 0) === (acc > 0) ? acc + dy : dy;
+      if (y < 400) nav.classList.remove('is-hidden');
+      else if (acc > 60) nav.classList.add('is-hidden');
+      else if (acc < -30) nav.classList.remove('is-hidden');
+    }, { passive: true });
+  })();
 
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;

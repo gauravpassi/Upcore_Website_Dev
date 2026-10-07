@@ -175,13 +175,10 @@ faq = f'''<section class="h-sec" aria-labelledby="faq-h"><div class="wrap h-faq"
 <div class="faq">{fq}</div></div></section>'''
 
 # ------------------------------------------------------------------ 8. final CTA
-PEOPLE = [('GP', 'Gaurav Passi', 'Co-Founder &amp; CEO &middot; Claude Certified Architect'), ('SS', 'Saswata Sengupta', 'Leads discovery calls')]
-ppl = ''.join(f'<div class="person"><span class="avatar">{i}</span><div><b>{n}</b><span>{r}</span></div></div>' for i, n, r in PEOPLE)
 final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta-h">{FL.cta_lines()}<div class="spot" aria-hidden="true"></div><div class="wrap">
 <h2 id="cta-h" class="t-display" data-reveal>Make AI-written code something <span class="hl">your architects can sign off on.</span></h2>
 <p class="t-lead" data-reveal style="--d:1">Book a 45-minute discovery call. We&rsquo;ll review your delivery process and send a written plan for a pilot on one team, whether or not we work together.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("cta_final", cls="btn btn--cyan")}</div>
-<div class="h-meet" data-reveal style="--d:3"><span class="t-mono">You&rsquo;ll meet</span>{ppl}</div>
 <p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="/lp/governance-index?utm_source=website&amp;utm_medium=home&amp;utm_campaign=cta_secondary">Get your AI Governance Score in 2 minutes <span aria-hidden="true">&rarr;</span></a></p>
 </div></section>'''
 

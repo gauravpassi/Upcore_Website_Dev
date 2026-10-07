@@ -347,6 +347,8 @@ body{background:#fff radial-gradient(1200px 700px at 50% 0%,rgba(33,210,237,.09)
 .rzp-input:focus{background:#fff;border-color:var(--cyan-ink);box-shadow:0 0 0 3px rgba(33,210,237,.18);}
 .rzp-success-icon{color:#15803D;}
 .glow-blob{opacity:.6;}
+html{overflow-x:visible;}
+#main>section{overflow-x:clip;}
 @media (max-width:640px){.hero{padding-top:28px;}}
 /* @end calm light theme */
 '''
@@ -402,11 +404,7 @@ def block(s, name, html, find=None, before=None):
 def run(p):
     path = os.path.join(C.ROOT, p['file'])
     s = open(path, encoding='utf-8-sig').read()
-    nav = C.nav('')
-    if p['cta']:
-        href, text, slug = p['cta']
-        nav = nav.replace(C.btn('nav', cls='btn btn--sm'),
-                          f'<a class="btn btn--sm" href="{href}" data-gtm-cta="{slug}" data-gtm-cta-type="primary" data-gtm-cta-section="nav">{text} <span class="btn-ico">{C.ARROW}</span></a>')
+    nav = C.nav('', cta=p['cta'])
     if 'calm light theme' not in s:
         s = p['theme'](s)
     s = block(s, 'head', HEAD[p['css']].replace('{V}', str(C.V)), find=p['font'])

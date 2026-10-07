@@ -697,28 +697,35 @@
   /* @end cases */
 
   /* @block island */
-  /* ------------------------------------------------------------ Navigation island (desktop): compacts while reading down, shows the
-     current section + progress, expands on scroll up / hover / focus. Phones keep the hide-on-scroll bar. */
+  /* ------------------------------------------------------------ Navigation island: compacts while reading down to show the current
+     section + progress, expands on scroll up / hover / focus. Desktop: the menu morphs into a section pill. Phones (2026-10-07):
+     a floating pill (logo + menu); reading down it shrinks to a centred section pill; the menu button grows the island into a
+     sheet with "On this page" jumps, the menu and the page's call to action. Open/close itself is the v4 nav module. */
   (function () {
     var nav = $('.nav'); if (!nav) return;
     var desk = matchMedia('(min-width: 1101px)');
-    var ctx = $('.nav-ctx', nav), ctxT = $('.nav-ctx-t', nav), ring = $('.nav-ring-fill', nav);
+    var ctx = $('.nav-ctx', nav), ctxT = $('.nav-ctx-t', nav), ring = $('.nav-ring-fill', nav), burger = $('.nav-burger', nav);
     var secs = $$('main section[aria-labelledby]').map(function (s) {
       var h = document.getElementById(s.getAttribute('aria-labelledby'));
-      return { el: s, t: h ? h.textContent.replace(/\s+/g, ' ').trim() : '' };
+      return { el: s, h1: !!(h && h.tagName === 'H1'), t: h ? h.textContent.replace(/\s+/g, ' ').trim() : '' };
     }).filter(function (x) { return x.t; });
     var crumb = $('.crumb [aria-current]'), named = $('[data-island-label]');
     var page = named ? named.getAttribute('data-island-label') : crumb ? crumb.textContent.trim() : document.title.split('|')[0].split(':')[0].trim();
     var lastY = scrollY, acc = 0, peek = false, label = '';
-    var anyOpen = function () { return nav.classList.contains('menu-open') || !!$('.nav [aria-expanded="true"]'); };
+    var open = function () { return nav.classList.contains('menu-open'); };
+    var anyOpen = function () { return open() || !!$('.nav [aria-expanded="true"]'); };
     var setCompact = function (v) { nav.classList.toggle('is-compact', !!v && !peek && !anyOpen()); };
+    var short = function (t, n) { return t.length > n ? t.slice(0, n - 2).replace(/\s+\S*$/, '') + '…' : t; };
+    var current = function () {
+      var cur = null;
+      secs.forEach(function (s) { if (s.el.getBoundingClientRect().top < innerHeight * 0.4) cur = s; });
+      return cur;
+    };
     var paint = function () {
       var y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
       if (ring) ring.style.strokeDashoffset = (1 - (h > 0 ? clamp(y / h, 0, 1) : 0)).toFixed(3);
-      var cur = '';
-      secs.forEach(function (s) { if (s.el.getBoundingClientRect().top < innerHeight * 0.4) cur = s.t; });
-      if (!cur || cur === page) cur = page;
-      if (cur.length > 44) cur = cur.slice(0, 42).replace(/\s+\S*$/, '') + '…';
+      var c = current(), cur = c && c.t !== page ? c.t : page;
+      cur = short(cur, desk.matches ? 44 : 34);
       if (cur !== label && ctxT) {
         label = cur; ctxT.textContent = cur;
         if (nav.classList.contains('is-compact') && !reduce) { nav.classList.remove('is-bump'); void nav.offsetWidth; nav.classList.add('is-bump'); }
@@ -727,25 +734,47 @@
     addEventListener('scroll', function () {
       var y = scrollY, dy = y - lastY; lastY = y;
       paint();
-      if (anyOpen() || nav.matches(':focus-within')) { nav.classList.remove('is-hidden', 'is-compact'); return; }
+      if (anyOpen() || (desk.matches && nav.matches(':focus-within'))) { nav.classList.remove('is-hidden', 'is-compact'); return; }
       acc = (dy > 0) === (acc > 0) ? acc + dy : dy;
-      if (desk.matches) {
-        nav.classList.remove('is-hidden');
-        if (y < 320) setCompact(false);
-        else if (acc > 40) setCompact(true);
-        else if (acc < -60) setCompact(false);
-      } else if (!reduce) {
-        nav.classList.remove('is-compact');
-        if (y < 400) nav.classList.remove('is-hidden');
-        else if (acc > 60) nav.classList.add('is-hidden');
-        else if (acc < -30) nav.classList.remove('is-hidden');
-      }
+      nav.classList.remove('is-hidden');
+      var top = desk.matches ? 320 : 160;
+      if (y < top) setCompact(false);
+      else if (acc > 40) setCompact(true);
+      else if (acc < -60) setCompact(false);
     }, { passive: true });
     nav.addEventListener('mouseenter', function () { if (desk.matches && nav.classList.contains('is-compact')) { peek = true; nav.classList.remove('is-compact'); } });
     nav.addEventListener('mouseleave', function () { if (peek) { peek = false; if (scrollY > 320) setTimeout(function () { if (!peek && !nav.matches(':hover')) setCompact(true); }, 250); } });
-    if (ctx) ctx.addEventListener('click', function () { peek = true; nav.classList.remove('is-compact'); });
-    nav.addEventListener('focusin', function () { nav.classList.remove('is-compact'); });
+    if (ctx) ctx.addEventListener('click', function () {
+      if (!desk.matches && burger) { burger.click(); return; }
+      peek = true; nav.classList.remove('is-compact');
+    });
+    nav.addEventListener('focusin', function () { if (desk.matches) nav.classList.remove('is-compact'); });
     desk.addEventListener && desk.addEventListener('change', function () { nav.classList.remove('is-compact', 'is-hidden'); });
+
+    /* phones: the sheet. "On this page" lists the page's titled sections (not the hero). */
+    var here = $('.nav-here', nav), list = $('.nav-here-list', nav), jumps = [];
+    var targets = secs.filter(function (s) { return !s.h1; });
+    if (here && list && targets.length > 1) {
+      targets.slice(0, 12).forEach(function (s) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.textContent = short(s.t, 30);
+        b.addEventListener('click', function () {
+          if (open() && burger) burger.click();
+          setTimeout(function () { s.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' }); }, 30);
+        });
+        list.appendChild(b); jumps.push({ b: b, s: s });
+      });
+      here.hidden = false;
+    }
+    if (burger) burger.addEventListener('click', function () {
+      if (!open()) return;
+      nav.classList.remove('is-compact');
+      nav.style.setProperty('--navt', Math.max(nav.getBoundingClientRect().top, 0) + 'px');
+      var c = current(), on = null;
+      jumps.forEach(function (j) { var hit = c && j.s === c; j.b.setAttribute('aria-current', hit ? 'true' : 'false'); if (hit) on = j.b; });
+      if (on && list) list.scrollLeft = on.offsetLeft - 18;
+    });
+    $$('.nav-sheet-foot a', nav).forEach(function (a) { a.addEventListener('click', function () { if (open() && burger) burger.click(); }); });
     paint();
   })();
   /* @end island */

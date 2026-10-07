@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Mobile navigation island
+**Type:** design
+**Files:** `tools/v4-build/chrome.py` (nav sheet markup, `cta` option, `V` 21), `lp_chrome.py`, `css/upcore-v5.css` + `js/upcore-v5.js` (`island`), `css/upcore-chrome.css`, `ai-operations.html`, all generated pages
+Phones and tablets get the dynamic island: a floating pill that shrinks to a section-and-progress pill while reading, and a menu sheet that grows out of the menu button with "On this page" jumps, the menu and the page's CTA. Fixed /ai-operations' header not sticking (its `html` overflow clip made `body` a scroll container; sections are clipped instead).
+
 ## 2026-10-07 — GTM container published
 **Type:** infra
 **Files:** `tools/gtm-container-upcore-v4.json` (unchanged), `docs/TRACKING.md`

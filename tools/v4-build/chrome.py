@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 20          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 21          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 19    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
@@ -65,25 +65,33 @@ def btn(section, cls='btn', label='Book a Discovery Call', pulse=False, magnetic
 CHEV = '<svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>'
 
 
-def nav(active=''):
+def nav(active='', cta=None):
+    """cta: (href, label, gtm slug) for pages whose call to action is not the booking modal."""
     cur = lambda k: ' aria-current="page"' if k == active else ''
+    if cta:
+        href, label, slug = cta
+        go = lambda cls, sec: (f'<a class="{cls}" href="{href}" data-gtm-cta="{slug}" data-gtm-cta-type="primary" data-gtm-cta-section="{sec}">'
+                               f'{label} <span class="btn-ico">{ARROW}</span></a>')
+        top, sheet = go('btn btn--sm', 'nav'), go('btn btn--cyan', 'nav_menu')
+    else:
+        top, sheet = btn('nav', cls='btn btn--sm'), btn('nav_menu', cls='btn btn--cyan', magnetic=False)
     sol = ''.join(f'<a href="{URL[k]}"{cur(k)}><span class="di">{svg(k)}</span><span><b>{t}{"<span class=tag>Flagship</span>" if f else ""}</b><span>{d}</span></span></a>' for k, t, d, f in SOLUTIONS)
     seg = ''.join(f'<a href="{URL[k]}"{cur(k)}><span class="di">{svg(k)}</span><span><b>{t}</b><span>{d}</span></span></a>' for k, t, d in SEGMENTS)
     return f'''<header class="nav" data-island>
   <div class="nav-in">
     <a class="nav-logo" href="{URL['home']}" aria-label="Upcore home"><img class="logo-ink" src="/images/upcore-logo-ink.png" alt="Upcore" width="102" height="26" /><img class="logo-light" src="/images/upcore-logo-ops-toolkit.png" alt="" width="102" height="26" aria-hidden="true" /></a>
-    <nav aria-label="Primary"><ul class="nav-menu" role="list">
+    <nav aria-label="Primary" id="nav-primary"><div class="nav-here" hidden><p class="nav-here-k">On this page</p><div class="nav-here-list"></div></div><ul class="nav-menu" role="list">
       <li><a class="flag" href="{URL['aine']}"{cur('aine')}>AI-Native Engineering</a></li>
       <li><button type="button" aria-expanded="false" aria-controls="drop-solutions">Solutions {CHEV}</button><div class="drop" id="drop-solutions">{sol}</div></li>
       <li><button type="button" aria-expanded="false" aria-controls="drop-who">Who we help {CHEV}</button><div class="drop" id="drop-who">{seg}</div></li>
       <li><a href="{URL['results']}"{cur('results')}>Results</a></li>
       <li><a href="{URL['insights']}"{cur('insights')}>Insights</a></li>
       <li><a href="{URL['about']}"{cur('about')}>About</a></li>
-    </ul></nav>
+    </ul><div class="nav-sheet-foot">{sheet}<p class="nav-sheet-meta"><a href="{URL['contact']}">Contact</a><a href="{URL['security']}">Security &amp; trust</a><a href="mailto:gaurav@upcoretechnologies.com">Email us</a></p></div></nav>
     <button class="nav-ctx" type="button" tabindex="-1" aria-hidden="true"><svg class="nav-ring" viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="8" /><circle class="nav-ring-fill" cx="10" cy="10" r="8" pathLength="1" /></svg><span class="nav-ctx-t"></span><span class="nav-ctx-more">Menu</span></button>
     <div class="nav-cta">
-      {btn('nav', cls='btn btn--sm')}
-      <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      {top}
+      <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-primary"><span></span></button>
     </div>
   </div>
 </header>'''

@@ -1,15 +1,16 @@
 # Copy for the four "Who we help" segment pages (post-audit, US English).
 # Rules: only Upcore results from the live site / pre-read; industry stats carry a source URL; no prices.
+# Client names shown with Gaurav's approval (2026-10-07); the residential developer stays unnamed.
 
-P_RETAIL = ('60%+', 'Food &amp; fashion retailer<br />~960 stores &middot; South Africa', 'Delivery-support tickets cut by more than 60% with a WhatsApp order-status agent, with 10,000+ queries automated every month.')
+P_RETAIL = ('60%+', 'Woolworths South Africa<br />~960 stores &middot; South Africa', 'Delivery-support tickets cut by more than 60% with a WhatsApp order-status agent, with 10,000+ queries automated every month.')
 P_RE = ('~3 wks', 'Residential developer<br />India', 'Agents run bank and buyer document follow-ups on the client&rsquo;s own SOPs. Time to the first installment fell from 6&ndash;10 weeks to about 3.')
-P_COMPLIANCE = ('&asymp;$210K/yr', 'Automotive compliance firm<br />India', 'A compliance-check agent runs every check inside the team&rsquo;s own workflow, replacing roughly $210K (&#8377;2 crore) a year of licensed tooling.')
-P_WEALTH = ('~800', 'FCA-regulated financial planner<br />United Kingdom', 'Client, portfolio and compliance data unified into one 360&deg; view, with financial operations automated for around 800 clients under FCA-appropriate controls.')
-P_DENTAL = ('10', 'Dental implant network, 9 states<br />United States', 'Ten scheduling, intake and admin workflows automated across the network, plus a voice tool that turns clinicians&rsquo; dictation into notes and prescriptions. The client then hired us again.')
-P_DENTAL_ENG = ('Rehired', 'Dental implant network, 9 states<br />United States', 'Hired us twice: first for ten automated operational workflows and a clinician voice tool, then to add test and DevOps agents to their software release pipeline.')
-P_SAAS = ('In production', 'Field-service SaaS platform<br />South Africa', 'The client belongs to a ServiceNow Elite partner group. Our delivery agents for requirements, user stories and developer onboarding are built into the team&rsquo;s product workflow.')
-P_APP = ('4.9&#9733;', 'Booking &amp; payments app<br />United Kingdom', 'Built with AI-assisted engineering practices and live on both stores: 4.9&#9733; on the App Store (89 ratings), 4.5&#9733; on Google Play (5,000+ downloads).')
-P_BRIEF = ('70% faster', 'Creator-marketing SaaS<br />Australia', 'A briefing agent turns scattered client material into structured, publishable campaign briefs. Brief creation became 70% faster.')
+P_COMPLIANCE = ('&asymp;$210K/yr', 'Global PCCS<br />Automotive compliance &middot; India', 'A compliance-check agent runs every check inside the team&rsquo;s own workflow, replacing roughly $210K (&#8377;2 crore) a year of licensed tooling.')
+P_WEALTH = ('~800', 'Mercury Wealth Management<br />FCA-regulated planner &middot; United Kingdom', 'Client, portfolio and compliance data unified into one 360&deg; view, with financial operations automated for around 800 clients under FCA-appropriate controls.')
+P_DENTAL = ('10', 'Rain Dental Implant Centers<br />9 states &middot; United States', 'Ten scheduling, intake and admin workflows automated across the network, plus a voice tool that turns clinicians&rsquo; dictation into notes and prescriptions. The client then hired us again.')
+P_DENTAL_ENG = ('Rehired', 'Rain Dental Implant Centers<br />9 states &middot; United States', 'Hired us twice: first for ten automated operational workflows and a clinician voice tool, then to add test and DevOps agents to their software release pipeline.')
+P_SAAS = ('In production', 'WorkWide by Quintica<br />Field-service SaaS &middot; South Africa', 'The client belongs to a ServiceNow Elite partner group. Our delivery agents for requirements, user stories and developer onboarding are built into the team&rsquo;s product workflow.')
+P_APP = ('4.9&#9733;', 'Barbr<br />Booking &amp; payments app &middot; United Kingdom', 'Built with AI-assisted engineering practices and live on both stores: 4.9&#9733; on the App Store (89 ratings), 4.5&#9733; on Google Play (5,000+ downloads).')
+P_BRIEF = ('70% faster', 'Fabulate<br />Creator-marketing SaaS &middot; Australia', 'A briefing agent turns scattered client material into structured, publishable campaign briefs. Brief creation became 70% faster.')
 
 PATH_STD = [
     ('Discovery call', '45 minutes on your highest-volume workflows. You get a written plan: what to automate first, in what order, and what it should return.'),
@@ -212,7 +213,7 @@ COPY = {
         ('Monthly retainer', 'An embedded Claude Certified Architect who maintains your architecture rules, tunes gates and reviews high-risk deviations.'),
     ],
     faq_h2='What CTOs <span class="ul-draw">want to know.</span>',
-    faq_lead='Not covered here? Ask Gaurav or Saswata on the discovery call.',
+    faq_lead='Not covered here? Ask us on the discovery call.',
     faq=[
         ('Can you show us what our AI tools cost today?', 'Yes, where your AI tools expose usage and billing data. The governance dashboard breaks down AI tool and token spend by team and user, so you can see where spend produces output and where it doesn&rsquo;t.'),
         ('How is this different from giving developers Copilot or Cursor?', 'Those tools generate code. We install the delivery process around them: spec templates, architecture guardrails, plan sign-off, automated pull-request gates, merge rules, scenario testing, controlled releases and a decision record.'),

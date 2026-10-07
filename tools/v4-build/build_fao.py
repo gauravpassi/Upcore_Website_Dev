@@ -119,6 +119,6 @@ ld = C.graph('fao', [{'@type': 'Service', 'name': 'Fractional AI Officer', 'serv
                       'description': 'An embedded AI lead on retainer who inventories AI pilots and tools, selects the initiatives worth scaling and stays accountable for implementation and adoption.', 'areaServed': C.AREA,
                       'offers': {'@type': 'Offer', 'priceCurrency': 'USD', 'price': '1999', 'priceSpecification': {'@type': 'UnitPriceSpecification', 'price': '1999', 'priceCurrency': 'USD', 'unitText': 'MONTH', 'description': 'Starting price per month'}}},
                      K.faq_ld(FAQ)], crumb='Fractional AI Officer')
-print('fao', C.write('fractional-ai-officer.html', 'fao', 'Fractional AI Officer: An Embedded AI Lead from $1,999/month | Upcore',
-      'An embedded AI lead on retainer: inventory every AI pilot, pick the two or three worth scaling and see them live in 90 days, with a Day-30 walk-away. From $1,999 a month.',
+print('fao', C.write('fractional-ai-officer.html', 'fao', 'Fractional AI Officer from $1,999/month | Upcore',
+      'An embedded AI lead on retainer: inventory every AI pilot, scale the two or three that matter and see them live in 90 days, with a Day-30 walk-away.',
       page, active='fao', ld=ld, group='solution', spine=False, main_cls='is-calm', annc_kind=C.ANNC_OPS))

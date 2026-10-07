@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-10-06 17:59:46",
+  "exportTime": "2026-10-07 17:01:52",
   "containerVersion": {
     "path": "accounts/6000000000/containers/200000000/versions/0",
     "accountId": "6000000000",
@@ -15,7 +15,7 @@
       "usageContext": [
         "WEB"
       ],
-      "fingerprint": "1791289786284",
+      "fingerprint": "1791372712564",
       "tagManagerUrl": "",
       "tagIds": [
         "GTM-MH5PB32L"
@@ -25,7 +25,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "tagId": "1",
         "name": "Google tag - GA4 (G-TVRF5M70ES)",
         "type": "googtag",
@@ -86,7 +86,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "tagId": "2",
         "name": "Google tag - Google Ads (AW-16546427858)",
         "type": "googtag",
@@ -111,7 +111,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "tagId": "3",
         "name": "Conversion Linker",
         "type": "gclidw",
@@ -146,7 +146,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "tagId": "4",
         "name": "GA4 event - V4 site events",
         "type": "gaawe",
@@ -439,6 +439,66 @@
                     "value": "{{DLV - lead_source}}"
                   }
                 ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "topic"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - topic}}"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "source"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - source}}"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "mode"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - mode}}"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "action"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - action}}"
+                  }
+                ]
               }
             ]
           }
@@ -457,7 +517,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "tagId": "5",
         "name": "Microsoft Clarity (xtvhi9nvqa)",
         "type": "html",
@@ -499,7 +559,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "triggerId": "11",
         "name": "Init - V4 pages (tagging=gtm)",
         "type": "INIT",
@@ -524,7 +584,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "triggerId": "12",
         "name": "Page view - V4 pages (tagging=gtm)",
         "type": "PAGEVIEW",
@@ -549,7 +609,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "triggerId": "13",
         "name": "CE - V4 site events",
         "type": "CUSTOM_EVENT",
@@ -565,7 +625,7 @@
               {
                 "type": "TEMPLATE",
                 "key": "arg1",
-                "value": "^(cta_click|scroll_depth|section_view|framework_tab_select|content_tab_select|nav_menu_open|faq_open|booking_modal_open|booking_calendar_view|booking_email_skipped|booking_iframe_engaged|booking_iframe_navigated|booking_modal_close|generate_lead)$"
+                "value": "^(cta_click|scroll_depth|section_view|framework_tab_select|content_tab_select|nav_menu_open|faq_open|booking_modal_open|booking_calendar_view|booking_email_skipped|booking_iframe_engaged|booking_iframe_navigated|booking_modal_close|generate_lead|estimator_used|chat_open|chat_question|chat_action)$"
               }
             ]
           }
@@ -591,7 +651,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "triggerId": "14",
         "name": "CE - consent_update",
         "type": "CUSTOM_EVENT",
@@ -635,7 +695,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "101",
         "name": "DLV - tagging",
         "type": "v",
@@ -661,7 +721,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "102",
         "name": "DLV - content_group",
         "type": "v",
@@ -687,7 +747,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "103",
         "name": "DLV - cta_id",
         "type": "v",
@@ -713,7 +773,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "104",
         "name": "DLV - cta_type",
         "type": "v",
@@ -739,7 +799,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "105",
         "name": "DLV - cta_section",
         "type": "v",
@@ -765,7 +825,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "106",
         "name": "DLV - cta_text",
         "type": "v",
@@ -791,7 +851,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "107",
         "name": "DLV - cta_url",
         "type": "v",
@@ -817,7 +877,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "108",
         "name": "DLV - page_path",
         "type": "v",
@@ -843,7 +903,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "109",
         "name": "DLV - percent_scrolled",
         "type": "v",
@@ -869,7 +929,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "110",
         "name": "DLV - section_id",
         "type": "v",
@@ -895,7 +955,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "111",
         "name": "DLV - section_title",
         "type": "v",
@@ -921,7 +981,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "112",
         "name": "DLV - tab_id",
         "type": "v",
@@ -947,7 +1007,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "113",
         "name": "DLV - method",
         "type": "v",
@@ -973,7 +1033,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "114",
         "name": "DLV - menu",
         "type": "v",
@@ -999,7 +1059,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "115",
         "name": "DLV - faq_question",
         "type": "v",
@@ -1025,7 +1085,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "116",
         "name": "DLV - open_seconds",
         "type": "v",
@@ -1051,7 +1111,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "117",
         "name": "DLV - iframe_engaged",
         "type": "v",
@@ -1077,7 +1137,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "118",
         "name": "DLV - seconds_to_engage",
         "type": "v",
@@ -1103,7 +1163,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "119",
         "name": "DLV - load_count",
         "type": "v",
@@ -1129,7 +1189,7 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "120",
         "name": "DLV - lead_source",
         "type": "v",
@@ -1155,8 +1215,112 @@
       {
         "accountId": "6000000000",
         "containerId": "200000000",
-        "fingerprint": "1791289786284",
+        "fingerprint": "1791372712564",
         "variableId": "121",
+        "name": "DLV - topic",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "event_params.topic"
+          }
+        ],
+        "formatValue": {}
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "200000000",
+        "fingerprint": "1791372712564",
+        "variableId": "122",
+        "name": "DLV - source",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "event_params.source"
+          }
+        ],
+        "formatValue": {}
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "200000000",
+        "fingerprint": "1791372712564",
+        "variableId": "123",
+        "name": "DLV - mode",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "event_params.mode"
+          }
+        ],
+        "formatValue": {}
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "200000000",
+        "fingerprint": "1791372712564",
+        "variableId": "124",
+        "name": "DLV - action",
+        "type": "v",
+        "parameter": [
+          {
+            "type": "INTEGER",
+            "key": "dataLayerVersion",
+            "value": "2"
+          },
+          {
+            "type": "BOOLEAN",
+            "key": "setDefaultValue",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "name",
+            "value": "event_params.action"
+          }
+        ],
+        "formatValue": {}
+      },
+      {
+        "accountId": "6000000000",
+        "containerId": "200000000",
+        "fingerprint": "1791372712564",
+        "variableId": "125",
         "name": "JS - traffic_type",
         "type": "jsm",
         "parameter": [
@@ -1201,7 +1365,7 @@
         "name": "Event"
       }
     ],
-    "fingerprint": "1791289786284",
+    "fingerprint": "1791372712564",
     "tagManagerUrl": ""
   }
 }

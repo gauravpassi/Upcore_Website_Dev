@@ -179,7 +179,7 @@ where = f'''<section class="h-sec" id="where" aria-labelledby="where-h"><div cla
 # ------------------------------------------------------------------ 7. CTA
 final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
 <h2 id="cta-h" class="t-display" data-reveal>Talk to the people <span class="hl">who will do the work.</span></h2>
-<p class="t-lead" data-reveal style="--d:1">Book a 45-minute discovery call with Gaurav or Saswata. You&rsquo;ll get a written plan, whether or not we work together.</p>
+<p class="t-lead" data-reveal style="--d:1">Book a 45-minute discovery call. You&rsquo;ll get a written plan, whether or not we work together.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("cta_final", cls="btn btn--cyan")}</div>
 <p class="cta-alt" data-reveal style="--d:3">Prefer to write first? <a href="/contact">Contact us <span aria-hidden="true">&rarr;</span></a></p>
 </div></section>'''

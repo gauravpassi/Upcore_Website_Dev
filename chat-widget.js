@@ -1,791 +1,414 @@
+// ── Upcore assistant (chat) ─────────────────────────────────────────────────
+// Rebuilt 2026-10-07. Answers come from /api/chat (a free-tier model behind an OpenAI-compatible API,
+// grounded in the site's facts; see api/chat.js). If the API is not configured, rate-limited or down,
+// the widget answers from the built-in FAQ below instead, so it always works.
+// "Talk to a person" sends the visitor's question and the recent transcript to the team via FormSubmit
+// (same inboxes as before). The conversation is kept in sessionStorage so it survives page changes.
+// Events (dataLayer on GTM pages, gtag elsewhere; no message text or personal data):
+//   chat_open, chat_question {source, mode}, chat_action {action}, generate_lead {lead_source: chat_widget}.
 (function () {
   'use strict';
+  if (window.__upcChat) return;
+  window.__upcChat = true;
 
-  // ── Config ───────────────────────────────────────────────────────────────
-  var LEAD_EMAIL = 'gaurav@upcoretechnologies.com';
+  var LEAD_TO = 'gaurav@upcoretechnologies.com';
   var LEAD_CC = 'saswata@upcoretechnologies.com';
-  var BOT_NAME = 'Kai';
-  var BOT_SUBTITLE = 'Upcore AI Assistant';
-  var INITIAL_MESSAGE = "Hi there! I'm Kai. Tap a question below for an instant answer, or type your own and I'll pass it straight to our team for a personal reply.";
+  var STORE = 'upc_chat_v2';
+  var FONT = 'Geist,"DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif';
+  var MONO = '"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace';
+  var path = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/\/$/, '') || '/';
 
-  // ── Knowledge base ───────────────────────────────────────────────────────
-  var CATEGORIES = [
-    { id: 'start', icon: '🚀', label: 'Getting Started' },
-    { id: 'gov', icon: '🛡️', label: 'AI Governance' },
-    { id: 'agents', icon: '🤖', label: 'Agents & Delivery' },
-    { id: 'pricing', icon: '💰', label: 'Pricing' },
-    { id: 'trust', icon: '🔒', label: 'Trust & Security' },
-    { id: 'talk', icon: '📞', label: 'Talk to a Human' }
-  ];
+  // ── Starter questions (page-aware) ──────────────────────────────────────
+  var STARTERS = {
+    '/': ['What is AI-native engineering?', 'How does a pilot work?', 'What does it cost?', 'Is our code and data secure?'],
+    '/ai-native-engineering': ['How is this different from Copilot or Cursor?', 'What happens in a pilot?', 'Who decides what merges?', 'What does it cost?'],
+    '/ai-engineering-governance': ['What does AI Governance include?', 'What happens in the first 30 days?', 'Can we see our AI spend by team?', 'What does it cost?'],
+    '/platform': ['Which workflows can you automate?', 'How fast can a first agent go live?', 'Do agents act on their own?', 'Which systems do you connect to?'],
+    '/fractional-ai-officer': ['What does a Fractional AI Officer do?', 'How is it different from a full-time hire?', 'What happens in 90 days?', 'What does it cost?'],
+    '/security': ['Does our code leave our environment?', 'Which AI providers process our data?', 'Can you sign a BAA?', 'Can we use our own model?'],
+    '/results': ['Which result is closest to an ecommerce brand?', 'What did you build for Woolworths?', 'Do you have healthcare examples?', 'Can we speak to a reference?'],
+    '/contact': ['What happens on a discovery call?', 'Can we sign an NDA first?', 'Which time zones do you work in?'],
+    '/about': ['Who leads Upcore?', 'Where is your team based?', 'What certifications do you hold?']
+  };
+  function starters() {
+    if (STARTERS[path]) return STARTERS[path];
+    if (path.indexOf('/who-we-help/') === 0) return ['What would you automate for a business like ours?', 'Do you have results in our industry?', 'How does a pilot work?', 'What does it cost?'];
+    return STARTERS['/'];
+  }
 
+  // ── Built-in FAQ (used when the AI is unavailable) ──────────────────────
   var FAQ = [
-    { id: 'gov-what', cat: 'gov', popular: true,
-      q: 'What is AI Governance (the FAO)?',
-      a: 'A Fractional AI Officer (FAO) is an AI-certified governance specialist embedded directly in your engineering org — accountable for the risk of AI-generated code across security, budget, and compliance. Embeds in 72 hours, no recruiting cycle. <a href="/ai-engineering-governance" target="_blank" rel="noopener">See the full framework &rarr;</a>' },
-    { id: 'gov-why', cat: 'gov',
-      q: 'Why do I need AI governance?',
-      a: "Because your engineers are already shipping AI-generated code, and most orgs have zero review process for it. Roughly 45% of AI-generated code carries security vulnerabilities (Veracode, 2025), and most teams have no audit trail ready for the EU AI Act, HIPAA, or SOX. Your FAO owns that risk end to end." },
-    { id: 'fde-what', cat: 'agents', popular: true,
-      q: 'What is a Forward Deployed Engineer?',
-      a: 'A dedicated engineer embedded in your workflow to build, integrate, and maintain custom AI agents against your real systems — not a demo, not a project-and-vanish agency engagement. Starting from $2,499/month. <a href="/platform" target="_blank" rel="noopener">Meet the FDE Engineers &rarr;</a>' },
-    { id: 'studio-vs-nocode', cat: 'agents',
-      q: 'How is Studio different from a no-code tool?',
-      a: 'A no-code tool hands you a config UI and leaves integration to you. Studio is a managed service — describe a workflow in plain English, and your Forward Deployed Engineer builds, integrates, and deploys it into your actual CRM, ERP, or channels, governed by your FAO. <a href="/platform" target="_blank" rel="noopener">Explore Studio &rarr;</a>' },
-    { id: 'industries', cat: 'agents', popular: true,
-      q: 'What industries do you work with?',
-      a: 'We serve 12+ verticals, including Manufacturing, SaaS, Ecommerce/D2C, Banking &amp; Finance, Healthcare, Real Estate, Logistics, Legal &amp; Compliance, EdTech, Government, NBFC/Loans, and Marketing Agencies. <a href="/#who-we-help" target="_blank" rel="noopener">See all industries &rarr;</a>' },
-    { id: 'pricing-how-much', cat: 'pricing', popular: true,
-      q: 'How much does this cost?',
-      a: 'AI Governance (the FAO) starts from $1,999/month. Studio and Forge agents start from $799. A dedicated FDE Engineer retainer starts from $2,499/month. Exact pricing depends on scope — confirmed for free on your Discovery Call. <a href="/fractional-ai-officer#economics" target="_blank" rel="noopener">See full pricing &rarr;</a>' },
-    { id: 'pricing-lockin', cat: 'pricing',
-      q: 'Is there a minimum commitment?',
-      a: "No lock-in on the FAO engagement. You get your first AI risk report at Day 30 — if it doesn't justify continuing, you walk away. No exit fee, no minimum term after that." },
-    { id: 'start-how', cat: 'start', popular: true,
-      q: 'How do I get started?',
-      a: 'Book a free 45-minute Discovery Call. We\'ll audit your current setup, map your top 3 opportunities, and hand you a written action plan — no pitch, no pressure. <a href="/assessment" target="_blank" rel="noopener">Book a Discovery Call &rarr;</a>' },
-    { id: 'start-speed', cat: 'start',
-      q: 'How fast can you deploy?',
-      a: 'AI Governance embeds in 72 hours. A single Studio agent goes live in 48 hours. Full multi-agent build-outs typically take 30&ndash;90 days depending on scope.' },
-    { id: 'start-call', cat: 'start',
-      q: 'What happens on the Discovery Call?',
-      a: "30&ndash;45 minutes, completely free. We audit your current AI/ops posture, map your top 3 opportunities, and give you a written blueprint you can act on &mdash; with or without us." },
-    { id: 'trust-security', cat: 'trust', popular: true,
-      q: 'Is my code and data secure?',
-      a: 'Yes &mdash; we operate under ISO 27001 and CMMI Level 3 practices, and every engagement runs under your FAO\'s governance framework from day one. <a href="/security" target="_blank" rel="noopener">See our Security page &rarr;</a>' },
-    { id: 'trust-certs', cat: 'trust',
-      q: 'What certifications do you hold?',
-      a: 'ISO 27001, ISO 9001, and CMMI Level 3 &mdash; plus a 5.0 rating on Clutch. <a href="/security" target="_blank" rel="noopener">Full details on our Security page &rarr;</a>' }
+    { k: ['ai-native', 'ai native', 'pipeline', 'copilot', 'cursor', 'claude code', 'delivery', 'merge', 'pull request', 'cto', 'engineering'],
+      a: 'AI-Native Engineering is a governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: specs from templates, architecture checks, automated pull-request checks, risk-scored merges and feature-flagged releases, with every rule deviation logged. A Claude Certified Architect runs it with your team. [See the nine stages](/ai-native-engineering)' },
+    { k: ['pilot', 'start', 'begin', 'get started', 'trial', 'engagement', 'how does it work', 'first step'],
+      a: 'Everything starts with a 45-minute discovery call and a written plan. Engineering work then begins with a pilot on one team and one service, measured against your current process; automation starts with one workflow. You see results before committing further.', act: ['book'] },
+    { k: ['cost', 'price', 'pricing', 'how much', 'fee', 'budget', 'expensive', 'quote', '$'],
+      a: 'The only price we publish is the Fractional AI Officer: **from $1,999 a month**. Everything else is scoped after a discovery call, and you get a written proposal with a fixed scope and price before any build starts. [Fractional AI Officer](/fractional-ai-officer#economics)', act: ['book', 'person'] },
+    { k: ['secure', 'security', 'data', 'privacy', 'iso', 'soc', 'gdpr', 'hipaa', 'baa', 'nda', 'train', 'confidential'],
+      a: 'Code stays in your repositories, access is scoped to what the work needs, and no code is copied to our servers. Model providers are named in your contract and do not train on your data. We hold ISO 27001, ISO 9001 and CMMI Level 3, and a Security Review Pack is available on request. [Security details](/security)' },
+    { k: ['governance', 'spend', 'audit', 'policy', 'compliance', 'eu ai act', 'inventory', 'shadow ai'],
+      a: 'AI Governance gives you an inventory of every AI tool with an owner, AI spend by team, data controls, AI-aware security checks on every commit and an audit trail. It is installed in 90 days, with a risk report at Day 30 when you can walk away. [AI Governance](/ai-engineering-governance)' },
+    { k: ['automate', 'automation', 'agent', 'workflow', 'operations', 'crm', 'whatsapp', 'support', 'follow-up', 'follow up', 'invoice', 'documents'],
+      a: 'We build AI agents that run repetitive support, operations, finance and sales work inside your CRM, ERP, helpdesk, email and WhatsApp, with people approving what matters. Our standard is a first agent live within 30 days of design sign-off. [Business Process Automation](/platform)' },
+    { k: ['fractional', 'officer', 'caio', 'chief ai', 'strategy', 'roadmap', 'portfolio', 'pilots'],
+      a: 'A Fractional AI Officer is an embedded AI lead on retainer, from $1,999 a month. They inventory every AI pilot and tool, pick the two or three worth scaling and stay accountable until they are live and used, with a Day-30 walk-away. [Fractional AI Officer](/fractional-ai-officer)' },
+    { k: ['result', 'case', 'client', 'example', 'proof', 'reference', 'woolworths', 'worked with'],
+      a: 'A few examples: Woolworths South Africa cut delivery-support tickets by more than 60%; Global PCCS replaced about $210K a year of licensed tooling; a residential developer cut time to first installment from 6–10 weeks to about 3. [All ten case studies](/results)' },
+    { k: ['how fast', 'timeline', 'how long', 'weeks', 'days', 'quickly', 'when can'],
+      a: 'Our standard for automation is a first agent live within 30 days of design sign-off. AI Governance is visible within 72 hours of access and runs as a 90-day plan. Engineering pilots start with one team, with duration agreed on the discovery call.' },
+    { k: ['contact', 'call', 'talk', 'human', 'person', 'email', 'phone', 'meeting', 'book', 'speak'],
+      a: 'The quickest way is a 45-minute discovery call; you get a written plan afterwards either way. You can also email gaurav@upcoretechnologies.com or WhatsApp +91 99881 35327 (Monday to Saturday, 9am to 7pm IST).', act: ['book', 'person'] },
+    { k: ['industry', 'industries', 'who do you', 'work with', 'ecommerce', 'retail', 'accounting', 'law', 'wealth', 'staffing', 'healthcare', 'health', 'clinic', 'dental', 'hospital', 'real estate', 'property', 'bank', 'finance', 'insurance', 'logistics', 'manufacturing', 'saas', 'hospitality'],
+      a: 'We work with tech and software companies, ecommerce and retail brands, operations-heavy businesses and professional services firms such as accounting, law, wealth and staffing. [Who we help](/#who-we-help)' },
+    { k: ['who are you', 'company', 'team', 'founder', 'where', 'india', 'located', 'based', 'leadership', 'about'],
+      a: 'Upcore Technologies has delivered for clients since 2020, in the US, UK, South Africa, Australia, Mauritius and India, from a delivery team in Mohali, India. It is led by Gaurav Passi (Co-Founder & CEO), Shrikant Maniar (Executive Director) and Shanker Dhand (Technical Head). [About Upcore](/about)' }
   ];
-
-  // Site-wide (2026-10-07): AI-Native Engineering-led answers; the only published price is the Fractional AI Officer's.
-  if (true) {
-    var PRE = location.pathname.indexOf('/preview') === 0;
-    var AINE_URL = PRE ? '/preview/ai-native-engineering' : '/ai-native-engineering';
-    var HOME_URL = PRE ? '/preview/home-v4' : '/';
-    INITIAL_MESSAGE = "Hi, I'm Kai. Tap a question for an instant answer, or type your own and I'll pass it to our team for a personal reply.";
-    CATEGORIES = [
-      { id: 'aine', icon: '\uD83E\uDDED', label: 'AI-Native Engineering' },
-      { id: 'auto', icon: '\u2699\uFE0F', label: 'Automation' },
-      { id: 'cost', icon: '\uD83D\uDCC4', label: 'Cost & engagement' },
-      { id: 'trust', icon: '\uD83D\uDD12', label: 'Trust & security' },
-      { id: 'talk', icon: '\uD83D\uDCDE', label: 'Talk to a person' }
-    ];
-    FAQ = [
-      { id: 'aine-what', cat: 'aine', popular: true, q: 'What is AI-Native Engineering?',
-        a: 'A governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: spec templates, architecture guardrails, automated gates, risk-scored merges and feature-flagged releases, with every deviation logged for leadership. A Claude Certified Architect works inside the pipeline with your team. <a href="' + AINE_URL + '">See the pipeline &rarr;</a>' },
-      { id: 'aine-copilot', cat: 'aine', q: 'How is it different from Copilot or Cursor?',
-        a: 'Those tools generate code. AI-native engineering is the delivery process around them, so AI-written code can be trusted without a senior engineer reading every line.' },
-      { id: 'aine-pilot', cat: 'aine', popular: true, q: 'How does a pilot work?',
-        a: 'One team, one service, a real backlog. We agree success measures against your current process, install the pipeline end to end and review the results with you before any wider rollout. Duration and commercials are agreed on the discovery call, based on your scope and requirements. <a href="' + AINE_URL + '#engagement">How we engage &rarr;</a>' },
-      { id: 'auto-what', cat: 'auto', popular: true, q: 'Do you also automate business operations?',
-        a: 'Yes. AI agents run follow-ups, documents, reconciliations and customer updates inside your CRM, ERP, email and messaging tools, with people approving what matters. <a href="/platform">Explore the agent library &rarr;</a>' },
-      { id: 'auto-who', cat: 'auto', q: 'Which businesses do you help?',
-        a: 'Tech and software companies, ecommerce and retail brands, operations-heavy mid-market businesses, and professional services firms such as accounting, law, wealth and staffing. <a href="' + HOME_URL + '#segments">See who we help &rarr;</a>' },
-      { id: 'cost-how', cat: 'cost', popular: true, q: 'How much does it cost?',
-        a: "We don't publish a price list. AI-Native Engineering starts with a pilot on one team, then a one-time implementation fee scaled to the teams and repositories in scope, then a monthly retainer for your embedded Claude Certified Architect. Pilot duration and commercials are agreed on the discovery call, based on your scope and requirements. Automation is scoped per workflow. The Fractional AI Officer starts from $1,999 a month. After the discovery call you get a written proposal with a fixed scope and price. <a href=\"/fractional-ai-officer\">Fractional AI Officer &rarr;</a>" },
-      { id: 'cost-speed', cat: 'cost', q: 'How fast can you start?',
-        a: 'Our standard is a first agent live within 30 days of design sign-off. Engineering pilots start with one team and one service, with success measures agreed up front.' },
-      { id: 'cost-call', cat: 'cost', q: 'What happens on the discovery call?',
-        a: '45 minutes with Gaurav or Saswata on your current process and highest-value opportunities. You get a written plan you can act on, whether or not we work together.' },
-      { id: 'trust-security', cat: 'trust', popular: true, q: 'Is our code and data secure?',
-        a: 'Code stays in your repositories, agents run with scoped, revocable permissions and every action is logged. Model providers are configured so your data is not used to train their models. Our security and quality management are certified to ISO 27001 and ISO 9001, and we deliver to CMMI Level 3 processes. <a href="/security">Security details &rarr;</a>' },
-      { id: 'trust-certs', cat: 'trust', q: 'What certifications do you hold?',
-        a: 'ISO 27001, ISO 9001 and CMMI Level 3, with 5.0 ratings on Clutch and DesignRush. <a href="/security">Details &rarr;</a>' }
-    ];
-  }
-
-  function faqById(id) { for (var i = 0; i < FAQ.length; i++) if (FAQ[i].id === id) return FAQ[i]; return null; }
-  function faqByCat(catId) { return FAQ.filter(function (f) { return f.cat === catId; }); }
-  function popularFaq() { return FAQ.filter(function (f) { return f.popular; }); }
-
-  // ── State ────────────────────────────────────────────────────────────────
-  var isOpen = false;
-  var isBusy = false;
-  var hasGreeted = false;
-  var unreadCount = 0;
-  var leadStage = null; // null | 'name' | 'email'
-  var pendingQuestion = '', pendingName = '', pendingEmail = '';
-
-  // ── Styles ───────────────────────────────────────────────────────────────
-  var css = `
-    #upcore-chat-btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #0a0a0a;
-      border: none;
-      cursor: pointer;
-      z-index: 9998;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      outline: none;
-    }
-    #upcore-chat-btn:hover {
-      transform: scale(1.06);
-      box-shadow: 0 6px 28px rgba(10,191,204,0.32);
-    }
-    #upcore-chat-btn svg { transition: opacity 0.2s; }
-    #upcore-chat-badge {
-      position: absolute;
-      top: -4px;
-      right: -4px;
-      width: 20px;
-      height: 20px;
-      background: #0ABFCC;
-      border-radius: 50%;
-      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      color: #fff;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #ffffff;
-    }
-    #upcore-chat-window {
-      position: fixed;
-      bottom: 96px;
-      right: 28px;
-      width: 392px;
-      max-width: calc(100vw - 40px);
-      height: 600px;
-      max-height: calc(100vh - 120px);
-      background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 22px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.06);
-      transform: translateY(16px) scale(0.97);
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
-      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
-    #upcore-chat-window.open {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-      pointer-events: all;
-    }
-    #upcore-chat-header {
-      padding: 16px 16px;
-      background: linear-gradient(135deg, #0a0a0a 0%, #0d1f22 65%, #0f2b2e 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-    #upcore-chat-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #0ABFCC;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-      box-shadow: 0 0 0 4px rgba(10,191,204,0.14);
-    }
-    #upcore-chat-info { flex: 1; min-width: 0; }
-    #upcore-chat-name {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.2px;
-    }
-    #upcore-chat-status {
-      font-size: 11px;
-      color: #3ddcc4;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 2px;
-    }
-    #upcore-chat-status::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      background: #3ddcc4;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    #upcore-chat-close {
-      background: rgba(255,255,255,0.08);
-      border: none;
-      color: rgba(255,255,255,0.5);
-      width: 30px;
-      height: 30px;
-      border-radius: 7px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s, color 0.15s;
-      flex-shrink: 0;
-      outline: none;
-    }
-    #upcore-chat-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
-    #upcore-chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      scroll-behavior: smooth;
-      background: #ffffff;
-    }
-    #upcore-chat-messages::-webkit-scrollbar { width: 4px; }
-    #upcore-chat-messages::-webkit-scrollbar-track { background: transparent; }
-    #upcore-chat-messages::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 2px; }
-    .uc-msg-wrap { display: flex; flex-direction: column; gap: 2px; animation: ucFadeIn 0.28s ease; }
-    .uc-msg-wrap.user { align-items: flex-end; }
-    .uc-msg-wrap.bot { align-items: flex-start; }
-    @keyframes ucFadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-    .uc-msg {
-      max-width: 88%;
-      padding: 10px 14px;
-      border-radius: 16px;
-      font-size: 13.5px;
-      line-height: 1.6;
-      word-wrap: break-word;
-    }
-    .uc-msg.user {
-      background: #0a0a0a;
-      color: #ffffff;
-      font-weight: 500;
-      border-bottom-right-radius: 4px;
-    }
-    .uc-msg.bot {
-      background: #f7f8fa;
-      color: #2d3748;
-      border-bottom-left-radius: 4px;
-      border: 1px solid #e5e7eb;
-    }
-    .uc-msg a { color: #0ABFCC; font-weight: 600; text-decoration: none; }
-    .uc-msg a:hover { text-decoration: underline; }
-    #upcore-typing {
-      display: none;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 0 4px;
-    }
-    #upcore-typing.show { display: flex; }
-    .uc-typing-dots {
-      background: #f7f8fa;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      border-bottom-left-radius: 4px;
-      padding: 12px 16px;
-      display: flex;
-      gap: 4px;
-      align-items: center;
-    }
-    .uc-dot {
-      width: 6px;
-      height: 6px;
-      background: #c4c9d4;
-      border-radius: 50%;
-      animation: ucPulse 1.2s ease-in-out infinite;
-    }
-    .uc-dot:nth-child(2) { animation-delay: 0.2s; }
-    .uc-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes ucPulse { 0%,60%,100% { opacity:0.4; transform:scale(1); } 30% { opacity:1; transform:scale(1.2); } }
-
-    /* Topic cards (category grid) */
-    .uc-topics-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      max-width: 100%;
-      width: 100%;
-    }
-    .uc-topic-card {
-      background: #f7f8fa;
-      border: 1px solid #e5e7eb;
-      border-radius: 14px;
-      padding: 14px 8px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s, transform 0.15s;
-      font-family: inherit;
-    }
-    .uc-topic-card:hover {
-      border-color: #0ABFCC;
-      background: #ffffff;
-      transform: translateY(-2px);
-    }
-    .uc-topic-icon { font-size: 21px; display: block; margin-bottom: 5px; }
-    .uc-topic-label { font-size: 11.5px; font-weight: 700; color: #2d3748; line-height: 1.3; }
-
-    /* Suggestion / action chips */
-    #upcore-suggestions {
-      padding: 6px 16px 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      background: #ffffff;
-      border-top: 1px solid #f2f3f5;
-    }
-    .uc-suggestion {
-      background: #f7f8fa;
-      border: 1px solid #e5e7eb;
-      color: #45515e;
-      font-size: 12px;
-      font-family: inherit;
-      padding: 6px 12px;
-      border-radius: 9999px;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-      white-space: nowrap;
-      outline: none;
-    }
-    .uc-suggestion:hover { background: #0a0a0a; border-color: #0a0a0a; color: #ffffff; }
-    .uc-suggestion.accent { border-color: rgba(10,191,204,0.35); color: #089aaa; font-weight: 600; }
-    .uc-suggestion.accent:hover { background: #0ABFCC; border-color: #0ABFCC; color: #ffffff; }
-    .uc-suggestion.ask-else { border-style: dashed; }
-
-    #upcore-chat-input-area {
-      padding: 10px 14px 12px;
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      gap: 8px;
-      align-items: flex-end;
-      background: #ffffff;
-      flex-shrink: 0;
-    }
-    #upcore-chat-input {
-      flex: 1;
-      background: #f7f8fa;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 10px 14px;
-      color: #0a0a0a;
-      font-size: 13.5px;
-      font-family: inherit;
-      resize: none;
-      outline: none;
-      line-height: 1.5;
-      max-height: 100px;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    #upcore-chat-input::placeholder { color: #8e8e93; }
-    #upcore-chat-input:focus { border-color: #0ABFCC; background: #ffffff; }
-    #upcore-chat-send {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: #0a0a0a;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.15s, transform 0.15s;
-      outline: none;
-    }
-    #upcore-chat-send:hover { background: #222222; transform: scale(1.05); }
-    #upcore-chat-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
-    #upcore-chat-footer {
-      text-align: center;
-      font-size: 10px;
-      color: #c4c9d4;
-      padding: 0 16px 10px;
-      background: #ffffff;
-      flex-shrink: 0;
-    }
-    #upcore-chat-footer a { color: #c4c9d4; text-decoration: none; }
-    .uc-banner {
-      background: rgba(10,191,204,0.06);
-      border: 1px solid rgba(10,191,204,0.2);
-      border-radius: 12px;
-      padding: 14px;
-      text-align: center;
-      margin: 4px 0;
-      max-width: 100%;
-    }
-    .uc-banner .uc-banner-icon { font-size: 28px; margin-bottom: 6px; }
-    .uc-banner .uc-banner-title { font-size: 14px; font-weight: 700; color: #0ABFCC; margin-bottom: 4px; }
-    .uc-banner .uc-banner-sub { font-size: 12px; color: #45515e; line-height: 1.5; }
-    @media (max-width: 440px) {
-      #upcore-chat-window { right: 16px; left: 16px; width: auto; bottom: 88px; }
-      #upcore-chat-btn { right: 20px; bottom: 20px; }
-    }
-  `;
-
-  // ── DOM helpers ──────────────────────────────────────────────────────────
-  function el(tag, attrs, children) {
-    var e = document.createElement(tag);
-    if (attrs) Object.keys(attrs).forEach(function (k) {
-      if (k === 'html') { e.innerHTML = attrs[k]; }
-      else if (k === 'text') { e.textContent = attrs[k]; }
-      else if (k.startsWith('on')) { e.addEventListener(k.slice(2), attrs[k]); }
-      else { e.setAttribute(k, attrs[k]); }
+  function faqAnswer(q) {
+    var t = ' ' + q.toLowerCase().replace(/[^\w$\s-]/g, ' ') + ' ', best = null, score = 0;
+    FAQ.forEach(function (f) {
+      var s = 0;
+      f.k.forEach(function (k) { if (t.indexOf(k.length < 5 ? ' ' + k : k) > -1) s += k.length > 6 ? 2 : 1; });
+      if (s > score) { score = s; best = f; }
     });
-    if (children) children.forEach(function (c) { if (c) e.appendChild(c); });
-    return e;
+    if (best) return { reply: best.a, actions: best.act || [] };
+    return { reply: "I can help with questions about Upcore's services, pricing, security and results. For anything specific to your situation, the team can answer directly.", actions: ['book', 'person'] };
   }
 
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
+  // ── State ───────────────────────────────────────────────────────────────
+  var st = load(), open = false, busy = false, mode = 'ai';
+  function load() { try { var v = JSON.parse(sessionStorage.getItem(STORE) || 'null'); if (v && v.msgs) return v; } catch (e) { /* storage unavailable */ } return { msgs: [], teased: false }; }
+  function save() { try { st.msgs = st.msgs.slice(-24); sessionStorage.setItem(STORE, JSON.stringify(st)); } catch (e) { /* storage unavailable */ } }
+  function track(n, p) {
+    p = p || {}; p.page_path = location.pathname;
+    if (window.upcGTM || typeof gtag !== 'function') { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event_params: null }); window.dataLayer.push({ event: n, event_params: p }); }
+    else gtag('event', n, p);
   }
 
-  function formatUserMessage(text) {
-    return escapeHtml(text).replace(/\n/g, '<br>');
-  }
+  // ── Styles ──────────────────────────────────────────────────────────────
+  var CSS = [
+    '#upcore-chat-btn,#ucw-panel,#ucw-tease{font-family:' + FONT + ';box-sizing:border-box;-webkit-font-smoothing:antialiased;}',
+    '#ucw-panel *,#ucw-panel *::before,#ucw-panel *::after,#upcore-chat-btn *,#ucw-tease *{box-sizing:border-box;}',
+    '#upcore-chat-btn{position:fixed;right:22px;bottom:22px;z-index:9990;display:flex;align-items:center;gap:10px;height:54px;padding:0 20px 0 8px;border:0;border-radius:999px;background:#071A26;color:#EEF5F7;font:600 14.5px/1 ' + FONT + ';letter-spacing:-.01em;cursor:pointer;box-shadow:0 18px 40px -14px rgba(7,26,38,.65),inset 0 1px 0 rgba(255,255,255,.08);transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s,opacity .3s;}',
+    '#upcore-chat-btn:hover{transform:translateY(-2px);box-shadow:0 24px 48px -14px rgba(7,26,38,.7),inset 0 1px 0 rgba(255,255,255,.1);}',
+    '#upcore-chat-btn:focus-visible{outline:2px solid #0A84FF;outline-offset:3px;}',
+    '#upcore-chat-btn.is-open{opacity:0;pointer-events:none;transform:scale(.9);}',
+    '.ucw-orb{position:relative;width:38px;height:38px;border-radius:50%;flex-shrink:0;background:radial-gradient(circle at 32% 30%,#7DE6F6,#21D2ED 40%,#0A6F82 75%);box-shadow:0 0 0 3px rgba(33,210,237,.16),0 0 18px rgba(33,210,237,.45);overflow:hidden;}',
+    '.ucw-orb::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(255,255,255,.55) 80%,transparent 90%);animation:ucwSpin 3.6s linear infinite;}',
+    '.ucw-orb svg{position:absolute;inset:0;margin:auto;width:18px;height:18px;color:#071A26;z-index:1;}',
+    '.ucw-dot{position:absolute;top:6px;left:36px;width:11px;height:11px;border-radius:50%;background:#F2A93B;border:2px solid #071A26;display:none;}',
+    '#upcore-chat-btn.has-dot .ucw-dot{display:block;animation:ucwPing 1.8s ease-out infinite;}',
+    '@keyframes ucwSpin{to{transform:rotate(1turn)}}',
+    '@keyframes ucwPing{0%{box-shadow:0 0 0 0 rgba(242,169,59,.6)}100%{box-shadow:0 0 0 10px rgba(242,169,59,0)}}',
+    '#ucw-tease{position:fixed;right:22px;bottom:88px;z-index:9990;width:280px;padding:14px 38px 14px 16px;border-radius:16px;background:#fff;color:#0A1419;font:400 14px/1.45 ' + FONT + ';box-shadow:0 24px 50px -20px rgba(7,26,38,.45),0 0 0 1px rgba(10,20,25,.06);cursor:pointer;animation:ucwUp .5s cubic-bezier(.16,1,.3,1);}',
+    '#ucw-tease b{display:block;font-weight:600;margin-bottom:2px;}',
+    '#ucw-tease button{position:absolute;top:8px;right:8px;width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:#5D6B73;font:400 14px/1 ' + FONT + ';cursor:pointer;}',
+    '#ucw-tease button:hover{background:#EEF2F4;color:#0A1419;}',
+    '#ucw-panel{position:fixed;right:22px;bottom:22px;z-index:9991;width:404px;height:min(640px,calc(100vh - 44px));display:flex;flex-direction:column;border-radius:22px;background:#fff;color:#0A1419;box-shadow:0 40px 90px -30px rgba(7,26,38,.55),0 0 0 1px rgba(10,20,25,.07);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transform-origin:100% 100%;transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1),visibility 0s linear .45s;}',
+    '#ucw-panel.is-open{opacity:1;visibility:visible;transform:none;transition-delay:0s;}',
+    '.ucw-head{display:flex;align-items:center;gap:12px;padding:14px 12px 14px 16px;background:#071A26;color:#EEF5F7;flex-shrink:0;}',
+    '.ucw-head .ucw-orb{width:34px;height:34px;}',
+    '.ucw-ht{flex:1;min-width:0;}',
+    '.ucw-ht b{display:block;font:600 15px/1.2 ' + FONT + ';letter-spacing:-.01em;color:#fff;}',
+    '.ucw-ht span{display:flex;align-items:center;gap:6px;margin-top:3px;font:400 12px/1.2 ' + FONT + ';color:#9AAEB8;}',
+    '.ucw-ht span i{width:7px;height:7px;border-radius:50%;background:#3DDC97;box-shadow:0 0 0 3px rgba(61,220,151,.18);}',
+    '.ucw-ht span i.is-faq{background:#F2A93B;box-shadow:0 0 0 3px rgba(242,169,59,.18);}',
+    '.ucw-hb{width:34px;height:34px;display:grid;place-items:center;border:0;border-radius:50%;background:transparent;color:#C9D5DA;cursor:pointer;transition:background .2s,color .2s;}',
+    '.ucw-hb:hover{background:rgba(255,255,255,.08);color:#fff;}',
+    '.ucw-hb:focus-visible,.ucw-send:focus-visible,.ucw-chip:focus-visible,.ucw-act:focus-visible{outline:2px solid #0A84FF;outline-offset:2px;}',
+    '.ucw-hb svg{width:17px;height:17px;}',
+    '.ucw-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 8px;scroll-behavior:smooth;}',
+    '.ucw-log::-webkit-scrollbar{width:6px;}.ucw-log::-webkit-scrollbar-thumb{background:#DFE5E8;border-radius:3px;}',
+    '.ucw-hi{padding:6px 2px 4px;animation:ucwUp .5s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-hi h3{margin:0;font:600 21px/1.2 ' + FONT + ';letter-spacing:-.025em;color:#0A1419;}',
+    '.ucw-hi p{margin:8px 0 0;font:400 14px/1.55 ' + FONT + ';color:#5D6B73;}',
+    '.ucw-k{margin:18px 0 8px;font:500 10.5px/1 ' + MONO + ';letter-spacing:.1em;text-transform:uppercase;color:#5D6B73;}',
+    '.ucw-chips{display:flex;flex-direction:column;gap:6px;}',
+    '.ucw-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:11px 14px;border:1px solid #DFE5E8;border-radius:12px;background:#fff;color:#0A1419;font:500 14px/1.35 ' + FONT + ';text-align:left;cursor:pointer;transition:border-color .2s,background .2s,transform .25s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-chip::after{content:"\\2192";color:#0A6F82;transition:transform .25s;}',
+    '.ucw-chip:hover{border-color:#21D2ED;background:#F4FCFE;}',
+    '.ucw-chip:hover::after{transform:translateX(3px);}',
+    '.ucw-row{display:flex;gap:10px;margin:14px 0;animation:ucwUp .45s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-row.is-user{justify-content:flex-end;}',
+    '.ucw-av{width:24px;height:24px;border-radius:50%;flex-shrink:0;margin-top:2px;background:radial-gradient(circle at 32% 30%,#7DE6F6,#21D2ED 45%,#0A6F82 80%);}',
+    '.ucw-msg{max-width:85%;font:400 14.5px/1.6 ' + FONT + ';color:#1F2D35;word-wrap:break-word;}',
+    '.ucw-row.is-user .ucw-msg{padding:10px 14px;border-radius:16px 16px 4px 16px;background:#071A26;color:#EEF5F7;}',
+    '.ucw-row.is-bot .ucw-msg{padding:2px 0;}',
+    '.ucw-msg p{margin:0;}.ucw-msg p+p,.ucw-msg ul+p,.ucw-msg p+ul{margin-top:8px;}',
+    '.ucw-msg ul{margin:0;padding-left:18px;}.ucw-msg li{margin:3px 0;}',
+    '.ucw-msg b{font-weight:600;color:#0A1419;}',
+    '.ucw-msg a{color:#0A6F82;font-weight:500;text-decoration:underline;text-decoration-color:rgba(10,111,130,.35);text-underline-offset:3px;}',
+    '.ucw-msg a:hover{text-decoration-color:#0A6F82;}',
+    '.ucw-note{font:400 12px/1.45 ' + FONT + ';color:#5D6B73;margin-top:6px;}',
+    '.ucw-acts{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 6px 34px;animation:ucwUp .45s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-act{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid #DFE5E8;background:#fff;color:#0A1419;font:500 13.5px/1 ' + FONT + ';text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,color .2s;}',
+    '.ucw-act.is-main{background:#21D2ED;border-color:#21D2ED;color:#071A26;}',
+    '.ucw-act:hover{border-color:#0A1419;}.ucw-act.is-main:hover{background:#0A1419;border-color:#0A1419;color:#fff;}',
+    '.ucw-typing{display:inline-flex;gap:4px;padding:10px 0;}',
+    '.ucw-typing i{width:7px;height:7px;border-radius:50%;background:#21D2ED;animation:ucwBounce 1.1s ease-in-out infinite;}',
+    '.ucw-typing i:nth-child(2){animation-delay:.15s}.ucw-typing i:nth-child(3){animation-delay:.3s}',
+    '@keyframes ucwBounce{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}',
+    '@keyframes ucwUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}',
+    '.ucw-form{margin:6px 0 10px 34px;padding:14px;border-radius:14px;background:#F6F8F9;border:1px solid #ECF0F2;animation:ucwUp .45s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-form p{margin:0 0 10px;font:500 13.5px/1.45 ' + FONT + ';color:#0A1419;}',
+    '.ucw-form input{display:block;width:100%;margin:0 0 8px;padding:10px 12px;border:1px solid #C9D3D8;border-radius:10px;background:#fff;color:#0A1419;font:400 14.5px/1.3 ' + FONT + ';outline:none;}',
+    '.ucw-form input:focus{border-color:#0A6F82;box-shadow:0 0 0 3px rgba(33,210,237,.18);}',
+    '.ucw-form .ucw-err{min-height:16px;margin:0 0 6px;font:400 12.5px/1.3 ' + FONT + ';color:#C2361F;}',
+    '.ucw-form button{width:100%;padding:11px;border:0;border-radius:999px;background:#071A26;color:#fff;font:600 14px/1 ' + FONT + ';cursor:pointer;}',
+    '.ucw-form button[disabled]{opacity:.6;cursor:progress;}',
+    '.ucw-foot{flex-shrink:0;padding:10px 12px 12px;border-top:1px solid #ECF0F2;background:#fff;}',
+    '.ucw-box{display:flex;align-items:flex-end;gap:8px;padding:6px 6px 6px 14px;border:1px solid #DFE5E8;border-radius:16px;background:#fff;transition:border-color .2s,box-shadow .2s;}',
+    '.ucw-box:focus-within{border-color:#0A6F82;box-shadow:0 0 0 3px rgba(33,210,237,.16);}',
+    '.ucw-in{flex:1;min-height:24px;max-height:120px;margin:0;padding:7px 0;border:0;outline:none;resize:none;background:transparent;color:#0A1419;font:400 15px/1.45 ' + FONT + ';}',
+    '.ucw-in::placeholder{color:#8696A0;}',
+    '.ucw-send{width:38px;height:38px;flex-shrink:0;display:grid;place-items:center;border:0;border-radius:12px;background:#0A1419;color:#21D2ED;cursor:pointer;transition:background .2s,opacity .2s,transform .2s;}',
+    '.ucw-send:hover{background:#0A6F82;color:#fff;}',
+    '.ucw-send[disabled]{opacity:.35;cursor:default;}',
+    '.ucw-send svg{width:17px;height:17px;}',
+    '.ucw-legal{margin:8px 4px 0;font:400 11.5px/1.45 ' + FONT + ';color:#5D6B73;}',
+    '.ucw-legal a{color:#5D6B73;text-decoration:underline;text-underline-offset:2px;}',
+    '@media (max-width:600px){',
+    '#upcore-chat-btn{right:14px;bottom:14px;height:56px;width:56px;padding:0;justify-content:center;}',
+    '#upcore-chat-btn .ucw-lt{display:none;}',
+    '#upcore-chat-btn .ucw-orb{width:44px;height:44px;}',
+    '.ucw-dot{left:40px;top:4px;}',
+    '#ucw-panel{inset:0;right:0;bottom:0;width:100%;height:100%;border-radius:0;transform:translateY(24px);}',
+    '.ucw-head{padding-top:max(14px,env(safe-area-inset-top));}',
+    '.ucw-foot{padding-bottom:max(12px,env(safe-area-inset-bottom));}',
+    '.ucw-in{font-size:16px;}',
+    '#ucw-tease{display:none;}',
+    'html.consent-open #upcore-chat-btn{display:none;}',
+    '}',
+    '@media (prefers-reduced-motion:reduce){#ucw-panel,#upcore-chat-btn,.ucw-row,.ucw-acts,.ucw-hi,.ucw-form,#ucw-tease{transition:none!important;animation:none!important;}.ucw-orb::after,.ucw-typing i{animation:none!important;}}'
+  ].join('\n');
 
-  // ── Render ───────────────────────────────────────────────────────────────
-  var messagesEl, typingEl, suggestionsEl, inputEl, sendBtn, badgeEl, windowEl, btnEl;
+  // ── DOM helpers ─────────────────────────────────────────────────────────
+  function h(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function safeHref(u) { u = String(u || '').trim(); if (/^\/[\w\-\/#.?=&]*$/.test(u)) return u; if (/^https:\/\/(www\.)?upcoretech\.com\//.test(u)) return u; return ''; }
+  function md(text) {
+    var lines = esc(text).split(/\n/), out = '', list = false;
+    lines.forEach(function (raw) {
+      var l = raw.trim();
+      var inl = function (s) {
+        return s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (m, t, u) {
+          var href = safeHref(u.replace(/&amp;/g, '&'));
+          return href ? '<a href="' + esc(href) + '">' + t + '</a>' : t;
+        });
+      };
+      if (/^[-*•]\s+/.test(l)) { if (!list) { out += '<ul>'; list = true; } out += '<li>' + inl(l.replace(/^[-*•]\s+/, '')) + '</li>'; return; }
+      if (list) { out += '</ul>'; list = false; }
+      if (l) out += '<p>' + inl(l) + '</p>';
+    });
+    if (list) out += '</ul>';
+    return out;
+  }
+  var ICON = {
+    spark: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.5c.5 4.6 2.4 6.9 7 7.5-4.6.6-6.5 2.9-7 7.5-.5-4.6-2.4-6.9-7-7.5 4.6-.6 6.5-2.9 7-7.5zM19 15.5c.2 1.8 1 2.6 2.8 2.8-1.8.2-2.6 1-2.8 2.8-.2-1.8-1-2.6-2.8-2.8 1.8-.2 2.6-1 2.8-2.8z"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+    reset: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
+    send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+  };
+
+  var btn, panel, log, input, send, statusEl, statusDot, tease;
 
   function init() {
-    // Inject styles
-    var style = document.createElement('style');
-    style.textContent = css;
-    document.head.appendChild(style);
+    if (document.getElementById('upcore-chat-btn')) return;
+    var style = document.createElement('style'); style.id = 'ucw-style'; style.textContent = CSS; document.head.appendChild(style);
 
-    // Chat toggle button
-    btnEl = el('button', { id: 'upcore-chat-btn', 'aria-label': 'Open chat', onclick: toggleChat });
-    badgeEl = el('span', { id: 'upcore-chat-badge' });
-    btnEl.appendChild(badgeEl);
-    btnEl.insertAdjacentHTML('afterbegin', chatIcon());
+    btn = h('button', '', '<span class="ucw-orb">' + ICON.spark + '</span><span class="ucw-lt">Ask Upcore</span><span class="ucw-dot"></span>');
+    btn.id = 'upcore-chat-btn'; btn.type = 'button';
+    btn.setAttribute('aria-label', 'Ask the Upcore assistant'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'ucw-panel');
+    btn.addEventListener('click', function () { setOpen(true); });
 
-    // Chat window
-    windowEl = el('div', { id: 'upcore-chat-window', role: 'dialog', 'aria-label': 'Chat with Kai' });
+    panel = h('div'); panel.id = 'ucw-panel';
+    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Upcore assistant'); panel.setAttribute('aria-modal', 'false');
+    var head = h('div', 'ucw-head', '<span class="ucw-orb">' + ICON.spark + '</span><div class="ucw-ht"><b>Upcore assistant</b><span><i></i><em style="font-style:normal">AI answers from Upcore&rsquo;s own material</em></span></div>');
+    statusDot = head.querySelector('.ucw-ht i'); statusEl = head.querySelector('.ucw-ht em');
+    var rb = h('button', 'ucw-hb', ICON.reset); rb.type = 'button'; rb.setAttribute('aria-label', 'Start a new conversation'); rb.title = 'New conversation';
+    rb.addEventListener('click', function () { st.msgs = []; save(); render(); input.focus(); });
+    var cb = h('button', 'ucw-hb', ICON.close); cb.type = 'button'; cb.setAttribute('aria-label', 'Close the assistant');
+    cb.addEventListener('click', function () { setOpen(false); });
+    head.appendChild(rb); head.appendChild(cb);
 
-    // Header
-    var header = el('div', { id: 'upcore-chat-header' });
-    header.appendChild(el('div', { id: 'upcore-chat-avatar', html: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><rect x="8" y="10" width="2" height="2"/><rect x="14" y="10" width="2" height="2"/><path d="M8 17h8"/><path d="M12 6V2"/><circle cx="12" cy="2" r="1"/></svg>' }));
-    var info = el('div', { id: 'upcore-chat-info' });
-    info.appendChild(el('div', { id: 'upcore-chat-name', text: BOT_NAME }));
-    info.appendChild(el('div', { id: 'upcore-chat-status', text: BOT_SUBTITLE }));
-    header.appendChild(info);
-    header.appendChild(el('button', {
-      id: 'upcore-chat-close', 'aria-label': 'Close chat',
-      html: '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
-      onclick: toggleChat
-    }));
+    log = h('div', 'ucw-log'); log.setAttribute('role', 'log'); log.setAttribute('aria-live', 'polite'); log.setAttribute('aria-relevant', 'additions');
 
-    // Messages
-    messagesEl = el('div', { id: 'upcore-chat-messages' });
-    typingEl = el('div', { id: 'upcore-typing' });
-    typingEl.insertAdjacentHTML('beforeend', '<div class="uc-typing-dots"><div class="uc-dot"></div><div class="uc-dot"></div><div class="uc-dot"></div></div>');
-    messagesEl.appendChild(typingEl);
+    var foot = h('div', 'ucw-foot');
+    var box = h('div', 'ucw-box');
+    input = h('textarea', 'ucw-in'); input.rows = 1; input.maxLength = 1000;
+    input.placeholder = 'Ask about services, pricing, security…'; input.setAttribute('aria-label', 'Your question');
+    send = h('button', 'ucw-send', ICON.send); send.type = 'button'; send.setAttribute('aria-label', 'Send'); send.disabled = true;
+    input.addEventListener('input', function () { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; send.disabled = !input.value.trim() || busy; });
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); } });
+    send.addEventListener('click', submit);
+    box.appendChild(input); box.appendChild(send);
+    foot.appendChild(box);
+    foot.appendChild(h('p', 'ucw-legal', 'AI answers can be wrong; anything binding goes in a written proposal. Please don&rsquo;t share personal data here. <a href="/privacy">Privacy</a>'));
 
-    // Suggestions
-    suggestionsEl = el('div', { id: 'upcore-suggestions' });
+    panel.appendChild(head); panel.appendChild(log); panel.appendChild(foot);
+    document.body.appendChild(btn); document.body.appendChild(panel);
 
-    // Input area
-    inputEl = el('textarea', {
-      id: 'upcore-chat-input',
-      placeholder: 'Ask me anything…',
-      rows: '1',
-      onkeydown: function (e) {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-      },
-      oninput: function () {
-        this.style.height = 'auto';
-        this.style.height = Math.min(this.scrollHeight, 100) + 'px';
-      }
+    panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); setOpen(false); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && open && !document.getElementById('_gov_cal_overlay')) setOpen(false); });
+    // Booking from inside the chat: the booking modal takes over; close the chat behind it.
+    panel.addEventListener('click', function (e) { if (e.target.closest('a[href="#book-governance"]')) { track('chat_action', { action: 'book' }); setTimeout(function () { setOpen(false, true); }, 0); } });
+
+    render();
+    if (st.open && !matchMedia('(max-width: 600px)').matches) setOpen(true, true);
+    scheduleTease();
+  }
+
+  function setOpen(v, quiet) {
+    open = v; st.open = v; save();
+    panel.classList.toggle('is-open', v);
+    btn.classList.toggle('is-open', v);
+    btn.setAttribute('aria-expanded', v ? 'true' : 'false');
+    btn.classList.remove('has-dot');
+    if (tease) { tease.remove(); tease = null; }
+    var small = matchMedia('(max-width: 600px)').matches;
+    document.documentElement.style.overflow = v && small ? 'hidden' : '';
+    if (v) {
+      if (!quiet) track('chat_open');
+      setTimeout(function () { (st.msgs.length ? input : (log.querySelector('.ucw-chip') || input)).focus(); scrollEnd(); }, 220);
+    } else if (!quiet) btn.focus();
+  }
+
+  function scheduleTease() {
+    if (st.teased || st.msgs.length) return;
+    setTimeout(function () {
+      if (open || st.teased) return;
+      st.teased = true; save();
+      btn.classList.add('has-dot');
+      if (matchMedia('(max-width: 600px)').matches) return;
+      tease = h('div', '', '<b>Questions about your AI plans?</b>Ask about services, pricing, security or results. Answers in seconds.<button type="button" aria-label="Dismiss">✕</button>');
+      tease.id = 'ucw-tease'; tease.setAttribute('role', 'status');
+      tease.addEventListener('click', function (e) { if (e.target.closest('button')) { tease.remove(); tease = null; return; } setOpen(true); });
+      document.body.appendChild(tease);
+      setTimeout(function () { if (tease) { tease.remove(); tease = null; } }, 14000);
+    }, 12000);
+  }
+
+  // ── Rendering ───────────────────────────────────────────────────────────
+  function scrollEnd() { log.scrollTop = log.scrollHeight; }
+  function render() {
+    log.innerHTML = '';
+    if (!st.msgs.length) { welcome(); return; }
+    st.msgs.forEach(function (m) { bubble(m.r, m.t, true); if (m.a && m.a.length) actions(m.a, true); });
+    scrollEnd();
+  }
+  function welcome() {
+    var w = h('div', 'ucw-hi', '<h3>Hi, how can we help?</h3><p>Ask anything about AI-native engineering, governance, automation, pricing, security or our results. I answer from Upcore&rsquo;s own material, and a person is one click away.</p>');
+    log.appendChild(w);
+    log.appendChild(h('p', 'ucw-k', 'Try asking'));
+    var c = h('div', 'ucw-chips');
+    starters().forEach(function (q) {
+      var b = h('button', 'ucw-chip'); b.type = 'button'; b.textContent = q;
+      b.addEventListener('click', function () { ask(q, 'starter'); });
+      c.appendChild(b);
     });
-    sendBtn = el('button', {
-      id: 'upcore-chat-send', 'aria-label': 'Send',
-      html: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-      onclick: sendMessage
-    });
-    var inputArea = el('div', { id: 'upcore-chat-input-area' });
-    inputArea.appendChild(inputEl);
-    inputArea.appendChild(sendBtn);
-
-    var footer = el('div', { id: 'upcore-chat-footer' });
-    footer.innerHTML = 'Powered by <a href="https://upcoretech.com" target="_blank">Upcore AI</a>';
-
-    windowEl.appendChild(header);
-    windowEl.appendChild(messagesEl);
-    windowEl.appendChild(suggestionsEl);
-    windowEl.appendChild(inputArea);
-    windowEl.appendChild(footer);
-
-    document.body.appendChild(btnEl);
-    document.body.appendChild(windowEl);
+    log.appendChild(c);
+    var a = h('div', 'ucw-acts'); a.style.margin = '16px 0 4px';
+    a.innerHTML = '<a class="ucw-act is-main" href="#book-governance" data-gtm-cta="book-a-discovery-call" data-gtm-cta-type="primary" data-gtm-cta-section="chat_welcome">Book a 45-minute call</a>';
+    var p = h('button', 'ucw-act', 'Talk to a person'); p.type = 'button'; p.addEventListener('click', function () { personForm(''); });
+    a.appendChild(p);
+    log.appendChild(a);
   }
-
-  function chatIcon() {
-    return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255,255,255,0.15)"/><circle cx="8.5" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/><circle cx="12" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/><circle cx="15.5" cy="10" r="1.3" fill="rgba(255,255,255,0.9)"/></svg>';
+  function bubble(role, text, instant) {
+    var row = h('div', 'ucw-row ' + (role === 'u' ? 'is-user' : 'is-bot'));
+    if (instant) row.style.animation = 'none';
+    if (role !== 'u') row.appendChild(h('span', 'ucw-av'));
+    var m = h('div', 'ucw-msg', role === 'u' ? '<p>' + esc(text).replace(/\n/g, '<br>') + '</p>' : md(text));
+    row.appendChild(m); log.appendChild(row);
+    return row;
   }
-
-  // ── Message rendering ───────────────────────────────────────────────────
-  function addMessage(role, text) {
-    var wrap = el('div', { class: 'uc-msg-wrap ' + role });
-    var bubble = el('div', { class: 'uc-msg ' + role, html: role === 'user' ? formatUserMessage(text) : text });
-    wrap.appendChild(bubble);
-    messagesEl.insertBefore(wrap, typingEl);
-    scrollToBottom();
-  }
-
-  function addBanner(icon, title, sub) {
-    var wrap = el('div', { class: 'uc-msg-wrap bot' });
-    var banner = el('div', { class: 'uc-banner' });
-    banner.innerHTML = '<div class="uc-banner-icon">' + icon + '</div><div class="uc-banner-title">' + escapeHtml(title) + '</div><div class="uc-banner-sub">' + escapeHtml(sub) + '</div>';
-    wrap.appendChild(banner);
-    messagesEl.insertBefore(wrap, typingEl);
-    scrollToBottom();
-  }
-
-  function addTopicGrid() {
-    var wrap = el('div', { class: 'uc-msg-wrap bot' });
-    var grid = el('div', { class: 'uc-topics-grid' });
-    CATEGORIES.forEach(function (cat) {
-      var card = el('button', {
-        class: 'uc-topic-card',
-        onclick: function () { handleCategoryClick(cat); }
-      });
-      card.innerHTML = '<span class="uc-topic-icon">' + cat.icon + '</span><span class="uc-topic-label">' + escapeHtml(cat.label) + '</span>';
-      grid.appendChild(card);
-    });
-    wrap.appendChild(grid);
-    messagesEl.insertBefore(wrap, typingEl);
-    scrollToBottom();
-  }
-
-  function scrollToBottom() {
-    setTimeout(function () { messagesEl.scrollTop = messagesEl.scrollHeight; }, 50);
-  }
-
-  function showTyping() {
-    typingEl.classList.add('show');
-    isBusy = true;
-    sendBtn.disabled = true;
-    scrollToBottom();
-  }
-
-  function hideTyping() {
-    typingEl.classList.remove('show');
-    isBusy = false;
-    sendBtn.disabled = false;
-  }
-
-  function think(fn, delay) {
-    showTyping();
-    setTimeout(function () { hideTyping(); fn(); }, delay || 550);
-  }
-
-  function toggleChat() {
-    isOpen = !isOpen;
-    if (isOpen) {
-      windowEl.classList.add('open');
-      unreadCount = 0;
-      badgeEl.style.display = 'none';
-      setTimeout(function () { inputEl.focus(); }, 300);
-      if (!hasGreeted) {
-        hasGreeted = true;
-        setTimeout(function () { greet(); }, 400);
-      }
-    } else {
-      windowEl.classList.remove('open');
+  function actions(list, instant) {
+    var a = h('div', 'ucw-acts'); if (instant) a.style.animation = 'none';
+    if (list.indexOf('book') > -1) a.innerHTML = '<a class="ucw-act is-main" href="#book-governance" data-gtm-cta="book-a-discovery-call" data-gtm-cta-type="primary" data-gtm-cta-section="chat_answer">Book a 45-minute call</a>';
+    if (list.indexOf('person') > -1) {
+      var p = h('button', 'ucw-act', 'Talk to a person'); p.type = 'button';
+      p.addEventListener('click', function () { var q = ''; for (var i = st.msgs.length - 1; i >= 0; i--) if (st.msgs[i].r === 'u') { q = st.msgs[i].t; break; } personForm(q); });
+      a.appendChild(p);
     }
+    log.appendChild(a);
+  }
+  function typing() { var r = h('div', 'ucw-row is-bot'); r.appendChild(h('span', 'ucw-av')); r.appendChild(h('div', 'ucw-msg', '<span class="ucw-typing" aria-label="Typing"><i></i><i></i><i></i></span>')); log.appendChild(r); scrollEnd(); return r; }
+  function setMode(m) {
+    mode = m;
+    statusDot.classList.toggle('is-faq', m === 'faq');
+    statusEl.textContent = m === 'faq' ? 'Answering from our FAQ right now' : 'AI answers from Upcore’s own material';
   }
 
-  function greet() {
-    think(function () {
-      addMessage('bot', INITIAL_MESSAGE);
-      setTimeout(renderPopular, 300);
-    }, 700);
-  }
-
-  // ── Quick-reply chip rendering ──────────────────────────────────────────
-  function renderChips(items) {
-    suggestionsEl.innerHTML = '';
-    items.forEach(function (item) {
-      var btn = el('button', {
-        class: 'uc-suggestion' + (item.cls ? ' ' + item.cls : ''),
-        text: item.label,
-        onclick: item.onClick
-      });
-      suggestionsEl.appendChild(btn);
-    });
-  }
-
-  function askElseChip() {
-    return {
-      label: '🙋 Ask us something else', cls: 'ask-else',
-      onClick: function () {
-        suggestionsEl.innerHTML = '';
-        think(function () {
-          addMessage('bot', "Sure — type your question in the box below and I'll pass it straight to our team for a personal reply.");
-        }, 400);
-      }
-    };
-  }
-
-  function bookChip() {
-    return {
-      label: '📅 Book a Discovery Call', cls: 'accent',
-      onClick: function () {
-        var a = document.createElement('a');
-        a.href = '#book-governance';
-        a.setAttribute('data-gtm-cta', 'book-a-discovery-call');
-        a.setAttribute('data-gtm-cta-type', 'primary');
-        a.setAttribute('data-gtm-cta-section', 'chat_widget');
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      }
-    };
-  }
-
-  function renderPopular() {
-    var chips = popularFaq().map(function (f) {
-      return { label: f.q, onClick: function () { handleQuestionClick(f); } };
-    });
-    chips.push({ label: '📂 Browse All Topics', onClick: function () { addTopicGrid(); suggestionsEl.innerHTML = ''; } });
-    renderChips(chips);
-  }
-
-  function handleCategoryClick(cat) {
-    if (cat.id === 'talk') {
-      addMessage('user', cat.label);
-      think(function () {
-        addMessage('bot', "Here's how to reach the team directly:");
-        renderChips([bookChip(), askElseChip(), { label: '⬅ Back to Popular', onClick: renderPopular }]);
-      });
-      return;
-    }
-    addMessage('user', cat.label);
-    think(function () {
-      addMessage('bot', 'Here are common questions about ' + cat.label + ':');
-      var qs = faqByCat(cat.id).map(function (f) {
-        return { label: f.q, onClick: function () { handleQuestionClick(f); } };
-      });
-      qs.push({ label: '⬅ Back to Popular', onClick: renderPopular });
-      renderChips(qs);
-    });
-  }
-
-  function handleQuestionClick(item) {
-    addMessage('user', item.q);
-    suggestionsEl.innerHTML = '';
-    think(function () {
-      addMessage('bot', item.a);
-      var related = faqByCat(item.cat).filter(function (f) { return f.id !== item.id; }).slice(0, 3);
-      var chips = related.map(function (f) {
-        return { label: f.q, onClick: function () { handleQuestionClick(f); } };
-      });
-      chips.push({ label: '⬅ More Topics', onClick: function () { addTopicGrid(); suggestionsEl.innerHTML = ''; } });
-      chips.push(askElseChip());
-      renderChips(chips);
-    });
-  }
-
-  // ── Free-text input → lead capture ──────────────────────────────────────
-  function sendMessage() {
-    var text = inputEl.value.trim();
-    if (!text || isBusy) return;
-    inputEl.value = '';
-    inputEl.style.height = 'auto';
-    handleUserInput(text);
-  }
-
-  function handleUserInput(text) {
-    addMessage('user', text);
-    suggestionsEl.innerHTML = '';
-
-    if (leadStage === 'name') {
-      pendingName = text;
-      leadStage = 'email';
-      think(function () {
-        addMessage('bot', 'Thanks, ' + escapeHtml(text.split(' ')[0]) + '! And what\'s the best email to reach you at?');
-      });
-      return;
-    }
-
-    if (leadStage === 'email') {
-      if (text.indexOf('@') === -1 || text.indexOf('.') === -1) {
-        think(function () {
-          addMessage('bot', "That doesn't look like a valid email — mind double-checking it?");
-        }, 400);
-        return;
-      }
-      pendingEmail = text;
-      leadStage = null;
-      submitLead();
-      return;
-    }
-
-    // Idle — any typed message becomes a question for the team
-    pendingQuestion = text;
-    leadStage = 'name';
-    think(function () {
-      addMessage('bot', "Great question — I'll pass this straight to our team so you get a real, specific answer, not a canned one. What's your name?");
-    }, 600);
-  }
-
-  function submitLead() {
-    showTyping();
-    fetch('https://formsubmit.co/' + LEAD_EMAIL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        _captcha: 'false',
-        _template: 'table',
-        _subject: 'New Chat Question — ' + pendingName,
-        _cc: LEAD_CC,
-        'Name': pendingName,
-        'Email': pendingEmail,
-        'Question': pendingQuestion,
-        'Page': window.location.href,
-        'Source': 'Website Chat Widget (Kai) — Custom Question'
-      })
-    }).then(function (r) { return !!(r && r.ok); }).catch(function () { return false; }).then(function (ok) {
-      hideTyping();
-      if (!ok) {
-        addBanner('\u26A0\uFE0F', 'Message not sent', 'Please email ' + LEAD_EMAIL + ' and we will reply within one business day.');
-        return;
-      }
-      var lp = { lead_source: 'chat_widget', page_path: location.pathname };
-      if (window.upcGTM || typeof gtag !== 'function') { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event_params: null }); window.dataLayer.push({ event: 'generate_lead', event_params: lp }); }
-      else gtag('event', 'generate_lead', lp);
-      addBanner('📨', 'Message Sent!', "We'll reply to your question by email within 24 hours.");
-      var q = pendingQuestion, n = pendingName, e = pendingEmail;
-      pendingQuestion = ''; pendingName = ''; pendingEmail = '';
-      if (!isOpen) { unreadCount++; badgeEl.style.display = 'flex'; badgeEl.textContent = unreadCount; }
+  // ── Asking ──────────────────────────────────────────────────────────────
+  function submit() { var q = input.value.trim(); if (!q || busy) return; input.value = ''; input.style.height = 'auto'; send.disabled = true; ask(q, 'typed'); }
+  function ask(q, source) {
+    if (busy) return;
+    if (!st.msgs.length) log.innerHTML = '';
+    busy = true;
+    st.msgs.push({ r: 'u', t: q }); save();
+    bubble('u', q); scrollEnd();
+    var t = typing(), started = Date.now();
+    var hist = st.msgs.slice(-12).map(function (m) { return { role: m.r === 'u' ? 'user' : 'assistant', content: m.t }; });
+    var done = function (res, m) {
+      var wait = Math.max(0, 450 - (Date.now() - started));
       setTimeout(function () {
-        addMessage('bot', 'Anything else I can help with?');
-        renderPopular();
-      }, 700);
+        t.remove();
+        setMode(m);
+        st.msgs.push({ r: 'b', t: res.reply, a: res.actions || [] }); save();
+        bubble('b', res.reply);
+        if (res.actions && res.actions.length) actions(res.actions);
+        scrollEnd(); busy = false; send.disabled = !input.value.trim();
+        track('chat_question', { source: source, mode: m });
+      }, wait);
+    };
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 28000);
+    fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: hist, page: path }), signal: ctrl ? ctrl.signal : undefined })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (x) {
+        clearTimeout(timer);
+        if (x.ok && x.j && x.j.reply) done({ reply: x.j.reply, actions: x.j.actions }, 'ai');
+        else done(faqAnswer(q), 'faq');
+      })
+      .catch(function () { clearTimeout(timer); done(faqAnswer(q), 'faq'); });
+  }
+
+  // ── Talk to a person ────────────────────────────────────────────────────
+  function personForm(q) {
+    if (log.querySelector('.ucw-form')) { log.querySelector('.ucw-form input').focus(); return; }
+    track('chat_action', { action: 'person' });
+    if (!st.msgs.length) log.innerHTML = '';
+    var f = h('form', 'ucw-form'); f.noValidate = true;
+    f.innerHTML = '<p>Leave your details and a member of the team will reply by email within 4 business hours.</p>' +
+      '<input name="name" type="text" autocomplete="name" placeholder="Your name" aria-label="Your name" required>' +
+      '<input name="email" type="email" autocomplete="email" placeholder="Work email" aria-label="Work email" required>' +
+      '<input name="q" type="text" placeholder="What would you like to ask?" aria-label="Your question" value="' + esc(q || '') + '">' +
+      '<p class="ucw-err" role="alert"></p><button type="submit">Send to the team</button>';
+    log.appendChild(f); scrollEnd();
+    f.elements.name.focus();
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var n = f.elements.name.value.trim(), em = f.elements.email.value.trim(), qq = f.elements.q.value.trim(), err = f.querySelector('.ucw-err');
+      if (!n) { err.textContent = 'Please add your name.'; f.elements.name.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { err.textContent = 'Please enter a valid email.'; f.elements.email.focus(); return; }
+      err.textContent = '';
+      var b = f.querySelector('button'); b.disabled = true; b.textContent = 'Sending…';
+      var transcript = st.msgs.slice(-10).map(function (m) { return (m.r === 'u' ? 'Visitor: ' : 'Assistant: ') + m.t.replace(/\s+/g, ' ').slice(0, 600); }).join('\n\n');
+      fetch('https://formsubmit.co/' + LEAD_TO, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ _captcha: 'false', _template: 'table', _subject: 'New Chat Question — ' + n, _cc: LEAD_CC,
+          'Name': n, 'Email': em, 'Question': qq || '(see conversation)', 'Conversation': transcript || '(none)', 'Page': location.href, 'Source': 'Website assistant: talk to a person' })
+      }).then(function (r) { return r.ok ? r.json().catch(function () { return {}; }) : Promise.reject(); })
+        .then(function (j) {
+          if (j && (j.success === false || j.success === 'false')) throw new Error('not sent');
+          f.remove();
+          var msg = 'Thanks, ' + n.split(' ')[0] + '. Your question is with the team, and you will get a reply at ' + em + ' within 4 business hours.';
+          st.msgs.push({ r: 'b', t: msg }); save(); bubble('b', msg); scrollEnd();
+          track('generate_lead', { lead_source: 'chat_widget' });
+        })
+        .catch(function () { b.disabled = false; b.textContent = 'Send to the team'; err.textContent = 'That did not send. Please email ' + LEAD_TO + '.'; });
     });
   }
 
-  // ── Boot ─────────────────────────────────────────────────────────────────
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-
-  // Show badge after 8 seconds on page to draw attention
-  setTimeout(function () {
-    if (!isOpen && !hasGreeted) {
-      unreadCount = 1;
-      badgeEl.style.display = 'flex';
-      badgeEl.textContent = '1';
-    }
-  }, 8000);
-
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
 // ── Discovery-call booking modal (Google Calendar Appointment Scheduling) ───
@@ -863,7 +486,7 @@
     go.type = 'submit'; go.innerHTML = 'Continue to the calendar &rarr;';
     var note = el('p', 'font:400 12px/1.5 ' + FONT + ';color:#5D6B73;margin:14px 0 0;');
     note.id = '_book_note';
-    note.innerHTML = 'Your call is with Gaurav or Saswata. We use this email only for your booking and the call plan. <a href="/privacy" style="color:#0A6F82;">Privacy policy</a>';
+    note.innerHTML = 'We use this email only for your booking and the call plan. <a href="/privacy" style="color:#0A6F82;">Privacy policy</a>';
     var skip = el('button', 'background:none;border:0;padding:0;margin-top:14px;font:500 13px/1.4 ' + FONT + ';color:#5D6B73;text-decoration:underline;text-underline-offset:2px;cursor:pointer;', 'Skip and go straight to the calendar');
     skip.type = 'button';
     skip.onclick = function () { track('booking_email_skipped'); showCalendar(); };
@@ -945,7 +568,7 @@
     var dot = el('span', 'width:7px;height:7px;border-radius:50%;background:#21D2ED;flex-shrink:0;');
     var txt = el('div', 'flex:1;min-width:0;');
     var lbl = el('div', 'color:#fff;font:600 14px/1.3 ' + FONT + ';', 'Book a Discovery Call');
-    var sub = el('div', 'color:#9AAEB8;font:400 12px/1.4 ' + FONT + ';margin-top:2px;', '45 minutes with Gaurav or Saswata · a written plan, whether or not we work together');
+    var sub = el('div', 'color:#9AAEB8;font:400 12px/1.4 ' + FONT + ';margin-top:2px;', '45 minutes · a written plan, whether or not we work together');
     txt.appendChild(lbl); txt.appendChild(sub);
     closeBtn = el('button', 'background:none;border:1px solid rgba(255,255,255,.18);border-radius:999px;cursor:pointer;width:32px;height:32px;color:#E6EEF1;font-size:15px;line-height:1;flex-shrink:0;');
     closeBtn.type = 'button';

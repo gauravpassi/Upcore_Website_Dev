@@ -147,6 +147,6 @@ final = K.final('Bring your security questionnaire <span class="hl">to the first
 page = '\n'.join([hero, answers, handling, ai, frameworks, contracts, jur, final])
 ld = C.graph('security', [{'@type': 'WebPage', 'name': 'Security & Trust Center', 'url': C.SITE + C.FINAL_URL['security'], 'about': {'@id': C.ORG_ID}},
                           K.faq_ld([(q, a) for s, q, a in QA] + JUR)], crumb='Security')
-print('security', C.write('security.html', 'security', 'Security &amp; Trust Center: Data Handling, Certifications &amp; Contracts | Upcore',
-      'How Upcore handles your code and data, which AI providers process it, our ISO 27001, ISO 9001 and CMMI Level 3 certifications, and the contracts available before you sign.',
+print('security', C.write('security.html', 'security', 'Security &amp; Trust: Data Handling and Certifications | Upcore',
+      'How Upcore handles your code and data, which AI providers process it, our ISO 27001 and CMMI Level 3 certifications, and the contracts available before you sign.',
       page, active='security', ld=ld, group='company', spine=False, main_cls='is-calm'))

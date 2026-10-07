@@ -57,7 +57,7 @@ hero = f'''<section class="h-hero" aria-labelledby="hero-h"><div class="hero-glo
 <h1 id="hero-h" class="t-hero" data-split>AI writes the code. <span class="hl">Your architecture stays in charge.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline in your Jira or Linear, GitHub and CI/CD, so every AI-written change is checked, risk-scored and logged before it ships.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pilot">See how a pilot works</a></div>
-<p class="hero-micro" data-reveal style="--d:4">45 minutes with Gaurav or Saswata &middot; a written plan, whether or not we work together</p>
+<p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>
 </div>
 <div class="h-hero-vis" data-reveal="scale" style="--d:2">{GATE}</div>
 </div>
@@ -145,10 +145,10 @@ how = f'''<section class="h-sec h-sec--alt" id="how" aria-labelledby="how-h"><di
 <div class="h-works"><span>Works with</span><div class="logos">{works_logos}</div><a class="link" href="{C.URL["aine"]}#pipeline">See all nine stages</a></div>
 </div></section>'''
 
-# ------------------------------------------------------------------ 4. proof (number-led, anonymised)
-RESULTS = [('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Booking and payments app built with AI-assisted engineering', 'United Kingdom'),
-           ('Automation', '60%+', 'fewer delivery-support tickets', 'WhatsApp order-status agent for a 960-store retailer', 'South Africa'),
-           ('Automation', '&asymp;$210K', 'a year of licensed tooling replaced', 'Compliance-check agent for an automotive compliance firm', 'India')]
+# ------------------------------------------------------------------ 4. proof (number-led; client names approved 2026-10-07)
+RESULTS = [('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Barbr, a booking and payments app built with AI-first engineering', 'United Kingdom'),
+           ('Automation', '60%+', 'fewer delivery-support tickets', 'Woolworths South Africa: a WhatsApp order-status agent', 'South Africa'),
+           ('Automation', '&asymp;$210K', 'a year of licensed tooling replaced', 'Global PCCS: a compliance-check agent', 'India')]
 res = ''.join(f'<li data-reveal style="--d:{i}"><span class="h-tag">{tg}</span><b data-count>{n}</b><span class="what">{w}</span><span class="who">{who} &middot; {geo}</span></li>' for i, (tg, n, w, who, geo) in enumerate(RESULTS))
 q = TESTIMONIALS['eng'][0]
 quote_txt = 'I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none.'
@@ -157,7 +157,7 @@ proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><di
 <h2 id="res-h" class="h-h2" data-reveal>Already running in production.</h2>
 <ul class="h-results">{res}</ul>
 <figure class="h-quote" data-reveal><span class="h-qmark" aria-hidden="true">&ldquo;</span><blockquote><p>{quote_txt}</p></blockquote><figcaption>{q[1]}</figcaption></figure>
-<div class="h-proof-foot"><a class="link" href="/results">See all results</a><span>Client names withheld. Results as reported from our engagements; ask us for a reference call.</span></div>
+<div class="h-proof-foot"><a class="link" href="/results">See all results</a><span>Results as reported from our engagements. Ask us for a reference call.</span></div>
 </div></section>'''
 
 # ------------------------------------------------------------------ 5. pilot

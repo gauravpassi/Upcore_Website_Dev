@@ -88,13 +88,13 @@ PAGES = [
     ('cmp-tools', 'compare/ai-native-engineering-vs-ai-coding-tools.html', 'AI-native engineering vs AI coding tools',
      'AI coding tools vs <span class="hl">AI-native engineering.</span>',
      'You may already pay for GitHub Copilot, Cursor or Claude Code. What those tools do well, where they stop, and when you need a delivery process around them.',
-     S1, F1, 'AI-Native Engineering vs AI Coding Tools (Copilot, Cursor, Claude Code) | Upcore',
+     S1, F1, 'AI-Native Engineering vs AI Coding Tools | Upcore',
      'What AI coding tools do well, where they stop, and when engineering teams need an AI-native delivery process around them. An honest comparison for CTOs.',
      ('Upcore vs building it in-house', C.URL['cmp-inhouse'])),
     ('cmp-inhouse', 'compare/upcore-vs-building-in-house.html', 'Upcore vs building it in-house',
      'Build it yourself, <span class="hl">or bring in Upcore?</span>',
      'Your platform team could build an AI-native delivery process. What that involves, when it is the right call, and where an outside team saves time.',
-     S2, F2, 'Build an AI-Native Delivery Process In-House or with Upcore? | Upcore',
+     S2, F2, 'Build In-House or Bring In Upcore? | Upcore',
      'What it takes to build an AI-native engineering process in-house, when that is the right call, and when bringing in Upcore saves time. An honest comparison.',
      ('AI-native engineering vs AI coding tools', C.URL['cmp-tools']))]
 

@@ -149,9 +149,9 @@ engage = f'''<section class="h-sec" id="engagement" aria-labelledby="eng-h"><div
 </div></section>'''
 
 # ------------------------------------------------------------------ 6. results
-RES = [('Engineering', 'In production', 'delivery agents inside a product team', 'Field-service SaaS platform, part of a ServiceNow Elite partner group', 'South Africa'),
-       ('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Booking and payments app built with AI-assisted engineering', 'United Kingdom'),
-       ('Engineering', 'Rehired', 'to add test and DevOps agents to their release pipeline', 'Dental implant network across nine states', 'United States')]
+RES = [('Engineering', 'In production', 'delivery agents inside a product team', 'WorkWide by Quintica, field-service SaaS from a ServiceNow Elite partner group', 'South Africa'),
+       ('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Barbr, a booking and payments app built with AI-first engineering', 'United Kingdom'),
+       ('Engineering', 'Rehired', 'to add test and DevOps agents to their release pipeline', 'Rain Dental Implant Centers, nine states', 'United States')]
 res = ''.join(f'<li data-reveal style="--d:{i}"><span class="h-tag">{tg}</span><b data-count{" class=is-word" if not any(ch.isdigit() for ch in n) else ""}>{n}</b><span class="what">{w}</span><span class="who">{who} &middot; {geo}</span></li>' for i, (tg, n, w, who, geo) in enumerate(RES))
 q = TESTIMONIALS['eng'][0]
 proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
@@ -159,7 +159,7 @@ proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><di
 <h2 id="res-h" class="h-h2" data-reveal>Engineering work in production.</h2>
 <ul class="h-results">{res}</ul>
 <figure class="h-quote" data-reveal><span class="h-qmark" aria-hidden="true">&ldquo;</span><blockquote><p>I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none.</p></blockquote><figcaption>{q[1]}</figcaption></figure>
-<div class="h-proof-foot"><a class="link" href="{C.URL["results"]}">See all results</a><span>Client names withheld. Results as reported from our engagements; ask us for a reference call.</span></div>
+<div class="h-proof-foot"><a class="link" href="{C.URL["results"]}">See all results</a><span>Results as reported from our engagements. Ask us for a reference call.</span></div>
 </div></section>'''
 
 # ------------------------------------------------------------------ 7. FAQ

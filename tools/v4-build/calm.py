@@ -59,7 +59,7 @@ def results_band(eb, h2, items, foot=True, quote=None, long=False, lead=None):
     q = ''
     if quote:
         q = f'<figure class="h-quote" data-reveal><span class="h-qmark" aria-hidden="true">&ldquo;</span><blockquote><p>{quote[0]}</p></blockquote><figcaption>{quote[1]}</figcaption></figure>'
-    f = (f'<div class="h-proof-foot"><a class="link" href="{C.URL["results"]}">See all results</a><span>Client names withheld. Results as reported from our engagements; ask us for a reference call.</span></div>') if foot else ''
+    f = (f'<div class="h-proof-foot"><a class="link" href="{C.URL["results"]}">See all results</a><span>Results as reported from our engagements. Ask us for a reference call.</span></div>') if foot else ''
     return f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
 {eyebrow(eb)}
 <h2 id="res-h" class="h-h2" data-reveal>{h2}</h2>{f'<p class="h-res-lead" data-reveal style="--d:1">{lead}</p>' if lead else ''}

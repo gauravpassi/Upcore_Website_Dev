@@ -8,10 +8,11 @@ GA4, AW = 'G-TVRF5M70ES', 'AW-16546427858'
 
 EVENTS = ['cta_click', 'scroll_depth', 'section_view', 'framework_tab_select', 'content_tab_select', 'nav_menu_open',
           'faq_open', 'booking_modal_open', 'booking_calendar_view', 'booking_email_skipped', 'booking_iframe_engaged',
-          'booking_iframe_navigated', 'booking_modal_close', 'generate_lead']
+          'booking_iframe_navigated', 'booking_modal_close', 'generate_lead',
+          'estimator_used', 'chat_open', 'chat_question', 'chat_action']
 PARAMS = ['cta_id', 'cta_type', 'cta_section', 'cta_text', 'cta_url', 'page_path', 'percent_scrolled', 'section_id',
           'section_title', 'tab_id', 'method', 'menu', 'faq_question', 'open_seconds', 'iframe_engaged',
-          'seconds_to_engage', 'load_count', 'lead_source']
+          'seconds_to_engage', 'load_count', 'lead_source', 'topic', 'source', 'mode', 'action']
 
 
 def t(k, v): return {'type': 'TEMPLATE', 'key': k, 'value': v}

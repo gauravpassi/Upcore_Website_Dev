@@ -286,20 +286,7 @@
     set(0);
   });
 
-  /* ------------------------------------------------------------ menu hides while reading down, returns on the way up */
-  (function () {
-    var nav = $('.nav'); if (!nav || reduce) return;
-    var lastY = scrollY, acc = 0;
-    addEventListener('scroll', function () {
-      var y = scrollY, dy = y - lastY; lastY = y;
-      if (nav.classList.contains('menu-open') || nav.matches(':focus-within') || $('.nav [aria-expanded="true"]')) { nav.classList.remove('is-hidden'); return; }
-      acc = (dy > 0) === (acc > 0) ? acc + dy : dy;
-      if (y < 400) nav.classList.remove('is-hidden');
-      else if (acc > 60) nav.classList.add('is-hidden');
-      else if (acc < -30) nav.classList.remove('is-hidden');
-    }, { passive: true });
-  })();
-
+  /* (menu hide-on-scroll now lives in the "Navigation island" module) */
 
   /* ------------------------------------------------------------ homepage estimator: visitor sets the inputs, numbers ease to the result */
   $$('[data-calc]').forEach(function (c) {
@@ -689,18 +676,79 @@
   /* @end hub */
 
   /* @block cases */
-  /* ------------------------------------------------------------ Results: case filters (automation / engineering) */
+  /* ------------------------------------------------------------ Results: case index + filters (Automation / Engineering) */
   $$('[data-cases]').forEach(function (root) {
-    var chips = $$('.hb-chip', root), items = $$('.cs', root);
+    var chips = $$('.hb-chip', root), idx = $$('.cx-index li', root), cases = $$('section.cx[data-tags]');
+    var has = function (el, f) { return f === 'all' || (' ' + el.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') > -1; };
     chips.forEach(function (c) {
       c.addEventListener('click', function () {
         var f = c.getAttribute('data-filter');
         chips.forEach(function (x) { var on = x === c; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-        items.forEach(function (a) { a.hidden = f !== 'all' && (' ' + a.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') < 0; if (!a.hidden) a.classList.add('is-in'); });
+        idx.forEach(function (li) { li.classList.toggle('is-dim', !has(li, f)); });
+        cases.forEach(function (s, i) {
+          s.hidden = !has(s, f);
+          if (!s.hidden) $$('[data-reveal]', s).forEach(function (el) { el.classList.add('is-in'); });
+        });
+        var vis = cases.filter(function (s) { return !s.hidden; });
+        vis.forEach(function (s, i) { s.classList.toggle('cx--alt', i % 2 === 1); });
       });
     });
   });
   /* @end cases */
+
+  /* @block island */
+  /* ------------------------------------------------------------ Navigation island (desktop): compacts while reading down, shows the
+     current section + progress, expands on scroll up / hover / focus. Phones keep the hide-on-scroll bar. */
+  (function () {
+    var nav = $('.nav'); if (!nav) return;
+    var desk = matchMedia('(min-width: 1101px)');
+    var ctx = $('.nav-ctx', nav), ctxT = $('.nav-ctx-t', nav), ring = $('.nav-ring-fill', nav);
+    var secs = $$('main section[aria-labelledby]').map(function (s) {
+      var h = document.getElementById(s.getAttribute('aria-labelledby'));
+      return { el: s, t: h ? h.textContent.replace(/\s+/g, ' ').trim() : '' };
+    }).filter(function (x) { return x.t; });
+    var crumb = $('.crumb [aria-current]');
+    var page = crumb ? crumb.textContent.trim() : document.title.split('|')[0].split(':')[0].trim();
+    var lastY = scrollY, acc = 0, peek = false, label = '';
+    var anyOpen = function () { return nav.classList.contains('menu-open') || !!$('.nav [aria-expanded="true"]'); };
+    var setCompact = function (v) { nav.classList.toggle('is-compact', !!v && !peek && !anyOpen()); };
+    var paint = function () {
+      var y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+      if (ring) ring.style.strokeDashoffset = (1 - (h > 0 ? clamp(y / h, 0, 1) : 0)).toFixed(3);
+      var cur = '';
+      secs.forEach(function (s) { if (s.el.getBoundingClientRect().top < innerHeight * 0.4) cur = s.t; });
+      if (!cur || cur === page) cur = page;
+      if (cur.length > 44) cur = cur.slice(0, 42).replace(/\s+\S*$/, '') + '…';
+      if (cur !== label && ctxT) {
+        label = cur; ctxT.textContent = cur;
+        if (nav.classList.contains('is-compact') && !reduce) { nav.classList.remove('is-bump'); void nav.offsetWidth; nav.classList.add('is-bump'); }
+      }
+    };
+    addEventListener('scroll', function () {
+      var y = scrollY, dy = y - lastY; lastY = y;
+      paint();
+      if (anyOpen() || nav.matches(':focus-within')) { nav.classList.remove('is-hidden', 'is-compact'); return; }
+      acc = (dy > 0) === (acc > 0) ? acc + dy : dy;
+      if (desk.matches) {
+        nav.classList.remove('is-hidden');
+        if (y < 320) setCompact(false);
+        else if (acc > 40) setCompact(true);
+        else if (acc < -60) setCompact(false);
+      } else if (!reduce) {
+        nav.classList.remove('is-compact');
+        if (y < 400) nav.classList.remove('is-hidden');
+        else if (acc > 60) nav.classList.add('is-hidden');
+        else if (acc < -30) nav.classList.remove('is-hidden');
+      }
+    }, { passive: true });
+    nav.addEventListener('mouseenter', function () { if (desk.matches && nav.classList.contains('is-compact')) { peek = true; nav.classList.remove('is-compact'); } });
+    nav.addEventListener('mouseleave', function () { if (peek) { peek = false; if (scrollY > 320) setTimeout(function () { if (!peek && !nav.matches(':hover')) setCompact(true); }, 250); } });
+    if (ctx) ctx.addEventListener('click', function () { peek = true; nav.classList.remove('is-compact'); });
+    nav.addEventListener('focusin', function () { nav.classList.remove('is-compact'); });
+    desk.addEventListener && desk.addEventListener('change', function () { nav.classList.remove('is-compact', 'is-hidden'); });
+    paint();
+  })();
+  /* @end island */
 
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;

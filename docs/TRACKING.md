@@ -37,13 +37,15 @@ Shared senders (all check `window.upcGTM` first):
 | `booking_iframe_engaged` / `booking_iframe_navigated` | first interaction / navigation inside the scheduler | `seconds_to_engage`, `load_count` |
 | `booking_modal_close` | modal closed | `open_seconds`, `iframe_engaged` |
 | `booking_completed` | **server-side**, Apps Script via GA4 Measurement Protocol (§5) | `booking_source`, `cta_section`, `page_path` |
+| `chat_open` / `chat_question` / `chat_action` | website assistant (`chat-widget.js`) | `source` (starter/typed), `mode` (ai/faq), `action` (book/person) |
+| `estimator_used` | homepage estimator, first interaction | |
 | `consent_update` | cookie banner choice | `consent_choice` (dataLayer only) |
 
 ## 3. GTM container: import & publish
 
 File: [`tools/gtm-container-upcore-v4.json`](../tools/gtm-container-upcore-v4.json) (regenerate with `python tools/v4-build/gtm_build.py`).
 
-Contents: Google tag GA4 `G-TVRF5M70ES` (with `content_group` and `traffic_type`), Google tag Ads `AW-16546427858`, Conversion Linker, one GA4 event tag (`{{Event}}`) for every event in §2 except `booking_completed`, Microsoft Clarity (Custom HTML, requires `analytics_storage`, re-fires on `consent_update`), 4 triggers, 21 variables.
+Contents: Google tag GA4 `G-TVRF5M70ES` (with `content_group` and `traffic_type`), Google tag Ads `AW-16546427858`, Conversion Linker, one GA4 event tag (`{{Event}}`) for every event in §2 except `booking_completed`, Microsoft Clarity (Custom HTML, requires `analytics_storage`, re-fires on `consent_update`), 4 triggers, 25 variables. Regenerated 2026-10-07 with the chat and estimator events: re-import and publish to start sending them.
 
 1. tagmanager.google.com → container **GTM-MH5PB32L** → **Admin → Import container**.
 2. Choose the JSON file. Workspace: **New** ("V4 rollout"). Option: **Merge → Rename conflicting tags, triggers and variables**.

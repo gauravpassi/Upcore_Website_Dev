@@ -53,7 +53,7 @@ LEADERS = '''<div class="leaders" data-reveal style="--d:3"><span class="t-mono"
 
 
 def cta(h2, p, alt_href, alt_label, page, leaders=False):
-    pts = ''.join(f'<span>{x}</span>' for x in ['45 minutes with Gaurav or Saswata', 'A written plan, whether or not we work together', 'Pilot on one team before you commit'])
+    pts = ''.join(f'<span>{x}</span>' for x in ['A 45-minute discovery call', 'A written plan, whether or not we work together', 'Pilot on one team before you commit'])
     alt = f'<p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="{alt_href}?utm_source=website&amp;utm_medium={page}&amp;utm_campaign=cta_secondary">{alt_label} <span aria-hidden="true">&rarr;</span></a></p>'
     return f'''<section class="band band--flow cta-band" aria-labelledby="cta-h">{FL.cta_lines()}<div class="spot" aria-hidden="true"></div><div class="wrap">
 <div class="eyebrow" data-reveal>Next step</div><h2 id="cta-h" class="t-display" data-reveal>{h2}</h2><p class="t-lead" data-reveal style="--d:1">{p}</p>

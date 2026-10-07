@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Pre-launch: named case studies, navigation island, AI assistant, polish
+**Type:** design + content + feature
+**Files:** `tools/v4-build/cases.py`, `build_results.py`, `segment_copy.py`, `build_home.py`, `build_aine.py`, `calm.py`, `chrome.py` (island markup, `V` 18, `CHAT_V` 19), every generated page, `css/upcore-v5.css` (`.cx-*`, `.cv-*`, `island`), `js/upcore-v5.js` (case filters, navigation island; old hide-on-scroll module folded in), `chat-widget.js` (rebuilt chat, booking modal unchanged), `api/chat.js` (rewritten), `vercel.json` (chat `maxDuration` 30), all legacy pages (`chat-widget.js?v=19`), `privacy.html` + `terms.html` (assistant described, Groq listed as a provider), `ai-operations.html` (no horizontal scroll), `tools/v4-build/gtm_build.py` + `tools/gtm-container-upcore-v4.json` (chat + estimator events), docs
+Client names approved by Gaurav: the ten case studies are now distinct chapters with their own result visuals, and the names appear in results bands sitewide. "With Gaurav or Saswata" removed everywhere. Desktop navigation is a dark "dynamic island" that compacts to the current section with a progress ring. The chat widget is now an AI assistant (Groq free tier via `GROQ_API_KEY`, FAQ fallback without a key) with page-aware starters and a person handoff that carries the conversation. Pre-launch sweep of every page at 1440 and 390 px: no console errors, no horizontal overflow, alt text and single H1s everywhere; long titles and descriptions shortened. To do outside the repo: add `GROQ_API_KEY` in Vercel, re-import the GTM container and publish.
+
 ## 2026-10-07 — Case studies on /results; landing pages brought up to date
 **Type:** content + fix
 **Files:** `tools/v4-build/cases.py` (new), `tools/v4-build/build_results.py`, `results.html`, `css/upcore-v5.css` (`.cs-*`), `js/upcore-v5.js` (case filters), `lp/governance-index.html`, `lp/ai-maturity-index.html`, `lp/maturity-review.html`, `assessment.html`, `chrome.py` (`V` 16→17), docs

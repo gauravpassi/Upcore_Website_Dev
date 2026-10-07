@@ -14,7 +14,7 @@ MAIL = 'gaurav@upcoretechnologies.com'
 WA = 'https://wa.me/919988135327?text=Hi%20Upcore%20team%2C%20I%27d%20like%20to%20talk%20about%20'
 MAPS = 'https://www.google.com/maps/search/?api=1&amp;query=Bestech+Business+Tower+Sector+66+Mohali+Punjab+160062'
 
-WAYS = [('book', 'Book a discovery call', '45 minutes with Gaurav or Saswata. You leave with a written plan, whether or not we work together.', 'Recommended',
+WAYS = [('book', 'Book a discovery call', '45 minutes on your situation. You leave with a written plan, whether or not we work together.', 'Recommended',
          C.btn('contact_ways', cls='btn btn--sm', label='Choose a time')),
         ('wa', 'WhatsApp', 'Best for quick questions and first conversations. We usually reply within 30 minutes during business hours.', '+91 99881 35327',
          f'<a class="link" href="{WA}" target="_blank" rel="noopener" data-gtm-cta="whatsapp" data-gtm-cta-type="secondary" data-gtm-cta-section="contact_ways">Open WhatsApp<span class="sr"> (opens in a new tab)</span></a>'),

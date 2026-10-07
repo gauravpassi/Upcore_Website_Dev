@@ -36,6 +36,8 @@ Source of truth for code: [`css/upcore-v4.css`](../css/upcore-v4.css) (one share
 
 ## Components
 Chrome: `.progress` (scroll bar), `.annc`, `.nav` (+ `.drop` mega-menu, mobile `.menu-open`), `.foot`, `.mcta` (sticky mobile CTA, leaves room for the chat bubble).
+
+**Navigation island (desktop, ≥1101px, 2026-10-07):** `.nav` is a dark floating pill (`data-island`) that floats over the hero. At the top of a page it shows the full menu; while reading down it morphs into a compact pill with the current section's heading (from `main section[aria-labelledby]`), a reading-progress ring (`.nav-ring`) and the CTA, with a small bump when the section changes. Scrolling up, hovering, focusing or clicking the pill expands it again; dropdowns grow out of it in the same dark style. Below 1101px the white bar, burger menu and hide-on-scroll behavior are unchanged. CSS: the `island` block in `upcore-v5.css`; JS: "Navigation island" in `upcore-v5.js`; markup: `chrome.nav()` (light logo `.logo-light`, `.nav-ctx`).
 Buttons: `.btn` (ink pill + cyan arrow disc), `.btn--cyan` (on dark), `.btn--sm`, `.btn-pulse`, `.link`, `.chip` (`--human`, `--ai`, `--auto`).
 Sections: `.sec`, `.sec--paper`, `.sec-head` / `--split`, `.band` / `--rounded` with `.spot` (cursor spotlight) + `.grid-bg`.
 Hero: `.hero` + `.hero-glow` (faded drifting cyan/blue gradient over a masked dot grid; replaced the particle canvas on 2026-10-06), `.badge` flagship pill, `[data-split]` word reveal (CSS animation on load, no observer, for fast LCP), `.hero-stage--eng` with `.run` (governed-change pipeline demo, `[data-flow]`) and `.dlog` (deviation-log mock, labelled Example view).

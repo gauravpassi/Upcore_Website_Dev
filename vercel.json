@@ -8,7 +8,7 @@
       "memory": 256
     },
     "api/chat.js": {
-      "maxDuration": 15,
+      "maxDuration": 30,
       "memory": 256
     },
     "api/lead-magnet-submit.js": {

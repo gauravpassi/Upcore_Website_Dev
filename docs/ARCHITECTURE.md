@@ -101,7 +101,8 @@ Set in Vercel project settings:
 
 | Var | Required by | Purpose |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | `api/build-demo.js` (live); `api/chat.js` (unused legacy, see §3.1) | Anthropic Messages API |
+| `ANTHROPIC_API_KEY` | `api/build-demo.js` | Anthropic Messages API |
+| `GROQ_API_KEY` (optional) | `api/chat.js` | Website assistant model (Groq free tier). Alternative: `CHAT_API_KEY` + `CHAT_API_BASE` + `CHAT_MODEL` (+ `CHAT_FALLBACK_MODEL`) for any OpenAI-compatible provider. Unset: the assistant answers from its built-in FAQ. See FEATURES.md C2. |
 | `GITHUB_PAT` | `api/build-demo.js` | Contents-API token to commit demos. Needs `contents:write` on the repo. |
 | `GITHUB_REPO` | `api/build-demo.js` | Defaults to `gauravpassi/upcore-website`. |
 | `SITE_BASE_URL` | `api/build-demo.js` | Used to build the demo URL returned to the caller. Defaults to `https://upcore.ai`. |

@@ -80,6 +80,6 @@ final = K.final('Want this applied <span class="hl">to your teams?</span>',
 page = '\n'.join([hero, featured, listing, news, final])
 ld = C.graph('insights', [{'@type': 'CollectionPage', 'name': 'Upcore Insights', 'url': C.SITE + C.FINAL_URL['insights'],
                            'hasPart': [{'@type': 'Article', 'headline': i['title'], 'url': C.SITE + i['url']} for i in rest]}], crumb='Insights')
-print('insights', len(items), 'items', C.write('insights/index.html', 'insights', 'Insights: Guides on AI-Native Engineering, AI Governance &amp; Automation | Upcore',
+print('insights', len(items), 'items', C.write('insights/index.html', 'insights', 'Insights: AI-Native Engineering, Governance &amp; Automation | Upcore',
       'Plain-English guides to AI-native engineering, AI governance and automation, honest comparisons, and AI playbooks by industry.',
       page, active='insights', ld=ld, group='insights', spine=False, main_cls='is-calm'))

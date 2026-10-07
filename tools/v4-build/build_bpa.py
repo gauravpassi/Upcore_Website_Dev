@@ -128,5 +128,5 @@ ld = C.graph('bpa', [{'@type': 'Service', 'name': 'Business Process Automation',
                       'description': 'AI agents that run repetitive support, operations, finance, sales and compliance work inside existing systems, with human approval thresholds and a full audit trail.', 'areaServed': C.AREA},
                      K.faq_ld(FAQ)], crumb='Business Process Automation')
 print('bpa', C.write('platform.html', 'bpa', 'Business Process Automation with AI Agents | Upcore',
-      'AI agents that chase documents and payments, answer status questions and keep records current inside your systems, with people approving what matters. First agent live in 30 days.',
+      'AI agents that chase documents and payments, answer status questions and keep records current in your systems, with people approving what matters.',
       page, active='bpa', ld=ld, group='solution', spine=False, main_cls='is-calm', annc_kind=C.ANNC_OPS))

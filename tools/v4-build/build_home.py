@@ -78,6 +78,28 @@ problem = f'''<section class="h-sec" aria-labelledby="prob-h"><div class="wrap">
 <h2 id="prob-h" class="h-h2" data-reveal>Your team ships more AI-written code every week. <span class="mute">Review hasn&rsquo;t caught up.</span></h2>
 <ol class="h-pains">{pains}</ol></div></section>'''
 
+# ------------------------------------------------------------------ 2b. estimator: the visitor puts a number on the problem
+FIELDS = [('eng', 'Engineers using AI coding tools', 5, 300, 5, 40, ''),
+          ('prs', 'Pull requests per engineer, per week', 1, 15, 1, 4, ''),
+          ('mins', 'Minutes of senior review per pull request', 5, 90, 5, 25, ''),
+          ('routine', 'Share of changes that are routine', 0, 90, 5, 40, '%')]
+fields = ''.join(
+    f'<div class="cf"><div class="cf-h"><label for="c-{k}">{lbl}</label><output id="o-{k}" for="c-{k}">{v}{u}</output></div>'
+    f'<input type="range" id="c-{k}" data-k="{k}" min="{lo}" max="{hi}" step="{st}" value="{v}" data-u="{u}" /></div>'
+    for k, lbl, lo, hi, st, v, u in FIELDS)
+estimate = f'''<section class="h-sec h-sec--tight h-calc-sec" id="estimate" aria-labelledby="calc-h"><div class="wrap h-calc" data-calc>
+<div class="h-calc-k">{eyebrow("Put a number on it")}
+<h2 id="calc-h" class="h-h2 h-h2--sm" data-reveal>How much senior time goes on reading routine AI-written code?</h2>
+<p class="h-lead" data-reveal style="--d:1">Set the numbers for your team. Routine, low-risk changes that pass every automated check don&rsquo;t need a senior engineer to read them line by line.</p></div>
+<div class="h-calc-ui" data-reveal style="--d:1"><div class="cf-list">{fields}</div>
+<div class="calc-out" aria-live="polite">
+<div><b data-o="today">67</b><span>hours of senior review every week</span></div>
+<div class="hot"><b data-o="freed">27</b><span>of those hours go on routine changes your checks could clear</span></div>
+<div><b data-o="fte">0.7</b><span>full-time senior engineers, every week</span></div></div>
+<p class="calc-note">An estimate from your own inputs, not a promise. A pilot measures the real figure against your baseline.</p>
+<div class="hero-ctas">{C.btn("estimator", cls="btn btn--sm", label="Check these numbers with us")}</div></div>
+</div></section>'''
+
 # ------------------------------------------------------------------ 3. how it works (4 checkpoints, each with a small artifact)
 MINI = {
     'spec': '''<div class="mini" aria-hidden="true"><div class="mini-h"><b>Spec</b><span>Partial refunds</span></div>
@@ -124,10 +146,10 @@ how = f'''<section class="h-sec h-sec--alt" id="how" aria-labelledby="how-h"><di
 </div></section>'''
 
 # ------------------------------------------------------------------ 4. proof (number-led, anonymised)
-RESULTS = [('4.9&#9733;', 'App Store rating, 89 ratings', 'Booking and payments app built with AI-assisted engineering', 'United Kingdom'),
-           ('60%+', 'fewer delivery-support tickets', 'WhatsApp order-status agent for a 960-store retailer', 'South Africa'),
-           ('&asymp;$210K', 'a year of licensed tooling replaced', 'Compliance-check agent for an automotive compliance firm', 'India')]
-res = ''.join(f'<li data-reveal style="--d:{i}"><b data-count>{n}</b><span class="what">{w}</span><span class="who">{who} &middot; {geo}</span></li>' for i, (n, w, who, geo) in enumerate(RESULTS))
+RESULTS = [('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Booking and payments app built with AI-assisted engineering', 'United Kingdom'),
+           ('Automation', '60%+', 'fewer delivery-support tickets', 'WhatsApp order-status agent for a 960-store retailer', 'South Africa'),
+           ('Automation', '&asymp;$210K', 'a year of licensed tooling replaced', 'Compliance-check agent for an automotive compliance firm', 'India')]
+res = ''.join(f'<li data-reveal style="--d:{i}"><span class="h-tag">{tg}</span><b data-count>{n}</b><span class="what">{w}</span><span class="who">{who} &middot; {geo}</span></li>' for i, (tg, n, w, who, geo) in enumerate(RESULTS))
 q = TESTIMONIALS['eng'][0]
 quote_txt = 'I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none.'
 proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
@@ -139,6 +161,11 @@ proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><di
 </div></section>'''
 
 # ------------------------------------------------------------------ 5. pilot
+PATH_STEPS = [('Discovery call', '45 minutes on your delivery process and where AI is already writing code.'),
+              ('Written plan', 'Scope, success measures and commercials for a pilot, in writing, whether or not we work together.'),
+              ('Pilot on one team', 'The pipeline installed end to end on a real backlog, inside your own tools.'),
+              ('Results review', 'The numbers against your baseline, before you decide anything wider.')]
+MEASURES = ['Time from spec to release', 'Senior hours spent on review', 'Changes that fail in production', 'Share of changes merged automatically']
 PILOT = [('Scope', 'One team, one service, a real backlog.'),
          ('Your pod', 'A Claude Certified Architect, a full-stack developer and an analyst who is your single point of contact.'),
          ('You get', 'The pipeline installed end to end, measured against your current process, then a results review before any wider rollout.')]
@@ -148,7 +175,21 @@ pilot = f'''<section class="h-sec" id="pilot" aria-labelledby="pilot-h"><div cla
 <h2 id="pilot-h" class="h-h2" data-reveal>Prove it on one team before you commit.</h2>
 <p class="h-lead" data-reveal style="--d:1">No price list and no long contract up front. Duration and commercials are agreed on the discovery call, based on your scope.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("pilot")}<a class="link" href="{C.URL["aine"]}#engagement">How engagements work</a></div></div>
-<dl class="h-pilot-spec">{pil}</dl></div></section>'''
+<dl class="h-pilot-spec">{pil}</dl></div>
+<div class="wrap h-path"><p class="h-col">From first call to results</p>{FL.timeline(PATH_STEPS)}
+<div class="h-measures" data-reveal><span class="h-col">What a pilot is measured on, against your own baseline</span>
+<ul>{"".join(f"<li>{m}</li>" for m in MEASURES)}</ul><span class="h-measures-note">Typical measures; we agree the final set with you before the pilot starts.</span></div></div></section>'''
+
+# ------------------------------------------------------------------ 5b. security, visible rather than buried in the FAQ
+SEC = [('<path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/><path d="M9 13h6"/>', 'Your code stays yours', 'It stays in your repositories, and builds run in your own environments.'),
+       ('<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>', 'Not used to train models', 'Model providers are configured so your data is never used for training.'),
+       ('<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>', 'Scoped, revocable access', 'Only the permissions a workflow needs, every action logged, revocable at any time.'),
+       ('<circle cx="12" cy="9" r="5"/><path d="m8.5 13-1.5 8 5-3 5 3-1.5-8"/>', 'Certified processes', 'ISO 27001 and ISO 9001 certified, with delivery run to CMMI Level 3.')]
+sec_items = ''.join(f'<li data-reveal style="--d:{i}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{ic}</svg><b>{t}</b><p>{d}</p></li>' for i, (ic, t, d) in enumerate(SEC))
+security = f'''<section class="h-sec h-sec--tight h-sec--alt" aria-labelledby="sec-h"><div class="wrap h-security">
+<div>{eyebrow("Security")}<h2 id="sec-h" class="h-h2 h-h2--sm" data-reveal>Built to pass your security review.</h2>
+<a class="link" href="/security" data-reveal style="--d:1">Read the security details</a></div>
+<ul class="h-sec-list">{sec_items}</ul></div></section>'''
 
 # ------------------------------------------------------------------ 6. router
 SEGS = [('tech-software', 'Tech &amp; Software', 'Governed AI delivery for engineering teams'),
@@ -166,7 +207,7 @@ router = f'''<section class="h-sec h-sec--tight" id="who-we-help" aria-labelledb
 
 # ------------------------------------------------------------------ 7. objections
 FAQ = [('How is this different from giving developers Copilot or Cursor?', 'Those tools generate code. We install the delivery process around them: spec templates, architecture guardrails, plan sign-off, automated pull-request gates, risk-scored merges, controlled releases and a decision record. Without that process, AI-written code still depends on manual review to be trusted.'),
-       ('Is our code and data safe with you?', 'Code stays in your repositories and builds run in your environments, with security scanning as a mandatory gate. Model providers are configured so your data is not used to train their models. Our security and quality management are certified to ISO 27001 and ISO 9001. <a class="link" href="/security">Security details</a>'),
+       ('Do we have to replace our tools?', 'No. We install the process inside what you already run: Jira or Linear, GitHub, your existing CI/CD and the AI assistants you have approved, such as Claude, GitHub Copilot or Cursor.'),
        ('Where is your team, and how do you handle time zones?', 'Our delivery team is in India, with clients in the USA, UK, South Africa, Australia and Mauritius. Your pod&rsquo;s analyst is your single point of contact, and working hours are agreed in the pilot plan.'),
        ('What does it cost?', 'We don&rsquo;t publish a price list. You start with a pilot on one team; duration and commercials are agreed on the discovery call. After the call you get a written proposal with a fixed scope and price before any build starts.')]
 fq = ''.join(f'<details><summary>{a}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{b}</p></div></details>' for a, b in FAQ)
@@ -182,7 +223,7 @@ final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta
 <p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="/lp/governance-index?utm_source=website&amp;utm_medium=home&amp;utm_campaign=cta_secondary">Get your AI Governance Score in 2 minutes <span aria-hidden="true">&rarr;</span></a></p>
 </div></section>'''
 
-home = '\n'.join([hero, problem, how, proof, pilot, router, faq, final])
+home = '\n'.join([hero, problem, estimate, how, proof, pilot, security, router, faq, final])
 ld = C.graph('home', [{'@type': 'WebSite', '@id': C.SITE + '/#website', 'url': C.SITE + '/', 'name': 'Upcore Technologies', 'publisher': {'@id': C.ORG_ID}},
                       {'@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': H.unescape(a), 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', H.unescape(b))}} for a, b in FAQ]}])
 print('home', C.write('index.html', 'home', 'AI-Native Engineering &amp; Automation | Upcore Technologies',

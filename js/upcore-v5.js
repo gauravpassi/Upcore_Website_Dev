@@ -300,6 +300,42 @@
     }, { passive: true });
   })();
 
+
+  /* ------------------------------------------------------------ homepage estimator: visitor sets the inputs, numbers ease to the result */
+  $$('[data-calc]').forEach(function (c) {
+    var ins = $$('input[type=range]', c), out = {};
+    $$('[data-o]', c).forEach(function (o) { out[o.getAttribute('data-o')] = o; });
+    var sr = document.createElement('p'); sr.className = 'sr'; sr.setAttribute('aria-live', 'polite'); c.appendChild(sr);
+    var shown = {}, raf = 0, used = false;
+    var val = function (k) { var i = $('#c-' + k, c); return i ? +i.value : 0; };
+    var fill = function (i) {
+      i.style.setProperty('--fill', ((i.value - i.min) / (i.max - i.min) * 100) + '%');
+      var o = $('#o-' + i.getAttribute('data-k'), c); if (o) o.textContent = i.value + (i.getAttribute('data-u') || '');
+    };
+    var calc = function () { var today = val('eng') * val('prs') * val('mins') / 60, freed = today * val('routine') / 100; return { today: today, freed: freed, fte: freed / 40 }; };
+    var fmt = function (k, v) { return k === 'fte' ? v.toFixed(1) : Math.round(v).toLocaleString('en-US'); };
+    var render = function (animate) {
+      var t = calc();
+      if (reduce || !animate) { Object.keys(t).forEach(function (k) { shown[k] = t[k]; if (out[k]) out[k].textContent = fmt(k, t[k]); }); return; }
+      var from = Object.assign({}, shown), t0 = performance.now(); cancelAnimationFrame(raf);
+      (function step(now) {
+        var e = clamp((now - t0) / 420, 0, 1); e = 1 - Math.pow(1 - e, 3);
+        Object.keys(t).forEach(function (k) { shown[k] = from[k] + (t[k] - from[k]) * e; if (out[k]) out[k].textContent = fmt(k, shown[k]); });
+        if (e < 1) raf = requestAnimationFrame(step);
+      })(t0);
+    };
+    var announce = function () { var t = calc(); sr.textContent = 'About ' + fmt('today', t.today) + ' hours of senior review a week, ' + fmt('freed', t.freed) + ' of them on routine changes, roughly ' + fmt('fte', t.fte) + ' full-time senior engineers.'; };
+    ins.forEach(function (i) {
+      fill(i);
+      i.addEventListener('input', function () {
+        fill(i); render(true);
+        if (!used) { used = true; window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event_params: null }); window.dataLayer.push({ event: 'estimator_used', event_params: { page_path: location.pathname } }); }
+      });
+      i.addEventListener('change', announce);
+    });
+    render(false);
+  });
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

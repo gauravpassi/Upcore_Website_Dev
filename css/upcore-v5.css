@@ -859,3 +859,83 @@ a.btn--cyan:hover{box-shadow:0 14px 40px -12px var(--cyan-glow);}
   .h-pains li::before,.h-pilot-spec>div::before{transform:none;}
   .nav.is-hidden{transform:none;}
 }
+
+/* ==========================================================================
+   Customer-lens additions (2026-10-07): estimator, labelled results,
+   path to results + measures, security strip.
+   ========================================================================== */
+.h-hero + .h-sec{padding-top:clamp(64px,7vw,104px);}
+.story-step{min-height:min(52vh,480px);}
+
+/* estimator */
+.h-calc-sec{background:linear-gradient(180deg,var(--canvas),var(--paper));}
+.h-calc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,6vw,96px);align-items:center;}
+.h-calc-k .h-lead{margin-top:18px;}
+.h-calc-ui{background:#fff;border:1px solid var(--hair);border-radius:16px;padding:clamp(22px,3vw,36px);box-shadow:0 60px 100px -64px rgba(7,26,38,.5),0 2px 6px -2px rgba(7,26,38,.05);}
+.cf-list{display:grid;gap:22px;}
+.cf-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:8px;}
+.cf label{font-size:14.5px;font-weight:500;color:var(--ink);}
+.cf output{font-family:var(--f-mono);font-size:14px;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums;min-width:4ch;}
+.cf input[type=range]{-webkit-appearance:none;appearance:none;display:block;width:100%;height:24px;margin:0;background:transparent;cursor:pointer;--fill:30%;}
+.cf input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--thread) 0 var(--fill),var(--stone) var(--fill) 100%);}
+.cf input[type=range]::-moz-range-track{height:4px;border-radius:2px;background:var(--stone);}
+.cf input[type=range]::-moz-range-progress{height:4px;border-radius:2px;background:var(--thread);}
+.cf input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;margin-top:-8px;border-radius:50%;background:#fff;border:2px solid var(--ink);box-shadow:0 4px 10px -3px rgba(7,26,38,.35);transition:transform .2s var(--ease-out),box-shadow .2s;}
+.cf input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 6px var(--cyan-wash),0 4px 10px -3px rgba(7,26,38,.35);}
+.cf input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15);}
+.cf input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--ink);}
+.cf input[type=range]:focus-visible{outline:2px solid var(--focus);outline-offset:4px;border-radius:4px;}
+.calc-out{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px;padding-top:24px;border-top:1px solid var(--hair);}
+.calc-out b{display:block;font-size:clamp(34px,3.4vw,50px);font-weight:600;line-height:1;letter-spacing:-.045em;color:var(--ink);font-variant-numeric:tabular-nums;}
+.calc-out .hot b{color:var(--cyan-ink);}
+.calc-out span{display:block;margin-top:8px;font-size:13.5px;line-height:1.45;color:var(--ink-2);}
+.calc-note{margin-top:18px;font-size:12.5px;line-height:1.5;color:var(--muted);}
+.h-calc-ui .hero-ctas{justify-content:flex-start;margin-top:18px;}
+
+/* results labels */
+.h-tag{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan-2);margin-bottom:14px;}
+
+/* path from first call to results + measures */
+.h-path{margin-top:clamp(64px,7vw,104px);}
+.h-path>.h-col{margin-bottom:26px;}
+.h-path .tl-step h3{font-size:clamp(19px,1.6vw,23px);}
+.h-path .tl-step p{font-size:15px;}
+.h-measures{margin-top:clamp(44px,5vw,72px);padding-top:24px;border-top:1px solid var(--hair);}
+.h-measures>.h-col{display:block;}
+.h-measures ul{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 28px;margin:16px 0 14px;}
+.h-measures li{position:relative;padding-left:22px;font-size:16.5px;font-weight:500;line-height:1.35;color:var(--ink);letter-spacing:-.01em;}
+.h-measures li::before{content:'';position:absolute;left:0;top:.62em;width:12px;height:2px;background:var(--thread);transform:scaleX(0);transform-origin:0 50%;transition:transform .6s var(--ease-out);}
+.h-measures.is-in li::before{transform:scaleX(1);}
+.h-measures.is-in li:nth-child(2)::before{transition-delay:.12s;}
+.h-measures.is-in li:nth-child(3)::before{transition-delay:.24s;}
+.h-measures.is-in li:nth-child(4)::before{transition-delay:.36s;}
+.h-measures-note{font-size:12.5px;color:var(--muted);}
+
+/* security strip */
+.h-security{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,6vw,96px);align-items:start;}
+.h-security .link{margin-top:24px;}
+.h-sec-list{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(24px,4vw,56px);}
+.h-sec-list li{position:relative;padding:22px 0 26px;}
+.h-sec-list li::before{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:var(--hair);}
+.h-sec-list li::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:var(--thread);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s var(--ease-out);}
+.h-sec-list li:hover::after{transform:scaleX(1);}
+.h-sec-list svg{width:26px;height:26px;color:var(--cyan-ink);margin-bottom:14px;}
+.h-sec-list svg *{stroke-dasharray:80;stroke-dashoffset:80;transition:stroke-dashoffset 1.6s var(--ease-out) .2s;}
+.h-sec-list li.is-in svg *{stroke-dashoffset:0;}
+.h-sec-list b{display:block;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+.h-sec-list p{margin-top:6px;font-size:15px;line-height:1.55;color:var(--ink-2);}
+
+@media (max-width:1000px){
+  .h-calc,.h-security{grid-template-columns:1fr;}
+  .h-measures ul{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:600px){
+  .calc-out{grid-template-columns:1fr;gap:16px;}
+  .calc-out>div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;gap:12px;}
+  .calc-out span{margin-top:0;}
+  .h-measures ul,.h-sec-list{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){
+  .h-sec-list svg *{stroke-dashoffset:0;transition:none;}
+  .h-measures li::before{transform:none;transition:none;}
+}

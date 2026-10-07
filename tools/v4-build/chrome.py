@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 10          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 11          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 17    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True

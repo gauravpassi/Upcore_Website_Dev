@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Homepage: what a buyer still needed
+**Type:** content + design
+**Files:** `tools/v4-build/build_home.py`, `css/upcore-v5.css` (customer-lens block), `js/upcore-v5.js` (estimator), `tools/v4-build/chrome.py` (V=11)
+Added an interactive estimate (engineers, pull requests, review minutes, share of routine changes → senior review hours a week, hours on routine changes, full-time equivalents; visitor-set inputs, labelled as an estimate; pushes `estimator_used` to dataLayer, not yet tagged in GTM); results labelled Engineering/Automation; a four-step path from first call to results review and the measures a pilot is judged on; a visible security strip (FAQ slot now asks about replacing tools); removed the people block under the final CTA. Scroll-story steps shortened.
+
 ## 2026-10-07 — Homepage polish: plain-English artifacts, interaction and motion
 **Type:** design
 **Files:** `tools/v4-build/build_home.py`, `css/upcore-v5.css` (polish block), `js/upcore-v5.js`, `tools/v4-build/chrome.py` (V=10)

@@ -39,7 +39,7 @@ hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'AI Governance')], 'AI Gove
 
 # ------------------------------------------------------------------ 2. four gaps, struck through
 GAPS = [('Inventory', 'Nobody can say which AI tools are in use, by whom, or where.', 'Every AI tool, team and repository mapped to an accountable owner, within 72 hours of access.'),
-        ('Spend', 'Invoices and licence totals, with no link to teams, products or results.', 'AI spend by team and user, where your tools expose usage data, set against what it produced.'),
+        ('Spend', 'Invoices and license totals, with no link to teams, products or results.', 'AI spend by team and user, where your tools expose usage data, set against what it produced.'),
         ('Security', 'Scanners built for human-written code miss hallucinated packages and injection patterns.', 'AI-aware checks on every commit, with hallucinated packages blocked before they ship.'),
         ('Audit trail', 'The board or an auditor asks which code was AI-assisted and who reviewed it. There is no answer.', 'A record from prompt to deploy: what changed, which controls applied and who decided.')]
 gaps = f'''<section class="h-sec" id="gaps" aria-labelledby="gap-h"><div class="wrap gap-grid gv-gaps">
@@ -58,7 +58,7 @@ LAYERS = [('Align', 'Policy and standards', 'What AI may be used for, by whom, w
            ['AI-aware security scanning on every commit: injection, credential sprawl, insecure output', 'Supply-chain checks that block hallucinated packages, with SBOMs generated', 'Infrastructure-as-code checks for insecure defaults before anything is applied', 'Continuous adversarial testing of AI-written code']),
           ('Comply', 'Audit and regulation', 'Evidence produced as the work happens.',
            ['Mapping to the frameworks that apply to you: SOC 2, HIPAA, GDPR, PCI-DSS, the EU AI Act', 'Traceability from prompt to deploy, with every AI decision logged', 'Quality gates in CI/CD that cannot be bypassed', 'A reusable evidence pack for enterprise security questionnaires']),
-          ('Optimise', 'Spend and return', 'What AI costs, and what it is worth.',
+          ('Optimize', 'Spend and return', 'What AI costs, and what it is worth.',
            ['AI spend by team and user, with burn-rate alerts and forecasts', 'A live dashboard for the CTO and CISO: AI code share by team and risk exposure', 'Quality measures: defect rates and cycle time for AI-written against human-written work', 'Production monitoring that links incidents back to the prompts and changes behind them'])]
 # isometric plates, drawn bottom-up so upper plates overlap lower ones
 plates = ''
@@ -111,10 +111,10 @@ FAQ = [('How is this different from the security scanners we already run?', 'SAS
        ('Do we have to change our tools or infrastructure?', 'No. We connect to your IDEs, Git, CI/CD and monitoring, start in observe mode so nothing is blocked while we tune, and there is no lock-in during the pilot.'),
        ('Can our team run it, or do you run it for us?', 'Either. Done with you: your team leads and we guide, train and co-design, with full knowledge transfer. Done for you: you give us access, your AI tool list and your compliance obligations, and we audit, install, observe and report. One person is accountable in both.'),
        ('How does this relate to AI-Native Engineering?', f'AI Governance controls the AI your teams already use, across engineering and beyond. <a class="link" href="{C.URL["aine"]}">AI-Native Engineering</a> installs a complete governed delivery pipeline, from spec to production, with these controls built in. You can start with either.'),
-       ('What does it cost?', f'AI Governance runs as a Fractional AI Officer engagement on a monthly fee, scoped to your organisation&rsquo;s size and how hands-on you want us to be. <a class="link" href="{C.URL["fao"]}#economics">See Fractional AI Officer pricing</a>. You get a written proposal before anything starts.')]
+       ('What does it cost?', f'AI Governance runs as a Fractional AI Officer engagement on a monthly fee, scoped to your organization&rsquo;s size and how hands-on you want us to be. <a class="link" href="{C.URL["fao"]}#economics">See Fractional AI Officer pricing</a>. You get a written proposal before anything starts.')]
 faq = K.faq(FAQ, 'What engineering and security leaders ask.')
 final = K.final('Get AI spend, data and code <span class="hl">under control in 90 days.</span>',
-                'Book a 45-minute discovery call. We&rsquo;ll map where AI is already used in your organisation and send a written plan, whether or not we work together.',
+                'Book a 45-minute discovery call. We&rsquo;ll map where AI is already used in your organization and send a written plan, whether or not we work together.',
                 K.lp_alt('ai-governance', 'gov'))
 
 page = '\n'.join([hero, gaps, stack, plan, lead, faq, final])

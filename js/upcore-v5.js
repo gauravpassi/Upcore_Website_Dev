@@ -616,6 +616,78 @@
   });
   /* @end fao */
 
+  /* @block article */
+  /* ------------------------------------------------------------ Articles: reading progress + contents list that follows the section being read */
+  $$('[data-article]').forEach(function (art) {
+    var bar = $('.ar-progress i'), links = $$('[data-toc] a'), secs = $$('.ar-sec', art), raf = 0;
+    var upd = function () {
+      raf = 0;
+      var r = art.getBoundingClientRect(), vh = innerHeight;
+      if (bar) bar.style.transform = 'scaleX(' + clamp((vh * 0.3 - r.top) / Math.max(1, r.height - vh * 0.5), 0, 1).toFixed(3) + ')';
+      var cur = 0;
+      secs.forEach(function (s, i) { if (s.getBoundingClientRect().top < vh * 0.35) cur = i; });
+      links.forEach(function (a, i) { a.classList.toggle('is-on', i === cur); if (i === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+    };
+    addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(upd); }, { passive: true });
+    addEventListener('resize', upd);
+    upd();
+  });
+  /* @end article */
+
+  /* @block hub */
+  /* ------------------------------------------------------------ Insights hub: type filters + search (all rows stay in the HTML) */
+  $$('[data-hub]').forEach(function (hub) {
+    var chips = $$('.hb-chip', hub), items = $$('.hb-list > li', hub), featSec = $('.hb-feat-sec'), q = $('[data-hb-search]'),
+        empty = $('.hb-empty', hub), reset = $('.hb-reset', hub), type = 'all';
+    var txt = items.map(function (li) { return li.textContent.toLowerCase(); });
+    var setChip = function (c) { chips.forEach(function (x) { var on = x === c; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); }); };
+    var apply = function () {
+      var s = q ? q.value.trim().toLowerCase() : '', n = 0, browsing = type === 'all' && !s;
+      items.forEach(function (li, i) {
+        var ok = (type === 'all' || li.getAttribute('data-type') === type) && (!s || txt[i].indexOf(s) > -1) && !(browsing && li.hasAttribute('data-feat'));
+        li.hidden = !ok; if (ok) n++;
+      });
+      if (featSec) featSec.hidden = !browsing;
+      if (empty) empty.hidden = n > 0;
+    };
+    chips.forEach(function (c) { c.addEventListener('click', function () { type = c.getAttribute('data-filter'); setChip(c); apply(); }); });
+    if (q) q.addEventListener('input', apply);
+    if (reset) reset.addEventListener('click', function () { if (q) q.value = ''; type = 'all'; setChip(chips[0]); apply(); if (q) q.focus(); });
+    apply();
+  });
+
+  /* ------------------------------------------------------------ Insights newsletter (FormSubmit, same endpoint and subject as the old hub) */
+  $$('[data-newsletter]').forEach(function (form) {
+    var msg = $('.hb-msg', form), btn = $('button[type="submit"]', form), t = $('.hb-send', form), field = form.elements.email;
+    field.addEventListener('input', function () { field.parentNode.classList.remove('is-bad'); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.elements._honey && form.elements._honey.value) return;
+      var email = field.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { field.parentNode.classList.add('is-bad'); msg.textContent = 'Please enter a valid work email.'; field.focus(); return; }
+      btn.disabled = true; t.textContent = 'Subscribing…'; msg.textContent = '';
+      fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ _captcha: 'false', _template: 'table', _subject: 'New Newsletter Signup - Upcore Insights', _cc: 'saswata@upcoretechnologies.com', 'Email': email, 'Source': 'Insights Newsletter Form' })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('status ' + r.status);
+        return r.json().catch(function () { return {}; });
+      }).then(function (j) {
+        if (j && (j.success === false || j.success === 'false')) throw new Error('not sent');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event_params: null });
+        window.dataLayer.push({ event: 'generate_lead', event_params: { lead_source: 'newsletter' } });
+        form.classList.add('is-done'); btn.hidden = true; field.disabled = true;
+        msg.textContent = 'You’re subscribed. New guides will arrive in your inbox.';
+      }).catch(function () {
+        btn.disabled = false; t.textContent = 'Subscribe';
+        msg.innerHTML = 'Something went wrong. Please email <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a>.';
+      });
+    });
+  });
+  /* @end hub */
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

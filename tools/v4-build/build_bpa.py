@@ -47,7 +47,7 @@ FUNCS = [('Customer support', [
             ('Scheduling and intake', 'Books, reschedules and confirms appointments, collects intake details and keeps calendars in sync.', 'Fuller schedules, less admin')]),
          ('Finance', [
             ('Collections and payment follow-ups', 'Tracks every milestone and invoice, chases customers, banks and partners on your schedule and escalates only the exceptions.', 'Cash in sooner'),
-            ('Bank and card reconciliation', 'Transactions categorised and matched; only mismatches reach a person, with the reason.', 'Hours of manual matching removed'),
+            ('Bank and card reconciliation', 'Transactions categorized and matched; only mismatches reach a person, with the reason.', 'Hours of manual matching removed'),
             ('Timesheets and billing', 'Timesheets chased and checked, and invoices drafted from approved hours.', 'Invoices out on time')]),
          ('Sales', [
             ('Lead response and qualification', 'Answers every inquiry within minutes, qualifies it against your criteria and books the next step with the right person.', 'Every inquiry answered fast'),

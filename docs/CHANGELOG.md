@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Phase 3: category guide, two comparisons, one Insights hub
+**Type:** content + structure
+**Files:** `tools/v4-build/` (new `article.py`, `build_guide.py`, `build_compare.py`, `build_insights.py`; `build_aine.py` links to them; `chrome.py` `V` 15→16), `learn/what-is-ai-native-engineering.html`, `compare/ai-native-engineering-vs-ai-coding-tools.html`, `compare/upcore-vs-building-in-house.html`, `insights/index.html` (now generated), 5 `learn/*.html` (no "2025" in titles, H1s, social titles), `vercel.json` (`/learn`, `/compare` → `/insights`), `sitemap.xml` (45 URLs, lastmod for rebuilt pages), CSS/JS (`.ar-*`, `.hb-*`, articles, hub, newsletter), US spelling across the phase 2 generators, docs
+New: "What is AI-native engineering?" (the category guide), AI-native engineering vs AI coding tools, and Upcore vs building in-house, each honest about when the alternative is right. `/insights` is now the single hub for 29 guides, comparisons, frameworks and industry playbooks, with search, type filters and the newsletter (same FormSubmit endpoint). Still open: client case studies (need per-client details from Gaurav); the paid-campaign landing pages' footers still link to retired paths and rely on the 301s.
+
 ## 2026-10-07 — Phase 2: Security, Contact, AI Governance, Automation, AI Officer and segments rebuilt
 **Type:** design + content
 **Files:** `tools/v4-build/` (new `calm.py`, `build_security.py`, `build_contact.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_all.py`; `segments.py` rewritten; `chrome.py`: URL keys for every page, Insights/Contact/Security links from the map, `V` 14→15), the 9 generated pages, `css/upcore-v5.css` (`.sc-*`, `.dp-*`, `.ct-*`, `.gv-*`, `.bp-*`, `.fo-*`, shared block), `js/upcore-v5.js` (data-path explorer, contact form, segmented tabs, layer stack, Autonomy Ladder, portfolio verdicts), docs

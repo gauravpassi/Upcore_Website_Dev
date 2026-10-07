@@ -48,7 +48,7 @@ PHASES = [('Days 1&ndash;30', 'Diagnose &amp; decide', ['Every AI pilot, tool, v
           ('Days 61&ndash;90+', 'Deploy &amp; prove', ['The first initiative live with real users and real data', 'The second live, with usage and quality tracked against its KPI', 'Results compared with the baseline, and a 6&ndash;12 month plan for what scales next', 'Then monthly: portfolio management, adoption coaching and quarterly board reporting'])]
 ph = ''.join(f'<li class="fo-ph" data-reveal style="--d:{i}"><span class="fo-node" aria-hidden="true"></span><span class="fo-days">{d}</span><h3>{t}</h3><ul>{"".join(f"<li>{x}</li>" for x in items)}</ul></li>' for i, (d, t, items) in enumerate(PHASES))
 phases = f'''<section class="h-sec h-sec--alt" id="framework" aria-labelledby="ph-h"><div class="wrap">
-{K.head("What your AI Officer does", "From twenty pilots to the few that matter, in 90 days.", "ph-h", "Three phases, with a walk-away checkpoint at Day 30. Your AI Officer runs it with a coordinated Upcore team behind them: financial modelling, solution architecture and adoption.")}
+{K.head("What your AI Officer does", "From twenty pilots to the few that matter, in 90 days.", "ph-h", "Three phases, with a walk-away checkpoint at Day 30. Your AI Officer runs it with a coordinated Upcore team behind them: financial modeling, solution architecture and adoption.")}
 <ol class="fo-phases" data-reveal><span class="fo-rail" aria-hidden="true"><i></i></span>{ph}</ol>
 </div></section>'''
 
@@ -58,7 +58,7 @@ FOCUS = [('Strategy &amp; adoption', 'For COOs and CFOs with scattered pilots an
 foc = ''.join(f'<li data-reveal style="--d:{i}"><span class="fo-fn">0{i + 1}</span><h3>{t}</h3><p>{d}</p>{f"<a class=link href={u[0]}>{u[1]}</a>" if u else ""}</li>' for i, (t, d, u) in enumerate(FOCUS))
 focus = f'''<section class="h-sec h-sec--tight" aria-labelledby="foc-h"><div class="wrap ab-split">
 <div>{K.eyebrow("One role, two focuses")}<h2 id="foc-h" class="h-h2 h-h2--sm" data-reveal>Choose where your AI Officer starts.</h2>
-<p class="fo-side" data-reveal style="--d:1">Some organisations need both at once. One AI Officer can run either, or both.</p></div>
+<p class="fo-side" data-reveal style="--d:1">Some organizations need both at once. One AI Officer can run either, or both.</p></div>
 <ul class="fo-focus">{foc}</ul></div></section>'''
 
 # ------------------------------------------------------------------ 5. economics (#economics)
@@ -68,14 +68,14 @@ COST = [('Full-time Chief AI Officer', '$400,000&ndash;$750,000+', 'a year, plus
 bars = ''.join(f'<li class="fo-c{" is-us" if i == 2 else ""}" data-reveal style="--d:{i}"><span class="fo-cn">{n}</span><span class="fo-cb"><i style="--s:{a / b * 100:.1f}%;--b:{max(b / 750 * 100, 3.2):.1f}%"></i></span><span class="fo-cv"><b>{v}</b> {s}</span></li>' for i, (n, v, s, a, b) in enumerate(COST))
 CMP = [('Time to value', 'Six to twelve months to recruit, then build a team', 'A report, then they leave', 'First inventory in ten business days'),
        ('Accountability', 'One person, one context, no delivery team', 'Resets with every engagement', 'Owns portfolio outcomes, not a report'),
-       ('Longevity', 'Salary, equity and benefits, indefinitely', 'Recommendations die when the contract ends', 'Embedded in your organisation, through adoption'),
+       ('Longevity', 'Salary, equity and benefits, indefinitely', 'Recommendations die when the contract ends', 'Embedded in your organization, through adoption'),
        ('Track record', 'Hard to vet at the point of hire', 'Generalist advice, not accountable for delivery', 'A specialist in AI strategy and coordination')]
 COLS = ['Full-time hire', 'Consultancy', 'Fractional AI Officer']
 cmp_rows = ''.join(f'<div class="cmp-row" role="row" data-reveal style="--d:{i % 3}"><div class="cmp-k" role="rowheader">{k}</div>'
                    + ''.join(f'<div class="cmp-c{" is-us" if j == 2 else ""}" role="cell"><span class="cmp-l">{COLS[j]}</span>{v}</div>' for j, v in enumerate((a, b, c))) + '</div>'
                    for i, (k, a, b, c) in enumerate(CMP))
 econ = f'''<section class="h-sec" id="economics" aria-labelledby="eco-h"><div class="wrap">
-{K.head("The economics", "The role your organisation is missing, without the cost or the wait.", "eco-h", "The only price we publish. Exact pricing depends on your organisation&rsquo;s size and scope, and is confirmed in a written proposal after the discovery call.")}
+{K.head("The economics", "The role your organization is missing, without the cost or the wait.", "eco-h", "The only price we publish. Exact pricing depends on your organization&rsquo;s size and scope, and is confirmed in a written proposal after the discovery call.")}
 <ul class="fo-cost" data-reveal>{bars}</ul>
 <p class="fo-axis" aria-hidden="true"><span>Annual cost</span><span><span>$0</span><span>$750K+</span></span><span></span></p>
 <div class="cmp" role="table" aria-label="Full-time hire, consultancy and Fractional AI Officer compared">
@@ -84,7 +84,7 @@ econ = f'''<section class="h-sec" id="economics" aria-labelledby="eco-h"><div cl
 </div></section>'''
 
 # ------------------------------------------------------------------ 6. who you get + commitments
-WHO = [('A person, not a slide deck', 'A senior AI strategy specialist embedded across your organisation: runs the steering committee, owns the roadmap and coaches adoption.'),
+WHO = [('A person, not a slide deck', 'A senior AI strategy specialist embedded across your organization: runs the steering committee, owns the roadmap and coaches adoption.'),
        ('Background', 'Eight or more years in operations or delivery leadership, with AI implementation expertise, backed by a coordinated Upcore team.'),
        ('Time', 'Eight to twelve hours a week, dedicated: enough to run your steering cadence, track every initiative and report weekly.'),
        ('Named before you sign', 'You meet your AI Officer on the discovery call. If the fit isn&rsquo;t right, we find a better one.')]
@@ -103,15 +103,15 @@ engage = f'''<section class="h-sec h-sec--alt" id="engagement" aria-labelledby="
 <p class="gv-not"><b>What we don&rsquo;t guarantee:</b> a specific revenue increase, workforce reductions, perfect employee adoption or a vendor&rsquo;s own performance.</p></div>
 </div></section>'''
 
-FAQ = [('What is a Fractional AI Officer?', 'A specialist embedded in your organisation part-time, accountable for turning scattered AI pilots into two or three owned, measurable implementations. They run your steering committee, own the roadmap and stay accountable for adoption, without the cost or timeline of a full-time Chief AI Officer.'),
+FAQ = [('What is a Fractional AI Officer?', 'A specialist embedded in your organization part-time, accountable for turning scattered AI pilots into two or three owned, measurable implementations. They run your steering committee, own the roadmap and stay accountable for adoption, without the cost or timeline of a full-time Chief AI Officer.'),
        ('How fast can this start?', 'Ten business days to your first enterprise AI inventory. We interview your stakeholders and inventory every pilot, tool and vendor already in motion, with no recruitment cycle and no ramp period.'),
        ('What is in the 90 days?', 'By Day 30, a complete inventory, a value heatmap and a decision-grade portfolio report, and you may walk away. By Day 60, business cases, named owners and an approved architecture for each selected initiative. By Day 90, at least two implementations at their agreed milestones with real users and visible measurement.'),
        ('How is this different from hiring a Chief AI Officer or a consultancy?', 'A full-time Chief AI Officer costs $400,000&ndash;$750,000+ a year, plus the time to recruit and to build a delivery function underneath them. A consultancy delivers a report and leaves. A Fractional AI Officer runs the portfolio, gets the implementations built and stays accountable for adoption.'),
        ('Can the AI Officer govern our engineering teams&rsquo; use of AI too?', f'Yes. One AI Officer can focus on strategy and adoption, on AI engineering governance, or both. <a class="link" href="{C.URL["gov"]}">See AI Governance</a>.'),
-       ('What does it cost?', 'From $1,999 a month ($23,988 a year). The exact fee depends on your organisation&rsquo;s size and the scope of the portfolio, and is confirmed in a written proposal before anything starts.')]
+       ('What does it cost?', 'From $1,999 a month ($23,988 a year). The exact fee depends on your organization&rsquo;s size and the scope of the portfolio, and is confirmed in a written proposal before anything starts.')]
 faq = K.faq(FAQ, 'What leaders ask before they hire one.')
 final = K.final('Find the two AI initiatives <span class="hl">worth scaling.</span>',
-                'Book a 45-minute discovery call. We&rsquo;ll look at what AI is already running in your organisation and send a written plan, whether or not we work together.',
+                'Book a 45-minute discovery call. We&rsquo;ll look at what AI is already running in your organization and send a written plan, whether or not we work together.',
                 K.lp_alt('fractional-ai-officer', 'maturity'))
 
 page = '\n'.join([hero, gaps, phases, focus, econ, engage, faq, final])

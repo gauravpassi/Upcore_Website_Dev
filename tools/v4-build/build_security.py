@@ -60,7 +60,7 @@ hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Security')], 'Security &am
                     C.btn('hero', pulse=True) + pack_link('hero'), DPATH, micro='Security questions? We respond within 24 hours')
 
 # ------------------------------------------------------------------ 2. six short answers + certifications
-QA = [('Yes', 'Is Upcore ISO 27001 certified?', 'Yes. Upcore Technologies Pvt. Ltd. holds ISO 27001:2022 certification at organisation level, covering information security management across all delivery functions.'),
+QA = [('Yes', 'Is Upcore ISO 27001 certified?', 'Yes. Upcore Technologies Pvt. Ltd. holds ISO 27001:2022 certification at organization level, covering information security management across all delivery functions.'),
       ('Only with your permission', 'Does our code leave our environment?', 'Work happens in your repositories through OAuth-scoped access. No code is copied to Upcore servers, and snippets shared for analysis are not kept after the session.'),
       ('Named in your contract', 'Which AI providers process our data?', 'They are named in your Statement of Work and Data Processing Agreement before the engagement starts. We use enterprise-tier API agreements, and no provider we use trains on customer data.'),
       ('Yes', 'Can you sign a Business Associate Agreement?', 'Yes, for any engagement where protected health information may be in scope. Raise it on the discovery call and it is added to your contract package.'),
@@ -69,7 +69,7 @@ QA = [('Yes', 'Is Upcore ISO 27001 certified?', 'Yes. Upcore Technologies Pvt. L
 qa = ''.join(f'<details class="sc-q" data-reveal style="--d:{i % 3}"><summary><span class="sc-st">{s}</span><span class="sc-qt">{q}</span><span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{a}</p></div></details>' for i, (s, q, a) in enumerate(QA))
 CERTS = [('/images/accolades/light/iso27001.svg', 26, 'ISO 27001:2022', 'Information security management, covering client data handling, access control and incident response.', 'Certified, active'),
          ('/images/accolades/light/iso9001.svg', 26, 'ISO 9001:2015', 'Quality management: planning, monitoring and continual improvement across client delivery.', 'Certified, active'),
-         ('/images/accolades/light/cmmi.svg', 46, 'CMMI Level 3', 'Delivery processes are documented, standardised and applied the same way on every engagement.', 'Appraised, active')]
+         ('/images/accolades/light/cmmi.svg', 46, 'CMMI Level 3', 'Delivery processes are documented, standardized and applied the same way on every engagement.', 'Appraised, active')]
 certs = ''.join(f'<li data-reveal style="--d:{i}"><img src="{src}" alt="" width="{w}" height="26" /><b>{n}</b><p>{d}</p><span class="sc-ok">{st}</span></li>' for i, (src, w, n, d, st) in enumerate(CERTS))
 answers = f'''<section class="h-sec" id="answers" aria-labelledby="qa-h"><div class="wrap">
 {K.head("Quick reference", "Six questions from every CISO.", "qa-h", "Short answers first. Open any question for the detail.")}
@@ -103,7 +103,7 @@ ai = f'''<section class="h-sec" id="ai" aria-labelledby="ai-h"><div class="wrap 
 FW = [('EU AI Act', 'High-risk classification and documentation', 'We map your AI systems to the Act&rsquo;s high-risk categories, produce the conformity documentation and keep an AI system register aligned to Annex III. General obligations apply from 2 August 2026; high-risk obligations are due 2 December 2027.'),
       ('HIPAA', 'AI-written code near protected health information', 'Reviews make sure AI-written code doesn&rsquo;t open access-control or encryption gaps under &sect;164.312 in systems that touch PHI. A Business Associate Agreement is available.'),
       ('SOX', 'Audit trails for AI in financial systems', 'For public companies, our governance work produces the AI code audit trail your external auditors need under PCAOB AS 2201, so gaps are closed before the audit cycle.'),
-      ('GDPR', 'AI processing and data flows', 'AI-written code that processes personal data is reviewed for DPIA triggers, data minimisation and purpose limitation. EU client data is processed under Standard Contractual Clauses.'),
+      ('GDPR', 'AI processing and data flows', 'AI-written code that processes personal data is reviewed for DPIA triggers, data minimization and purpose limitation. EU client data is processed under Standard Contractual Clauses.'),
       ('ISO 42001', 'AI management systems', 'We align your AI governance with the international standard for AI management systems, useful if you are preparing for formal certification.'),
       ('OWASP LLM Top 10', 'Code-level controls', 'AI code reviews check against the OWASP Top 10 for LLM applications, including prompt injection, insecure output handling and supply-chain risks, with controls recorded per pull request.')]
 fw_tabs = ''.join(

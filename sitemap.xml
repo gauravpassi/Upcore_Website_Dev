@@ -12,7 +12,7 @@
     <loc>https://www.upcoretech.com/ai-engineering-governance</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/ai-operations</loc>
@@ -24,25 +24,25 @@
     <loc>https://www.upcoretech.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/security</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/platform</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-07-22</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/assessment</loc>
@@ -72,7 +72,7 @@
     <loc>https://www.upcoretech.com/learn/enterprise-ai-strategy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
 
   <!-- P3 Pages — Content Expansion Batch 3 -->
@@ -98,13 +98,13 @@
     <loc>https://www.upcoretech.com/learn/ai-data-governance</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-in-banking</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/hipaa-compliant-ai</loc>
@@ -116,13 +116,13 @@
     <loc>https://www.upcoretech.com/learn/ai-workforce-platform</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/top-ai-agent-platforms</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/learn/ai-agent-skills</loc>
@@ -136,25 +136,25 @@
     <loc>https://www.upcoretech.com/who-we-help/tech-software</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/who-we-help/ecommerce-retail</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/who-we-help/operations-heavy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/who-we-help/professional-services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/results</loc>
@@ -174,7 +174,7 @@
     <loc>https://www.upcoretech.com/insights</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-10-07</lastmod>
   </url>
   <url>
     <loc>https://www.upcoretech.com/insights/choosing-first-ai-agent</loc>
@@ -271,6 +271,24 @@
     <loc>https://www.upcoretech.com/fractional-ai-officer</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/learn/what-is-ai-native-engineering</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/compare/ai-native-engineering-vs-ai-coding-tools</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-10-07</lastmod>
+  </url>
+  <url>
+    <loc>https://www.upcoretech.com/compare/upcore-vs-building-in-house</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
     <lastmod>2026-10-07</lastmod>
   </url>
 </urlset>

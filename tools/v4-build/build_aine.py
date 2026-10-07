@@ -116,6 +116,7 @@ compare = f'''<section class="h-sec" id="compare" aria-labelledby="cmp-h"><div c
 <div class="cmp-row cmp-head" role="row"><div role="columnheader"><span class="sr">Question</span></div>{"".join(f'<div class="cmp-c{" is-us" if j == 2 else ""}" role="columnheader">{c}</div>' for j, c in enumerate(COLS))}</div>
 {cmp_rows}</div>
 <p class="cmp-note">Many of the tools are ones you already run. What we add is the installed process from day one, and the people who keep it working. A pilot measures it against your current process before you commit.</p>
+<p class="cmp-more"><a class="link" href="{C.URL["cmp-tools"]}">AI-native engineering vs AI coding tools</a><a class="link" href="{C.URL["cmp-inhouse"]}">Build it in-house, or bring in Upcore?</a><a class="link" href="{C.URL["guide-aine"]}">What is AI-native engineering?</a></p>
 </div></section>'''
 
 # ------------------------------------------------------------------ 4. the pod

@@ -460,6 +460,162 @@
     });
   });
 
+  /* @block security */
+  /* ------------------------------------------------------------ Security: data-path explorer (three setups, text swaps in place) */
+  $$('[data-dpath]').forEach(function (fig) {
+    var tabs = $$('.dp-tab', fig), swaps = $$('[data-std]', fig), cur = 0;
+    var show = function (i, focus) {
+      cur = (i + tabs.length) % tabs.length;
+      var m = tabs[cur].getAttribute('data-mode');
+      tabs.forEach(function (t, j) { var on = j === cur; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; });
+      fig.classList.toggle('is-eu', m === 'eu'); fig.classList.toggle('is-prem', m === 'prem');
+      swaps.forEach(function (el) {
+        var v = el.getAttribute('data-' + m);
+        if (v !== null && el.textContent !== v) { el.textContent = v; el.classList.remove('is-swap'); void el.offsetWidth; el.classList.add('is-swap'); }
+      });
+      if (focus) tabs[cur].focus();
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(cur + 1, true); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); show(cur - 1, true); }
+      });
+    });
+  });
+  /* @end security */
+
+  /* @block contact */
+  /* ------------------------------------------------------------ Contact: message form (FormSubmit, same endpoint and recipients as the old page) */
+  $$('[data-contact]').forEach(function (form) {
+    var wrap = form.parentNode, done = $('.ct-done', wrap), err = $('.ct-err', form), btn = $('.ct-send', form), bt = $('.ct-send-t', form);
+    var val = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
+    var fail = function () {
+      btn.disabled = false; bt.textContent = 'Send message';
+      err.innerHTML = 'Something went wrong. Please email us at <a href="mailto:gaurav@upcoretechnologies.com">gaurav@upcoretechnologies.com</a>.';
+      err.hidden = false;
+    };
+    form.addEventListener('input', function (e) { var f = e.target.closest('.ct-f, .ct-topics'); if (f) f.classList.remove('is-bad'); });
+    form.addEventListener('change', function (e) { var f = e.target.closest('.ct-topics'); if (f) f.classList.remove('is-bad'); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (val('_honey')) return;
+      var bad = [];
+      ['name', 'company', 'email'].forEach(function (n) {
+        var el = form.elements[n], v = el.value.trim();
+        var ok = n === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) : !!v;
+        el.parentNode.classList.toggle('is-bad', !ok);
+        if (!ok) bad.push(el);
+      });
+      var picked = form.querySelector('input[name="topic"]:checked'), topic = picked ? picked.value : '';
+      $('.ct-topics', form).classList.toggle('is-bad', !topic);
+      if (!topic) bad.push(form.querySelector('input[name="topic"]'));
+      if (bad.length) { err.textContent = 'Please complete the highlighted fields.'; err.hidden = false; bad[0].focus(); return; }
+      err.hidden = true; btn.disabled = true; bt.textContent = 'Sending…';
+      fetch('https://formsubmit.co/gaurav@upcoretechnologies.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _captcha: 'false', _template: 'table',
+          _subject: 'New Contact Form - ' + val('name') + ' · ' + val('company'),
+          _cc: 'saswata@upcoretechnologies.com',
+          'Name': val('name'), 'Company': val('company'), 'Email': val('email'),
+          'Interest': topic, 'Message': val('message'), 'Source': 'Contact Page Form'
+        })
+      }).then(function (r) {
+        if (!r.ok) throw new Error('status ' + r.status);
+        return r.json().catch(function () { return {}; });
+      }).then(function (j) {
+        if (j && (j.success === false || j.success === 'false')) throw new Error(j.message || 'not sent');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event_params: null });
+        window.dataLayer.push({ event: 'generate_lead', event_params: { lead_source: 'contact_form', topic: topic } });
+        form.hidden = true; done.hidden = false; done.focus();
+      }).catch(fail);
+    });
+  });
+  /* @end contact */
+
+  /* @block gov */
+  /* ------------------------------------------------------------ Segmented views (AI Governance hero, others): tabs swap panels; bars draw on show */
+  $$('[data-seg]').forEach(function (fig) {
+    var tabs = $$('.dp-tab', fig), panels = $$('.gv-p, [data-seg-panel]', fig), cur = 0;
+    var draw = function (p) { if (!p) return; requestAnimationFrame(function () { requestAnimationFrame(function () { p.classList.add('is-drawn'); }); }); };
+    var show = function (i, focus) {
+      cur = (i + tabs.length) % tabs.length;
+      tabs.forEach(function (t, j) { var on = j === cur; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); t.tabIndex = on ? 0 : -1; });
+      panels.forEach(function (p, j) { var on = j === cur; p.hidden = !on; p.classList.toggle('is-on', on); p.classList.remove('is-drawn'); });
+      draw(panels[cur]);
+      if (focus) tabs[cur].focus();
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); show(cur + 1, true); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); show(cur - 1, true); }
+      });
+    });
+    if (reduce) { panels.forEach(function (p) { p.classList.add('is-drawn'); }); return; }
+    onView(fig, function () { draw(panels[cur]); }, { threshold: 0.3 });
+  });
+
+  /* ------------------------------------------------------------ AI Governance: five-layer stack (accordion drives the isometric plates) */
+  $$('[data-layers]').forEach(function (root) {
+    var items = $$('.gv-l', root), plates = $$('.gv-plate', root);
+    var set = function (i) {
+      items.forEach(function (li, j) {
+        var on = j === i, b = $('button', li), p = $('.gv-lp', li);
+        li.classList.toggle('is-on', on); b.setAttribute('aria-expanded', on ? 'true' : 'false'); p.hidden = !on;
+      });
+      plates.forEach(function (g) { g.classList.toggle('is-on', +g.getAttribute('data-i') === i); });
+    };
+    items.forEach(function (li, i) {
+      $('button', li).addEventListener('click', function () { set(li.classList.contains('is-on') ? -1 : i); });
+    });
+    plates.forEach(function (g) {
+      g.addEventListener('click', function () { set(+g.getAttribute('data-i')); });
+      g.addEventListener('mouseenter', function () { if (!reduce) g.style.transform = g.classList.contains('is-on') ? '' : 'translateY(-6px)'; });
+      g.addEventListener('mouseleave', function () { g.style.transform = ''; });
+    });
+    set(0);
+  });
+  /* @end gov */
+
+  /* @block bpa */
+  /* ------------------------------------------------------------ Automation: Autonomy Ladder (choose a level; detail swaps from <template>s) */
+  $$('[data-ladder]').forEach(function (root) {
+    var btns = $$('.bp-lv', root), det = $('.bp-det', root), tpl = $$('template[data-lv]', root), cur = 2;
+    var set = function (i, focus, quiet) {
+      cur = clamp(i, 0, btns.length - 1);
+      btns.forEach(function (b, j) {
+        b.classList.toggle('is-on', j === cur); b.classList.toggle('is-below', j < cur);
+        b.setAttribute('aria-selected', j === cur ? 'true' : 'false'); b.tabIndex = j === cur ? 0 : -1;
+      });
+      if (!quiet && tpl[cur]) { det.innerHTML = tpl[cur].innerHTML; det.classList.remove('is-swap'); void det.offsetWidth; det.classList.add('is-swap'); }
+      if (focus) btns[cur].focus();
+    };
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { set(i); });
+      b.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); set(cur + 1, true); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); set(cur - 1, true); }
+      });
+    });
+    set(2, false, true);
+  });
+  /* @end bpa */
+
+  /* @block fao */
+  /* ------------------------------------------------------------ Fractional AI Officer: portfolio verdicts stamp in when seen; Replay restarts */
+  $$('[data-portfolio]').forEach(function (fig) {
+    var btn = $('.fo-toggle', fig);
+    var run = function () { fig.classList.remove('is-run'); void fig.offsetWidth; fig.classList.add('is-run'); };
+    if (reduce) { if (btn) btn.hidden = true; return; }
+    onView(fig, run, { threshold: 0.35 });
+    if (btn) btn.addEventListener('click', run);
+  });
+  /* @end fao */
+
   /* ------------------------------------------------------------ flowline (hero pipeline) */
   var NS = 'http://www.w3.org/2000/svg', uid = 0;
   function mk(n, a, p) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }

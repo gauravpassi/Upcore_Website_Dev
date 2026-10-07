@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 14          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 15          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 18    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
@@ -17,15 +17,20 @@ PREVIEW_URL = {
     'tech-software': '/preview/who-we-help-tech-software', 'ecommerce-retail': '/preview/who-we-help-ecommerce-retail',
     'operations-heavy': '/preview/who-we-help-operations-heavy', 'professional-services': '/preview/who-we-help-professional-services',
     'results': '/preview/results', '404': '/preview/404', 'about': '/preview/about',
+    'security': '/preview/security', 'contact': '/preview/contact', 'gov': '/preview/ai-engineering-governance', 'bpa': '/preview/platform', 'fao': '/preview/fractional-ai-officer',
+    'insights': '/preview/insights', 'guide-aine': '/preview/what-is-ai-native-engineering',
+    'cmp-tools': '/preview/ai-native-engineering-vs-ai-coding-tools', 'cmp-inhouse': '/preview/upcore-vs-building-in-house',
 }
 FINAL_URL = {
     'home': '/', 'aine': '/ai-native-engineering',
     'tech-software': '/who-we-help/tech-software', 'ecommerce-retail': '/who-we-help/ecommerce-retail',
     'operations-heavy': '/who-we-help/operations-heavy', 'professional-services': '/who-we-help/professional-services',
     'results': '/results', '404': '/404', 'about': '/about',
+    'security': '/security', 'contact': '/contact', 'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/fractional-ai-officer',
+    'insights': '/insights', 'guide-aine': '/learn/what-is-ai-native-engineering',
+    'cmp-tools': '/compare/ai-native-engineering-vs-ai-coding-tools', 'cmp-inhouse': '/compare/upcore-vs-building-in-house',
 }
 URL = dict(FINAL_URL if LIVE else PREVIEW_URL)
-URL.update({'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/fractional-ai-officer'})
 
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 ICON = {
@@ -72,7 +77,7 @@ def nav(active=''):
       <li><button type="button" aria-expanded="false" aria-controls="drop-solutions">Solutions {CHEV}</button><div class="drop" id="drop-solutions">{sol}</div></li>
       <li><button type="button" aria-expanded="false" aria-controls="drop-who">Who we help {CHEV}</button><div class="drop" id="drop-who">{seg}</div></li>
       <li><a href="{URL['results']}"{cur('results')}>Results</a></li>
-      <li><a href="/insights">Insights</a></li>
+      <li><a href="{URL['insights']}"{cur('insights')}>Insights</a></li>
       <li><a href="{URL['about']}"{cur('about')}>About</a></li>
     </ul></nav>
     <div class="nav-cta">
@@ -93,7 +98,7 @@ def footer():
       <nav class="foot-nav" aria-label="Footer">
         <div><h2 class="foot-h">Solutions</h2><ul>{sol}</ul></div>
         <div><h2 class="foot-h">Who we help</h2><ul>{seg}</ul></div>
-        <div><h2 class="foot-h">Company</h2><ul><li><a href="{URL['about']}">About</a></li><li><a href="/results">Results</a></li><li><a href="/insights">Insights</a></li><li><a href="/contact">Contact</a></li><li><a href="/security">Security</a></li></ul></div>
+        <div><h2 class="foot-h">Company</h2><ul><li><a href="{URL['about']}">About</a></li><li><a href="/results">Results</a></li><li><a href="{URL['insights']}">Insights</a></li><li><a href="{URL['contact']}">Contact</a></li><li><a href="{URL['security']}">Security</a></li></ul></div>
         <div><h2 class="foot-h">Legal</h2><ul><li><a href="/privacy">Privacy</a></li><li><a href="/terms">Terms</a></li><li><button type="button" class="foot-link" data-consent-open>Cookie settings</button></li></ul></div>
       </nav>
     </div>

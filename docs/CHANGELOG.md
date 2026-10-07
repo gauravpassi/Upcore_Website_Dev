@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-07 — Phase 2: Security, Contact, AI Governance, Automation, AI Officer and segments rebuilt
+**Type:** design + content
+**Files:** `tools/v4-build/` (new `calm.py`, `build_security.py`, `build_contact.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_all.py`; `segments.py` rewritten; `chrome.py`: URL keys for every page, Insights/Contact/Security links from the map, `V` 14→15), the 9 generated pages, `css/upcore-v5.css` (`.sc-*`, `.dp-*`, `.ct-*`, `.gv-*`, `.bp-*`, `.fo-*`, shared block), `js/upcore-v5.js` (data-path explorer, contact form, segmented tabs, layer stack, Autonomy Ladder, portfolio verdicts), docs
+Each page now has one interactive centrepiece and the calm layout: Security (data-path explorer), Contact (short form + three ways in), AI Governance (spend/tools/risks view, five-layer stack, 90-day plan with commitments), Business Process Automation (work queue, function tabs, Autonomy Ladder), Fractional AI Officer (portfolio verdicts, three phases, `#economics` with the only public price), and the four segment pages (trimmed: no marquee, framework diagrams or controls grid). Dropped on the way: the governance page's incident case studies, breach-cost maths and composite client scenarios; Studio/Forge/Workforce copy on `/platform`; the contact form's FormSubmit "confirmation" to the visitor's own address. Facts, commitments and prices are carried over unchanged; SOC 2 is not mentioned either way (founder direction).
+
 ## 2026-10-07 — Phase 2: About rebuilt in the calm style
 **Type:** content
 **Files:** `tools/v4-build/build_about.py` (new), `about.html` (now generated), `tools/v4-build/chrome.py` (`about` URL key, nav marks About as current, `V` 13→14), `css/upcore-v5.css` (`.ab-*`), `js/upcore-v5.js` (scroll-lit statement, convictions focus, map highlight), all generated pages rebuilt for the cache-buster, docs

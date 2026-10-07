@@ -31,7 +31,7 @@ Shared senders (all check `window.upcGTM` first):
 | `nav_menu_open` | V4 nav dropdowns | `menu` |
 | `faq_open` | FAQ `<details>` | `faq_question` |
 | `booking_modal_open` | booking modal | `cta_id`, `cta_section`, `page_path` |
-| `generate_lead` | booking email submitted (`lead_source: booking_modal`) or chat question sent (`lead_source: chat_widget`) | `lead_source` |
+| `generate_lead` | booking email submitted (`lead_source: booking_modal`), chat question sent (`lead_source: chat_widget`) or contact form sent (`lead_source: contact_form`, plus `topic`) | `lead_source`, `topic` |
 | `booking_email_skipped` | "Skip and go straight to the calendar" | |
 | `booking_calendar_view` | calendar shown after the email step | |
 | `booking_iframe_engaged` / `booking_iframe_navigated` | first interaction / navigation inside the scheduler | `seconds_to_engage`, `load_count` |

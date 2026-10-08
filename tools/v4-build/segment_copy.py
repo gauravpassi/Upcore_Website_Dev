@@ -2,15 +2,15 @@
 # Rules: only Upcore results from the live site / pre-read; industry stats carry a source URL; no prices.
 # Client names shown with Gaurav's approval (2026-10-07); the residential developer stays unnamed.
 
-P_RETAIL = ('60%+', 'Woolworths South Africa<br />~960 stores &middot; South Africa', 'Delivery-support tickets cut by more than 60% with a WhatsApp order-status agent, with 10,000+ queries automated every month.')
+P_RETAIL = ('60%+', 'National food &amp; fashion retailer<br />900+ stores &middot; South Africa', 'Delivery-support tickets cut by more than 60% with a WhatsApp order-status agent, with 10,000+ queries automated every month.')
 P_RE = ('~3 wks', 'Residential developer<br />India', 'Agents run bank and buyer document follow-ups on the client&rsquo;s own SOPs. Time to the first installment fell from 6&ndash;10 weeks to about 3.')
-P_COMPLIANCE = ('&asymp;$210K/yr', 'Global PCCS<br />Automotive compliance &middot; India', 'A compliance-check agent runs every check inside the team&rsquo;s own workflow, replacing roughly $210K (&#8377;2 crore) a year of licensed tooling.')
-P_WEALTH = ('~800', 'Mercury Wealth Management<br />FCA-regulated planner &middot; United Kingdom', 'Client, portfolio and compliance data unified into one 360&deg; view, with financial operations automated for around 800 clients under FCA-appropriate controls.')
-P_DENTAL = ('10', 'Rain Dental Implant Centers<br />9 states &middot; United States', 'Ten scheduling, intake and admin workflows automated across the network, plus a voice tool that turns clinicians&rsquo; dictation into notes and prescriptions. The client then hired us again.')
-P_DENTAL_ENG = ('Rehired', 'Rain Dental Implant Centers<br />9 states &middot; United States', 'Hired us twice: first for ten automated operational workflows and a clinician voice tool, then to add test and DevOps agents to their software release pipeline.')
-P_SAAS = ('In production', 'WorkWide by Quintica<br />Field-service SaaS &middot; South Africa', 'The client belongs to a ServiceNow Elite partner group. Our delivery agents for requirements, user stories and developer onboarding are built into the team&rsquo;s product workflow.')
-P_APP = ('4.9&#9733;', 'Barbr<br />Booking &amp; payments app &middot; United Kingdom', 'Built with AI-assisted engineering practices and live on both stores: 4.9&#9733; on the App Store (89 ratings), 4.5&#9733; on Google Play (5,000+ downloads).')
-P_BRIEF = ('70% faster', 'Fabulate<br />Creator-marketing SaaS &middot; Australia', 'A briefing agent turns scattered client material into structured, publishable campaign briefs. Brief creation became 70% faster.')
+P_COMPLIANCE = ('&asymp;$210K/yr', 'Automotive compliance services firm<br />India', 'A compliance-check agent runs every check inside the team&rsquo;s own workflow, replacing roughly $210K (&#8377;2 crore) a year of licensed tooling.')
+P_WEALTH = ('~800', 'FCA-regulated wealth management firm<br />United Kingdom', 'Client, portfolio and compliance data unified into one 360&deg; view, with financial operations automated for around 800 clients under FCA-appropriate controls.')
+P_DENTAL = ('10', 'Dental implant network<br />9 states &middot; United States', 'Ten scheduling, intake and admin workflows automated across the network, plus a voice tool that turns clinicians&rsquo; dictation into notes and prescriptions. The client then hired us again.')
+P_DENTAL_ENG = ('Rehired', 'Dental implant network<br />9 states &middot; United States', 'Hired us twice: first for ten automated operational workflows and a clinician voice tool, then to add test and DevOps agents to their software release pipeline.')
+P_SAAS = ('In production', 'Field-service SaaS company<br />South Africa', 'The client belongs to a ServiceNow Elite partner group. Our delivery agents for requirements, user stories and developer onboarding are built into the team&rsquo;s product workflow.')
+P_APP = ('4.9&#9733;', 'Booking &amp; payments app for barbers<br />United Kingdom', 'Built with AI-assisted engineering practices and live on both stores: 4.9&#9733; on the App Store (89 ratings), 4.5&#9733; on Google Play (5,000+ downloads).')
+P_BRIEF = ('70% faster', 'Creator-marketing SaaS<br />Australia', 'A briefing agent turns scattered client material into structured, publishable campaign briefs. Brief creation became 70% faster.')
 
 PATH_STD = [
     ('Discovery call', '45 minutes on your highest-volume workflows. You get a written plan: what to automate first, in what order, and what it should return.'),
@@ -58,12 +58,12 @@ COPY = {
         ('Product data', 'Missing dimensions and mismatched materials are found when a customer returns the item.', 'Gaps and inconsistencies are flagged and fixed before the product goes live.'),
         ('Ad spend', 'Wasted spend is found at the monthly review, after it has gone.', 'Problems are flagged the same day, with the fix suggested.'),
     ],
-    proof_h2='Results <span class="hl">in production.</span>', proof_lead='From retail and adjacent content work, measured in the client&rsquo;s own terms.',
+    proof_h2='Already live <span class="hl">in production.</span>', proof_lead='From retail and adjacent content work, measured in the client&rsquo;s own terms.',
     proof=[P_RETAIL, P_BRIEF],
     quotes='ops',
-    path_h2='Start with one workflow. <span class="ul-draw">See it work before you scale.</span>', path_lead='Order status is the natural first workflow: high volume, clear rules and results you can measure in weeks.',
+    path_h2='Start with one workflow. <span class="ul-draw">Scale what works.</span>', path_lead='Order status is the natural first workflow: high volume, clear rules and results you can measure in weeks.',
     path=PATH_STD,
-    faq_h2='What retail teams <span class="ul-draw">want to know.</span>',
+    faq_h2='Questions <span class="ul-draw">retail teams ask.</span>',
     faq=[
         ('Do we have to replace our helpdesk?', 'No. Agents work alongside Gorgias, Zendesk, Freshdesk or your own inbox, and connect to Shopify, WooCommerce, Magento, your ERP and your carriers through their APIs. We confirm exactly what connects on the discovery call.'),
         ('Can it handle bulky, made-to-order or white-glove delivery?', 'Yes, and that is where off-the-shelf tracking tools fall short. We connect to your production schedule, 3PL and delivery partners, so customers get real answers about build and delivery dates, not just a parcel tracking link.'),
@@ -71,7 +71,7 @@ COPY = {
         ('Can we go live before peak season?', 'Usually, if we start now. Our standard is a first agent live within 30 days of design sign-off. We run it on a share of conversations first, tune it to your policies and tone, then scale it up before the peak arrives.'),
         FAQ_DATA, FAQ_COST,
     ],
-    cta_h2='Get ready for your next peak <span class="hl">before it arrives.</span>',
+    cta_h2='Be ready <span class="hl">before your next peak.</span>',
     cta_p='Book a 45-minute discovery call. We&rsquo;ll look at your ticket mix, returns and ad accounts, and send you a written plan for the first agents to build.',
 ),
 # ------------------------------------------------------------------ OPERATIONS-HEAVY
@@ -105,12 +105,12 @@ COPY = {
         ('Status updates', 'Managers answer the same &ldquo;where are we?&rdquo; question all day.', 'Customers and partners get proactive updates from live data.'),
         ('Reporting', 'Someone spends Friday pulling numbers from four systems into a deck.', 'The weekly operations report is ready on Monday morning.'),
     ],
-    proof_h2='Operations work <span class="hl">already running on agents.</span>', proof_lead='From real estate, healthcare and compliance services.',
+    proof_h2='Already running <span class="hl">on agents.</span>', proof_lead='From real estate, healthcare and compliance services.',
     proof=[P_RE, P_DENTAL, P_COMPLIANCE],
     quotes='ops',
-    path_h2='Start with one workflow. <span class="ul-draw">See it work before you scale.</span>', path_lead='We pick the workflow with the most volume and the clearest rules, so the first result shows up quickly.',
+    path_h2='Start with one workflow. <span class="ul-draw">Scale what works.</span>', path_lead='We pick the workflow with the most volume and the clearest rules, so the first result shows up quickly.',
     path=PATH_STD,
-    faq_h2='What COOs <span class="ul-draw">want to know.</span>',
+    faq_h2='Questions <span class="ul-draw">COOs ask.</span>',
     faq=[
         ('Which systems do you work with?', 'We build on what you already run: CRMs such as Salesforce, HubSpot and Zoho; ERPs; email; WhatsApp; shared drives and industry systems. Agents connect through APIs where they exist and through email and documents where they don&rsquo;t.'),
         ('Does the AI make decisions on its own?', 'Only within the limits you set. Agents handle the repetitive work; anything above your thresholds, such as write-offs, exceptions or customer disputes, goes to a named person. Every action is logged.'),
@@ -135,7 +135,7 @@ COPY = {
     flow=dict(title='Client document agent', aria='Example: an agent builds a client checklist, requests documents, chases until complete, files them and flags exceptions for a professional.',
               steps=[('Checklist built', 'per client', False), ('Request sent', 'portal &amp; email', False), ('Reminders', 'until complete', False), ('Documents filed', 'right folder', False), ('Exceptions reviewed', 'professional', True), ('Ready for work', 'summary sent', False)],
               out=('Complete', 'client files, without anyone writing a reminder')),
-    pain=('Where the hours go', 'Professionals spend too little time <span class="ul-draw">with clients.</span>', 'Firms that automate the admin around their experts win on capacity and client experience.'),
+    pain=('Where the hours go', 'Admin is eating <span class="ul-draw">your client time.</span>', 'Firms that automate the admin around their experts win on capacity and client experience.'),
     stats=[
         ('33%', 'of a UK financial adviser&rsquo;s day is spent with clients; 51% is seen as ideal', 'Fidelity IFA DNA via IFA Magazine', 'https://ifamagazine.com/fidelity-research-shows-advisers-only-spend-one-third-of-their-day-with-clients-and-ai-could-unlock-the-ideal-workday/'),
         ('38%', 'of an adviser&rsquo;s day goes to reports, compliance and admin', 'Fidelity IFA DNA via IFA Magazine', 'https://ifamagazine.com/fidelity-research-shows-advisers-only-spend-one-third-of-their-day-with-clients-and-ai-could-unlock-the-ideal-workday/'),
@@ -152,12 +152,12 @@ COPY = {
         ('Reviews and deadlines', 'Review packs and deadlines depend on someone remembering and preparing them by hand.', 'Every deadline is tracked and every review pack is drafted in advance for the professional to finalize.'),
         ('Billing', 'Time and billing narratives are reconstructed from memory at month-end.', 'Draft entries come from real activity; professionals edit and approve.'),
     ],
-    proof_h2='The same patterns, <span class="hl">already in production.</span>', proof_lead='We haven&rsquo;t published an accounting or law case study yet. These are our closest engagements, and first firms in each sector get a pilot built around their own workflow.',
+    proof_h2='Our closest work, <span class="hl">already live.</span>', proof_lead='We haven&rsquo;t published an accounting or law case study yet. These are our closest engagements, and first firms in each sector get a pilot built around their own workflow.',
     proof=[P_WEALTH, P_RE, P_COMPLIANCE],
     quotes='ops',
-    path_h2='Prove it on one workflow <span class="ul-draw">before you commit.</span>', path_lead='Pilots are scoped around a single high-volume workflow, such as document collection or review prep, with success measures agreed up front.',
+    path_h2='Prove it on <span class="ul-draw">one workflow first.</span>', path_lead='Pilots are scoped around a single high-volume workflow, such as document collection or review prep, with success measures agreed up front.',
     path=PATH_STD,
-    faq_h2='What firms <span class="ul-draw">want to know.</span>',
+    faq_h2='Questions <span class="ul-draw">firms ask.</span>',
     faq=[
         ('Does the AI give professional advice?', 'No. Agents capture, chase, draft, check and remind. Accounting judgments, legal advice and financial recommendations stay with your qualified people, who approve anything that reaches a client, a court or a regulator.'),
         ('How do you stop AI from making things up?', 'Agents work from your documents and records, not general knowledge. Every item they flag points to its source, outputs are logged, and anything they can&rsquo;t ground in a source is raised as a question, not an answer.'),
@@ -166,7 +166,7 @@ COPY = {
         ('UK advice firms: can it help with FCA Consumer Duty?', 'Yes. For advice firms we can assemble the client-outcome data your board report needs from your back-office system, and prepare review packs in advance of each client review.'),
         FAQ_COST,
     ],
-    cta_h2='Give your professionals back <span class="hl">the hours admin takes.</span>',
+    cta_h2='Give your people <span class="hl">their hours back.</span>',
     cta_p='Book a 45-minute discovery call. We&rsquo;ll map the workflows costing your firm the most non-billable time and send you a written automation plan.',
 ),
 # ------------------------------------------------------------------ TECH & SOFTWARE
@@ -178,7 +178,7 @@ COPY = {
     title='AI for Software Companies: Delivery, Spend &amp; Risk | Upcore',
     meta='For CTOs and CIOs: a governed AI delivery pipeline, AI spend and risk controls, and delivery agents built into Jira or Linear, GitHub and CI/CD.',
     eyebrow='For CTOs and CIOs of 50&ndash;500-engineer companies',
-    h1='Ship AI-written code <span class="hl">your architects can sign off on.</span>',
+    h1='Ship AI-written code <span class="hl">your architects trust.</span>',
     lead='Your engineers already use Copilot, Cursor and Claude. Upcore adds what is missing: a governed delivery process with architecture guardrails and automated gates, visibility of AI spend and risk, and delivery agents built into the tools your teams already run.',
     hero_link='See how we help',
     chips=['Jira or Linear, GitHub, CI/CD', 'Claude Certified Architect-led'],
@@ -196,14 +196,14 @@ COPY = {
     ],
     ink=1,
     ba_cols=('Today', 'With Upcore'),
-    ba_h2='What changes for engineering leadership.',
+    ba_h2='What changes for your engineering leaders.',
     ba=[
         ('Review', 'Every AI-written pull request needs a senior engineer&rsquo;s full attention.', 'Automated architecture, security and coverage gates catch issues before a person reviews; people focus on what is genuinely risky.'),
         ('Visibility', 'Nobody can say what AI tools cost per team, or what they changed.', 'Spend, gate results and deviations are on one dashboard you can take to the board.'),
         ('Releases', 'AI-generated changes ship with the same risk as hand-written ones, or more.', 'Changes go out behind feature flags, monitored for errors, latency and cost, then promoted or rolled back.'),
         ('Knowledge', 'Decisions live in pull-request comments and are forgotten.', 'Tickets, decisions and incidents are linked automatically for the next spec.'),
     ],
-    proof_h2='Engineering work <span class="hl">in production.</span>', proof_lead='Led by a Claude Certified Architect, with a Claude-certified engineering team.',
+    proof_h2='Already live <span class="hl">in production.</span>', proof_lead='Led by a Claude Certified Architect, with a Claude-certified engineering team.',
     proof=[P_SAAS, P_APP, P_DENTAL_ENG],
     quotes='eng',
     path_h2='Start with a pilot. <span class="ul-draw">Expand on results.</span>', path_lead='No price list: the model below is scoped to your organization after the discovery call.',
@@ -212,7 +212,7 @@ COPY = {
         ('One-time implementation', 'A fixed fee, scaled to the teams and repositories in scope: pipeline, gates, templates, dashboard and training.'),
         ('Monthly retainer', 'An embedded Claude Certified Architect who maintains your architecture rules, tunes gates and reviews high-risk deviations.'),
     ],
-    faq_h2='What CTOs <span class="ul-draw">want to know.</span>',
+    faq_h2='Questions <span class="ul-draw">CTOs ask.</span>',
     faq_lead='Not covered here? Ask us on the discovery call.',
     faq=[
         ('Can you show us what our AI tools cost today?', 'Yes, where your AI tools expose usage and billing data. The governance dashboard breaks down AI tool and token spend by team and user, so you can see where spend produces output and where it doesn&rsquo;t.'),
@@ -222,7 +222,7 @@ COPY = {
         ('How do you handle security and IP?', 'Code stays in your repositories and builds run in your environments. Security scanning is a mandatory gate. See the enterprise controls above for certifications and data handling.'),
         FAQ_COST,
     ],
-    cta_h2='Make AI-written code something <span class="hl">you can trust in production.</span>',
+    cta_h2='Trust every AI-written change <span class="hl">you ship.</span>',
     cta_p='Book a 45-minute discovery call. We&rsquo;ll review your current delivery process and outline what a pilot on one team would look like.',
 ),
 }

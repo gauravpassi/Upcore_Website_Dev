@@ -33,7 +33,7 @@ DASH = f'''<figure class="gv-dash" data-seg>
 <figcaption><span>Example with illustrative data</span></figcaption>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'AI Governance')], 'AI Governance &middot; for CTOs, CISOs and CFOs',
-                    'Know what AI costs, what it touches <span class="hl">and who signed off.</span>',
+                    'Every AI tool. Every cost. <span class="hl">Every sign-off.</span>',
                     'Your teams already use Copilot, Cursor, ChatGPT and Claude. We give you an inventory of every AI tool, spend by team, controls that keep sensitive data out, security checks on AI-written code and an audit trail your board can rely on.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#plan">See the 90-day plan</a>', DASH)
 
@@ -74,7 +74,7 @@ acc = ''.join(
     f'<div class="gv-lp" id="gv-l{i}" role="region" aria-labelledby="gv-lb{i}"{"" if i == 0 else " hidden"}><p>{d}</p><ul>{"".join(f"<li>{x}</li>" for x in items)}</ul></div></li>'
     for i, (n, s, d, items) in enumerate(LAYERS))
 stack = f'''<section class="h-sec h-sec--alt" id="framework" aria-labelledby="fw-h"><div class="wrap">
-{K.head("What we install", "Five layers, one owner, across the whole AI lifecycle.", "fw-h", "Each layer runs inside the tools you already use: your IDEs, Git, CI/CD and monitoring. Choose a layer to see what it covers.")}
+{K.head("What we install", "Five layers. One owner. Full control.", "fw-h", "Each layer runs inside the tools you already use: your IDEs, Git, CI/CD and monitoring. Choose a layer to see what it covers.")}
 <div class="gv-fw" data-layers><div class="gv-fig" data-reveal="scale">{STACK}</div><ol class="gv-acc">{acc}</ol></div>
 </div></section>'''
 
@@ -88,7 +88,7 @@ COMMIT = ['Your governance environment is visible within 72 hours of access bein
           'If the agreed controls are not in place by Day 90 for reasons within our control, we keep working at no extra management fee.']
 commit = ''.join(f'<li data-reveal style="--d:{i}">{c}</li>' for i, c in enumerate(COMMIT))
 plan = f'''<section class="h-sec" id="plan" aria-labelledby="plan-h"><div class="wrap">
-{K.head("The 90-day plan", "A plan your board, auditor and CTO can stand behind.", "plan-h", "Ninety days with a walk-away checkpoint at Day 30. After Day 90 the work moves from implementation to monthly oversight: new tool approvals, quarterly compliance reports and board summaries.")}
+{K.head("The 90-day plan", "A plan your board, auditor and CTO can back.", "plan-h", "Ninety days with a walk-away checkpoint at Day 30. After Day 90 the work moves from implementation to monthly oversight: new tool approvals, quarterly compliance reports and board summaries.")}
 {FL.timeline(PLAN)}
 <div class="gv-commit"><div><p class="h-col">What we commit to</p><p class="gv-cnote">Each commitment depends on you giving us the access, decisions and feedback we ask for on time.</p></div>
 <ol class="gv-clist">{commit}</ol>
@@ -112,7 +112,7 @@ FAQ = [('How is this different from the security scanners we already run?', 'SAS
        ('Can our team run it, or do you run it for us?', 'Either. Done with you: your team leads and we guide, train and co-design, with full knowledge transfer. Done for you: you give us access, your AI tool list and your compliance obligations, and we audit, install, observe and report. One person is accountable in both.'),
        ('How does this relate to AI-Native Engineering?', f'AI Governance controls the AI your teams already use, across engineering and beyond. <a class="link" href="{C.URL["aine"]}">AI-Native Engineering</a> installs a complete governed delivery pipeline, from spec to production, with these controls built in. You can start with either.'),
        ('What does it cost?', f'AI Governance runs as a Fractional AI Officer engagement on a monthly fee, scoped to your organization&rsquo;s size and how hands-on you want us to be. <a class="link" href="{C.URL["fao"]}#economics">See Fractional AI Officer pricing</a>. You get a written proposal before anything starts.')]
-faq = K.faq(FAQ, 'What engineering and security leaders ask.')
+faq = K.faq(FAQ, 'Questions security leaders ask.')
 final = K.final('Get AI spend, data and code <span class="hl">under control in 90 days.</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll map where AI is already used in your organization and send a written plan, whether or not we work together.',
                 K.lp_alt('ai-governance', 'gov'))

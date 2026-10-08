@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-08 — Fractional FDE page, headline pass, smoother scrolling, no client names, team headshots
+**Type:** feature + content + design + fix
+**Files:** `tools/v4-build/build_fde.py` (new), `chrome.py` (fifth solution, `V` 22, `CHAT_V` 20), `build_home.py`, `build_about.py`, `build_aine.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_security.py`, `build_insights.py`, `build_results.py`, `segment_copy.py`, `cases.py`, `v4parts.py`, `api/chat.js`, `chat-widget.js`, `lp/*.html`, `images/team/*.jpg` (new), `css/upcore-v5.css` (`island`, `smooth`, `fde`), `js/upcore-v5.js`, `vercel.json`, `sitemap.xml`, all generated pages
+New `/forward-deployed-engineer` (Fractional FDE) as the fifth solution. Headlines rewritten across the marketing pages: shorter, benefit-first, no new claims. Scrolling: no backdrop blur on the island, no size changes on mobile, scroll handlers once per frame, headings fade instead of sliding word by word (measured: desktop long frames 5 → 0, mobile layout shifts 14 → 0). The island no longer shows section names. Every real client name is gone from the site (descriptors only). About shows consistent headshots of the three leaders instead of initials.
+
 ## 2026-10-08 — Website assistant live on dev; model discovery
 **Type:** fix + infra
 **Files:** `api/chat.js`, `docs/FEATURES.md`

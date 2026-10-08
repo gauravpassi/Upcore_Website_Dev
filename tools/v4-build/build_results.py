@@ -76,8 +76,8 @@ n_eng = sum('engineering' in c['tags'] for c in CASES)
 chips = (f'<button type="button" class="hb-chip is-on" data-filter="all" aria-pressed="true">All <span>{len(CASES)}</span></button>'
          f'<button type="button" class="hb-chip" data-filter="automation" aria-pressed="false">Automation <span>{n_auto}</span></button>'
          f'<button type="button" class="hb-chip" data-filter="engineering" aria-pressed="false">Engineering <span>{n_eng}</span></button>')
-index = ''.join(f'<li data-tags="{" ".join(c["tags"])}"><a href="#{c["key"]}"><span class="cx-ix-n">{i + 1:02d}</span><b>{c["short"] if SHOW_NAMES else c["meta"].split(" &middot; ")[0]}</b><em>{c["n"]}</em></a></li>' for i, c in enumerate(CASES))
-names = 'Client context is from public sources; results are as reported from our engagements.' if SHOW_NAMES else 'Client names are withheld; ask us for a reference call.'
+index = ''.join(f'<li data-tags="{" ".join(c["tags"])}"><a href="#{c["key"]}"><span class="cx-ix-n">{i + 1:02d}</span><b>{c["short"]}</b><em>{c["n"]}</em></a></li>' for i, c in enumerate(CASES))
+names = 'Client names are withheld; ask us for a reference call.'
 hero = K.hero_page([(C.URL['home'], 'Home'), (None, 'Results')], 'Results &amp; case studies',
                    'AI in production, <span class="hl">not in a slide deck.</span>',
                    f'Ten engagements in engineering and automation, for clients in the US, UK, South Africa, Australia, Mauritius and India. {names}')
@@ -94,12 +94,12 @@ quotes = ''.join(f'<figure class="cx-q" data-reveal style="--d:{i % 2}"><span cl
 words = f'''<section class="h-sec cx-words" aria-labelledby="q-h"><div class="wrap">
 {K.eyebrow("In their words")}<h2 id="q-h" class="h-h2" data-reveal>What clients say.</h2>
 <div class="cx-quotes">{quotes}</div>{QUOTE_LINKS}</div></section>'''
-final = K.final('Want results like these <span class="hl">on your team?</span>',
+final = K.final('Want results <span class="hl">like these?</span>',
                 'Book a 45-minute discovery call. You&rsquo;ll get a written plan, whether or not we work together.')
 
 ld = C.graph('results', [{'@type': 'ItemList', 'name': 'Upcore case studies', 'numberOfItems': len(CASES),
                           'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'url': C.SITE + C.FINAL_URL['results'] + '#' + c['key'],
-                                               'name': c['name'] if SHOW_NAMES else c['meta'].replace('&middot;', '·').replace('&amp;', '&')} for i, c in enumerate(CASES)]}], crumb='Results')
+                                               'name': c['name'].replace('&amp;', '&')} for i, c in enumerate(CASES)]}], crumb='Results')
 print('results', C.write('results.html', 'results', 'Case Studies: AI Engineering &amp; Automation | Upcore',
-      'Ten client case studies, including Woolworths South Africa, Global PCCS, Rain Dental and Mercury Wealth: the challenge, what we built and the result.',
+      'Ten client case studies, from a national retailer and a US dental network to a UK wealth firm: the challenge, what we built and the result.',
       '\n'.join([hero, idx, cases, fine, words, final]), active='results', ld=ld, group='results', spine=False, main_cls='is-calm', annc_kind=C.ANNC_ENG))

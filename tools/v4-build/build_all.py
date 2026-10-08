@@ -4,7 +4,7 @@ two quiz landing pages (lp_chrome.py). Run from the repo root: python tools/v4-b
 import os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-BUILDERS = ['build_home.py', 'build_aine.py', 'build_gov.py', 'build_bpa.py', 'build_fao.py', 'segments.py',
+BUILDERS = ['build_home.py', 'build_aine.py', 'build_gov.py', 'build_bpa.py', 'build_fao.py', 'build_fde.py', 'segments.py',
             'build_results.py', 'build_about.py', 'build_security.py', 'build_contact.py', 'build_booking.py', 'build_404.py',
             'build_guide.py', 'build_compare.py', 'build_library.py', 'build_insights.py', 'lp_chrome.py']
 

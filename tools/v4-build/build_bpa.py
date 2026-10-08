@@ -31,7 +31,7 @@ QUEUE = f'''<figure class="dash" data-dash>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle dash-toggle" type="button" aria-label="Pause animation">Pause</button></figcaption>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Business Process Automation')], 'Business Process Automation &middot; for COOs and operations leaders',
-                    'AI agents that do the chasing, <span class="hl">with people approving what matters.</span>',
+                    'AI agents do the busywork. <span class="hl">Your people make the calls.</span>',
                     'We build agents that run the repetitive work in support, operations and finance: answering status questions, chasing documents and payments, checking files against your rules and keeping records current, inside the systems you already use.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#workflows">See what we automate</a>', QUEUE,
                     micro='Our standard: a first agent live within 30 days of design sign-off')
@@ -89,11 +89,11 @@ RES = [('Automation', S.P_RETAIL[0], 'fewer delivery-support tickets, with 10,00
        ('Automation', S.P_RE[0], 'to the first installment, down from 6&ndash;10 weeks', strip(S.P_RE[1])),
        ('Automation', S.P_COMPLIANCE[0], 'of licensed compliance tooling replaced by an agent', strip(S.P_COMPLIANCE[1]))]
 q = TESTIMONIALS['ops'][0]
-results = K.results_band('Results', 'Operations work already running on agents.', RES, quote=(q[0], q[1]))
+results = K.results_band('Results', 'Already running on agents.', RES, quote=(q[0], q[1]))
 
 # ------------------------------------------------------------------ 5. how engagements work
 engage = f'''<section class="h-sec" id="engagement" aria-labelledby="eng-h"><div class="wrap">
-{K.head("How engagements work", "Start with one workflow. See it work before you scale.", "eng-h", "We pick the workflow with the most volume and the clearest rules, so the first result shows up quickly. Our standard is a first agent live within 30 days of design sign-off, and each further agent reuses the same connections.")}
+{K.head("How engagements work", "Start with one workflow. Scale what works.", "eng-h", "We pick the workflow with the most volume and the clearest rules, so the first result shows up quickly. Our standard is a first agent live within 30 days of design sign-off, and each further agent reuses the same connections.")}
 {FL.timeline(S.PATH_STD)}
 </div></section>'''
 
@@ -111,14 +111,14 @@ SEGS = [('ecommerce-retail', 'Ecommerce &amp; Retail', 'Order status, returns, c
         ('tech-software', 'Tech &amp; Software', 'Governed AI delivery for engineering teams')]
 segs = ''.join(f'<li><a href="{C.URL[k]}"><b>{t}</b><span>{d}</span><i aria-hidden="true">{C.ARROW}</i></a></li>' for k, t, d in SEGS)
 who = f'''<section class="h-sec h-sec--tight" aria-labelledby="who-h"><div class="wrap ab-split">
-<div>{K.eyebrow("Who we help")}<h2 id="who-h" class="h-h2 h-h2--sm" data-reveal>See the workflows for your kind of business.</h2></div>
+<div>{K.eyebrow("Who we help")}<h2 id="who-h" class="h-h2 h-h2--sm" data-reveal>Find the workflows for your industry.</h2></div>
 <div class="h-router h-router--one"><ul>{segs}</ul></div></div></section>'''
 
 FAQ = [('Which systems do you work with?', 'We build on what you already run: CRMs such as Salesforce, HubSpot and Zoho; ERPs; helpdesks; email; WhatsApp; shared drives and industry systems. Agents connect through APIs where they exist and through email and documents where they don&rsquo;t.'),
        ('Does the AI make decisions on its own?', 'Only within the limits you set. Agents handle the repetitive work; anything above your thresholds, such as write-offs, exceptions or customer disputes, goes to a named person. Every action is logged.'),
        ('Who runs this after go-live?', 'We do, with your team. A monthly retainer covers monitoring, tuning and new workflows, and your team is trained to understand and own what has been built.'),
        S.FAQ_DATA, S.FAQ_SPEED, S.FAQ_COST]
-faq = K.faq(FAQ, 'What operations leaders ask.')
+faq = K.faq(FAQ, 'Questions operations leaders ask.')
 final = K.final('Find the three processes <span class="hl">worth automating first.</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll map your highest-volume workflows and send a written plan: what to automate, in what order, and what it should return.',
                 K.lp_alt('platform', 'maturity'))

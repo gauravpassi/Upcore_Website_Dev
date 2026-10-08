@@ -25,7 +25,7 @@ PORTFOLIO = f'''<figure class="fo-port" data-portfolio>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle fo-toggle" type="button" aria-label="Replay animation">Replay</button></figcaption>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional AI Officer')], 'Fractional AI Officer &middot; for COOs, CFOs and CEOs',
-                    'One accountable owner for your AI, <span class="hl">without a full-time hire.</span>',
+                    'One owner for your AI. <span class="hl">No full-time hire.</span>',
                     'An embedded AI lead on retainer. Your Fractional AI Officer inventories every AI pilot and tool, picks the two or three worth scaling and stays accountable until they are live and used. From $1,999 a month.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#economics">See the economics</a>', PORTFOLIO,
                     micro=f'Not ready for a call? <a href="/lp/ai-maturity-index?utm_source=website&amp;utm_medium=fractional-ai-officer&amp;utm_campaign=hero_secondary">Get your AI Maturity Score in 2 minutes</a>')
@@ -48,7 +48,7 @@ PHASES = [('Days 1&ndash;30', 'Diagnose &amp; decide', ['Every AI pilot, tool, v
           ('Days 61&ndash;90+', 'Deploy &amp; prove', ['The first initiative live with real users and real data', 'The second live, with usage and quality tracked against its KPI', 'Results compared with the baseline, and a 6&ndash;12 month plan for what scales next', 'Then monthly: portfolio management, adoption coaching and quarterly board reporting'])]
 ph = ''.join(f'<li class="fo-ph" data-reveal style="--d:{i}"><span class="fo-node" aria-hidden="true"></span><span class="fo-days">{d}</span><h3>{t}</h3><ul>{"".join(f"<li>{x}</li>" for x in items)}</ul></li>' for i, (d, t, items) in enumerate(PHASES))
 phases = f'''<section class="h-sec h-sec--alt" id="framework" aria-labelledby="ph-h"><div class="wrap">
-{K.head("What your AI Officer does", "From twenty pilots to the few that matter, in 90 days.", "ph-h", "Three phases, with a walk-away checkpoint at Day 30. Your AI Officer runs it with a coordinated Upcore team behind them: financial modeling, solution architecture and adoption.")}
+{K.head("What your AI Officer does", "From twenty pilots to the few that pay off, in 90 days.", "ph-h", "Three phases, with a walk-away checkpoint at Day 30. Your AI Officer runs it with a coordinated Upcore team behind them: financial modeling, solution architecture and adoption.")}
 <ol class="fo-phases" data-reveal><span class="fo-rail" aria-hidden="true"><i></i></span>{ph}</ol>
 </div></section>'''
 
@@ -75,7 +75,7 @@ cmp_rows = ''.join(f'<div class="cmp-row" role="row" data-reveal style="--d:{i %
                    + ''.join(f'<div class="cmp-c{" is-us" if j == 2 else ""}" role="cell"><span class="cmp-l">{COLS[j]}</span>{v}</div>' for j, v in enumerate((a, b, c))) + '</div>'
                    for i, (k, a, b, c) in enumerate(CMP))
 econ = f'''<section class="h-sec" id="economics" aria-labelledby="eco-h"><div class="wrap">
-{K.head("The economics", "The role your organization is missing, without the cost or the wait.", "eco-h", "The only price we publish. Exact pricing depends on your organization&rsquo;s size and scope, and is confirmed in a written proposal after the discovery call.")}
+{K.head("The economics", "The AI leader you need, at a fraction of the cost.", "eco-h", "The only price we publish. Exact pricing depends on your organization&rsquo;s size and scope, and is confirmed in a written proposal after the discovery call.")}
 <ul class="fo-cost" data-reveal>{bars}</ul>
 <p class="fo-axis" aria-hidden="true"><span>Annual cost</span><span><span>$0</span><span>$750K+</span></span><span></span></p>
 <div class="cmp" role="table" aria-label="Full-time hire, consultancy and Fractional AI Officer compared">
@@ -109,7 +109,7 @@ FAQ = [('What is a Fractional AI Officer?', 'A specialist embedded in your organ
        ('How is this different from hiring a Chief AI Officer or a consultancy?', 'A full-time Chief AI Officer costs $400,000&ndash;$750,000+ a year, plus the time to recruit and to build a delivery function underneath them. A consultancy delivers a report and leaves. A Fractional AI Officer runs the portfolio, gets the implementations built and stays accountable for adoption.'),
        ('Can the AI Officer govern our engineering teams&rsquo; use of AI too?', f'Yes. One AI Officer can focus on strategy and adoption, on AI engineering governance, or both. <a class="link" href="{C.URL["gov"]}">See AI Governance</a>.'),
        ('What does it cost?', 'From $1,999 a month ($23,988 a year). The exact fee depends on your organization&rsquo;s size and the scope of the portfolio, and is confirmed in a written proposal before anything starts.')]
-faq = K.faq(FAQ, 'What leaders ask before they hire one.')
+faq = K.faq(FAQ, 'Questions before you hire one.')
 final = K.final('Find the two AI initiatives <span class="hl">worth scaling.</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll look at what AI is already running in your organization and send a written plan, whether or not we work together.',
                 K.lp_alt('fractional-ai-officer', 'maturity'))

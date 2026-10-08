@@ -24,9 +24,10 @@
     '/ai-native-engineering': ['How is this different from Copilot or Cursor?', 'What happens in a pilot?', 'Who decides what merges?', 'What does it cost?'],
     '/ai-engineering-governance': ['What does AI Governance include?', 'What happens in the first 30 days?', 'Can we see our AI spend by team?', 'What does it cost?'],
     '/platform': ['Which workflows can you automate?', 'How fast can a first agent go live?', 'Do agents act on their own?', 'Which systems do you connect to?'],
+    '/forward-deployed-engineer': ['What does a Forward Deployed Engineer do?', 'How is this different from an agency?', 'What would our FDE build first?', 'How do we start?'],
     '/fractional-ai-officer': ['What does a Fractional AI Officer do?', 'How is it different from a full-time hire?', 'What happens in 90 days?', 'What does it cost?'],
     '/security': ['Does our code leave our environment?', 'Which AI providers process our data?', 'Can you sign a BAA?', 'Can we use our own model?'],
-    '/results': ['Which result is closest to an ecommerce brand?', 'What did you build for Woolworths?', 'Do you have healthcare examples?', 'Can we speak to a reference?'],
+    '/results': ['Which result is closest to an ecommerce brand?', 'What did you build for a retailer?', 'Do you have healthcare examples?', 'Can we speak to a reference?'],
     '/contact': ['What happens on a discovery call?', 'Can we sign an NDA first?', 'Which time zones do you work in?'],
     '/about': ['Who leads Upcore?', 'Where is your team based?', 'What certifications do you hold?']
   };
@@ -52,8 +53,8 @@
       a: 'We build AI agents that run repetitive support, operations, finance and sales work inside your CRM, ERP, helpdesk, email and WhatsApp, with people approving what matters. Our standard is a first agent live within 30 days of design sign-off. [Business Process Automation](/platform)' },
     { k: ['fractional', 'officer', 'caio', 'chief ai', 'strategy', 'roadmap', 'portfolio', 'pilots'],
       a: 'A Fractional AI Officer is an embedded AI lead on retainer, from $1,999 a month. They inventory every AI pilot and tool, pick the two or three worth scaling and stay accountable until they are live and used, with a Day-30 walk-away. [Fractional AI Officer](/fractional-ai-officer)' },
-    { k: ['result', 'case', 'client', 'example', 'proof', 'reference', 'woolworths', 'worked with'],
-      a: 'A few examples: Woolworths South Africa cut delivery-support tickets by more than 60%; Global PCCS replaced about $210K a year of licensed tooling; a residential developer cut time to first installment from 6–10 weeks to about 3. [All ten case studies](/results)' },
+    { k: ['result', 'case', 'client', 'example', 'proof', 'reference', 'retailer', 'worked with'],
+      a: 'A few examples: a national retailer cut delivery-support tickets by more than 60%; an automotive compliance firm replaced about $210K a year of licensed tooling; a residential developer cut time to first installment from 6–10 weeks to about 3. [All ten case studies](/results)' },
     { k: ['how fast', 'timeline', 'how long', 'weeks', 'days', 'quickly', 'when can'],
       a: 'Our standard for automation is a first agent live within 30 days of design sign-off. AI Governance is visible within 72 hours of access and runs as a 90-day plan. Engineering pilots start with one team, with duration agreed on the discovery call.' },
     { k: ['contact', 'call', 'talk', 'human', 'person', 'email', 'phone', 'meeting', 'book', 'speak'],

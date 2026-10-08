@@ -25,7 +25,7 @@ TRUST = ('<section class="trust trust--flow" aria-label="Certifications and rati
          + FL.marquee('<ul class="trust-row">' + _TRUST_ITEMS + '</ul>', dur=38) + '</div></section>')
 
 TESTIMONIALS = {
-    'eng': [("I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none. Their technical understanding combined with project management skills enables them to provide strategic guidance and direction while also managing a team of development resources.", 'Josh Fitheringham, CEO, Oragen USA', '', ''),
+    'eng': [("I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none. Their technical understanding combined with project management skills enables them to provide strategic guidance and direction while also managing a team of development resources.", 'CEO, US client', '', ''),
             ('Their ability to simplify difficult AI concepts for both our business and technical teams was particularly impressive.', 'Co-Founder, Real Estate &middot; AI consulting engagement', 'DesignRush', 'https://www.designrush.com/agency/profile/upcore-technologies')],
     'ops': [('They stuck to the timetable, completing each milestone on time, with clear, measurable results throughout.', 'Client review, Real Estate &middot; AI consulting engagement', 'DesignRush', 'https://www.designrush.com/agency/profile/upcore-technologies'),
             ('Upcore Technologies delivered a solution using machine learning and NLP that showed significant, measurable improvement.', 'Managing Director, Healthcare &middot; Generative AI engagement', 'DesignRush', 'https://www.designrush.com/agency/profile/upcore-technologies')],

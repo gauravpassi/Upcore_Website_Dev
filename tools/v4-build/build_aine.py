@@ -46,7 +46,7 @@ hero = f'''<section class="h-hero h-hero--long" aria-labelledby="hero-h"><div cl
 <div class="h-hero-copy">
 <nav class="crumb" aria-label="Breadcrumb" data-reveal><ol><li><a href="{C.URL["home"]}">Home</a></li><li aria-current="page">AI-Native Engineering</li></ol></nav>
 <p class="h-eyebrow" data-reveal>AI-Native Engineering &middot; for CTOs and CIOs</p>
-<h1 id="hero-h" class="t-hero" data-split>AI-native engineering, <span class="hl">governed from spec to production.</span></h1>
+<h1 id="hero-h" class="t-hero" data-split>Ship faster with AI. <span class="hl">Stay in control.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline inside your Jira or Linear, GitHub and CI/CD, and embed a Claude Certified Architect to run it with your team. You see every change that breaks one of your rules, why, and who decided.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pipeline">See the nine stages</a></div>
 <p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>
@@ -90,7 +90,7 @@ panels = ''.join(
     for i, (t, d, who, chk, tl) in enumerate(STAGES))
 pipeline = f'''<section class="h-sec h-sec--alt" id="pipeline" aria-labelledby="pipe-h"><div class="wrap">
 {eyebrow("What gets installed")}
-<div class="h-head"><h2 id="pipe-h" class="h-h2" data-reveal>Nine stages from spec to production, inside your own tools.</h2>
+<div class="h-head"><h2 id="pipe-h" class="h-h2" data-reveal>Nine stages, spec to production. All in your tools.</h2>
 <p class="h-lead" data-reveal style="--d:1">Checks are automated where your rules are clear and handed to a person where judgment matters. <span class="stx-hint">Choose a stage to see what happens in it.</span></p></div>
 <div class="stx" data-stages data-reveal><div class="stx-tabs" role="tablist" aria-label="Pipeline stages">{tabs}<span class="stx-rail" aria-hidden="true"><i></i></span></div>
 <div class="stx-stage">{panels}</div></div>
@@ -111,7 +111,7 @@ cmp_rows = ''.join(
     + '</div>' for i, (k, a, b, c) in enumerate(CMP))
 compare = f'''<section class="h-sec" id="compare" aria-labelledby="cmp-h"><div class="wrap">
 {eyebrow("Your options")}
-<h2 id="cmp-h" class="h-h2" data-reveal>AI tools write the code. Something has to govern it.</h2>
+<h2 id="cmp-h" class="h-h2" data-reveal>AI tools write code. Nothing governs it.</h2>
 <div class="cmp" role="table" aria-label="AI coding tools alone, building it yourself, and Upcore compared">
 <div class="cmp-row cmp-head" role="row"><div role="columnheader"><span class="sr">Question</span></div>{"".join(f'<div class="cmp-c{" is-us" if j == 2 else ""}" role="columnheader">{c}</div>' for j, c in enumerate(COLS))}</div>
 {cmp_rows}</div>
@@ -127,7 +127,7 @@ POD = [('dev', 'Full-stack developer', 'Runs the pipeline day to day: drafts spe
 pod = ''.join(f'<li class="pod-p{" is-lead" if k == "arch" else ""}" data-reveal style="--d:{j}"><span class="pod-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{POD_ICONS[k]}</svg></span><h3 class="t-h3">{t}</h3><p>{p}</p></li>' for j, (k, t, p) in enumerate(POD))
 team = f'''<section class="h-sec h-sec--tight" id="team" aria-labelledby="pod-h"><div class="wrap">
 {eyebrow("Who does the work")}
-<div class="h-head"><h2 id="pod-h" class="h-h2" data-reveal>Three people, embedded in your delivery.</h2>
+<div class="h-head"><h2 id="pod-h" class="h-h2" data-reveal>Three experts, inside your team.</h2>
 <p class="h-lead" data-reveal style="--d:1">Every Upcore architect is Claude certified. To scale, we add pods rather than enlarging one, so each team gets the pipeline, the rules and the judgment.</p></div>
 <div class="pod-line"><span class="pod-wire" aria-hidden="true"></span><ol>{pod}</ol></div></div></section>'''
 
@@ -149,14 +149,14 @@ engage = f'''<section class="h-sec" id="engagement" aria-labelledby="eng-h"><div
 </div></section>'''
 
 # ------------------------------------------------------------------ 6. results
-RES = [('Engineering', 'In production', 'delivery agents inside a product team', 'WorkWide by Quintica, field-service SaaS from a ServiceNow Elite partner group', 'South Africa'),
-       ('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Barbr, a booking and payments app built with AI-first engineering', 'United Kingdom'),
-       ('Engineering', 'Rehired', 'to add test and DevOps agents to their release pipeline', 'Rain Dental Implant Centers, nine states', 'United States')]
+RES = [('Engineering', 'In production', 'delivery agents inside a product team', 'A field-service SaaS company from a ServiceNow Elite partner group', 'South Africa'),
+       ('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'A booking and payments app for barbers, built with AI-first engineering', 'United Kingdom'),
+       ('Engineering', 'Rehired', 'to add test and DevOps agents to their release pipeline', 'A dental implant network across nine states', 'United States')]
 res = ''.join(f'<li data-reveal style="--d:{i}"><span class="h-tag">{tg}</span><b data-count{" class=is-word" if not any(ch.isdigit() for ch in n) else ""}>{n}</b><span class="what">{w}</span><span class="who">{who} &middot; {geo}</span></li>' for i, (tg, n, w, who, geo) in enumerate(RES))
 q = TESTIMONIALS['eng'][0]
 proof = f'''<section class="band h-sec h-proof-band" aria-labelledby="res-h"><div class="spot" aria-hidden="true"></div><div class="wrap">
 {eyebrow("Results")}
-<h2 id="res-h" class="h-h2" data-reveal>Engineering work in production.</h2>
+<h2 id="res-h" class="h-h2" data-reveal>Already live in production.</h2>
 <ul class="h-results">{res}</ul>
 <figure class="h-quote" data-reveal><span class="h-qmark" aria-hidden="true">&ldquo;</span><blockquote><p>I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none.</p></blockquote><figcaption>{q[1]}</figcaption></figure>
 <div class="h-proof-foot"><a class="link" href="{C.URL["results"]}">See all results</a><span>Results as reported from our engagements. Ask us for a reference call.</span></div>
@@ -180,7 +180,7 @@ faq = f'''<section class="h-sec" aria-labelledby="faq-h"><div class="wrap h-faq"
 
 # ------------------------------------------------------------------ 8. CTA
 final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta-h">{FL.cta_lines()}<div class="spot" aria-hidden="true"></div><div class="wrap">
-<h2 id="cta-h" class="t-display" data-reveal>Put AI-written code <span class="hl">under your architecture&rsquo;s control.</span></h2>
+<h2 id="cta-h" class="t-display" data-reveal>Faster delivery. <span class="hl">Same standards.</span></h2>
 <p class="t-lead" data-reveal style="--d:1">Book a 45-minute discovery call. We&rsquo;ll review your delivery process and send a written plan for a pilot on one team, whether or not we work together.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("cta_final", cls="btn btn--cyan")}</div>
 <p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="/lp/governance-index?utm_source=website&amp;utm_medium=ai-native-engineering&amp;utm_campaign=cta_secondary">Get your AI Governance Score in 2 minutes <span aria-hidden="true">&rarr;</span></a></p>

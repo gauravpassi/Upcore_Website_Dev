@@ -55,7 +55,7 @@ DPATH = f'''<figure class="dp" data-dpath>
 </figure>'''
 
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Security')], 'Security &amp; trust',
-                    'The questions your CISO will ask, <span class="hl">answered before you sign.</span>',
+                    'Your CISO&rsquo;s questions, <span class="hl">answered before you sign.</span>',
                     'How Upcore handles your code and data, which AI providers process it, and the contracts available before any engagement starts. Our information security management is certified to ISO 27001:2022.',
                     C.btn('hero', pulse=True) + pack_link('hero'), DPATH, micro='Security questions? We respond within 24 hours')
 
@@ -86,7 +86,7 @@ HANDLE = [('<path d="M4 7h16v12H4z"/><path d="M8 7V5h8v2"/><path d="m9 13 2 2 4-
           ('<path d="M12 3 2.5 20h19z"/><path d="M12 10v4M12 17.5v.01"/>', 'Incident notification', 'If a security incident affects your data, we notify you within 72 hours of becoming aware, in line with ISO 27001 incident management and GDPR Article 33.')]
 hitems = ''.join(f'<li data-reveal style="--d:{i % 2}">{K.svg_icon(ic, "1.5")}<b>{t}</b><p>{d}</p></li>' for i, (ic, t, d) in enumerate(HANDLE))
 handling = f'''<section class="h-sec h-sec--alt" id="data" aria-labelledby="data-h"><div class="wrap h-security">
-<div>{K.eyebrow("Data handling")}<h2 id="data-h" class="h-h2 h-h2--sm" data-reveal>How your code and data are handled.</h2>
+<div>{K.eyebrow("Data handling")}<h2 id="data-h" class="h-h2 h-h2--sm" data-reveal>Where your code and data go.</h2>
 <p class="sc-side" data-reveal style="--d:1">The specifics your procurement team will ask for. Need it as a formal document? Ask for our Data Processing Appendix.</p></div>
 <ul class="h-sec-list">{hitems}</ul></div></section>'''
 
@@ -95,7 +95,7 @@ CTL = [('Model providers train on your data', 'No'), ('Data processing agreement
        ('On-premise model option', 'Available'), ('Code sent to Upcore servers', 'No'), ('EU-region endpoints for EU clients', 'Default'), ('Prompt audit logging', 'Included')]
 ctl = ''.join(f'<div class="sc-row" data-reveal style="--d:{i % 3}"><dt>{k}</dt><dd class="{"is-no" if v == "No" else ""}">{v}</dd></div>' for i, (k, v) in enumerate(CTL))
 ai = f'''<section class="h-sec" id="ai" aria-labelledby="ai-h"><div class="wrap ab-split">
-<div>{K.eyebrow("AI in our delivery")}<h2 id="ai-h" class="h-h2 h-h2--sm" data-reveal>Which AI touches your code, and on what terms.</h2>
+<div>{K.eyebrow("AI in our delivery")}<h2 id="ai-h" class="h-h2 h-h2--sm" data-reveal>Which AI sees your code, and on what terms.</h2>
 <p class="sc-side" data-reveal style="--d:1">We use enterprise-tier model APIs for assisted work, the same way your engineers use Copilot or Cursor, but under documented access controls and data processing agreements. Clients who cannot send code to any external API can run open-weight models on their own infrastructure.</p></div>
 <dl class="sc-ctl">{ctl}</dl></div></section>'''
 
@@ -113,7 +113,7 @@ fw_panels = ''.join(
     f'<div class="stx-panel{" is-on" if i == 0 else ""}" role="tabpanel" id="fw-p{i}" aria-labelledby="fw-t{i}"{"" if i == 0 else " hidden"}>'
     f'<span class="stx-k">{n}</span><h3 class="stx-h">{s}</h3><p class="stx-d">{d}</p></div>' for i, (n, s, d) in enumerate(FW))
 frameworks = f'''<section class="h-sec h-sec--alt" id="frameworks" aria-labelledby="fw-h"><div class="wrap">
-{K.head("Compliance support", "Audit evidence, produced as the work happens.", "fw-h", "We don&rsquo;t give legal or audit opinions. Our governance work generates the records and audit trail that show adherence to these frameworks.")}
+{K.head("Compliance support", "Audit evidence, created as the work happens.", "fw-h", "We don&rsquo;t give legal or audit opinions. Our governance work generates the records and audit trail that show adherence to these frameworks.")}
 <div class="stx stx--short" data-stages data-reveal><div class="stx-tabs" role="tablist" aria-label="Frameworks">{fw_tabs}<span class="stx-rail" aria-hidden="true"><i></i></span></div>
 <div class="stx-stage">{fw_panels}</div></div>
 </div></section>'''
@@ -128,7 +128,7 @@ DOCS = [('Master Services Agreement', 'Liability, indemnification, IP ownership,
 DOC_I = K.svg_icon('<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>', '1.5')
 docs = ''.join(f'<li data-reveal style="--d:{i % 3}"><span class="sc-doc-i">{DOC_I}</span><span class="sc-doc-c"><b>{n}</b><span>{d}</span></span><em>{s}</em></li>' for i, (n, d, s) in enumerate(DOCS))
 contracts = f'''<section class="h-sec" id="contracts" aria-labelledby="doc-h"><div class="wrap">
-{K.head("Contracts &amp; protections", "Everything your legal team needs, before you sign.", "doc-h", "Every document is shared at the discovery-call stage, before any engagement starts.")}
+{K.head("Contracts &amp; protections", "Everything legal needs, before you sign.", "doc-h", "Every document is shared at the discovery-call stage, before any engagement starts.")}
 <ul class="sc-docs">{docs}</ul>
 <p class="sc-pack" data-reveal>{pack_link("contracts")}</p>
 </div></section>'''
@@ -138,7 +138,7 @@ JUR = [('GDPR: India is not an EU adequacy country. How does data transfer work?
        ('HIPAA: can an Indian private limited company sign a Business Associate Agreement?', 'Yes. HIPAA&rsquo;s Business Associate requirements depend on the data handled, not where the vendor is incorporated. If PHI may be in scope, we execute a BAA that meets the 45 CFR &sect;164.308&ndash;314 safeguard requirements, reviewed by your compliance team before any engagement starts.'),
        ('SOX: how does an Indian vendor fit into a SOX-scoped audit chain?', 'SOX Section 404 requires controls over financial reporting to be documented and tested, including third-party vendors with access to financial data or systems. Upcore is treated as a third-party vendor under your vendor-management controls, and our governance work delivers documentation (control inventories, change logs and risk assessments) your internal audit team can present to your external auditor.'),
        ('EU AI Act: does the Act apply to an Indian provider serving EU clients?', 'Yes. Under the Act&rsquo;s extraterritorial scope (Article 2), providers placing AI systems on the EU market, or whose outputs are used in the EU, are covered wherever they are established. Our governance work includes EU AI Act mapping: risk classification, transparency obligations and conformity documentation.')]
-jur = K.faq(JUR, 'Procurement questions about working with an Indian company.', eb='Entity &amp; jurisdiction')
+jur = K.faq(JUR, 'Buying from an Indian company? Your questions, answered.', eb='Entity &amp; jurisdiction')
 
 final = K.final('Bring your security questionnaire <span class="hl">to the first call.</span>',
                 'Book a 45-minute discovery call and we&rsquo;ll answer your CISO&rsquo;s questions before you commit to anything. Or request the Security Review Pack first.',

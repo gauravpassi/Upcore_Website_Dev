@@ -89,8 +89,18 @@
       "permanent": true
     },
     {
+      "source": "/fde",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true
+    },
+    {
+      "source": "/fractional-fde",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true
+    },
+    {
       "source": "/fde-engineers",
-      "destination": "/platform",
+      "destination": "/forward-deployed-engineer",
       "permanent": true
     },
     {

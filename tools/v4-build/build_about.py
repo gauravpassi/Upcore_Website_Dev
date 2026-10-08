@@ -1,6 +1,6 @@
 """/about (2026-10-07, calm rebuild). Who Upcore is, for a buyer checking us out:
 hero + key facts -> why we exist (scroll-lit statement) -> what we do -> what we believe ->
-leadership (initials, no headshots) -> where we are (client map) + credentials -> CTA.
+leadership (headshots from images/team/) -> where we are (client map) + credentials -> CTA.
 Every fact here already appears elsewhere on the site; nothing new is claimed.
 Run from the repo root: python tools/v4-build/build_about.py"""
 import os, sys, math
@@ -39,10 +39,11 @@ why = f'''<section class="h-sec" aria-labelledby="why-h"><div class="wrap">
 SERV = [('aine', 'AI-Native Engineering', 'A governed delivery pipeline from spec to production, run with your engineering team.', True),
         ('gov', 'AI Governance', 'Visibility of AI spend, data controls and audit trails across the company.', False),
         ('bpa', 'Business Process Automation', 'Agents that run repetitive operations work, with a person approving what matters.', False),
-        ('fao', 'Fractional AI Officer', 'An embedded AI lead on retainer, accountable for your AI roadmap.', False)]
+        ('fao', 'Fractional AI Officer', 'An embedded AI lead on retainer, accountable for your AI roadmap.', False),
+        ('fde', 'Fractional FDE', 'A senior engineer embedded part-time to take AI pilots into production and keep them working.', False)]
 serv = ''.join(f'<li><a href="{C.URL[k]}"><b>{t}{"<span class=ab-flag>Flagship</span>" if f else ""}</b><span>{d}</span><i aria-hidden="true">{ARROW}</i></a></li>' for k, t, d, f in SERV)
 what = f'''<section class="h-sec h-sec--tight h-sec--alt" aria-labelledby="what-h"><div class="wrap ab-split">
-<div>{eyebrow("What we do")}<h2 id="what-h" class="h-h2 h-h2--sm" data-reveal>One way of working, applied where you need it.</h2>
+<div>{eyebrow("What we do")}<h2 id="what-h" class="h-h2 h-h2--sm" data-reveal>One way of working. Wherever you need it.</h2>
 <p class="ab-side" data-reveal style="--d:1">Every service runs on the same idea: AI does the routine work inside limits you set, and people decide what is risky.</p></div>
 <div class="h-router h-router--one ab-serv"><ul>{serv}</ul></div></div></section>'''
 
@@ -54,25 +55,26 @@ BELIEFS = [('Control comes before autonomy.', 'AI works inside guardrails you de
 bel = ''.join(f'<li data-reveal style="--d:{i % 2}"><span class="ab-n">{i + 1:02d}</span><h3>{t}</h3><p>{d}</p></li>' for i, (t, d) in enumerate(BELIEFS))
 believe = f'''<section class="h-sec" aria-labelledby="bel-h"><div class="wrap">
 {eyebrow("What we believe")}
-<h2 id="bel-h" class="h-h2" data-reveal>Four convictions behind every engagement.</h2>
+<h2 id="bel-h" class="h-h2" data-reveal>What we believe.</h2>
 <ol class="ab-beliefs" data-beliefs>{bel}</ol>
 </div></section>'''
 
-# ------------------------------------------------------------------ 5. leadership (initials avatars, no headshots)
+# ------------------------------------------------------------------ 5. leadership (headshots: images/team/<slug>.jpg, 480px,
+#    made consistent from the photos Gaurav supplied on 2026-10-08: same backdrop, framing and tone)
 LI_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-4.95c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z"/></svg>'
-TEAM = [('GP', 'Gaurav Passi', 'Co-Founder &amp; CEO &middot; Claude Certified Architect',
+TEAM = [('gaurav-passi', 'Gaurav Passi', 'Co-Founder &amp; CEO &middot; Claude Certified Architect',
          'Leads client engagements and delivery quality. Every engagement plan goes through him before it reaches your team.', 'https://linkedin.com/in/gauravusa'),
-        ('SM', 'Shrikant Maniar', 'Executive Director &middot; former MD, Accenture',
+        ('shrikant-maniar', 'Shrikant Maniar', 'Executive Director &middot; former MD, Accenture',
          'Sits across the engagement portfolio: scope, commercial terms and whether an engagement is the right fit before it starts. If you want to talk to someone other than your delivery lead about how an engagement is run, it&rsquo;s him.', 'https://www.linkedin.com/in/shrikantmaniar/'),
-        ('SD', 'Shanker Dhand', 'Technical Head',
+        ('shanker-dhand', 'Shanker Dhand', 'Technical Head',
          'Owns the technical side of delivery: the review standards, the checks wired into your pipeline and the architecture decisions behind anything Upcore ships into your environment.', 'https://www.linkedin.com/in/shankerdhand/')]
 team_li = ''.join(
-    f'<li class="ab-p" data-reveal style="--d:{i}"><span class="ab-av" aria-hidden="true"><span>{ini}</span></span>'
+    f'<li class="ab-p" data-reveal style="--d:{i}"><span class="ab-av has-photo" aria-hidden="true"><img src="/images/team/{ini}.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" /></span>'
     f'<h3>{n}</h3><p class="ab-role">{r}</p><p class="ab-bio">{b}</p>'
     f'<a class="ab-li" href="{u}" target="_blank" rel="noopener">{LI_ICON}<span>LinkedIn<span class="sr">: {n} (opens in a new tab)</span></span></a></li>'
     for i, (ini, n, r, b, u) in enumerate(TEAM))
 team = f'''<section class="h-sec h-sec--alt" id="team" aria-labelledby="team-h"><div class="wrap">
-<div class="h-head"><div>{eyebrow("Leadership")}<h2 id="team-h" class="h-h2" data-reveal>The people accountable for your work.</h2></div>
+<div class="h-head"><div>{eyebrow("Leadership")}<h2 id="team-h" class="h-h2" data-reveal>The people who answer for your work.</h2></div>
 <p class="h-lead" data-reveal style="--d:1">Before you hand us part of your delivery, you should know who is responsible for it.</p></div>
 <ol class="ab-team">{team_li}</ol>
 <p class="ab-pods" data-reveal>Day to day, your work is run by a pod of three: a full-stack developer, a Claude Certified Architect and an analyst who is your single point of contact. Every Upcore architect is Claude certified. <a class="link" href="{C.URL["aine"]}#team">How a pod works</a></p>
@@ -185,7 +187,7 @@ final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta
 </div></section>'''
 
 page = '\n'.join([hero, why, what, believe, team, where, final])
-people = [{'@type': 'Person', 'name': n, 'jobTitle': r.split(' &middot; ')[0].replace('&amp;', '&'), 'sameAs': [u], 'worksFor': {'@id': C.ORG_ID}} for ini, n, r, b, u in TEAM]
+people = [{'@type': 'Person', 'name': n, 'jobTitle': r.split(' &middot; ')[0].replace('&amp;', '&'), 'image': f'{C.SITE}/images/team/{ini}.jpg', 'sameAs': [u], 'worksFor': {'@id': C.ORG_ID}} for ini, n, r, b, u in TEAM]
 ld = C.graph('about', [{'@type': 'AboutPage', 'name': 'About Upcore Technologies', 'url': C.SITE + C.FINAL_URL['about'], 'about': {'@id': C.ORG_ID}}] + people, crumb='About')
 print('about', C.write('about.html', 'about', 'About Upcore: Leadership, Convictions &amp; Credentials | Upcore',
       'Upcore builds governed AI-native engineering and automation for clients in six countries. Meet the leadership, what we believe and our credentials.',

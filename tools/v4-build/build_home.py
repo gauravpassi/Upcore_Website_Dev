@@ -75,7 +75,7 @@ PAINS = [('neck', 'Review becomes the bottleneck', 'Someone senior reads every A
 pains = ''.join(f'<li data-reveal style="--d:{i}"><svg class="h-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{ICON[k]}</svg><span class="h-n">0{i + 1}</span><h3>{t}</h3><p>{p}</p></li>' for i, (k, t, p) in enumerate(PAINS))
 problem = f'''<section class="h-sec" aria-labelledby="prob-h"><div class="wrap">
 {eyebrow("The problem")}
-<h2 id="prob-h" class="h-h2" data-reveal>Your team ships more AI-written code every week. <span class="mute">Review hasn&rsquo;t caught up.</span></h2>
+<h2 id="prob-h" class="h-h2" data-reveal>AI writes more of your code. <span class="mute">Review can&rsquo;t keep up.</span></h2>
 <ol class="h-pains">{pains}</ol></div></section>'''
 
 # ------------------------------------------------------------------ 2b. estimator: the visitor puts a number on the problem
@@ -89,7 +89,7 @@ fields = ''.join(
     for k, lbl, lo, hi, st, v, u in FIELDS)
 estimate = f'''<section class="h-sec h-sec--tight h-calc-sec" id="estimate" aria-labelledby="calc-h"><div class="wrap h-calc" data-calc>
 <div class="h-calc-k">{eyebrow("Put a number on it")}
-<h2 id="calc-h" class="h-h2 h-h2--sm" data-reveal>How much senior time goes on reading routine AI-written code?</h2>
+<h2 id="calc-h" class="h-h2 h-h2--sm" data-reveal>What does reviewing AI code cost you?</h2>
 <p class="h-lead" data-reveal style="--d:1">Set the numbers for your team. Routine, low-risk changes that pass every automated check don&rsquo;t need a senior engineer to read them line by line.</p></div>
 <div class="h-calc-ui" data-reveal style="--d:1"><div class="cf-list">{fields}</div>
 <div class="calc-out" aria-live="polite">
@@ -139,16 +139,16 @@ STORY = f'''<div class="story" data-story><ol class="story-steps">{story_steps}<
 works_logos = ''.join(TL.logo(s, small=True) for s in ['jira', 'linear', 'github', 'gitlab', 'githubactions', 'claude', 'githubcopilot', 'cursor'])
 how = f'''<section class="h-sec h-sec--alt" id="how" aria-labelledby="how-h"><div class="wrap">
 {eyebrow("How it works")}
-<div class="h-head"><h2 id="how-h" class="h-h2" data-reveal>Every AI-written change passes four checkpoints.</h2>
+<div class="h-head"><h2 id="how-h" class="h-h2" data-reveal>Four checkpoints. Every change.</h2>
 <p class="h-lead" data-reveal style="--d:1">Installed inside the tools your teams already use. You set the rules; the pipeline enforces them and a Claude Certified Architect keeps them current.</p></div>
 {STORY}
 <div class="h-works"><span>Works with</span><div class="logos">{works_logos}</div><a class="link" href="{C.URL["aine"]}#pipeline">See all nine stages</a></div>
 </div></section>'''
 
 # ------------------------------------------------------------------ 4. proof (number-led; client names approved 2026-10-07)
-RESULTS = [('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'Barbr, a booking and payments app built with AI-first engineering', 'United Kingdom'),
-           ('Automation', '60%+', 'fewer delivery-support tickets', 'Woolworths South Africa: a WhatsApp order-status agent', 'South Africa'),
-           ('Automation', '&asymp;$210K', 'a year of licensed tooling replaced', 'Global PCCS: a compliance-check agent', 'India')]
+RESULTS = [('Engineering', '4.9&#9733;', 'App Store rating, 89 ratings', 'A booking and payments app for barbers, built with AI-first engineering', 'United Kingdom'),
+           ('Automation', '60%+', 'fewer delivery-support tickets', 'A national retailer: a WhatsApp order-status agent', 'South Africa'),
+           ('Automation', '&asymp;$210K', 'a year of licensed tooling replaced', 'An automotive compliance firm: a compliance-check agent', 'India')]
 res = ''.join(f'<li data-reveal style="--d:{i}"><span class="h-tag">{tg}</span><b data-count>{n}</b><span class="what">{w}</span><span class="who">{who} &middot; {geo}</span></li>' for i, (tg, n, w, who, geo) in enumerate(RESULTS))
 q = TESTIMONIALS['eng'][0]
 quote_txt = 'I have worked with Upcore many times on projects big and small. Their expertise, network, and professionalism is second to none.'
@@ -172,7 +172,7 @@ PILOT = [('Scope', 'One team, one service, a real backlog.'),
 pil = ''.join(f'<div data-reveal style="--d:{i}"><dt>{k}</dt><dd>{v}</dd></div>' for i, (k, v) in enumerate(PILOT))
 pilot = f'''<section class="h-sec" id="pilot" aria-labelledby="pilot-h"><div class="wrap h-pilot">
 <div class="h-pilot-k">{eyebrow("Start small")}
-<h2 id="pilot-h" class="h-h2" data-reveal>Prove it on one team before you commit.</h2>
+<h2 id="pilot-h" class="h-h2" data-reveal>Prove it on one team first.</h2>
 <p class="h-lead" data-reveal style="--d:1">No price list and no long contract up front. Duration and commercials are agreed on the discovery call, based on your scope.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("pilot")}<a class="link" href="{C.URL["aine"]}#engagement">How engagements work</a></div></div>
 <dl class="h-pilot-spec">{pil}</dl></div>
@@ -198,7 +198,8 @@ SEGS = [('tech-software', 'Tech &amp; Software', 'Governed AI delivery for engin
         ('professional-services', 'Professional Services', 'Accounting, law, wealth and staffing')]
 SOLS = [('gov', 'AI Governance', 'Spend, data controls and audit trails'),
         ('bpa', 'Business Process Automation', 'Agents for repetitive operations work'),
-        ('fao', 'Fractional AI Officer', 'An embedded AI lead on retainer')]
+        ('fao', 'Fractional AI Officer', 'An embedded AI lead on retainer'),
+        ('fde', 'Fractional FDE', 'An engineer who ships your AI pilot into production')]
 lk = lambda k, t, d: f'<li><a href="{C.URL[k]}"><b>{t}</b><span>{d}</span><i aria-hidden="true">{ARROW}</i></a></li>'
 router = f'''<section class="h-sec h-sec--tight" id="who-we-help" aria-labelledby="who-h"><div class="wrap">
 <div class="h-router-head"><h2 id="who-h" class="h-h3">Not leading an engineering team?</h2><p>The same governed approach runs AI across the rest of the business.</p></div>
@@ -212,12 +213,12 @@ FAQ = [('How is this different from giving developers Copilot or Cursor?', 'Thos
        ('What does it cost?', 'We don&rsquo;t publish a price list. You start with a pilot on one team; duration and commercials are agreed on the discovery call. After the call you get a written proposal with a fixed scope and price before any build starts.')]
 fq = ''.join(f'<details><summary>{a}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{b}</p></div></details>' for a, b in FAQ)
 faq = f'''<section class="h-sec" aria-labelledby="faq-h"><div class="wrap h-faq">
-<div>{eyebrow("Questions")}<h2 id="faq-h" class="h-h2 h-h2--sm" data-reveal>What CTOs ask us first.</h2></div>
+<div>{eyebrow("Questions")}<h2 id="faq-h" class="h-h2 h-h2--sm" data-reveal>Questions CTOs ask first.</h2></div>
 <div class="faq">{fq}</div></div></section>'''
 
 # ------------------------------------------------------------------ 8. final CTA
 final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta-h">{FL.cta_lines()}<div class="spot" aria-hidden="true"></div><div class="wrap">
-<h2 id="cta-h" class="t-display" data-reveal>Make AI-written code something <span class="hl">your architects can sign off on.</span></h2>
+<h2 id="cta-h" class="t-display" data-reveal>Let AI write the code. <span class="hl">Keep your standards.</span></h2>
 <p class="t-lead" data-reveal style="--d:1">Book a 45-minute discovery call. We&rsquo;ll review your delivery process and send a written plan for a pilot on one team, whether or not we work together.</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("cta_final", cls="btn btn--cyan")}</div>
 <p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="/lp/governance-index?utm_source=website&amp;utm_medium=home&amp;utm_campaign=cta_secondary">Get your AI Governance Score in 2 minutes <span aria-hidden="true">&rarr;</span></a></p>

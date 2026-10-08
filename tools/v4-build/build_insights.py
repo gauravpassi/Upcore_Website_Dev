@@ -57,7 +57,7 @@ chips = (f'<button type="button" class="hb-chip is-on" data-filter="all" aria-pr
          + ''.join(f'<button type="button" class="hb-chip" data-filter="{k}" aria-pressed="false">{l} <span>{counts[k]}</span></button>' for k, l in TYPES))
 
 hero = K.hero_page([(C.URL['home'], 'Home'), (None, 'Insights')], 'Insights',
-                   'Guides and playbooks <span class="hl">for leaders putting AI to work.</span>',
+                   'Practical AI guides <span class="hl">for business leaders.</span>',
                    'Plain-English guides to AI-native engineering, AI governance and automation, honest comparisons, and playbooks by industry.',
                    extra=f'<div class="hb-tools" data-reveal style="--d:4"><label class="hb-search"><span class="sr">Search insights</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" placeholder="Search {len(items)} articles" data-hb-search autocomplete="off" /></label></div>')
 featured = f'''<section class="h-sec h-sec--tight hb-feat-sec" aria-labelledby="start-h"><div class="wrap">
@@ -68,7 +68,7 @@ listing = f'''<section class="h-sec hb-list-sec" id="all" aria-labelledby="all-h
 <p class="hb-empty" hidden>No matches. Try a different word, or <button type="button" class="hb-reset">show everything</button>.</p>
 </div></section>'''
 news = f'''<section class="h-sec h-sec--tight h-sec--alt" aria-labelledby="nl-h"><div class="wrap hb-news">
-<div>{K.eyebrow("New guides by email")}<h2 id="nl-h" class="h-h2 h-h2--sm" data-reveal>Get the next guide when it&rsquo;s published.</h2>
+<div>{K.eyebrow("New guides by email")}<h2 id="nl-h" class="h-h2 h-h2--sm" data-reveal>Get the next guide first.</h2>
 <p class="hb-side" data-reveal style="--d:1">An occasional email when we publish something new. No sales sequences.</p></div>
 <form class="hb-form" data-newsletter novalidate><label class="ct-f"><input type="email" name="email" autocomplete="email" placeholder=" " required /><span class="hb-fl">Work email</span></label>
 <input class="ct-hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />

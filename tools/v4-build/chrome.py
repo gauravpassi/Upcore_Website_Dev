@@ -6,8 +6,8 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 21          # cache-buster for css/js/upcore-v4 + v4-analytics
-CHAT_V = 19    # chat-widget.js (bump sitewide when it changes)
+V = 22          # cache-buster for css/js/upcore-v4 + v4-analytics
+CHAT_V = 20    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
 OG_IMAGE = SITE + '/images/og/upcore-v4.png'
@@ -17,7 +17,7 @@ PREVIEW_URL = {
     'tech-software': '/preview/who-we-help-tech-software', 'ecommerce-retail': '/preview/who-we-help-ecommerce-retail',
     'operations-heavy': '/preview/who-we-help-operations-heavy', 'professional-services': '/preview/who-we-help-professional-services',
     'results': '/preview/results', '404': '/preview/404', 'about': '/preview/about',
-    'security': '/preview/security', 'contact': '/preview/contact', 'gov': '/preview/ai-engineering-governance', 'bpa': '/preview/platform', 'fao': '/preview/fractional-ai-officer',
+    'security': '/preview/security', 'contact': '/preview/contact', 'gov': '/preview/ai-engineering-governance', 'bpa': '/preview/platform', 'fao': '/preview/fractional-ai-officer', 'fde': '/preview/forward-deployed-engineer',
     'insights': '/preview/insights', 'guide-aine': '/preview/what-is-ai-native-engineering',
     'cmp-tools': '/preview/ai-native-engineering-vs-ai-coding-tools', 'cmp-inhouse': '/preview/upcore-vs-building-in-house',
 }
@@ -26,7 +26,7 @@ FINAL_URL = {
     'tech-software': '/who-we-help/tech-software', 'ecommerce-retail': '/who-we-help/ecommerce-retail',
     'operations-heavy': '/who-we-help/operations-heavy', 'professional-services': '/who-we-help/professional-services',
     'results': '/results', '404': '/404', 'about': '/about',
-    'security': '/security', 'contact': '/contact', 'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/fractional-ai-officer',
+    'security': '/security', 'contact': '/contact', 'gov': '/ai-engineering-governance', 'bpa': '/platform', 'fao': '/fractional-ai-officer', 'fde': '/forward-deployed-engineer',
     'insights': '/insights', 'guide-aine': '/learn/what-is-ai-native-engineering',
     'cmp-tools': '/compare/ai-native-engineering-vs-ai-coding-tools', 'cmp-inhouse': '/compare/upcore-vs-building-in-house',
 }
@@ -38,6 +38,7 @@ ICON = {
     'gov': '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
     'bpa': '<path d="M4 7h10M4 12h16M4 17h7"/><circle cx="18" cy="7" r="2"/><circle cx="14" cy="17" r="2"/>',
     'fao': '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',
+    'fde': '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
     'tech-software': '<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',
     'ecommerce-retail': '<path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/>',
     'operations-heavy': '<path d="M4 20V10l5-3v13M9 20V5l6-2v17M15 20V9l5 2v9"/>',
@@ -46,7 +47,8 @@ ICON = {
 SOLUTIONS = [('aine', 'AI-Native Engineering', 'Governed AI delivery, spec to production', True),
              ('gov', 'AI Governance', 'Spend visibility, data controls, audit trails', False),
              ('bpa', 'Business Process Automation', 'Agents that run repetitive operations work', False),
-             ('fao', 'Fractional AI Officer', 'An embedded AI lead on retainer', False)]
+             ('fao', 'Fractional AI Officer', 'An embedded AI lead on retainer', False),
+             ('fde', 'Fractional FDE', 'Ships your AI pilot into production', False)]
 SEGMENTS = [('tech-software', 'Tech &amp; Software', 'For CTOs and CIOs shipping with AI'),
             ('ecommerce-retail', 'Ecommerce &amp; Retail', 'Support, returns, catalog, ad spend'),
             ('operations-heavy', 'Operations-Heavy Businesses', 'Follow-ups, documents, collections'),
@@ -88,7 +90,7 @@ def nav(active='', cta=None):
       <li><a href="{URL['insights']}"{cur('insights')}>Insights</a></li>
       <li><a href="{URL['about']}"{cur('about')}>About</a></li>
     </ul><div class="nav-sheet-foot">{sheet}<p class="nav-sheet-meta"><a href="{URL['contact']}">Contact</a><a href="{URL['security']}">Security &amp; trust</a><a href="mailto:gaurav@upcoretechnologies.com">Email us</a></p></div></nav>
-    <button class="nav-ctx" type="button" tabindex="-1" aria-hidden="true"><svg class="nav-ring" viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="8" /><circle class="nav-ring-fill" cx="10" cy="10" r="8" pathLength="1" /></svg><span class="nav-ctx-t"></span><span class="nav-ctx-more">Menu</span></button>
+    <button class="nav-ctx" type="button" tabindex="-1" aria-hidden="true"><svg class="nav-ring" viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="8" /><circle class="nav-ring-fill" cx="10" cy="10" r="8" pathLength="1" /></svg><span class="nav-ctx-more">Menu</span></button>
     <div class="nav-cta">
       {top}
       <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-primary"><span></span></button>

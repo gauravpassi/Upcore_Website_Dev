@@ -31,7 +31,7 @@ QUEUE = f'''<figure class="dash" data-dash>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle dash-toggle" type="button" aria-label="Pause animation">Pause</button></figcaption>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Business Process Automation')], 'Business Process Automation &middot; for COOs and operations leaders',
-                    'AI agents do the busywork. <span class="hl">Your people make the calls.</span>',
+                    'Let AI do <span class="hl">the busywork.</span>',
                     'We build agents that run the repetitive work in support, operations and finance: answering status questions, chasing documents and payments, checking files against your rules and keeping records current, inside the systems you already use.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#workflows">See what we automate</a>', QUEUE,
                     micro='Our standard: a first agent live within 30 days of design sign-off')

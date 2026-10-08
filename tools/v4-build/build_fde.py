@@ -29,7 +29,7 @@ DELIVERY = f'''<figure class="fo-port" data-portfolio>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle fo-toggle" type="button" aria-label="Replay animation">Replay</button></figcaption>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional FDE')], 'Fractional Forward Deployed Engineer',
-                    'Your AI pilot, <span class="hl">live in production.</span>',
+                    'Your AI pilot, <span class="hl">finally live.</span>',
                     'A senior engineer joins your team part of every week, builds against your real systems and data, ships the agent and stays to keep it working. It&rsquo;s the role AI companies such as OpenAI and Anthropic hire to get their technology working inside customers, without you hiring one full-time.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#stages">See how it works</a>', DELIVERY)
 

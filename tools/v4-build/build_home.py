@@ -54,7 +54,7 @@ PROOF_STRIP = '''<ul class="h-proof" aria-label="Certifications and ratings">
 hero = f'''<section class="h-hero" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap h-hero-in">
 <div class="h-hero-copy">
 <p class="h-eyebrow" data-reveal>AI-Native Engineering &middot; for CTOs and CIOs</p>
-<h1 id="hero-h" class="t-hero" data-split>AI writes the code. <span class="hl">Your architecture stays in charge.</span></h1>
+<h1 id="hero-h" class="t-hero" data-split>Ship AI-written code <span class="hl">you can trust.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline in your Jira or Linear, GitHub and CI/CD, so every AI-written change is checked, risk-scored and logged before it ships.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pilot">See how a pilot works</a></div>
 <p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>

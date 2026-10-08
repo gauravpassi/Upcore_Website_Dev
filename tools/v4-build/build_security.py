@@ -55,7 +55,7 @@ DPATH = f'''<figure class="dp" data-dpath>
 </figure>'''
 
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Security')], 'Security &amp; trust',
-                    'Your CISO&rsquo;s questions, <span class="hl">answered before you sign.</span>',
+                    'Security answers, <span class="hl">before you ask.</span>',
                     'How Upcore handles your code and data, which AI providers process it, and the contracts available before any engagement starts. Our information security management is certified to ISO 27001:2022.',
                     C.btn('hero', pulse=True) + pack_link('hero'), DPATH, micro='Security questions? We respond within 24 hours')
 

@@ -57,7 +57,7 @@ chips = (f'<button type="button" class="hb-chip is-on" data-filter="all" aria-pr
          + ''.join(f'<button type="button" class="hb-chip" data-filter="{k}" aria-pressed="false">{l} <span>{counts[k]}</span></button>' for k, l in TYPES))
 
 hero = K.hero_page([(C.URL['home'], 'Home'), (None, 'Insights')], 'Insights',
-                   'Practical AI guides <span class="hl">for business leaders.</span>',
+                   'AI, explained <span class="hl">for leaders.</span>',
                    'Plain-English guides to AI-native engineering, AI governance and automation, honest comparisons, and playbooks by industry.',
                    extra=f'<div class="hb-tools" data-reveal style="--d:4"><label class="hb-search"><span class="sr">Search insights</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" placeholder="Search {len(items)} articles" data-hb-search autocomplete="off" /></label></div>')
 featured = f'''<section class="h-sec h-sec--tight hb-feat-sec" aria-labelledby="start-h"><div class="wrap">

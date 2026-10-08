@@ -79,7 +79,7 @@ chips = (f'<button type="button" class="hb-chip is-on" data-filter="all" aria-pr
 index = ''.join(f'<li data-tags="{" ".join(c["tags"])}"><a href="#{c["key"]}"><span class="cx-ix-n">{i + 1:02d}</span><b>{c["short"]}</b><em>{c["n"]}</em></a></li>' for i, c in enumerate(CASES))
 names = 'Client names are withheld; ask us for a reference call.'
 hero = K.hero_page([(C.URL['home'], 'Home'), (None, 'Results')], 'Results &amp; case studies',
-                   'AI in production, <span class="hl">not in a slide deck.</span>',
+                   'Real AI. <span class="hl">Real results.</span>',
                    f'Ten engagements in engineering and automation, for clients in the US, UK, South Africa, Australia, Mauritius and India. {names}')
 idx = f'''<section class="h-sec h-sec--tight cx-index-sec" aria-labelledby="ix-h"><div class="wrap" data-cases>
 <div class="hb-bar"><h2 id="ix-h" class="h-h3">Ten case studies</h2><div class="hb-chips" role="group" aria-label="Filter case studies">{chips}</div></div>

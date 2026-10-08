@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-08 — Simpler hero headlines
+**Type:** content
+**Files:** `tools/v4-build/build_home.py`, `build_aine.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_fde.py`, `segment_copy.py`, `build_results.py`, `build_about.py`, `build_security.py`, `build_insights.py`
+Every page's hero H1 is now a short, plain-language promise, e.g. home "Ship AI-written code you can trust.", governance "Get your AI under control.", automation "Let AI do the busywork.", FAO "Senior AI leadership, part-time.", operations "Less chasing. More done." Contact and the booking pages keep theirs.
+
 ## 2026-10-08 — Fractional FDE page, headline pass, smoother scrolling, no client names, team headshots
 **Type:** feature + content + design + fix
 **Files:** `tools/v4-build/build_fde.py` (new), `chrome.py` (fifth solution, `V` 22, `CHAT_V` 20), `build_home.py`, `build_about.py`, `build_aine.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_security.py`, `build_insights.py`, `build_results.py`, `segment_copy.py`, `cases.py`, `v4parts.py`, `api/chat.js`, `chat-widget.js`, `lp/*.html`, `images/team/*.jpg` (new), `css/upcore-v5.css` (`island`, `smooth`, `fde`), `js/upcore-v5.js`, `vercel.json`, `sitemap.xml`, all generated pages

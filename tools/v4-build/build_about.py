@@ -20,7 +20,7 @@ facts = ''.join(f'<div data-reveal style="--d:{i + 3}"><dt>{v}</dt><dd>{l}</dd><
 hero = f'''<section class="h-hero h-hero--page" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
 <nav class="crumb" aria-label="Breadcrumb" data-reveal><ol><li><a href="{C.URL["home"]}">Home</a></li><li aria-current="page">About</li></ol></nav>
 <p class="h-eyebrow" data-reveal>About Upcore</p>
-<h1 id="hero-h" class="t-display" data-split>We put AI to work <span class="hl">under your rules.</span></h1>
+<h1 id="hero-h" class="t-display" data-split>AI that works <span class="hl">by your rules.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">Upcore installs governed AI-native delivery for engineering teams, builds agents that run repetitive operations work, and embeds AI leadership where a company needs it.</p>
 <dl class="ab-facts">{facts}</dl>
 </div></section>'''

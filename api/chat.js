@@ -2,8 +2,9 @@
 // free-tier model behind any OpenAI-compatible chat-completions API.
 //
 // Configuration (Vercel env vars; set one key, nothing else is required):
-//   GROQ_API_KEY   - default provider: Groq free tier, no credit card. Model llama-3.3-70b-versatile,
-//                    falls back to llama-3.1-8b-instant when the bigger model is rate-limited.
+//   GROQ_API_KEY   - default provider: Groq free tier, no credit card. Without CHAT_MODEL the function asks
+//                    Groq which models the key can use (GET /models, cached per instance) and tries up to three
+//                    from GROQ_PREFERRED in order, so a retired model can't break the assistant again.
 //   CHAT_API_KEY + CHAT_API_BASE + CHAT_MODEL - any other OpenAI-compatible provider, e.g. Gemini
 //                    (CHAT_API_BASE=https://generativelanguage.googleapis.com/v1beta/openai, CHAT_MODEL=gemini-2.5-flash)
 //                    or OpenRouter (CHAT_API_BASE=https://openrouter.ai/api/v1, CHAT_MODEL=<a ":free" model>).
@@ -68,16 +69,44 @@ const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 20;
 const hits = new Map();
 
+// Best first. Instruction-following chat models before reasoning models (those get a low reasoning budget).
+const GROQ_PREFERRED = ['llama-3.3-70b-versatile', 'meta-llama/llama-4-maverick-17b-128e-instruct', 'moonshotai/kimi-k2-instruct-0905',
+  'moonshotai/kimi-k2-instruct', 'openai/gpt-oss-120b', 'meta-llama/llama-4-scout-17b-16e-instruct', 'qwen/qwen3-32b',
+  'openai/gpt-oss-20b', 'llama-3.1-8b-instant'];
+const NOT_CHAT = /whisper|tts|guard|playai|orpheus|compound|embed/i;
+let discovered = null; // { at, models }
+
 function provider() {
   if (process.env.CHAT_API_KEY) {
     return { base: (process.env.CHAT_API_BASE || 'https://api.groq.com/openai/v1').replace(/\/$/, ''), key: process.env.CHAT_API_KEY,
              models: [process.env.CHAT_MODEL || 'llama-3.3-70b-versatile', process.env.CHAT_FALLBACK_MODEL].filter(Boolean) };
   }
   if (process.env.GROQ_API_KEY) {
-    return { base: 'https://api.groq.com/openai/v1', key: process.env.GROQ_API_KEY,
-             models: [process.env.CHAT_MODEL || 'llama-3.3-70b-versatile', process.env.CHAT_FALLBACK_MODEL || 'llama-3.1-8b-instant'] };
+    const fixed = [process.env.CHAT_MODEL, process.env.CHAT_FALLBACK_MODEL].filter(Boolean);
+    return { base: 'https://api.groq.com/openai/v1', key: process.env.GROQ_API_KEY, models: fixed.length ? fixed : null };
   }
   return null;
+}
+
+async function groqModels(p) {
+  if (discovered && Date.now() - discovered.at < 30 * 60 * 1000) return discovered.models;
+  let ids = [];
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000);
+    const r = await fetch(p.base + '/models', { headers: { Authorization: 'Bearer ' + p.key }, signal: ctrl.signal });
+    clearTimeout(timer);
+    if (r.ok) {
+      const j = await r.json();
+      ids = ((j && j.data) || []).filter((m) => m && m.id && m.active !== false && !NOT_CHAT.test(m.id)).map((m) => m.id);
+    } else {
+      console.error('chat: model list', r.status);
+    }
+  } catch (e) { /* fall through to the static list */ }
+  const ranked = GROQ_PREFERRED.filter((id) => ids.includes(id));
+  const models = (ranked.length ? ranked : ids.length ? ids : GROQ_PREFERRED).slice(0, 3);
+  if (ids.length) discovered = { at: Date.now(), models };
+  return models;
 }
 
 function hostOf(u) { try { return new URL(u).hostname; } catch (e) { return ''; } }
@@ -113,18 +142,19 @@ async function complete(p, model, messages, page) {
     const r = await fetch(p.base + '/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + p.key },
-      body: JSON.stringify({
+      body: JSON.stringify(Object.assign({
         model,
         temperature: 0.3,
         max_tokens: 450,
         messages: [{ role: 'system', content: SYSTEM_PROMPT + (page ? `\n\nThe visitor is reading the page ${page}.` : '') }].concat(messages)
-      }),
+      }, /gpt-oss/.test(model) ? { reasoning_effort: 'low', max_tokens: 1200 } : /qwen3/.test(model) ? { reasoning_effort: 'none' } : {})),
       signal: ctrl.signal
     });
     if (!r.ok) return { status: r.status };
     const j = await r.json();
     const text = j && j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content;
-    return text ? { text: String(text).trim() } : { status: 502 };
+    const out = text ? String(text).replace(/<think>[\s\S]*?<\/think>/g, '').trim() : '';
+    return out ? { text: out } : { status: 502 };
   } catch (e) {
     return { status: 504 };
   } finally {
@@ -150,11 +180,13 @@ module.exports = async (req, res) => {
   if (!messages) return res.status(400).json({ error: 'bad_request' });
   const page = typeof (body && body.page) === 'string' ? body.page.slice(0, 120).replace(/[^\w\-/#.]/g, '') : '';
 
+  const models = p.models || await groqModels(p);
   let result = null, used = '';
-  for (const model of p.models) {
+  for (const model of models) {
     result = await complete(p, model, messages, page);
     used = model;
-    if (result.text || ![429, 500, 502, 503, 504].includes(result.status)) break;
+    if (result.text || result.status === 401 || result.status === 403) break;
+    if (result.status === 404 || result.status === 400) discovered = null; // model gone or refused: re-list next time
   }
   if (!result || !result.text) {
     console.error('chat: provider error', result && result.status, used);

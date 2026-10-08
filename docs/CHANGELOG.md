@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-08 — Website assistant live on dev; model discovery
+**Type:** fix + infra
+**Files:** `api/chat.js`, `docs/FEATURES.md`
+`GROQ_API_KEY` is set on the dev Vercel project (Production). Groq returned 404 for `llama-3.3-70b-versatile`, and the old fallback only covered 429/5xx, so every answer failed. The function now asks Groq which models the key can use, takes the best of a ranked list and falls through on any error except auth; reasoning models get a low reasoning budget and `<think>` blocks are stripped.
+
 ## 2026-10-07 — Mobile navigation island
 **Type:** design
 **Files:** `tools/v4-build/chrome.py` (nav sheet markup, `cta` option, `V` 21), `lp_chrome.py`, `css/upcore-v5.css` + `js/upcore-v5.js` (`island`), `css/upcore-chrome.css`, `ai-operations.html`, all generated pages

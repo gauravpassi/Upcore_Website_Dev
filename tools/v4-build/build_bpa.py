@@ -32,7 +32,7 @@ QUEUE = f'''<figure class="dash" data-dash>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Business Process Automation')], 'Business Process Automation &middot; for COOs and operations leaders',
                     'Let AI do <span class="hl">the busywork.</span>',
-                    'We build agents that run the repetitive work in support, operations and finance: answering status questions, chasing documents and payments, checking files against your rules and keeping records current, inside the systems you already use.',
+                    'Agents that run the repetitive work in support, operations and finance: answering status questions, chasing documents and payments, and checking files against your rules, inside the systems you already use.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#workflows">See what we automate</a>', QUEUE,
                     micro='Our standard: a first agent live within 30 days of design sign-off')
 

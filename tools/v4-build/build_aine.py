@@ -47,7 +47,7 @@ hero = f'''<section class="h-hero h-hero--long" aria-labelledby="hero-h"><div cl
 <nav class="crumb" aria-label="Breadcrumb" data-reveal><ol><li><a href="{C.URL["home"]}">Home</a></li><li aria-current="page">AI-Native Engineering</li></ol></nav>
 <p class="h-eyebrow" data-reveal>AI-Native Engineering &middot; for CTOs and CIOs</p>
 <h1 id="hero-h" class="t-hero" data-split>AI speed. <span class="hl">Your standards.</span></h1>
-<p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline inside your Jira or Linear, GitHub and CI/CD, and embed a Claude Certified Architect to run it with your team. You see every change that breaks one of your rules, why, and who decided.</p>
+<p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline in your Jira or Linear, GitHub and CI/CD, run by a Claude Certified Architect. You see every change that breaks your rules, and who decided.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pipeline">See the nine stages</a></div>
 <p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>
 </div>

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-09 — One type scale; bigger, structured heroes
+**Type:** design
+**Files:** `css/upcore-v4.css` (`:root` type tokens), `css/upcore-v5.css` (every block snapped to tokens + new `type` block), `css/upcore-chrome.css`, `lp/*.html`, `ai-operations.html`, `build-your-demo.html`, `tools/v4-build/calm.py` (`hero_page(cls=)`), `article.py`, `build_aine.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_fde.py`, `segment_copy.py`, `chrome.py` (`V` 23), all generated pages
+Fourteen tokens (`--fs-hero` … `--fs-nano`, plus `--fs-num`) replace 28 ad hoc sizes; about 870 font-size declarations were snapped to them. Hero H1s grow to 44 → 84px (from 38 → 56–70px, which varied by page), leads to 18 → 22px, and every hero shares one structure and rhythm. Long hero leads were tightened to 25–33 words. Article titles use the H1 step. Full table in DESIGN-SYSTEM-V4.md "Type scale".
+
 ## 2026-10-08 — Simpler hero headlines
 **Type:** content
 **Files:** `tools/v4-build/build_home.py`, `build_aine.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_fde.py`, `segment_copy.py`, `build_results.py`, `build_about.py`, `build_security.py`, `build_insights.py`

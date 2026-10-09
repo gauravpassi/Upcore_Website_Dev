@@ -26,7 +26,7 @@ PORTFOLIO = f'''<figure class="fo-port" data-portfolio>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional AI Officer')], 'Fractional AI Officer &middot; for COOs, CFOs and CEOs',
                     'Senior AI leadership, <span class="hl">part-time.</span>',
-                    'An embedded AI lead on retainer. Your Fractional AI Officer inventories every AI pilot and tool, picks the two or three worth scaling and stays accountable until they are live and used. From $1,999 a month.',
+                    'An AI lead on retainer who inventories every pilot and tool, picks the two or three worth scaling and stays accountable until they&rsquo;re live and used. From $1,999 a month.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#economics">See the economics</a>', PORTFOLIO,
                     micro=f'Not ready for a call? <a href="/lp/ai-maturity-index?utm_source=website&amp;utm_medium=fractional-ai-officer&amp;utm_campaign=hero_secondary">Get your AI Maturity Score in 2 minutes</a>')
 

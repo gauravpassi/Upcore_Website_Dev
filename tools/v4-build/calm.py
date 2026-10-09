@@ -38,8 +38,8 @@ def hero_split(trail, eb, h1, lead, ctas, vis, micro='45 minutes &middot; a writ
 </div>{f'<div class="wrap">{PROOF_STRIP}</div>' if proof else ''}</section>'''
 
 
-def hero_page(trail, eb, h1, lead, extra=''):
-    return f'''<section class="h-hero h-hero--page" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
+def hero_page(trail, eb, h1, lead, extra='', cls=''):
+    return f'''<section class="h-hero h-hero--page{(' ' + cls) if cls else ''}" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap">
 {crumb(trail)}
 <p class="h-eyebrow" data-reveal>{eb}</p>
 <h1 id="hero-h" class="t-display" data-split>{h1}</h1>

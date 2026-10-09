@@ -34,7 +34,7 @@ DASH = f'''<figure class="gv-dash" data-seg>
 </figure>'''
 hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'AI Governance')], 'AI Governance &middot; for CTOs, CISOs and CFOs',
                     'Get your AI <span class="hl">under control.</span>',
-                    'Your teams already use Copilot, Cursor, ChatGPT and Claude. We give you an inventory of every AI tool, spend by team, controls that keep sensitive data out, security checks on AI-written code and an audit trail your board can rely on.',
+                    'Your teams already use Copilot, Cursor and ChatGPT. Get every AI tool and its cost in one view, sensitive data kept out, AI-written code checked and an audit trail your board can rely on.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#plan">See the 90-day plan</a>', DASH)
 
 # ------------------------------------------------------------------ 2. four gaps, struck through

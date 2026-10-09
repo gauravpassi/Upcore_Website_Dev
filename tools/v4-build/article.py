@@ -18,7 +18,7 @@ def page(trail, eyebrow, h1, lead, sections, meta_line='', aside='', extra='', s
     secs = ''.join((f'<section class="ar-sec" id="{i}" aria-labelledby="{i}-h"><h2 id="{i}-h" class="ar-h2">{h}</h2>{b}</section>' if h
                     else f'<section class="ar-sec ar-intro" id="{i}" aria-label="Introduction">{b}</section>') for i, h, b in sections)
     meta = f'<p class="ar-meta" data-reveal style="--d:4">{f"<span>{mins} min read</span>" if show_time else ""}{meta_line}</p>'
-    hero = K.hero_page(trail, eyebrow, h1, lead, extra=extra + meta)
+    hero = K.hero_page(trail, eyebrow, h1, lead, extra=extra + meta, cls='h-hero--article')
     body = f'''<div class="ar-progress" aria-hidden="true"><i></i></div>
 <section class="h-sec ar-wrap" aria-label="Article"><div class="wrap ar-grid">
 <aside class="ar-side"><nav class="ar-toc" aria-label="On this page" data-toc><p class="h-col">On this page</p><ol>{toc}</ol></nav>{aside}</aside>

@@ -31,8 +31,31 @@ Source of truth for code: [`css/upcore-v4.css`](../css/upcore-v4.css) (one share
 | Radius | `--r-sm 8`, `--r-md 14`, `--r-lg 20`, `--r-pill` |
 | Motion | `--ease-out cubic-bezier(.16,1,.3,1)`, durations `.18 / .4 / .8s` |
 
-## Type scale
-`.t-hero` 38–70px · `.t-display` 32–52px · `.t-h2` 27–40px · `.t-h3` 18.5–21px · `.t-h4` 16.5px · `.t-lead` 16.5–18px · `.eyebrow` 11.5px mono uppercase. Headings use `text-wrap:balance`.
+## Type scale (2026-10-09)
+One family, Geist (Geist Mono for labels). Weights: 600 headings, 500 UI and labels, 400 body. **Every `font-size` on the site uses a token** from the `:root` of `css/upcore-v4.css`; the hand-built pages (quiz LPs, `/ai-operations`, `/build-your-demo`) were snapped to the same tokens. Fluid steps scale from a 390px phone to a 1440px desktop.
+
+| Token | Phone → desktop | Line height · tracking | Use |
+|---|---|---|---|
+| `--fs-hero` | 44 → 84px | 1.02 · −0.045em | Page hero H1 (`.t-hero`, `.h-hero h1`, contact, booking) |
+| `--fs-h1` | 36 → 60px | 1.05 · −0.04em | Article and legal titles, closing CTA band, `.t-display`, quiz LP H1 |
+| `--fs-h2` | 30 → 50px | 1.08 · −0.035em | Section headings (`.h-h2`, `.t-h2`) |
+| `--fs-h3` | 26 → 38px | 1.12 · −0.03em | Compact section headings (`.h-h2--sm`), article H2 |
+| `--fs-h4` | 21 → 28px | 1.22 · −0.022em | Card and item titles (`.h-h3`), quotes |
+| `--fs-h5` | 18 → 21px | 1.32 · −0.014em | Small titles (`.t-h3`), FAQ questions |
+| `--fs-num` | 48 → 80px | 1 · −0.045em | Big result numbers |
+| `--fs-lead` | 18 → 22px | 1.5 | Hero lead |
+| `--fs-lg` | 17 → 18px | 1.6 | Section leads (`.h-lead`), article body |
+| `--fs-md` | 16px | 1.6 | Body |
+| `--fs-ui` | 15px | 1 | Buttons, text links, UI controls |
+| `--fs-sm` | 14px | — | Small text, nav |
+| `--fs-xs` | 13px | — | Captions, meta, breadcrumbs, hero reassurance line |
+| `--fs-label` | 12px mono, +0.14em, uppercase | — | Eyebrows and labels |
+| `--fs-micro` | 11px mono | — | Column labels, tags |
+| `--fs-nano` | 10px | — | Only inside illustrative UI (dashboards, mock windows) |
+
+Decorative display sizes (footer wordmark, oversized quote marks, the pipeline counter) keep their own values. **Adding CSS:** use a token, never a raw px size. The `typescale.py` helper used for the 2026-10-09 migration maps raw values to tokens: px to the nearest step; `clamp()` by its maximum.
+
+**Hero structure** (the `type` block in `upcore-v5.css`, same on every page): breadcrumb (`--fs-xs`) → eyebrow (`--fs-label`) → H1 (`--fs-hero`, balanced, max 13ch, 16ch on single-column heroes) → lead (`--fs-lead`, `--ink-2`, max 42ch) → primary button + secondary link → reassurance line (`--fs-xs`, muted) → proof strip. The gaps scale with the viewport (eyebrow→H1 16–22px, H1→lead 20–30px, lead→actions 28–40px). Split heroes give the copy 1.1fr against 0.9fr for the visual. Hero leads stay at 25–33 words. Article and legal titles are long, so `h-hero--article` uses `--fs-h1` instead.
 
 ## Components
 Chrome: `.progress` (scroll bar), `.annc`, `.nav` (+ `.drop` mega-menu, mobile `.menu-open`), `.foot`, `.mcta` (sticky mobile CTA, leaves room for the chat bubble).

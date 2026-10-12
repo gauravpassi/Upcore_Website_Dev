@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- @chrome consent -->
+<script>window.dataLayer=window.dataLayer||[];window.upcConsentBanner=true;(function(){function g(){dataLayer.push(arguments)}g('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],wait_for_update:500});g('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});g('set','ads_data_redaction',true);try{var c=localStorage.getItem('upc_consent');if(c==='granted'||c==='denied')g('consent','update',{ad_storage:c,ad_user_data:c,ad_personalization:c,analytics_storage:c})}catch(e){}})();</script>
+<script>(function(){var done=0;function load(){if(done)return;done=1;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xtvhi9nvqa");}
+var s=null,tz='';try{s=localStorage.getItem('upc_consent')}catch(e){}try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+var eu=/^Europe\//.test(tz)||/^Atlantic\/(Reykjavik|Canary|Madeira|Faroe|Azores)$/.test(tz);
+if(s==='granted'||(!eu&&s!=='denied'))load();
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-consent="granted"]'))load()});})();</script>
+<!-- @end consent -->
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -18,14 +26,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   gtag('js', new Date());
   gtag('config', 'G-TVRF5M70ES');
   gtag('config', 'AW-16546427858');
-</script>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xtvhi9nvqa");
 </script>
 <title>AI Operations Plug-and-Play Toolkit — Lifetime Access for $3</title>
 <meta name="description" content="30+ plug-and-play Custom GPTs and Claude Skills to find, score, simplify and plan your highest-value AI operations work. Lifetime access for $3." />
@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- @chrome head -->
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/css/upcore-chrome.css?v=23" />
+<link rel="stylesheet" href="/css/upcore-chrome.css?v=24" />
 <!-- @end head -->
 <style>
 html{overflow-x:clip;}
@@ -767,12 +767,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
         <p id="rzpError" class="rzp-error" style="display:none;">Enter a valid email above so we know where to send your Kit access.</p>
-        <p class="rzp-note">Secure payment via Razorpay. We'll email your Kit access within a few minutes of payment.</p>
+        <p class="rzp-note" id="rzpNote">Secure payment via Razorpay. We'll email your Kit access within a few minutes of payment.</p>
       </form>
       <div id="rzpSuccess" class="rzp-success" style="display:none;">
         <div class="rzp-success-icon">✓</div>
         <div class="rzp-success-title">Payment received — you're in</div>
-        <p class="rzp-success-sub">We've also sent a copy of this link to <strong id="rzpSuccessEmail"></strong>. If it doesn't land in a few minutes, check spam or WhatsApp us.</p>
+        <p class="rzp-success-sub" id="rzpSuccessSub">We've also sent a copy of this link to <strong id="rzpSuccessEmail"></strong>. If it doesn't land in a few minutes, check spam or WhatsApp us.</p>
         <a id="rzpSuccessLink" class="cta" href="#" target="_blank" rel="noopener" style="margin-top:1.2rem;">
           Access your Toolkit now
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -863,8 +863,14 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 <script>
 const RAZORPAY_KEY_ID = 'rzp_live_TUNJ4qVMw8RcyG';
 
-// TODO: replace with the real hosted doc/folder containing all 10 Kits' GPT/Claude Skill links
-const TOOLKIT_RESOURCE_URL = 'https://www.google.com';
+// The hosted doc/folder with all 10 Kits' GPT/Claude Skill links. While it is empty, delivery is manual:
+// the buyer is told the link comes within one business day and the team email asks for it to be sent.
+// Paste the real URL here to switch to instant delivery (success-panel button + buyer email).
+const TOOLKIT_RESOURCE_URL = '';
+
+var PAY_LABEL = TOOLKIT_RESOURCE_URL ? 'Pay $3 & get instant access' : 'Pay $3 & get the Toolkit';
+var payLabelEl = document.getElementById('rzpPayBtnText'); if (payLabelEl) payLabelEl.textContent = PAY_LABEL;
+if (!TOOLKIT_RESOURCE_URL) { var rzpNote = document.getElementById('rzpNote'); if (rzpNote) rzpNote.textContent = 'Secure payment via Razorpay. We email your Kit access within one business day of payment.'; }
 
 function sendResourceToCustomer(name, email, paymentId){
   fetch('https://formsubmit.co/' + email, {
@@ -898,7 +904,8 @@ function notifyTeamOfPurchase(name, email, paymentId){
       'Email': email,
       'Amount': '$3.00 USD',
       'Razorpay Payment ID': paymentId,
-      'Source': 'ai-operations.html - #get section'
+      'Source': 'ai-operations.html - #get section',
+      'ACTION': TOOLKIT_RESOURCE_URL ? 'None: the buyer received the access link automatically.' : 'Send this buyer their Toolkit access link within one business day (manual delivery is on).'
     })
   }).catch(()=>{});
 }
@@ -943,24 +950,30 @@ function startRazorpayCheckout(){
     theme: { color: '#21D2ED' },
     handler: function(response){
       notifyTeamOfPurchase(name, email, response.razorpay_payment_id);
-      sendResourceToCustomer(name, email, response.razorpay_payment_id);
       document.getElementById('rzpForm').style.display = 'none';
       document.getElementById('rzpSuccessEmail').textContent = email;
-      document.getElementById('rzpSuccessLink').href = TOOLKIT_RESOURCE_URL;
+      if (TOOLKIT_RESOURCE_URL) {
+        sendResourceToCustomer(name, email, response.razorpay_payment_id);
+        document.getElementById('rzpSuccessLink').href = TOOLKIT_RESOURCE_URL;
+      } else {
+        document.getElementById('rzpSuccessLink').style.display = 'none';
+        document.getElementById('rzpSuccessSub').innerHTML = 'Your Toolkit access link is on its way to <strong></strong>. We send it personally within one business day. If it hasn&rsquo;t arrived by then, check spam or <a href="https://wa.me/919988135327" target="_blank" rel="noopener">WhatsApp us</a> with your payment reference.';
+        document.querySelector('#rzpSuccessSub strong').textContent = email;
+      }
       document.getElementById('rzpSuccess').style.display = 'block';
       if(window.dataLayer){ window.dataLayer.push({event:'ai_ops_toolkit_purchase', value:3, currency:'USD'}); }
     },
     modal: {
       ondismiss: function(){
         btn.disabled = false;
-        btnText.textContent = 'Pay $3 & get instant access';
+        btnText.textContent = PAY_LABEL;
       }
     }
   });
 
   rzp.on('payment.failed', function(response){
     btn.disabled = false;
-    btnText.textContent = 'Pay $3 & get instant access';
+    btnText.textContent = PAY_LABEL;
     alert('Payment failed: ' + (response.error && response.error.description ? response.error.description : 'please try again.'));
   });
 
@@ -971,8 +984,8 @@ function startRazorpayCheckout(){
 <script src="/chat-widget.js?v=20" defer></script>
 <script src="/cta-tracking.js?v=3" defer></script>
 <!-- @chrome js -->
-<script src="/js/upcore-v4.js?v=23" defer></script>
-<script src="/js/upcore-v5.js?v=23" defer></script>
+<script src="/js/upcore-v4.js?v=24" defer></script>
+<script src="/js/upcore-v5.js?v=24" defer></script>
 <!-- @end js -->
 </body>
 </html>

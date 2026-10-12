@@ -9,7 +9,7 @@ How analytics, consent and booking conversions work on upcoretech.com, and the o
 | Pages | How tags load | Who sends events |
 |---|---|---|
 | **Generated pages**: every page built by `tools/v4-build/` (since 2026-10-07 that includes `/assessment`, `/lp/maturity-review`, all articles and the legal pages) | **GTM only.** `<head>` sets Consent Mode v2 defaults, `window.upcGTM = true` and pushes `{tagging:'gtm', content_group}` before the GTM loader. No direct `gtag.js`, no inline Clarity. | Site scripts push `{event, event_params}` to `dataLayer`; GTM's GA4 event tag sends them. |
-| **Legacy-tagged pages**: the two quiz LPs (`/lp/governance-index`, `/lp/ai-maturity-index`), `/ai-operations`, `/build-your-demo` (all four use the site design but keep their own tags) | Direct `gtag.js` (GA4 + Ads) and inline Clarity, plus the GTM loader. | Site scripts call `gtag('event', …)` directly. |
+| **Legacy-tagged pages**: the two quiz LPs (`/lp/governance-index`, `/lp/ai-maturity-index`), `/ai-operations`, `/build-your-demo` (all four use the site design but keep their own tags) | Direct `gtag.js` (GA4 + Ads) plus the GTM loader. Since 2026-10-12 `tools/v4-build/lp_chrome.py` also puts the generated pages' Consent Mode v2 defaults first in `<head>` (block `@chrome consent`, **without** the `tagging` flag, with `window.upcConsentBanner = true`) and a consent-gated Clarity loader in place of the inline snippet. | Site scripts call `gtag('event', …)` directly. |
 
 **The `tagging` flag is the safety catch.** Every trigger in the GTM container requires `{{DLV - tagging}} equals gtm`, so publishing the container never adds a second GA4/Ads/Clarity tag to a legacy page. When a legacy page is moved to V4, it gets the flag and stops loading `gtag.js` itself in the same change.
 
@@ -65,7 +65,7 @@ Hits from any host other than `upcoretech.com` carry `traffic_type=internal`. In
 - A stored choice (`localStorage.upc_consent` = `granted`/`denied`) is re-applied on every page load before GTM runs.
 - Banner ([`js/upcore-v4.js`](../js/upcore-v4.js), bottom of file): shown automatically when the visitor's timezone is in Europe and no choice is stored; always reachable from **Cookie settings** in the V4 footer. Accept and Decline have equal weight.
 - Clarity only loads once `analytics_storage` is granted (GTM consent check).
-- Legacy pages have no banner yet; they keep their direct tags until they move to V4.
+- Legacy-tagged pages (the four above) get the same defaults and banner (flag `window.upcConsentBanner`). Their Clarity is loaded by the `@chrome consent` script, not GTM: straight away outside Europe or with stored consent, otherwise only after Accept.
 - Disclosures: [`privacy.html`](../privacy.html) §2 (Analytics, Advertising measurement, Your cookie choices, Calendar bookings), §5, §6, §7. **Have the policy reviewed by counsel before production.**
 
 ## 5. Booking conversions

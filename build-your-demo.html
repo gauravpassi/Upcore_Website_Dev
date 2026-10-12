@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- @chrome consent -->
+<script>window.dataLayer=window.dataLayer||[];window.upcConsentBanner=true;(function(){function g(){dataLayer.push(arguments)}g('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',region:['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],wait_for_update:500});g('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});g('set','ads_data_redaction',true);try{var c=localStorage.getItem('upc_consent');if(c==='granted'||c==='denied')g('consent','update',{ad_storage:c,ad_user_data:c,ad_personalization:c,analytics_storage:c})}catch(e){}})();</script>
+<script>(function(){var done=0;function load(){if(done)return;done=1;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xtvhi9nvqa");}
+var s=null,tz='';try{s=localStorage.getItem('upc_consent')}catch(e){}try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+var eu=/^Europe\//.test(tz)||/^Atlantic\/(Reykjavik|Canary|Madeira|Faroe|Azores)$/.test(tz);
+if(s==='granted'||(!eu&&s!=='denied'))load();
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-consent="granted"]'))load()});})();</script>
+<!-- @end consent -->
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -19,14 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   gtag('config', 'G-TVRF5M70ES');
   gtag('config', 'AW-16546427858');
-</script>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xtvhi9nvqa");
 </script>
 <title>Build Your Agent Demo · Upcore Technologies</title>
 <meta name="description" content="Describe your workflow. We'll build a live AI agent demo for your industry in under 60 seconds - complete with realistic demo data."/>
@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <!-- @chrome head -->
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/css/upcore-chrome.css?v=23" />
+<link rel="stylesheet" href="/css/upcore-chrome.css?v=24" />
 <!-- @end head -->
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -870,8 +870,8 @@ function callBuildAPI() {
 <script src="/chat-widget.js?v=20" defer></script>
 <script src="/cta-tracking.js?v=3" defer></script>
 <!-- @chrome js -->
-<script src="/js/upcore-v4.js?v=23" defer></script>
-<script src="/js/upcore-v5.js?v=23" defer></script>
+<script src="/js/upcore-v4.js?v=24" defer></script>
+<script src="/js/upcore-v5.js?v=24" defer></script>
 <!-- @end js -->
 </body>
 </html>

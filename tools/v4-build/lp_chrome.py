@@ -24,6 +24,19 @@ FONTS = '<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500
 HEAD = {'full': FONTS + '\n<link rel="stylesheet" href="/css/upcore-v4.css?v={V}" />\n<link rel="stylesheet" href="/css/upcore-v5.css?v={V}" />',
         'chrome': FONTS + '\n<link rel="stylesheet" href="/css/upcore-chrome.css?v={V}" />'}
 JS = '<script src="/js/upcore-v4.js?v={V}" defer></script>\n<script src="/js/upcore-v5.js?v={V}" defer></script>'
+# These pages still load gtag.js directly, so they get the generated pages' Consent Mode v2 defaults
+# (before any tag) without the {tagging:'gtm'} flag: GTM's triggers stay off and nothing is counted twice.
+# window.upcConsentBanner turns on the EU cookie banner in upcore-v4.js. Clarity loads only with consent
+# in Europe (its inline snippet is stripped from the page by run()).
+CONSENT = (C.TRACKING.split('</script>')[0] + '</script>').replace(
+    'window.upcGTM=true;', 'window.upcConsentBanner=true;').replace(
+    "dataLayer.push({tagging:'gtm',content_group:'__GROUP__'});", '') + '''
+<script>(function(){var done=0;function load(){if(done)return;done=1;(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","xtvhi9nvqa");}
+var s=null,tz='';try{s=localStorage.getItem('upc_consent')}catch(e){}try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){}
+var eu=/^Europe\\//.test(tz)||/^Atlantic\\/(Reykjavik|Canary|Madeira|Faroe|Azores)$/.test(tz);
+if(s==='granted'||(!eu&&s!=='denied'))load();
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-consent="granted"]'))load()});})();</script>'''
+assert 'upcConsentBanner' in CONSENT and "tagging:'gtm'" not in CONSENT and '__GROUP__' not in CONSENT
 
 
 # ---------------------------------------------------------------- css/upcore-chrome.css (generated)
@@ -411,6 +424,8 @@ def run(p):
     s = block(s, 'nav', '<a class="skip" href="#main">Skip to content</a>\n' + nav, find=p['nav'])
     s = block(s, 'foot', C.footer(), find=r'<footer>[\s\S]*?\n</footer>')
     s = block(s, 'js', JS.replace('{V}', str(C.V)), before='</body>')
+    s = re.sub(r'<!-- Microsoft Clarity -->\s*<script[^>]*>[\s\S]*?</script>\n?', '', s, count=1)
+    s = block(s, 'consent', CONSENT, before='<!-- Google Tag Manager -->')
     if '<main id="main"' not in s:
         s = s.replace(p['main'], f'<main id="main" class="lp-main" data-island-label="{p["label"]}">\n' + p['main'], 1)
         s = s.replace('\n<!-- @chrome foot -->', '\n</main>\n<!-- @chrome foot -->', 1)

@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-12 — Consent defaults on the legacy-tagged pages; toolkit delivery made honest
+**Type:** fix
+**Files:** `tools/v4-build/lp_chrome.py`, `js/upcore-v4.js`, `ai-operations.html`, `tools/v4-build/chrome.py` (V24)
+The quiz LPs, `/ai-operations` and `/build-your-demo` loaded `gtag.js` and Clarity with no consent defaults, so EU visitors were tracked before any choice. `lp_chrome.py` now injects the Consent Mode v2 defaults (no `tagging` flag, so GTM stays off), turns on the EU banner via `window.upcConsentBanner`, and replaces the inline Clarity with a consent-gated loader. The toolkit page no longer links buyers to the Google placeholder: with `TOOLKIT_RESOURCE_URL` empty it promises delivery within one business day and flags the team email `ACTION`.
+
 ## 2026-10-12 — Redesign live on www.upcoretech.com
 **Type:** release
 **Files:** merge commit `dc4cca4` on `origin/main`; production deployment `upcore-ai-workforces-f63n3tix1`

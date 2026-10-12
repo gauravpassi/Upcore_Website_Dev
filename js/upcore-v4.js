@@ -421,7 +421,7 @@
   var tz = '';
   try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { /* old browser */ }
   var europe = /^Europe\//.test(tz) || /^Atlantic\/(Reykjavik|Canary|Madeira|Faroe|Azores)$/.test(tz);
-  if (window.upcGTM && europe && !stored()) {
+  if ((window.upcGTM || window.upcConsentBanner) && europe && !stored()) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { open(); });
     else open();
   }

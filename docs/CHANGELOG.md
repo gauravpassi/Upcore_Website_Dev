@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-12 — "Upcore AI": live avatar, follow-up suggestions, stickier answers
+**Type:** feature
+**Files:** `chat-widget.js` (v21), `api/chat.js`, `tools/v4-build/chrome.py` (`CHAT_V` 21), `ai-operations.html`, `build-your-demo.html`
+The launcher now reads "Ask Upcore AI" and shows a CSS-only face that follows the pointer, blinks, glances around, dozes off and reacts to the chat (curious, happy, listening, thinking, talking). Every answer ends with up to three tappable follow-up questions (model `NEXT` line, FAQ fallback, page starters), answers fade in word by word, the welcome line and teaser question are page-aware, and a once-per-session exit-intent teaser was added on desktop. The system prompt now asks for answer-first replies, one proof point, one easy choice question and step-by-step qualification.
+
 ## 2026-10-12 — Consent defaults on the legacy-tagged pages; toolkit delivery made honest
 **Type:** fix
 **Files:** `tools/v4-build/lp_chrome.py`, `js/upcore-v4.js`, `ai-operations.html`, `tools/v4-build/chrome.py` (V24)

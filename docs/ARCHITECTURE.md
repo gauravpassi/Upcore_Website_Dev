@@ -42,7 +42,7 @@ The chat widget (`<script src="/chat-widget.js" defer>`) is included on **every*
 
 ### 3.1 `/api/chat` and the website assistant (`chat-widget.js`)
 
-`api/chat.js` answers the "Ask Upcore" assistant through a free-tier OpenAI-compatible model (`GROQ_API_KEY`; it lists the models the key can use and falls back on errors). Without a key it returns `503 {fallback:true}` and `chat-widget.js` answers from its built-in FAQ. The site's facts live in its `SYSTEM_PROMPT`. Details: [FEATURES.md B3 and C2](FEATURES.md). `chat-widget.js` also holds the booking modal; its `?v=N` cache-buster is `CHAT_V` in `tools/v4-build/chrome.py` for generated pages and hard-coded on the hand-built ones (`/ai-operations`, `/build-your-demo`).
+`api/chat.js` answers the "Upcore AI" assistant ("Ask Upcore AI") through a free-tier OpenAI-compatible model (`GROQ_API_KEY`; it lists the models the key can use and falls back on errors). Without a key it returns `503 {fallback:true}` and `chat-widget.js` answers from its built-in FAQ. The site's facts live in its `SYSTEM_PROMPT`. Details: [FEATURES.md B3 and C2](FEATURES.md). `chat-widget.js` also holds the booking modal; its `?v=N` cache-buster is `CHAT_V` in `tools/v4-build/chrome.py` for generated pages and hard-coded on the hand-built ones (`/ai-operations`, `/build-your-demo`).
 
 ### 3.2 `/api/build-demo` — Demo Builder pipeline
 

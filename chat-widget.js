@@ -1,11 +1,16 @@
-// ── Upcore assistant (chat) ─────────────────────────────────────────────────
-// Rebuilt 2026-10-07. Answers come from /api/chat (a free-tier model behind an OpenAI-compatible API,
-// grounded in the site's facts; see api/chat.js). If the API is not configured, rate-limited or down,
-// the widget answers from the built-in FAQ below instead, so it always works.
+// ── Upcore AI (chat) ────────────────────────────────────────────────────────
+// Rebuilt 2026-10-07; "Upcore AI" with a live avatar and follow-up suggestions since 2026-10-12.
+// Answers come from /api/chat (a free-tier model behind an OpenAI-compatible API, grounded in the site's
+// facts; see api/chat.js). If the API is not configured, rate-limited or down, the widget answers from the
+// built-in FAQ below instead, so it always works. Every answer ends with up to three tappable follow-up
+// questions (from the model's NEXT line, else from the page's starters) so a visitor is never left at a dead end.
+// The avatar (Face below) follows the pointer, blinks, glances around and reacts to the chat: listening while
+// the visitor types, thinking while an answer is on its way, talking while it appears, happy when it lands.
 // "Talk to a person" sends the visitor's question and the recent transcript to the team via FormSubmit
 // (same inboxes as before). The conversation is kept in sessionStorage so it survives page changes.
 // Events (dataLayer on GTM pages, gtag elsewhere; no message text or personal data):
-//   chat_open, chat_question {source, mode}, chat_action {action}, generate_lead {lead_source: chat_widget}.
+//   chat_open, chat_question {source: starter|typed|suggested|tease, mode}, chat_action {action},
+//   chat_tease {kind: timer|exit}, generate_lead {lead_source: chat_widget}.
 (function () {
   'use strict';
   if (window.__upcChat) return;
@@ -36,33 +41,62 @@
     if (path.indexOf('/who-we-help/') === 0) return ['What would you automate for a business like ours?', 'Do you have results in our industry?', 'How does a pilot work?', 'What does it cost?'];
     return STARTERS['/'];
   }
+  // Page-aware welcome line under "Hi, I'm Upcore AI."
+  var GREET = {
+    '/ai-native-engineering': 'Curious how AI-written code gets to production safely? Ask me about the pipeline, pilots or pricing.',
+    '/ai-engineering-governance': 'Want to know which AI tools your teams use, and what they cost? Ask me about AI Governance or the 90-day plan.',
+    '/platform': 'Wondering which workflow to hand to an AI agent first? Ask me what we automate and how people stay in control.',
+    '/forward-deployed-engineer': 'Have an AI pilot that never shipped? Ask me how a Forward Deployed Engineer gets it into production.',
+    '/fractional-ai-officer': 'Wondering whether a Fractional AI Officer fits your company? Ask me about the first 90 days or the cost.',
+    '/security': 'Questions about where your code and data go? Ask me about access, model providers, contracts or certifications.',
+    '/results': 'Tell me your industry and I’ll point you to the closest result we have.',
+    '/contact': 'Not sure what to write in the form? Ask me first, or tell me what you’re working on.',
+    '/about': 'Want to know who you’d work with? Ask me about the team, where we’re based or how we work.'
+  };
+  function greet() {
+    if (GREET[path]) return GREET[path];
+    if (path.indexOf('/who-we-help/') === 0) return 'Tell me a little about your business and I’ll show you what we’d automate first and the closest result we have.';
+    return 'Ask me anything about AI-native engineering, governance, automation, pricing, security or our results. I answer from Upcore’s own material, and a person is one click away.';
+  }
 
   // ── Built-in FAQ (used when the AI is unavailable) ──────────────────────
   var FAQ = [
     { k: ['ai-native', 'ai native', 'pipeline', 'copilot', 'cursor', 'claude code', 'delivery', 'merge', 'pull request', 'cto', 'engineering'],
-      a: 'AI-Native Engineering is a governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: specs from templates, architecture checks, automated pull-request checks, risk-scored merges and feature-flagged releases, with every rule deviation logged. A Claude Certified Architect runs it with your team. [See the nine stages](/ai-native-engineering)' },
+      a: 'AI-Native Engineering is a governed delivery pipeline for AI-written code, installed inside your Jira or Linear, GitHub and CI/CD: specs from templates, architecture checks, automated pull-request checks, risk-scored merges and feature-flagged releases, with every rule deviation logged. A Claude Certified Architect runs it with your team. [See the nine stages](/ai-native-engineering)',
+      n: ['Who decides what merges?', 'How does a pilot work?', 'Does it work with Copilot or Cursor?'] },
     { k: ['pilot', 'start', 'begin', 'get started', 'trial', 'engagement', 'how does it work', 'first step'],
-      a: 'Everything starts with a 45-minute discovery call and a written plan. Engineering work then begins with a pilot on one team and one service, measured against your current process; automation starts with one workflow. You see results before committing further.', act: ['book'] },
+      a: 'Everything starts with a 45-minute discovery call and a written plan. Engineering work then begins with a pilot on one team and one service, measured against your current process; automation starts with one workflow. You see results before committing further.', act: ['book'],
+      n: ['What happens on the discovery call?', 'How fast can we see results?', 'What does it cost?'] },
     { k: ['cost', 'price', 'pricing', 'how much', 'fee', 'budget', 'expensive', 'quote', '$'],
-      a: 'The only price we publish is the Fractional AI Officer: **from $1,999 a month**. Everything else is scoped after a discovery call, and you get a written proposal with a fixed scope and price before any build starts. [Fractional AI Officer](/fractional-ai-officer#economics)', act: ['book', 'person'] },
+      a: 'The only price we publish is the Fractional AI Officer: **from $1,999 a month**. Everything else is scoped after a discovery call, and you get a written proposal with a fixed scope and price before any build starts. [Fractional AI Officer](/fractional-ai-officer#economics)', act: ['book', 'person'],
+      n: ['What does the Fractional AI Officer include?', 'How does a pilot work?', 'Can I see results like ours?'] },
     { k: ['secure', 'security', 'data', 'privacy', 'iso', 'soc', 'gdpr', 'hipaa', 'baa', 'nda', 'train', 'confidential'],
-      a: 'Code stays in your repositories, access is scoped to what the work needs, and no code is copied to our servers. Model providers are named in your contract and do not train on your data. We hold ISO 27001, ISO 9001 and CMMI Level 3, and a Security Review Pack is available on request. [Security details](/security)' },
+      a: 'Code stays in your repositories, access is scoped to what the work needs, and no code is copied to our servers. Model providers are named in your contract and do not train on your data. We hold ISO 27001, ISO 9001 and CMMI Level 3, and a Security Review Pack is available on request. [Security details](/security)',
+      n: ['Can we use our own model?', 'Can you sign a BAA?', 'Which AI providers process our data?'] },
     { k: ['governance', 'spend', 'audit', 'policy', 'compliance', 'eu ai act', 'inventory', 'shadow ai'],
-      a: 'AI Governance gives you an inventory of every AI tool with an owner, AI spend by team, data controls, AI-aware security checks on every commit and an audit trail. It is installed in 90 days, with a risk report at Day 30 when you can walk away. [AI Governance](/ai-engineering-governance)' },
+      a: 'AI Governance gives you an inventory of every AI tool with an owner, AI spend by team, data controls, AI-aware security checks on every commit and an audit trail. It is installed in 90 days, with a risk report at Day 30 when you can walk away. [AI Governance](/ai-engineering-governance)',
+      n: ['What happens in the first 30 days?', 'Can we see AI spend by team?', 'Which regulations does it map to?'] },
     { k: ['automate', 'automation', 'agent', 'workflow', 'operations', 'crm', 'whatsapp', 'support', 'follow-up', 'follow up', 'invoice', 'documents'],
-      a: 'We build AI agents that run repetitive support, operations, finance and sales work inside your CRM, ERP, helpdesk, email and WhatsApp, with people approving what matters. Our standard is a first agent live within 30 days of design sign-off. [Business Process Automation](/platform)' },
+      a: 'We build AI agents that run repetitive support, operations, finance and sales work inside your CRM, ERP, helpdesk, email and WhatsApp, with people approving what matters. Our standard is a first agent live within 30 days of design sign-off. [Business Process Automation](/platform)',
+      n: ['Do agents act on their own?', 'Which systems do you connect to?', 'Can I see a result like ours?'] },
     { k: ['fractional', 'officer', 'caio', 'chief ai', 'strategy', 'roadmap', 'portfolio', 'pilots'],
-      a: 'A Fractional AI Officer is an embedded AI lead on retainer, from $1,999 a month. They inventory every AI pilot and tool, pick the two or three worth scaling and stay accountable until they are live and used, with a Day-30 walk-away. [Fractional AI Officer](/fractional-ai-officer)' },
+      a: 'A Fractional AI Officer is an embedded AI lead on retainer, from $1,999 a month. They inventory every AI pilot and tool, pick the two or three worth scaling and stay accountable until they are live and used, with a Day-30 walk-away. [Fractional AI Officer](/fractional-ai-officer)',
+      n: ['What happens in the first 90 days?', 'How is it different from a full-time hire?', 'How many hours a week is it?'] },
     { k: ['result', 'case', 'client', 'example', 'proof', 'reference', 'retailer', 'worked with'],
-      a: 'A few examples: a national retailer cut delivery-support tickets by more than 60%; an automotive compliance firm replaced about $210K a year of licensed tooling; a residential developer cut time to first installment from 6–10 weeks to about 3. [All ten case studies](/results)' },
+      a: 'A few examples: a national retailer cut delivery-support tickets by more than 60%; an automotive compliance firm replaced about $210K a year of licensed tooling; a residential developer cut time to first installment from 6–10 weeks to about 3. [All ten case studies](/results)',
+      n: ['Do you have healthcare examples?', 'What did you build for the retailer?', 'Can we speak to a reference?'] },
     { k: ['how fast', 'timeline', 'how long', 'weeks', 'days', 'quickly', 'when can'],
-      a: 'Our standard for automation is a first agent live within 30 days of design sign-off. AI Governance is visible within 72 hours of access and runs as a 90-day plan. Engineering pilots start with one team, with duration agreed on the discovery call.' },
+      a: 'Our standard for automation is a first agent live within 30 days of design sign-off. AI Governance is visible within 72 hours of access and runs as a 90-day plan. Engineering pilots start with one team, with duration agreed on the discovery call.',
+      n: ['How does a pilot work?', 'What do you need from our team?', 'What does it cost?'] },
     { k: ['contact', 'call', 'talk', 'human', 'person', 'email', 'phone', 'meeting', 'book', 'speak'],
-      a: 'The quickest way is a 45-minute discovery call; you get a written plan afterwards either way. You can also email gaurav@upcoretechnologies.com or WhatsApp +91 99881 35327 (Monday to Saturday, 9am to 7pm IST).', act: ['book', 'person'] },
+      a: 'The quickest way is a 45-minute discovery call; you get a written plan afterwards either way. You can also email gaurav@upcoretechnologies.com or WhatsApp +91 99881 35327 (Monday to Saturday, 9am to 7pm IST).', act: ['book', 'person'],
+      n: ['What happens on the discovery call?', 'Can we sign an NDA first?', 'Which time zones do you work in?'] },
     { k: ['industry', 'industries', 'who do you', 'work with', 'ecommerce', 'retail', 'accounting', 'law', 'wealth', 'staffing', 'healthcare', 'health', 'clinic', 'dental', 'hospital', 'real estate', 'property', 'bank', 'finance', 'insurance', 'logistics', 'manufacturing', 'saas', 'hospitality'],
-      a: 'We work with tech and software companies, ecommerce and retail brands, operations-heavy businesses and professional services firms such as accounting, law, wealth and staffing. [Who we help](/#who-we-help)' },
+      a: 'We work with tech and software companies, ecommerce and retail brands, operations-heavy businesses and professional services firms such as accounting, law, wealth and staffing. [Who we help](/#who-we-help)',
+      n: ['Do you have results in our industry?', 'What would you automate first for us?', 'How does a pilot work?'] },
     { k: ['who are you', 'company', 'team', 'founder', 'where', 'india', 'located', 'based', 'leadership', 'about'],
-      a: 'Upcore Technologies has delivered for clients since 2020, in the US, UK, South Africa, Australia, Mauritius and India, from a delivery team in Mohali, India. It is led by Gaurav Passi (Co-Founder & CEO), Shrikant Maniar (Executive Director) and Shanker Dhand (Technical Head). [About Upcore](/about)' }
+      a: 'Upcore Technologies has delivered for clients since 2020, in the US, UK, South Africa, Australia, Mauritius and India, from a delivery team in Mohali, India. It is led by Gaurav Passi (Co-Founder & CEO), Shrikant Maniar (Executive Director) and Shanker Dhand (Technical Head). [About Upcore](/about)',
+      n: ['What certifications do you hold?', 'Which time zones do you work in?', 'Can I see your results?'] }
   ];
   function faqAnswer(q) {
     var t = ' ' + q.toLowerCase().replace(/[^\w$\s-]/g, ' ') + ' ', best = null, score = 0;
@@ -71,8 +105,18 @@
       f.k.forEach(function (k) { if (t.indexOf(k.length < 5 ? ' ' + k : k) > -1) s += k.length > 6 ? 2 : 1; });
       if (s > score) { score = s; best = f; }
     });
-    if (best) return { reply: best.a, actions: best.act || [] };
+    if (best) return { reply: best.a, actions: best.act || [], next: best.n };
     return { reply: "I can help with questions about Upcore's services, pricing, security and results. For anything specific to your situation, the team can answer directly.", actions: ['book', 'person'] };
+  }
+  // Up to three follow-up questions for the latest answer: the ones given (model or FAQ), topped up from the
+  // page's starters, never repeating something the visitor already asked.
+  function pickNext(given) {
+    var asked = {}, out = [], seen = {};
+    st.msgs.forEach(function (m) { if (m.r === 'u') asked[m.t.toLowerCase().trim()] = 1; });
+    var add = function (q) { var k = String(q || '').toLowerCase().trim(); if (k && out.length < 3 && !asked[k] && !seen[k]) { seen[k] = 1; out.push(String(q).trim()); } };
+    (given || []).forEach(add);
+    if (out.length < 2) starters().concat(['How does a pilot work?', 'What does it cost?', 'Can I see results like ours?', 'What happens on the discovery call?']).forEach(add);
+    return out;
   }
 
   // ── State ───────────────────────────────────────────────────────────────
@@ -93,21 +137,56 @@
     '#upcore-chat-btn:hover{transform:translateY(-2px);box-shadow:0 24px 48px -14px rgba(7,26,38,.7),inset 0 1px 0 rgba(255,255,255,.1);}',
     '#upcore-chat-btn:focus-visible{outline:2px solid #0A84FF;outline-offset:3px;}',
     '#upcore-chat-btn.is-open{opacity:0;pointer-events:none;transform:scale(.9);}',
-    '.ucw-orb{position:relative;width:38px;height:38px;border-radius:50%;flex-shrink:0;background:radial-gradient(circle at 32% 30%,#7DE6F6,#21D2ED 40%,#0A6F82 75%);box-shadow:0 0 0 3px rgba(33,210,237,.16),0 0 18px rgba(33,210,237,.45);overflow:hidden;}',
-    '.ucw-orb::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(255,255,255,.55) 80%,transparent 90%);animation:ucwSpin 3.6s linear infinite;}',
-    '.ucw-orb svg{position:absolute;inset:0;margin:auto;width:18px;height:18px;color:#071A26;z-index:1;}',
+    '.ucw-face{position:relative;display:block;flex-shrink:0;width:1em;height:1em;font-size:38px;line-height:0;}',
+    '.ucw-ball{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 34% 26%,#C2F6FC 0,#5FE0F2 20%,#21D2ED 44%,#0B8EA5 78%,#065E6E 100%);box-shadow:0 0 0 .08em rgba(33,210,237,.16),0 0 .48em rgba(33,210,237,.42),inset 0 -.1em .2em rgba(3,45,56,.38);scale:var(--ms,1);transition:scale .5s cubic-bezier(.34,1.56,.64,1);animation:ucwBob 4.6s ease-in-out infinite;}',
+    '.ucw-ball::before{content:"";position:absolute;z-index:2;width:.4em;height:.26em;left:.12em;top:.07em;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.7),rgba(255,255,255,0));translate:calc(var(--fx,0px) * -.5) calc(var(--fy,0px) * -.5);pointer-events:none;}',
+    '.ucw-ball::after{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 72%,rgba(255,255,255,.4) 81%,transparent 90%);animation:ucwSpin 4.2s linear infinite;}',
+    '.ucw-fb{position:absolute;z-index:1;left:50%;top:50%;width:.62em;height:.46em;margin:-.21em 0 0 -.31em;transform:translate(var(--fx,0px),var(--fy,0px));}',
+    '.ucw-eye{position:absolute;top:.02em;width:.15em;height:.25em;border:0 solid transparent;border-radius:.075em;background:#071A26;transform:scaleY(var(--bl,1));transition:width .2s,height .2s,top .2s,border-radius .2s,background-color .2s,border-color .2s,border-width .2s,transform .08s;}',
+    '.ucw-eye:first-child{left:.1em;}.ucw-eye+.ucw-eye{right:.1em;}',
+    '.ucw-face.is-blink .ucw-eye{--bl:.1;}',
+    '.ucw-mouth{position:absolute;left:50%;top:.33em;width:.17em;height:.075em;margin-left:-.085em;border:.04em solid transparent;border-top:0;border-bottom-color:#071A26;border-radius:0 0 .1em .1em;transition:all .2s;}',
+    '.ucw-face[data-mood=curious]{--ms:1.08;}',
+    '.ucw-face[data-mood=curious] .ucw-eye{top:-.01em;width:.16em;height:.28em;}',
+    '.ucw-face[data-mood=curious] .ucw-mouth,.ucw-face[data-mood=wow] .ucw-mouth{top:.33em;width:.09em;height:.09em;margin-left:-.045em;border:.04em solid #071A26;border-radius:50%;}',
+    '.ucw-face[data-mood=happy]{--ms:1.06;}',
+    '.ucw-face[data-mood=happy] .ucw-eye{top:.08em;width:.19em;height:.12em;background-color:transparent;border-width:.055em .055em 0;border-color:#071A26;border-radius:.1em .1em 0 0;}',
+    '.ucw-face[data-mood=happy] .ucw-mouth{top:.3em;width:.26em;height:.12em;margin-left:-.13em;border-width:.05em;}',
+    '.ucw-face[data-mood=wow]{--ms:1.12;}',
+    '.ucw-face[data-mood=wow] .ucw-eye{top:.02em;width:.19em;height:.19em;border-radius:50%;}',
+    '.ucw-face[data-mood=listen]{--ms:1.04;}',
+    '.ucw-face[data-mood=think] .ucw-eye{height:.2em;}',
+    '.ucw-face[data-mood=think] .ucw-mouth{width:.11em;height:0;margin-left:-.02em;border-radius:0;}',
+    '.ucw-face[data-mood=think] .ucw-ball::after{animation-duration:1.3s;}',
+    '.ucw-face[data-mood=talk] .ucw-mouth{width:.14em;margin-left:-.07em;border:0;border-radius:.06em;background:#071A26;animation:ucwTalk .24s ease-in-out infinite alternate;}',
+    '.ucw-face[data-mood=sleep]{--ms:.96;}',
+    '.ucw-face[data-mood=sleep] .ucw-eye{top:.14em;height:.04em;border-radius:.02em;}',
+    '.ucw-face[data-mood=sleep] .ucw-mouth{width:.07em;margin-left:-.035em;}',
+    '.ucw-face[data-mood=sleep] .ucw-ball{animation-duration:7s;}',
+    '.ucw-face.is-nod .ucw-fb{animation:ucwNod .34s ease;}',
+    '.ucw-mini .ucw-ball{animation:none;box-shadow:inset 0 -.08em .16em rgba(3,45,56,.3);}',
+    '.ucw-mini .ucw-ball::after{display:none;}',
+    '.ucw-mini[data-mood=think] .ucw-fb{animation:ucwPonder 1.4s ease-in-out infinite;}',
+    '@keyframes ucwBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-.035em)}}',
+    '@keyframes ucwTalk{from{height:.03em;top:.35em}to{height:.12em;top:.3em}}',
+    '@keyframes ucwNod{50%{translate:0 .05em}}',
+    '@keyframes ucwPonder{0%,100%{translate:.05em -.06em}50%{translate:-.05em -.05em}}',
     '.ucw-dot{position:absolute;top:6px;left:36px;width:11px;height:11px;border-radius:50%;background:#F2A93B;border:2px solid #071A26;display:none;}',
     '#upcore-chat-btn.has-dot .ucw-dot{display:block;animation:ucwPing 1.8s ease-out infinite;}',
     '@keyframes ucwSpin{to{transform:rotate(1turn)}}',
     '@keyframes ucwPing{0%{box-shadow:0 0 0 0 rgba(242,169,59,.6)}100%{box-shadow:0 0 0 10px rgba(242,169,59,0)}}',
-    '#ucw-tease{position:fixed;right:22px;bottom:88px;z-index:9990;width:280px;padding:14px 38px 14px 16px;border-radius:16px;background:#fff;color:#0A1419;font:400 14px/1.45 ' + FONT + ';box-shadow:0 24px 50px -20px rgba(7,26,38,.45),0 0 0 1px rgba(10,20,25,.06);cursor:pointer;animation:ucwUp .5s cubic-bezier(.16,1,.3,1);}',
+    '#ucw-tease{position:fixed;right:22px;bottom:90px;z-index:9990;width:292px;padding:14px 36px 14px 16px;border-radius:18px 18px 6px 18px;background:#fff;color:#0A1419;font:400 14px/1.45 ' + FONT + ';box-shadow:0 24px 50px -20px rgba(7,26,38,.45),0 0 0 1px rgba(10,20,25,.06);cursor:pointer;transform-origin:88% 100%;animation:ucwPop .55s cubic-bezier(.34,1.56,.64,1);}',
     '#ucw-tease b{display:block;font-weight:600;margin-bottom:2px;}',
-    '#ucw-tease button{position:absolute;top:8px;right:8px;width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:#5D6B73;font:400 14px/1 ' + FONT + ';cursor:pointer;}',
-    '#ucw-tease button:hover{background:#EEF2F4;color:#0A1419;}',
+    '#ucw-tease .ucw-tx{position:absolute;top:8px;right:8px;width:24px;height:24px;border:0;border-radius:50%;background:transparent;color:#5D6B73;font:400 14px/1 ' + FONT + ';cursor:pointer;}',
+    '#ucw-tease .ucw-tx:hover{background:#EEF2F4;color:#0A1419;}',
+    '#ucw-tease .ucw-tq{display:flex;align-items:center;justify-content:space-between;gap:8px;width:calc(100% + 20px);margin-top:10px;padding:9px 12px;border:1px solid #CDEFF5;border-radius:12px;background:#F4FCFE;color:#0A4F5C;font:500 13.5px/1.35 ' + FONT + ';text-align:left;cursor:pointer;transition:background .2s,border-color .2s;}',
+    '#ucw-tease .ucw-tq::after{content:"\\2192";color:#0A6F82;}',
+    '#ucw-tease .ucw-tq:hover{background:#E3F8FC;border-color:#21D2ED;}',
+    '@keyframes ucwPop{from{opacity:0;transform:translateY(10px) scale(.9)}to{opacity:1;transform:none}}',
     '#ucw-panel{position:fixed;right:22px;bottom:22px;z-index:9991;width:404px;height:min(640px,calc(100vh - 44px));display:flex;flex-direction:column;border-radius:22px;background:#fff;color:#0A1419;box-shadow:0 40px 90px -30px rgba(7,26,38,.55),0 0 0 1px rgba(10,20,25,.07);overflow:hidden;opacity:0;visibility:hidden;transform:translateY(16px) scale(.97);transform-origin:100% 100%;transition:opacity .3s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1),visibility 0s linear .45s;}',
     '#ucw-panel.is-open{opacity:1;visibility:visible;transform:none;transition-delay:0s;}',
     '.ucw-head{display:flex;align-items:center;gap:12px;padding:14px 12px 14px 16px;background:#071A26;color:#EEF5F7;flex-shrink:0;}',
-    '.ucw-head .ucw-orb{width:34px;height:34px;}',
+    '.ucw-head .ucw-face{font-size:34px;}',
     '.ucw-ht{flex:1;min-width:0;}',
     '.ucw-ht b{display:block;font:600 15px/1.2 ' + FONT + ';letter-spacing:-.01em;color:#fff;}',
     '.ucw-ht span{display:flex;align-items:center;gap:6px;margin-top:3px;font:400 12px/1.2 ' + FONT + ';color:#9AAEB8;}',
@@ -117,7 +196,7 @@
     '.ucw-hb:hover{background:rgba(255,255,255,.08);color:#fff;}',
     '.ucw-hb:focus-visible,.ucw-send:focus-visible,.ucw-chip:focus-visible,.ucw-act:focus-visible{outline:2px solid #0A84FF;outline-offset:2px;}',
     '.ucw-hb svg{width:17px;height:17px;}',
-    '.ucw-log{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 8px;scroll-behavior:smooth;}',
+    '.ucw-log{position:relative;flex:1;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 8px;scroll-behavior:smooth;}',
     '.ucw-log::-webkit-scrollbar{width:6px;}.ucw-log::-webkit-scrollbar-thumb{background:#DFE5E8;border-radius:3px;}',
     '.ucw-hi{padding:6px 2px 4px;animation:ucwUp .5s cubic-bezier(.16,1,.3,1);}',
     '.ucw-hi h3{margin:0;font:600 21px/1.2 ' + FONT + ';letter-spacing:-.025em;color:#0A1419;}',
@@ -130,7 +209,8 @@
     '.ucw-chip:hover::after{transform:translateX(3px);}',
     '.ucw-row{display:flex;gap:10px;margin:14px 0;animation:ucwUp .45s cubic-bezier(.16,1,.3,1);}',
     '.ucw-row.is-user{justify-content:flex-end;}',
-    '.ucw-av{width:24px;height:24px;border-radius:50%;flex-shrink:0;margin-top:2px;background:radial-gradient(circle at 32% 30%,#7DE6F6,#21D2ED 45%,#0A6F82 80%);}',
+    '.ucw-av{width:24px;height:24px;flex-shrink:0;margin-top:2px;}',
+    '.ucw-av .ucw-face{font-size:24px;}',
     '.ucw-msg{max-width:85%;font:400 14.5px/1.6 ' + FONT + ';color:#1F2D35;word-wrap:break-word;}',
     '.ucw-row.is-user .ucw-msg{padding:10px 14px;border-radius:16px 16px 4px 16px;background:#071A26;color:#EEF5F7;}',
     '.ucw-row.is-bot .ucw-msg{padding:2px 0;}',
@@ -144,6 +224,12 @@
     '.ucw-act{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid #DFE5E8;background:#fff;color:#0A1419;font:500 13.5px/1 ' + FONT + ';text-decoration:none;cursor:pointer;transition:background .2s,border-color .2s,color .2s;}',
     '.ucw-act.is-main{background:#21D2ED;border-color:#21D2ED;color:#071A26;}',
     '.ucw-act:hover{border-color:#0A1419;}.ucw-act.is-main:hover{background:#0A1419;border-color:#0A1419;color:#fff;}',
+    '.ucw-next{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 8px 34px;animation:ucwUp .45s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-sug{padding:7px 12px;border:1px solid #CDEFF5;border-radius:999px;background:#F4FCFE;color:#0A4F5C;font:500 13px/1.3 ' + FONT + ';text-align:left;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .25s cubic-bezier(.16,1,.3,1);}',
+    '.ucw-sug:hover{background:#E3F8FC;border-color:#21D2ED;color:#071A26;transform:translateY(-1px);}',
+    '.ucw-sug:focus-visible{outline:2px solid #0A84FF;outline-offset:2px;}',
+    '.ucw-w{animation:ucwW .34s ease both;}',
+    '@keyframes ucwW{from{opacity:0}to{opacity:1}}',
     '.ucw-typing{display:inline-flex;gap:4px;padding:10px 0;}',
     '.ucw-typing i{width:7px;height:7px;border-radius:50%;background:#21D2ED;animation:ucwBounce 1.1s ease-in-out infinite;}',
     '.ucw-typing i:nth-child(2){animation-delay:.15s}.ucw-typing i:nth-child(3){animation-delay:.3s}',
@@ -170,7 +256,7 @@
     '@media (max-width:600px){',
     '#upcore-chat-btn{right:14px;bottom:14px;height:56px;width:56px;padding:0;justify-content:center;}',
     '#upcore-chat-btn .ucw-lt{display:none;}',
-    '#upcore-chat-btn .ucw-orb{width:44px;height:44px;}',
+    '#upcore-chat-btn .ucw-face{font-size:44px;}',
     '.ucw-dot{left:40px;top:4px;}',
     '#ucw-panel{inset:0;right:0;bottom:0;width:100%;height:100%;border-radius:0;transform:translateY(24px);}',
     '.ucw-head{padding-top:max(14px,env(safe-area-inset-top));}',
@@ -179,7 +265,7 @@
     '#ucw-tease{display:none;}',
     'html.consent-open #upcore-chat-btn{display:none;}',
     '}',
-    '@media (prefers-reduced-motion:reduce){#ucw-panel,#upcore-chat-btn,.ucw-row,.ucw-acts,.ucw-hi,.ucw-form,#ucw-tease{transition:none!important;animation:none!important;}.ucw-orb::after,.ucw-typing i{animation:none!important;}}'
+    '@media (prefers-reduced-motion:reduce){#ucw-panel,#upcore-chat-btn,.ucw-row,.ucw-acts,.ucw-next,.ucw-hi,.ucw-form,#ucw-tease,.ucw-w{transition:none!important;animation:none!important;}.ucw-ball,.ucw-ball::after,.ucw-fb,.ucw-mouth,.ucw-typing i{animation:none!important;}}'
   ].join('\n');
 
   // ── DOM helpers ─────────────────────────────────────────────────────────
@@ -204,26 +290,126 @@
     return out;
   }
   var ICON = {
-    spark: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.5c.5 4.6 2.4 6.9 7 7.5-4.6.6-6.5 2.9-7 7.5-.5-4.6-2.4-6.9-7-7.5 4.6-.6 6.5-2.9 7-7.5zM19 15.5c.2 1.8 1 2.6 2.8 2.8-1.8.2-2.6 1-2.8 2.8-.2-1.8-1-2.6-2.8-2.8 1.8-.2 2.6-1 2.8-2.8z"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18"/></svg>',
     reset: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>',
     send: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
   };
 
-  var btn, panel, log, input, send, statusEl, statusDot, tease;
+  // ── Avatar: the Upcore AI face ──────────────────────────────────────────
+  // One controller drives the live faces (launcher + panel header). The gaze follows the pointer (a tap on
+  // touch screens, or the scroll direction when the pointer rests), it blinks, glances around when nothing
+  // happens, dozes off after a long quiet spell and wakes up surprised. Its mood follows the chat (see ask()).
+  // Moods: idle, curious (pointer near the launcher), happy, wow, listen, think, talk, sleep.
+  // Reduced motion: a still face that only changes expression. The animation loop runs only while something moves.
+  var REDUCE = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function faceHTML(cls, mood) {
+    return '<span class="ucw-face' + (cls ? ' ' + cls : '') + '" data-mood="' + (mood || 'idle') + '" aria-hidden="true"><span class="ucw-ball"><span class="ucw-fb"><i class="ucw-eye"></i><i class="ucw-eye"></i><b class="ucw-mouth"></b></span></span></span>';
+  }
+  var Face = (function () {
+    var faces = [], base = 'idle', flashM = '', flashT = 0, raf = 0, nodAt = 0, gaze = null, glance = { x: 0, y: 0 };
+    var px = 0, py = 0, hasPtr = false, lastPtr = 0, lastAct = Date.now(), lastY = window.pageYOffset || 0;
+    function moodOf(f) { return flashM || f.local || base; }
+    function paint(f) { var m = moodOf(f); if (f.el.getAttribute('data-mood') !== m) f.el.setAttribute('data-mood', m); }
+    function paintAll() { faces.forEach(paint); kick(); }
+    function kick() { if (!raf && !REDUCE && !document.hidden && faces.length) raf = requestAnimationFrame(frame); }
+    function target(f, now) {
+      var m = moodOf(f);
+      if (m === 'sleep') return { x: 0, y: .6 };
+      if (m === 'think') { var t = now / 650; return { x: .5 + Math.sin(t) * .3, y: -.75 + Math.cos(t * 1.4) * .15 }; }
+      if (gaze && now < gaze.until) return gaze;
+      if (m === 'listen') return { x: .2, y: .95 };
+      if (hasPtr && now - lastPtr < 6000 && f.r.width) {
+        var dx = px - (f.r.left + f.r.width / 2), dy = py - (f.r.top + f.r.height / 2), d = Math.sqrt(dx * dx + dy * dy) || 1, k = Math.min(1, d / 220);
+        return { x: dx / d * k, y: dy / d * k };
+      }
+      return glance;
+    }
+    function frame() {
+      raf = 0;
+      var now = Date.now(), moving = false;
+      faces.forEach(function (f) {
+        f.r = f.el.getBoundingClientRect();
+        if (f.prox && !f.hover && hasPtr) {
+          var cx = px - (f.r.left + f.r.width / 2), cy = py - (f.r.top + f.r.height / 2), near = f.r.width && cx * cx + cy * cy < 170 * 170 && now - lastPtr < 6000;
+          if ((f.local === 'curious') !== !!near) { f.local = near ? 'curious' : ''; paint(f); }
+        }
+        var t = target(f, now);
+        f.x += (t.x - f.x) * .16; f.y += (t.y - f.y) * .16;
+        if (Math.abs(t.x - f.x) > .003 || Math.abs(t.y - f.y) > .003) moving = true;
+        var s = f.el.offsetWidth || 38;
+        f.el.style.setProperty('--fx', (f.x * s * .17).toFixed(2) + 'px');
+        f.el.style.setProperty('--fy', (f.y * s * .14).toFixed(2) + 'px');
+        f.el.style.transform = 'translate(' + (f.x * s * .05).toFixed(2) + 'px,' + (f.y * s * .04).toFixed(2) + 'px) rotate(' + (f.x * 10).toFixed(2) + 'deg)';
+      });
+      if (moving || base === 'think') kick();
+    }
+    function activity() {
+      lastAct = Date.now();
+      if (base === 'sleep') { base = 'idle'; flash('wow', 650); }
+    }
+    function pointer(e) { px = e.clientX; py = e.clientY; hasPtr = true; lastPtr = Date.now(); activity(); kick(); }
+    document.addEventListener('pointermove', pointer, { passive: true });
+    document.addEventListener('pointerdown', pointer, { passive: true });
+    document.addEventListener('keydown', activity);
+    window.addEventListener('scroll', function () {
+      var y = window.pageYOffset || 0, d = y - lastY; lastY = y; activity();
+      if (Date.now() - lastPtr > 1500 && Math.abs(d) > 2) look(0, d > 0 ? .85 : -.85, 650);
+    }, { passive: true });
+    document.addEventListener('visibilitychange', kick);
+    // Glance around while the pointer rests; doze off after 45 quiet seconds.
+    (function glanceLoop() {
+      setTimeout(glanceLoop, 1400 + Math.random() * 2600);
+      if (REDUCE || document.hidden || !faces.length) return;
+      var now = Date.now();
+      if (now - lastAct > 45000 && base === 'idle' && !flashM) { set('sleep'); return; }
+      if (now - lastPtr < 4000 || base !== 'idle') return;
+      glance = Math.random() < .35 ? { x: 0, y: 0 } : { x: (Math.random() * 2 - 1) * .85, y: (Math.random() * 2 - 1) * .55 };
+      kick();
+    })();
+    (function blinkLoop() {
+      setTimeout(blinkLoop, 2200 + Math.random() * 3800);
+      if (REDUCE || document.hidden) return;
+      var once = function () {
+        faces.forEach(function (f) {
+          var m = moodOf(f); if (m === 'sleep' || m === 'happy') return;
+          f.el.classList.add('is-blink'); setTimeout(function () { f.el.classList.remove('is-blink'); }, 130);
+        });
+      };
+      once(); if (Math.random() < .22) setTimeout(once, 270);
+    })();
+    function add(el, opts) {
+      var f = { el: el, x: 0, y: 0, r: { width: 0 }, local: '', prox: !!(opts && opts.prox), hover: false };
+      faces.push(f); paint(f);
+      if (f.prox) {
+        el.parentNode.addEventListener('pointerenter', function () { f.hover = true; f.local = 'happy'; paint(f); });
+        el.parentNode.addEventListener('pointerleave', function () { f.hover = false; f.local = ''; paint(f); kick(); });
+      }
+      return f;
+    }
+    function set(m) { base = m; lastAct = Date.now(); paintAll(); }
+    function flash(m, ms) { flashM = m; clearTimeout(flashT); paintAll(); flashT = setTimeout(function () { flashM = ''; paintAll(); }, ms || 1200); }
+    function look(x, y, ms) { gaze = { x: x, y: y, until: Date.now() + (ms || 800) }; kick(); }
+    function nod() {
+      var now = Date.now(); if (REDUCE || now - nodAt < 380) return; nodAt = now;
+      faces.forEach(function (f) { f.el.classList.remove('is-nod'); void f.el.offsetWidth; f.el.classList.add('is-nod'); });
+    }
+    return { add: add, set: set, flash: flash, look: look, nod: nod, mood: function () { return base; } };
+  })();
+
+  var btn, panel, log, input, send, statusEl, statusDot, tease, listenT = 0;
 
   function init() {
     if (document.getElementById('upcore-chat-btn')) return;
     var style = document.createElement('style'); style.id = 'ucw-style'; style.textContent = CSS; document.head.appendChild(style);
 
-    btn = h('button', '', '<span class="ucw-orb">' + ICON.spark + '</span><span class="ucw-lt">Ask Upcore</span><span class="ucw-dot"></span>');
+    btn = h('button', '', faceHTML('ucw-lf') + '<span class="ucw-lt">Ask Upcore AI</span><span class="ucw-dot"></span>');
     btn.id = 'upcore-chat-btn'; btn.type = 'button';
-    btn.setAttribute('aria-label', 'Ask the Upcore assistant'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'ucw-panel');
+    btn.setAttribute('aria-label', 'Ask Upcore AI'); btn.setAttribute('aria-expanded', 'false'); btn.setAttribute('aria-controls', 'ucw-panel');
     btn.addEventListener('click', function () { setOpen(true); });
 
     panel = h('div'); panel.id = 'ucw-panel';
-    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Upcore assistant'); panel.setAttribute('aria-modal', 'false');
-    var head = h('div', 'ucw-head', '<span class="ucw-orb">' + ICON.spark + '</span><div class="ucw-ht"><b>Upcore assistant</b><span><i></i><em style="font-style:normal">AI answers from Upcore&rsquo;s own material</em></span></div>');
+    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'Upcore AI'); panel.setAttribute('aria-modal', 'false');
+    var head = h('div', 'ucw-head', faceHTML('ucw-hf') + '<div class="ucw-ht"><b>Upcore AI</b><span><i></i><em style="font-style:normal">AI answers from Upcore&rsquo;s own material</em></span></div>');
     statusDot = head.querySelector('.ucw-ht i'); statusEl = head.querySelector('.ucw-ht em');
     var rb = h('button', 'ucw-hb', ICON.reset); rb.type = 'button'; rb.setAttribute('aria-label', 'Start a new conversation'); rb.title = 'New conversation';
     rb.addEventListener('click', function () { st.msgs = []; save(); render(); input.focus(); });
@@ -236,9 +422,14 @@
     var foot = h('div', 'ucw-foot');
     var box = h('div', 'ucw-box');
     input = h('textarea', 'ucw-in'); input.rows = 1; input.maxLength = 1000;
-    input.placeholder = 'Ask about services, pricing, security…'; input.setAttribute('aria-label', 'Your question');
+    input.placeholder = 'Ask Upcore AI anything…'; input.setAttribute('aria-label', 'Your question');
     send = h('button', 'ucw-send', ICON.send); send.type = 'button'; send.setAttribute('aria-label', 'Send'); send.disabled = true;
-    input.addEventListener('input', function () { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; send.disabled = !input.value.trim() || busy; });
+    input.addEventListener('input', function () {
+      input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 120) + 'px'; send.disabled = !input.value.trim() || busy;
+      if (busy) return;
+      if (input.value.trim()) { if (Face.mood() !== 'listen') Face.set('listen'); Face.nod(); }
+      clearTimeout(listenT); listenT = setTimeout(function () { if (Face.mood() === 'listen') Face.set('idle'); }, 2400);
+    });
     input.addEventListener('keydown', function (e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); submit(); } });
     send.addEventListener('click', submit);
     box.appendChild(input); box.appendChild(send);
@@ -247,6 +438,8 @@
 
     panel.appendChild(head); panel.appendChild(log); panel.appendChild(foot);
     document.body.appendChild(btn); document.body.appendChild(panel);
+    Face.add(btn.querySelector('.ucw-face'), { prox: true });
+    Face.add(head.querySelector('.ucw-face'));
 
     panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); setOpen(false); } });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && open && !document.getElementById('_gov_cal_overlay')) setOpen(false); });
@@ -256,6 +449,7 @@
     render();
     if (st.open && !matchMedia('(max-width: 600px)').matches) setOpen(true, true);
     scheduleTease();
+    exitTease();
   }
 
   function setOpen(v, quiet) {
@@ -268,24 +462,49 @@
     var small = matchMedia('(max-width: 600px)').matches;
     document.documentElement.style.overflow = v && small ? 'hidden' : '';
     if (v) {
-      if (!quiet) track('chat_open');
+      if (!quiet) { track('chat_open'); Face.flash('happy', 900); }
       setTimeout(function () { (st.msgs.length ? input : (log.querySelector('.ucw-chip') || input)).focus(); scrollEnd(); }, 220);
     } else if (!quiet) btn.focus();
   }
 
+  function showTease(kind) {
+    if (open || tease) return;
+    btn.classList.add('has-dot');
+    Face.flash('wow', 700);
+    if (matchMedia('(max-width: 600px)').matches) return;
+    var q0 = pickNext([])[0] || starters()[0];
+    tease = h('div', '', (kind === 'exit' ? '<b>Before you go…</b>Got a question about your AI plans? I answer in seconds.' : '<b>Hi, I’m Upcore AI.</b>Ask me anything about your AI plans. Answers in seconds.') +
+      '<button type="button" class="ucw-tq"></button><button type="button" class="ucw-tx" aria-label="Dismiss">✕</button>');
+    tease.querySelector('.ucw-tq').textContent = q0;
+    tease.id = 'ucw-tease'; tease.setAttribute('role', 'status');
+    tease.addEventListener('click', function (e) {
+      if (e.target.closest('.ucw-tx')) { tease.remove(); tease = null; return; }
+      var chip = e.target.closest('.ucw-tq');
+      setOpen(true);
+      if (chip) ask(q0, 'tease');
+    });
+    document.body.appendChild(tease);
+    track('chat_tease', { kind: kind });
+    setTimeout(function () { if (tease) { tease.remove(); tease = null; } }, 15000);
+  }
   function scheduleTease() {
     if (st.teased || st.msgs.length) return;
     setTimeout(function () {
-      if (open || st.teased) return;
+      if (open || st.teased || st.msgs.length) return;
       st.teased = true; save();
-      btn.classList.add('has-dot');
-      if (matchMedia('(max-width: 600px)').matches) return;
-      tease = h('div', '', '<b>Questions about your AI plans?</b>Ask about services, pricing, security or results. Answers in seconds.<button type="button" aria-label="Dismiss">✕</button>');
-      tease.id = 'ucw-tease'; tease.setAttribute('role', 'status');
-      tease.addEventListener('click', function (e) { if (e.target.closest('button')) { tease.remove(); tease = null; return; } setOpen(true); });
-      document.body.appendChild(tease);
-      setTimeout(function () { if (tease) { tease.remove(); tease = null; } }, 14000);
+      showTease('timer');
     }, 12000);
+  }
+  // Desktop exit intent (pointer leaves through the top of the window), once per session, only if the
+  // visitor hasn't chatted yet and has been on the page for 15 seconds.
+  function exitTease() {
+    var since = Date.now();
+    document.addEventListener('mouseout', function (e) {
+      if (e.relatedTarget || e.clientY > 8 || open || st.exitTeased || st.msgs.length || Date.now() - since < 15000) return;
+      if (matchMedia('(max-width: 600px)').matches || !matchMedia('(hover: hover)').matches) return;
+      st.exitTeased = true; save();
+      showTease('exit');
+    });
   }
 
   // ── Rendering ───────────────────────────────────────────────────────────
@@ -294,10 +513,13 @@
     log.innerHTML = '';
     if (!st.msgs.length) { welcome(); return; }
     st.msgs.forEach(function (m) { bubble(m.r, m.t, true); if (m.a && m.a.length) actions(m.a, true); });
+    var last = st.msgs[st.msgs.length - 1];
+    if (last && last.r === 'b' && last.n && last.n.length) nextChips(last.n, true);
     scrollEnd();
   }
   function welcome() {
-    var w = h('div', 'ucw-hi', '<h3>Hi, how can we help?</h3><p>Ask anything about AI-native engineering, governance, automation, pricing, security or our results. I answer from Upcore&rsquo;s own material, and a person is one click away.</p>');
+    var w = h('div', 'ucw-hi', '<h3>Hi, I’m Upcore AI.</h3><p></p>');
+    w.querySelector('p').textContent = greet();
     log.appendChild(w);
     log.appendChild(h('p', 'ucw-k', 'Try asking'));
     var c = h('div', 'ucw-chips');
@@ -316,7 +538,7 @@
   function bubble(role, text, instant) {
     var row = h('div', 'ucw-row ' + (role === 'u' ? 'is-user' : 'is-bot'));
     if (instant) row.style.animation = 'none';
-    if (role !== 'u') row.appendChild(h('span', 'ucw-av'));
+    if (role !== 'u') row.appendChild(h('span', 'ucw-av', faceHTML('ucw-mini')));
     var m = h('div', 'ucw-msg', role === 'u' ? '<p>' + esc(text).replace(/\n/g, '<br>') + '</p>' : md(text));
     row.appendChild(m); log.appendChild(row);
     return row;
@@ -331,7 +553,40 @@
     }
     log.appendChild(a);
   }
-  function typing() { var r = h('div', 'ucw-row is-bot'); r.appendChild(h('span', 'ucw-av')); r.appendChild(h('div', 'ucw-msg', '<span class="ucw-typing" aria-label="Typing"><i></i><i></i><i></i></span>')); log.appendChild(r); scrollEnd(); return r; }
+  function nextChips(list, instant) {
+    var old = log.querySelector('.ucw-next'); if (old) old.remove();
+    if (!list || !list.length) return;
+    var w = h('div', 'ucw-next'); if (instant) w.style.animation = 'none';
+    w.setAttribute('aria-label', 'Suggested questions');
+    list.slice(0, 3).forEach(function (q) {
+      var b = h('button', 'ucw-sug'); b.type = 'button'; b.textContent = q;
+      b.addEventListener('click', function () { ask(q, 'suggested'); });
+      w.appendChild(b);
+    });
+    log.appendChild(w);
+  }
+  // Keep the start of a long answer in view (with a little of the question above it); short ones scroll to the end.
+  function keepRow(row) { log.scrollTop = Math.max(0, row.offsetTop - 64); }
+  // Words fade in one after another (about 1.4s in all). Screen readers get the whole text at once.
+  function reveal(el) {
+    if (REDUCE) return 0;
+    var nodes = [], walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false), n, words = 0, total = 0;
+    while ((n = walker.nextNode())) nodes.push(n);
+    nodes.forEach(function (x) { total += (x.nodeValue.match(/\S+/g) || []).length; });
+    var step = Math.max(8, Math.min(30, 1400 / Math.max(total, 1)));
+    nodes.forEach(function (x) {
+      var frag = document.createDocumentFragment();
+      x.nodeValue.split(/(\s+)/).forEach(function (part) {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+        var sp = document.createElement('span'); sp.className = 'ucw-w'; sp.style.animationDelay = Math.round(words++ * step) + 'ms'; sp.textContent = part;
+        frag.appendChild(sp);
+      });
+      x.parentNode.replaceChild(frag, x);
+    });
+    return Math.round(words * step + 300);
+  }
+  function typing() { var r = h('div', 'ucw-row is-bot'); r.appendChild(h('span', 'ucw-av', faceHTML('ucw-mini', 'think'))); r.appendChild(h('div', 'ucw-msg', '<span class="ucw-typing" aria-label="Typing"><i></i><i></i><i></i></span>')); log.appendChild(r); scrollEnd(); return r; }
   function setMode(m) {
     mode = m;
     statusDot.classList.toggle('is-faq', m === 'faq');
@@ -343,7 +598,9 @@
   function ask(q, source) {
     if (busy) return;
     if (!st.msgs.length) log.innerHTML = '';
-    busy = true;
+    busy = true; clearTimeout(listenT);
+    var oldNext = log.querySelector('.ucw-next'); if (oldNext) oldNext.remove();
+    Face.set('think');
     st.msgs.push({ r: 'u', t: q }); save();
     bubble('u', q); scrollEnd();
     var t = typing(), started = Date.now();
@@ -353,11 +610,21 @@
       setTimeout(function () {
         t.remove();
         setMode(m);
-        st.msgs.push({ r: 'b', t: res.reply, a: res.actions || [] }); save();
-        bubble('b', res.reply);
-        if (res.actions && res.actions.length) actions(res.actions);
-        scrollEnd(); busy = false; send.disabled = !input.value.trim();
+        var next = pickNext(res.next);
+        st.msgs.push({ r: 'b', t: res.reply, a: res.actions || [], n: next }); save();
+        var row = bubble('b', res.reply), mini = row.querySelector('.ucw-face');
+        keepRow(row);
+        var dur = reveal(row.querySelector('.ucw-msg'));
+        Face.set('talk'); if (mini) mini.setAttribute('data-mood', 'talk');
         track('chat_question', { source: source, mode: m });
+        setTimeout(function () {
+          Face.set('idle'); Face.flash('happy', 1300);
+          if (mini) { mini.setAttribute('data-mood', 'happy'); setTimeout(function () { mini.setAttribute('data-mood', 'idle'); }, 1300); }
+          if (res.actions && res.actions.length) actions(res.actions);
+          nextChips(next);
+          keepRow(row);
+          busy = false; send.disabled = !input.value.trim();
+        }, dur);
       }, wait);
     };
     var ctrl = window.AbortController ? new AbortController() : null;
@@ -366,7 +633,7 @@
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (x) {
         clearTimeout(timer);
-        if (x.ok && x.j && x.j.reply) done({ reply: x.j.reply, actions: x.j.actions }, 'ai');
+        if (x.ok && x.j && x.j.reply) done({ reply: x.j.reply, actions: x.j.actions, next: x.j.next }, 'ai');
         else done(faqAnswer(q), 'faq');
       })
       .catch(function () { clearTimeout(timer); done(faqAnswer(q), 'faq'); });
@@ -402,7 +669,7 @@
           if (j && (j.success === false || j.success === 'false')) throw new Error('not sent');
           f.remove();
           var msg = 'Thanks, ' + n.split(' ')[0] + '. Your question is with the team, and you will get a reply at ' + em + ' within 4 business hours.';
-          st.msgs.push({ r: 'b', t: msg }); save(); bubble('b', msg); scrollEnd();
+          st.msgs.push({ r: 'b', t: msg }); save(); bubble('b', msg); scrollEnd(); Face.flash('happy', 1600);
           track('generate_lead', { lead_source: 'chat_widget' });
         })
         .catch(function () { b.disabled = false; b.textContent = 'Send to the team'; err.textContent = 'That did not send. Please email ' + LEAD_TO + '.'; });

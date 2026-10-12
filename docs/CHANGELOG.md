@@ -12,6 +12,15 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-12 — Redesign live on www.upcoretech.com
+**Type:** release
+**Files:** merge commit `dc4cca4` on `origin/main`; production deployment `upcore-ai-workforces-f63n3tix1`
+Production's 5 older commits were merged with the new site's tree kept as is (nothing lost: same toolkit checkout script, Calendly already gone, no live demos). The Git deploy was blocked by Vercel (`COMMIT_AUTHOR_REQUIRED`, author not `gauravpassi`), so the same commit was deployed from the owner's CLI from a clean `git archive` export (see ARCHITECTURE.md §9). Post-launch checks on www:
+- All 46 sitemap pages, all 50 internal links and all 75 pre-launch URLs resolve.
+- Docs and scripts are no longer public.
+- The booking "Lead Tracking" conversion fires through GTM.
+- Production still lacks `GROQ_API_KEY`, so the assistant answers from its FAQ.
+
 ## 2026-10-12 — Go-live check fixes
 **Type:** fix + security
 **Files:** `.vercelignore`, `ai-operations.html`, `docs/STRUCTURE.md`

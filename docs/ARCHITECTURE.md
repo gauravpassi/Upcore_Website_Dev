@@ -40,15 +40,9 @@ The chat widget (`<script src="/chat-widget.js" defer>`) is included on **every*
 
 ## 3. Serverless functions ([`api/`](../api/))
 
-### 3.1 `/api/chat` — legacy, unused
+### 3.1 `/api/chat` and the website assistant (`chat-widget.js`)
 
-[`api/chat.js`](../api/chat.js) is a Vercel function that calls the Anthropic Messages API (`model: claude-haiku-4-5-20251001`) with a hard-coded `SYSTEM_PROMPT` and a `[BOOK_APPOINTMENT:{...json...}]` marker protocol. **As of 2026-07-24, `chat-widget.js` no longer calls this endpoint** — the widget was rebuilt as a self-contained client-side FAQ menu (see below) that never hits the network for answers. `api/chat.js` still deploys and would still work if called directly, but nothing on the site calls it. Left in place rather than deleted in case AI-driven chat is reinstated; don't treat its `SYSTEM_PROMPT` as current brand voice.
-
-### 3.1b Kai chat widget — one-click FAQ + email lead capture
-
-[`chat-widget.js`](../chat-widget.js) is a pure static asset with **no backend function of its own**. Two data structures at the top of the file (`CATEGORIES`, `FAQ`) drive the whole UI: clicking a popular question or a category card renders the matching canned answer instantly, client-side. Anything typed into the free-text input starts a short conversational capture (name → email) and then POSTs directly to `https://formsubmit.co/gaurav@upcoretechnologies.com` (same pattern as `assessment.html`/`contact.html`) with the question, name, email, and originating page — no serverless function involved. The "Book a Governance Review" chip reuses the existing Google Calendar Appointment Scheduling booking modal (bottom IIFE in the same file — see FEATURES.md D5 for the conversion-tracking gap this switch reintroduced) via a synthetic click on `a[href="#book-governance"]`.
-
-The `<script src="/chat-widget.js?v=N" defer>` tag's `?v=N` query is a manual cache-buster. Browsers cache the script aggressively by exact URL; bump `N` across **all 70 non-demo pages** in the same commit whenever you change `chat-widget.js` substantively, or visitors keep getting the old version.
+`api/chat.js` answers the "Ask Upcore" assistant through a free-tier OpenAI-compatible model (`GROQ_API_KEY`; it lists the models the key can use and falls back on errors). Without a key it returns `503 {fallback:true}` and `chat-widget.js` answers from its built-in FAQ. The site's facts live in its `SYSTEM_PROMPT`. Details: [FEATURES.md B3 and C2](FEATURES.md). `chat-widget.js` also holds the booking modal; its `?v=N` cache-buster is `CHAT_V` in `tools/v4-build/chrome.py` for generated pages and hard-coded on the hand-built ones (`/ai-operations`, `/build-your-demo`).
 
 ### 3.2 `/api/build-demo` — Demo Builder pipeline
 
@@ -140,3 +134,15 @@ The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-202510
 - **`<style>` blocks duplicated across 37 pages** — intentional. See [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) for how to keep them in sync.
 - **In-memory rate limit "leaks" across cold starts** — by design; we accept some over-limit demos in exchange for not running a KV.
 - **Chat widget hard-codes its own colors instead of using `:root`** — by design; widget must render correctly even if the host page didn't define `:root`.
+
+## 9. Deploys (production blocked unless the commit author is Gaurav's GitHub account)
+
+- **Dev:** `git push dev main` deploys `upcore-website-dev` (https://upcore-website-dev.vercel.app).
+- **Production:** project `upcore-ai-workforces` (team `gauravpassis-projects`) serves www.upcoretech.com, Git-connected to `gauravpassi/upcore-website` `main`.
+- **Git deploys on production are BLOCKED** (`seatBlock: COMMIT_AUTHOR_REQUIRED`) unless the head commit's author is the GitHub account `gauravpassi`. Commits authored as `Upcore <upcoretech@gmail.com>` are blocked, as happened on launch day.
+- **Three ways to ship:**
+  1. The head commit is authored by Gaurav's GitHub account.
+  2. The account owner deploys from the CLI: export the commit with `git archive <sha>` into an empty folder (no `.git`, so no author check), then from that folder run `VERCEL_ORG_ID=team_u6ZGrna1j8I7c2K3KAHWZiTr VERCEL_PROJECT_ID=prj_jZXe1p8PuDNEaicVWNWRnUrE5uTa vercel deploy --prod --yes`. This is how the redesign launched on 2026-10-12.
+  3. The Vercel plan or team allows the other committer.
+- **A blocked deployment cannot be redeployed;** Vercel wants a fresh deployment.
+- **The demo builder publishes by committing to `gauravpassi/upcore-website`** with `GITHUB_PAT`. Those deploys only succeed if the token belongs to the `gauravpassi` account.

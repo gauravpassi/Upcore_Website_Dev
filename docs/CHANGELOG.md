@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-12 — Go-live check fixes
+**Type:** fix + security
+**Files:** `.vercelignore`, `ai-operations.html`, `docs/STRUCTURE.md`
+`docs/`, every `.md`, `.sh` and `insights/*.txt` file was publicly downloadable (e.g. `/docs/CHANGELOG.md`, which still named former clients), on dev and on the live site. They are now excluded from deploys. `/ai-operations` gains a canonical, Open Graph tags, a favicon link and a description under 160 characters.
+
 ## 2026-10-09 — One type scale; bigger, structured heroes
 **Type:** design
 **Files:** `css/upcore-v4.css` (`:root` type tokens), `css/upcore-v5.css` (every block snapped to tokens + new `type` block), `css/upcore-chrome.css`, `lp/*.html`, `ai-operations.html`, `build-your-demo.html`, `tools/v4-build/calm.py` (`hero_page(cls=)`), `article.py`, `build_aine.py`, `build_gov.py`, `build_bpa.py`, `build_fao.py`, `build_fde.py`, `segment_copy.py`, `chrome.py` (`V` 23), all generated pages

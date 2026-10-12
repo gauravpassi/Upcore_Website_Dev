@@ -2,3 +2,11 @@
 *.py
 __pycache__/
 tools/
+
+# Internal documentation, editorial notes and shell scripts - never serve these publicly (2026-10-12).
+# docs/ and the .md files describe internals (tracking, env var names, history incl. client names).
+docs/
+*.md
+*.sh
+insights/*.txt
+.github/

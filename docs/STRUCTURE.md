@@ -27,7 +27,7 @@ upcore-website/
 │
 ├── vercel.json                        # Routing, headers, function config
 ├── .gitignore
-├── .vercelignore                      # Excludes *.py (internal one-off maintenance scripts) and tools/ from the deploy
+├── .vercelignore                      # Keeps internals off the public site: *.py, tools/, docs/, every *.md, *.sh, insights/*.txt, .github/ (docs were publicly downloadable until 2026-10-12)
 ├── .github/
 │   └── workflows/                     # GitHub Actions (daily demo cleanup cron)
 │

@@ -1,12 +1,13 @@
 """AI-Native Engineering page (2026-10-07, calm rebuild). The deep page a CTO reads after the homepage:
 leadership-view hero -> nine-stage explorer -> options compared -> the pod -> how we engage ->
-engineering results -> FAQ -> CTA. Replaces the old build_v41.py.
+engineering results -> FAQ -> further reading (reading.py) -> CTA. Replaces the old build_v41.py.
 Run from the repo root: python tools/v4-build/build_aine.py"""
 import os, sys, re, html as H
 sys.path.insert(0, os.path.dirname(__file__))
 import chrome as C
 import tools as TL
 import flow as FL
+import calm as K
 from v4parts import TESTIMONIALS
 
 ARROW = C.ARROW
@@ -45,8 +46,8 @@ PROOF_STRIP = '''<ul class="h-proof" aria-label="Certifications and ratings">
 hero = f'''<section class="h-hero h-hero--long" aria-labelledby="hero-h"><div class="hero-glow" aria-hidden="true"></div><div class="wrap h-hero-in">
 <div class="h-hero-copy">
 <nav class="crumb" aria-label="Breadcrumb" data-reveal><ol><li><a href="{C.URL["home"]}">Home</a></li><li aria-current="page">AI-Native Engineering</li></ol></nav>
-<p class="h-eyebrow" data-reveal>AI-Native Engineering &middot; for CTOs and CIOs</p>
-<h1 id="hero-h" class="t-hero" data-split>AI speed. <span class="hl">Your standards.</span></h1>
+<p class="h-eyebrow" data-reveal>For CTOs and CIOs</p>
+<h1 id="hero-h" class="t-hero" data-split>AI-Native Engineering: AI speed, <span class="hl">your standards.</span></h1>
 <p class="t-lead" data-reveal style="--d:3">We install a governed delivery pipeline in your Jira or Linear, GitHub and CI/CD, run by a Claude Certified Architect. You see every change that breaks your rules, and who decided.</p>
 <div class="hero-ctas" data-reveal style="--d:4">{C.btn("hero", pulse=True)}<a class="link" href="#pipeline">See the nine stages</a></div>
 <p class="hero-micro" data-reveal style="--d:4">45 minutes &middot; a written plan, whether or not we work together</p>
@@ -186,13 +187,13 @@ final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta
 <p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="/lp/governance-index?utm_source=website&amp;utm_medium=ai-native-engineering&amp;utm_campaign=cta_secondary">Get your AI Governance Score in 2 minutes <span aria-hidden="true">&rarr;</span></a></p>
 </div></section>'''
 
-page = '\n'.join([hero, pipeline, compare, team, engage, proof, faq, final])
+page = '\n'.join([hero, pipeline, compare, team, engage, proof, faq, K.further_reading('aine'), final])
 ld = C.graph('aine', [
     {'@type': 'Service', 'name': 'AI-Native Engineering', 'serviceType': 'Governed AI software delivery', 'url': C.SITE + C.FINAL_URL['aine'], 'provider': {'@id': C.ORG_ID},
      'description': 'Installation of a governed, end-to-end AI-native software delivery pipeline inside existing engineering tools, with architecture checks, automated pull-request checks, risk-scored merges, controlled releases and a leadership dashboard.',
      'audience': {'@type': 'Audience', 'audienceType': 'CTOs and CIOs'}, 'areaServed': C.AREA},
     {'@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': H.unescape(a), 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', H.unescape(b))}} for a, b in FAQ]}],
     crumb='AI-Native Engineering')
-print('aine', C.write('ai-native-engineering.html', 'aine', 'AI-Native Engineering: Governed Software Delivery | Upcore',
+print('aine', C.write('ai-native-engineering.html', 'aine', 'AI-Native Engineering Services: Governed Delivery | Upcore',
       'A governed spec-to-production AI pipeline inside Jira or Linear, GitHub and CI/CD, with architecture checks, controlled releases and a leadership view.',
       page, active='aine', ld=ld, group='solution', spine=False, main_cls='is-calm'))

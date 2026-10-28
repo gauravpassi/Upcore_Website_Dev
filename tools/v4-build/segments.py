@@ -1,6 +1,7 @@
 """Generate the four 'Who we help' segment pages (2026-10-07, calm rebuild; copy in segment_copy.py).
 Section order: hero with the example-run flowline -> where it hurts (sourced stats, where we have them)
--> what we automate -> before and after -> results -> how engagements work -> FAQ -> CTA.
+-> what we automate -> before and after -> results -> how engagements work -> FAQ -> further reading
+(lists in reading.py) -> CTA.
 The trust marquee, framework diagrams and enterprise-controls grid from V4.1 were dropped to cut
 length; security is one link away in every FAQ and in the footer.
 Run from the repo root: python tools/v4-build/segments.py"""
@@ -85,6 +86,7 @@ def page(slug, name, d):
 {FL.timeline(d["path"])}</div></section>''')
 
     blocks.append(K.faq(d['faq'], plain(d['faq_h2'])))
+    blocks.append(K.further_reading(slug))
     blocks.append(K.final(d['cta_h2'], d['cta_p'], K.lp_alt(slug, 'gov' if eng else 'maturity')))
 
     ld = CH.graph(slug, [

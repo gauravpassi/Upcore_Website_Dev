@@ -1,7 +1,7 @@
 """/platform: Business Process Automation (2026-10-07, calm rebuild; replaces the old Studio/Forge/
 Workforce services overview). For COOs and operations leaders: live work-queue view (hero) ->
 what we automate, by function -> the Autonomy Ladder -> results -> how engagements work ->
-controls -> who we help -> FAQ -> CTA. Workflows, results and FAQs reuse segment_copy.py.
+controls -> who we help -> FAQ -> further reading -> CTA. Workflows, results and FAQs reuse segment_copy.py.
 Run from the repo root: python tools/v4-build/build_bpa.py"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
@@ -30,8 +30,8 @@ QUEUE = f'''<figure class="dash" data-dash>
 </div>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle dash-toggle" type="button" aria-label="Pause animation">Pause</button></figcaption>
 </figure>'''
-hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Business Process Automation')], 'Business Process Automation &middot; for COOs and operations leaders',
-                    'Let AI do <span class="hl">the busywork.</span>',
+hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Business Process Automation')], 'For COOs and operations leaders',
+                    'Business Process Automation: <span class="hl">no more busywork.</span>',
                     'Agents that run the repetitive work in support, operations and finance: answering status questions, chasing documents and payments, and checking files against your rules, inside the systems you already use.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#workflows">See what we automate</a>', QUEUE,
                     micro='Our standard: a first agent live within 30 days of design sign-off')
@@ -123,7 +123,7 @@ final = K.final('Find the three processes <span class="hl">worth automating firs
                 'Book a 45-minute discovery call. We&rsquo;ll map your highest-volume workflows and send a written plan: what to automate, in what order, and what it should return.',
                 K.lp_alt('platform', 'maturity'))
 
-page = '\n'.join([hero, work, ladder, results, engage, controls, who, faq, final])
+page = '\n'.join([hero, work, ladder, results, engage, controls, who, faq, K.further_reading('bpa'), final])
 ld = C.graph('bpa', [{'@type': 'Service', 'name': 'Business Process Automation', 'serviceType': 'AI agents for business process automation', 'url': C.SITE + C.FINAL_URL['bpa'], 'provider': {'@id': C.ORG_ID},
                       'description': 'AI agents that run repetitive support, operations, finance, sales and compliance work inside existing systems, with human approval thresholds and a full audit trail.', 'areaServed': C.AREA},
                      K.faq_ld(FAQ)], crumb='Business Process Automation')

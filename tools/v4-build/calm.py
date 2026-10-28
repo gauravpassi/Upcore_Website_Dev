@@ -1,6 +1,7 @@
 """Shared parts for the calm (is-calm) pages built in phase 2 and 3 (2026-10-07):
-eyebrows, breadcrumbs, heroes, section heads, results band, FAQ, final CTA and FAQ JSON-LD.
-The homepage, AI-Native Engineering and About builders predate this module and keep their own copies."""
+eyebrows, breadcrumbs, heroes, section heads, results band, FAQ, further reading (lists in reading.py),
+final CTA and FAQ JSON-LD. The homepage, AI-Native Engineering and About builders predate this module and keep
+their own copies of most parts."""
 import re, html as H
 import chrome as C
 
@@ -87,6 +88,33 @@ def final(h2, p, alt='', btn_label='Book a Discovery Call', lines=True):
 <p class="t-lead" data-reveal style="--d:1">{p}</p>
 <div class="hero-ctas" data-reveal style="--d:2">{C.btn("cta_final", cls="btn btn--cyan", label=btn_label)}</div>{a}
 </div></section>'''
+
+
+def _site_href(href):
+    """A root-relative library URL as linked from this build (the preview path when LIVE is False)."""
+    for k, v in C.FINAL_URL.items():
+        if v == href:
+            return C.URL[k]
+    return href if C.LIVE else '/preview/' + href.strip('/').replace('/', '-')
+
+
+def further_reading(key, h2='Further reading', track=True):
+    """'Further reading' list of library pages for the page `key`; the lists live in reading.py (FURTHER_READING).
+    Same markup as the library's 'Keep reading' block (build_library.related_block): .lx-rel / .hb-list styles,
+    no new CSS. Goes just before the page's final CTA. With track=True each link carries the site's CTA
+    attributes, so a click reaches GA4 as cta_click (cta_id further-reading, cta_section further_reading,
+    cta_url = the article). Returns '' when the page has no list."""
+    import reading as R
+    rows = R.items(key)
+    if not rows:
+        return ''
+    gtm = ' data-gtm-cta="further-reading" data-gtm-cta-type="secondary" data-gtm-cta-section="further_reading"' if track else ''
+    li = ''.join(f'<li><a href="{_site_href(h)}"{gtm}><span class="hb-k">{H.escape(k)}</span><span class="hb-t"><b>{H.escape(t)}</b>'
+                 + (f'<span class="hb-d">{H.escape(d)}</span>' if d else '') + f'</span><i aria-hidden="true">{ARROW}</i></a></li>'
+                 for h, k, t, d in rows)
+    return f'''<section class="h-sec h-sec--tight lx-rel" aria-labelledby="read-h"><div class="wrap">
+<div class="hb-bar"><h2 id="read-h" class="h-h3">{h2}</h2><a class="link" href="{C.URL["insights"]}">All insights</a></div>
+<ul class="hb-list lx-rel-list">{li}</ul></div></section>'''
 
 
 def lp_alt(page, kind='gov'):

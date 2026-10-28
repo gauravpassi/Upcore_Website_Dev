@@ -1,7 +1,7 @@
 """/forward-deployed-engineer (2026-10-08): Fractional FDE, the fifth solution. A Forward Deployed Engineer embedded
 part of every week to take AI pilots and agents into production against the client's real systems, and stay on.
 delivery log (hero) -> why pilots stall -> what a fractional FDE is -> five stages, one owner -> when it fits ->
-proof -> FAQ -> CTA. Facts: the retired /fde-engineers page (lifecycle, ownership model, governed from the first
+proof -> FAQ -> further reading -> CTA. Facts: the retired /fde-engineers page (lifecycle, ownership model, governed from the first
 commit), the site's own standards and stats. No public price (the FAO is the only published price) and no
 "48 hours" claim. Reuses the FAO page's components (.fo-*) plus the small `fde` CSS block.
 Run from the repo root: python tools/v4-build/build_fde.py"""
@@ -28,8 +28,8 @@ DELIVERY = f'''<figure class="fo-port" data-portfolio>
 </div>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle fo-toggle" type="button" aria-label="Replay animation">Replay</button></figcaption>
 </figure>'''
-hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional FDE')], 'Fractional Forward Deployed Engineer',
-                    'Your AI pilot, <span class="hl">finally live.</span>',
+hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional FDE')], 'Fractional FDE &middot; part of every week',
+                    'Forward Deployed Engineer: your AI pilot, <span class="hl">live.</span>',
                     'A senior engineer joins your team part of every week, builds on your real systems and data, ships the agent and stays to keep it working. No full-time hire needed.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#stages">See how it works</a>', DELIVERY)
 
@@ -49,7 +49,7 @@ gaps = f'''<section class="h-sec" aria-labelledby="gap-h"><div class="wrap">
 WHO = [('Who they are', 'A senior engineer fluent in Python, cloud infrastructure and AI orchestration (retrieval, agent frameworks, evaluation) who also owns the business outcome.'),
        ('How they work', 'Inside your tools and your team&rsquo;s rhythm, not a ticket queue. They build against your real systems, data and constraints.'),
        ('What they own', 'The build, the integration, the release and everything after launch: monitoring, fixes and the next workflow.'),
-       ('Why fractional', 'Part of every week on a monthly retainer, for as long as it pays off. No recruitment cycle, and you meet your engineer before you sign.')]
+       ('Why fractional', 'FDE as a service: part of every week on a monthly retainer, for as long as it pays off. No recruitment cycle, and you meet your engineer before you sign.')]
 who = ''.join(f'<div data-reveal style="--d:{i}"><dt>{k}</dt><dd>{v}</dd></div>' for i, (k, v) in enumerate(WHO))
 role = f'''<section class="h-sec h-sec--alt" id="engagement" aria-labelledby="who-h"><div class="wrap">
 <div class="h-pilot"><div class="h-pilot-k">{K.eyebrow("What you get")}<h2 id="who-h" class="h-h2 h-h2--sm" data-reveal>One engineer. Start to finish.</h2>
@@ -91,16 +91,16 @@ proof = K.results_band('Results', 'Shipped. Still running.', RES, quote=(q[0], q
 
 # ------------------------------------------------------------------ 7. FAQ + CTA
 FAQ = [('What is a Forward Deployed Engineer?', 'A senior software engineer who works inside a customer&rsquo;s team to build and ship production AI against their real systems, rather than handing over a tool and leaving. The role is common at AI companies such as OpenAI and Anthropic.'),
-       ('What does &ldquo;fractional&rdquo; mean here?', 'Your engineer works with you part of every week on a monthly retainer, instead of a full-time hire. You get the same ownership without the recruitment cycle, and new workflows are added to the same retainer.'),
+       ('What is a fractional forward deployed engineer?', 'An FDE who works with you part of every week on a monthly retainer, instead of a full-time hire: FDE as a service. You get the same ownership without the recruitment cycle, and new workflows are added to the same retainer.'),
        ('What will our engineer build?', 'Usually AI agents and automations that sit inside your existing tools: triage and routing, document and data extraction, customer and internal assistants, and the integrations that connect them to your CRM, ERP and APIs.'),
        ('How is this different from an agency or a contractor?', 'An agency ships a project and moves on. A contractor builds what the ticket says. Your FDE owns the outcome across all five stages and stays after launch to monitor, fix and extend what they built.'),
        ('How do you handle our code and data?', f'Your engineer works with the access you grant, in your tools and environment. Which AI providers are used, on what terms, and how code and data are handled is set out on our <a class="link" href="{C.URL["security"]}">security page</a>. We sign a mutual NDA before any call where sensitive details are shared.'),
        ('What does it cost?', 'A monthly retainer scoped to the work after a 45-minute discovery call. You get a written proposal with a fixed scope before anything starts.')]
-faq = K.faq(FAQ, 'Questions before you start.')
+faq = K.faq(FAQ, 'Questions before you hire a forward deployed engineer.')
 final = K.final('Get your AI out of the pilot. <span class="hl">Into production.</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll look at the pilot or workflow you want live and send a written plan, whether or not we work together.')
 
-page = '\n'.join([hero, gaps, role, stages, fits, proof, faq, final])
+page = '\n'.join([hero, gaps, role, stages, fits, proof, faq, K.further_reading('fde'), final])
 ld = C.graph('fde', [{'@type': 'Service', 'name': 'Fractional Forward Deployed Engineer', 'serviceType': 'Forward deployed engineering', 'url': C.SITE + C.FINAL_URL['fde'], 'provider': {'@id': C.ORG_ID},
                       'description': 'A senior engineer embedded part-time to build AI agents against your real systems, ship them to production and stay on to maintain and extend them.', 'areaServed': C.AREA},
                      K.faq_ld(FAQ)], crumb='Fractional FDE')

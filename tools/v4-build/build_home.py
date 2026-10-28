@@ -1,7 +1,7 @@
 """Homepage (2026-10-06 rethink): one buyer, one story, one action.
 CTO/CIO lens, competitor-informed: outcome hero with a real artifact -> proof strip -> problem ->
 how it works (4 checkpoints, artifacts not paragraphs) -> number-led proof -> the pilot ->
-compact router -> 4 objection FAQs -> final CTA with the people you'll meet.
+compact router -> 4 objection FAQs -> further reading (reading.py) -> final CTA with the people you'll meet.
 Depth lives on /ai-native-engineering, /results and the segment pages.
 Run from the repo root: python tools/v4-build/build_home.py"""
 import os, sys, re, html as H
@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import chrome as C
 import tools as TL
 import flow as FL
+import calm as K
 from v4parts import TESTIMONIALS
 
 ARROW = C.ARROW
@@ -224,7 +225,7 @@ final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta
 <p class="cta-alt" data-reveal style="--d:3">Not ready for a call? <a href="/lp/governance-index?utm_source=website&amp;utm_medium=home&amp;utm_campaign=cta_secondary">Get your AI Governance Score in 2 minutes <span aria-hidden="true">&rarr;</span></a></p>
 </div></section>'''
 
-home = '\n'.join([hero, problem, estimate, how, proof, pilot, security, router, faq, final])
+home = '\n'.join([hero, problem, estimate, how, proof, pilot, security, router, faq, K.further_reading('home'), final])
 ld = C.graph('home', [{'@type': 'WebSite', '@id': C.SITE + '/#website', 'url': C.SITE + '/', 'name': 'Upcore Technologies', 'publisher': {'@id': C.ORG_ID}},
                       {'@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': H.unescape(a), 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', H.unescape(b))}} for a, b in FAQ]}])
 print('home', C.write('index.html', 'home', 'AI-Native Engineering &amp; Automation | Upcore Technologies',

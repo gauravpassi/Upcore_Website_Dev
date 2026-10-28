@@ -1,7 +1,7 @@
 """/fractional-ai-officer (2026-10-07, calm rebuild). An embedded AI lead on retainer, for COOs, CFOs
 and CEOs: portfolio-verdict view (hero) -> four gaps -> 90 days in three phases -> two focuses ->
 economics (#economics: the only public price on the site, from $1,999/month; /pricing redirects here)
--> who you get + commitments -> FAQ -> CTA. Facts and figures come from the previous page.
+-> who you get + commitments -> FAQ -> further reading -> CTA. Facts and figures come from the previous page.
 Run from the repo root: python tools/v4-build/build_fao.py"""
 import os, sys
 sys.path.insert(0, os.path.dirname(__file__))
@@ -24,9 +24,9 @@ PORTFOLIO = f'''<figure class="fo-port" data-portfolio>
 </div>
 <figcaption><span>Example with illustrative data</span><button class="gate-toggle fo-toggle" type="button" aria-label="Replay animation">Replay</button></figcaption>
 </figure>'''
-hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional AI Officer')], 'Fractional AI Officer &middot; for COOs, CFOs and CEOs',
-                    'Senior AI leadership, <span class="hl">part-time.</span>',
-                    'An AI lead on retainer who inventories every pilot and tool, picks the two or three worth scaling and stays accountable until they&rsquo;re live and used. From $1,999 a month.',
+hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'Fractional AI Officer')], 'For COOs, CFOs and CEOs',
+                    'Fractional AI Officer: senior AI leadership, <span class="hl">part-time.</span>',
+                    'A Fractional Chief AI Officer (CAIO) on retainer who inventories every pilot and tool, picks the two or three worth scaling and stays accountable until they&rsquo;re live and used. From $1,999 a month.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#economics">See the economics</a>', PORTFOLIO,
                     micro=f'Not ready for a call? <a href="/lp/ai-maturity-index?utm_source=website&amp;utm_medium=fractional-ai-officer&amp;utm_campaign=hero_secondary">Get your AI Maturity Score in 2 minutes</a>')
 
@@ -103,22 +103,22 @@ engage = f'''<section class="h-sec h-sec--alt" id="engagement" aria-labelledby="
 <p class="gv-not"><b>What we don&rsquo;t guarantee:</b> a specific revenue increase, workforce reductions, perfect employee adoption or a vendor&rsquo;s own performance.</p></div>
 </div></section>'''
 
-FAQ = [('What is a Fractional AI Officer?', 'A specialist embedded in your organization part-time, accountable for turning scattered AI pilots into two or three owned, measurable implementations. They run your steering committee, own the roadmap and stay accountable for adoption, without the cost or timeline of a full-time Chief AI Officer.'),
+FAQ = [('What is a Fractional AI Officer, or fractional CAIO?', 'A fractional Chief AI Officer (CAIO): a specialist embedded in your organization part-time, accountable for turning scattered AI pilots into two or three owned, measurable implementations. They run your steering committee, own the roadmap and stay accountable for adoption, without the cost or timeline of a full-time Chief AI Officer.'),
        ('How fast can this start?', 'Ten business days to your first enterprise AI inventory. We interview your stakeholders and inventory every pilot, tool and vendor already in motion, with no recruitment cycle and no ramp period.'),
        ('What is in the 90 days?', 'By Day 30, a complete inventory, a value heatmap and a decision-grade portfolio report, and you may walk away. By Day 60, business cases, named owners and an approved architecture for each selected initiative. By Day 90, at least two implementations at their agreed milestones with real users and visible measurement.'),
-       ('How is this different from hiring a Chief AI Officer or a consultancy?', 'A full-time Chief AI Officer costs $400,000&ndash;$750,000+ a year, plus the time to recruit and to build a delivery function underneath them. A consultancy delivers a report and leaves. A Fractional AI Officer runs the portfolio, gets the implementations built and stays accountable for adoption.'),
+       ('How is a fractional CAIO different from a full-time Chief AI Officer or a consultancy?', 'A full-time Chief AI Officer costs $400,000&ndash;$750,000+ a year, plus the time to recruit and to build a delivery function underneath them. A consultancy delivers a report and leaves. A Fractional AI Officer runs the portfolio, gets the implementations built and stays accountable for adoption.'),
        ('Can the AI Officer govern our engineering teams&rsquo; use of AI too?', f'Yes. One AI Officer can focus on strategy and adoption, on AI engineering governance, or both. <a class="link" href="{C.URL["gov"]}">See AI Governance</a>.'),
        ('What does it cost?', 'From $1,999 a month ($23,988 a year). The exact fee depends on your organization&rsquo;s size and the scope of the portfolio, and is confirmed in a written proposal before anything starts.')]
-faq = K.faq(FAQ, 'Questions before you hire one.')
+faq = K.faq(FAQ, 'Questions before you hire a fractional CAIO.')
 final = K.final('Find the two AI initiatives <span class="hl">worth scaling.</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll look at what AI is already running in your organization and send a written plan, whether or not we work together.',
                 K.lp_alt('fractional-ai-officer', 'maturity'))
 
-page = '\n'.join([hero, gaps, phases, focus, econ, engage, faq, final])
+page = '\n'.join([hero, gaps, phases, focus, econ, engage, faq, K.further_reading('fao'), final])
 ld = C.graph('fao', [{'@type': 'Service', 'name': 'Fractional AI Officer', 'serviceType': 'Fractional Chief AI Officer', 'url': C.SITE + C.FINAL_URL['fao'], 'provider': {'@id': C.ORG_ID},
                       'description': 'An embedded AI lead on retainer who inventories AI pilots and tools, selects the initiatives worth scaling and stays accountable for implementation and adoption.', 'areaServed': C.AREA,
                       'offers': {'@type': 'Offer', 'priceCurrency': 'USD', 'price': '1999', 'priceSpecification': {'@type': 'UnitPriceSpecification', 'price': '1999', 'priceCurrency': 'USD', 'unitText': 'MONTH', 'description': 'Starting price per month'}}},
                      K.faq_ld(FAQ)], crumb='Fractional AI Officer')
-print('fao', C.write('fractional-ai-officer.html', 'fao', 'Fractional AI Officer from $1,999/month | Upcore',
+print('fao', C.write('fractional-ai-officer.html', 'fao', 'Fractional Chief AI Officer (CAIO) from $1,999/mo | Upcore',
       'An embedded AI lead on retainer: inventory every AI pilot, scale the two or three that matter and see them live in 90 days, with a Day-30 walk-away.',
       page, active='fao', ld=ld, group='solution', spine=False, main_cls='is-calm', annc_kind=C.ANNC_OPS))

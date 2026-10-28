@@ -1,6 +1,6 @@
 """/ai-engineering-governance (2026-10-07, calm rebuild). AI Governance for CTOs, CISOs and CFOs:
 spend/tools/risks view (hero) -> four gaps, struck through -> five-layer stack explorer ->
-90-day plan + commitments -> who leads it -> FAQ -> CTA. Facts and commitments come from the previous
+90-day plan + commitments -> who leads it -> FAQ -> further reading -> CTA. Facts and commitments come from the previous
 page; prices are not shown here (the only public price is on /fractional-ai-officer#economics).
 Run from the repo root: python tools/v4-build/build_gov.py"""
 import os, sys
@@ -32,13 +32,13 @@ DASH = f'''<figure class="gv-dash" data-seg>
 </div>
 <figcaption><span>Example with illustrative data</span></figcaption>
 </figure>'''
-hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'AI Governance')], 'AI Governance &middot; for CTOs, CISOs and CFOs',
-                    'Get your AI <span class="hl">under control.</span>',
+hero = K.hero_split([(C.URL['home'], 'Home'), (None, 'AI Governance')], 'For CTOs, CISOs and CFOs',
+                    'AI Governance: get your AI <span class="hl">under control.</span>',
                     'Your teams already use Copilot, Cursor and ChatGPT. Get every AI tool and its cost in one view, sensitive data kept out, AI-written code checked and an audit trail your board can rely on.',
                     C.btn('hero', pulse=True) + '<a class="link" href="#plan">See the 90-day plan</a>', DASH)
 
 # ------------------------------------------------------------------ 2. four gaps, struck through
-GAPS = [('Inventory', 'Nobody can say which AI tools are in use, by whom, or where.', 'Every AI tool, team and repository mapped to an accountable owner, within 72 hours of access.'),
+GAPS = [('Inventory', 'Shadow AI: nobody can say which AI tools are in use, by whom, or where.', 'Every AI tool, team and repository mapped to an accountable owner, within 72 hours of access.'),
         ('Spend', 'Invoices and license totals, with no link to teams, products or results.', 'AI spend by team and user, where your tools expose usage data, set against what it produced.'),
         ('Security', 'Scanners built for human-written code miss hallucinated packages and injection patterns.', 'AI-aware checks on every commit, with hallucinated packages blocked before they ship.'),
         ('Audit trail', 'The board or an auditor asks which code was AI-assisted and who reviewed it. There is no answer.', 'A record from prompt to deploy: what changed, which controls applied and who decided.')]
@@ -51,13 +51,13 @@ gaps = f'''<section class="h-sec" id="gaps" aria-labelledby="gap-h"><div class="
 
 # ------------------------------------------------------------------ 3. five-layer stack
 LAYERS = [('Align', 'Policy and standards', 'What AI may be used for, by whom, with which data.',
-           ['An inventory of every AI tool, repository and workflow, each with an accountable owner', 'An executable AI policy: approved, restricted, prohibited and escalation-required use, live by Day 14', 'Shared rules files and context for your codebase, and the right model for each task on cost and capability']),
-          ('Accelerate', 'Development governance', 'How AI-written work is produced and reviewed.',
+           ['An inventory of every AI tool, repository and workflow, shadow AI included, each with an accountable owner', 'An executable AI policy: approved, restricted, prohibited and escalation-required use, live by Day 14', 'Shared rules files and context for your codebase, and the right model for each task on cost and capability']),
+          ('Accelerate', 'AI code governance', 'How AI-written work is produced and reviewed.',
            ['Prompt standards and a pattern library your teams reuse', 'Automated review of every pull request for logic inversions, invented APIs and authentication bypasses', 'Multi-step AI workflows with human checkpoints where judgment matters']),
           ('Protect', 'Security', 'Checks built for the mistakes AI makes.',
            ['AI-aware security scanning on every commit: injection, credential sprawl, insecure output', 'Supply-chain checks that block hallucinated packages, with SBOMs generated', 'Infrastructure-as-code checks for insecure defaults before anything is applied', 'Continuous adversarial testing of AI-written code']),
           ('Comply', 'Audit and regulation', 'Evidence produced as the work happens.',
-           ['Mapping to the frameworks that apply to you: SOC 2, HIPAA, GDPR, PCI-DSS, the EU AI Act', 'Traceability from prompt to deploy, with every AI decision logged', 'Quality gates in CI/CD that cannot be bypassed', 'A reusable evidence pack for enterprise security questionnaires']),
+           ['Mapping to the frameworks that apply to you: SOC 2, HIPAA, GDPR, PCI-DSS, the EU AI Act', 'An audit trail from prompt to deploy, with every AI decision logged', 'Quality gates in CI/CD that cannot be bypassed', 'A reusable evidence pack for enterprise security questionnaires']),
           ('Optimize', 'Spend and return', 'What AI costs, and what it is worth.',
            ['AI spend by team and user, with burn-rate alerts and forecasts', 'A live dashboard for the CTO and CISO: AI code share by team and risk exposure', 'Quality measures: defect rates and cycle time for AI-written against human-written work', 'Production monitoring that links incidents back to the prompts and changes behind them'])]
 # isometric plates, drawn bottom-up so upper plates overlap lower ones
@@ -74,7 +74,7 @@ acc = ''.join(
     f'<div class="gv-lp" id="gv-l{i}" role="region" aria-labelledby="gv-lb{i}"{"" if i == 0 else " hidden"}><p>{d}</p><ul>{"".join(f"<li>{x}</li>" for x in items)}</ul></div></li>'
     for i, (n, s, d, items) in enumerate(LAYERS))
 stack = f'''<section class="h-sec h-sec--alt" id="framework" aria-labelledby="fw-h"><div class="wrap">
-{K.head("What we install", "Five layers. One owner. Full control.", "fw-h", "Each layer runs inside the tools you already use: your IDEs, Git, CI/CD and monitoring. Choose a layer to see what it covers.")}
+{K.head("What we install", "Five layers. One owner. Full control.", "fw-h", "From AI policy and AI code governance to security, compliance and spend, each layer runs inside the tools you already use: your IDEs, Git, CI/CD and monitoring. Choose a layer to see what it covers.")}
 <div class="gv-fw" data-layers><div class="gv-fig" data-reveal="scale">{STACK}</div><ol class="gv-acc">{acc}</ol></div>
 </div></section>'''
 
@@ -117,10 +117,10 @@ final = K.final('Get AI spend, data and code <span class="hl">under control in 9
                 'Book a 45-minute discovery call. We&rsquo;ll map where AI is already used in your organization and send a written plan, whether or not we work together.',
                 K.lp_alt('ai-governance', 'gov'))
 
-page = '\n'.join([hero, gaps, stack, plan, lead, faq, final])
+page = '\n'.join([hero, gaps, stack, plan, lead, faq, K.further_reading('gov'), final])
 ld = C.graph('gov', [{'@type': 'Service', 'name': 'AI Governance', 'serviceType': 'AI governance and AI engineering governance', 'url': C.SITE + C.FINAL_URL['gov'], 'provider': {'@id': C.ORG_ID},
                       'description': 'An AI inventory, AI spend visibility, data controls, AI-aware security checks and an audit trail, installed in 90 days with a Day-30 walk-away checkpoint.', 'areaServed': C.AREA},
                      K.faq_ld(FAQ)], crumb='AI Governance')
-print('gov', C.write('ai-engineering-governance.html', 'gov', 'AI Governance: AI Spend, Data Controls &amp; Audit Trails | Upcore',
+print('gov', C.write('ai-engineering-governance.html', 'gov', 'AI Governance: Spend, Data Controls &amp; Audit Trails | Upcore',
       'An inventory of every AI tool, AI spend by team, data controls, security checks on AI-written code and an audit trail, installed in 90 days with a Day-30 walk-away.',
       page, active='gov', ld=ld, group='solution', spine=False, main_cls='is-calm'))

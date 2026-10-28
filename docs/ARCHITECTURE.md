@@ -142,7 +142,7 @@ The Anthropic model id is **hard-coded in two places** (`claude-haiku-4-5-202510
 - **Git deploys on production are BLOCKED** (`seatBlock: COMMIT_AUTHOR_REQUIRED`) unless the head commit's author is the GitHub account `gauravpassi`. Commits authored as `Upcore <upcoretech@gmail.com>` are blocked, as happened on launch day.
 - **Three ways to ship:**
   1. The head commit is authored by Gaurav's GitHub account.
-  2. The account owner deploys from the CLI: export the commit with `git archive <sha>` into an empty folder (no `.git`, so no author check), then from that folder run `VERCEL_ORG_ID=team_u6ZGrna1j8I7c2K3KAHWZiTr VERCEL_PROJECT_ID=prj_jZXe1p8PuDNEaicVWNWRnUrE5uTa vercel deploy --prod --yes`. This is how the redesign launched on 2026-10-12.
+  2. The account owner deploys from the CLI: export the commit with `git archive <sha>` into an empty folder (no `.git`, so no author check), then from that folder run `VERCEL_ORG_ID=team_u6ZGrna1j8I7c2K3KAHWZiTr VERCEL_PROJECT_ID=prj_jZXe1p8PuDNEaicVWNWRnUrE5uTa vercel deploy --prod --yes`. This is how the redesign launched on 2026-10-12. Since 2026-10-28 `python tools/content/deploy.py production --confirm-production` does exactly this for `main` (after checking the tree is clean and pushed, and printing every commit that would go live); `deploy.py preview <ref>` deploys any commit to the upcore-website-dev project as a preview.
   3. The Vercel plan or team allows the other committer.
 - **A blocked deployment cannot be redeployed;** Vercel wants a fresh deployment.
 - **The demo builder publishes by committing to `gauravpassi/upcore-website`** with `GITHUB_PAT`. Those deploys only succeed if the token belongs to the `gauravpassi` account.

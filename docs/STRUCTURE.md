@@ -57,8 +57,13 @@ upcore-website/
 ├── tools/                             # Not deployed (.vercelignore)
 │   ├── v4-build/                      # Python generators for every generated page + GTM container (run from repo root; build_all.py runs them all); flow.py = V5 Flow components
 │   │   ├── content/                   # JSON source of the 28 library pages (insights/, learn/, compare/ financial services, privacy, terms) → build_library.py
+│   │   ├── authors.py                 # Bylines: author/reviewer slugs used by content JSON (match the /about#<slug> anchors)
+│   │   ├── reading.py                 # "Further reading" lists on the home, service and segment pages
+│   │   ├── build_sitemap.py           # Writes sitemap.xml (last step of build_all.py); sitemap-state.json holds page fingerprints
 │   │   ├── build_booking.py           # /assessment + /lp/maturity-review booking pages
 │   │   └── lp_chrome.py               # Site nav/footer/styles inside the <!-- @chrome --> markers of the quiz LPs, /build-your-demo and /ai-operations; writes css/upcore-chrome.css
+│   ├── content/                       # Content pipeline (FEATURES D6): backlog.json, WRITER.md, PUBLISH.md, validate.py, deploy.py, reviews/
+│   ├── seo/                           # legacy-redirects.json + apply_vercel_rules.py (merges SEO redirects/headers into vercel.json)
 │   ├── gtm-container-upcore-v4.json   # GTM import file (see docs/TRACKING.md §3)
 │   └── booking-conversions.gs         # Google Apps Script: booking intents → GA4/Ads conversions
 │
@@ -131,8 +136,8 @@ upcore-website/
 | What you're adding | Where it goes |
 |---|---|
 | New top-level marketing page | Repo root, `kebab-case.html`. Add link in `index.html` nav. |
-| New audience/segment page | Add it to `tools/v4-build/segment_copy.py` + `segments.py` (generates `who-we-help/<slug>.html`), add it to the menu in `chrome.py`, the sitemap and the homepage router. The old `industries/` pages were retired on 2026-10-07. |
-| New insight/blog article | A JSON file in `tools/v4-build/content/` (copy an existing one), then `python tools/v4-build/build_library.py` and `build_insights.py`; add the URL to `sitemap.xml`. See [FEATURES.md A9](FEATURES.md). |
+| New audience/segment page | Add it to `tools/v4-build/segment_copy.py` + `segments.py` (generates `who-we-help/<slug>.html`), add it to the menu in `chrome.py`, `PAGES` in `build_sitemap.py` and the homepage router. The old `industries/` pages were retired on 2026-10-07. |
+| New insight/blog article | Normally the content pipeline ([FEATURES.md D6](FEATURES.md), `tools/content/README.md`). By hand: a JSON file in `tools/v4-build/content/` (copy an existing one), then `python tools/v4-build/build_all.py` (page, hub and sitemap) and `python tools/content/validate.py --strict --built <file>`. See [FEATURES.md A9](FEATURES.md). |
 | New V4 page or V4 copy change | Edit the generator in `tools/v4-build/` and re-run it from the repo root (one page: `python tools/v4-build/build_<page>.py`; everything, e.g. after a `chrome.py` or cache-buster change: `python tools/v4-build/build_all.py`). Shared calm parts live in `calm.py`. Never hand-edit the generated HTML. |
 | New serverless function | `api/<name>.js`. Add `functions[<path>]` config block in `vercel.json`. Document in [ARCHITECTURE.md](ARCHITECTURE.md). |
 | New static asset (image/icon) | `images/<category>/`. Don't dump assets in repo root unless they're the favicon set. |

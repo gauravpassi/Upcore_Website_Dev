@@ -12,6 +12,16 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-10-28 — Content pipeline: AI-drafted, human-approved articles
+**Type:** feature
+**Files:** `tools/content/` (README, backlog.json, WRITER.md, PUBLISH.md, validate.py, deploy.py), `tools/v4-build/authors.py`, `build_library.py`, `article.py`, `chrome.py`
+A scheduled Claude writer drafts library articles from a researched backlog (keyword research, competitor and content strategy from 2026-10-28), builds and validates them, deploys a preview to upcore-website-dev and waits; nothing goes live until a person writes `approve <id>` in chat. Articles get named bylines (Gaurav Passi, Shrikant Maniar, Shanker Dhand, per topic cluster) with an AI-assistance disclosure. See FEATURES D6.
+
+## 2026-10-28 — SEO foundation: duplicate host, legacy redirects, honest dates, headings, internal links, generated sitemap
+**Type:** fix
+**Files:** `vercel.json` (via `tools/seo/apply_vercel_rules.py` + `legacy-redirects.json`), `tools/v4-build/` (`chrome.py` V25, `article.py`, `build_library.py`, `build_insights.py`, `build_about.py`, `build_guide.py`, `build_compare.py`, `calm.py`, `reading.py`, `build_sitemap.py`, the service and segment builders), `tools/v4-build/content/*.json`, `css/upcore-v4.css`, `css/upcore-v5.css`, `sitemap.xml`
+From an SEO audit (score ~68): `upcore-ai-workforces.vercel.app` was indexed as a duplicate of the site, so it now 308s to www, and every other `*.vercel.app` host sends `noindex`. Legacy WordPress URLs that 404'd now 301 to their closest page (off-topic ones stay 404). Library dates were backdated (insights showed 2025, guides 2025-01-01); `published` is now each page's first git date and `dateModified` is no longer hard-coded. Meta descriptions were truncated mid-sentence and are rewritten. Service and segment H1s now carry their keyword (FAO also says "Fractional Chief AI Officer (CAIO)"). Service, segment and home pages get "Further reading" links into the library, and articles get in-body links. Breadcrumb JSON-LD has the Insights level; Organization gains address and contactPoint; articles use `og:type=article`. Hero eyebrow, lead and meta no longer wait for JS (the `.hero` reveal exemption now also covers `.h-hero`). CSS/JS are cached 7 days. `/insights` has a "Latest" strip. `sitemap.xml` is generated. Factual problems found in the older articles are listed in `tools/content/fact-check-existing.md` for the refresh queue.
+
 ## 2026-10-12 — "Upcore AI": live avatar, follow-up suggestions, stickier answers
 **Type:** feature
 **Files:** `chat-widget.js` (v21), `api/chat.js`, `tools/v4-build/chrome.py` (`CHAT_V` 21), `ai-operations.html`, `build-your-demo.html`

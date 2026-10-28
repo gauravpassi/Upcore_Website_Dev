@@ -24,7 +24,7 @@ Shared senders (all check `window.upcGTM` first):
 
 | Event | Fired by | Key params |
 |---|---|---|
-| `cta_click` | any `[data-gtm-cta]` click | `cta_id`, `cta_type`, `cta_section`, `cta_text`, `cta_url`, `page_path` |
+| `cta_click` | any `[data-gtm-cta]` click (includes the "Further reading" links on service/segment pages since 2026-10-28: `cta_id` `further-reading`, `cta_type` `secondary`, `cta_section` `further_reading`) | `cta_id`, `cta_type`, `cta_section`, `cta_text`, `cta_url`, `page_path` |
 | `scroll_depth` | V4 pages | `percent_scrolled` (25/50/75/90) |
 | `section_view` | V4 sections with `aria-labelledby` | `section_id`, `section_title` |
 | `framework_tab_select` / `content_tab_select` | V4 tabs | `tab_id`, `method` |

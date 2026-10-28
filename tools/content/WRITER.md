@@ -31,18 +31,21 @@ Background reading, in this order: `CLAUDE.md`, `docs/FEATURES.md` A9 (the conte
 
 ## 1. Set up
 
-- Work in the pipeline worktree `C:\Users\saswa\SEO\upcore-content` (branch `main` of the website repo; the main
-  checkout is `C:\Users\saswa\Desktop\Upcore Website\upcore-website`, never edit there). If the worktree is missing:
-  `git -C "C:\Users\saswa\Desktop\Upcore Website\upcore-website" worktree add "C:\Users\saswa\SEO\upcore-content" main`.
-- `git switch main`, make sure `git status` is clean, then `git fetch origin` and report (don't fix) if `main` and
-  `origin/main` have diverged.
+- Work in the pipeline worktree `C:\Users\saswa\SEO\upcore-content`. Never edit the main checkout
+  `C:\Users\saswa\Desktop\Upcore Website\upcore-website` (people work there, and it has `main` checked out, so the
+  pipeline never checks out `main`; it works from GitHub's `origin/main`). If the worktree is missing:
+  `git -C "C:\Users\saswa\Desktop\Upcore Website\upcore-website" worktree add --detach "C:\Users\saswa\SEO\upcore-content" origin/main`.
+- Make sure `git status` is clean (finish or report any leftover branch work first), then
+  `git fetch origin` and `git switch --detach origin/main`.
+- If `tools/content/backlog.json` doesn't exist there, the pipeline hasn't been merged to GitHub's `main` yet: stop
+  and say so.
 - Set `PYTHONDONTWRITEBYTECODE=1` for every Python command (so no `__pycache__` gets committed).
 
 ## 2. Pick the item
 
 Open `tools/content/backlog.json`. Take the item with the lowest `queue` whose `status` is `queued`, whose `type`
 matches the run (`new` on writing days, `refresh` on the refresh day), and whose `needs_human_data` is false.
-Create the branch `content/<slug>` from `main`. Set the item's `status` to `drafting` (you'll set it to `in_review`
+Create the branch `content/<slug>` from `origin/main` (`git switch -c content/<slug> origin/main`). Set the item's `status` to `drafting` (you'll set it to `in_review`
 at the end). If the person named a specific item, use that one.
 
 ## 3. Research
@@ -127,7 +130,7 @@ Pipeline commits carry the `[automated]` suffix the repo uses for machine-made c
 2. `build: <slug> preview [automated]`: everything the build regenerated (HTML, `sitemap.xml`, `tools/v4-build/sitemap-state.json`).
 
 Then deploy the preview: `python tools/content/deploy.py preview content/<slug>`. It prints the preview URL. Check that
-it loads, then switch back to `main` in the worktree.
+it loads. Push the branch to the dev remote as a backup (`git push dev content/<slug>`; never to `origin`).
 
 ## 7. Hand over for review
 

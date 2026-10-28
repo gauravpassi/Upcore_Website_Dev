@@ -2,12 +2,12 @@
 `git archive` the commit into an empty folder (no .git, so Vercel's commit-author check doesn't apply), then
 `vercel deploy` from there with the project pinned by VERCEL_ORG_ID / VERCEL_PROJECT_ID.
 
-    python tools/content/deploy.py preview [REF]                 # REF (default HEAD) -> a preview URL on upcore-website-dev
-    python tools/content/deploy.py production --confirm-production  # main -> www.upcoretech.com
+    python tools/content/deploy.py preview [REF]                    # REF (default HEAD) -> a preview URL on upcore-website-dev
+    python tools/content/deploy.py production --confirm-production  # origin/main -> www.upcoretech.com
 
-Production refuses unless: REF is main, the working tree is clean, local main equals origin/main (pushed first),
-and --confirm-production is passed. It prints the commits that production has not seen yet (since the last
-production deploy recorded in tools/content/deploys.log) so a human can see exactly what goes live.
+Production always deploys exactly what GitHub's main holds (it fetches origin and archives origin/main), so
+whatever goes live is pushed first. Without --confirm-production it only prints the commits production has not
+seen yet (since the last production deploy recorded in tools/content/deploys.log) so a human can check the list.
 Needs the Vercel CLI logged in to the gauravpassis-projects team (vercel whoami)."""
 import datetime, os, re, shutil, subprocess, sys, tempfile, zipfile
 
@@ -37,17 +37,16 @@ def main():
     if not args or args[0] not in PROJECTS:
         sys.exit(__doc__)
     target = args[0]
-    ref = args[1] if len(args) > 1 else ('main' if target == 'production' else 'HEAD')
+    if target == 'production':
+        if len(args) > 1:
+            sys.exit('production always deploys origin/main; push what should go live, then run without a ref')
+        git('fetch', '--quiet', 'origin', 'main')
+        ref = 'origin/main'
+    else:
+        ref = args[1] if len(args) > 1 else 'HEAD'
     sha = git('rev-parse', ref)
 
     if target == 'production':
-        if ref != 'main':
-            sys.exit('production deploys only from main')
-        if git('status', '--porcelain', '--untracked-files=no'):
-            sys.exit('working tree has uncommitted changes; commit or discard them first')
-        git('fetch', '--quiet', 'origin', 'main')
-        if git('rev-parse', 'origin/main') != sha:
-            sys.exit('local main is not what origin/main has; push main to origin first')
         since = last_production_sha()
         span = f'{since}..{sha}' if since else f'-15 {sha}'
         print('Commits going live' + ('' if since else ' (no previous deploy logged; showing the last 15)') + ':')

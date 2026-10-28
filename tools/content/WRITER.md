@@ -67,7 +67,7 @@ at the end). If the person named a specific item, use that one.
 5. For a **refresh**: read the current JSON, the backlog item's `refresh_actions`, and (if available) the Search
    Console queries for the page. Also fix every problem listed for that page in
    `tools/content/fact-check-existing.md` (wrong arithmetic, unsourced or outdated figures, unpublished pricing):
-   source it, correct it, or remove it. A refreshed article gets the cluster's named `author`/`reviewer`, `updated`
+   source it, correct it, or remove it. A refreshed article gets the backlog's `author`/`reviewer`, `updated`
    = today and `ai_assisted: true`. If the item's `content_file` is a Python builder (`build_guide.py`,
    `build_compare.py`) rather than JSON, edit that builder's copy in place and keep its structure.
 
@@ -85,7 +85,7 @@ File: `tools/v4-build/content/<section>__<slug>.json` (for a refresh, edit the e
 | `published` | Today's date `YYYY-MM-DD` (PUBLISH.md resets it to the real publish day). A refresh keeps the original |
 | `updated` | `""` for a new article; today's date for a refresh |
 | `date_label` | `""` (the generator shows the published date) |
-| `author`, `reviewer` | From `backlog.json` `authors[<cluster>]` (slugs in `tools/v4-build/authors.py`) |
+| `author`, `reviewer` | From `backlog.json` `authors[<cluster>]` (currently `saswata-sengupta` and `""`). Never name anyone who isn't in `tools/v4-build/authors.py` |
 | `ai_assisted` | `true` |
 | `backlog_id` | The item id, e.g. `"N01"` |
 | `sources` | Every external URL a fact came from |
@@ -160,7 +160,7 @@ Write `tools/content/reviews/<id>-<slug>.md` with:
   3. no keyword overlap with an existing URL;
   4. the original asset is present;
   5. links resolve;
-  6. author and reviewer set;
+  6. author set (and reviewer, if any);
   7. dates set;
   8. the CTA matches the persona;
   9. it reads like a practitioner wrote it;

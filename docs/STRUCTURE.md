@@ -57,7 +57,7 @@ upcore-website/
 ├── tools/                             # Not deployed (.vercelignore)
 │   ├── v4-build/                      # Python generators for every generated page + GTM container (run from repo root; build_all.py runs them all); flow.py = V5 Flow components
 │   │   ├── content/                   # JSON source of the 28 library pages (insights/, learn/, compare/ financial services, privacy, terms) → build_library.py
-│   │   ├── authors.py                 # Bylines: author/reviewer slugs used by content JSON (match the /about#<slug> anchors)
+│   │   ├── authors.py                 # Bylines: who may be named on articles (author/reviewer slugs used by content JSON)
 │   │   ├── reading.py                 # "Further reading" lists on the home, service and segment pages
 │   │   ├── build_sitemap.py           # Writes sitemap.xml (last step of build_all.py); sitemap-state.json holds page fingerprints
 │   │   ├── build_booking.py           # /assessment + /lp/maturity-review booking pages

@@ -17,24 +17,24 @@
   },
   "authors": {
     "A": {
-      "author": "gaurav-passi",
-      "reviewer": "shanker-dhand"
+      "author": "saswata-sengupta",
+      "reviewer": ""
     },
     "B": {
-      "author": "shanker-dhand",
-      "reviewer": "gaurav-passi"
+      "author": "saswata-sengupta",
+      "reviewer": ""
     },
     "C": {
-      "author": "shrikant-maniar",
-      "reviewer": "gaurav-passi"
+      "author": "saswata-sengupta",
+      "reviewer": ""
     },
     "D": {
-      "author": "gaurav-passi",
-      "reviewer": "shanker-dhand"
+      "author": "saswata-sengupta",
+      "reviewer": ""
     },
     "E": {
-      "author": "shanker-dhand",
-      "reviewer": "gaurav-passi"
+      "author": "saswata-sengupta",
+      "reviewer": ""
     }
   },
   "clusters": {
@@ -3544,5 +3544,6 @@
       "refresh_actions": [],
       "notes": "Strategy #40 (3x3)."
     }
-  ]
+  ],
+  "bylines_note": "Decided 2026-10-28: articles are credited to Saswata Sengupta, Upcore Technologies (or to Upcore with an empty author). Do not name other Upcore people."
 }

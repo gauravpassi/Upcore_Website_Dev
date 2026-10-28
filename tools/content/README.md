@@ -26,9 +26,10 @@ Each run ends in a Claude session with the preview link and the questions for th
 
 ## Who's named on articles
 
-Bylines come from `tools/v4-build/authors.py`, keyed by the cluster in `backlog.json` `authors`. Every pipeline
-article says "Drafted with AI assistance; reviewed and approved by <reviewer>". The 26 articles imported before the
-pipeline are credited to Upcore until a refresh gives them a named, human-reviewed author.
+Pipeline articles read "By Saswata Sengupta, Upcore Technologies" and "Drafted with AI assistance. Reviewed by
+Saswata Sengupta before publication." (Saswata approves every article). Only people listed in
+`tools/v4-build/authors.py` may be named; the leadership on /about is deliberately not named on articles. The 26
+articles imported before the pipeline are credited to Upcore until a refresh puts them through the same review.
 
 ## Rules the writer can't break
 

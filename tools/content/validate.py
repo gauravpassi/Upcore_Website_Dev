@@ -148,8 +148,6 @@ def check(fn, strict_flag, built, all_paths, pending):
             E(f'{k} "{d[k]}" is not in tools/v4-build/authors.py')
     if strict and not d.get('author'):
         E('strict: a named author is required')
-    if strict and d.get('ai_assisted') and not d.get('reviewer'):
-        E('strict: AI-assisted articles need a named reviewer')
 
     # body
     body = Body()

@@ -15,7 +15,7 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 ## 2026-10-28 — Content pipeline: AI-drafted, human-approved articles
 **Type:** feature
 **Files:** `tools/content/` (README, backlog.json, WRITER.md, PUBLISH.md, validate.py, deploy.py), `tools/v4-build/authors.py`, `build_library.py`, `article.py`, `chrome.py`
-A scheduled Claude writer drafts library articles from a researched backlog (keyword research, competitor and content strategy from 2026-10-28), builds and validates them, deploys a preview to upcore-website-dev and waits; nothing goes live until a person writes `approve <id>` in chat. Articles get named bylines (Gaurav Passi, Shrikant Maniar, Shanker Dhand, per topic cluster) with an AI-assistance disclosure. See FEATURES D6.
+A scheduled Claude writer drafts library articles from a researched backlog (keyword research, competitor and content strategy from 2026-10-28), builds and validates them, deploys a preview to upcore-website-dev and waits; nothing goes live until a person writes `approve <id>` in chat. Articles are credited "By Saswata Sengupta, Upcore Technologies" with an AI-assistance disclosure (the leadership on /about is deliberately not named on articles). See FEATURES D6.
 
 ## 2026-10-28 — SEO foundation: duplicate host, legacy redirects, honest dates, headings, internal links, generated sitemap
 **Type:** fix

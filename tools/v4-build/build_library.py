@@ -10,8 +10,18 @@ sys.path.insert(0, os.path.dirname(__file__))
 import chrome as C
 import calm as K
 import article as A
+import authors as AU
 
 CONTENT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content')
+MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+
+def human_date(iso):
+    """'2026-03-06' -> 'Mar 6, 2026' (the style of the existing date_label values); '' stays ''."""
+    if not iso:
+        return ''
+    y, m, d = (int(x) for x in iso.split('-'))
+    return f'{MONTHS[m - 1]} {d}, {y}'
 KIND = {'guide': 'Guide', 'comparison': 'Comparison', 'framework': 'Framework', 'playbook': 'Industry playbook', 'legal': 'Legal'}
 GROUP = {'guide': 'guide', 'comparison': 'comparison', 'framework': 'insights', 'playbook': 'insights', 'legal': 'legal'}
 
@@ -40,7 +50,21 @@ def build(path):
     trail = [(C.URL['home'], 'Home')] + ([] if legal else [(C.URL['insights'], 'Insights')]) + [(None, H.escape(crumb))]
     eb = H.escape(d['eyebrow']) if d['eyebrow'] and not legal else ''
     eyebrow = eb if KIND[d['kind']].lower() in eb.lower() else ((eb + ' &middot; ') if eb else '') + KIND[d['kind']]
-    meta_line = f'<span>{H.escape(d["date_label"])}</span>' if legal and d['date_label'] else (f'<span>Published {H.escape(d["date_label"])}</span>' if d.get('date_label') else '')
+    # Optional byline/date fields (2026-10-28): "author"/"reviewer" are authors.py slugs ("" = credited to Upcore),
+    # "updated" is the last substantive edit (ISO date), "ai_assisted" adds the disclosure line under the byline.
+    author, reviewer, updated = d.get('author') or '', d.get('reviewer') or '', d.get('updated') or ''
+    published = d.get('published') or ''
+    if legal:
+        meta_line = f'<span>{H.escape(d["date_label"])}</span>' if d['date_label'] else ''
+    else:
+        shown = d.get('date_label') or human_date(published)
+        meta_line = ''.join([
+            f'<span>By {AU.link(author)}</span>' if author else '',
+            f'<span>Reviewed by {AU.link(reviewer)}</span>' if reviewer and reviewer != author else '',
+            f'<span>Published {H.escape(shown)}</span>' if shown else '',
+            f'<span>Updated {human_date(updated)}</span>' if updated and updated > published else ''])
+        if d.get('ai_assisted') and (author or reviewer):
+            meta_line += f'<span class="ar-note">Drafted with AI assistance; reviewed and approved by {AU.PEOPLE[reviewer or author]["name"]}.</span>'
     stats = ''
     if d['stats']:
         stats = '<dl class="lx-stats lx-stats--hero" data-reveal style="--d:4">' + ''.join(f'<div><dt>{H.escape(n)}</dt><dd>{H.escape(l)}</dd></div>' for n, l in d['stats']) + '</dl>'
@@ -60,10 +84,15 @@ def build(path):
     if legal:
         ld = C.graph(key, [{'@type': 'WebPage', 'name': name, 'url': C.SITE + d['path'], 'about': {'@id': C.ORG_ID}, 'dateModified': '2026-10-07'}], crumb=name)
     else:
-        ld = C.graph(key, A.ld_article(key, name, plain(d['meta']), mins, d['faq'] or None, published=d.get('published') or None), crumb=name)
+        ld = C.graph(key, A.ld_article(key, name, plain(d['meta']), mins, d['faq'] or None, published=published or None,
+                                       modified=updated or None, author=author or None, reviewer=reviewer or None),
+                     crumb=name, parents=[('Insights', C.FINAL_URL['insights'])])
     noindex = 'noindex' in (d.get('robots') or '')
+    og_article = None if legal else {'published': published or '2026-10-07', 'modified': max(updated or published or '2026-10-07', published or ''),
+                                     'author': AU.PEOPLE[author]['name'] if author else ''}
     return C.write(d['file'], key, H.escape(d['title'], quote=False), H.escape(d['meta']), '\n'.join(parts),
-                   active='' if legal else 'insights', ld=ld, group=GROUP[d['kind']], spine=False, main_cls='is-calm lx-page', noindex=noindex)
+                   active='' if legal else 'insights', ld=ld, group=GROUP[d['kind']], spine=False, main_cls='is-calm lx-page', noindex=noindex,
+                   article=og_article)
 
 
 for f in sorted(glob.glob(os.path.join(CONTENT, '*.json'))):

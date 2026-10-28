@@ -3,7 +3,7 @@
 time, so re-run this after adding or renaming an article. Filter chips + search (JS module "Insights hub");
 everything is visible without JS. The newsletter form keeps the previous endpoint and subject.
 Run from the repo root (after the guide and comparison builders): python tools/v4-build/build_insights.py"""
-import os, sys, re, glob, html as H
+import os, sys, re, glob, json, html as H
 sys.path.insert(0, os.path.dirname(__file__))
 import chrome as C
 import calm as K
@@ -13,6 +13,12 @@ DISPLAY = {'learn/what-is-ai-native-engineering.html': 'What is AI-native engine
            'compare/ai-native-engineering-vs-ai-coding-tools.html': 'AI-native engineering vs AI coding tools',
            'compare/upcore-vs-building-in-house.html': 'Build it in-house, or bring in Upcore?'}
 FRAMEWORKS = {'insights/human-in-the-loop.html', 'insights/roi-business-case-ai-agents.html', 'insights/choosing-first-ai-agent.html'}
+# Library JSON pages declare their own kind; a 'framework' there joins FRAMEWORKS (2026-10-28, for the content pipeline).
+for _j in glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content', '*.json')):
+    _d = json.load(open(_j, encoding='utf-8'))
+    if _d.get('kind') == 'framework':
+        FRAMEWORKS.add(_d['file'])
+LATEST = 4  # newest articles shown above the full list, by JSON-LD datePublished
 TYPES = [('guide', 'Guides'), ('comparison', 'Comparisons'), ('framework', 'Frameworks'), ('playbook', 'Industry playbooks')]
 TYPE_LABEL = dict(TYPES)
 
@@ -38,7 +44,8 @@ def read(f):
     body = re.sub(r'<script.*?</script>|<style.*?</style>', ' ', body, flags=re.S)
     mins = max(3, round(len(re.sub(r'<[^>]+>', ' ', body).split()) / 230))
     url = '/' + f.replace(os.sep, '/')[:-5]
-    return dict(f=f.replace(os.sep, '/'), title=title, desc=desc, mins=mins, url=url, kind=kind(f))
+    pub = re.search(r'"datePublished": "(\d{4}-\d{2}-\d{2})"', s)
+    return dict(f=f.replace(os.sep, '/'), title=title, desc=desc, mins=mins, url=url, kind=kind(f), pub=pub.group(1) if pub else '')
 
 
 files = sorted(set(glob.glob(os.path.join(C.ROOT, 'learn', '*.html')) + glob.glob(os.path.join(C.ROOT, 'compare', '*.html'))
@@ -62,6 +69,10 @@ hero = K.hero_page([(C.URL['home'], 'Home'), (None, 'Insights')], 'Insights',
                    extra=f'<div class="hb-tools" data-reveal style="--d:4"><label class="hb-search"><span class="sr">Search insights</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input type="search" placeholder="Search {len(items)} articles" data-hb-search autocomplete="off" /></label></div>')
 featured = f'''<section class="h-sec h-sec--tight hb-feat-sec" aria-labelledby="start-h"><div class="wrap">
 <p class="h-col" id="start-h">Start here</p><ul class="hb-feat">{feat}</ul></div></section>'''
+newest = sorted((i for i in items if i['pub'] and i['f'] not in FEATURED), key=lambda i: (i['pub'], i['title']), reverse=True)[:LATEST]
+latest_rows = ''.join(f'<li data-type="{i["kind"]}"><a href="{i["url"]}"><span class="hb-k">{TYPE_LABEL[i["kind"]].rstrip("s")}</span><span class="hb-t"><b>{e(i["title"])}</b><span class="hb-d">{e(i["desc"])}</span></span><span class="hb-m">{i["mins"]} min</span><i aria-hidden="true">{C.ARROW}</i></a></li>' for i in newest)
+latest = f'''<section class="h-sec h-sec--tight" aria-labelledby="new-h"><div class="wrap">
+<div class="hb-bar"><h2 id="new-h" class="h-h3">Latest</h2></div><ul class="hb-list">{latest_rows}</ul></div></section>''' if newest else ''
 listing = f'''<section class="h-sec hb-list-sec" id="all" aria-labelledby="all-h"><div class="wrap" data-hub>
 <div class="hb-bar"><h2 id="all-h" class="h-h3">Everything we&rsquo;ve published</h2><div class="hb-chips" role="group" aria-label="Filter by type">{chips}</div></div>
 <ul class="hb-list">{rows}</ul>
@@ -77,7 +88,7 @@ news = f'''<section class="h-sec h-sec--tight h-sec--alt" aria-labelledby="nl-h"
 final = K.final('Want this applied <span class="hl">to your teams?</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll look at where you are with AI and send a written plan, whether or not we work together.')
 
-page = '\n'.join([hero, featured, listing, news, final])
+page = '\n'.join([hero, featured, latest, listing, news, final])
 ld = C.graph('insights', [{'@type': 'CollectionPage', 'name': 'Upcore Insights', 'url': C.SITE + C.FINAL_URL['insights'],
                            'hasPart': [{'@type': 'Article', 'headline': i['title'], 'url': C.SITE + i['url']} for i in rest]}], crumb='Insights')
 print('insights', len(items), 'items', C.write('insights/index.html', 'insights', 'Insights: AI-Native Engineering, Governance &amp; Automation | Upcore',

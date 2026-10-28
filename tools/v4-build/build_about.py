@@ -69,7 +69,7 @@ TEAM = [('gaurav-passi', 'Gaurav Passi', 'Co-Founder &amp; CEO &middot; Claude C
         ('shanker-dhand', 'Shanker Dhand', 'Technical Head',
          'Owns the technical side of delivery: the review standards, the checks wired into your pipeline and the architecture decisions behind anything Upcore ships into your environment.', 'https://www.linkedin.com/in/shankerdhand/')]
 team_li = ''.join(
-    f'<li class="ab-p" data-reveal style="--d:{i}"><span class="ab-av has-photo" aria-hidden="true"><img src="/images/team/{ini}.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" /></span>'
+    f'<li class="ab-p" id="{ini}" data-reveal style="--d:{i}"><span class="ab-av has-photo" aria-hidden="true"><img src="/images/team/{ini}.jpg" alt="" width="240" height="240" loading="lazy" decoding="async" /></span>'
     f'<h3>{n}</h3><p class="ab-role">{r}</p><p class="ab-bio">{b}</p>'
     f'<a class="ab-li" href="{u}" target="_blank" rel="noopener">{LI_ICON}<span>LinkedIn<span class="sr">: {n} (opens in a new tab)</span></span></a></li>'
     for i, (ini, n, r, b, u) in enumerate(TEAM))
@@ -187,7 +187,7 @@ final = f'''<section class="band band--flow cta-band h-cta" aria-labelledby="cta
 </div></section>'''
 
 page = '\n'.join([hero, why, what, believe, team, where, final])
-people = [{'@type': 'Person', 'name': n, 'jobTitle': r.split(' &middot; ')[0].replace('&amp;', '&'), 'image': f'{C.SITE}/images/team/{ini}.jpg', 'sameAs': [u], 'worksFor': {'@id': C.ORG_ID}} for ini, n, r, b, u in TEAM]
+people = [{'@type': 'Person', '@id': f'{C.SITE}/about#{ini}', 'name': n, 'jobTitle': r.split(' &middot; ')[0].replace('&amp;', '&'), 'image': f'{C.SITE}/images/team/{ini}.jpg', 'sameAs': [u], 'worksFor': {'@id': C.ORG_ID}} for ini, n, r, b, u in TEAM]
 ld = C.graph('about', [{'@type': 'AboutPage', 'name': 'About Upcore Technologies', 'url': C.SITE + C.FINAL_URL['about'], 'about': {'@id': C.ORG_ID}}] + people, crumb='About')
 print('about', C.write('about.html', 'about', 'About Upcore: Leadership, Convictions &amp; Credentials | Upcore',
       'Upcore builds governed AI-native engineering and automation for clients in six countries. Meet the leadership, what we believe and our credentials.',

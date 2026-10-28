@@ -89,7 +89,7 @@ final = K.final('Ready to try it <span class="hl">on one team?</span>',
                 'Book a 45-minute discovery call. We&rsquo;ll review your delivery process and outline a pilot on one team, whether or not we work together.',
                 f'Or read <a href="{C.URL["cmp-tools"]}">AI-native engineering vs AI coding tools <span aria-hidden="true">&rarr;</span></a>')
 page = '\n'.join([hero, body, faq, final])
-ld = C.graph('guide-aine', A.ld_article('guide-aine', 'What is AI-native engineering?', 'A plain-English guide to AI-native engineering: definition, how it differs from AI-assisted coding, the building blocks, roles, measures and how to start.', mins, FAQ), crumb='What is AI-native engineering?')
+ld = C.graph('guide-aine', A.ld_article('guide-aine', 'What is AI-native engineering?', 'A plain-English guide to AI-native engineering: definition, how it differs from AI-assisted coding, the building blocks, roles, measures and how to start.', mins, FAQ), crumb='What is AI-native engineering?', parents=[('Insights', C.FINAL_URL['insights'])])
 print('guide', C.write('learn/what-is-ai-native-engineering.html', 'guide-aine', 'What Is AI-Native Engineering? A Guide for CTOs | Upcore',
       'AI-native engineering explained: how it differs from AI-assisted coding, the building blocks of a governed AI delivery process, what to measure and how to start.',
       page, active='insights', ld=ld, group='guide', spine=False, main_cls='is-calm'))

@@ -1690,6 +1690,9 @@ a.btn--cyan:hover{box-shadow:0 14px 40px -12px var(--cyan-glow);}
    ========================================================================== */
 .ar-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:22px;font-family:var(--f-mono);font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
 .ar-meta span+span::before{content:'\00B7';margin-right:18px;color:var(--hair);}
+.ar-meta a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
+.ar-meta .ar-note{flex-basis:100%;font-family:var(--f-sans);text-transform:none;letter-spacing:0;}
+.ar-meta .ar-note::before{content:none;}
 .ar-progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:300;pointer-events:none;}
 .ar-progress i{display:block;height:100%;background:var(--thread);box-shadow:0 0 10px rgba(33,210,237,.6);transform:scaleX(0);transform-origin:0 50%;}
 .ar-wrap{padding-top:clamp(16px,2vw,32px);}

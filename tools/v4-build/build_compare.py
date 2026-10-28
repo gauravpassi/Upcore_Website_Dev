@@ -105,5 +105,5 @@ for key, fname, crumb, h1, lead, secs, faqs, title, meta, other in PAGES:
     final = K.final('Measure it on <span class="hl">one team first.</span>',
                     'Book a 45-minute discovery call. We&rsquo;ll review your delivery process and outline a pilot on one team, whether or not we work together.',
                     f'Not ready for a call? <a href="{C.URL["guide-aine"]}">Read the guide to AI-native engineering <span aria-hidden="true">&rarr;</span></a>')
-    ld = C.graph(key, A.ld_article(key, crumb, meta, mins, faqs), crumb=crumb)
+    ld = C.graph(key, A.ld_article(key, crumb, meta, mins, faqs), crumb=crumb, parents=[('Insights', C.FINAL_URL['insights'])])
     print(key, C.write(fname, key, title, meta, '\n'.join([hero, body, faq, final]), active='insights', ld=ld, group='comparison', spine=False, main_cls='is-calm'))

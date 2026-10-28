@@ -899,7 +899,8 @@ a.card--ink:hover{background:var(--band-2);}
 .pipe-legend i.auto{background:var(--cyan);} .pipe-legend i.human{background:var(--amber);} .pipe-legend i.ai{background:transparent;box-shadow:inset 0 0 0 1.5px var(--cyan);}
 
 /* ---- Hero ---- */
-.hero [data-reveal]{opacity:1;transition:none;animation:heroIn .7s var(--ease-out) both;animation-delay:calc(var(--d,0) * 60ms);}
+/* .h-hero added 2026-10-28: the V4 page heroes use .h-hero, so their eyebrow, lead and meta waited for JS (LCP) */
+.hero [data-reveal],.h-hero [data-reveal]{opacity:1;transition:none;animation:heroIn .7s var(--ease-out) both;animation-delay:calc(var(--d,0) * 60ms);}
 @keyframes heroIn{from{transform:translateY(14px)}to{transform:none}}
 .js [data-split]:not(.is-split){opacity:0;}
 .hero h1 .w>span{animation-play-state:paused;}
@@ -1140,7 +1141,7 @@ a.card:active{transform:translateY(-1px);transition-duration:.1s;}
 }
 @media (prefers-reduced-motion:reduce){
   .hero h1 .w>span{animation:none!important;}
-  .hero [data-reveal]{animation:none;}
+  .hero [data-reveal],.h-hero [data-reveal]{animation:none;}
   .ld-bar{clip-path:none!important;}
 }
 .foot .foot-certs{flex-direction:row;gap:8px 18px;}

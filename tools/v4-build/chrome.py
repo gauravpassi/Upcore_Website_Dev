@@ -6,7 +6,7 @@ import tools as TL
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))  # repo root
 SITE = 'https://www.upcoretech.com'
-V = 24          # cache-buster for css/js/upcore-v4 + v4-analytics
+V = 25          # cache-buster for css/js/upcore-v4 + v4-analytics
 CHAT_V = 21    # chat-widget.js (bump sitewide when it changes)
 CTA_V = 3      # cta-tracking.js (bump sitewide when it changes)
 LIVE = True
@@ -143,22 +143,34 @@ ORG_ID = SITE + '/#organization'
 ORG = {'@type': 'Organization', '@id': ORG_ID, 'name': 'Upcore Technologies', 'url': SITE, 'logo': SITE + '/upcore-logo.png',
        'description': 'Upcore Technologies installs governed, AI-native software delivery pipelines for engineering teams and builds AI agents that automate business processes, with AI governance and a Fractional AI Officer service.',
        'knowsAbout': ['AI-native engineering', 'AI software delivery governance', 'AI governance', 'Business process automation', 'AI agents'],
-       'sameAs': ['https://www.linkedin.com/company/upcoretech', 'https://clutch.co/profile/upcore-technologies', 'https://www.designrush.com/agency/profile/upcore-technologies']}
+       'sameAs': ['https://www.linkedin.com/company/upcoretech', 'https://clutch.co/profile/upcore-technologies', 'https://www.designrush.com/agency/profile/upcore-technologies'],
+       # Same facts as the /contact page schema (build_contact.py); keep the two in sync.
+       'address': {'@type': 'PostalAddress', 'streetAddress': 'Unit No. 625, 6th Floor, Tower-A, Bestech Business Tower, Sector 66',
+                   'addressLocality': 'Mohali', 'addressRegion': 'Punjab', 'postalCode': '160062', 'addressCountry': 'IN'},
+       'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'email': 'gaurav@upcoretechnologies.com', 'telephone': '+91-99881-35327'}}
 AREA = ['US', 'GB', 'AE', 'AU', 'NZ', 'ZA', 'IN']
 
 
-def graph(key, nodes, crumb=None):
+def graph(key, nodes, crumb=None, parents=()):
+    """parents: [(name, path)] between Home and this page, matching the visible breadcrumb trail."""
     url = SITE + FINAL_URL[key]
     g = [ORG] + nodes
     if crumb:
+        trail = [('Home', SITE + '/')] + [(n, SITE + p) for n, p in parents] + [(crumb, url)]
         g.append({'@type': 'BreadcrumbList', 'itemListElement': [
-            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE + '/'},
-            {'@type': 'ListItem', 'position': 2, 'name': crumb, 'item': url}]})
+            {'@type': 'ListItem', 'position': i, 'name': n, 'item': u} for i, (n, u) in enumerate(trail, 1)]})
     return {'@context': 'https://schema.org', '@graph': g}
 
 
-def write(fname, key, title, meta, body, active='', ld=None, og=None, group='page', annc_kind=ANNC_ENG, spine=True, main_cls='', noindex=False):
+def write(fname, key, title, meta, body, active='', ld=None, og=None, group='page', annc_kind=ANNC_ENG, spine=True, main_cls='', noindex=False, article=None):
+    """article: {'published': ISO date, 'modified': ISO date, 'author': name or ''} switches og:type to article."""
     canon = SITE + FINAL_URL[key]
+    og_type, og_article = 'website', ''
+    if article:
+        og_type = 'article'
+        og_article = (f'\n<meta property="article:published_time" content="{article["published"]}" />'
+                      f'\n<meta property="article:modified_time" content="{article["modified"]}" />'
+                      + (f'\n<meta property="article:author" content="{article["author"]}" />' if article.get('author') else ''))
     ld_tag = f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n' if ld else ''
     robots = '<meta name="robots" content="index, follow, max-image-preview:large" />\n<link rel="canonical" href="' + canon + '" />' if LIVE else '<meta name="robots" content="noindex, nofollow" />'
     if noindex:
@@ -176,7 +188,7 @@ def write(fname, key, title, meta, body, active='', ld=None, og=None, group='pag
 <title>{title}</title>
 <meta name="description" content="{meta}" />
 {robots}
-<meta property="og:type" content="website" />
+<meta property="og:type" content="{og_type}" />{og_article}
 <meta property="og:site_name" content="Upcore Technologies" />
 <meta property="og:url" content="{canon}" />
 <meta property="og:title" content="{og or title}" />

@@ -42,9 +42,15 @@ def table(cols, rows, label, us=None):
     return f'<div class="cmp ar-cmp ar-cmp--{n}" role="table" aria-label="{label}">{head}{body}</div>'
 
 
-def ld_article(key, headline, desc, mins, faq=None, published='2026-10-07'):
+def ld_article(key, headline, desc, mins, faq=None, published='2026-10-07', modified=None, author=None, reviewer=None):
+    """author/reviewer: authors.py slugs (None credits the Organization). dateModified falls back to the
+    publish date, so it can never be earlier than datePublished."""
+    import authors as AU
+    published = published or '2026-10-07'
     node = {'@type': 'Article', 'headline': headline, 'description': desc, 'url': C.SITE + C.FINAL_URL[key],
-            'datePublished': published or '2026-10-07', 'dateModified': '2026-10-07', 'inLanguage': 'en',
-            'author': {'@id': C.ORG_ID}, 'publisher': {'@id': C.ORG_ID}, 'timeRequired': f'PT{mins}M',
+            'datePublished': published, 'dateModified': max(modified or published, published), 'inLanguage': 'en',
+            'author': AU.person(author) if author else {'@id': C.ORG_ID}, 'publisher': {'@id': C.ORG_ID}, 'timeRequired': f'PT{mins}M',
             'image': C.OG_IMAGE, 'mainEntityOfPage': C.SITE + C.FINAL_URL[key]}
+    if reviewer:
+        node['editor'] = AU.person(reviewer)
     return [node] + ([K.faq_ld(faq)] if faq else [])

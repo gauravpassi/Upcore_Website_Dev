@@ -1,0 +1,1581 @@
+{
+  "generated": "2026-10-28",
+  "method": "Historical URLs: Wayback Machine CDX API (url=upcoretech.com/*, every capture, assets filtered out; www.upcoretech.com/* returned the identical 1,618 URL keys), kept page-like URLs with a 200/301 text/html (or RSS for feeds) capture, normalized (lowercase, no query/fragment, no trailing slash) and dropped wp-admin/wp-json/wp-content/wp-includes/xmlrpc/wp-login/.well-known/attachment/?p= and non-page files -> 112 paths. Added every <loc> from all 18 archived copies of the old Yoast post-sitemap.xml and page-sitemap.xml (2024-06..2026-01) -> 285 paths, plus 38 tag/category/feed/pagination/service URLs linked from the archived pages -> 323 paths checked. Each was requested live on https://www.upcoretech.com (HEAD, re-confirmed with GET on any 4xx/5xx; redirects followed; 4 workers, 20s timeout) on 2026-10-28; 274 end in 404 (none 410). Each 404 was mapped to the most relevant current page per audit issue #1, with destinations verified live 200. Posts with no genuinely relevant current page are listed under leave_404 (redirecting them would be a soft 404); fallback_if_backlinks names the least-bad target if backlink data later justifies a redirect. Exact sources are used for /services/* and /insights/<slug>; pattern rules only for /case-studies, /category, /tag, /insights/page/N and per-post feeds. Sources were compiled with path-to-regexp 6.1.0 using the options Vercel uses (strict, case-sensitive) and checked against every current page (sitemap + repo HTML), every planned path in tools/content/backlog.json and the existing vercel.json redirects (simulated in order with these rules appended after them; the host-conditional /:path* rule for upcore-ai-workforces.vercel.app does not apply on www): none is captured, every legacy URL reaches its intended rule, no source duplicates an existing one, and no destination is itself redirected. Archived titles come from the archived page <title>, else link text on archived listing pages/feeds, else the slug. Vercel serves permanent:true as 308, which Google treats like 301.",
+  "redirects": [
+    {
+      "source": "/comments/feed",
+      "destination": "/insights",
+      "permanent": true,
+      "reason": "WordPress comments RSS feed -> current Insights hub (audit rule).",
+      "archived_title": "Comments for Upcore",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:application/rss+xml captures 20250430..20260102, html/rss)"
+    },
+    {
+      "source": "/feed",
+      "destination": "/insights",
+      "permanent": true,
+      "reason": "WordPress site RSS feed -> current Insights hub (audit rule).",
+      "archived_title": "Upcore",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:application/rss+xml captures 20250429..20260104, html/rss)"
+    },
+    {
+      "source": "/insights/ai-in-ecommerce",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true,
+      "reason": "AI in ecommerce -> AI agents for ecommerce and retail operations.",
+      "archived_title": "Ai in ecommerce (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/ai-in-fintech",
+      "destination": "/learn/ai-in-banking",
+      "permanent": true,
+      "reason": "AI in fintech -> AI in banking use cases and compliance guide.",
+      "archived_title": "Ai in fintech (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/application-security-tools-trends-best-practices-challenges",
+      "destination": "/ai-engineering-governance",
+      "permanent": true,
+      "reason": "Application security post -> AI Engineering Governance (security checks on AI-written code, audit trail) (audit rule: security -> governance).",
+      "archived_title": "2024 Application Security: Tools, Trends, Practices & Challenges",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html,301:text/html captures 20250731..20251218, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/build-vs-buy",
+      "destination": "/learn/enterprise-ai-strategy",
+      "permanent": true,
+      "reason": "Build vs buy decision post -> enterprise AI strategy framework, which has a Build vs. Buy decision section.",
+      "archived_title": "Build vs. Buy: Key Considerations in Software Development Decision-Making",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "source": "/insights/chatgpt-vs-gemini-vs-copilot",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true,
+      "reason": "AI assistant comparison -> AI agent platforms compared (audit rule).",
+      "archived_title": "ChatGPT vs Gemini vs Copilot: A Detailed Comparison Guide",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:text/html,301:text/html captures 20240917..20250706, html/rss); archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "source": "/insights/continuous-delivery-vs-continuous-deployment",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "CI/CD post -> AI-Native Engineering (governed pipeline inside CI/CD, controlled releases) (audit rule).",
+      "archived_title": "Continuous Delivery vs Continuous Deployment: A 2024 Guide",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20251027..20251027, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/cto-as-a-service",
+      "destination": "/fractional-ai-officer",
+      "permanent": true,
+      "reason": "CTO-as-a-service (fractional technology leadership) -> Fractional Chief AI Officer.",
+      "archived_title": "Cto as a service (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/insights/devsecops-pipelines",
+      "destination": "/ai-engineering-governance",
+      "permanent": true,
+      "reason": "DevSecOps (security in the delivery pipeline) -> AI Engineering Governance (security checks in CI/CD).",
+      "archived_title": "DevSecOps Pipelines in 2024: A Comprehensive Guide to Secure Software Delivery",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/digital-maturity-models",
+      "destination": "/learn/enterprise-ai-strategy",
+      "permanent": true,
+      "reason": "Digital maturity models guide -> enterprise AI strategy framework, which has an AI Strategy Maturity Model section.",
+      "archived_title": "A Complete Guide to Digital Maturity Models in 2024",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html,301:text/html captures 20240612..20260109, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/digital-transformation-strategy",
+      "destination": "/learn/enterprise-ai-strategy",
+      "permanent": true,
+      "reason": "Digital transformation strategy guide -> enterprise AI strategy framework and roadmap.",
+      "archived_title": "Digital Transformation Strategy 2024: A Complete Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/elevate-your-ai-implementation-with-pinecone",
+      "destination": "/learn/ai-agent-memory",
+      "permanent": true,
+      "reason": "Pinecone (vector database) post; /learn/ai-agent-memory has a vector databases section.",
+      "archived_title": "Elevate your ai implementation with pinecone (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/flow-engineering-ai-role-in-software-development",
+      "destination": "/learn/what-is-ai-native-engineering",
+      "permanent": true,
+      "reason": "AI's role in software development (flow engineering) -> What is AI-native engineering.",
+      "archived_title": "Flow Engineering: Revolutionizing AI’s Role in Software Development",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "high",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "source": "/insights/generative-ai-in-retail",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true,
+      "reason": "Generative AI in retail -> AI agents for ecommerce and retail operations.",
+      "archived_title": "Generative ai in retail (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/generative-ai-vs-traditional-ai",
+      "destination": "/learn/ai-agent-vs-llm",
+      "permanent": true,
+      "reason": "Generative vs traditional AI comparison -> AI agent vs LLM explainer (audit rule).",
+      "archived_title": "Generative AI vs. Traditional AI: Contrasting Innovation and Legacy",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:text/html captures 20251105..20251105, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/gpt-4-vision-explained-applications-use-cases",
+      "destination": "/learn/how-ai-agents-work",
+      "permanent": true,
+      "reason": "GPT-4 Vision explainer -> how AI agents work (perception layer) (audit rule).",
+      "archived_title": "GPT-4 Vision Explained: Overview, Applications, and Use Cases",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20260213..20260213, html/rss); archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "source": "/insights/guide-on-how-to-outsource-software-development",
+      "destination": "/compare/upcore-vs-building-in-house",
+      "permanent": true,
+      "reason": "How to outsource software development -> \"Build in-house or bring in Upcore?\" comparison.",
+      "archived_title": "A Comprehensive Guide on How to Outsource Software Development",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/guide-to-team-extension",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true,
+      "reason": "Team extension guide -> Forward Deployed Engineer (embedded engineer engagement).",
+      "archived_title": "Team Extension 101: How to Scale Your Workforce for Success",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "source": "/insights/how-to-build-apps-like-chatgpt",
+      "destination": "/learn/how-ai-agents-work",
+      "permanent": true,
+      "reason": "How to build ChatGPT-like apps -> plain-English architecture of LLM-based agents.",
+      "archived_title": "How to Build Apps Like ChatGPT: A Step-by-Step Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "source": "/insights/in-house-vs-outsourcing-software-development",
+      "destination": "/compare/upcore-vs-building-in-house",
+      "permanent": true,
+      "reason": "In-house vs outsourcing software development -> \"Build in-house or bring in Upcore?\" comparison.",
+      "archived_title": "The Ultimate Guide to In-House vs Outsourcing Software Development",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "high",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "source": "/insights/machine-learning-in-your-ecommerce",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true,
+      "reason": "Machine learning in ecommerce -> AI agents for ecommerce and retail operations.",
+      "archived_title": "How to Implement Machine Learning in Your eCommerce Strategy for Better Results",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/insights/natural-language-processing-with-guide",
+      "destination": "/learn/how-ai-agents-work",
+      "permanent": true,
+      "reason": "NLP beginner guide -> how AI agents work (perception and reasoning layers) (audit rule).",
+      "archived_title": "Natural Language Processing with Python: Beginner's Guide",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240725..20240917, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/outsourcing-product-development",
+      "destination": "/compare/upcore-vs-building-in-house",
+      "permanent": true,
+      "reason": "Outsourcing product development -> \"Build in-house or bring in Upcore?\" comparison.",
+      "archived_title": "Outsourcing Product Development: Your Ultimate Roadmap to Success",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/insights/retrieval-augmented-generation-rag",
+      "destination": "/learn/ai-agent-memory",
+      "permanent": true,
+      "reason": "RAG post -> agent architecture guide (audit rule). /learn/ai-agent-memory (vector databases, retrieval) may be the closer match. Changed 2026-10-28: /learn/ai-agent-memory covers retrieval and vector databases; /learn/how-ai-agents-work does not mention RAG.",
+      "archived_title": "Retrieval Augmented Generation (RAG) in 2024: Future of LLMs",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html,301:text/html captures 20240914..20251026, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/robotic-process-automation-in-finance",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "RPA in finance -> /platform (AI agents for collections, reconciliation, document checks).",
+      "archived_title": "Robotic process automation in finance (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/robotic-process-automation-rpa-in-healthcare",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "RPA in healthcare -> /platform (AI agents for scheduling, intake, document checks).",
+      "archived_title": "Robotic process automation rpa in healthcare (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/role-of-generative-ai-in-software-development",
+      "destination": "/learn/what-is-ai-native-engineering",
+      "permanent": true,
+      "reason": "Generative AI in software development -> What is AI-native engineering.",
+      "archived_title": "From Ideas to Code: The Role of Generative AI in Software Development",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "high",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/insights/rpa-in-real-estate",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "RPA in real estate -> /platform (AI agents for lead response and document collection).",
+      "archived_title": "RPA in Real Estate: Exploring Use Cases, Applications, Challenges, and Examples",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/staff-augmentation-guide",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true,
+      "reason": "Staff augmentation guide -> Forward Deployed Engineer (embedded engineer engagement); same rule as /services/staff-augmentation.",
+      "archived_title": "The Ultimate Guide to Staff Augmentation – Benefits, Use Cases, and Best Practices",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/staff-augmentation-vs-managed-services",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true,
+      "reason": "Staff augmentation vs managed services -> Forward Deployed Engineer engagement model.",
+      "archived_title": "Staff Augmentation vs Managed Services: Which is Right for You?",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "source": "/insights/top-ai-frameworks",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true,
+      "reason": "Top AI frameworks listicle -> AI agent frameworks and platforms compared (AutoGen, LangChain). The old post leaned toward ML frameworks.",
+      "archived_title": "Top AI Frameworks Reshaping 2024: Enhancing Machine Learning",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "source": "/insights/top-ai-tools-for-business",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true,
+      "reason": "Top AI tools for business listicle -> AI agent platforms compared (audit rule).",
+      "archived_title": "Top 10 AI Tools for Business in 2024: Enhance Your Operations",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "source": "/insights/top-robotic-process-automation-rpa-trends",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "RPA trends -> /platform (Business Process Automation with AI agents); same rule as the RPA service.",
+      "archived_title": "Top robotic process automation rpa trends (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/upcore-elevates-brand-presence-with-revamped-website",
+      "destination": "/about",
+      "permanent": true,
+      "reason": "Upcore company news (website relaunch, expanded services) -> About Upcore.",
+      "archived_title": "Upcore Technologies Elevates Brand Presence with Revamped Website and Expanded Service Offerings",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/insights/what-is-langchain",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true,
+      "reason": "LangChain explainer; /learn/top-ai-agent-platforms has a LangChain/LangGraph section.",
+      "archived_title": "What is langchain (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "high",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/ai-consulting",
+      "destination": "/fractional-ai-officer",
+      "permanent": true,
+      "reason": "Old AI consulting service; the Fractional Chief AI Officer retainer is the current AI strategy/advisory offer (audit rule).",
+      "archived_title": "Artificial Intelligence Consulting Services | AI Consulting Company",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/artificial-intelligence",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old AI services URL linked from archived posts; same intent as /services/artificial-intelligence-development (audit rule).",
+      "archived_title": "Artificial intelligence (no archived copy; from slug)",
+      "title_source": "slug",
+      "confidence": "medium",
+      "evidence": "linked from archived pages (not itself archived)"
+    },
+    {
+      "source": "/services/artificial-intelligence-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old AI development service; current build offer is AI-Native Engineering (audit rule).",
+      "archived_title": "Artificial Intelligence (AI) Solutions & Development Services",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/business-analysis-and-consulting",
+      "destination": "/fractional-ai-officer",
+      "permanent": true,
+      "reason": "Variant slug of the business-analysis consulting service (archived page-sitemap); same rule as /services/business-analysis-consulting.",
+      "archived_title": "Business Analysis and Consulting",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress page-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/services/business-analysis-consulting",
+      "destination": "/fractional-ai-officer",
+      "permanent": true,
+      "reason": "Old business-analysis consulting service; nearest current advisory offer is the Fractional AI Officer (audit rule).",
+      "archived_title": "Business Analysis Consulting Services | BA Services Company",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "source": "/services/chatbot-development",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "Old chatbot service; /platform AI agents answer status questions and handle intake (audit rule).",
+      "archived_title": "AI Chatbot Development Services & Solutions | Chatbot Development Company",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/crm-implementation-and-development",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "Old CRM implementation service; /platform runs AI agents that keep CRM records current (\"CRM hygiene\") (audit rule).",
+      "archived_title": "Custom CRM Implementation and Development Services Company",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/services/digital-transformation",
+      "destination": "/fractional-ai-officer",
+      "permanent": true,
+      "reason": "Old digital-transformation consulting service; current transformation/advisory offer is the Fractional AI Officer (audit rule).",
+      "archived_title": "Digital Transformation Consulting Services & Solutions Company",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/generative-ai-solutions",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old generative-AI build service; current build offer is AI-Native Engineering (audit rule).",
+      "archived_title": "Generative AI Solutions & Services | Generative AI Company",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/legacy-application-modernization",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old legacy modernization engineering service (not named in the audit); treated as custom development -> AI-Native Engineering.",
+      "archived_title": "Legacy App Modernization",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "archived WordPress page-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "source": "/services/machine-learning-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old ML development service; current build offer is AI-Native Engineering (audit rule).",
+      "archived_title": "Machine Learning Development Services Company | ML Consulting",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/mvp-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old MVP development service; current software delivery offer is AI-Native Engineering (audit rule).",
+      "archived_title": "MVP Development Service Company in USA | Upcore Technologies",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "source": "/services/product-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old digital product development service; current software delivery offer is AI-Native Engineering (audit rule).",
+      "archived_title": "Digital Product Development Services Company | Product Development Agency",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/product-engineering",
+      "destination": "/ai-native-engineering",
+      "permanent": true,
+      "reason": "Old product engineering service; current software delivery offer is AI-Native Engineering (audit rule).",
+      "archived_title": "Product Engineering Consulting",
+      "title_source": "archived link text (listing, feed or menu)",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "source": "/services/robotic-process-automation-solutions",
+      "destination": "/platform",
+      "permanent": true,
+      "reason": "Old RPA service; /platform is Business Process Automation with AI agents, the successor offer (audit rule).",
+      "archived_title": "Robotic Process Automation (RPA) Solutions | RPA Consulting Services",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/services/staff-augmentation",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true,
+      "reason": "Old IT staff augmentation service; current embedded-engineer offer is the Forward Deployed Engineer (audit rule).",
+      "archived_title": "IT Staff Augmentation Services Company in USA | Upcore Technologies",
+      "title_source": "archived page <title>",
+      "confidence": "medium",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "source": "/case-studies/:slug*",
+      "destination": "/results",
+      "permanent": true,
+      "reason": "Old WordPress case-study index and all case-study pages (49 found: 3 in Wayback CDX, 46 more in the archived page-sitemap.xml) -> current case studies page (audit rule). No current URL lives under /case-studies.",
+      "archived_title": "Case Studies | Success Stories | Upcore Technologies (and others)",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "covers_count": 49,
+      "covers": [
+        "/case-studies",
+        "/case-studies/ai-hr-assistant-transform-real-estate-industry",
+        "/case-studies/ai-powered-self-service-bi-and-big-data-platform",
+        "/case-studies/ai-powered-solution-for-medical-education-platform",
+        "/case-studies/ai-solution-for-art-authentication-and-classification",
+        "/case-studies/asset-management-software-solution",
+        "/case-studies/aws-cloud-migration-for-leading-life-sciences-company",
+        "/case-studies/computer-vision-expertise-solved-complex-trademark-challenges",
+        "/case-studies/custom-cms-solutions-for-leading-sports-goods-manufacturer",
+        "/case-studies/developed-ai-solutions-for-beauty-brand",
+        "/case-studies/developed-automated-document-review-solutions-with-ml-for-banking-client",
+        "/case-studies/digital-transformation-for-automotive-aftermarket-conglomerate",
+        "/case-studies/digital-transformation-for-leading-healthcare-provider",
+        "/case-studies/ecommerce-platform-development-for-online-supermarket",
+        "/case-studies/empowers-healthcare-education-with-modernized-elearning-platform",
+        "/case-studies/enhanced-security-with-computer-vision-for-facility-management",
+        "/case-studies/flutter-mobile-app-development-for-retail-industry",
+        "/case-studies/freight-rate-prediction-software-for-logistics-and-supply-chain-firm",
+        "/case-studies/from-billing-to-leads-upcore-revolutionizes-symbiosis-operations",
+        "/case-studies/helped-fortune-50-retailer-streamline-data-management",
+        "/case-studies/hipaa-compliant-virtual-wellness-platform",
+        "/case-studies/how-upcore-enabled-a-global-retailer-to-build-a-marketing-analytics-platform",
+        "/case-studies/how-upcore-transforms-saas-ecommerce-with-aws-three-tier-infrastructure",
+        "/case-studies/how-we-enhanced-efficiency-with-crm-implementation",
+        "/case-studies/integrates-ai-and-iot-for-intelligent-healthcare-app-solution",
+        "/case-studies/machine-learning-solutions-for-sports",
+        "/case-studies/microsoft-dynamics-365-crm-implementation",
+        "/case-studies/mobile-app-development-for-crack-academy",
+        "/case-studies/mobile-banking-app-transformation",
+        "/case-studies/npsp-implementation-for-an-international-nonprofit-organization",
+        "/case-studies/optimizing-user-experience-for-a-leading-vehicle-leasing-platform",
+        "/case-studies/remote-patient-monitoring-portal-implementation",
+        "/case-studies/rpa-solutions-for-leading-banking-firm",
+        "/case-studies/salesforce-data-migration-for-marketing-firm",
+        "/case-studies/salesforce-einstein-analytics-implementation",
+        "/case-studies/salesforce-sales-cloud",
+        "/case-studies/software-solutions-for-loan-management",
+        "/case-studies/software-solutions-for-solar-panel-manufacturers",
+        "/case-studies/staff-augmentation-for-ecommerce-fulfillment-software-development",
+        "/case-studies/staff-augmentation-for-leading-event-platform",
+        "/case-studies/staff-augmentation-for-leading-jewelry-company",
+        "/case-studies/staff-augmentation-for-tracking-solutions-provider",
+        "/case-studies/staff-augmentation-product-company-success-story",
+        "/case-studies/tranforms-global-insurance-operations-with-generative-ai-solutions",
+        "/case-studies/transformed-global-safety-certification-compliance-leader",
+        "/case-studies/transformed-medical-staffing-services-with-bpm-solution",
+        "/case-studies/transforming-call-center-operations-with-ai-powered-solutions",
+        "/case-studies/transforms-soccer-training-with-flutter-ai-powered-app",
+        "/case-studies/ui-ux-revamp-for-a-music-centric-ecommerce-innovator"
+      ]
+    },
+    {
+      "source": "/category/:slug*",
+      "destination": "/insights",
+      "permanent": true,
+      "reason": "Old WordPress category archives, their /page/N pagination and /feed URLs -> Insights hub (audit rule). No current URL lives under /category.",
+      "archived_title": "Artificial Intelligence Archives - Upcore (and others)",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "covers_count": 15,
+      "covers": [
+        "/category/artificial-intelligence",
+        "/category/artificial-intelligence/feed",
+        "/category/artificial-intelligence/page/2",
+        "/category/build-your-own-team",
+        "/category/cloud",
+        "/category/crm",
+        "/category/data-analytics",
+        "/category/digital-transformation",
+        "/category/ecommerce-development",
+        "/category/mobile-app-development",
+        "/category/product-development",
+        "/category/product-development/page/4",
+        "/category/software-development",
+        "/category/ux",
+        "/category/web-development"
+      ]
+    },
+    {
+      "source": "/tag/:slug*",
+      "destination": "/insights",
+      "permanent": true,
+      "reason": "Old WordPress tag archives (1 archived, 26 more linked from archived posts) and their feeds -> Insights hub, same treatment as categories. No current URL lives under /tag.",
+      "archived_title": "ChatGPT vs Gemini vs Copilot Archives - Upcore (and others)",
+      "title_source": "archived page <title>",
+      "confidence": "high",
+      "covers_count": 26,
+      "covers": [
+        "/tag/application-security",
+        "/tag/chatgpt-vs-gemini-vs-copilot",
+        "/tag/chatgpt-vs-gemini-vs-copilot/feed",
+        "/tag/continuous-delivery-vs-continuous-deployment",
+        "/tag/data-driven-decision-making",
+        "/tag/digital-maturity-models",
+        "/tag/digital-transformation-trends",
+        "/tag/flutterflow-vs-bubble",
+        "/tag/food-delivery-apps",
+        "/tag/generative-ai-vs-traditional-ai",
+        "/tag/gpt-4-vision",
+        "/tag/low-code-vs-no-code",
+        "/tag/natural-language-processing",
+        "/tag/natural-language-processing-with-python",
+        "/tag/new-product-development-process",
+        "/tag/on-premise-to-cloud-migration",
+        "/tag/php-vs-python",
+        "/tag/power-bi-vs-tableau",
+        "/tag/product-development-strategy",
+        "/tag/retrieval-augmented-generation",
+        "/tag/salesforce-consulting-partners",
+        "/tag/service-design",
+        "/tag/software-as-a-service",
+        "/tag/software-development-trends",
+        "/tag/team-based-organizational-structure",
+        "/tag/top-ai-tools"
+      ]
+    },
+    {
+      "source": "/insights/page/:n(\\d+)",
+      "destination": "/insights",
+      "permanent": true,
+      "reason": "Old WordPress blog pagination (/insights/page/2 ... /page/16) -> Insights hub. Digits only, so it cannot match an article slug.",
+      "archived_title": "n/a (pattern rule)",
+      "title_source": "n/a",
+      "confidence": "high",
+      "covers_count": 3,
+      "covers": [
+        "/insights/page/16",
+        "/insights/page/2",
+        "/insights/page/3"
+      ]
+    },
+    {
+      "source": "/insights/:slug/feed",
+      "destination": "/insights",
+      "permanent": true,
+      "reason": "Old per-post WordPress comment feeds (/insights/<slug>/feed, linked from every archived post) -> Insights hub. No current URL has a /feed segment.",
+      "archived_title": "n/a (pattern rule)",
+      "title_source": "n/a",
+      "confidence": "high",
+      "covers_count": 2,
+      "covers": [
+        "/insights/php-vs-python/feed",
+        "/insights/retrieval-augmented-generation-rag/feed"
+      ]
+    }
+  ],
+  "leave_404": [
+    {
+      "path": "/cost-saving-calculator",
+      "archived_title": "Cost saving calculator (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Old cost-saving calculator page (never archived, content unknown); no equivalent tool on the current site.",
+      "evidence": "archived WordPress page-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/20-best-minimum-viable-product-examples-and-8-proven-strategies",
+      "archived_title": "20 best minimum viable product examples and 8 proven strategies (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "MVP examples listicle; no current equivalent.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/2024-guide-to-cloud-cost-management-tools-trends-and-best-practices",
+      "archived_title": "2024 guide to cloud cost management tools trends and best practices (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Cloud cost management; no current cloud content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/a-guide-to-service-design",
+      "archived_title": "Designing Tomorrow: A Guide to Service Design in 2024",
+      "title_source": "archived page <title>",
+      "reason": "Service design guide; off-topic.",
+      "evidence": "Wayback CDX (200:text/html captures 20251207..20251207, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/agile-frameworks-for-software-development",
+      "archived_title": "Future-Proofing Development: Agile Frameworks in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Agile frameworks post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/agile-transformation",
+      "archived_title": "Agile transformation (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Agile transformation post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/artificial-intelligence-ai-trends",
+      "archived_title": "A Comprehensive Guide to Current Artificial Intelligence (AI) Trends 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Generic 2024 AI trends roundup; no current page answers a trends query.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)",
+      "fallback_if_backlinks": "/learn/enterprise-ai-strategy"
+    },
+    {
+      "path": "/insights/b2b-ecommerce-trends",
+      "archived_title": "The Digital B2B Evolution: Top B2B Ecommerce Trends Transforming Business",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "B2B ecommerce trends roundup; no current page answers a trends query.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/benefits-of-hubspot-explained",
+      "archived_title": "Maximize Your ROI: The Benefits of HubSpot Explained",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Benefits of HubSpot; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/best-data-visualization-tools",
+      "archived_title": "Best Data Visualization Tools for 2024: A Comprehensive Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Data visualization tools listicle; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/best-headless-cms-for-e-commerce",
+      "archived_title": "The Ultimate Guide: Best Headless CMS for E-commerce in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Headless CMS for ecommerce; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/best-php-frameworks",
+      "archived_title": "The Ultimate Guide to Best PHP Frameworks in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "PHP frameworks listicle; off-topic dev post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/bigcommerce-vs-shopify",
+      "archived_title": "BigCommerce vs Shopify 2024: Evaluating the Latest Updates and Features",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "BigCommerce vs Shopify; off-topic platform comparison.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/building-an-offshore-development-center",
+      "archived_title": "Building an Offshore Development Center: A Practical Guide for Business Leaders",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Offshore development center guide; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)",
+      "fallback_if_backlinks": "/forward-deployed-engineer"
+    },
+    {
+      "path": "/insights/cloud-transformation-guide",
+      "archived_title": "What is Cloud Transformation? Benefits, Strategies & Best Practices",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Cloud transformation guide; no current cloud content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/containerization-vs-virtualization",
+      "archived_title": "Containerization vs Virtualization: A Detailed Comparison for Developers",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Containerization vs virtualization; off-topic infrastructure post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/contentful-vs-sanity",
+      "archived_title": "Your Complete Guide to Contentful vs Sanity: Which CMS Wins?",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Contentful vs Sanity CMS; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/crm-vs-erp",
+      "archived_title": "CRM vs ERP: A Detailed Comparison to Help You Choose the Right Solution",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "CRM vs ERP; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/cross-platform-app-development-frameworks",
+      "archived_title": "Cross platform app development frameworks (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Cross-platform app frameworks; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/customer-retention-strategies",
+      "archived_title": "A Comprehensive Guide to Customer Retention Strategies: Boost Your Retention Rates",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Generic customer retention strategies guide; /insights/saas-churn-ai-early-warning is SaaS-specific and only partly overlaps.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)",
+      "fallback_if_backlinks": "/insights/saas-churn-ai-early-warning"
+    },
+    {
+      "path": "/insights/customer-success-vs-customer-experience",
+      "archived_title": "Customer Success vs. Customer Experience: 2024 Roadmap",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Customer success vs customer experience; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/data-driven-decison-making",
+      "archived_title": "Data-Driven Decision Making: Leverage Data for Better Decisions",
+      "title_source": "archived page <title>",
+      "reason": "Data-driven decision making post; no current data/analytics content.",
+      "evidence": "Wayback CDX (200:text/html captures 20240809..20240809, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/databricks-vs-snowflake",
+      "archived_title": "Databricks vs Snowflake: Pros, Cons, and Expert Recommendations",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Databricks vs Snowflake; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/devops-as-a-service",
+      "archived_title": "What is DevOps as a Service and How Can It Transform Your Operations?",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "DevOps-as-a-service explainer; Upcore does not sell managed DevOps.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)",
+      "fallback_if_backlinks": "/ai-native-engineering"
+    },
+    {
+      "path": "/insights/devops-trends",
+      "archived_title": "Devops trends (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Generic DevOps trends roundup; no current page answers a trends query.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)",
+      "fallback_if_backlinks": "/ai-native-engineering"
+    },
+    {
+      "path": "/insights/digital-platform-strategy",
+      "archived_title": "The Ultimate Guide to Digital Platform Strategy for Business Growth",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Digital platform strategy post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/digital-transformation-in-healthcare",
+      "archived_title": "Digital Transformation in Healthcare: Key Strategies and Insights",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Digital transformation in healthcare; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/digital-transformation-trends",
+      "archived_title": "Top 20 Digital Transformation Trends Reshaping Business",
+      "title_source": "archived page <title>",
+      "reason": "Generic digital transformation trends roundup; no current page answers a trends query.",
+      "evidence": "Wayback CDX (200:text/html captures 20240621..20240621, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)",
+      "fallback_if_backlinks": "/learn/enterprise-ai-strategy"
+    },
+    {
+      "path": "/insights/docker-swarm-vs-kubernetes",
+      "archived_title": "Docker Swarm vs. Kubernetes: Latest Comparison and Insights",
+      "title_source": "archived page <title>",
+      "reason": "Docker Swarm vs Kubernetes; off-topic infrastructure post.",
+      "evidence": "Wayback CDX (200:text/html captures 20240830..20240830, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/enterprise-app-development",
+      "archived_title": "Enterprise App Development: Key Strategies for Building Scalable Solutions",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Enterprise app development post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/enterprise-architecture",
+      "archived_title": "Enterprise architecture (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Enterprise architecture post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/fintech-app-development",
+      "archived_title": "What is Fintech App Development? Benefits and Challenges Explained",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Fintech app development (an app-build guide, not AI); off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/flutter-vs-react-native-vs-xamarin",
+      "archived_title": "Flutter vs React Native vs Xamarin: Which Cross-Platform Mobile Development Framework is Best?",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Flutter vs React Native vs Xamarin; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/flutterflow-vs-bubble",
+      "archived_title": "FlutterFlow vs. Bubble: The Best No-Code Platform for You",
+      "title_source": "archived page <title>",
+      "reason": "FlutterFlow vs Bubble; off-topic no-code comparison.",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/future-of-machine-learning-as-a-service",
+      "archived_title": "Future of machine learning as a service (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "ML-as-a-service post; no current ML content.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/gitops-vs-devops",
+      "archived_title": "GitOps vs. DevOps: A Comparative Guide for 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "GitOps vs DevOps comparison; no equivalent comparison on the current site.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)",
+      "fallback_if_backlinks": "/ai-native-engineering"
+    },
+    {
+      "path": "/insights/headless-vs-traditional-cms",
+      "archived_title": "Headless vs Traditional CMS: Your Guide to Choosing the Right Content Platform",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Headless vs traditional CMS; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/healthcare-app-development",
+      "archived_title": "The Future of Healthcare App Development: Trends and Best Practices",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Healthcare app development (an app-build guide, not AI); off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/healthcare-crm-best-practices-and-strategies",
+      "archived_title": "Healthcare crm best practices and strategies (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Healthcare CRM; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/how-much-does-it-cost-to-develop-a-website",
+      "archived_title": "How Much Does It Cost to Develop a Website: A Comprehensive Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Website development cost guide; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/how-much-does-it-cost-to-develop-an-app",
+      "archived_title": "How Much Does It Cost to Develop an App in 2024?",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "App development cost guide; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/how-to-build-a-crm",
+      "archived_title": "How to Build a CRM: A Step-by-Step Guide for Businesses",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "How to build a CRM; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/how-to-build-a-fitness-app",
+      "archived_title": "How to Build a Fitness App in 2024: A Step-by-Step Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "How to build a fitness app; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/how-to-build-an-app-like-uber",
+      "archived_title": "How to Build an App Like Uber in 10 Steps: A Complete Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "How to build an app like Uber; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/how-to-build-an-mvp",
+      "archived_title": "How to Build an MVP: A Comprehensive Step-by-Step Guide (2024)",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "How to build an MVP; no current MVP content (the old MVP service URL is redirected to /ai-native-engineering).",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/how-to-build-an-software-development-team",
+      "archived_title": "How to Build an Effective Software Development Team in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "How to build a software development team; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/how-to-build-product-development-team",
+      "archived_title": "How to Build a Product Development Team That Drives Innovation",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "How to build a product development team; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/how-to-create-winning-crm-strategy",
+      "archived_title": "How to Create a Winning CRM Strategy: Best Practices and Key Considerations",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "CRM strategy; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/how-to-scale-a-digital-product-for-startups-and-businesses",
+      "archived_title": "How to scale a digital product for startups and businesses (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Scaling a digital product; no current equivalent.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/hubspot-vs-salesforce",
+      "archived_title": "HubSpot vs Salesforce: Choosing the Right CRM for Your Business",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "HubSpot vs Salesforce; no current CRM comparison content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/iaas-vs-paas-vs-saas",
+      "archived_title": "Iaas vs paas vs saas (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "IaaS vs PaaS vs SaaS; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/integrate-mulesoft-with-salesforce-for-enhanced-crm-solutions",
+      "archived_title": "How to Effectively Integrate MuleSoft with Salesforce for Enhanced CRM Solutions",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "MuleSoft + Salesforce integration; no current Salesforce content.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/integrate-to-innovate-how-software-integration-drives-digital-transformation",
+      "archived_title": "Integrate to Innovate: How Software Integration Drives Digital Transformation",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Software integration post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/javascript-vs-typescript",
+      "archived_title": "JavaScript vs. TypeScript: A Detailed Comparison for Developers in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "JavaScript vs TypeScript; off-topic dev post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/key-digital-transformation-challenges-to-overcome-in-2024",
+      "archived_title": "Key Digital Transformation Challenges to Overcome in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Generic digital transformation challenges post; no close equivalent.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)",
+      "fallback_if_backlinks": "/learn/enterprise-ai-strategy"
+    },
+    {
+      "path": "/insights/low-code-vs-no-code-platform",
+      "archived_title": "Low-Code vs. No-Code: Find the Best Platform for Your Business",
+      "title_source": "archived page <title>",
+      "reason": "Low-code vs no-code platforms; off-topic.",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/machine-learning-challenges",
+      "archived_title": "Machine learning challenges (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Generic machine learning challenges post; no current ML content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/microservices-design-patterns-guide",
+      "archived_title": "Microservices design patterns guide (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Microservices design patterns; off-topic dev post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/microsoft-dynamics-vs-salesforce",
+      "archived_title": "Microsoft Dynamics vs. Salesforce: A Step-by-Step Comparison Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Dynamics vs Salesforce; no current CRM comparison content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/mobile-app-localization",
+      "archived_title": "Mobile App Localization Explained: Definition, Benefits, and Strategies",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Mobile app localization; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/on-premise-to-cloud-migration-guide",
+      "archived_title": "On-Premise to Cloud Migration 2024: Step-by-Step Guide",
+      "title_source": "archived page <title>",
+      "reason": "On-premise to cloud migration guide; Upcore has no cloud migration offer or content.",
+      "evidence": "Wayback CDX (200:text/html captures 20240705..20240705, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/pair-programming",
+      "archived_title": "Pair programming (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Pair programming post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/php-vs-python",
+      "archived_title": "PHP vs Python: Pros, Cons, and Performance Overview 2024",
+      "title_source": "archived page <title>",
+      "reason": "PHP vs Python; off-topic dev post.",
+      "evidence": "Wayback CDX (200:text/html captures 20260103..20260103, html/rss); archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/plan-build-operate-framework",
+      "archived_title": "Building Capabilities with the Plan | Build | Operate Framework: A Strategic Approach",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Plan-build-operate (BOT) framework for offshore teams; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/platform-engineering-explained",
+      "archived_title": "Platform Engineering Explained: Roles, Principles, and Benefits",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Platform engineering explainer; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/power-bi-vs-tableau",
+      "archived_title": "Power BI vs. Tableau: A Guide to Features, Pricing, and Use Cases",
+      "title_source": "archived page <title>",
+      "reason": "Power BI vs Tableau; off-topic.",
+      "evidence": "Wayback CDX (200:text/html,308:text/html,308:text/plain,404:text/html captures 20240917..20260328, html/rss); archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/predictive-analytics-in-healthcare",
+      "archived_title": "Predictive Analytics in Healthcare: Transforming Patient Care",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Predictive analytics in healthcare; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/product-development-strategy",
+      "archived_title": "The Ultimate Guide to Product Development Strategy in 2024",
+      "title_source": "archived page <title>",
+      "reason": "Product development strategy guide; no current product-management content.",
+      "evidence": "Wayback CDX (200:text/html captures 20260204..20260204, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/prototype-vs-mvp-vs-proof-of-concept",
+      "archived_title": "Prototype vs MVP vs Proof of Concept – A Comprehensive Comparison",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Prototype vs MVP vs PoC; no current equivalent.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/react-design-patterns",
+      "archived_title": "React Design Patterns: The Definitive Comprehensive Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "React design patterns; off-topic dev post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/reinforcement-learning-from-human-feedback",
+      "archived_title": "RLHF: Reinforcement Learning from Human Feedback – A Comprehensive Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "RLHF (a model training technique); no current page covers it. /insights/human-in-the-loop is about operational oversight, a different concept.",
+      "evidence": "archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/role-of-operational-governance",
+      "archived_title": "The Role of Operational Governance in Boosting Efficiency and Monitoring",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "General operational governance post; /ai-engineering-governance is about AI governance, a different subject.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)",
+      "fallback_if_backlinks": "/ai-engineering-governance"
+    },
+    {
+      "path": "/insights/rust-vs-python",
+      "archived_title": "Rust vs Python: Which Tool is Right for You? A Simple Guide",
+      "title_source": "archived page <title>",
+      "reason": "Rust vs Python; off-topic dev post.",
+      "evidence": "Wayback CDX (200:text/html captures 20250221..20250221, html/rss); archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/saas-architecture",
+      "archived_title": "Mastering Your Startup’s Future: A Guide to SaaS Architecture Selection",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "SaaS architecture selection; off-topic dev post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/salesforce-implementation-partner",
+      "archived_title": "Finding the Right Salesforce Implementation Partner for Your Business",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Choosing a Salesforce partner; no current Salesforce content.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/software-as-a-service",
+      "archived_title": "Software as a Service: The Game-Changer for Modern Businesses",
+      "title_source": "archived page <title>",
+      "reason": "What-is-SaaS explainer; off-topic.",
+      "evidence": "Wayback CDX (200:text/html captures 20240709..20240709, html/rss); archived WordPress post-sitemap.xml (20240705..20260102)"
+    },
+    {
+      "path": "/insights/software-development-trends",
+      "archived_title": "2024 Tech Insights: Latest Software Development Trends",
+      "title_source": "archived page <title>",
+      "reason": "Generic software development trends roundup; no current page answers a trends query.",
+      "evidence": "Wayback CDX (200:text/html captures 20240706..20240706, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/software-project-management",
+      "archived_title": "Software Project Management Essentials: Key Principles and Best Practices",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Software project management post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/stage-gate-process",
+      "archived_title": "Understanding the Stage Gate Process: Key Insights and Best Practices",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Stage-gate process; no current product-management content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/stages-of-new-product-development-process",
+      "archived_title": "The 7 Stages of New Product Development Process - 2024 Guide",
+      "title_source": "archived page <title>",
+      "reason": "New product development stages; no current product-management content.",
+      "evidence": "Wayback CDX (200:text/html captures 20241004..20251017, html/rss); archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/step-by-step-guide-on-product-roadmap",
+      "archived_title": "Charting Your Course: A Practical Guide on How to Create a Product Roadmap in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Product roadmap guide; no current product-management content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/step-by-step-guide-to-legacy-application-modernization",
+      "archived_title": "A Strategic Step-by-Step Guide to Legacy Application Modernization",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Legacy modernization how-to guide; no informational equivalent (the old legacy-modernization service URL is redirected to /ai-native-engineering).",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)",
+      "fallback_if_backlinks": "/ai-native-engineering"
+    },
+    {
+      "path": "/insights/team-based-",
+      "archived_title": "Team based (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Truncated variant of /insights/team-based-organizational-structure (archived as a 301 to it); that post has no destination either.",
+      "evidence": "Wayback CDX (301:text/html captures 20250429..20250429, html/rss)"
+    },
+    {
+      "path": "/insights/team-based-organizational-structure",
+      "archived_title": "Team-Based Organizational Structure: Maximize Your Team's Output",
+      "title_source": "archived page <title>",
+      "reason": "Team-based organizational structure; off-topic.",
+      "evidence": "Wayback CDX (200:text/html captures 20241117..20250430, html/rss); archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/test-automation-frameworks",
+      "archived_title": "Test automation frameworks (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Test automation frameworks post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/top-20-ecommerce-challenges-and-ways-to-overcome-them",
+      "archived_title": "Top 20 Ecommerce Challenges and Ways to Overcome Them",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Generic ecommerce challenges post; /who-we-help/ecommerce-retail covers only the operations slice.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)",
+      "fallback_if_backlinks": "/who-we-help/ecommerce-retail"
+    },
+    {
+      "path": "/insights/top-business-intelligence-trends",
+      "archived_title": "Business Intelligence Trends for 2024: Key Insights and Predictions",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "BI trends; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/top-custom-software-development-companies-in-usa",
+      "archived_title": "Top custom software development companies in usa (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Vendor listicle of software development companies; no equivalent page.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/top-digital-transformation-consulting-firms",
+      "archived_title": "Top Digital Transformation Consulting Firms Tailored for Your Business",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Vendor listicle of digital transformation consultancies; no equivalent page.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/top-food-delivery-apps",
+      "archived_title": "Top 10 Food Delivery Apps in the USA: Your Ultimate Guide",
+      "title_source": "archived page <title>",
+      "reason": "Food delivery apps listicle; off-topic.",
+      "evidence": "Wayback CDX (200:text/html captures 20240917..20240917, html/rss); archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/top-mobile-app-development-firms",
+      "archived_title": "Top mobile app development firms (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Vendor listicle of mobile app firms; no equivalent page.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/top-mobile-app-development-trends",
+      "archived_title": "Designing the Future: A Guide to Top 10 Mobile App Development Trends in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Mobile app trends; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/top-mobile-app-ideas-for-a-successful-startup",
+      "archived_title": "Top mobile app ideas for a successful startup (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Mobile app ideas listicle; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/top-mobile-app-performance-metrics",
+      "archived_title": "Top mobile app performance metrics (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Mobile app performance metrics; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/top-product-development-companies",
+      "archived_title": "Top Product Development Companies in the USA: Leading Innovators in 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Vendor listicle of product development companies; no equivalent page.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/top-python-frameworks-for-web-development",
+      "archived_title": "Top Python Frameworks to Boost Your Web Development Projects",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Python web frameworks listicle; off-topic dev post.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/top-rpa-companies",
+      "archived_title": "Top rpa companies (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Vendor listicle of RPA companies; no equivalent page.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/top-salesforce-consulting-partners",
+      "archived_title": "Top Salesforce Consulting Partners to Watch in 2025",
+      "title_source": "archived page <title>",
+      "reason": "Vendor listicle of Salesforce partners; no equivalent page.",
+      "evidence": "Wayback CDX (200:text/html,301:text/html captures 20250831..20250831, html/rss); archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/top-software-development-methodologies",
+      "archived_title": "Top software development methodologies (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Software development methodologies post; no current page covers it.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/top-ux-trends",
+      "archived_title": "User-Centric Revolution: A Deep Dive into the Latest Top 7 UX Trends of 2024",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "UX trends; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/types-of-crm",
+      "archived_title": "Exploring the 3 Types of CRM: Operational, Analytical, and Collaborative",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Types of CRM; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/types-of-data-analytics",
+      "archived_title": "Types of Data Analytics: A Comprehensive Guide for Businesses",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Types of data analytics; no current analytics content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/typical-costs-of-salesforce-implementation",
+      "archived_title": "Understanding the Typical Costs of Salesforce Implementation: What to Expect",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Salesforce implementation costs; no current Salesforce content.",
+      "evidence": "archived WordPress post-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/insights/ux-design-principles",
+      "archived_title": "Understanding UX Design Principles: How to Craft Products That Users Love",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "UX design principles; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/ux-design-process",
+      "archived_title": "Understanding the UX Design Process: A Step-by-Step Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "UX design process; off-topic.",
+      "evidence": "archived WordPress post-sitemap.xml (20240915..20260102)"
+    },
+    {
+      "path": "/insights/what-is-crm-integration-and-how-it-works",
+      "archived_title": "CRM Integration Explained: What It Is and How It Works",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "CRM integration explainer; no current CRM content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/insights/what-is-predictive-analytics-types-benefits-use-cases-examples",
+      "archived_title": "What is Predictive Analytics? Types, Benefits, Use Cases & Examples",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Predictive analytics explainer; no current page covers predictive analytics.",
+      "evidence": "archived WordPress post-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/what-is-salesforce-integration",
+      "archived_title": "What is Salesforce Integration? A Comprehensive Guide",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Salesforce integration explainer; no current Salesforce content.",
+      "evidence": "archived WordPress post-sitemap.xml (20240809..20260102)"
+    },
+    {
+      "path": "/services/cloud-consulting",
+      "archived_title": "Cloud Transformation",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Old cloud consulting/transformation service; Upcore has no cloud offer now and no current page covers it.",
+      "evidence": "archived WordPress page-sitemap.xml (20250501..20260102)"
+    },
+    {
+      "path": "/services/healthcare-digital-marketing",
+      "archived_title": "Healthcare Digital Marketing",
+      "title_source": "archived link text (listing, feed or menu)",
+      "reason": "Old healthcare digital marketing service; Upcore no longer offers marketing services and no current page covers it.",
+      "evidence": "linked from archived pages (not itself archived)"
+    },
+    {
+      "path": "/thank-you",
+      "archived_title": "Thank you (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Old form confirmation page; no search value and no equivalent.",
+      "evidence": "archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/thank-you-contact",
+      "archived_title": "Thank you contact (no archived copy; from slug)",
+      "title_source": "slug",
+      "reason": "Old contact-form confirmation page; no search value and no equivalent.",
+      "evidence": "archived WordPress page-sitemap.xml (20240613..20260102)"
+    },
+    {
+      "path": "/insights/best-automation-tools",
+      "archived_title": "Best automation tools (no archived copy; from slug)",
+      "fallback_if_backlinks": "/learn/top-ai-agent-platforms",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/insights/devops-tools-in-software-development",
+      "archived_title": "Accelerating Innovation: The Role of DevOps Tools in Software Development",
+      "fallback_if_backlinks": "/ai-native-engineering",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/insights/hire-a-dedicated-development-team",
+      "archived_title": "The Ultimate Checklist for Hiring a Dedicated Development Team",
+      "fallback_if_backlinks": "/forward-deployed-engineer",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/computer-vision-solutions",
+      "archived_title": "Computer Vision Solutions & Services | Computer Vision Company",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/custom-mobile-app-development",
+      "archived_title": "Best Custom Mobile App Development Services Company",
+      "fallback_if_backlinks": "/ai-native-engineering",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/custom-website-development",
+      "archived_title": "Web Development",
+      "fallback_if_backlinks": "/ai-native-engineering",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/microsoft-dynamics",
+      "archived_title": "Microsoft dynamics (no archived copy; from slug)",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/microsoft-dynamics-crm-implementation",
+      "archived_title": "Microsoft Dynamics 365 Implementation Services | Upcore Tech",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/predictive-analysis-solutions",
+      "archived_title": "Predictive Analytics Solutions | Predictive Analytics Consulting Services",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/salesforce",
+      "archived_title": "Salesforce (no archived copy; from slug)",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/salesforce-consulting",
+      "archived_title": "Salesforce Consultant",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/salesforce-development",
+      "archived_title": "Salesforce development services",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/salesforce-implementation",
+      "archived_title": "Salesforce implementation",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/salesforce-implementation-and-development",
+      "archived_title": "Salesforce Implementation and Development Services Company",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    },
+    {
+      "path": "/services/salesforce-solutions",
+      "archived_title": "Salesforce Solutions",
+      "fallback_if_backlinks": "/platform",
+      "reason": "Low-confidence match (destination does not cover the topic); left as 404 on 2026-10-28 to avoid a soft 404. Redirect to the fallback only if Search Console or backlink data shows the URL has value."
+    }
+  ],
+  "checked_count": 323,
+  "not_found_count": 274,
+  "summary": {
+    "exact_redirects": 67,
+    "pattern_redirects": 5,
+    "urls_covered_by_patterns": 95,
+    "leave_404": 112,
+    "urls_redirected_total": 162,
+    "still_200_or_already_redirected": 49
+  },
+  "notes": [
+    "2026-10-28: the 15 low-confidence rules were moved to leave_404 (with fallback_if_backlinks) before applying."
+  ]
+}

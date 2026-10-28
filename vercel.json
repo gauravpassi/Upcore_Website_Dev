@@ -50,9 +50,44 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
+    },
+    {
+      "source": "/(css|js)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "(?<host>.+)\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ],
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "upcore-ai-workforces.vercel.app"
+        }
+      ],
+      "destination": "https://www.upcoretech.com/:path*",
+      "permanent": true
+    },
     {
       "source": "/sdlc-agent",
       "destination": "/ai-native-engineering",
@@ -321,6 +356,291 @@
     {
       "source": "/ai-governance",
       "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/comments/feed",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/insights/ai-in-ecommerce",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true
+    },
+    {
+      "source": "/insights/ai-in-fintech",
+      "destination": "/learn/ai-in-banking",
+      "permanent": true
+    },
+    {
+      "source": "/insights/application-security-tools-trends-best-practices-challenges",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/insights/build-vs-buy",
+      "destination": "/learn/enterprise-ai-strategy",
+      "permanent": true
+    },
+    {
+      "source": "/insights/chatgpt-vs-gemini-vs-copilot",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true
+    },
+    {
+      "source": "/insights/continuous-delivery-vs-continuous-deployment",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/insights/cto-as-a-service",
+      "destination": "/fractional-ai-officer",
+      "permanent": true
+    },
+    {
+      "source": "/insights/devsecops-pipelines",
+      "destination": "/ai-engineering-governance",
+      "permanent": true
+    },
+    {
+      "source": "/insights/digital-maturity-models",
+      "destination": "/learn/enterprise-ai-strategy",
+      "permanent": true
+    },
+    {
+      "source": "/insights/digital-transformation-strategy",
+      "destination": "/learn/enterprise-ai-strategy",
+      "permanent": true
+    },
+    {
+      "source": "/insights/elevate-your-ai-implementation-with-pinecone",
+      "destination": "/learn/ai-agent-memory",
+      "permanent": true
+    },
+    {
+      "source": "/insights/flow-engineering-ai-role-in-software-development",
+      "destination": "/learn/what-is-ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/insights/generative-ai-in-retail",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true
+    },
+    {
+      "source": "/insights/generative-ai-vs-traditional-ai",
+      "destination": "/learn/ai-agent-vs-llm",
+      "permanent": true
+    },
+    {
+      "source": "/insights/gpt-4-vision-explained-applications-use-cases",
+      "destination": "/learn/how-ai-agents-work",
+      "permanent": true
+    },
+    {
+      "source": "/insights/guide-on-how-to-outsource-software-development",
+      "destination": "/compare/upcore-vs-building-in-house",
+      "permanent": true
+    },
+    {
+      "source": "/insights/guide-to-team-extension",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true
+    },
+    {
+      "source": "/insights/how-to-build-apps-like-chatgpt",
+      "destination": "/learn/how-ai-agents-work",
+      "permanent": true
+    },
+    {
+      "source": "/insights/in-house-vs-outsourcing-software-development",
+      "destination": "/compare/upcore-vs-building-in-house",
+      "permanent": true
+    },
+    {
+      "source": "/insights/machine-learning-in-your-ecommerce",
+      "destination": "/who-we-help/ecommerce-retail",
+      "permanent": true
+    },
+    {
+      "source": "/insights/natural-language-processing-with-guide",
+      "destination": "/learn/how-ai-agents-work",
+      "permanent": true
+    },
+    {
+      "source": "/insights/outsourcing-product-development",
+      "destination": "/compare/upcore-vs-building-in-house",
+      "permanent": true
+    },
+    {
+      "source": "/insights/retrieval-augmented-generation-rag",
+      "destination": "/learn/ai-agent-memory",
+      "permanent": true
+    },
+    {
+      "source": "/insights/robotic-process-automation-in-finance",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/insights/robotic-process-automation-rpa-in-healthcare",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/insights/role-of-generative-ai-in-software-development",
+      "destination": "/learn/what-is-ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/insights/rpa-in-real-estate",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/insights/staff-augmentation-guide",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true
+    },
+    {
+      "source": "/insights/staff-augmentation-vs-managed-services",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true
+    },
+    {
+      "source": "/insights/top-ai-frameworks",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true
+    },
+    {
+      "source": "/insights/top-ai-tools-for-business",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true
+    },
+    {
+      "source": "/insights/top-robotic-process-automation-rpa-trends",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/insights/upcore-elevates-brand-presence-with-revamped-website",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/insights/what-is-langchain",
+      "destination": "/learn/top-ai-agent-platforms",
+      "permanent": true
+    },
+    {
+      "source": "/services/ai-consulting",
+      "destination": "/fractional-ai-officer",
+      "permanent": true
+    },
+    {
+      "source": "/services/artificial-intelligence",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/artificial-intelligence-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-analysis-and-consulting",
+      "destination": "/fractional-ai-officer",
+      "permanent": true
+    },
+    {
+      "source": "/services/business-analysis-consulting",
+      "destination": "/fractional-ai-officer",
+      "permanent": true
+    },
+    {
+      "source": "/services/chatbot-development",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/services/crm-implementation-and-development",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/services/digital-transformation",
+      "destination": "/fractional-ai-officer",
+      "permanent": true
+    },
+    {
+      "source": "/services/generative-ai-solutions",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/legacy-application-modernization",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/machine-learning-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/mvp-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/product-development",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/product-engineering",
+      "destination": "/ai-native-engineering",
+      "permanent": true
+    },
+    {
+      "source": "/services/robotic-process-automation-solutions",
+      "destination": "/platform",
+      "permanent": true
+    },
+    {
+      "source": "/services/staff-augmentation",
+      "destination": "/forward-deployed-engineer",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/:slug*",
+      "destination": "/results",
+      "permanent": true
+    },
+    {
+      "source": "/category/:slug*",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:slug*",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/insights/page/:n(\\d+)",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/insights/:slug/feed",
+      "destination": "/insights",
       "permanent": true
     }
   ]

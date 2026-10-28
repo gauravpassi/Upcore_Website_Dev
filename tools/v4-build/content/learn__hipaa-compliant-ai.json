@@ -2,9 +2,9 @@
  "file": "learn/hipaa-compliant-ai.html",
  "path": "/learn/hipaa-compliant-ai",
  "title": "HIPAA-Compliant AI Agents for Healthcare | Upcore",
- "meta": "What HIPAA compliance actually means for AI architecture: data localisation, no training on PHI, audit trails, and BAA requirements - and why most AI tools…",
+ "meta": "What HIPAA-compliant AI requires: where PHI is processed, no training on PHI, audit trails and BAAs, plus questions to ask any AI vendor before signing.",
  "robots": "",
- "published": "2025-01-01",
+ "published": "2026-05-12",
  "faq": [
   [
    "Is ChatGPT HIPAA compliant?",
@@ -41,28 +41,28 @@
  ],
  "related": [
   [
-   "/who-we-help/operations-heavy",
-   "Resource",
-   "AI Agents for Healthcare",
-   "Use cases, ROI benchmarks, and deployment patterns for AI agents across clinical, administrative, and revenue cycle workflows."
+   "/learn/ai-data-governance",
+   "Guide",
+   "AI Data Governance: Enterprise Checklist",
+   "Five pillars of AI data governance and 15 questions every AI vendor must answer."
+  ],
+  [
+   "/insights/healthcare-patient-no-show-ai",
+   "Playbook",
+   "AI to Reduce Patient No-Shows",
+   "Two-way confirmation, rescheduling and waitlist filling that reminders alone cannot do."
   ],
   [
    "/security",
-   "Platform",
-   "On-Premise AI Deployment",
-   "The architecture that keeps PHI inside your perimeter - how Upcore deploys AI within your data centre or private cloud."
+   "Security",
+   "Security and Trust",
+   "How Upcore handles your code and data, which AI providers process it, and the certifications behind it."
   ],
   [
-   "/who-we-help/operations-heavy",
-   "Industry",
-   "Healthcare AI Solutions",
-   "Upcore's full suite of HIPAA-compliant AI solutions for health systems, hospital networks, and ambulatory care organisations."
-  ],
-  [
-   "/learn/enterprise-ai-strategy",
-   "Guide",
-   "Enterprise AI Strategy",
-   "The five decisions every healthcare enterprise must make before deploying AI - from build vs. buy to governance frameworks."
+   "/ai-engineering-governance",
+   "Service",
+   "AI Governance",
+   "An inventory of every AI tool, AI spend by team, data controls and an audit trail, installed in 90 days."
   ]
  ],
  "stats": [
@@ -98,12 +98,12 @@
   [
    "hipaa-compliant-ai-use-cases-with-upcore",
    "HIPAA-Compliant AI Use Cases with Upcore",
-   "<p>The following use cases are fully deployable within a HIPAA-compliant architecture. Each one involves PHI processing - clinical notes, patient records, insurance data, scheduling records - and each is designed with on-premise deployment, no-training guarantees, RBAC, and immutable audit logging as standard.</p>\n    <div class=\"lx-cards\">\n      <div class=\"lx-card\">\n        \n        <h3>Clinical Documentation</h3>\n        <p>Physician note drafting, ICD-10 coding assistance, and discharge summary generation - all processing PHI entirely on-premise. AI dramatically reduces the documentation burden that consumes 30–40% of physician time, while producing structured, compliant documentation. The agent works within your EHR environment, accessed through your existing authentication, with every clinical note access logged at the patient level.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Prior Authorization Automation</h3>\n        <p>Insurance pre-authorization requests - extracting clinical data from patient records, mapping to payer criteria, and drafting submission packages - with a complete compliance audit trail. Prior auth is one of the most time-intensive administrative burdens in US healthcare; AI reduces the time per request from hours to minutes while maintaining the documentation standard payers require. Every record access and submission is logged for compliance review.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Patient Communication Agent</h3>\n        <p>Appointment reminders, care plan follow-up messages, no-show re-booking, and post-discharge check-ins - using HIPAA-compliant messaging channels (encrypted SMS, secure patient portal). The agent personalises communications based on the patient's care plan and history, improving engagement while maintaining the access controls and audit logging that HIPAA requires for PHI-containing communications.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Revenue Cycle Management</h3>\n        <p>Claim preparation, denial triage, appeals letter generation, and payer follow-up - integrated with your billing system and governed by the same RBAC and audit framework as clinical AI. Revenue cycle AI can reduce denial rates by 20–30% through more accurate initial claim preparation and faster, more comprehensive appeals. All billing data access is logged at the patient and claim level for HIPAA audit purposes.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Care Coordination</h3>\n        <p>Patient routing, referral management, and specialist handoff coordination - across care team members and sites of care. Care coordination AI maintains a shared view of the patient's care pathway that updates in real time as new encounters occur. All care team members with appropriate access can query the agent for current patient status, pending referrals, and outstanding care plan items. Every access is tied to a user identity and logged.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Compliance &amp; Quality Reporting</h3>\n        <p>HEDIS measure calculation, CMS quality reporting programme submissions, and patient safety event documentation - AI agents that query clinical records, calculate measure performance, and produce formatted submissions. Quality reporting is one of the most resource-intensive compliance obligations in healthcare; AI reduces the analyst time required per reporting cycle while improving accuracy. All PHI accessed for quality reporting is logged under the healthcare operations exception to HIPAA's minimum necessary standard.</p>\n      </div>\n    </div>"
+   "<p>The following use cases are fully deployable within a HIPAA-compliant architecture. Each one involves PHI processing - clinical notes, patient records, insurance data, scheduling records - and each is designed with on-premise deployment, no-training guarantees, RBAC, and immutable audit logging as standard.</p>\n    <div class=\"lx-cards\">\n      <div class=\"lx-card\">\n        \n        <h3>Clinical Documentation</h3>\n        <p>Physician note drafting, ICD-10 coding assistance, and discharge summary generation - all processing PHI entirely on-premise. AI dramatically reduces the documentation burden that consumes 30–40% of physician time, while producing structured, compliant documentation. The agent works within your EHR environment, accessed through your existing authentication, with every clinical note access logged at the patient level.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Prior Authorization Automation</h3>\n        <p>Insurance pre-authorization requests - extracting clinical data from patient records, mapping to payer criteria, and drafting submission packages - with a complete compliance audit trail. Prior auth is one of the most time-intensive administrative burdens in US healthcare; AI reduces the time per request from hours to minutes while maintaining the documentation standard payers require. Every record access and submission is logged for compliance review.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Patient Communication Agent</h3>\n        <p>Appointment reminders, care plan follow-up messages, <a href=\"/insights/healthcare-patient-no-show-ai\">no-show re-booking</a>, and post-discharge check-ins - using HIPAA-compliant messaging channels (encrypted SMS, secure patient portal). The agent personalises communications based on the patient's care plan and history, improving engagement while maintaining the access controls and audit logging that HIPAA requires for PHI-containing communications.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Revenue Cycle Management</h3>\n        <p>Claim preparation, denial triage, appeals letter generation, and payer follow-up - integrated with your billing system and governed by the same RBAC and audit framework as clinical AI. Revenue cycle AI can reduce denial rates by 20–30% through more accurate initial claim preparation and faster, more comprehensive appeals. All billing data access is logged at the patient and claim level for HIPAA audit purposes.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Care Coordination</h3>\n        <p>Patient routing, referral management, and specialist handoff coordination - across care team members and sites of care. Care coordination AI maintains a shared view of the patient's care pathway that updates in real time as new encounters occur. All care team members with appropriate access can query the agent for current patient status, pending referrals, and outstanding care plan items. Every access is tied to a user identity and logged.</p>\n      </div>\n      <div class=\"lx-card\">\n        \n        <h3>Compliance &amp; Quality Reporting</h3>\n        <p>HEDIS measure calculation, CMS quality reporting programme submissions, and patient safety event documentation - AI agents that query clinical records, calculate measure performance, and produce formatted submissions. Quality reporting is one of the most resource-intensive compliance obligations in healthcare; AI reduces the analyst time required per reporting cycle while improving accuracy. All PHI accessed for quality reporting is logged under the healthcare operations exception to HIPAA's minimum necessary standard.</p>\n      </div>\n    </div>"
   ],
   [
    "questions-to-ask-any-ai-vendor-before-signing",
    "Questions to Ask Any AI Vendor Before Signing",
-   "<p>Healthcare technology leaders have a fiduciary obligation to evaluate AI vendors against HIPAA requirements, not just marketing claims. The following eight questions are the minimum due diligence for any AI vendor that will process PHI. A vendor that cannot answer these questions clearly and in writing should not be given access to patient data.</p>\n    <ol class=\"lx-checks\">\n      <li>Does your platform support on-premise deployment or dedicated VPC deployment where our data never leaves our perimeter? (Ask for a reference customer in healthcare who runs your platform on-premise.)</li>\n      <li>Is your BAA comprehensive, or does it exclude AI model training? (Request the specific contractual language that governs training on customer data. \"We offer a BAA\" is not sufficient - you need to know what the BAA covers.)</li>\n      <li>Can you provide audit logs of every PHI access event, at the patient level, with user identity and timestamp? (Ask for a sample log format, not a general description of your logging capability.)</li>\n      <li>Does your model training use customer data by default? What is the opt-out mechanism, and is it available on our tier? (Get this in writing in the contract, not just in a privacy policy that can be changed.)</li>\n      <li>What are your breach notification timelines and processes? (HIPAA requires notification within 60 days of discovery - confirm your vendor's discovery-to-notification timeline aligns with your obligations.)</li>\n      <li>Do you support role-based access controls at the agent level - not just at the application level? (HIPAA's minimum necessary standard requires that access to PHI be limited to what is needed for the specific task. Ask how this is implemented for AI agents specifically.)</li>\n      <li>What is your SOC 2 Type II and HITRUST status? (Self-certification is not sufficient for enterprise healthcare deployments. Require independently assessed certifications.)</li>\n      <li>How is data encrypted at rest and in transit? What encryption standards are used, and are you willing to provide technical documentation? (AES-256 at rest and TLS 1.2+ in transit are baseline requirements; ask whether these apply to your specific deployment configuration.)</li>\n    </ol>"
+   "<p>Healthcare technology leaders have a fiduciary obligation to <a href=\"/ai-engineering-governance\">evaluate AI vendors against HIPAA requirements</a>, not just marketing claims. The following eight questions are the minimum due diligence for any AI vendor that will process PHI. A vendor that cannot answer these questions clearly and in writing should not be given access to patient data.</p>\n    <ol class=\"lx-checks\">\n      <li>Does your platform support on-premise deployment or dedicated VPC deployment where our data never leaves our perimeter? (Ask for a reference customer in healthcare who runs your platform on-premise.)</li>\n      <li>Is your BAA comprehensive, or does it exclude AI model training? (Request the specific contractual language that governs training on customer data. \"We offer a BAA\" is not sufficient - you need to know what the BAA covers.)</li>\n      <li>Can you provide audit logs of every PHI access event, at the patient level, with user identity and timestamp? (Ask for a sample log format, not a general description of your logging capability.)</li>\n      <li>Does your model training use customer data by default? What is the opt-out mechanism, and is it available on our tier? (Get this in writing in the contract, not just in a privacy policy that can be changed.)</li>\n      <li>What are your breach notification timelines and processes? (HIPAA requires notification within 60 days of discovery - confirm your vendor's discovery-to-notification timeline aligns with your obligations.)</li>\n      <li>Do you support role-based access controls at the agent level - not just at the application level? (HIPAA's minimum necessary standard requires that access to PHI be limited to what is needed for the specific task. Ask how this is implemented for AI agents specifically.)</li>\n      <li>What is your SOC 2 Type II and HITRUST status? (Self-certification is not sufficient for enterprise healthcare deployments. Require independently assessed certifications.)</li>\n      <li>How is data encrypted at rest and in transit? What encryption standards are used, and are you willing to provide technical documentation? (AES-256 at rest and TLS 1.2+ in transit are baseline requirements; ask whether these apply to your specific deployment configuration.)</li>\n    </ol>"
   ]
  ],
  "lead": "Using AI with protected health information is not simply a matter of getting a Business Associate Agreement signed. HIPAA compliance for AI requires architectural decisions: where data is processed, whether the model trains on PHI, how audit logs are maintained, and how breach notifications would work if something goes wrong. This guide gives healthcare technology leaders the framework to evaluate any AI vendor - and the questions they must ask before signing.",
@@ -114,5 +114,6 @@
  "aside": [
   "AI Governance",
   "/ai-engineering-governance"
- ]
+ ],
+ "updated": "2026-10-07"
 }

@@ -2,9 +2,9 @@
  "file": "learn/ai-agent-skills.html",
  "path": "/learn/ai-agent-skills",
  "title": "AI Agent Skills: Tool Use, Memory & Capabilities | Upcore",
- "meta": "Tool use, web search, API calls, memory retrieval, form filling - each AI agent skill defined in plain English and mapped to a real enterprise use case…",
+ "meta": "AI agent skills: tool use, API calls, memory retrieval and form filling, each mapped to an enterprise use case, plus how skills are built and tested.",
  "robots": "",
- "published": "2025-01-01",
+ "published": "2026-05-12",
  "faq": [
   [
    "What is tool use in an AI agent?",
@@ -42,27 +42,27 @@
  "related": [
   [
    "/learn/how-ai-agents-work",
-   "AI Fundamentals",
+   "Guide",
    "How AI Agents Work",
-   "The perception–reasoning–action loop explained - the architectural foundation beneath every skill."
+   "The perception, reasoning and action loop, explained for technically curious executives."
   ],
   [
-   "/platform",
-   "Custom AI",
-   "Custom AI Agents",
-   "How Upcore designs fully-skilled enterprise agents from workflow analysis to production deployment."
-  ],
-  [
-   "/platform",
-   "Platform",
-   "AI Agent Builder",
-   "The Upcore platform for configuring, testing, and deploying enterprise agent skill sets."
+   "/learn/ai-agent-memory",
+   "Guide",
+   "How AI Agent Memory Works",
+   "Episodic, semantic, procedural and working memory, and the governance controls each one needs."
   ],
   [
    "/learn/ai-agent-vs-llm",
-   "AI Fundamentals",
-   "AI Agent vs LLM",
-   "Why an LLM without skills is not an agent - and why that distinction matters for enterprise outcomes."
+   "Guide",
+   "AI Agent vs. LLM: The Real Difference",
+   "Why an LLM is a reasoning engine and an agent is a system that can act on what it reasons."
+  ],
+  [
+   "/platform",
+   "Service",
+   "Business Process Automation",
+   "AI agents that chase documents and payments, answer status questions and update your systems, with people approving what matters."
   ]
  ],
  "stats": [
@@ -98,7 +98,7 @@
   [
    "how-skills-are-built-into-enterprise-agents",
    "How Skills Are Built Into Enterprise Agents",
-   "<p>Adding skills to an enterprise AI agent is a structured engineering process. It is not a matter of toggling a feature - each skill requires design, implementation, integration testing, and trust calibration before it can operate autonomously in production. The three-step process below is how Upcore implements skills in every enterprise deployment.</p>\n\n      <ol class=\"lx-steps\">\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 1 - Skill Selection</b>\n          <p>During workflow design, every step in the target business process is mapped to a required capability. What data does the agent need to access? What systems must it read or write? At what points can it act autonomously, and at what points must it escalate? This produces a complete skill specification: a list of tools the agent needs, the data sources it will query, and the escalation conditions that define its operating boundaries.</p>\n        </li>\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 2 - Tool Implementation</b>\n          <p>Each skill is implemented as a tool wrapper: an API connector that handles authentication, request formatting, error handling, and response parsing; a database query function that enforces access control and returns structured data; a form-fill script that submits records to the correct system; or an escalation handler that packages context and routes to the right queue. Every tool is versioned, documented, and tested independently before it is integrated into the agent's toolkit.</p>\n        </li>\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 3 - Testing &amp; Trust Calibration</b>\n          <p>For each skill, a confidence threshold is defined: the minimum certainty level at which the agent will act autonomously, versus escalate to a human. This threshold is calibrated through scenario testing against a representative sample of production inputs - including edge cases, adversarial inputs, and low-confidence situations. Trust calibration ensures the agent's autonomous operation boundaries are well-defined and defensible before it handles live business processes.</p>\n        </li>\n      </ol>"
+   "<p>Adding skills to an enterprise AI agent is a structured engineering process. It is not a matter of toggling a feature - each skill requires design, implementation, integration testing, and trust calibration before it can operate autonomously in production. The three-step process below is <a href=\"/platform\">how Upcore implements skills</a> in every enterprise deployment.</p>\n\n      <ol class=\"lx-steps\">\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 1 - Skill Selection</b>\n          <p>During workflow design, every step in the target business process is mapped to a required capability. What data does the agent need to access? What systems must it read or write? At what points can it act autonomously, and at what points must it escalate? This produces a complete skill specification: a list of tools the agent needs, the data sources it will query, and the escalation conditions that define its operating boundaries.</p>\n        </li>\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 2 - Tool Implementation</b>\n          <p>Each skill is implemented as a tool wrapper: an API connector that handles authentication, request formatting, error handling, and response parsing; a database query function that enforces access control and returns structured data; a form-fill script that submits records to the correct system; or an escalation handler that packages context and routes to the right queue. Every tool is versioned, documented, and tested independently before it is integrated into the agent's toolkit.</p>\n        </li>\n        <li class=\"lx-step\">\n          <b class=\"lx-step-t\">Step 3 - Testing &amp; Trust Calibration</b>\n          <p>For each skill, a confidence threshold is defined: the minimum certainty level at which the agent will act autonomously, versus escalate to a human. This threshold is calibrated through scenario testing against a representative sample of production inputs - including edge cases, adversarial inputs, and low-confidence situations. Trust calibration ensures the agent's autonomous operation boundaries are well-defined and defensible before it handles live business processes.</p>\n        </li>\n      </ol>"
   ]
  ],
  "lead": "An AI agent's \"skills\" are the capabilities it has been equipped with beyond reasoning: the tools it can call, the systems it can access, the actions it can take. Understanding what skills a production enterprise agent needs - and how they are implemented - is the difference between buying an AI demo and buying an AI that runs your business.",
@@ -109,5 +109,6 @@
  "aside": [
   "Business Process Automation",
   "/platform"
- ]
+ ],
+ "updated": "2026-10-07"
 }

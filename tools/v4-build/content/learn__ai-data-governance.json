@@ -2,9 +2,9 @@
  "file": "learn/ai-data-governance.html",
  "path": "/learn/ai-data-governance",
  "title": "AI Data Governance: Enterprise Checklist | Upcore",
- "meta": "A CTO/CIO checklist covering data residency, access controls, audit logging, model explainability, and incident response - with questions any AI vendor must…",
+ "meta": "An AI data governance checklist for CTOs and CIOs: five pillars, 15 questions every AI vendor must answer, sector rules and on-premise deployment options.",
  "robots": "",
- "published": "2025-01-01",
+ "published": "2026-05-12",
  "faq": [
   [
    "What is AI data governance?",
@@ -41,28 +41,28 @@
  ],
  "related": [
   [
+   "/learn/hipaa-compliant-ai",
+   "Guide",
+   "HIPAA-Compliant AI for Healthcare",
+   "What HIPAA requires of AI architecture, and the questions to ask any AI vendor before signing."
+  ],
+  [
+   "/compare/ai-agents-vs-copilot-financial-services",
+   "Comparison",
+   "AI Agents vs. Copilot for Financial Services",
+   "Where custom AI agents beat a generic assistant on data sovereignty, domain knowledge and auditability."
+  ],
+  [
    "/security",
-   "Architecture",
-   "On-Premise Deployment",
-   "How Upcore deploys fully governance-ready AI agents within your infrastructure perimeter."
+   "Security",
+   "Security and Trust",
+   "How Upcore handles your code and data, which AI providers process it, and the certifications behind it."
   ],
   [
-   "/learn/enterprise-ai-strategy",
-   "Strategy",
-   "Enterprise AI Strategy",
-   "How to build an AI adoption roadmap that legal, compliance, and risk teams will approve."
-  ],
-  [
-   "/security",
-   "Industries",
-   "Compliance & Governance",
-   "AI agent use cases built specifically for compliance, audit, and risk management functions."
-  ],
-  [
-   "/who-we-help/operations-heavy",
-   "Resources",
-   "AI for Banking & Finance",
-   "How regulated BFSI organisations deploy AI agents within RBI and FCA governance frameworks."
+   "/ai-engineering-governance",
+   "Service",
+   "AI Governance",
+   "An inventory of every AI tool, AI spend by team, data controls and an audit trail, installed in 90 days."
   ]
  ],
  "stats": [
@@ -83,7 +83,7 @@
   [
    "the-5-pillars-of-enterprise-ai-data-governance",
    "The 5 Pillars of Enterprise AI Data Governance",
-   "<p>Robust AI data governance is built on five interdependent pillars. Each addresses a distinct class of governance risk. Missing any one of them creates a gap that legal, compliance, or regulators will find. The five pillars together define what a governance-ready AI deployment looks like.</p>\n\n      <div class=\"lx-cards\">\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">01</span>\n          <h3>Data Residency</h3>\n          <p>Where is data processed? Where is it stored? Does it cross jurisdictional boundaries? For organisations regulated under GDPR, India's DPDP Act, or RBI guidelines, data residency is a hard architectural requirement - not a preference to be addressed by a Terms of Service clause. An AI vendor that processes your customer data in a foreign data centre may invalidate your compliance posture regardless of how good the AI's output is. Residency must be confirmed at both the inference layer (where queries are processed) and the storage layer (where data is retained between sessions).</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">02</span>\n          <h3>Access Control</h3>\n          <p>Who can invoke the AI agent? What data can the agent access? What actions can the agent take? Role-based access control at the agent level must mirror the access controls of the underlying systems. If your CRM restricts certain customer data to senior relationship managers, the AI agent should not be able to retrieve that data on behalf of a front-line agent. Access control is also the mechanism that prevents prompt injection attacks - ensuring that the AI cannot be manipulated into accessing data or taking actions outside its defined scope.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">03</span>\n          <h3>Audit Logging</h3>\n          <p>Every query, every data access, every decision, every action - logged with timestamp, user identity, data accessed, and action taken. HIPAA, BFSI regulations, and the EU AI Act all mandate comprehensive audit logs for AI systems handling regulated data. The log must be tamper-evident, retained for the required period (typically 6–7 years in BFSI), and accessible in a format that supports regulatory examination. Audit logging is not optional for enterprise AI in regulated industries - it is the primary mechanism by which your organisation demonstrates compliance.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">04</span>\n          <h3>Model Explainability</h3>\n          <p>For regulated decisions - credit approvals, insurance risk assessments, benefits eligibility determinations - the AI must be able to explain why it reached a conclusion in terms that both the affected individual and the regulator can understand. Black-box decisions are not defensible under the EU AI Act, the Fair Credit Reporting Act (FCRA), or the Equal Credit Opportunity Act (ECOA). Explainability is not a post-hoc reporting requirement - it must be designed into the agent's reasoning architecture from the start.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">05</span>\n          <h3>Incident Response</h3>\n          <p>What is the protocol when the AI agent produces a harmful output - a wrong decision with downstream consequences, a data access it should not have made, or a security breach? Who is notified, how quickly, and through what channel? What is the rollback procedure? How are affected individuals notified? AI incident response is now expected by regulators in BFSI and healthcare. Under GDPR, data breaches must be reported to the supervisory authority within 72 hours. Under RBI guidelines for BFSI, cyber incident reporting has specific timelines. AI incidents that expose customer data trigger these obligations.</p>\n        </div>\n      </div>"
+   "<p>Robust AI data governance is built on five interdependent pillars. Each addresses a distinct class of governance risk. Missing any one of them creates a gap that legal, compliance, or regulators will find. The five pillars together define what a <a href=\"/ai-engineering-governance\">governance-ready AI deployment</a> looks like.</p>\n\n      <div class=\"lx-cards\">\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">01</span>\n          <h3>Data Residency</h3>\n          <p>Where is data processed? Where is it stored? Does it cross jurisdictional boundaries? For organisations regulated under GDPR, India's DPDP Act, or RBI guidelines, data residency is a hard architectural requirement - not a preference to be addressed by a Terms of Service clause. An AI vendor that processes your customer data in a foreign data centre may invalidate your compliance posture regardless of how good the AI's output is. Residency must be confirmed at both the inference layer (where queries are processed) and the storage layer (where data is retained between sessions).</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">02</span>\n          <h3>Access Control</h3>\n          <p>Who can invoke the AI agent? What data can the agent access? What actions can the agent take? Role-based access control at the agent level must mirror the access controls of the underlying systems. If your CRM restricts certain customer data to senior relationship managers, the AI agent should not be able to retrieve that data on behalf of a front-line agent. Access control is also the mechanism that prevents prompt injection attacks - ensuring that the AI cannot be manipulated into accessing data or taking actions outside its defined scope.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">03</span>\n          <h3>Audit Logging</h3>\n          <p>Every query, every data access, every decision, every action - logged with timestamp, user identity, data accessed, and action taken. HIPAA, BFSI regulations, and the EU AI Act all mandate comprehensive audit logs for AI systems handling regulated data. The log must be tamper-evident, retained for the required period (typically 6–7 years in BFSI), and accessible in a format that supports regulatory examination. Audit logging is not optional for enterprise AI in regulated industries - it is the primary mechanism by which your organisation demonstrates compliance.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">04</span>\n          <h3>Model Explainability</h3>\n          <p>For regulated decisions - credit approvals, insurance risk assessments, benefits eligibility determinations - the AI must be able to explain why it reached a conclusion in terms that both the affected individual and the regulator can understand. Black-box decisions are not defensible under the EU AI Act, the Fair Credit Reporting Act (FCRA), or the Equal Credit Opportunity Act (ECOA). Explainability is not a post-hoc reporting requirement - it must be designed into the agent's reasoning architecture from the start.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">05</span>\n          <h3>Incident Response</h3>\n          <p>What is the protocol when the AI agent produces a harmful output - a wrong decision with downstream consequences, a data access it should not have made, or a security breach? Who is notified, how quickly, and through what channel? What is the rollback procedure? How are affected individuals notified? AI incident response is now expected by regulators in BFSI and healthcare. Under GDPR, data breaches must be reported to the supervisory authority within 72 hours. Under RBI guidelines for BFSI, cyber incident reporting has specific timelines. AI incidents that expose customer data trigger these obligations.</p>\n        </div>\n      </div>"
   ],
   [
    "15-questions-every-ai-vendor-must-answer",
@@ -109,5 +109,6 @@
  "aside": [
   "AI Governance",
   "/ai-engineering-governance"
- ]
+ ],
+ "updated": "2026-10-07"
 }

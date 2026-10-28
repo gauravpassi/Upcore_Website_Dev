@@ -2,9 +2,9 @@
  "file": "learn/how-ai-agents-work.html",
  "path": "/learn/how-ai-agents-work",
  "title": "How AI Agents Work: A Plain-English Technical Guide | Upcore",
- "meta": "The perception–reasoning–action loop explained for technically curious executives. What AI agent memory means, why agents differ fundamentally from…",
+ "meta": "How AI agents work in plain English: perception, reasoning and action layers, how agents differ from chatbots and workflow tools, and how they're deployed.",
  "robots": "",
- "published": "2025-01-01",
+ "published": "2026-05-12",
  "faq": [
   [
    "What is the difference between an AI agent and a chatbot?",
@@ -42,27 +42,27 @@
  "related": [
   [
    "/learn/ai-agent-vs-llm",
-   "AI Fundamentals",
+   "Guide",
    "AI Agent vs. LLM: The Real Difference",
-   "Why an LLM and an AI agent are fundamentally different - and which one you actually need for your use case."
+   "Why an LLM is a reasoning engine and an agent is a system that can act on what it reasons."
   ],
   [
    "/learn/ai-agent-memory",
-   "Architecture",
+   "Guide",
    "How AI Agent Memory Works",
-   "Episodic, semantic, procedural, and working memory - and why memory is the difference between generic and enterprise-grade AI."
+   "Episodic, semantic, procedural and working memory, and the governance controls each one needs."
+  ],
+  [
+   "/learn/ai-agent-skills",
+   "Guide",
+   "AI Agent Skills Explained",
+   "Tool use, API calls, memory retrieval and the other capabilities a production agent needs."
   ],
   [
    "/platform",
-   "Product",
-   "Custom AI Agent Development",
-   "How Upcore builds production-ready enterprise agents - from integration design through to go-live and ongoing optimisation."
-  ],
-  [
-   "/learn/enterprise-ai-strategy",
-   "Strategy",
-   "Enterprise AI Strategy Framework",
-   "The five decisions every enterprise must make before committing to an AI deployment - a structured framework for leaders."
+   "Service",
+   "Business Process Automation",
+   "AI agents that chase documents and payments, answer status questions and update your systems, with people approving what matters."
   ]
  ],
  "stats": [
@@ -98,7 +98,7 @@
   [
    "how-enterprise-agents-are-deployed",
    "How Enterprise Agents Are Deployed",
-   "<p>Building an enterprise AI agent is an integration and systems engineering project as much as it is an AI project. The model is the reasoning engine, but the majority of deployment work is connecting the agent to your existing systems, loading it with your proprietary knowledge, and defining the decision logic that governs its behaviour. These three layers - integration, knowledge, and orchestration - must all be well-designed for the agent to perform reliably in production.</p>\n    <p>At Upcore, we structure every enterprise agent deployment around these three layers in sequence. Integration first, because the agent cannot act without access to the systems where outcomes are recorded. Knowledge second, because the agent cannot reason accurately without access to your proprietary domain knowledge. Orchestration third, because the decision logic and human-in-the-loop policies must reflect your specific operational requirements and risk tolerance.</p>\n\n    <ol class=\"lx-steps\"><li class=\"lx-step\">\n      \n      \n        <b class=\"lx-step-t\">Integration Layer</b>\n        <p>Connect the agent to your internal systems: ERP, CRM, ticketing systems, databases, communication tools, and third-party APIs. The integration layer determines what data the agent can read and what systems it can write to. Every integration is governed by an access control policy - the agent is given the minimum permissions required to perform its defined tasks, nothing more. Standard REST API integrations, database connectors, and webhook handlers cover the vast majority of enterprise system connections.</p>\n      \n    </li>\n\n    <li class=\"lx-step\">\n      \n      \n        <b class=\"lx-step-t\">Knowledge Layer</b>\n        <p>Ingest proprietary documents, SOPs, product data, client history, pricing tables, compliance policies, and any other domain-specific knowledge the agent needs to reason accurately. This content is processed, chunked, embedded as dense vectors, and stored in a vector database. At inference time, the agent retrieves the most relevant subset of this knowledge for the current task and injects it into its reasoning context. This is what makes a custom agent answer questions about your specific products, policies, and processes with accuracy a generic model cannot match.</p>\n      \n    </li>\n\n    <li class=\"lx-step\">\n      \n      \n        <b class=\"lx-step-t\">Orchestration Layer</b>\n        <p>Define the decision logic, escalation paths, and human override mechanisms. The orchestration layer specifies: what task categories does this agent handle, what is the decision sequence for each task type, at what confidence threshold does the agent act autonomously versus escalate to a human, how are edge cases handled, and what is the audit logging requirement. This is the layer that makes the agent's behaviour predictable, compliant, and aligned with your operational policies - and it is the layer most often underestimated in enterprise AI deployments.</p>\n      \n    </li>\n\n    </ol><p>Ready to see this in practice? <a href=\"/assessment\">Book a free AI assessment</a> and we will map your target workflow to an agent architecture in a 30-minute session. Or explore our <a href=\"/platform\">Custom AI Agent development model</a> to understand how we handle the full deployment pipeline.</p>"
+   "<p>Building an enterprise AI agent is <a href=\"/forward-deployed-engineer\">an integration and systems engineering project</a> as much as it is an AI project. The model is the reasoning engine, but the majority of deployment work is connecting the agent to your existing systems, loading it with your proprietary knowledge, and defining the decision logic that governs its behaviour. These three layers - integration, knowledge, and orchestration - must all be well-designed for the agent to perform reliably in production.</p>\n    <p>At Upcore, we structure every enterprise agent deployment around these three layers in sequence. Integration first, because the agent cannot act without access to the systems where outcomes are recorded. Knowledge second, because the agent cannot reason accurately without access to your proprietary domain knowledge. Orchestration third, because the decision logic and <a href=\"/insights/human-in-the-loop\">human-in-the-loop policies</a> must reflect your specific operational requirements and risk tolerance.</p>\n\n    <ol class=\"lx-steps\"><li class=\"lx-step\">\n      \n      \n        <b class=\"lx-step-t\">Integration Layer</b>\n        <p>Connect the agent to your internal systems: ERP, CRM, ticketing systems, databases, communication tools, and third-party APIs. The integration layer determines what data the agent can read and what systems it can write to. Every integration is governed by an access control policy - the agent is given the minimum permissions required to perform its defined tasks, nothing more. Standard REST API integrations, database connectors, and webhook handlers cover the vast majority of enterprise system connections.</p>\n      \n    </li>\n\n    <li class=\"lx-step\">\n      \n      \n        <b class=\"lx-step-t\">Knowledge Layer</b>\n        <p>Ingest proprietary documents, SOPs, product data, client history, pricing tables, compliance policies, and any other domain-specific knowledge the agent needs to reason accurately. This content is processed, chunked, embedded as dense vectors, and stored in a vector database. At inference time, the agent retrieves the most relevant subset of this knowledge for the current task and injects it into its reasoning context. This is what makes a custom agent answer questions about your specific products, policies, and processes with accuracy a generic model cannot match.</p>\n      \n    </li>\n\n    <li class=\"lx-step\">\n      \n      \n        <b class=\"lx-step-t\">Orchestration Layer</b>\n        <p>Define the decision logic, escalation paths, and human override mechanisms. The orchestration layer specifies: what task categories does this agent handle, what is the decision sequence for each task type, at what confidence threshold does the agent act autonomously versus escalate to a human, how are edge cases handled, and what is the audit logging requirement. This is the layer that makes the agent's behaviour predictable, compliant, and aligned with your operational policies - and it is the layer most often underestimated in enterprise AI deployments.</p>\n      \n    </li>\n\n    </ol><p>Ready to see this in practice? <a href=\"/assessment\">Book a free AI assessment</a> and we will map your target workflow to an agent architecture in a 30-minute session. Or explore our <a href=\"/platform\">Custom AI Agent development model</a> to understand how we handle the full deployment pipeline.</p>"
   ]
  ],
  "lead": "The perception–reasoning–action loop explained for technically curious executives. Understand why an AI agent is architecturally different from a chatbot, an LLM, and a workflow automation tool - and why those differences matter for enterprise deployment.",
@@ -109,5 +109,6 @@
  "aside": [
   "Business Process Automation",
   "/platform"
- ]
+ ],
+ "updated": "2026-10-07"
 }

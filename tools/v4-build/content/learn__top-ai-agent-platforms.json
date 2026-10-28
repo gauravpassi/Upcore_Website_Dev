@@ -2,9 +2,9 @@
  "file": "learn/top-ai-agent-platforms.html",
  "path": "/learn/top-ai-agent-platforms",
  "title": "Top AI Agent Platforms Compared | Upcore",
- "meta": "AutoGen, LangChain, Vertex AI Agents, and Copilot Studio - an honest enterprise evaluation of where each shines, where each fails, and how to choose an…",
+ "meta": "AI agent platforms compared: AutoGen, LangChain, Vertex AI Agents and Copilot Studio. Where each fits, where each falls short and how to choose your path.",
  "robots": "",
- "published": "2025-01-01",
+ "published": "2026-05-12",
  "faq": [
   [
    "What is the best AI agent platform for enterprise use?",
@@ -42,27 +42,27 @@
  "related": [
   [
    "/learn/how-ai-agents-work",
-   "AI Fundamentals",
+   "Guide",
    "How AI Agents Work",
-   "The perception–reasoning–action loop explained for technically curious executives."
+   "The perception, reasoning and action loop, explained for technically curious executives."
   ],
   [
    "/learn/ai-workforce-platform",
-   "Platform",
-   "AI Workforce Platform",
-   "How a coordinated AI workforce differs from a single AI agent deployment."
+   "Guide",
+   "What Is an AI Workforce Platform?",
+   "How a coordinated team of specialized agents compares with a collection of point tools."
+  ],
+  [
+   "/learn/ai-agent-skills",
+   "Guide",
+   "AI Agent Skills Explained",
+   "Tool use, API calls, memory retrieval and the other capabilities a production agent needs."
   ],
   [
    "/platform",
-   "Custom AI",
-   "Custom AI Agents",
-   "How Upcore designs and deploys domain-trained enterprise AI agents from scratch."
-  ],
-  [
-   "/ai-engineering-governance",
-   "Comparison",
-   "AI Workforce vs AI Tools",
-   "Why a coordinated AI workforce produces different ROI outcomes than point solutions."
+   "Service",
+   "Business Process Automation",
+   "AI agents that chase documents and payments, answer status questions and update your systems, with people approving what matters."
   ]
  ],
  "stats": [
@@ -93,12 +93,12 @@
   [
    "how-to-choose-three-paths-to-production-ai",
    "How to Choose: Three Paths to Production AI",
-   "<p>There is no universally correct choice. The right approach depends on your engineering capacity, your timeline, your compliance requirements, and what accountability model you need for outcomes. Here are the three primary approaches and the conditions under which each makes sense.</p>\n\n      <div class=\"lx-cards\">\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">For strong engineering teams</span>\n          <h3>Framework-First (AutoGen / LangChain)</h3>\n          <p>You have a strong ML engineering team and specific architectural requirements that off-the-shelf approaches cannot satisfy. You want full control over the agent's internals, including the reasoning architecture, tool wrappers, and memory layer. You have a timeline flexibility of 3–6 months and are prepared to invest in the engineering overhead of productionising an open-source framework.</p>\n          <p>This is the right choice when your use case is genuinely novel and you have the engineering talent to execute. It is the wrong choice when your organisation needs outcomes faster than the framework learning curve allows.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">For cloud-native enterprises</span>\n          <h3>Platform-First (Vertex AI / Copilot Studio)</h3>\n          <p>You are already deeply invested in GCP or the Microsoft M365 ecosystem and the use case is not regulated and not cross-functional. You want the faster time-to-demo that managed platforms provide and are comfortable with the vendor relationship and cloud dependency that comes with them.</p>\n          <p>Platform-first is not suitable for complex, regulated, or cross-functional workflows. If your use case involves PHI, customer financial data, or decisions with regulatory accountability, platform cloud processing requirements will likely block deployment.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">For outcome-focused organisations</span>\n          <h3>Partner-First (Upcore)</h3>\n          <p>You need production in 30 days, you do not want to build and maintain an internal engineering team around AI frameworks, and you need someone who is accountable for the outcome - not just the code. Upcore selects the most appropriate framework for your use case and has already productionised it, so you inherit years of deployment learnings rather than starting from scratch.</p>\n          <p>This is the right choice when the bottleneck is time-to-value, not technical architecture. The framework is a means to an end - the end is a working agent that runs your business.</p>\n        </div>\n      </div>"
+   "<p>There is no universally correct choice. The right approach depends on your engineering capacity, your timeline, your compliance requirements, and what accountability model you need for outcomes. Here are the three primary approaches and the conditions under which each makes sense.</p>\n\n      <div class=\"lx-cards\">\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">For strong engineering teams</span>\n          <h3>Framework-First (AutoGen / LangChain)</h3>\n          <p>You have a strong ML engineering team and specific architectural requirements that off-the-shelf approaches cannot satisfy. You want full control over the agent's internals, including the reasoning architecture, tool wrappers, and memory layer. You have a timeline flexibility of 3–6 months and are prepared to invest in the engineering overhead of productionising an open-source framework.</p>\n          <p>This is the right choice when your use case is genuinely novel and you have the engineering talent to execute. It is the wrong choice when your organisation needs outcomes faster than the framework learning curve allows.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">For cloud-native enterprises</span>\n          <h3>Platform-First (Vertex AI / Copilot Studio)</h3>\n          <p>You are already deeply invested in GCP or the Microsoft M365 ecosystem and the use case is not regulated and not cross-functional. You want the faster time-to-demo that managed platforms provide and are comfortable with the vendor relationship and cloud dependency that comes with them.</p>\n          <p>Platform-first is not suitable for complex, regulated, or cross-functional workflows. If your use case involves PHI, customer financial data, or decisions with regulatory accountability, platform cloud processing requirements will likely block deployment.</p>\n        </div>\n        <div class=\"lx-card\">\n          <span class=\"lx-tag\">For outcome-focused organisations</span>\n          <h3>Partner-First (Upcore)</h3>\n          <p>You need production in 30 days, you do not want to build and maintain an internal engineering team around AI frameworks, and you need someone who is accountable for the outcome - not just the code. Upcore selects the most appropriate framework for your use case and has already productionised it, so you inherit years of deployment learnings rather than starting from scratch.</p>\n          <p>This is the right choice when the bottleneck is time-to-value, not technical architecture. The framework is a means to an end - the end is <a href=\"/platform\">a working agent that runs your business</a>.</p>\n        </div>\n      </div>"
   ],
   [
    "the-framework-decision-is-secondary-to-the-partn",
    "The Framework Decision Is Secondary to the Partner Decision",
-   "<p>Enterprise technology teams spend considerable time evaluating which AI agent framework to adopt. This is understandable - the technical architecture of a production AI system matters. But there is a more important variable that most framework comparison articles do not mention: the quality of the implementation team matters more than the quality of the framework.</p>\n\n      <div class=\"ar-call\">\n        <p class=\"ar-call-k\">Insight</p><p>AutoGen in the hands of an expert team that has productionised it across a dozen enterprise deployments produces better outcomes than LangChain in the hands of a team encountering production AI for the first time. The framework provides a foundation; the team determines whether that foundation becomes a reliable production system or a permanent engineering project. The framework decision should therefore follow the talent decision: use what your implementation partner knows deeply and has shipped before, rather than selecting a framework and then finding a team that uses it.</p>\n        <p>The question to ask any AI vendor is not “which framework do you use?” The questions that actually matter are: How many production deployments have you done with it? In which industries? What was the scale? How many of those deployments are still running 12 months later without being rebuilt? What does your incident response process look like when the agent makes an error? The answers to those questions tell you more about what you will actually receive than any framework comparison table ever can.</p>\n      </div>"
+   "<p>Enterprise technology teams spend considerable time evaluating which AI agent framework to adopt. This is understandable - the technical architecture of a production AI system matters. But there is a more important variable that most framework comparison articles do not mention: <a href=\"/forward-deployed-engineer\">the quality of the implementation team matters more than the quality of the framework</a>.</p>\n\n      <div class=\"ar-call\">\n        <p class=\"ar-call-k\">Insight</p><p>AutoGen in the hands of an expert team that has productionised it across a dozen enterprise deployments produces better outcomes than LangChain in the hands of a team encountering production AI for the first time. The framework provides a foundation; the team determines whether that foundation becomes a reliable production system or a permanent engineering project. The framework decision should therefore follow the talent decision: use what your implementation partner knows deeply and has shipped before, rather than selecting a framework and then finding a team that uses it.</p>\n        <p>The question to ask any AI vendor is not “which framework do you use?” The questions that actually matter are: How many production deployments have you done with it? In which industries? What was the scale? How many of those deployments are still running 12 months later without being rebuilt? What does your incident response process look like when the agent makes an error? The answers to those questions tell you more about what you will actually receive than any framework comparison table ever can.</p>\n      </div>"
   ]
  ],
  "lead": "AutoGen, LangChain, Vertex AI Agents, and Microsoft Copilot Studio are the four platforms most frequently discussed by enterprise AI teams. This is not a vendor brochure. It is an honest evaluation of where each framework excels, where each fails, what each one requires from your engineering team, and how to choose the right implementation approach for your specific context.",
@@ -107,7 +107,8 @@
  "kind": "guide",
  "h1": "The Big 4 AI Agent Platforms: <span class=\"hl\">An Honest Enterprise Comparison</span>",
  "aside": [
-  "Business Process Automation",
-  "/platform"
- ]
+  "Fractional FDE",
+  "/forward-deployed-engineer"
+ ],
+ "updated": "2026-10-07"
 }

@@ -2,9 +2,9 @@
  "file": "learn/ai-agent-vs-llm.html",
  "path": "/learn/ai-agent-vs-llm",
  "title": "AI Agent vs. LLM: The Real Difference Explained | Upcore",
- "meta": "An LLM is a capability. An AI agent is a system that uses that capability to take autonomous action. The single most important distinction for enterprise AI…",
+ "meta": "AI agent vs LLM: an LLM is a stateless reasoning engine; an agent adds memory, tools, goals and orchestration to take action. Learn when you need each.",
  "robots": "",
- "published": "2025-01-01",
+ "published": "2026-05-12",
  "faq": [
   [
    "Is ChatGPT an AI agent?",
@@ -42,27 +42,27 @@
  "related": [
   [
    "/learn/how-ai-agents-work",
-   "AI Fundamentals",
+   "Guide",
    "How AI Agents Work",
-   "The perception–reasoning–action loop explained - how agents perceive inputs, reason over them, and take actions in enterprise systems."
+   "The perception, reasoning and action loop, explained for technically curious executives."
   ],
   [
    "/learn/ai-agent-memory",
-   "Architecture",
+   "Guide",
    "How AI Agent Memory Works",
-   "Episodic, semantic, procedural, and working memory - how agents remember context across sessions and why it matters for enterprise accuracy."
+   "Episodic, semantic, procedural and working memory, and the governance controls each one needs."
   ],
   [
-   "/learn/enterprise-ai-strategy",
-   "Strategy",
-   "Enterprise AI Strategy Framework",
-   "The five foundational decisions every enterprise must make before committing to an AI deployment - and how to make them in the right order."
+   "/learn/ai-agent-skills",
+   "Guide",
+   "AI Agent Skills Explained",
+   "Tool use, API calls, memory retrieval and the other capabilities a production agent needs."
   ],
   [
    "/platform",
-   "Product",
-   "Custom AI Agent Development",
-   "How Upcore builds production-ready enterprise agents - from integration design and knowledge ingestion through to go-live and ongoing optimisation."
+   "Service",
+   "Business Process Automation",
+   "AI agents that chase documents and payments, answer status questions and update your systems, with people approving what matters."
   ]
  ],
  "stats": [
@@ -83,7 +83,7 @@
   [
    "what-an-llm-actually-is",
    "What an LLM Actually Is",
-   "<p>An LLM (Large Language Model) is a probability engine. Given a sequence of tokens - words, word fragments, punctuation - it predicts what tokens should come next. At scale, with enough training data and billions of parameters, this prediction becomes sophisticated enough to generate coherent text, answer complex questions, perform structured reasoning tasks, write code, and translate between languages. But this capability, impressive as it is, is the entirety of what an LLM does: it takes a text input and produces a text output.</p>\n    <p>An LLM is fundamentally stateless. It has no memory of previous conversations - each time you call the model API, you are starting a completely fresh context. The model retains nothing between calls. While you can populate the context window with historical conversation to simulate continuity, the model itself does not persist any state. Every call is amnesia. This is a hard architectural constraint, not a limitation waiting to be fixed - it is inherent to how transformer-based language models work.</p>\n    <p>The other critical constraint is that an LLM cannot act. It produces text, and that text can describe an action, recommend an action, or contain structured data that another system interprets as an action - but the model itself cannot call an API, write a record, send an email, or trigger any process in the real world. The gap between \"the LLM says to do X\" and \"X actually gets done\" is the gap that an agent architecture fills. An LLM is the brain. An agent is the brain plus the body, memory, and the ability to operate in the world.</p>\n\n    <div class=\"ar-call\">\n      <p class=\"ar-call-k\">Insight</p><p>The most common mistake in enterprise AI procurement is treating LLM capability as equivalent to agent capability. Signing a contract for access to GPT-4 or Claude does not give you an AI agent - it gives you access to a reasoning engine that still needs to be embedded in a system architecture before it can deliver business outcomes.</p>\n    </div>"
+   "<p>An LLM (Large Language Model) is a probability engine. Given a sequence of tokens - words, word fragments, punctuation - it predicts what tokens should come next. At scale, with enough training data and billions of parameters, this prediction becomes sophisticated enough to generate coherent text, answer complex questions, perform structured reasoning tasks, write code, and translate between languages. But this capability, impressive as it is, is the entirety of what an LLM does: it takes a text input and produces a text output.</p>\n    <p>An LLM is fundamentally stateless. It has no memory of previous conversations - each time you call the model API, you are starting a completely fresh context. The model retains nothing between calls. While you can populate the context window with historical conversation to simulate continuity, the model itself does not persist any state. Every call is amnesia. This is a hard architectural constraint, not a limitation waiting to be fixed - it is inherent to how transformer-based language models work.</p>\n    <p>The other critical constraint is that an LLM cannot act. It produces text, and that text can describe an action, recommend an action, or contain structured data that another system interprets as an action - but the model itself cannot call an API, write a record, send an email, or trigger any process in the real world. The gap between \"the LLM says to do X\" and \"X actually gets done\" is the gap that an agent architecture fills. An LLM is the brain. An agent is the brain plus the body, memory, and the ability to operate in the world.</p>\n\n    <div class=\"ar-call\">\n      <p class=\"ar-call-k\">Insight</p><p>The most common mistake in enterprise AI procurement is treating LLM capability as equivalent to agent capability. Signing a contract for access to GPT-4 or Claude does not give you an AI agent - it gives you access to a reasoning engine that still needs to be <a href=\"/platform\">embedded in a system architecture</a> before it can deliver business outcomes.</p>\n    </div>"
   ],
   [
    "what-an-ai-agent-is",
@@ -109,5 +109,6 @@
  "aside": [
   "Business Process Automation",
   "/platform"
- ]
+ ],
+ "updated": "2026-10-07"
 }

@@ -27,7 +27,9 @@ Background reading, in this order: `CLAUDE.md`, `docs/FEATURES.md` A9 (the conte
    unverifiable superlatives. Comparisons say when the alternative is the better choice.
 7. **One primary keyword per URL.** If an existing page already targets the item's primary keyword, stop and say
    so; the right move is a refresh, not a new page.
-8. **Pace:** if 3 or more backlog items are already `in_review`, don't start another. Report the waiting list instead.
+8. **Pace:** an item is "in review" while a local `content/<slug>` branch exists for it and it isn't `published` in
+   `origin/main`'s backlog (its `in_review` status lives on that branch until it's published). If 3 or more are in
+   review, don't start another. Report the waiting list (`git branch --list "content/*"`) instead.
 
 ## 1. Set up
 
@@ -44,7 +46,8 @@ Background reading, in this order: `CLAUDE.md`, `docs/FEATURES.md` A9 (the conte
 ## 2. Pick the item
 
 Open `tools/content/backlog.json`. Take the item with the lowest `queue` whose `status` is `queued`, whose `type`
-matches the run (`new` on writing days, `refresh` on the refresh day), and whose `needs_human_data` is false.
+matches the run (`new` on writing days, `refresh` on the refresh day), whose `needs_human_data` is false, and that
+has no local `content/<slug>` branch yet (those are already drafted and waiting for review).
 Create the branch `content/<slug>` from `origin/main` (`git switch -c content/<slug> origin/main`). Set the item's `status` to `drafting` (you'll set it to `in_review`
 at the end). If the person named a specific item, use that one.
 

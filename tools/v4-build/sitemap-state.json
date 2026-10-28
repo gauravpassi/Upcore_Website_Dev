@@ -1,0 +1,82 @@
+{
+ "/": {
+  "hash": "8b18b99fdeacce04f754a79f62c469956583a078",
+  "lastmod": "2026-10-28"
+ },
+ "/about": {
+  "hash": "bd43d81b29d63abe22272de29fdff7eb07636478",
+  "lastmod": "2026-10-28"
+ },
+ "/ai-engineering-governance": {
+  "hash": "3a265b936e19368831e85e6448c6ab11b79d4480",
+  "lastmod": "2026-10-28"
+ },
+ "/ai-native-engineering": {
+  "hash": "149a99ceaf6ce78d26a3053b5036e1ae42da8d5c",
+  "lastmod": "2026-10-28"
+ },
+ "/ai-operations": {
+  "hash": "c8fabf9ce629e6bd40c3aa510f463c6e305a6118",
+  "lastmod": "2026-08-13"
+ },
+ "/assessment": {
+  "hash": "a3a76701bb4cdb970eb03b1a77ee73e2dde6669a",
+  "lastmod": "2026-07-22"
+ },
+ "/compare/ai-native-engineering-vs-ai-coding-tools": {
+  "hash": "8dfd091f599f87f69dd83e8d5a5a5f28074137e8",
+  "lastmod": "2026-10-07"
+ },
+ "/compare/upcore-vs-building-in-house": {
+  "hash": "27235e5eb3da9e88834d7d6b509d1cfcdf9f3555",
+  "lastmod": "2026-10-07"
+ },
+ "/contact": {
+  "hash": "891ab3c31158d34aaf805c367833768bd8bbac89",
+  "lastmod": "2026-10-07"
+ },
+ "/forward-deployed-engineer": {
+  "hash": "71578ee8b7c3fc4b70c6231eddf3aa99c7059e7a",
+  "lastmod": "2026-10-28"
+ },
+ "/fractional-ai-officer": {
+  "hash": "0f701b313adb027c71de2562de9083be6f99ca65",
+  "lastmod": "2026-10-28"
+ },
+ "/insights": {
+  "hash": "f626b7d54e203b845880063a79a6bb9bc20d8bba",
+  "lastmod": "2026-10-28"
+ },
+ "/learn/what-is-ai-native-engineering": {
+  "hash": "3d38dc20bd773c0fe6be008e2bef0fe52fb0b01c",
+  "lastmod": "2026-10-07"
+ },
+ "/platform": {
+  "hash": "19c471deac489c7bf7d313954ab5e7b42143f529",
+  "lastmod": "2026-10-28"
+ },
+ "/results": {
+  "hash": "75eb0b47c0a6bc038fc34ce0e6ff210c01d0358b",
+  "lastmod": "2026-10-06"
+ },
+ "/security": {
+  "hash": "528bb005d9e2079b739c0b4041e43d0e734104ba",
+  "lastmod": "2026-10-07"
+ },
+ "/who-we-help/ecommerce-retail": {
+  "hash": "5b6c4453bc82978f5c5cd403d27c78cc279d64b9",
+  "lastmod": "2026-10-28"
+ },
+ "/who-we-help/operations-heavy": {
+  "hash": "bdc0550f469c785d94a473998a61e5b8e16bcf9d",
+  "lastmod": "2026-10-28"
+ },
+ "/who-we-help/professional-services": {
+  "hash": "319430246ee23b175471dd701597af898fadad92",
+  "lastmod": "2026-10-28"
+ },
+ "/who-we-help/tech-software": {
+  "hash": "cd9ebd4f0e8b071fe87dd4ad233c6f5dd76e172c",
+  "lastmod": "2026-10-28"
+ }
+}

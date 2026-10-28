@@ -1,0 +1,3548 @@
+{
+  "version": 1,
+  "generated": "2026-10-28",
+  "sources": [
+    "research/03-content-strategy.md",
+    "research/02-competitors-and-keywords.md"
+  ],
+  "cadence": {
+    "new_per_week": 2,
+    "refresh_per_week": 1,
+    "max_publishes_per_week": 3,
+    "write_days": [
+      "Tue",
+      "Thu"
+    ],
+    "refresh_day": "Wed"
+  },
+  "authors": {
+    "A": {
+      "author": "gaurav-passi",
+      "reviewer": "shanker-dhand"
+    },
+    "B": {
+      "author": "shanker-dhand",
+      "reviewer": "gaurav-passi"
+    },
+    "C": {
+      "author": "shrikant-maniar",
+      "reviewer": "gaurav-passi"
+    },
+    "D": {
+      "author": "gaurav-passi",
+      "reviewer": "shanker-dhand"
+    },
+    "E": {
+      "author": "shanker-dhand",
+      "reviewer": "gaurav-passi"
+    }
+  },
+  "clusters": {
+    "A": {
+      "name": "AI-Native Engineering (governed AI software delivery)",
+      "money_page": "/ai-native-engineering",
+      "pillar": "/learn/what-is-ai-native-engineering"
+    },
+    "B": {
+      "name": "AI Engineering Governance and AI code risk",
+      "money_page": "/ai-engineering-governance",
+      "pillar": "/learn/ai-coding-governance"
+    },
+    "C": {
+      "name": "AI leadership and portfolio (Fractional AI Officer)",
+      "money_page": "/fractional-ai-officer",
+      "pillar": "/learn/what-does-a-fractional-ai-officer-do"
+    },
+    "D": {
+      "name": "Pilot to production (Fractional FDE)",
+      "money_page": "/forward-deployed-engineer",
+      "pillar": "/learn/what-does-a-forward-deployed-engineer-do"
+    },
+    "E": {
+      "name": "Business process automation agents",
+      "money_page": "/platform",
+      "pillar": "/learn/ai-workforce-platform"
+    }
+  },
+  "items": [
+    {
+      "id": "N01",
+      "type": "new",
+      "status": "queued",
+      "queue": 1,
+      "week": 1,
+      "score": 25,
+      "cluster": "A",
+      "working_title": "Risk-Scored Merging: When Can AI-Written Pull Requests Merge Without a Human?",
+      "section": "learn",
+      "slug": "risk-based-merge-ai-pull-requests",
+      "path": "/learn/risk-based-merge-ai-pull-requests",
+      "content_file": "tools/v4-build/content/learn__risk-based-merge-ai-pull-requests.json",
+      "kind": "guide",
+      "primary_keyword": "risk-based code review",
+      "secondary_keywords": [
+        "auto-merge AI pull requests",
+        "pull request risk score",
+        "merge policy for AI-generated code",
+        "branch protection for AI agents",
+        "can AI approve pull requests",
+        "AI-generated code review pipeline"
+      ],
+      "intent": "informational/commercial",
+      "persona": "VP Engineering, CTO, platform lead",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/learn/what-is-ai-native-engineering",
+        "/compare/upcore-vs-building-in-house",
+        "N02",
+        "N09"
+      ],
+      "angle": "Results are single-tool vendor docs (CodeRabbit merge risk, Unblocked risk policy, MergeShield, Cortex, Rewind); there is no neutral guide. Publish a tool-agnostic scoring rubric (rule deviations, services touched, auth or payments paths, data migrations, dependency changes, coverage change, diff size), explain how to start strict and loosen with evidence, show how to build it with GitHub branch protection, CODEOWNERS, required checks and a merge queue, and cover who owns the limit, why approval is not the same as merge, and the decision log.",
+      "outline": [
+        "Short answer",
+        "Why \"a human reads everything\" stops scaling",
+        "What goes into a risk score",
+        "Setting and loosening merge limits",
+        "Implementing it in GitHub and GitLab",
+        "Logging decisions for leadership and audit",
+        "Mistakes to avoid"
+      ],
+      "original_asset": "Tool-agnostic PR risk-scoring rubric (factors, weights, example thresholds labeled illustrative), a sample GitHub branch protection, CODEOWNERS and merge queue setup, and a decision-log schema.",
+      "sme_questions": [
+        "What starting merge thresholds did we use in pilots, and which factors carried the most weight?",
+        "How did the auto-merged share of PRs change over a pilot, and what evidence justified loosening the limit (anonymized)?",
+        "Which change types do we never auto-merge regardless of score (auth, payments, migrations)?",
+        "Who owns the merge limit in a client org, and how is a change to it approved and logged?",
+        "What mistake have we seen teams make when they first turned on auto-merge?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "GitHub branch protection, rulesets, required checks and merge queue: feature names and plan availability",
+        "GitLab approval rules and merge trains: current names",
+        "Any third-party product behavior cited (CodeRabbit, Unblocked, Cortex, MergeShield, Rewind)",
+        "Stage wording matches /ai-native-engineering (stage 6, risk-scored merge)"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #1 (5x5). Pilot thresholds are optional SME input; without them every number is labeled illustrative. Merged from the competitor report: the \"risk-scoring rubric for AI-written PRs\" (Month 2 list), \"can AI approve pull requests\" and \"AI-generated code review pipeline\" (best gap #5) are secondary keywords here, not separate pages."
+    },
+    {
+      "id": "R01",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 2,
+      "week": 1,
+      "score": 20,
+      "cluster": "A",
+      "working_title": "What Is AI-Native Engineering? (expand to the cluster A pillar)",
+      "section": "learn",
+      "slug": "what-is-ai-native-engineering",
+      "path": "/learn/what-is-ai-native-engineering",
+      "content_file": "tools/v4-build/build_guide.py",
+      "kind": "guide",
+      "primary_keyword": "what is AI-native engineering",
+      "secondary_keywords": [
+        "AI-native engineering",
+        "AI-native engineering framework",
+        "AI-native engineering operating model",
+        "AI-native software development"
+      ],
+      "intent": "informational",
+      "persona": "CTO, VP Engineering",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "N01",
+        "N02",
+        "N03",
+        "N08",
+        "N09",
+        "N13"
+      ],
+      "angle": "Augment's roughly 2,000-word guide (tables, FAQ, author, dates) beats the current page of about 1,200 words with one citation and no author. Grow it into a pillar of about 2,500 words with a named author and reviewer, DORA 2025 alongside Veracode, a stage-by-stage framework table, and links down to every cluster A spoke as it ships.",
+      "outline": [
+        "Short answer",
+        "AI-assisted versus AI-native (summary)",
+        "Why it matters now",
+        "The building blocks, stage by stage",
+        "How roles change",
+        "What to measure",
+        "Common mistakes",
+        "How to start"
+      ],
+      "original_asset": "The existing building-blocks list expanded into a stage-by-stage framework table (stage, input, check, owner, evidence).",
+      "sme_questions": [
+        "What should the pillar say about AI-native vs agentic engineering in one paragraph?",
+        "Which stage do clients underestimate most?",
+        "What has changed in the category since October 2026?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Veracode 2025: 45% of AI-generated code contained security flaws",
+        "DORA 2025 findings",
+        "Stage names match /ai-native-engineering"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [
+        "Expand from a 5-minute read to a pillar of about 2,500 words",
+        "Name the author (Gaurav Passi, Claude Certified Architect) and reviewer (Shanker Dhand)",
+        "Cite DORA 2025 alongside Veracode 2025",
+        "Add an \"AI-native vs agentic engineering\" FAQ and shorten the AI-assisted vs AI-native section to a summary that links to N13",
+        "Use \"AI-native engineering framework\" and \"operating model\" in subheads (competitor table A, no Upcore page today)",
+        "Link down to every cluster A spoke as it ships: N01, N02, N03, N08, N09, then N13, N18, N19, N26, N40, N46"
+      ],
+      "notes": "Strategy R1, week 1, alongside site-wide fixes G1 (Person author plus reviewedBy) and G2 (real Published and Updated dates), which are generator changes in article.py done by a person, not by the writer. This page is Python-defined in tools/v4-build/build_guide.py, not a content JSON: the writer edits that builder, or a person first migrates it to tools/v4-build/content/learn__what-is-ai-native-engineering.json. Score 5x4=20 is an estimate; the strategy does not score refreshes."
+    },
+    {
+      "id": "N02",
+      "type": "new",
+      "status": "queued",
+      "queue": 3,
+      "week": 1,
+      "score": 20,
+      "cluster": "A",
+      "working_title": "How to Review AI-Generated Pull Requests: A Risk-Tiered Checklist",
+      "section": "learn",
+      "slug": "how-to-review-ai-generated-code",
+      "path": "/learn/how-to-review-ai-generated-code",
+      "content_file": "tools/v4-build/content/learn__how-to-review-ai-generated-code.json",
+      "kind": "guide",
+      "primary_keyword": "how to review AI-generated code",
+      "secondary_keywords": [
+        "AI-generated code review checklist",
+        "reviewing AI pull requests",
+        "AI code review best practices",
+        "Copilot pull request review",
+        "AI-generated code production failures"
+      ],
+      "intent": "informational",
+      "persona": "Engineering managers and senior or staff engineers (they influence the CTO)",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/compare/ai-native-engineering-vs-ai-coding-tools",
+        "N01",
+        "N03",
+        "N10"
+      ],
+      "angle": "Results are Aviator and CodeRabbit (both vendors), GitHub Docs and a dev.to post. Add a catalog of how AI-written code fails (invented APIs and packages, inverted permission checks, tests that mirror the implementation, scope creep, convention drift), split checks into \"automate before a human looks\" and \"a human must read\", and give a copy-paste checklist per risk tier, a PR template for AI-authored changes, and the advice to review the spec and plan before the diff.",
+      "outline": [
+        "Short answer",
+        "How AI-written code fails differently",
+        "What to automate before review",
+        "The risk-tiered checklist",
+        "Reviewing tests AI wrote",
+        "A PR template for AI changes",
+        "When to send it back"
+      ],
+      "original_asset": "Copy-paste review checklist per risk tier (low, medium, high), a pull request template for AI-authored changes, and an AI code failure catalog.",
+      "sme_questions": [
+        "Which AI failure modes do our reviewers catch most often in real PRs?",
+        "What do we automate before a human opens the diff?",
+        "What is in the PR template we ask AI-authored changes to carry?",
+        "When do we send a PR back to the spec instead of fixing it in review?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "GitHub Copilot code review: feature names and availability as of publish month",
+        "Any study figures on AI code defects (Veracode 2025, CSA 2026 research note): exact figure and year"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #2 (5x4). Reviewer-level piece. Strategy pair [2] vs [3]: leader capacity math stays in N03."
+    },
+    {
+      "id": "N03",
+      "type": "new",
+      "status": "queued",
+      "queue": 4,
+      "week": 2,
+      "score": 20,
+      "cluster": "A",
+      "working_title": "AI Made Code Review Your Bottleneck: The Capacity Math and Five Fixes",
+      "section": "learn",
+      "slug": "ai-code-review-bottleneck",
+      "path": "/learn/ai-code-review-bottleneck",
+      "content_file": "tools/v4-build/content/learn__ai-code-review-bottleneck.json",
+      "kind": "guide",
+      "primary_keyword": "code review bottleneck AI",
+      "secondary_keywords": [
+        "AI PR review queue",
+        "senior engineer review load",
+        "AI productivity paradox",
+        "PR review time",
+        "AI code review cost calculator"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, VP Engineering",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/",
+        "N01",
+        "N02",
+        "N18"
+      ],
+      "angle": "Results are forum threads (tianpan.co), a metaCTO blog, Codacy and DevOps.com: mostly anecdote. Put a number on the problem with the homepage calculator logic (engineers x PRs x review minutes x routine share = senior FTEs lost to review), cite DORA 2025 (AI adoption linked to higher throughput and lower stability), give five structural fixes in order of effort (small specs, plan sign-off, automated gates, risk-scored merge, CODEOWNERS rotation), and explain why adding an AI reviewer alone only moves the bottleneck.",
+      "outline": [
+        "Short answer",
+        "Why AI moved the bottleneck from writing to reviewing",
+        "The capacity math: senior hours lost to review",
+        "Why an AI reviewer alone only moves the queue",
+        "Five structural fixes, in order of effort",
+        "What to measure after the fix"
+      ],
+      "original_asset": "Worked review-capacity formula with three illustrative team sizes and a link to the homepage review-cost calculator.",
+      "sme_questions": [
+        "What review-load numbers did we see before pilots (hours per senior engineer per week), anonymized?",
+        "Which of the five fixes gives the fastest relief in practice?",
+        "Where have we seen an AI reviewer make the queue worse?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "DORA 2025 findings on AI adoption, throughput and stability (exact wording)",
+        "Calculator formula and default inputs match the live homepage widget",
+        "Any PR review-time benchmark cited, with primary source"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #3 (5x4). Leader-level; the reviewer how-to stays in N02. The competitor report also suggests a standalone, indexable \"AI code review cost calculator\" page: that is a tool page outside this writing pipeline, so link to the homepage calculator until it exists."
+    },
+    {
+      "id": "R02",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 5,
+      "week": 2,
+      "score": 16,
+      "cluster": "D",
+      "working_title": "AI Agent Frameworks 2026: OpenAI Agents SDK, Claude Agent SDK, LangGraph and More",
+      "section": "learn",
+      "slug": "top-ai-agent-platforms",
+      "path": "/learn/top-ai-agent-platforms",
+      "content_file": "tools/v4-build/content/learn__top-ai-agent-platforms.json",
+      "kind": "guide",
+      "primary_keyword": "AI agent frameworks 2026",
+      "secondary_keywords": [
+        "best AI agent frameworks",
+        "Claude Agent SDK vs OpenAI Agents SDK",
+        "LangGraph vs CrewAI",
+        "Microsoft Agent Framework",
+        "AWS Bedrock AgentCore"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, head of AI, engineering lead",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "/platform",
+        "/learn/how-ai-agents-work",
+        "N22",
+        "N39",
+        "N35"
+      ],
+      "angle": "The page compares only AutoGen, LangChain, Vertex and Copilot Studio and is out of date; year-stamped framework comparisons get steady demand. Rewrite with a dated comparison of the 2026 frameworks and the point that the framework matters less than who ships it.",
+      "outline": [
+        "Short answer",
+        "How we compared (and the date we checked)",
+        "The 2026 frameworks at a glance",
+        "OpenAI Agents SDK",
+        "Claude Agent SDK",
+        "LangGraph",
+        "Microsoft Agent Framework",
+        "Google ADK",
+        "AWS Bedrock AgentCore",
+        "CrewAI",
+        "How to choose",
+        "Why the framework matters less than who ships it"
+      ],
+      "original_asset": "Dated comparison table for 7 frameworks (language, hosting, multi-agent support, evals and observability, enterprise controls, license).",
+      "sme_questions": [
+        "Which frameworks do we use in production, and why?",
+        "When do we pick a hosted platform over a code framework?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Status, naming and features of OpenAI Agents SDK, Claude Agent SDK, LangGraph, Microsoft Agent Framework (successor to AutoGen and Semantic Kernel), Google ADK, AWS Bedrock AgentCore and CrewAI",
+        "Licenses and pricing",
+        "Deprecation status of AutoGen and Semantic Kernel"
+      ],
+      "review_every_days": 90,
+      "cta": "booking",
+      "refresh_actions": [
+        "Rewrite for 2026 and retarget title, H1 and meta to \"AI agent frameworks 2026\"",
+        "Cover OpenAI Agents SDK, Claude Agent SDK, LangGraph, Microsoft Agent Framework (successor to AutoGen and Semantic Kernel), Google ADK, AWS Bedrock AgentCore and CrewAI",
+        "Verify every fact against vendor docs and mark it \"as of Month YYYY\"",
+        "Change the aside to /forward-deployed-engineer (\"choosing a framework matters less than who ships it\")",
+        "Keep the slug; point related links at the FDE cluster (N22, N35) as they ship"
+      ],
+      "notes": "Strategy R2, week 2. Moves the page from cluster E to D (it feeds the FDE cluster). \"best AI agents for automating business processes\" is left to R08. Score 4x4=16 is an estimate."
+    },
+    {
+      "id": "N06",
+      "type": "new",
+      "status": "queued",
+      "queue": 6,
+      "week": 2,
+      "score": 20,
+      "cluster": "C",
+      "working_title": "Fractional Chief AI Officer Cost in 2026: Fractional vs Full-Time CAIO vs AI Consultant (US, India, UK)",
+      "section": "compare",
+      "slug": "fractional-chief-ai-officer-cost",
+      "path": "/compare/fractional-chief-ai-officer-cost",
+      "content_file": "tools/v4-build/content/compare__fractional-chief-ai-officer-cost.json",
+      "kind": "comparison",
+      "primary_keyword": "fractional chief AI officer cost",
+      "secondary_keywords": [
+        "fractional CAIO pricing",
+        "fractional CAIO vs AI consultant",
+        "fractional vs full-time chief AI officer",
+        "do we need a chief AI officer",
+        "fractional chief AI officer India"
+      ],
+      "intent": "commercial",
+      "persona": "CEO, COO and CFO at companies of 100-2,000 employees",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer#economics",
+        "/ai-engineering-governance",
+        "/learn/enterprise-ai-strategy",
+        "/insights/roi-business-case-ai-agents",
+        "N20",
+        "N21",
+        "N42",
+        "N45"
+      ],
+      "angle": "Results are vendor and solo-consultant pages (Lilach Bullock, Go Fractional, ThirstySprout, JRG Partners, EPC Group, Goryachev) with vague scope, conflicting figures and UK-heavy sources. Be the transparent, sourced option: a cost table for full-time CAIO ($400K-$750K+ plus 6-12 months to hire), project consulting ($500K+) and the fractional market range, split by US, India and UK and by retainer vs day rate. Publish the $1,999/month floor, 8-12 hours a week and the Day-30 walk-away, and explain why that floor is possible so it is not mistaken for a different product. Add a decision tree by situation, what the first 90 days must produce, 7 red flags in a proposal, and say plainly when a full-time CAIO is the right call.",
+      "outline": [
+        "Short answer",
+        "What a fractional CAIO costs in 2026: US, India and UK",
+        "Fractional vs full-time CAIO vs AI consultant: cost and scope",
+        "Why a $1,999 a month starting point is possible",
+        "Which option fits your situation",
+        "What the first 90 days must produce",
+        "Seven red flags in a proposal",
+        "When a full-time CAIO is the right call"
+      ],
+      "original_asset": "Sourced three-market cost table (US, India, UK; retainer, day rate, full-time and project consulting), a situation decision tree and a 7-item proposal red-flag checklist.",
+      "sme_questions": [
+        "What does the $1,999/month floor include and exclude, and what moves a client above it?",
+        "Why can Upcore start far below the $15K-$30K a month other vendors quote: what is structurally different?",
+        "When have you told a prospect they need a full-time CAIO instead?",
+        "What red flags have you seen in other fractional or consulting proposals?",
+        "What must a client have in hand at Day 30 and Day 90?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Upcore pricing and scope on /fractional-ai-officer: from $1,999/month, 8-12 hours a week, inventory in 10 business days, Day-30 decision package",
+        "Full-time CAIO compensation range ($400K-$750K+) from a primary compensation source",
+        "Fractional market figures: Goryachev $15K/month minimum, EPC Group $8K-$90K/month tiers, Lilach Bullock GBP 1.5K-15K/month, Go Fractional $150-$250/hr",
+        "India fractional CAIO rate sources (Gyde and others)",
+        "Currency conversions dated"
+      ],
+      "review_every_days": 90,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #6 (5x4) MERGED with competitor gap #2 \"Fractional chief AI officer cost 2026 (US vs India vs UK)\" and the 3-way comparison. Primary moved from \"fractional chief AI officer\" to \"fractional chief AI officer cost\": the competitor action plan gives the head term to the money page (/fractional-ai-officer should add \"Fractional Chief AI Officer (CAIO)\" to its title and H1). Slug changed from fractional-ai-officer-vs-chief-ai-officer to carry the primary keyword. Role content stays in N20 (strategy pair [6] vs [20]); consulting engagement pricing stays in N45."
+    },
+    {
+      "id": "N04",
+      "type": "new",
+      "status": "queued",
+      "queue": 7,
+      "week": 3,
+      "score": 20,
+      "cluster": "B",
+      "working_title": "What AI Coding Tools Really Cost per Developer in 2026 (and How to Control the Token Bill)",
+      "section": "learn",
+      "slug": "ai-coding-tools-cost-per-developer",
+      "path": "/learn/ai-coding-tools-cost-per-developer",
+      "content_file": "tools/v4-build/content/learn__ai-coding-tools-cost-per-developer.json",
+      "kind": "guide",
+      "primary_keyword": "AI coding tools cost per developer",
+      "secondary_keywords": [
+        "Claude Code cost per developer",
+        "Claude Code enterprise pricing",
+        "GitHub Copilot usage-based billing",
+        "Cursor pricing for teams",
+        "AI token budget per engineer"
+      ],
+      "intent": "commercial",
+      "persona": "CTO, CFO, VP Engineering",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/fractional-ai-officer",
+        "N12",
+        "N17",
+        "N18",
+        "N27"
+      ],
+      "angle": "Results are a Jellyfish guide, Larridin and news about Gartner warning that token costs could pass developer pay by 2028. Give a cost model (seat + usage + premium-model share + the cost of review time), three illustrative team profiles, and eight controls: model routing by task, context hygiene, per-team budgets and burn alerts, removing idle seats, consolidating overlapping tools, cost per merged change, caps on agent loops, and a monthly review.",
+      "outline": [
+        "Short answer",
+        "What you pay for: seats, usage and premium models",
+        "The hidden line item: review time",
+        "Three illustrative team profiles",
+        "Eight controls for the token bill",
+        "Cost per merged change: the number to report",
+        "A monthly spend review"
+      ],
+      "original_asset": "Per-developer cost model worksheet (seat + usage + premium-model share + review time) with three illustrative team profiles and an eight-control checklist.",
+      "sme_questions": [
+        "What monthly spend per engineer have we seen for agentic tools in client teams (ranges only, anonymized)?",
+        "Which single control cut token spend the most?",
+        "How do we compute cost per merged change in practice?",
+        "What does the monthly spend review look like in the governance retainer (L5 Optimize)?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Claude Code, GitHub Copilot, Cursor and Codex plan prices and usage-based billing terms as of publish month",
+        "The reported June 2026 GitHub Copilot billing change",
+        "Gartner prediction that AI coding token costs could exceed developer salaries by 2028 (primary Gartner source)",
+        "Larridin figure of $200-$2,000+ per engineer per month for agentic tools (primary source)"
+      ],
+      "review_every_days": 90,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #4 (5x4). Every price carries \"as of Month YYYY\". Absorbs the competitor report's \"Claude Code enterprise pricing\" and \"token budgets\" demand; Claude Code admin controls belong to N43."
+    },
+    {
+      "id": "R07",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 8,
+      "week": 3,
+      "score": 20,
+      "cluster": "B",
+      "working_title": "HIPAA-Compliant AI Agents for Healthcare (fix statistics)",
+      "section": "learn",
+      "slug": "hipaa-compliant-ai",
+      "path": "/learn/hipaa-compliant-ai",
+      "content_file": "tools/v4-build/content/learn__hipaa-compliant-ai.json",
+      "kind": "guide",
+      "primary_keyword": "HIPAA compliant AI",
+      "secondary_keywords": [
+        "is ChatGPT HIPAA compliant",
+        "HIPAA compliant AI agents",
+        "AI vendor BAA for healthcare"
+      ],
+      "intent": "informational/commercial",
+      "persona": "COO, CIO or compliance officer at US healthcare organizations",
+      "market": "US",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/security",
+        "/platform",
+        "N15",
+        "N31"
+      ],
+      "angle": "The only clearly US-focused page has wrong numbers, which hurts trust. Correct and source every figure, update vendor BAA availability, and add a practical HIPAA checklist for AI agents.",
+      "outline": [
+        "Short answer",
+        "What HIPAA requires of AI systems",
+        "BAAs: which AI vendors sign them",
+        "Technical safeguards for AI agents",
+        "Breach costs and risk",
+        "A HIPAA checklist for AI agents"
+      ],
+      "original_asset": "HIPAA checklist for AI agents (BAA, access, logging, minimum necessary, retention).",
+      "sme_questions": [
+        "Which HIPAA controls did the dental network deployment require?",
+        "Which vendor BAA terms do we check first?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "IBM Cost of a Data Breach 2024 healthcare average (about $9.8M; the page says $1.9M)",
+        "The \"83%\" figure: source it or remove it",
+        "Current BAA availability: OpenAI (ChatGPT Enterprise, API), Anthropic, Microsoft Azure OpenAI, Google",
+        "Any 2025-2026 HIPAA Security Rule changes"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [
+        "Correct the breach-cost statistic (IBM 2024 healthcare average is about $9.8M, not $1.9M; verify)",
+        "Source or remove the \"83%\" figure",
+        "Update the \"Is ChatGPT HIPAA compliant?\" FAQ for current vendor BAA availability",
+        "Link to N15 (dental groups) once live",
+        "Add the named author, reviewer and Updated date"
+      ],
+      "notes": "Strategy R7, week 3 (quick win: wrong numbers on the only US page). Score 4x5=20 is an estimate."
+    },
+    {
+      "id": "N07",
+      "type": "new",
+      "status": "queued",
+      "queue": 9,
+      "week": 3,
+      "score": 20,
+      "cluster": "D",
+      "working_title": "Forward Deployed Engineer vs AI Consultant vs Agency vs Staff Augmentation: Who Gets Your AI Pilot Live?",
+      "section": "compare",
+      "slug": "forward-deployed-engineer-vs-consultant",
+      "path": "/compare/forward-deployed-engineer-vs-consultant",
+      "content_file": "tools/v4-build/content/compare__forward-deployed-engineer-vs-consultant.json",
+      "kind": "comparison",
+      "primary_keyword": "forward deployed engineer vs consultant",
+      "secondary_keywords": [
+        "forward deployed engineer vs staff augmentation",
+        "FDE vs AI agency",
+        "AI implementation partner",
+        "how is an FDE different from staff augmentation"
+      ],
+      "intent": "commercial",
+      "persona": "CTO, COO or head of AI with a stalled pilot",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "/platform",
+        "/ai-native-engineering",
+        "/learn/top-ai-agent-platforms",
+        "N22",
+        "N23",
+        "N41"
+      ],
+      "angle": "Results for \"forward deployed engineer\" are job-seeker content; fde.academy and SD Times cover \"FDE vs X\" for careers. Build the buyer-side ownership table (the 5 FDE stages: discover, build, integrate, deploy, iterate x the 4 hiring models), explain how each model is priced in one short section (detailed figures live in N41), reuse the FDE page's honest \"choose something else when\" section, and add vetting questions, since many FDE titles are relabeled implementation roles (cite this).",
+      "outline": [
+        "Short answer",
+        "Four ways to get an AI pilot into production",
+        "Who owns what: the 5-stage ownership table",
+        "How each model is priced (structure, not rate cards)",
+        "When to choose something other than an FDE",
+        "Vetting questions before you sign"
+      ],
+      "original_asset": "Ownership matrix (5 delivery stages x 4 hiring models) plus a 10-question vendor vetting checklist.",
+      "sme_questions": [
+        "In stalled pilots we have picked up, which stage had the previous model left unowned?",
+        "What do we tell prospects when staff augmentation or an agency is the better choice?",
+        "Who owns the code and IP an outside FDE writes in our engagements?",
+        "Which questions expose a relabeled implementation role?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "FDE posting growth (Indeed 643 to 5,330, Apr 2025 to Apr 2026, via Georgia Southern citing Business Insider): trace to the primary source",
+        "Source for the claim that many FDE titles are relabeled implementation roles",
+        "FDE stages and the \"choose something else when\" wording on /forward-deployed-engineer"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #7 (5x4). Competitor best gap #1 (FDE as a service, FDE cost) is split into N41 so this page keeps one primary keyword. Secondaries \"FDE as a service\" (now N41) and \"fractional forward deployed engineer\" (money page /forward-deployed-engineer, whose title already matches) were removed."
+    },
+    {
+      "id": "N05",
+      "type": "new",
+      "status": "queued",
+      "queue": 10,
+      "week": 4,
+      "score": 20,
+      "cluster": "B",
+      "working_title": "SOC 2 and AI-Generated Code: The Audit Trail Your Auditor Will Ask For",
+      "section": "learn",
+      "slug": "soc-2-ai-generated-code-audit-trail",
+      "path": "/learn/soc-2-ai-generated-code-audit-trail",
+      "content_file": "tools/v4-build/content/learn__soc-2-ai-generated-code-audit-trail.json",
+      "kind": "guide",
+      "primary_keyword": "SOC 2 AI-generated code",
+      "secondary_keywords": [
+        "audit trail for AI coding agents",
+        "AI code provenance",
+        "change management for AI coding",
+        "ISO 42001 AI coding agents",
+        "AI compliance evidence"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, CISO or compliance lead at US B2B SaaS companies selling to enterprises",
+      "market": "US",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/ai-native-engineering",
+        "/security",
+        "/learn/ai-data-governance",
+        "N01",
+        "N12"
+      ],
+      "angle": "Results are dev.to posts, small vendor blogs, MintMCP and a Qodo glossary entry; there is no AICPA guidance yet. Give a per-change evidence table (spec or ticket ID, tool and model version, who started the change, checks and results, risk score, approver, deploy record), map it to typical SOC 2 change-management controls and to ISO/IEC 42001 controls, and outline a reusable evidence pack for security questionnaires. Add a \"not audit advice\" note.",
+      "outline": [
+        "Short answer",
+        "What auditors ask about AI-written changes",
+        "The per-change evidence table",
+        "Mapping the evidence to SOC 2 change-management controls",
+        "Mapping the same evidence to ISO 42001",
+        "A reusable evidence pack for security questionnaires",
+        "What this is not: audit advice"
+      ],
+      "original_asset": "Per-change evidence table plus a control-mapping matrix (review gates, logging, credential scope, rollback mapped to SOC 2 criteria and ISO 42001), with an evidence-pack outline for security questionnaires.",
+      "sme_questions": [
+        "What evidence do we keep per change in the decision log, and where does it live?",
+        "What have enterprise security questionnaires asked our clients about AI-written code?",
+        "How does our ISO 27001 practice shape the evidence we recommend keeping?",
+        "Where do teams usually have a gap when an auditor asks who approved an AI-written change?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "SOC 2 Trust Services Criteria IDs for change management (for example CC8.1) before citing them",
+        "ISO/IEC 42001:2023 Annex A control references",
+        "Whether the AICPA has issued any guidance on AI-generated code",
+        "Upcore certifications exactly as on /security (ISO 27001, ISO 9001, CMMI L3)"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #5 (5x4). WRITER.md rule: never mention SOC 2 certification for Upcore; this article covers clients' SOC 2 audits only. Merged from the competitor report: ISO 42001 for AI coding agents (best gap #8) and \"audit trails for AI coding agents: what ISO 42001 and SOC 2 auditors expect\" (Month 2) live here as a secondary keyword and section, not a separate thin page (the strategy parked ISO 42001 at 6)."
+    },
+    {
+      "id": "R03",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 11,
+      "week": 4,
+      "score": 12,
+      "cluster": "B",
+      "working_title": "AI Vendor Due Diligence Questions and an AI Governance Checklist",
+      "section": "learn",
+      "slug": "ai-data-governance",
+      "path": "/learn/ai-data-governance",
+      "content_file": "tools/v4-build/content/learn__ai-data-governance.json",
+      "kind": "guide",
+      "primary_keyword": "AI vendor due diligence questions",
+      "secondary_keywords": [
+        "AI governance checklist",
+        "AI vendor risk assessment",
+        "AI data governance"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CISO, CTO, procurement and compliance leads",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/security",
+        "N12",
+        "N17",
+        "N44",
+        "N29"
+      ],
+      "angle": "Generic \"AI data governance\" content cannot win against large vendors; the page's 15 vendor questions are the linkable asset. Lead with them as a scored questionnaire and add the regulatory dates buyers need.",
+      "outline": [
+        "Short answer",
+        "The 15 questions to ask every AI vendor",
+        "How to score the answers",
+        "The data governance checklist",
+        "Regulatory dates that matter",
+        "Keeping the review current"
+      ],
+      "original_asset": "The existing 15 AI vendor due diligence questions turned into a scored questionnaire.",
+      "sme_questions": [
+        "Which vendor answers make us walk away?",
+        "Which of the 15 questions do vendors answer worst?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "EU AI Act Article 50 application date (2 August 2026) and any Omnibus transitional period",
+        "DPDP Rules dates (notified November 2025; full compliance about May 2027)",
+        "The \"62%\" figure: source it or remove it"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [
+        "Retarget title, H1 and meta to \"AI vendor due diligence questions\" and \"AI governance checklist\"",
+        "Make the 15 vendor questions the lead asset, as a scored questionnaire",
+        "Add EU AI Act Article 50 (applies from 2 August 2026) in one short paragraph and link to N44 for the post-Omnibus timeline",
+        "Add the DPDP Rules dates (notified November 2025; full compliance May 2027) and link to N29",
+        "Source or remove the \"62%\" figure",
+        "Link to N12 and N17"
+      ],
+      "notes": "Strategy R3, week 4. Strategy pair: N17 owns coding governance; this page owns data and vendors. Score 4x3=12 is an estimate."
+    },
+    {
+      "id": "N08",
+      "type": "new",
+      "status": "queued",
+      "queue": 12,
+      "week": 4,
+      "score": 16,
+      "cluster": "A",
+      "working_title": "A Spec Template for AI Coding Agents (Jira and Linear Versions)",
+      "section": "learn",
+      "slug": "spec-template-ai-coding-agents",
+      "path": "/learn/spec-template-ai-coding-agents",
+      "content_file": "tools/v4-build/content/learn__spec-template-ai-coding-agents.json",
+      "kind": "guide",
+      "primary_keyword": "spec template for AI coding agents",
+      "secondary_keywords": [
+        "spec-driven development",
+        "Jira ticket template for AI",
+        "acceptance criteria for AI coding",
+        "GitHub Spec Kit",
+        "spec-driven development enterprise"
+      ],
+      "intent": "informational",
+      "persona": "Engineering manager, tech lead, product manager",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/learn/what-is-ai-native-engineering",
+        "N09",
+        "N01",
+        "N13"
+      ],
+      "angle": "Results explain spec-driven development (TrueFoundry, Vention, Built In, Allstacks) and map 30+ frameworks, but almost none give a ticket template that works in Jira or Linear. Give the template (scope, out of scope, testable acceptance criteria, services touched, data changes, rules that apply, risk notes), a filled example (partial refunds, matching the homepage), and answer \"is spec-driven development just Waterfall 2.0?\" (one spec per change, not per project).",
+      "outline": [
+        "Short answer",
+        "Why AI coding agents need a spec, not a prompt",
+        "The template, field by field",
+        "A filled example: partial refunds",
+        "Jira and Linear versions",
+        "Is spec-driven development just Waterfall 2.0?",
+        "How specs feed plan sign-off and tests"
+      ],
+      "original_asset": "Copy-paste spec template in Jira and Linear formats with a filled partial-refunds example.",
+      "sme_questions": [
+        "Which fields does our spec template require, and which do teams skip first?",
+        "How long does a good spec take to write for a typical change?",
+        "Where did a missing spec field cause costly rework in a pilot (anonymized)?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "GitHub Spec Kit and AWS Kiro: current features and naming",
+        "Jira and Linear template capabilities referenced",
+        "The partial-refunds example matches the live homepage wording"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #8 (4x4). Spec-driven development (competitor table A, Med and rising) stays a secondary keyword here."
+    },
+    {
+      "id": "N09",
+      "type": "new",
+      "status": "queued",
+      "queue": 13,
+      "week": 5,
+      "score": 16,
+      "cluster": "A",
+      "working_title": "AGENTS.md, CLAUDE.md and Cursor Rules: Writing Architecture Rules AI Follows and CI Enforces",
+      "section": "learn",
+      "slug": "architecture-rules-ai-coding-agents",
+      "path": "/learn/architecture-rules-ai-coding-agents",
+      "content_file": "tools/v4-build/content/learn__architecture-rules-ai-coding-agents.json",
+      "kind": "guide",
+      "primary_keyword": "AGENTS.md best practices",
+      "secondary_keywords": [
+        "CLAUDE.md vs AGENTS.md",
+        "Cursor rules",
+        "architecture decision records for AI",
+        "AI coding guardrails"
+      ],
+      "intent": "informational",
+      "persona": "Architect, staff engineer, platform lead",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/ai-engineering-governance",
+        "N08",
+        "N01",
+        "N10",
+        "N43"
+      ],
+      "angle": "Results (dev.to, DeployHQ, Unblocked, Augment) stop at what to put in the file. Explain two layers (instructions are advisory, checks are enforced), show how to turn architecture decision records, schema rules and API conventions into CI checks, and cover keeping one source of truth across Claude Code, Cursor, Copilot and Codex and handling drift.",
+      "outline": [
+        "Short answer",
+        "Instructions advise, checks enforce",
+        "What belongs in AGENTS.md, CLAUDE.md and Cursor rules",
+        "Turning ADRs, schema rules and API conventions into CI checks",
+        "One source of truth across tools",
+        "Detecting and fixing rule drift"
+      ],
+      "original_asset": "Starter AGENTS.md skeleton with a table mapping each rule to the CI check that enforces it.",
+      "sme_questions": [
+        "Which rules do agents ignore most often when they live only in the instructions file?",
+        "How do we generate tool-specific files (CLAUDE.md, Cursor rules) from one source?",
+        "Can you share one ADR we turned into an automated check (anonymized)?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Which tools read AGENTS.md natively, and current file names and locations for CLAUDE.md, Cursor rules and Copilot instructions",
+        "Any body now stewarding the AGENTS.md format"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #9 (4x4). Written or reviewed by a Claude Certified Architect. Tool control-plane settings (managed settings, hooks, spend caps) belong to N43, not here."
+    },
+    {
+      "id": "R04",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 14,
+      "week": 5,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "Human in the Loop AI Agents: The L0-L4 Autonomy Levels",
+      "section": "insights",
+      "slug": "human-in-the-loop",
+      "path": "/insights/human-in-the-loop",
+      "content_file": "tools/v4-build/content/insights__human-in-the-loop.json",
+      "kind": "framework",
+      "primary_keyword": "human in the loop AI agents",
+      "secondary_keywords": [
+        "AI agent autonomy levels",
+        "human oversight of AI agents",
+        "human in the loop automation"
+      ],
+      "intent": "informational",
+      "persona": "COO, CTO",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/ai-native-engineering",
+        "N31",
+        "N35",
+        "N11"
+      ],
+      "angle": "Upcore's own L0-L4 framework is a differentiator the page does not use. Add it, which also removes the need for a separate autonomy-levels article, and replace unsourced figures.",
+      "outline": [
+        "Short answer",
+        "Why autonomy is earned",
+        "The L0-L4 autonomy levels",
+        "Choosing the level for each step",
+        "Moving an agent up a level",
+        "Where people always stay in the loop"
+      ],
+      "original_asset": "L0-L4 autonomy ladder table (what the agent does, what the person does, evidence needed to move up).",
+      "sme_questions": [
+        "What evidence moves a workflow from L2 to L3 in our deployments?",
+        "Which decisions never go above L2?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "L0-L4 wording on /platform",
+        "The 80/20 and 85%/95% figures: source them or remove them"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Retarget to \"human in the loop AI agents\"",
+        "Add the L0-L4 autonomy levels from /platform (replaces a separate autonomy-levels article)",
+        "Add 4-6 FAQs and 2-4 body links, including /platform and /ai-native-engineering (\"autonomy is earned\")",
+        "Remove or source the 80/20 and 85%/95% figures",
+        "Point related links at same-cluster pages; US spelling"
+      ],
+      "notes": "Strategy R4, week 5. Score 3x4=12 is an estimate."
+    },
+    {
+      "id": "N10",
+      "type": "new",
+      "status": "queued",
+      "queue": 15,
+      "week": 5,
+      "score": 16,
+      "cluster": "B",
+      "working_title": "Slopsquatting: How to Block Hallucinated Packages Before They Ship",
+      "section": "learn",
+      "slug": "slopsquatting-hallucinated-packages",
+      "path": "/learn/slopsquatting-hallucinated-packages",
+      "content_file": "tools/v4-build/content/learn__slopsquatting-hallucinated-packages.json",
+      "kind": "guide",
+      "primary_keyword": "slopsquatting",
+      "secondary_keywords": [
+        "hallucinated packages",
+        "AI package hallucination",
+        "AI supply chain security",
+        "dependency allowlist in CI"
+      ],
+      "intent": "informational",
+      "persona": "CISO, AppSec lead, platform lead",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/security",
+        "N02",
+        "N12",
+        "N28"
+      ],
+      "angle": "Results are news explainers (Infosecurity, Kaspersky, CSO, CSA) built on the USENIX Security 2025 study; few give controls. Give layered controls (a lockfile-diff gate, a registry-proxy allowlist, package age and download thresholds, blocking installs started by agents, an SBOM), a 10-minute self-check, and cite the primary study.",
+      "outline": [
+        "Short answer",
+        "How slopsquatting works",
+        "What the research found",
+        "Five layered controls",
+        "Blocking agent-initiated installs",
+        "A 10-minute self-check"
+      ],
+      "original_asset": "10-minute slopsquatting self-check plus a sample CI lockfile-diff gate and registry-proxy allowlist policy.",
+      "sme_questions": [
+        "Which of the five controls do we install first in a governance engagement (L3 Protect)?",
+        "Have we caught a hallucinated or look-alike dependency in a client repo (anonymized)?",
+        "What package age and download thresholds do we recommend as a starting point?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "USENIX Security 2025 package hallucination study: hallucination rate, unique names, repeat rate",
+        "Registry proxy products and settings named (Artifactory, Nexus, npm and PyPI options)",
+        "Claims about AI coding tools running package installs"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #10 (4x4)."
+    },
+    {
+      "id": "N11",
+      "type": "new",
+      "status": "queued",
+      "queue": 16,
+      "week": 6,
+      "score": 16,
+      "cluster": "E",
+      "working_title": "AI Agents That Chase Documents: Automating Collection and Checks Without Losing Control",
+      "section": "insights",
+      "slug": "ai-document-collection-agent",
+      "path": "/insights/ai-document-collection-agent",
+      "content_file": "tools/v4-build/content/insights__ai-document-collection-agent.json",
+      "kind": "playbook",
+      "primary_keyword": "automate document collection",
+      "secondary_keywords": [
+        "AI document chasing",
+        "missing-document follow-up automation",
+        "loan document collection AI",
+        "client document collection"
+      ],
+      "intent": "commercial",
+      "persona": "COO or operations leader in lending, real estate, accounting or staffing",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/who-we-help/operations-heavy",
+        "/who-we-help/professional-services",
+        "/insights/nbfc-kyc-automation",
+        "/insights/human-in-the-loop",
+        "/results",
+        "N38"
+      ],
+      "angle": "Results are fragmented niche vendors (Enterprise DNA, Azilen, EasySend, Spendflo). Write one cross-industry playbook for the chase loop (request, check against the SOP, remind across email and WhatsApp, escalate exceptions), set an autonomy level per step (L2 moving to L3) and one key metric (time to a complete file), use the residential developer case from /results (first installment from 6-10 weeks to about 3), and give US and India examples.",
+      "outline": [
+        "Short answer",
+        "Why document chasing eats operations time",
+        "The chase loop: request, check, remind, escalate",
+        "An autonomy level for each step",
+        "The metric that matters: time to a complete file",
+        "Case: a residential developer's first installment",
+        "US and India examples by industry"
+      ],
+      "original_asset": "Chase-loop map with an autonomy level per step, an escalation rule table and a time-to-complete-file tracking sheet.",
+      "sme_questions": [
+        "Which steps in the residential developer's chase loop ran at L2 and which at L3, and what moved a step up?",
+        "Which exceptions always go to a person?",
+        "Which US workflow (lending, accounting, staffing) maps most closely to that case?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Residential developer case figures exactly as on /results (6-10 weeks to about 3 weeks)",
+        "L0-L4 autonomy wording matches /platform",
+        "WhatsApp Business messaging rules referenced"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #11 (4x4). Strategy pair [11] vs nbfc-kyc-automation: this page is cross-industry; India lending specifics stay on /insights/nbfc-kyc-automation. No client names."
+    },
+    {
+      "id": "R05",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 17,
+      "week": 6,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "Which Process to Automate First with AI Agents",
+      "section": "insights",
+      "slug": "choosing-first-ai-agent",
+      "path": "/insights/choosing-first-ai-agent",
+      "content_file": "tools/v4-build/content/insights__choosing-first-ai-agent.json",
+      "kind": "framework",
+      "primary_keyword": "which process to automate first with AI",
+      "secondary_keywords": [
+        "first AI agent",
+        "AI automation use cases to start with",
+        "choosing a process for AI automation"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CEO",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/assessment",
+        "/results",
+        "N11",
+        "N24",
+        "N37"
+      ],
+      "angle": "The page is the entry point for the BPA cluster but frames the choice in rupees and has no real cases. Make it market-neutral, add a scoring rubric and real cases from /results.",
+      "outline": [
+        "Short answer",
+        "What makes a good first process",
+        "A scoring rubric for candidate processes",
+        "Real examples from production agents",
+        "Processes to avoid first",
+        "From choice to a first agent in 30 days"
+      ],
+      "original_asset": "Candidate-process scoring rubric (volume, rule clarity, data access, risk, measurable outcome).",
+      "sme_questions": [
+        "Which first agents on /results paid back fastest, and why?",
+        "Which first process do we talk prospects out of?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Case facts as on /results",
+        "\"First agent live within 30 days of design sign-off\" wording on /platform"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Retarget to \"which process to automate first with AI\"",
+        "Replace the rupee \"5 Lakh\" framing in the H1 with neutral or USD framing",
+        "Add real cases from /results (no client names)",
+        "Link to /platform and /assessment in the body",
+        "Add 4-6 FAQs; fix related links"
+      ],
+      "notes": "Strategy R5, week 6. Score 3x4=12 is an estimate."
+    },
+    {
+      "id": "N12",
+      "type": "new",
+      "status": "queued",
+      "queue": 18,
+      "week": 6,
+      "score": 15,
+      "cluster": "B",
+      "working_title": "AI Coding Policy Template for Engineering Teams (With the Enforcement Behind Each Rule)",
+      "section": "learn",
+      "slug": "ai-coding-policy-template",
+      "path": "/learn/ai-coding-policy-template",
+      "content_file": "tools/v4-build/content/learn__ai-coding-policy-template.json",
+      "kind": "guide",
+      "primary_keyword": "AI coding policy template",
+      "secondary_keywords": [
+        "AI usage policy for engineering teams",
+        "generative AI acceptable use policy for developers",
+        "Copilot usage policy"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, CISO, VP Engineering",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/security",
+        "/learn/ai-data-governance",
+        "N10",
+        "N27",
+        "N17",
+        "N43"
+      ],
+      "angle": "Results are JetBrains, LearnCursor, MentorCruise and HR-style templates (McLean, Venn). Use the approved / restricted / prohibited / escalation-required tiers from the service page, map each clause to the control that enforces it (managed settings, repo rules, a CI gate, detection), name owners and a review cadence, and offer copy-paste markdown.",
+      "outline": [
+        "Short answer",
+        "Why most AI policies fail: no enforcement",
+        "Four tiers: approved, restricted, prohibited, escalation required",
+        "The template, clause by clause",
+        "The control behind each clause",
+        "Owners, exceptions and review cadence",
+        "Getting it live in 14 days"
+      ],
+      "original_asset": "Copy-paste markdown AI coding policy with a clause-to-control enforcement map and an owner and review-cadence table.",
+      "sme_questions": [
+        "What is in the policy we get live by Day 14, and which clause is debated longest?",
+        "Which clauses can be enforced technically, and which rely on detection?",
+        "How do we handle exception requests in practice?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Tier names and \"policy live by Day 14\" match /ai-engineering-governance",
+        "Admin and managed-settings capabilities named for each coding tool"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #12 (5x3). The competitor report suggests a gated download (Month 2); gating needs a site form, so the core template stays ungated on the page."
+    },
+    {
+      "id": "N17",
+      "type": "new",
+      "status": "queued",
+      "queue": 19,
+      "week": 7,
+      "score": 15,
+      "cluster": "B",
+      "working_title": "AI Code Governance: The CTO's Guide to AI-Written Code, Spend and Risk",
+      "section": "learn",
+      "slug": "ai-coding-governance",
+      "path": "/learn/ai-coding-governance",
+      "content_file": "tools/v4-build/content/learn__ai-coding-governance.json",
+      "kind": "guide",
+      "primary_keyword": "AI code governance",
+      "secondary_keywords": [
+        "AI governance for engineering teams",
+        "AI code governance tools",
+        "AI SDLC governance",
+        "who is accountable for AI-generated code",
+        "AI governance maturity assessment"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, CISO",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/learn/ai-data-governance",
+        "N04",
+        "N05",
+        "N10",
+        "N12",
+        "N27",
+        "N28",
+        "N31",
+        "N43",
+        "N44"
+      ],
+      "angle": "Every ranking page is a tool vendor (Qodo, JetBrains, SIG, Cycode, Hyqoo) built around its product. Be the vendor-neutral pillar: what AI code governance covers, the tool categories that exist and what no tool does (ownership, policy, rollout), who is accountable when AI-written code breaks production (cite CloudBees 2026), Upcore's 5 layers (Align, Accelerate, Protect, Comply, Optimize) and a 90-day plan with a Day-30 walk-away point.",
+      "outline": [
+        "Short answer",
+        "What AI code governance covers (and what it does not)",
+        "Who is accountable for AI-written code",
+        "The five layers: align, accelerate, protect, comply, optimize",
+        "Tool categories and what no tool can do",
+        "A 90-day plan",
+        "How to tell if it is working"
+      ],
+      "original_asset": "Five-layer governance framework table (layer, controls, owner, evidence, day it goes live), a 90-day plan and an accountability RACI.",
+      "sme_questions": [
+        "Who should own AI code governance in a 200-engineer org, and why?",
+        "What does Day 30 look like, and why do clients continue or walk away?",
+        "Which tool categories do clients already own, and what gap remains after buying them?",
+        "Where do we disagree with the tool vendors' framing?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "5 layers, 90-day plan and Day-30 walk-away wording on /ai-engineering-governance",
+        "CloudBees 2026: 46% place accountability for AI failures on the CTO or VP Engineering; 12% have a dedicated team",
+        "Gartner April 2026 research on governance for AI-native software engineering (title and claim)",
+        "Any tool capability claim"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #17 (5x3), pillar: publish only after 4 spokes are live (N04, N05, N10, N12 by week 6). MERGED: competitor best gap #4 (AI code governance from a services angle, tool categories, 90-day plan) and the Month 2 item \"who is accountable for AI-generated code\". Cannibalization: this page owns the informational head term \"AI code governance\"; the money page /ai-engineering-governance should use the phrase in copy but target \"AI code governance services\". Strategy pair: this page (coding) vs /learn/ai-data-governance (data and vendors). When live, add to FEATURED in build_insights.py."
+    },
+    {
+      "id": "R06",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 20,
+      "week": 7,
+      "score": 12,
+      "cluster": "C",
+      "working_title": "AI Business Case Template (Worked Example in USD and INR)",
+      "section": "insights",
+      "slug": "roi-business-case-ai-agents",
+      "path": "/insights/roi-business-case-ai-agents",
+      "content_file": "tools/v4-build/content/insights__roi-business-case-ai-agents.json",
+      "kind": "framework",
+      "primary_keyword": "AI business case template",
+      "secondary_keywords": [
+        "AI agent ROI calculation",
+        "business case for AI agents",
+        "AI investment justification"
+      ],
+      "intent": "commercial",
+      "persona": "CFO, COO, CEO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "N32",
+        "N21",
+        "N24"
+      ],
+      "angle": "All 46 money figures are in INR only, which loses US buyers. Retarget to the template query, show the worked example in USD and INR, and add a downloadable template.",
+      "outline": [
+        "Short answer",
+        "What a pre-investment AI business case must answer",
+        "The template, line by line",
+        "Worked example in USD and INR",
+        "Costs teams forget: tokens, monitoring, change management",
+        "From business case to board report"
+      ],
+      "original_asset": "Downloadable AI business case template with a worked example in USD and INR.",
+      "sme_questions": [
+        "Which assumptions do CFOs challenge most in AI business cases?",
+        "Which cost lines are most often missing?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Every money figure recalculated with a dated exchange rate",
+        "Any ROI benchmark sourced"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Retarget to \"AI business case template\"",
+        "Show the worked example in USD and INR (all 46 money figures are INR only today)",
+        "Add a downloadable template",
+        "Link to N32 (after-investment reporting) and /fractional-ai-officer",
+        "Add 4-6 FAQs and body links; US spelling"
+      ],
+      "notes": "Strategy R6, week 7. Strategy pair: before the investment here, after the investment in N32. Score 3x4=12 is an estimate."
+    },
+    {
+      "id": "N13",
+      "type": "new",
+      "status": "queued",
+      "queue": 21,
+      "week": 7,
+      "score": 16,
+      "cluster": "A",
+      "working_title": "AI-Native vs AI-Assisted vs AI-First vs Agentic Engineering (and Where Vibe Coding Fits)",
+      "section": "compare",
+      "slug": "ai-native-vs-ai-assisted",
+      "path": "/compare/ai-native-vs-ai-assisted",
+      "content_file": "tools/v4-build/content/compare__ai-native-vs-ai-assisted.json",
+      "kind": "comparison",
+      "primary_keyword": "AI-native vs AI-assisted",
+      "secondary_keywords": [
+        "vibe coding vs agentic engineering",
+        "AI-native vs AI-first",
+        "AI-native vs AI-enabled",
+        "agentic engineering",
+        "is AI-native engineering the same as vibe coding"
+      ],
+      "intent": "informational",
+      "persona": "CTO, VP Engineering",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/learn/what-is-ai-native-engineering",
+        "/compare/ai-native-engineering-vs-ai-coding-tools",
+        "N08",
+        "N40"
+      ],
+      "angle": "Results define two or three of the terms (HatchWorks, EB Pearls, Larridin, Apiiro, Growth Acceleration Partners); none puts them all on one table or defines \"AI-native\", which is Upcore's category. Give one table across 7 dimensions (unit of work, rules, review, merge, release, record, who benefits) for AI-assisted, AI-enabled, AI-first, agentic, vibe coding and AI-native, a short H2 for each pair people search, and which approach fits which risk level.",
+      "outline": [
+        "Short answer",
+        "Six terms on one table",
+        "AI-native vs AI-assisted",
+        "AI-native vs AI-first and AI-enabled",
+        "Agentic engineering vs vibe coding",
+        "Which approach fits which risk level",
+        "Moving from assisted to native"
+      ],
+      "original_asset": "Six-term comparison table across 7 dimensions plus a risk-level fit matrix.",
+      "sme_questions": [
+        "How do we explain agentic engineering vs AI-native to a CTO in one sentence?",
+        "When is vibe coding acceptable in a client org, and where do we draw the line?",
+        "What signals tell us a team is AI-assisted and ready to move to AI-native?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Origin of the terms \"vibe coding\" and \"agentic engineering\", with sources",
+        "Any competitor framework named (for example HatchWorks GenDD) described accurately"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #13 (4x4) MERGED with competitor gap #6, the \"AI-native vs ___\" hub (nine autocomplete variants: AI-assisted, AI-first, AI-enabled, AI-powered, agentic). Primary moved from \"vibe coding vs agentic engineering\" to \"AI-native vs AI-assisted\"; the vibe coding pair stays as a secondary keyword and its own H2. Slug changed from vibe-coding-vs-agentic-engineering. Strategy pair [13] vs the AI-native guide: R01 keeps the definition query and shortens its \"AI-assisted versus AI-native\" section to a summary that links here."
+    },
+    {
+      "id": "N20",
+      "type": "new",
+      "status": "queued",
+      "queue": 22,
+      "week": 8,
+      "score": 15,
+      "cluster": "C",
+      "working_title": "What Does a Fractional AI Officer Do? Role, Weekly Cadence and 90-Day Deliverables",
+      "section": "learn",
+      "slug": "what-does-a-fractional-ai-officer-do",
+      "path": "/learn/what-does-a-fractional-ai-officer-do",
+      "content_file": "tools/v4-build/content/learn__what-does-a-fractional-ai-officer-do.json",
+      "kind": "guide",
+      "primary_keyword": "what does a fractional AI officer do",
+      "secondary_keywords": [
+        "fractional CAIO responsibilities",
+        "chief AI officer roles and responsibilities",
+        "fractional CTO vs fractional chief AI officer",
+        "chief AI officer vs CTO",
+        "how many hours does a fractional AI officer work"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CEO, COO, CFO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "/learn/enterprise-ai-strategy",
+        "N06",
+        "N21",
+        "N32",
+        "N34",
+        "N42"
+      ],
+      "angle": "Results are vendor pages (Gyde, Groovy Web, SoftTeco, Tecla, HatchWorks). Give specifics: 8-12 hours a week, inventory in 10 business days, the Day-30 decision package, a weekly cadence, what the role does not do, and how it differs from a fractional CTO (competitor gaps \"fractional CTO vs fractional CAIO\" and \"chief AI officer vs CTO\"). Answer \"how many hours a month does a fractional AI officer work?\".",
+      "outline": [
+        "Short answer",
+        "What the role owns",
+        "A typical week: 8-12 hours",
+        "The first 90 days: inventory, decision package, first cycle",
+        "What a fractional AI officer does not do",
+        "Fractional AI officer vs fractional CTO",
+        "Signs you need one"
+      ],
+      "original_asset": "Weekly cadence calendar, a 90-day deliverables timeline and a role-boundary table (owns, advises, does not do).",
+      "sme_questions": [
+        "What does a typical week look like for a client, hour by hour?",
+        "What is in the Day-30 decision package?",
+        "Where does the fractional AI officer stop and the CTO start?",
+        "What do clients wrongly expect from the role?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "8-12 hours a week, 10 business days and the Day-30 package as stated on /fractional-ai-officer",
+        "Any CAIO adoption statistic, with primary source"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #20 (5x3), cluster C pillar. Primary changed from \"fractional AI officer\" to the question form, because the money page /fractional-ai-officer owns \"fractional AI officer\" and should own \"fractional chief AI officer\". Slug changed from /learn/fractional-ai-officer so the guide is not a same-slug twin of the money page. MERGED: competitor \"fractional CTO vs fractional CAIO\" and \"chief AI officer vs CTO\" as an H2 and secondaries. Cost stays in N06 (strategy pair [6] vs [20]). When live, add to FEATURED."
+    },
+    {
+      "id": "R08",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 23,
+      "week": 8,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "AI Agents for Business Operations: A Buyer's Guide (BPA pillar)",
+      "section": "learn",
+      "slug": "ai-workforce-platform",
+      "path": "/learn/ai-workforce-platform",
+      "content_file": "tools/v4-build/content/learn__ai-workforce-platform.json",
+      "kind": "guide",
+      "primary_keyword": "AI agents for business operations",
+      "secondary_keywords": [
+        "AI process automation buyer's guide",
+        "best AI agents for automating business processes",
+        "how to buy AI agents"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CFO, operations leaders",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/who-we-help/operations-heavy",
+        "/who-we-help/professional-services",
+        "/who-we-help/ecommerce-retail",
+        "N11",
+        "N24",
+        "N37",
+        "N38",
+        "N39"
+      ],
+      "angle": "Upcore no longer sells an \"AI workforce platform\", so the page targets a dead term. Rewrite it as the cluster E pillar, a buyer's guide to AI agents for operations, on a keyword that does not compete with /platform.",
+      "outline": [
+        "Short answer",
+        "What AI agents can run in operations today",
+        "Where they fit: support, operations, finance, sales, compliance",
+        "Autonomy levels L0-L4",
+        "Buy, build or partner",
+        "Getting the first agent live",
+        "Questions to ask before you buy"
+      ],
+      "original_asset": "Buyer's checklist plus an operations use-case map by function with autonomy levels.",
+      "sme_questions": [
+        "Which functions have we deployed agents in most, and with which results on /results?",
+        "What do buyers misunderstand about agent platforms?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Offer wording on /platform (first agent live within 30 days of design sign-off; L0-L4)",
+        "Case facts on /results"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Rewrite as the cluster E pillar and drop the retired \"AI workforce platform\" positioning",
+        "Retarget to \"AI agents for business operations\"; the money page /platform keeps \"AI agents for business process automation\"",
+        "Check Search Console first: with little traffic, move to a new slug (for example /learn/ai-agents-for-business-operations) with a 301 in vercel.json (a person does this); otherwise rewrite in place",
+        "Link down to N11, N24, N37, N38 and N39 as they ship",
+        "Add 4-6 FAQs, named author and dates"
+      ],
+      "notes": "Strategy R8, week 8. The strategy's working title used \"AI agents for business process automation\"; the primary was changed because the competitor report shows /platform targets that phrase. A slug change would also change this item's path and the cluster E pillar path. Score 4x3=12 is an estimate."
+    },
+    {
+      "id": "N18",
+      "type": "new",
+      "status": "queued",
+      "queue": 24,
+      "week": 8,
+      "score": 15,
+      "cluster": "A",
+      "working_title": "How to Measure the Impact of AI Coding Tools (Baseline First)",
+      "section": "learn",
+      "slug": "measure-ai-coding-impact",
+      "path": "/learn/measure-ai-coding-impact",
+      "content_file": "tools/v4-build/content/learn__measure-ai-coding-impact.json",
+      "kind": "guide",
+      "primary_keyword": "measure AI coding productivity",
+      "secondary_keywords": [
+        "DORA metrics AI",
+        "AI coding tools ROI",
+        "rework rate",
+        "how to measure an AI-native engineering team"
+      ],
+      "intent": "informational",
+      "persona": "VP Engineering, CTO",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "N03",
+        "N04",
+        "N16",
+        "N32"
+      ],
+      "angle": "Results come from analytics vendors (Jellyfish, Plandek, Typo, DX, Sourcegraph, Waydev, Larridin). Give a baseline-first measurement sheet (spec-to-production lead time, senior review hours, auto-merge share, change failure rate, rework, cost per change), explain why per-developer metrics mislead, and cite DORA 2025.",
+      "outline": [
+        "Short answer",
+        "Why per-developer metrics mislead",
+        "Take the baseline first",
+        "Six measures that matter",
+        "Reading the numbers: throughput vs stability",
+        "Reporting to leadership"
+      ],
+      "original_asset": "Baseline measurement sheet: six metrics with definitions, data sources and collection method.",
+      "sme_questions": [
+        "Which six metrics do we baseline before a pilot, and where do we pull them from?",
+        "Which metric moved first in pilots, and which lagged?",
+        "Which vanity metric do clients ask for that we push back on?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "DORA 2025 findings and metric definitions",
+        "Any vendor benchmark figure, with primary source"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #18 (5x3). Engineering-level measurement; board-level ROI reporting stays in N32."
+    },
+    {
+      "id": "N22",
+      "type": "new",
+      "status": "queued",
+      "queue": 25,
+      "week": 9,
+      "score": 15,
+      "cluster": "D",
+      "working_title": "What Does a Forward Deployed Engineer Do for Your Company? A Buyer's Guide",
+      "section": "learn",
+      "slug": "what-does-a-forward-deployed-engineer-do",
+      "path": "/learn/what-does-a-forward-deployed-engineer-do",
+      "content_file": "tools/v4-build/content/learn__what-does-a-forward-deployed-engineer-do.json",
+      "kind": "guide",
+      "primary_keyword": "what does a forward deployed engineer do",
+      "secondary_keywords": [
+        "forward deployed engineering model",
+        "forward deployed engineer for companies",
+        "how many FDEs do I need",
+        "who owns the code an FDE writes"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, COO",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "N07",
+        "N23",
+        "N35",
+        "N36",
+        "N41"
+      ],
+      "angle": "The head term is job-seeker content (Paraform, Built In, IIT, fde.academy, Kanerika) and the competitor report advises not to chase it. Answer the buyer questions instead: what an FDE does for my company across discover, build, integrate, deploy and iterate, what to expect week by week, how ownership and handover work, how many FDEs a pilot needs, and who owns the code. Groovy Web published \"What Is an FDE? A Guide for Companies\" in October 2026: beat it with the week-by-week view and ownership detail.",
+      "outline": [
+        "Short answer",
+        "What an FDE does, stage by stage",
+        "What to expect week by week",
+        "How ownership and handover work",
+        "How many FDEs you need",
+        "When an FDE is the wrong choice"
+      ],
+      "original_asset": "Week-by-week engagement timeline across the 5 stages plus an ownership and handover checklist.",
+      "sme_questions": [
+        "What do week 1 and week 6 of an FDE engagement look like?",
+        "How do we hand over at the end, and who owns the code and IP?",
+        "When is one FDE enough, and when do we add a second?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "The 5 stages as worded on /forward-deployed-engineer",
+        "Any FDE demand statistic, traced to its primary source"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #22 (5x3), cluster D pillar. Retargeted from the head term \"forward deployed engineer\" (careers SERP; competitor report says do not chase it) to the buyer question. Slug changed from /learn/forward-deployed-engineer so it is not a same-slug twin of the money page, which keeps \"hire forward deployed engineer\" and \"fractional forward deployed engineer\". Strategy pair [7] vs [22]. When live, add to FEATURED."
+    },
+    {
+      "id": "R09",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 26,
+      "week": 9,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "WISMO Automation: Cutting \"Where Is My Order?\" Tickets with AI Agents",
+      "section": "insights",
+      "slug": "logistics-wismo-ai-agents",
+      "path": "/insights/logistics-wismo-ai-agents",
+      "content_file": "tools/v4-build/content/insights__logistics-wismo-ai-agents.json",
+      "kind": "playbook",
+      "primary_keyword": "WISMO automation",
+      "secondary_keywords": [
+        "where is my order automation",
+        "WhatsApp order status agent",
+        "reduce WISMO tickets"
+      ],
+      "intent": "commercial",
+      "persona": "COO or head of customer experience at retailers and logistics companies",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/who-we-help/ecommerce-retail",
+        "/results",
+        "N36"
+      ],
+      "angle": "Real experience is missing from the page even though /results has a matching case. Add it, use US terms, and retarget to the query buyers use.",
+      "outline": [
+        "Short answer",
+        "Why WISMO tickets pile up",
+        "How an order-status agent works",
+        "Case: a 900-store retailer",
+        "Channels: WhatsApp, chat, email",
+        "What to measure"
+      ],
+      "original_asset": "WISMO deflection playbook: intent list, data sources, escalation rules and a metric sheet.",
+      "sme_questions": [
+        "Which data integrations did the retailer's order-status agent need?",
+        "Which WISMO intents still go to a person?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Retailer case facts on /results (60%+ fewer delivery-support tickets; use \"10,000+ queries a month\" only if the site states it)",
+        "Any WISMO share-of-tickets statistic, with source"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Add the first-hand case from /results (national food and fashion retailer, 900+ stores, South Africa: 60%+ fewer delivery-support tickets)",
+        "Retarget to \"WISMO automation\" and use US terms",
+        "Link to /who-we-help/ecommerce-retail and /platform in the body",
+        "Add 4-6 FAQs; fix related links; US spelling"
+      ],
+      "notes": "Strategy R9, week 9. Score 3x4=12 is an estimate."
+    },
+    {
+      "id": "N19",
+      "type": "new",
+      "status": "queued",
+      "queue": 27,
+      "week": 9,
+      "score": 15,
+      "cluster": "A",
+      "working_title": "Rolling Out Claude Code, Copilot Agent or Codex to Your Team: A 30-60-90 Plan",
+      "section": "learn",
+      "slug": "roll-out-ai-coding-agents",
+      "path": "/learn/roll-out-ai-coding-agents",
+      "content_file": "tools/v4-build/content/learn__roll-out-ai-coding-agents.json",
+      "kind": "guide",
+      "primary_keyword": "AI coding agent rollout",
+      "secondary_keywords": [
+        "Claude Code for teams",
+        "background coding agents",
+        "AI coding agent pilot",
+        "Copilot coding agent rollout"
+      ],
+      "intent": "informational/commercial",
+      "persona": "VP Engineering, CTO",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/ai-engineering-governance",
+        "N12",
+        "N09",
+        "N01",
+        "N43"
+      ],
+      "angle": "Results are consultancy playbooks and Substack anecdotes. Add the missing pieces in time order: a one-team pilot, permission tiers (suggest, execute, open a PR), protected branches, agent identities, training, exit criteria for each phase and expansion gates. This page is the people-and-process rollout; cross-tool control settings live in N43.",
+      "outline": [
+        "Short answer",
+        "Days 1-30: one team, tight permissions",
+        "Permission tiers: suggest, execute, open a PR",
+        "Days 31-60: rules, gates and measurement",
+        "Days 61-90: expand with evidence",
+        "Exit criteria for each phase",
+        "Common rollout mistakes"
+      ],
+      "original_asset": "30-60-90 rollout plan with phase exit criteria and a permission-tier matrix per agent type.",
+      "sme_questions": [
+        "How do we pick the pilot team?",
+        "Which permission tier do agents start at, and what evidence moves them up?",
+        "What has derailed a rollout we have seen?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Current names and capabilities of Claude Code, the GitHub Copilot coding agent and OpenAI Codex (cloud and background agents)",
+        "Admin features referenced per tool"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #19 (5x3). Secondary \"Copilot coding agent governance\" removed to avoid overlap with N43 (governing the tools) and N17 (pillar)."
+    },
+    {
+      "id": "N21",
+      "type": "new",
+      "status": "queued",
+      "queue": 28,
+      "week": 10,
+      "score": 15,
+      "cluster": "C",
+      "working_title": "Which AI Pilots to Scale, Fix or Stop: A Portfolio Review Framework",
+      "section": "insights",
+      "slug": "ai-portfolio-review",
+      "path": "/insights/ai-portfolio-review",
+      "content_file": "tools/v4-build/content/insights__ai-portfolio-review.json",
+      "kind": "framework",
+      "primary_keyword": "AI use case prioritization framework",
+      "secondary_keywords": [
+        "AI portfolio management",
+        "prioritize AI projects",
+        "stop AI projects",
+        "AI use case scorecard"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CFO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "/insights/roi-business-case-ai-agents",
+        "/insights/choosing-first-ai-agent",
+        "N20",
+        "N32"
+      ],
+      "angle": "Results are consulting 2x2 grids. Use Upcore's Scale / Accelerate / Consolidate / Stop decisions with four criteria (baseline, adoption, owner, overlap) and a worked example of 5 initiatives.",
+      "outline": [
+        "Short answer",
+        "Why AI portfolios sprawl",
+        "Four decisions: scale, accelerate, consolidate, stop",
+        "Four criteria: baseline, adoption, owner, overlap",
+        "Worked example: five initiatives",
+        "Running the review every quarter"
+      ],
+      "original_asset": "Portfolio review scorecard (4 criteria x 4 decisions) with a worked five-initiative example.",
+      "sme_questions": [
+        "How often does an inventory find overlapping tools or duplicate pilots, in general terms?",
+        "What makes us recommend \"stop\"?",
+        "Who should be in the room for the review?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Scale / Accelerate / Consolidate / Stop wording on /fractional-ai-officer",
+        "Any portfolio statistic, with source"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #21 (5x3). kind framework: the hub picks it up as a framework automatically."
+    },
+    {
+      "id": "R10",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 29,
+      "week": 10,
+      "score": 12,
+      "cluster": "C",
+      "working_title": "AI Strategy for Mid-Market Companies: A Practical Framework",
+      "section": "learn",
+      "slug": "enterprise-ai-strategy",
+      "path": "/learn/enterprise-ai-strategy",
+      "content_file": "tools/v4-build/content/learn__enterprise-ai-strategy.json",
+      "kind": "guide",
+      "primary_keyword": "AI strategy for mid-market companies",
+      "secondary_keywords": [
+        "mid-market AI strategy",
+        "AI roadmap for mid-sized companies",
+        "AI strategy framework"
+      ],
+      "intent": "commercial",
+      "persona": "CEO, COO, CFO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "N20",
+        "N21",
+        "N33",
+        "N45"
+      ],
+      "angle": "McKinsey, IBM and Gartner own the enterprise head term. Retarget to mid-market buyers, who fit the Fractional AI Officer, and fix the misattributed statistic.",
+      "outline": [
+        "Short answer",
+        "Why enterprise AI playbooks fail mid-market companies",
+        "The framework: inventory, prioritize, govern, deliver, measure",
+        "Who owns AI strategy",
+        "The first 90 days",
+        "Common mistakes"
+      ],
+      "original_asset": "One-page mid-market AI strategy template.",
+      "sme_questions": [
+        "What does an AI strategy look like for a 300-person company in our engagements?",
+        "What should be decided in the first 30 days?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Replace \"85% never reach production\" with MIT NANDA 2025 or S&P Global 2025 (both cited on the service pages); verify exact wording",
+        "Any other statistic sourced"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Retarget from the enterprise head term to \"AI strategy for mid-market companies\"",
+        "Replace \"85% never reach production\" (often misattributed) with MIT NANDA 2025 or S&P Global 2025",
+        "Link to N20 and N21",
+        "Add the named author and dates"
+      ],
+      "notes": "Strategy R10, week 10. Score 4x3=12 is an estimate."
+    },
+    {
+      "id": "N14",
+      "type": "new",
+      "status": "queued",
+      "queue": 30,
+      "week": 10,
+      "score": 16,
+      "cluster": "A",
+      "working_title": "AI-Native Engineering in India GCCs: From Delivery Hub to Governed AI Delivery",
+      "section": "insights",
+      "slug": "ai-native-engineering-gcc-india",
+      "path": "/insights/ai-native-engineering-gcc-india",
+      "content_file": "tools/v4-build/content/insights__ai-native-engineering-gcc-india.json",
+      "kind": "playbook",
+      "primary_keyword": "GCC AI adoption",
+      "secondary_keywords": [
+        "AI-native GCC",
+        "global capability center AI engineering",
+        "GCC engineering productivity"
+      ],
+      "intent": "commercial",
+      "persona": "GCC heads and India-based engineering leaders of US companies",
+      "market": "India",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/who-we-help/tech-software",
+        "N01",
+        "N18",
+        "N05"
+      ],
+      "angle": "Results are market-sizing reports (Zinnov, YourStory). Nothing explains how a GCC runs governed AI delivery for a headquarters that needs audit trails. Cover the HQ and GCC split of rules, approvals and decision logs, how to show HQ measurable change, and how roles shift. Upcore's Mohali team gives first-hand credibility.",
+      "outline": [
+        "Short answer",
+        "Why GCCs are under pressure to show AI results",
+        "What headquarters needs: audit trails and measurable change",
+        "Splitting rules, approvals and logs between HQ and the GCC",
+        "Measuring GCC delivery with AI",
+        "Roles and skills that change",
+        "A one-team pilot for a GCC"
+      ],
+      "original_asset": "HQ vs GCC responsibility matrix (rules, approvals, merge limits, decision log, reporting) for governed AI delivery.",
+      "sme_questions": [
+        "What does the Mohali team do differently when delivering for a US headquarters with audit needs?",
+        "What do GCC heads ask us first?",
+        "Which metric convinces HQ that AI delivery in the GCC is working?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "GCC count and headcount figures (Zinnov or NASSCOM) with year",
+        "Any GCC AI adoption survey figure, with primary source"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #14 (4x4). India article: the title says India. US spelling (\"center\") except in proper names. Add to the hub's framework list only if the kind changes to framework."
+    },
+    {
+      "id": "N23",
+      "type": "new",
+      "status": "queued",
+      "queue": 31,
+      "week": 11,
+      "score": 15,
+      "cluster": "D",
+      "working_title": "From AI Pilot to Production: A 30-Point Checklist",
+      "section": "insights",
+      "slug": "ai-pilot-to-production-checklist",
+      "path": "/insights/ai-pilot-to-production-checklist",
+      "content_file": "tools/v4-build/content/insights__ai-pilot-to-production-checklist.json",
+      "kind": "playbook",
+      "primary_keyword": "AI pilot to production",
+      "secondary_keywords": [
+        "why AI pilots fail",
+        "AI pilot to production gap",
+        "AI proof of concept to production",
+        "pilot purgatory"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CTO, head of AI",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "/fractional-ai-officer",
+        "/insights/choosing-first-ai-agent",
+        "N22",
+        "N35",
+        "N36"
+      ],
+      "angle": "Results are recaps of the MIT \"95%\" report and mid-size agencies (HatchWorks, SumatoSoft, RaftLabs, Entagl, WitnessAI). Give a 30-point checklist across real data, an integration owner, evals, rollback, adoption and a post-launch owner, and cite MIT NANDA directly.",
+      "outline": [
+        "Short answer",
+        "Why pilots stall: what the research says",
+        "Data: six checks",
+        "Integration and ownership: six checks",
+        "Evals and quality: six checks",
+        "Release and rollback: six checks",
+        "Adoption and post-launch ownership: six checks"
+      ],
+      "original_asset": "Printable 30-point pilot-to-production checklist grouped into five areas.",
+      "sme_questions": [
+        "What is the most common reason a pilot we were called into had stalled?",
+        "Which checklist item do teams skip most?",
+        "Who should own the agent after launch?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "MIT NANDA 2025 \"GenAI Divide\" findings: the 95% figure, its exact wording and method",
+        "S&P Global 2025 project abandonment figure, if cited"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #23 (5x3). MERGED: competitor best gap #9 (\"AI pilot to production gap\") as a secondary keyword."
+    },
+    {
+      "id": "R11",
+      "type": "refresh",
+      "status": "queued",
+      "queue": 32,
+      "week": 11,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "India BFSI Mini-Cluster: AI in Banking, NBFC KYC and Bank Customer Service",
+      "section": "learn",
+      "slug": "ai-in-banking",
+      "path": "/learn/ai-in-banking",
+      "content_file": "tools/v4-build/content/learn__ai-in-banking.json",
+      "kind": "guide",
+      "primary_keyword": "AI in banking India",
+      "secondary_keywords": [
+        "RBI AI guidelines for banks",
+        "NBFC KYC automation",
+        "AI customer service for banks in India"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, CRO and operations heads at Indian banks and NBFCs",
+      "market": "India",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/ai-engineering-governance",
+        "/insights/nbfc-kyc-automation",
+        "/insights/banking-ai-customer-service",
+        "N30",
+        "N29"
+      ],
+      "angle": "Three India BFSI pages sit unlinked, without the RBI FREE-AI context buyers now ask about, and with unverified figures. Make them one coherent mini-cluster anchored by N30.",
+      "outline": [
+        "Short answer",
+        "Where AI agents work in Indian banking and NBFCs",
+        "What RBI FREE-AI expects",
+        "Risks and controls",
+        "Use cases with measurable outcomes",
+        "Getting started"
+      ],
+      "original_asset": "India BFSI use-case table with RBI FREE-AI control notes per use case.",
+      "sme_questions": [
+        "Which BFSI workflows have we automated, and what oversight did RBI expectations require?",
+        "What do NBFC clients ask about FREE-AI?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "\"$487B (McKinsey)\" on /learn/ai-in-banking: verify or remove",
+        "\"73% of bank CIOs\" on /learn/ai-in-banking: verify or remove",
+        "RBI FREE-AI date (August 2025) and current status",
+        "RBI KYC references on /insights/nbfc-kyc-automation"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Treat the three pages as one India BFSI mini-cluster with links between them",
+        "Add RBI FREE-AI context (August 2025) to all three and link each to N30",
+        "Verify or remove \"$487B (McKinsey)\" and \"73% of bank CIOs\" on /learn/ai-in-banking",
+        "Also refresh tools/v4-build/content/insights__nbfc-kyc-automation.json and tools/v4-build/content/insights__banking-ai-customer-service.json: body links, 4-6 FAQs, sources",
+        "Say India in titles where the content is India-specific (house rule); otherwise make examples market-neutral"
+      ],
+      "notes": "Strategy R11, week 11. Covers three pages: slug, path and content_file point to the hub page /learn/ai-in-banking; the other two files are in refresh_actions. Primary \"AI in banking India\" assumes the page stays India-specific. Score 3x4=12 is an estimate."
+    },
+    {
+      "id": "N15",
+      "type": "new",
+      "status": "queued",
+      "queue": 33,
+      "week": 11,
+      "score": 16,
+      "cluster": "E",
+      "working_title": "AI Automation for Multi-Location Dental Groups: Scheduling, Intake and Clinical Notes",
+      "section": "insights",
+      "slug": "ai-automation-dental-groups",
+      "path": "/insights/ai-automation-dental-groups",
+      "content_file": "tools/v4-build/content/insights__ai-automation-dental-groups.json",
+      "kind": "playbook",
+      "primary_keyword": "AI for dental practices",
+      "secondary_keywords": [
+        "dental scheduling automation",
+        "DSO automation",
+        "AI clinical notes for dentists",
+        "dental intake automation"
+      ],
+      "intent": "commercial",
+      "persona": "COO or VP of operations at US multi-location dental groups and DSOs",
+      "market": "US",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/who-we-help/operations-heavy",
+        "/learn/hipaa-compliant-ai",
+        "/insights/healthcare-patient-no-show-ai",
+        "/results"
+      ],
+      "angle": "Results are single-practice vendor posts with nothing on multi-location groups. Use the /results case: a dental implant network across 9 US states, 10 workflows for scheduling, intake and admin with patient-sentiment tracking, plus a voice tool that turns doctors' speech into notes and prescriptions. Cover standardizing workflows across locations, HIPAA basics and where people stay in the loop.",
+      "outline": [
+        "Short answer",
+        "Why multi-location groups struggle to standardize",
+        "Which workflows to automate first: scheduling, intake, admin",
+        "Voice AI for clinical notes",
+        "HIPAA and data handling basics",
+        "Case: a 9-state implant network",
+        "Rolling out across locations"
+      ],
+      "original_asset": "Workflow prioritization table for multi-location dental groups (workflow, effort, impact, autonomy level, HIPAA considerations).",
+      "sme_questions": [
+        "Which of the 10 workflows delivered value first, and why?",
+        "How did the voice notes tool handle speaker separation and clinician review?",
+        "Which HIPAA controls were non-negotiable in that deployment?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Dental network case details exactly as on /results",
+        "Whether follow-on test and DevOps agent work is stated on the site before mentioning it (the strategy mentions it)",
+        "HIPAA requirements and BAA availability for any vendor named",
+        "Any dental industry statistic (ADA, DSO market) with source and year"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #15 (4x4). US vertical with a real case. No client names."
+    },
+    {
+      "id": "N16",
+      "type": "new",
+      "status": "blocked",
+      "queue": 34,
+      "week": 12,
+      "score": 16,
+      "cluster": "A",
+      "working_title": "Inside an AI-Native Engineering Pilot: What We Measured and What Changed",
+      "section": "insights",
+      "slug": "ai-native-engineering-pilot-results",
+      "path": "/insights/ai-native-engineering-pilot-results",
+      "content_file": "tools/v4-build/content/insights__ai-native-engineering-pilot-results.json",
+      "kind": "playbook",
+      "primary_keyword": "AI-native engineering pilot",
+      "secondary_keywords": [
+        "AI coding pilot results",
+        "AI software delivery case study",
+        "AI-written code review report"
+      ],
+      "intent": "commercial",
+      "persona": "CTO",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/results",
+        "N01",
+        "N18",
+        "N03"
+      ],
+      "angle": "Competitors do not publish pilot baselines. Publish anonymized before-and-after numbers from a real one-team pilot: lead time, senior review hours, share of PRs risk-flagged, auto-merge share, defects caught per checkpoint, change failure rate. This is also the seed of the competitor report's \"original data\" idea: an annual AI-written code review report that answer engines can cite.",
+      "outline": [
+        "Short answer",
+        "The team and the baseline",
+        "What we installed, stage by stage",
+        "What we measured and how",
+        "What changed (and what did not)",
+        "What we would do differently",
+        "How to run the same pilot"
+      ],
+      "original_asset": "Anonymized pilot baseline-vs-result table with measurement definitions.",
+      "sme_questions": [
+        "Which pilot can be published anonymously, and has the client approved it in writing?",
+        "What were the baseline and end-of-pilot numbers for lead time, senior review hours, auto-merge share and change failure rate?",
+        "What did not improve, and why?",
+        "What would we change in the next pilot?"
+      ],
+      "needs_human_data": true,
+      "fact_check": [
+        "Every number traced to pilot records, with client approval on file",
+        "Consistency with the engineering cases on /results"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #16 (4x4). BLOCKED: the strategy says it needs real anonymized numbers from a person and must not be auto-written. If still blocked in week 12, the writer takes the next queued item (N41); keep this item first in line once data arrives. Merged: the competitor report's \"first original-data report from pilots\" (Month 3)."
+    },
+    {
+      "id": "R12",
+      "type": "refresh",
+      "status": "blocked",
+      "queue": 35,
+      "week": 12,
+      "score": 9,
+      "cluster": "E",
+      "working_title": "Merge and Prune Decisions: ai-agent-skills into how-ai-agents-work; review three orphaned insights",
+      "section": "learn",
+      "slug": "ai-agent-skills",
+      "path": "/learn/ai-agent-skills",
+      "content_file": "tools/v4-build/content/learn__ai-agent-skills.json",
+      "kind": "guide",
+      "primary_keyword": "AI agent skills",
+      "secondary_keywords": [
+        "AI agent tool use"
+      ],
+      "intent": "informational",
+      "persona": "COO, CTO",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/learn/how-ai-agents-work",
+        "/platform"
+      ],
+      "angle": "Concentrate authority: fold overlapping tool-use content into the stronger page and prune pages that lost their hub, based on Search Console data rather than guesses.",
+      "outline": [
+        "Merge plan: which ai-agent-skills sections move into how-ai-agents-work",
+        "301 from /learn/ai-agent-skills to /learn/how-ai-agents-work",
+        "Keep, merge or prune decision for three insights pages"
+      ],
+      "original_asset": "Section-by-section merge map (moves, drops) for the two agent explainers.",
+      "sme_questions": [
+        "What does a 16-month Search Console export show for /learn/ai-agent-skills, /insights/government-ai-citizen-services, /insights/edtech-enrollment-ai and /insights/marketing-ai-execution-vs-strategy?",
+        "Does sales use any of these pages?"
+      ],
+      "needs_human_data": true,
+      "fact_check": [
+        "16-month Search Console export for the five pages",
+        "Backlinks to each page"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [
+        "Merge /learn/ai-agent-skills into /learn/how-ai-agents-work (overlapping tool-use content) and add a 301 in vercel.json (a person does this)",
+        "Review /insights/government-ai-citizen-services, /insights/edtech-enrollment-ai and /insights/marketing-ai-execution-vs-strategy: their industry pages now redirect to operations-heavy, so keep them only if they get impressions; otherwise 301 to the hub or noindex",
+        "Prune rule: fewer than 30 impressions a month after 6 months, no backlinks, no assisted bookings and no sales use",
+        "Update sitemap.xml and related links after any merge"
+      ],
+      "notes": "Strategy R12, week 12. BLOCKED: needs a 16-month Search Console export and a person's keep, merge or prune decision (site data, not client data, but the writer cannot decide it honestly). Redirects and sitemap edits are outside the writer's scope. If still blocked in week 12, the refresh slot that week stays empty. Score 3x3=9 is an estimate."
+    },
+    {
+      "id": "N25",
+      "type": "new",
+      "status": "queued",
+      "queue": 36,
+      "week": 12,
+      "score": 12,
+      "cluster": "A",
+      "working_title": "Claude Code vs GitHub Copilot vs Cursor for Engineering Teams: A Governance Comparison",
+      "section": "compare",
+      "slug": "claude-code-vs-copilot-vs-cursor",
+      "path": "/compare/claude-code-vs-copilot-vs-cursor",
+      "content_file": "tools/v4-build/content/compare__claude-code-vs-copilot-vs-cursor.json",
+      "kind": "comparison",
+      "primary_keyword": "Claude Code vs Copilot vs Cursor",
+      "secondary_keywords": [
+        "Claude Code Enterprise vs Copilot Enterprise",
+        "Copilot Business vs Enterprise",
+        "Cursor for teams",
+        "Codex vs Claude Code"
+      ],
+      "intent": "commercial",
+      "persona": "CTO, VP Engineering, CISO",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/ai-engineering-governance",
+        "/compare/ai-native-engineering-vs-ai-coding-tools",
+        "N04",
+        "N19",
+        "N43"
+      ],
+      "angle": "Results are thin AI-written comparisons with doubtful facts. Compare admin, audit, data retention, SSO and spend controls, checked against vendor trust and admin docs on a stated date; say when each tool is the better choice and recommend running more than one under one process.",
+      "outline": [
+        "Short answer",
+        "How we compared (and the date we checked)",
+        "Admin and policy controls",
+        "Audit logs and data retention",
+        "SSO, identity and access",
+        "Spend controls and pricing model",
+        "Which tool fits which team",
+        "Running more than one under one process"
+      ],
+      "original_asset": "Dated feature-by-feature governance comparison table, sourced to each vendor's trust and admin docs.",
+      "sme_questions": [
+        "Which tools do clients run side by side, and why?",
+        "Which governance gap in each tool surprises clients most?",
+        "What do we recommend when a team wants to standardize on one tool?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Every product feature, plan name and price checked against vendor docs on publish day",
+        "Data retention and training-use terms per plan",
+        "Audit log availability per plan"
+      ],
+      "review_every_days": 90,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #25 (4x3). High upkeep, 90-day review. Configuration how-to is N43; cost per developer is N04."
+    },
+    {
+      "id": "N41",
+      "type": "new",
+      "status": "queued",
+      "queue": 37,
+      "week": null,
+      "score": 20,
+      "cluster": "D",
+      "working_title": "Forward Deployed Engineer Cost in 2026: In-House FDE Team vs FDE as a Service vs Contractor",
+      "section": "compare",
+      "slug": "forward-deployed-engineer-cost",
+      "path": "/compare/forward-deployed-engineer-cost",
+      "content_file": "tools/v4-build/content/compare__forward-deployed-engineer-cost.json",
+      "kind": "comparison",
+      "primary_keyword": "forward deployed engineer cost",
+      "secondary_keywords": [
+        "FDE as a service vs in-house",
+        "cost to hire a forward deployed engineer",
+        "fractional FDE cost",
+        "forward deployed engineer rates"
+      ],
+      "intent": "commercial",
+      "persona": "CTO, COO or CFO with an AI pilot to ship",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "/compare/upcore-vs-building-in-house",
+        "N07",
+        "N22",
+        "N24"
+      ],
+      "angle": "Results are thin: Groovy Web (October 2026: in-house about $380K in year one vs outside sprints of $3K-$60K), SecondTalent ($95-$235/hr), Oxagile, Entrans. Build a sourced year-one total cost comparison of an in-house FDE (salary, equity, recruiting time, ramp-up, management), FDE as a service, a contractor and an agency, with time to first production release and what you own at the end. Upcore publishes no FDE price, so show market ranges and cost drivers unless leadership approves Upcore ranges.",
+      "outline": [
+        "Short answer",
+        "What an in-house FDE costs in year one",
+        "FDE as a service: how it is priced",
+        "Contractor and agency rates",
+        "Time to first production release",
+        "What you own at the end",
+        "Which option fits your stage"
+      ],
+      "original_asset": "Year-one total cost of ownership table for 4 sourcing options (in-house, FDE as a service, contractor, agency) with sourced market ranges and a break-even note.",
+      "sme_questions": [
+        "Leadership decision: may the article show Upcore FDE price ranges, or only market ranges?",
+        "How long do clients take to hire an in-house FDE, and what does ramp-up cost them?",
+        "At what point does in-house become cheaper than a fractional FDE?",
+        "What do clients own at handover?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Groovy Web in-house FDE year-one estimate (about $380K) and sprint pricing ($3K-$60K) as of publish month",
+        "SecondTalent hourly range ($95-$235/hr) and any other rate source",
+        "FDE salary data from a primary compensation source",
+        "Leadership sign-off recorded if any Upcore price appears"
+      ],
+      "review_every_days": 90,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "ADDED from the competitor report (best gap #1 \"fractional FDE / FDE as a service / FDE cost\" and Month 1 \"FDE-as-a-service vs in-house FDE vs agency (with cost)\"). Score 5x4=20 is an estimate (impact 5: money page, buyer intent; ease 4: thin results, one new competitor). Urgent because Groovy Web started publishing here in October 2026: if N16 is still blocked in week 12, this is the item that fills that slot. Cannibalization: owns \"forward deployed engineer cost\" and \"FDE as a service vs in-house\"; N07 keeps \"forward deployed engineer vs consultant\" and only summarizes cost structure; the money page keeps \"hire forward deployed engineer\" and \"fractional forward deployed engineer\" plus a short cost-range section that links here."
+    },
+    {
+      "id": "N42",
+      "type": "new",
+      "status": "queued",
+      "queue": 38,
+      "week": null,
+      "score": 20,
+      "cluster": "C",
+      "working_title": "Fractional AI Governance Officer: What the Role Covers, What It Costs and When You Need One",
+      "section": "learn",
+      "slug": "fractional-ai-governance-officer",
+      "path": "/learn/fractional-ai-governance-officer",
+      "content_file": "tools/v4-build/content/learn__fractional-ai-governance-officer.json",
+      "kind": "guide",
+      "primary_keyword": "fractional AI governance officer",
+      "secondary_keywords": [
+        "part-time AI governance lead",
+        "outsourced AI governance",
+        "AI governance officer responsibilities",
+        "virtual AI governance officer"
+      ],
+      "intent": "commercial",
+      "persona": "CEO, COO, CFO or CISO at companies of 100-2,000 employees with no AI governance owner",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "/ai-engineering-governance",
+        "N20",
+        "N06",
+        "N17",
+        "N34",
+        "N12"
+      ],
+      "angle": "The term appears in autocomplete but no page targets it exactly (searches return only CAIO pages). It sits where the Fractional AI Officer and AI Governance offers overlap. Define the role (policy, inventory, risk register, vendor review, regulatory watch, board reporting), how it differs from a fractional CAIO and from a compliance consultant, a monthly cadence, what it costs, and the triggers for bringing one in (first agent in production, an enterprise security questionnaire, EU AI Act or DPDP exposure).",
+      "outline": [
+        "Short answer",
+        "What a fractional AI governance officer does",
+        "How it differs from a fractional CAIO and a compliance consultant",
+        "A typical month: cadence and outputs",
+        "What it costs",
+        "Signs you need one now",
+        "The first 90 days"
+      ],
+      "original_asset": "Role scope card (owns, advises, escalates) and a 90-day deliverables checklist for a fractional AI governance officer.",
+      "sme_questions": [
+        "Does the Fractional AI Officer engagement cover a governance-only scope, and does the $1,999/month starting price apply to it?",
+        "Which triggers make clients ask for governance help first: a questionnaire, an incident, or regulation?",
+        "What does the governance officer hand the board each month?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Offer scope and pricing on /fractional-ai-officer and /ai-engineering-governance (quote the price only if it applies to this scope)",
+        "Regulatory dates referenced (EU AI Act after Regulation (EU) 2026/1744; DPDP Rules)",
+        "Any market rate source"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "ADDED from the competitor report (best gap #3 and Month 1 list: \"a low-cost win\", \"blue ocean\"). Score 4x5=20 is an estimate (impact 4: bridges two offers but low volume; ease 5: nothing targets the exact term). The report suggested a landing page; it is planned as a /learn guide so the pipeline can write it, and leadership can later promote it to a service landing page. Cannibalization: distinct from N20 (the fractional AI officer role) and N17 (the governance pillar). CTA could switch to governance_score if CISO readers dominate."
+    },
+    {
+      "id": "N44",
+      "type": "new",
+      "status": "queued",
+      "queue": 39,
+      "week": null,
+      "score": 16,
+      "cluster": "B",
+      "working_title": "The EU AI Act for Engineering Teams After the Digital Omnibus: What Changed and What Did Not",
+      "section": "learn",
+      "slug": "eu-ai-act-engineering-teams",
+      "path": "/learn/eu-ai-act-engineering-teams",
+      "content_file": "tools/v4-build/content/learn__eu-ai-act-engineering-teams.json",
+      "kind": "guide",
+      "primary_keyword": "EU AI Act for engineering teams",
+      "secondary_keywords": [
+        "EU AI Act digital omnibus",
+        "EU AI Act high-risk deadline 2027",
+        "EU AI Act for software developers",
+        "EU AI Act Article 50 transparency",
+        "Regulation (EU) 2026/1744"
+      ],
+      "intent": "informational",
+      "persona": "CTO, CISO or compliance lead at US and India software companies selling into the EU",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/learn/ai-data-governance",
+        "/security",
+        "N17",
+        "N05",
+        "N42"
+      ],
+      "angle": "Several ranking pages (Augment, Codacy, Groovy Web, Medium) still treat 2 August 2026 as the high-risk deadline. Regulation (EU) 2026/1744 entered into force on 27 July 2026 and moved Annex III high-risk obligations to 2 December 2027 and Annex I to 2 August 2028; Article 50 transparency, AI literacy and GPAI duties did not move. Be the accurate page: a dated timeline table, what engineering teams do now vs by December 2027, whether using AI coding tools makes you a provider or deployer, and a checklist. Not legal advice.",
+      "outline": [
+        "Short answer",
+        "What the Digital Omnibus changed: the new dates",
+        "What did not move: Article 50, AI literacy, GPAI",
+        "Are you a provider, a deployer or neither?",
+        "What engineering teams should do now",
+        "What to have ready by December 2027",
+        "A dated compliance checklist"
+      ],
+      "original_asset": "Dated before-and-after Omnibus timeline table plus a role-based checklist (provider, deployer, team that only uses AI coding tools).",
+      "sme_questions": [
+        "Which clients sell into the EU, and what do they ask first about the AI Act?",
+        "In our view, does using AI coding tools create AI Act duties for a client's product?",
+        "Which governance-layer evidence maps to AI Act documentation duties?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Regulation (EU) 2026/1744 in the Official Journal: entry into force 27 July 2026, Annex III high-risk date 2 December 2027, Annex I date 2 August 2028",
+        "Article 50 application date and any transitional period for systems already on the market",
+        "Whether the AI literacy duty (Article 4) changed in scope",
+        "GPAI obligation dates",
+        "Status of harmonized standards"
+      ],
+      "review_every_days": 90,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "ADDED from the competitor report (best gap #7 and Month 2 \"EU AI Act for engineering teams after the Digital Omnibus\"). Score 4x4=16 is an estimate (impact 4: Comply layer and CISO buyers, though EU exposure is a subset of US and India clients; ease 4: accuracy edge over stale pages). The strategy parked the broad \"EU AI Act for software companies\" at 3x2=6 because law firms dominate it; this narrower engineering-team, post-Omnibus angle is less contested. 90-day review because guidance and standards are still moving. R03 mentions Article 50 briefly and links here."
+    },
+    {
+      "id": "N24",
+      "type": "new",
+      "status": "queued",
+      "queue": 40,
+      "week": null,
+      "score": 15,
+      "cluster": "E",
+      "working_title": "How Much Does a Custom AI Agent Cost to Build and Run in 2026?",
+      "section": "learn",
+      "slug": "ai-agent-cost",
+      "path": "/learn/ai-agent-cost",
+      "content_file": "tools/v4-build/content/learn__ai-agent-cost.json",
+      "kind": "guide",
+      "primary_keyword": "AI agent development cost",
+      "secondary_keywords": [
+        "cost to build an AI agent",
+        "AI agent development cost 2026",
+        "AI automation cost",
+        "AI agent running costs",
+        "AI agent development cost USA vs India"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CFO, CTO",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/forward-deployed-engineer",
+        "/insights/roi-business-case-ai-agents",
+        "N39",
+        "N41"
+      ],
+      "angle": "Results are dev-shop listicles with unsupported ranges (nine autocomplete variants, agency competition). Explain the cost drivers (discovery, integrations, evals, tokens, monitoring, retainer), separate build cost from run cost, and show how US vs India delivery changes the mix. Upcore has no public price list, so show sourced market ranges and drivers only, unless leadership approves Upcore ranges.",
+      "outline": [
+        "Short answer",
+        "What drives the cost of a custom agent",
+        "Build cost: discovery, integrations, evals",
+        "Run cost: tokens, monitoring, retainer",
+        "US vs India delivery: what changes",
+        "How to estimate your own agent",
+        "Lowering cost without dropping controls"
+      ],
+      "original_asset": "Cost-driver worksheet (build vs run line items and what moves each) with one illustrative estimate.",
+      "sme_questions": [
+        "Leadership decision: may the article show Upcore price ranges, or only market ranges and drivers?",
+        "Which cost driver do buyers underestimate most?",
+        "What do monthly run costs (tokens, monitoring) look like for a typical agent, in ranges?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Every market price range with primary source and date",
+        "Model token prices as of publish month",
+        "Leadership sign-off recorded if any Upcore range appears"
+      ],
+      "review_every_days": 90,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #24 (5x3). Site rule: the only public Upcore price is the Fractional AI Officer's; leadership decides whether Upcore ranges appear. MERGED: competitor best gap #12 (AI agent development cost, US vs India) as secondaries."
+    },
+    {
+      "id": "N43",
+      "type": "new",
+      "status": "queued",
+      "queue": 41,
+      "week": null,
+      "score": 15,
+      "cluster": "B",
+      "working_title": "How to Govern Claude Code, Cursor, Copilot and Codex in One Org: Managed Settings, Hooks, Spend Caps and Audit",
+      "section": "learn",
+      "slug": "govern-ai-coding-agents",
+      "path": "/learn/govern-ai-coding-agents",
+      "content_file": "tools/v4-build/content/learn__govern-ai-coding-agents.json",
+      "kind": "guide",
+      "primary_keyword": "how to govern AI coding agents",
+      "secondary_keywords": [
+        "Claude Code managed settings",
+        "Claude Code admin controls",
+        "Cursor admin controls",
+        "Copilot policy management",
+        "AI coding agent spend caps"
+      ],
+      "intent": "informational/commercial",
+      "persona": "CTO, CISO, platform lead",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/ai-native-engineering",
+        "N12",
+        "N09",
+        "N19",
+        "N25",
+        "N04",
+        "N17"
+      ],
+      "angle": "Strong \"Claude Code enterprise\" autocomplete demand (10 variants) and heavy vendor investment from June to October 2026 (GitLab, Endor Labs, Maxim, MintMCP, a Codacy guest post), but no vendor-neutral, cross-tool guide. Show one policy enforced in four tools: managed settings and permission rules, hooks and pre-commit checks, MCP server allowlists, spend caps and budgets, identity and SSO, and audit logs collected in one place. Written or reviewed by a Claude Certified Architect.",
+      "outline": [
+        "Short answer",
+        "One policy, four tools: the control plane",
+        "Managed settings and permission rules per tool",
+        "Hooks, pre-commit checks and MCP allowlists",
+        "Spend caps and budgets",
+        "Identity, SSO and audit logs in one place",
+        "The order to roll the controls out"
+      ],
+      "original_asset": "Cross-tool control matrix (each control x Claude Code, Cursor, Copilot, Codex: setting name, plan required, where it is configured) with sample managed-settings and hook snippets.",
+      "sme_questions": [
+        "Which managed settings and hooks do we deploy by default for Claude Code clients?",
+        "How do we enforce the same rule in Cursor and Copilot where the features differ?",
+        "How do we bring audit logs from several tools into one place?",
+        "Which spend cap approach has worked best?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Every setting name, file path and plan requirement for Claude Code, Cursor, GitHub Copilot and OpenAI Codex, checked against vendor docs on publish day",
+        "MCP allowlist capabilities per tool",
+        "Audit log export availability per plan"
+      ],
+      "review_every_days": 90,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "ADDED from the competitor report (best gap #11 and Month 2 \"Governing Claude Code, Cursor, Copilot and Codex in one org\"). Score 5x3=15 is an estimate (impact 5: flagship plus governance, Claude Certified Architects; ease 3: rising vendor content, high upkeep). Cannibalization: this page owns cross-tool configuration; N25 owns the \"vs\" comparison, N19 the people-and-process rollout, N09 the rules files, N04 cost and pricing, N17 the pillar head term."
+    },
+    {
+      "id": "N26",
+      "type": "new",
+      "status": "queued",
+      "queue": 42,
+      "week": null,
+      "score": 12,
+      "cluster": "A",
+      "working_title": "How to Test AI-Generated Code (and Why AI-Written Tests Are Not Enough)",
+      "section": "learn",
+      "slug": "testing-ai-generated-code",
+      "path": "/learn/testing-ai-generated-code",
+      "content_file": "tools/v4-build/content/learn__testing-ai-generated-code.json",
+      "kind": "guide",
+      "primary_keyword": "testing AI-generated code",
+      "secondary_keywords": [
+        "AI-written test quality",
+        "scenario testing",
+        "tests from acceptance criteria",
+        "mutation testing for AI code"
+      ],
+      "intent": "informational",
+      "persona": "Engineering manager, QA lead",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "N02",
+        "N08",
+        "N01"
+      ],
+      "angle": "Results come from test-tool vendors. Cover tests written from acceptance criteria rather than from the code, scenario tests before release (stage 7), replaying known-good tasks, and mutation testing as a check that AI-written tests catch faults.",
+      "outline": [
+        "Short answer",
+        "Why AI-written tests are not enough",
+        "Write tests from acceptance criteria, not from the code",
+        "Scenario tests before release",
+        "Replaying known-good tasks",
+        "Mutation testing as a check on the tests",
+        "A test plan template for AI-written changes"
+      ],
+      "original_asset": "Test plan template for AI-written changes plus a checklist for spotting tests that mirror the implementation.",
+      "sme_questions": [
+        "How do we generate tests from acceptance criteria in the sandbox stage?",
+        "What do our scenario tests look like at stage 7?",
+        "Have we caught AI-written tests that passed but tested nothing (anonymized)?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Mutation testing tools named and their language support",
+        "Stage numbering matches /ai-native-engineering (stages 4 and 7)"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #26 (4x3)."
+    },
+    {
+      "id": "N27",
+      "type": "new",
+      "status": "queued",
+      "queue": 43,
+      "week": null,
+      "score": 12,
+      "cluster": "B",
+      "working_title": "Shadow AI in Engineering: How to Inventory Every AI Tool in 72 Hours",
+      "section": "learn",
+      "slug": "shadow-ai-engineering",
+      "path": "/learn/shadow-ai-engineering",
+      "content_file": "tools/v4-build/content/learn__shadow-ai-engineering.json",
+      "kind": "guide",
+      "primary_keyword": "shadow AI in engineering teams",
+      "secondary_keywords": [
+        "shadow AI detection",
+        "shadow AI inventory checklist",
+        "AI tool inventory",
+        "unsanctioned AI tools for developers",
+        "AI tool sprawl"
+      ],
+      "intent": "informational",
+      "persona": "CISO, CTO",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "N12",
+        "N04",
+        "N17"
+      ],
+      "angle": "JetBrains, Codacy, Sonar, Cycode and Veeam compete. Upcore's angle is the 72-hour inventory method (expenses, IDE extensions, repo signals, network egress) and \"replace, don't ban\". Cite Sonar's finding that 35% of developers use AI through personal accounts.",
+      "outline": [
+        "Short answer",
+        "Why bans push AI use underground",
+        "Hours 0-24: expenses and SSO logs",
+        "Hours 24-48: IDE extensions and repo signals",
+        "Hours 48-72: network egress and interviews",
+        "Replace, don't ban: sanctioned alternatives",
+        "Keeping the inventory current"
+      ],
+      "original_asset": "72-hour shadow AI inventory checklist with data sources and owners, plus the inventory spreadsheet columns.",
+      "sme_questions": [
+        "Which signals find the most unsanctioned tools fastest?",
+        "What does a first inventory typically surface, in general terms?",
+        "How do we handle developers using personal accounts?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Sonar: 35% of developers use AI through personal accounts (primary source and year)",
+        "IDE extension and SaaS discovery tool capabilities named"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #27 (4x3). Primary narrowed from the broad head term \"shadow AI\" (large vendors) to \"shadow AI in engineering teams\" per the competitor keyword table; MERGED the competitor's \"shadow AI inventory checklist\" (Month 2)."
+    },
+    {
+      "id": "N28",
+      "type": "new",
+      "status": "queued",
+      "queue": 44,
+      "week": null,
+      "score": 12,
+      "cluster": "B",
+      "working_title": "Why Your SAST Misses AI-Generated Code Flaws (and What to Add)",
+      "section": "learn",
+      "slug": "ai-generated-code-security",
+      "path": "/learn/ai-generated-code-security",
+      "content_file": "tools/v4-build/content/learn__ai-generated-code-security.json",
+      "kind": "guide",
+      "primary_keyword": "AI-generated code security",
+      "secondary_keywords": [
+        "AI code vulnerabilities",
+        "securing AI-generated code",
+        "AI-generated code security risks",
+        "Veracode GenAI report"
+      ],
+      "intent": "informational",
+      "persona": "CISO, AppSec lead",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/security",
+        "N10",
+        "N02",
+        "N05"
+      ],
+      "angle": "Security vendors dominate (Veracode-derived posts, CSA, Arnica). Map specific AI failure modes (inverted logic, auth bypass, credential sprawl, hallucinated dependencies) to checks beyond standard SAST and SCA: architecture-rule checks, secret scanning, authorization tests from acceptance criteria. Cite Veracode 2025 and the CSA 2026 research note.",
+      "outline": [
+        "Short answer",
+        "What the research says about AI code security",
+        "Failure modes SAST was not built for",
+        "Checks to add beyond SAST and SCA",
+        "Where people still need to look",
+        "A layered security gate for AI-written PRs"
+      ],
+      "original_asset": "Failure-mode-to-control matrix: the AI flaw, why SAST misses it, the check that catches it, and where it runs.",
+      "sme_questions": [
+        "Which AI-specific flaws have we seen slip past a client's existing scanners?",
+        "Which extra check catches the most in practice?",
+        "What does the L3 Protect gate run on every PR?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Veracode 2025 GenAI Code Security Report: 45% figure and method",
+        "CSA 2026 research note: AI-assisted commits leak secrets at about 2x the human rate",
+        "Any tool names and capabilities"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #28 (4x3)."
+    },
+    {
+      "id": "N29",
+      "type": "new",
+      "status": "queued",
+      "queue": 45,
+      "week": null,
+      "score": 12,
+      "cluster": "B",
+      "working_title": "India's DPDP Rules 2025 and Your AI Tools: A Checklist Before the May 2027 Deadline",
+      "section": "learn",
+      "slug": "dpdp-ai-compliance",
+      "path": "/learn/dpdp-ai-compliance",
+      "content_file": "tools/v4-build/content/learn__dpdp-ai-compliance.json",
+      "kind": "guide",
+      "primary_keyword": "DPDP AI compliance",
+      "secondary_keywords": [
+        "DPDP Rules 2025",
+        "DPDP Act AI tools",
+        "DPDP compliance checklist",
+        "AI governance framework India",
+        "MeitY AI governance guidelines"
+      ],
+      "intent": "informational",
+      "persona": "CTO or DPO at Indian companies",
+      "market": "India",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/security",
+        "/learn/ai-data-governance",
+        "/insights/nbfc-kyc-automation",
+        "N30"
+      ],
+      "angle": "Law-firm results are generic. Show where personal data sits in prompts, logs, vector stores and vendor terms, map each flow to DPDP duties, and explain where the voluntary MeitY AI Governance Guidelines (November 2025) fit alongside. Not legal advice.",
+      "outline": [
+        "Short answer",
+        "What the DPDP Rules require and when",
+        "Where personal data hides in AI systems",
+        "Mapping each AI data flow to DPDP duties",
+        "Vendor terms and cross-border transfers",
+        "Where the MeitY guidelines fit",
+        "A checklist before May 2027"
+      ],
+      "original_asset": "AI data-flow map template (prompts, logs, vector stores, vendors) mapped to DPDP duties, with a pre-deadline checklist.",
+      "sme_questions": [
+        "Where have we found personal data in AI systems that teams did not expect?",
+        "Which vendor-term questions do Indian clients get stuck on?",
+        "What do we recommend for logging and retention under DPDP?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "DPDP Rules 2025 notification date (November 2025) and phased compliance dates (full compliance about May 2027)",
+        "MeitY India AI Governance Guidelines (November 2025): status and content",
+        "Cross-border transfer provisions"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #29 (4x3). India article: the title says India. Must publish well before May 2027. MERGED: competitor Month 3 \"AI governance framework for India (MeitY + DPDP)\" as secondaries and one H2."
+    },
+    {
+      "id": "N31",
+      "type": "new",
+      "status": "queued",
+      "queue": 46,
+      "week": null,
+      "score": 12,
+      "cluster": "B",
+      "working_title": "Governing AI Agents in Operations: Identity, Permissions and an Audit Trail",
+      "section": "learn",
+      "slug": "ai-agent-governance",
+      "path": "/learn/ai-agent-governance",
+      "content_file": "tools/v4-build/content/learn__ai-agent-governance.json",
+      "kind": "guide",
+      "primary_keyword": "AI agent governance",
+      "secondary_keywords": [
+        "agentic AI governance framework",
+        "AI agent audit trail",
+        "AI agent permissions",
+        "AI agent identity"
+      ],
+      "intent": "informational",
+      "persona": "COO, CISO, CTO",
+      "market": "global",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/platform",
+        "/ai-engineering-governance",
+        "/security",
+        "/insights/human-in-the-loop",
+        "N35"
+      ],
+      "angle": "Results are security-vendor frameworks (NeuralTrust, Pluto). Use controls from production agents: scoped, revocable access; approval thresholds; record rollback; L0-L4 autonomy levels. Cite IMDA (January 2026) and NIST (verify both).",
+      "outline": [
+        "Short answer",
+        "Why agents need their own identity",
+        "Scoped, revocable permissions",
+        "Approval thresholds and autonomy levels L0-L4",
+        "Audit trail and record rollback",
+        "What frameworks and regulators expect",
+        "A governance checklist per agent"
+      ],
+      "original_asset": "Per-agent governance checklist (identity, permissions, thresholds, autonomy level, logging, rollback) with the L0-L4 ladder.",
+      "sme_questions": [
+        "How do we scope and revoke an agent's access in production?",
+        "Which approval thresholds do operations agents start with?",
+        "Have we had to roll back records an agent changed, and how?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "IMDA agentic AI governance framework (January 2026): title and content",
+        "NIST guidance referenced (AI RMF or any agent-specific profile)",
+        "L0-L4 wording on /platform"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #31 (4x3). Operations agents; coding-agent governance is N43."
+    },
+    {
+      "id": "N32",
+      "type": "new",
+      "status": "queued",
+      "queue": 47,
+      "week": null,
+      "score": 12,
+      "cluster": "C",
+      "working_title": "Reporting AI ROI to the Board: A One-Page Template",
+      "section": "learn",
+      "slug": "ai-roi-board-report",
+      "path": "/learn/ai-roi-board-report",
+      "content_file": "tools/v4-build/content/learn__ai-roi-board-report.json",
+      "kind": "guide",
+      "primary_keyword": "AI ROI board reporting",
+      "secondary_keywords": [
+        "measure AI ROI",
+        "AI KPIs for executives",
+        "AI ROI template",
+        "prove AI ROI to the board"
+      ],
+      "intent": "commercial",
+      "persona": "CFO, COO, CEO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "/insights/roi-business-case-ai-agents",
+        "N21",
+        "N18"
+      ],
+      "angle": "Vendor blogs rank (Superblocks, Waydev). Give a one-page board template: baseline vs now, adoption, total cost including tokens, and stop decisions. Keep it clearly separate from the pre-investment business case (R06).",
+      "outline": [
+        "Short answer",
+        "What boards ask about AI",
+        "The one-page template",
+        "Baseline vs now",
+        "Total cost, including tokens",
+        "Adoption and stop decisions",
+        "Common reporting mistakes"
+      ],
+      "original_asset": "One-page AI ROI board report template with field definitions.",
+      "sme_questions": [
+        "What does the board pack we prepare as fractional AI officer contain?",
+        "Which number do boards push back on?",
+        "How do we present a stop decision?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Any ROI survey statistic, with primary source and year"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #32 (4x3). Strategy pair: after-investment reporting here; the before-investment case is R06."
+    },
+    {
+      "id": "N33",
+      "type": "new",
+      "status": "queued",
+      "queue": 48,
+      "week": null,
+      "score": 12,
+      "cluster": "C",
+      "working_title": "AI Readiness Assessment for Mid-Market Companies: 25 Questions",
+      "section": "learn",
+      "slug": "ai-readiness-assessment",
+      "path": "/learn/ai-readiness-assessment",
+      "content_file": "tools/v4-build/content/learn__ai-readiness-assessment.json",
+      "kind": "guide",
+      "primary_keyword": "AI readiness assessment",
+      "secondary_keywords": [
+        "AI maturity assessment",
+        "AI readiness checklist",
+        "AI maturity model"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CEO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "/lp/ai-maturity-index",
+        "/learn/enterprise-ai-strategy",
+        "N20"
+      ],
+      "angle": "Make, Domino, BlockSurvey and consultants rank. Score 25 questions on the same dimensions as the AI Maturity Index quiz, which gives a natural CTA.",
+      "outline": [
+        "Short answer",
+        "What readiness means for a mid-market company",
+        "The 25 questions, by dimension",
+        "How to score yourself",
+        "What your score means",
+        "What to do next at each level"
+      ],
+      "original_asset": "25-question scored readiness assessment aligned to the AI Maturity Index dimensions.",
+      "sme_questions": [
+        "Which readiness gaps show up most in mid-market inventories?",
+        "Which score band usually means \"not ready for agents yet\"?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Dimensions match the /lp/ai-maturity-index quiz",
+        "Any maturity model referenced (Gartner, MIT CISR) cited correctly"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #33 (4x3). /lp/ai-maturity-index is blocked in robots.txt, so there is no search overlap. \"AI governance maturity assessment\" belongs to N17."
+    },
+    {
+      "id": "N35",
+      "type": "new",
+      "status": "queued",
+      "queue": 49,
+      "week": null,
+      "score": 12,
+      "cluster": "D",
+      "working_title": "How to Test an AI Agent Before Production (Evals on Your Real Data)",
+      "section": "learn",
+      "slug": "ai-agent-evaluation",
+      "path": "/learn/ai-agent-evaluation",
+      "content_file": "tools/v4-build/content/learn__ai-agent-evaluation.json",
+      "kind": "guide",
+      "primary_keyword": "AI agent evaluation",
+      "secondary_keywords": [
+        "agent evals",
+        "golden dataset",
+        "LLM evaluation for business"
+      ],
+      "intent": "informational",
+      "persona": "CTO, head of AI",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "/platform",
+        "/learn/how-ai-agents-work",
+        "N23",
+        "N31"
+      ],
+      "angle": "Results are machine-learning tool docs. Write an eval plan a business owner can read: cases taken from real tickets, pass thresholds, and promotion to the next autonomy level.",
+      "outline": [
+        "Short answer",
+        "Why demos mislead",
+        "Build a golden set from real tickets",
+        "Pass thresholds by risk",
+        "Running evals before and after launch",
+        "Promoting an agent to the next autonomy level"
+      ],
+      "original_asset": "Eval plan template (case sources, scoring, thresholds, promotion rules) a business owner can read.",
+      "sme_questions": [
+        "How many real cases does a golden set start with?",
+        "What pass rate do we require before an agent moves from L2 to L3?",
+        "What did evals catch that a demo hid (anonymized)?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Any eval tool named and its capabilities",
+        "L0-L4 wording on /platform"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #35 (4x3)."
+    },
+    {
+      "id": "N37",
+      "type": "new",
+      "status": "queued",
+      "queue": 50,
+      "week": null,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "AI Agents vs RPA: Which to Use for Which Process",
+      "section": "compare",
+      "slug": "ai-agents-vs-rpa",
+      "path": "/compare/ai-agents-vs-rpa",
+      "content_file": "tools/v4-build/content/compare__ai-agents-vs-rpa.json",
+      "kind": "comparison",
+      "primary_keyword": "AI agents vs RPA",
+      "secondary_keywords": [
+        "agentic automation vs RPA",
+        "replacing RPA with AI agents",
+        "RPA vs agentic AI"
+      ],
+      "intent": "commercial",
+      "persona": "COO, automation lead",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/learn/how-ai-agents-work",
+        "/insights/choosing-first-ai-agent",
+        "N39"
+      ],
+      "angle": "TechTarget, RaftLabs and Skyvern rank. Give a process-by-process decision table, the hybrid pattern, how to migrate brittle bots, and say when RPA wins.",
+      "outline": [
+        "Short answer",
+        "How RPA and AI agents differ",
+        "Process-by-process decision table",
+        "The hybrid pattern",
+        "Migrating brittle bots",
+        "When RPA is still the better choice"
+      ],
+      "original_asset": "Process-by-process decision table (process traits vs RPA, agent or hybrid) with a bot migration checklist.",
+      "sme_questions": [
+        "Which RPA bots have we replaced or wrapped with agents, in general terms?",
+        "When did we recommend keeping RPA?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "RPA vendor names and their agentic features (UiPath, Automation Anywhere, Microsoft Power Automate) as of publish month"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #37 (4x3)."
+    },
+    {
+      "id": "N38",
+      "type": "new",
+      "status": "queued",
+      "queue": 51,
+      "week": null,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "AI Agents for Payment Follow-Ups: Getting Paid Sooner Without Annoying Customers",
+      "section": "insights",
+      "slug": "ai-collections-agent",
+      "path": "/insights/ai-collections-agent",
+      "content_file": "tools/v4-build/content/insights__ai-collections-agent.json",
+      "kind": "playbook",
+      "primary_keyword": "AI collections agent",
+      "secondary_keywords": [
+        "accounts receivable AI agent",
+        "automated payment reminders",
+        "AI dunning"
+      ],
+      "intent": "commercial",
+      "persona": "CFO, controller, COO",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/who-we-help/operations-heavy",
+        "/insights/human-in-the-loop",
+        "N11"
+      ],
+      "angle": "AR software vendors rank. Upcore's angle: a custom agent inside the existing CRM or ERP, with escalation thresholds for disputes and write-offs, plus the residential developer installment case from /results.",
+      "outline": [
+        "Short answer",
+        "Why reminders alone do not get you paid",
+        "The follow-up loop inside your CRM or ERP",
+        "Tone, timing and channel rules",
+        "Escalation thresholds: disputes and write-offs",
+        "Case: installment follow-ups at a residential developer",
+        "Metrics: days sales outstanding and dispute rate"
+      ],
+      "original_asset": "Escalation threshold table (amount, age, dispute signal, action, owner) and a follow-up cadence template.",
+      "sme_questions": [
+        "Which follow-ups did the residential developer's agents run, and what always went to a person?",
+        "Which tone and channel rules do we set?",
+        "Which thresholds trigger escalation for disputes?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Residential developer case facts as on /results",
+        "Any DSO benchmark, with source",
+        "Scope of US debt collection rules (FDCPA applies to third-party collectors; verify before mentioning)"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #38 (4x3). Same case as N11: keep this page on payments, N11 on documents."
+    },
+    {
+      "id": "N39",
+      "type": "new",
+      "status": "queued",
+      "queue": 52,
+      "week": null,
+      "score": 12,
+      "cluster": "E",
+      "working_title": "Custom AI Agent vs Off-the-Shelf AI Agent Software",
+      "section": "compare",
+      "slug": "custom-ai-agent-vs-off-the-shelf",
+      "path": "/compare/custom-ai-agent-vs-off-the-shelf",
+      "content_file": "tools/v4-build/content/compare__custom-ai-agent-vs-off-the-shelf.json",
+      "kind": "comparison",
+      "primary_keyword": "build vs buy AI agents",
+      "secondary_keywords": [
+        "custom AI agent",
+        "off-the-shelf AI agents",
+        "AI agent platform vs custom"
+      ],
+      "intent": "commercial",
+      "persona": "COO, CTO",
+      "market": "global",
+      "money_page": "/platform",
+      "link_to": [
+        "/platform",
+        "/forward-deployed-engineer",
+        "/learn/enterprise-ai-strategy",
+        "/learn/top-ai-agent-platforms",
+        "/compare/upcore-vs-building-in-house",
+        "N24"
+      ],
+      "angle": "Generic results. Give a decision table, the MIT NANDA finding that external partnerships reach deployment about twice as often as internal builds (verify), and an honest \"buy SaaS when\" section.",
+      "outline": [
+        "Short answer",
+        "Three options: SaaS agent, platform, custom build",
+        "Decision table",
+        "What the research says about build vs partner",
+        "When off-the-shelf is the better choice",
+        "Hidden costs on each side"
+      ],
+      "original_asset": "Build-vs-buy decision table with a weighted scoring sheet.",
+      "sme_questions": [
+        "When do we tell prospects to buy a SaaS agent instead?",
+        "Which hidden costs show up after buying off-the-shelf?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "MIT NANDA 2025 build vs partner deployment rates",
+        "Any SaaS agent product claim"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #39 (4x3). Distinct from /compare/upcore-vs-building-in-house (engineering pipeline, build vs partner) and N24 (cost)."
+    },
+    {
+      "id": "N45",
+      "type": "new",
+      "status": "queued",
+      "queue": 53,
+      "week": null,
+      "score": 12,
+      "cluster": "C",
+      "working_title": "How Much Does AI Consulting Cost in 2026? Rates and Engagement Models, US vs India",
+      "section": "learn",
+      "slug": "ai-consulting-cost",
+      "path": "/learn/ai-consulting-cost",
+      "content_file": "tools/v4-build/content/learn__ai-consulting-cost.json",
+      "kind": "guide",
+      "primary_keyword": "AI consulting cost",
+      "secondary_keywords": [
+        "AI consulting rates 2026",
+        "AI consultant hourly rate",
+        "AI consulting for mid-market companies",
+        "AI consultant vs agency"
+      ],
+      "intent": "commercial",
+      "persona": "CEO, COO, CFO at mid-market companies",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer#economics",
+        "/forward-deployed-engineer",
+        "/platform",
+        "N06",
+        "N24",
+        "N41"
+      ],
+      "angle": "Med-High demand with agency-level competition (Leanware, Solulab, Groovy Web, Lilach Bullock, pages.dev sites) and unsourced ranges. Compare engagement models (hourly advisory, fixed-scope strategy project, implementation project, retainer, fractional leader) with sourced US vs India rate ranges, what each buys, and how to avoid paying for a strategy deck nobody implements. The only Upcore price that may appear is the Fractional AI Officer \"from $1,999/month\".",
+      "outline": [
+        "Short answer",
+        "Five ways AI consulting is priced",
+        "Typical 2026 rates: US vs India",
+        "What you get for each model",
+        "Consultant vs agency vs fractional leader",
+        "The hidden cost: the implementation gap",
+        "How to scope a first engagement"
+      ],
+      "original_asset": "Sourced rate table by engagement model and market (US, India) with a \"what you get\" column and a scoping checklist.",
+      "sme_questions": [
+        "What do prospects say consultancies quoted them, in ranges?",
+        "When is a fixed-scope project better than a fractional retainer?",
+        "What makes an AI strategy engagement fail to reach implementation?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Every rate range with source and date (Groovy Web AI consulting rates 2026, Leanware, Solulab and others)",
+        "Currency conversions dated",
+        "Upcore pricing limited to what /fractional-ai-officer states"
+      ],
+      "review_every_days": 90,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "ADDED from the competitor report (best gap #12 and the section 5 list \"AI consulting cost 2026 (US vs India)\"). Score 4x3=12 is an estimate (impact 4: commercial, feeds the FAO and FDE offers; ease 3: agency competition, and Upcore can show only one own price). Cannibalization: N06 owns fractional CAIO cost, N24 agent build cost, N41 FDE cost; this page owns consulting engagement pricing and links to the other three for depth."
+    },
+    {
+      "id": "N46",
+      "type": "new",
+      "status": "queued",
+      "queue": 54,
+      "week": null,
+      "score": 12,
+      "cluster": "A",
+      "working_title": "How to Choose an AI-Native Engineering Partner: A 20-Point Scorecard",
+      "section": "learn",
+      "slug": "how-to-choose-ai-native-engineering-partner",
+      "path": "/learn/how-to-choose-ai-native-engineering-partner",
+      "content_file": "tools/v4-build/content/learn__how-to-choose-ai-native-engineering-partner.json",
+      "kind": "guide",
+      "primary_keyword": "how to choose an AI-native engineering partner",
+      "secondary_keywords": [
+        "AI-native engineering partner evaluation",
+        "AI software development vendor evaluation",
+        "AI engineering partner RFP questions"
+      ],
+      "intent": "commercial",
+      "persona": "CTO, VP Engineering, procurement lead",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/compare/upcore-vs-building-in-house",
+        "/compare/ai-native-engineering-vs-ai-coding-tools",
+        "N01",
+        "N05",
+        "N16"
+      ],
+      "angle": "\"AI-native engineering services / company / partner\" is low volume but the highest-intent query in the cluster; Nagarro, Coforge, Jade Global and Unified Infotech rank with service pages, and nobody offers a neutral evaluation tool. Give a 20-point scorecard (process, governance, evidence, security, ownership, commercial terms), RFP questions, red flags, and an honest note on when to build in-house instead.",
+      "outline": [
+        "Short answer",
+        "What separates an AI-native partner from AI-assisted outsourcing",
+        "The 20-point scorecard",
+        "Questions to ask in the RFP",
+        "Red flags",
+        "When to build in-house instead"
+      ],
+      "original_asset": "20-point weighted partner scorecard with an RFP question bank.",
+      "sme_questions": [
+        "Which questions do CTOs ask us in evaluations that we wish more of them asked?",
+        "What evidence should a partner be able to show from a pilot?",
+        "When have we told a prospect to build in-house?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Upcore claims limited to /ai-native-engineering, /results and /security",
+        "Any certification referenced"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "ADDED from the competitor report (section 5 \"how to choose an AI-native engineering partner (scorecard)\" and table A services/partner row). Score 4x3=12 is an estimate. Cannibalization: the money page /ai-native-engineering keeps \"AI-native engineering services / company / partner\"; this page targets the evaluation question. Must stay vendor-neutral and must not score named competitors."
+    },
+    {
+      "id": "N30",
+      "type": "new",
+      "status": "queued",
+      "queue": 55,
+      "week": null,
+      "score": 12,
+      "cluster": "B",
+      "working_title": "RBI FREE-AI Framework: What Indian NBFCs and Banks Should Put in Place Before Deploying AI Agents",
+      "section": "learn",
+      "slug": "rbi-free-ai-framework",
+      "path": "/learn/rbi-free-ai-framework",
+      "content_file": "tools/v4-build/content/learn__rbi-free-ai-framework.json",
+      "kind": "guide",
+      "primary_keyword": "RBI FREE-AI framework",
+      "secondary_keywords": [
+        "RBI AI guidelines",
+        "AI governance for NBFCs",
+        "FREE-AI recommendations",
+        "AI governance framework for banks in India"
+      ],
+      "intent": "informational",
+      "persona": "CRO or CTO at Indian NBFCs and banks",
+      "market": "India",
+      "money_page": "/ai-engineering-governance",
+      "link_to": [
+        "/ai-engineering-governance",
+        "/platform",
+        "/insights/nbfc-kyc-automation",
+        "/insights/banking-ai-customer-service",
+        "/learn/ai-in-banking",
+        "N29",
+        "N31"
+      ],
+      "angle": "Results are summaries (TaxGuru, AuthBridge, Mondaq, law firms). Give an implementation checklist for one AI agent deployment: board policy, vendor risk (obligations pass down to vendors), oversight and logs, verified against the RBI text.",
+      "outline": [
+        "Short answer",
+        "What FREE-AI is and its current status",
+        "What it means for an AI agent deployment",
+        "Board policy and governance",
+        "Vendor risk and outsourcing",
+        "Oversight, logs and incident reporting",
+        "An implementation checklist"
+      ],
+      "original_asset": "FREE-AI implementation checklist for a single AI agent deployment, mapped to the framework's recommendations.",
+      "sme_questions": [
+        "What do NBFC clients ask first about RBI expectations for AI?",
+        "How do we document human oversight for a KYC agent?",
+        "Which vendor obligations do lenders push down to us?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "FREE-AI release date (August 2025), its principles and recommendation count, from the RBI text",
+        "Whether any Master Direction now turns the recommendations into rules",
+        "Vendor and outsourcing provisions"
+      ],
+      "review_every_days": 180,
+      "cta": "governance_score",
+      "refresh_actions": [],
+      "notes": "Strategy #30 (3x4). Competitor best gap #10. Anchors the India BFSI mini-cluster refreshed in R11."
+    },
+    {
+      "id": "N34",
+      "type": "new",
+      "status": "queued",
+      "queue": 56,
+      "week": null,
+      "score": 12,
+      "cluster": "C",
+      "working_title": "Setting Up an AI Steering Committee in a Mid-Market Company",
+      "section": "insights",
+      "slug": "ai-steering-committee",
+      "path": "/insights/ai-steering-committee",
+      "content_file": "tools/v4-build/content/insights__ai-steering-committee.json",
+      "kind": "framework",
+      "primary_keyword": "AI steering committee",
+      "secondary_keywords": [
+        "AI governance committee charter",
+        "AI council",
+        "AI committee members"
+      ],
+      "intent": "informational",
+      "persona": "COO, CEO",
+      "market": "global",
+      "money_page": "/fractional-ai-officer",
+      "link_to": [
+        "/fractional-ai-officer",
+        "/ai-engineering-governance",
+        "N20",
+        "N21",
+        "N42"
+      ],
+      "angle": "Existing advice is for large enterprises. Give a charter, 5 members, a monthly cadence and decision rights sized for 100-2,000 employees.",
+      "outline": [
+        "Short answer",
+        "Why mid-market companies need a lighter committee",
+        "Five members and their roles",
+        "Decision rights",
+        "A monthly cadence and agenda",
+        "The charter template"
+      ],
+      "original_asset": "Copy-paste AI steering committee charter with member roles, a decision-rights table and a monthly agenda.",
+      "sme_questions": [
+        "Who sits on the committees we set up, and who chairs?",
+        "Which decisions should never go to the committee?",
+        "How does the fractional AI officer run it?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Any governance standard referenced (ISO 42001 roles, NIST AI RMF Govern function)"
+      ],
+      "review_every_days": 180,
+      "cta": "ai_maturity_score",
+      "refresh_actions": [],
+      "notes": "Strategy #34 (3x4). kind framework."
+    },
+    {
+      "id": "N36",
+      "type": "new",
+      "status": "queued",
+      "queue": 57,
+      "week": null,
+      "score": 12,
+      "cluster": "D",
+      "working_title": "Why AI Agents Quietly Stop Being Used After Launch",
+      "section": "insights",
+      "slug": "ai-agent-adoption-after-launch",
+      "path": "/insights/ai-agent-adoption-after-launch",
+      "content_file": "tools/v4-build/content/insights__ai-agent-adoption-after-launch.json",
+      "kind": "playbook",
+      "primary_keyword": "AI adoption after launch",
+      "secondary_keywords": [
+        "AI agent monitoring",
+        "model drift",
+        "AI agent maintenance"
+      ],
+      "intent": "informational",
+      "persona": "COO, CTO",
+      "market": "global",
+      "money_page": "/forward-deployed-engineer",
+      "link_to": [
+        "/forward-deployed-engineer",
+        "/platform",
+        "N22",
+        "N35",
+        "N23"
+      ],
+      "angle": "Thin results. Give a post-launch runbook: accuracy tracking, an edge-case log, drift checks, ownership and a monthly review.",
+      "outline": [
+        "Short answer",
+        "How agents fade after launch",
+        "Who owns the agent after go-live",
+        "What to monitor every week",
+        "The edge-case log",
+        "The monthly review",
+        "When to retire or rebuild"
+      ],
+      "original_asset": "Post-launch runbook with a weekly monitoring checklist and an edge-case log template.",
+      "sme_questions": [
+        "What does the Iterate stage look like month to month?",
+        "Which early signal tells us adoption is slipping?",
+        "How has a production agent stayed in use over time (only facts already on /results)?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Any adoption statistic, with primary source",
+        "Case facts as on /results"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #36 (3x4)."
+    },
+    {
+      "id": "N40",
+      "type": "new",
+      "status": "queued",
+      "queue": 58,
+      "week": null,
+      "score": 9,
+      "cluster": "A",
+      "working_title": "How Engineering Roles Change in an AI-Native Team",
+      "section": "learn",
+      "slug": "ai-native-engineering-team-roles",
+      "path": "/learn/ai-native-engineering-team-roles",
+      "content_file": "tools/v4-build/content/learn__ai-native-engineering-team-roles.json",
+      "kind": "guide",
+      "primary_keyword": "AI-native engineering team structure",
+      "secondary_keywords": [
+        "engineering manager role with AI",
+        "software engineer role with AI",
+        "AI impact on engineering teams",
+        "AI-native engineering roles"
+      ],
+      "intent": "informational",
+      "persona": "CTO, VP Engineering",
+      "market": "global",
+      "money_page": "/ai-native-engineering",
+      "link_to": [
+        "/ai-native-engineering",
+        "/learn/what-is-ai-native-engineering",
+        "N13",
+        "N14"
+      ],
+      "angle": "Answers the top objection (\"what happens to our engineers?\"). News dominates the head terms, so target the long tail (Orient, Kyanon, Gauntlet rank). Show how roles shift in the pod: spec writers, architects who own the rules, reviewers of risky changes, platform owners.",
+      "outline": [
+        "Short answer",
+        "What changes and what does not",
+        "The AI-native pod",
+        "Engineering managers",
+        "Senior and staff engineers",
+        "Junior engineers and hiring",
+        "Skills to build now"
+      ],
+      "original_asset": "Before-and-after role map for an AI-native pod (role, old focus, new focus, skills).",
+      "sme_questions": [
+        "How is our own delivery pod structured?",
+        "What happened to junior engineers' work in our pilots?",
+        "What do we tell a CTO worried about headcount?"
+      ],
+      "needs_human_data": false,
+      "fact_check": [
+        "Any labor-market or hiring statistic, with primary source"
+      ],
+      "review_every_days": 180,
+      "cta": "booking",
+      "refresh_actions": [],
+      "notes": "Strategy #40 (3x3)."
+    }
+  ]
+}

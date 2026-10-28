@@ -16,3 +16,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 .env*
+
+# Content pipeline (2026-10-28): local deploy history, and Python bytecode from the tools/ scripts
+tools/content/deploys.log
+__pycache__/
+*.pyc

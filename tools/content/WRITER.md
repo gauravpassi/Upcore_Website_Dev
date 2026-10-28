@@ -41,6 +41,9 @@ Background reading, in this order: `CLAUDE.md`, `docs/FEATURES.md` A9 (the conte
   `git fetch origin` and `git switch --detach origin/main`.
 - If `tools/content/backlog.json` doesn't exist there, the pipeline hasn't been merged to GitHub's `main` yet: stop
   and say so.
+- Run `python tools/v4-build/build_all.py` on that clean base. If `git status` then shows changed files, GitHub's
+  `main` has generated pages that are out of date with their sources: stop and report it (someone has to commit a
+  full rebuild first), because otherwise your build commit would carry unrelated changes.
 - Set `PYTHONDONTWRITEBYTECODE=1` for every Python command (so no `__pycache__` gets committed).
 
 ## 2. Pick the item
@@ -55,7 +58,9 @@ at the end). If the person named a specific item, use that one.
 
 1. Search the primary keyword and 2 variants. Read the top 5-8 results. Write down each one's H2s and what it
    misses; the item's `angle` says where to win, but check it still holds today.
-2. Collect a primary source for every figure you might use. Run every `fact_check` item against today's sources.
+2. Collect a primary source for every figure you might use, and confirm each fact on the fetched primary page itself,
+   never from a search result's summary (summaries misattribute figures and get docs wrong). If the page doesn't load
+   or doesn't say it, don't use it. Run every `fact_check` item against today's sources.
 3. Read the Upcore pages in `link_to` and the item's `money_page` so what you say about Upcore matches them.
 4. Grep `tools/v4-build/content/*.json` and `build_guide.py` / `build_compare.py` for the primary keyword and close
    variants, to confirm no existing page already targets it (rule 7).
@@ -75,7 +80,7 @@ File: `tools/v4-build/content/<section>__<slug>.json` (for a refresh, edit the e
 |---|---|
 | `file`, `path` | `<section>/<slug>.html`, `/<section>/<slug>` |
 | `title` | Plain text, primary keyword early, ends with ` \| Upcore`, 60 characters max in total |
-| `meta` | Plain text, 140-155 characters, one or two complete sentences, primary keyword included, no ellipsis |
+| `meta` | Plain text, 140-155 characters (the validator allows up to 158), one or two complete sentences, primary keyword included, no ellipsis |
 | `robots` | `""` |
 | `published` | Today's date `YYYY-MM-DD` (PUBLISH.md resets it to the real publish day). A refresh keeps the original |
 | `updated` | `""` for a new article; today's date for a refresh |
@@ -98,7 +103,7 @@ File: `tools/v4-build/content/<section>__<slug>.json` (for a refresh, edit the e
 - **First section:** id `short-answer`, h2 `""`, opening with `<div class="ar-call"><p class="ar-call-k">Short answer</p><p>...</p></div>`. The short answer gives the answer in the first 100 words.
 - **Order and coverage:** follow the item's `outline`, adapted to what the SERP research found.
 - **Original asset:** include the item's `original_asset` (a template, rubric, checklist, decision table or worked example). This is what earns links.
-- **Allowed HTML:** `p`, `h3`, `h4`, `ul`, `ol`, `li`, `strong`, `b`, `em`, `br`, `a`, `code`, `blockquote`, plus these components (copy the markup from existing files):
+- **Allowed HTML:** `p`, `h3`, `h4`, `ul`, `ol`, `li`, `strong`, `b`, `em`, `br`, `a`, `code`, `blockquote`, plus `pre` for code blocks and these components (copy the markup from existing files):
   - `.lx-cards`/`.lx-card`/`.lx-tag`/`.lx-note`
   - `.lx-table` with `is-hi`/`is-yes`/`is-no`/`is-part`
   - `.lx-steps`/`.lx-step`/`.lx-step-t`
@@ -107,11 +112,17 @@ File: `tools/v4-build/content/<section>__<slug>.json` (for a refresh, edit the e
 
   No inline styles, no other classes, no `h1`/`h2` inside a section.
 - **Links:** at least 3 internal links in the body, one of them to the money page; links are root-relative without `.html`. External links go to primary sources only.
-- **Length:** whatever beats the SERP. That is typically 1,500-2,500 words for learn and 1,200-2,000 for insights and compare. Never pad.
+- **Length:** whatever beats the SERP. That is typically 1,500-2,500 words for learn and 1,200-2,000 for insights and compare, tables included. Never pad; if you go well beyond, say why in the review note and list what could be cut.
+- **Code and config** the reader would copy (a CODEOWNERS file, a YAML snippet) go in `<pre><code>...</code></pre>`; inline names in `<code>`.
 
 **Wire it into the site** (part of the same change):
-- Add the new article to `related` of 1-3 existing articles in the same cluster (replace the weakest entry if a
-  list already has 4).
+- Add the new article to `related` of 1-3 existing JSON articles in the same cluster (replace the weakest entry if a
+  list already has 4). If the cluster has no JSON articles yet (its pages are Python-built, like cluster A's guide
+  and comparisons), use the closest JSON article from another cluster only if it genuinely fits, and name in the
+  review note which Python-built page should link to it.
+- Owed links: look in `backlog.json` for `published` items whose `link_to` lists this item's id, and add a contextual
+  link from each of them to the new article. The new article's own `link_to` entries that point at unpublished ids
+  are skipped for now; list them in the review note.
 - If `tools/v4-build/reading.py` exists, add it to the money page's Further reading list when it beats an entry
   there (keep 3-4 entries).
 - Leave `FEATURED` in `build_insights.py` alone unless the item is the cluster pillar (say so in the review note).
@@ -137,7 +148,7 @@ it loads. Push the branch to the dev remote as a backup (`git push dev content/<
 
 ## 7. Hand over for review
 
-Write `tools/content/reviews/<id>-<slug>.md` (committed in the draft commit is fine, or a third commit) with:
+Write `tools/content/reviews/<id>-<slug>.md` with:
 - the preview URL, title, meta, primary keyword, word count, author and reviewer;
 - what the top results miss and how this article fills it (2-4 bullets);
 - **fact-check list:** every figure with its source URL, and every "as of" claim with what you checked today;
@@ -156,7 +167,10 @@ Write `tools/content/reviews/<id>-<slug>.md` (committed in the draft commit is f
   10. title and meta are within length.
 
 In `backlog.json`, set the item's `status` to `in_review` and add `"branch"`, `"preview"` and `"drafted"` (date)
-keys. Commit that.
+keys. Commit the note and the backlog change as `content: <slug> review note [automated]` (the `content:` prefix
+matters: PUBLISH.md cherry-picks every `content:` commit and none of the `build:` ones). Keep `backlog.json`'s
+format (2-space indent, trailing newline) so diffs stay small. The preview may be protected by Vercel
+Authentication; `deploy.py` says so, and the person opens it while signed in to Vercel.
 
 Finish with a short message to the person: the article title, preview link, the 3-5 things most worth checking,
 the author questions, and how to respond:

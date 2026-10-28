@@ -64,7 +64,7 @@ def build(path):
             f'<span>Published {H.escape(shown)}</span>' if shown else '',
             f'<span>Updated {human_date(updated)}</span>' if updated and updated > published else ''])
         if d.get('ai_assisted') and (author or reviewer):
-            meta_line += f'<span class="ar-note">Drafted with AI assistance; reviewed and approved by {AU.PEOPLE[reviewer or author]["name"]}.</span>'
+            meta_line += f'<span class="ar-note">Drafted with AI assistance. Reviewed by {AU.PEOPLE[reviewer or author]["name"]} before publication.</span>'
     stats = ''
     if d['stats']:
         stats = '<dl class="lx-stats lx-stats--hero" data-reveal style="--d:4">' + ''.join(f'<div><dt>{H.escape(n)}</dt><dd>{H.escape(l)}</dd></div>' for n, l in d['stats']) + '</dl>'

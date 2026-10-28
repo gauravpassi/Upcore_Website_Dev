@@ -1693,6 +1693,9 @@ a.btn--cyan:hover{box-shadow:0 14px 40px -12px var(--cyan-glow);}
 .ar-meta a{color:inherit;text-decoration:underline;text-underline-offset:3px;}
 .ar-meta .ar-note{flex-basis:100%;font-family:var(--f-sans);text-transform:none;letter-spacing:0;}
 .ar-meta .ar-note::before{content:none;}
+.ar-body code{font-family:var(--f-mono);font-size:.88em;padding:.1em .35em;border:1px solid var(--hair);border-radius:4px;background:var(--paper);overflow-wrap:anywhere;}
+.ar-body pre{margin:20px 0;padding:16px 18px;border:1px solid var(--hair);border-radius:10px;background:var(--paper);overflow-x:auto;font-family:var(--f-mono);font-size:var(--fs-sm,.9rem);line-height:1.6;white-space:pre;}
+.ar-body pre code{padding:0;border:0;background:none;font-size:inherit;overflow-wrap:normal;}
 .ar-progress{position:fixed;left:0;right:0;top:0;height:3px;z-index:300;pointer-events:none;}
 .ar-progress i{display:block;height:100%;background:var(--thread);box-shadow:0 0 10px rgba(33,210,237,.6);transform:scaleX(0);transform-origin:0 50%;}
 .ar-wrap{padding-top:clamp(16px,2vw,32px);}

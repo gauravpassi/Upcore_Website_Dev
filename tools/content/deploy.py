@@ -9,13 +9,14 @@ Production always deploys exactly what GitHub's main holds (it fetches origin an
 whatever goes live is pushed first. Without --confirm-production it only prints the commits production has not
 seen yet (since the last production deploy recorded in tools/content/deploys.log) so a human can check the list.
 Needs the Vercel CLI logged in to the gauravpassis-projects team (vercel whoami)."""
-import datetime, os, re, shutil, subprocess, sys, tempfile, zipfile
+import datetime, os, re, shutil, subprocess, sys, tempfile, urllib.error, urllib.request, zipfile
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 ORG = 'team_u6ZGrna1j8I7c2K3KAHWZiTr'
 PROJECTS = {'preview': 'prj_KEIUvNDdxLISCUV9dgz4PsDVGpuC',      # upcore-website-dev
             'production': 'prj_jZXe1p8PuDNEaicVWNWRnUrE5uTa'}   # upcore-ai-workforces = www.upcoretech.com
 LOG = os.path.join(ROOT, 'tools', 'content', 'deploys.log')
+SITE = 'https://www.upcoretech.com'
 
 
 def git(*args):
@@ -26,10 +27,35 @@ def git(*args):
 
 
 def last_production_sha():
+    """The commit www.upcoretech.com is serving: /build-id.txt (written into every deploy since 2026-10-28),
+    else the last production deploy in this checkout's deploys.log, else None."""
+    try:
+        live = urllib.request.urlopen(SITE + '/build-id.txt', timeout=15).read().decode().strip()
+        if re.fullmatch(r'[0-9a-f]{40}', live) and subprocess.run(['git', 'cat-file', '-e', live], cwd=ROOT).returncode == 0:
+            return live
+    except Exception:  # noqa: BLE001 (older deploys have no build-id.txt)
+        pass
     if not os.path.exists(LOG):
         return None
     shas = [line.split()[2] for line in open(LOG, encoding='utf-8') if line.split()[1:2] == ['production']]
     return shas[-1] if shas else None
+
+
+def probe(url):
+    """Preview deployments of upcore-website-dev sit behind Vercel Authentication; say so instead of 'it works'."""
+    class NoRedirect(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *a, **k):
+            return None
+    try:
+        r = urllib.request.build_opener(NoRedirect).open(url, timeout=30)
+        return f'loads (HTTP {r.status})'
+    except urllib.error.HTTPError as e:
+        loc = e.headers.get('Location', '')
+        if e.code in (301, 302, 303, 307, 308) and 'vercel.com' in loc:
+            return 'protected by Vercel Authentication: open it while signed in to vercel.com with access to the gauravpassis-projects team'
+        return f'HTTP {e.code}'
+    except Exception as e:  # noqa: BLE001
+        return f'could not check ({e})'
 
 
 def main():
@@ -49,7 +75,7 @@ def main():
     if target == 'production':
         since = last_production_sha()
         span = f'{since}..{sha}' if since else f'-15 {sha}'
-        print('Commits going live' + ('' if since else ' (no previous deploy logged; showing the last 15)') + ':')
+        print('Commits going live' + (f' (live is {since[:7]})' if since else ' (live commit unknown; showing the last 15)') + ':')
         print(git('log', '--oneline', *span.split()) or '  (none)')
         if '--confirm-production' not in sys.argv:
             sys.exit('\nNot deployed. Re-run with --confirm-production once a human has approved the list above.')
@@ -63,6 +89,8 @@ def main():
         git('archive', '--format=zip', '-o', archive, sha)
         out = os.path.join(tmp, 'site')
         zipfile.ZipFile(archive).extractall(out)
+        with open(os.path.join(out, 'build-id.txt'), 'w', encoding='utf-8', newline='\n') as f:
+            f.write(sha + '\n')  # served at /build-id.txt so the next production deploy knows what is live
         env = dict(os.environ, VERCEL_ORG_ID=ORG, VERCEL_PROJECT_ID=PROJECTS[target])
         cmd = [vercel, 'deploy', '--yes', '--cwd', out] + (['--prod'] if target == 'production' else [])
         print(f'Deploying {ref} ({sha[:7]}) to {target}...')
@@ -76,7 +104,11 @@ def main():
     stamp = datetime.datetime.now().isoformat(timespec='seconds')
     with open(LOG, 'a', encoding='utf-8', newline='\n') as f:
         f.write(f'{stamp} {target} {sha} {ref} {url}\n')
-    print(url if target == 'preview' else f'{url}\nLive at https://www.upcoretech.com (aliases update within a minute).')
+    if target == 'preview':
+        print(url)
+        print('Preview check:', probe(url))
+    else:
+        print(f'{url}\nLive at {SITE} (aliases update within a minute).')
 
 
 if __name__ == '__main__':

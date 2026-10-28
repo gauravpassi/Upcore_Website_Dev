@@ -22,7 +22,7 @@ OPTIONAL = {'author': str, 'reviewer': str, 'updated': str, 'ai_assisted': bool,
 KINDS = {'guide', 'comparison', 'framework', 'playbook'}
 SECTIONS = {'insights', 'learn', 'compare'}
 TAGS = {'p', 'h3', 'h4', 'ul', 'ol', 'li', 'strong', 'b', 'em', 'br', 'a', 'div', 'span', 'table', 'thead', 'tbody',
-        'tr', 'th', 'td', 'dl', 'dt', 'dd', 'code', 'blockquote', 'cite'}
+        'tr', 'th', 'td', 'dl', 'dt', 'dd', 'code', 'pre', 'blockquote', 'cite'}
 CLASS_OK = re.compile(r'^(lx-[a-z0-9-]+|ar-call|ar-call-k|is-hi|is-yes|is-no|is-part|hl)$')
 BANNED = ['revolutionize', 'revolutionise', 'game-changer', 'game changer', 'unlock the', 'unleash', "in today's fast-paced",
           'in today’s fast-paced', 'delve', 'cutting-edge', 'synergy', 'paradigm shift', 'seamlessly']
@@ -123,8 +123,9 @@ def check(fn, strict_flag, built, all_paths, pending):
     if len(t) > 60:
         (E if strict else W)(f'title is {len(t)} chars (max 60)')
     m = d['meta']
-    if not 120 <= len(m) <= 158:
-        (E if strict else W)(f'meta description is {len(m)} chars (want 120-158)')
+    lo = 140 if strict else 120
+    if not lo <= len(m) <= 158:
+        (E if strict else W)(f'meta description is {len(m)} chars (want {lo}-158)')
     if m.rstrip().endswith(('…', '...')):
         E('meta description is truncated (ends with an ellipsis)')
     if re.search(r'<|&[a-z]+;|&#\d+;', t + m):
@@ -214,6 +215,12 @@ def check(fn, strict_flag, built, all_paths, pending):
                 W(f'FAQ answer for "{q[:40]}" is {words(a)} words (aim for 40-70)')
         if not d.get('sources'):
             W('no "sources" list (the URLs the facts came from)')
+        listed = {u.rstrip('/') for u in d.get('sources') or []}
+        linked = {u.rstrip('/') for u in external}
+        for u in sorted(linked - listed):
+            W(f'external link not in "sources": {u}')
+        for u in sorted(listed - linked):
+            W(f'source never linked in the article: {u}')
     for r in d['related']:
         if len(r) != 4:
             E('related entries must be [href, kicker, title, desc]')

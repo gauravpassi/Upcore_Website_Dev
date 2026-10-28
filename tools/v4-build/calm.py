@@ -69,7 +69,9 @@ def results_band(eb, h2, items, foot=True, quote=None, long=False, lead=None):
 
 
 def faq(items, h2, eb='Questions'):
-    fq = ''.join(f'<details><summary>{a}<span class="pm" aria-hidden="true"></span></summary><div class="ans"><p>{b}</p></div></details>' for a, b in items)
+    # Answers that already carry block markup (library JSON uses "<p>...</p>") aren't wrapped again: <p><p> is invalid HTML.
+    wrap = lambda b: b if re.match(r'\s*<(p|ul|ol|div|table)[\s>]', b) else f'<p>{b}</p>'
+    fq = ''.join(f'<details><summary>{a}<span class="pm" aria-hidden="true"></span></summary><div class="ans">{wrap(b)}</div></details>' for a, b in items)
     return f'''<section class="h-sec" aria-labelledby="faq-h"><div class="wrap h-faq">
 <div>{eyebrow(eb)}<h2 id="faq-h" class="h-h2 h-h2--sm" data-reveal>{h2}</h2></div>
 <div class="faq">{fq}</div></div></section>'''

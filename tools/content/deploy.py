@@ -9,7 +9,7 @@ Production always deploys exactly what GitHub's main holds (it fetches origin an
 whatever goes live is pushed first. Without --confirm-production it only prints the commits production has not
 seen yet (since the last production deploy recorded in tools/content/deploys.log) so a human can check the list.
 Needs the Vercel CLI logged in to the gauravpassis-projects team (vercel whoami)."""
-import datetime, os, re, shutil, subprocess, sys, tempfile, urllib.error, urllib.request, zipfile
+import datetime, glob, os, re, shutil, subprocess, sys, tempfile, urllib.error, urllib.request, zipfile
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 ORG = 'team_u6ZGrna1j8I7c2K3KAHWZiTr'
@@ -39,6 +39,21 @@ def last_production_sha():
         return None
     shas = [line.split()[2] for line in open(LOG, encoding='utf-8') if line.split()[1:2] == ['production']]
     return shas[-1] if shas else None
+
+
+def find_vercel():
+    """The Vercel CLI and, when needed, its config dir. On this PC the CLI was installed and logged in from inside the
+    Claude desktop app, whose MSIX sandbox keeps AppData writes in a private copy that a normal terminal can't see;
+    fall back to that copy (and its login) so the same command works from a plain PowerShell window."""
+    found = shutil.which('vercel')
+    if found:
+        return found, None
+    for roaming in sorted(glob.glob(os.path.join(os.environ.get('LOCALAPPDATA', ''), 'Packages', 'Claude_*', 'LocalCache', 'Roaming'))):
+        cli = os.path.join(roaming, 'npm', 'vercel.cmd')
+        cfg = os.path.join(roaming, 'xdg.data', 'com.vercel.cli')
+        if os.path.exists(cli):
+            return cli, (cfg if os.path.exists(os.path.join(cfg, 'auth.json')) else None)
+    return None, None
 
 
 def probe(url):
@@ -80,9 +95,11 @@ def main():
         if '--confirm-production' not in sys.argv:
             sys.exit('\nNot deployed. Re-run with --confirm-production once a human has approved the list above.')
 
-    vercel = shutil.which('vercel')
+    vercel, global_config = find_vercel()
     if not vercel:
         sys.exit('Vercel CLI not found (npm install -g vercel, then vercel login)')
+    if global_config:
+        print(f'Using the Vercel CLI installed from the Claude app: {vercel}')
     tmp = tempfile.mkdtemp(prefix=f'upcore-{target}-')
     try:
         archive = os.path.join(tmp, 'src.zip')
@@ -92,7 +109,8 @@ def main():
         with open(os.path.join(out, 'build-id.txt'), 'w', encoding='utf-8', newline='\n') as f:
             f.write(sha + '\n')  # served at /build-id.txt so the next production deploy knows what is live
         env = dict(os.environ, VERCEL_ORG_ID=ORG, VERCEL_PROJECT_ID=PROJECTS[target])
-        cmd = [vercel, 'deploy', '--yes', '--cwd', out] + (['--prod'] if target == 'production' else [])
+        cmd = ([vercel] + (['--global-config', global_config] if global_config else []) + ['deploy', '--yes', '--cwd', out]
+               + (['--prod'] if target == 'production' else []))
         print(f'Deploying {ref} ({sha[:7]}) to {target}...')
         r = subprocess.run(cmd, env=env, capture_output=True, text=True, encoding='utf-8')
         urls = re.findall(r'https://[^\s]+\.vercel\.app', r.stdout + r.stderr)

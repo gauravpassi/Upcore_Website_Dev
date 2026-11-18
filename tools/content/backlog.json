@@ -201,7 +201,8 @@
     {
       "id": "N02",
       "type": "new",
-      "status": "in_review",
+      "status": "published",
+      "published": "2026-11-18",
       "branch": "content/how-to-review-ai-generated-code",
       "preview": "https://upcore-website-5fsrfok2j-gauravpassis-projects.vercel.app/learn/how-to-review-ai-generated-code",
       "drafted": "2026-11-18",

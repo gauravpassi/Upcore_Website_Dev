@@ -12,6 +12,11 @@ What changed and why (1–3 sentences). Anything future-Claude should know.
 
 ---
 
+## 2026-11-18 — Article: How to review AI-generated code (N02)
+**Type:** content
+**Files:** `tools/v4-build/content/learn__how-to-review-ai-generated-code.json`, `tools/v4-build/reading.py`
+New learn guide targeting "how to review AI-generated code": an AI code failure catalog, what to automate before human review, a checklist per risk tier and a PR template for AI-authored changes. Drafted by the content pipeline; reviewed and approved by Saswata Sengupta. Added to the /ai-native-engineering Further reading list.
+
 ## 2026-10-28 — Content pipeline: AI-drafted, human-approved articles
 **Type:** feature
 **Files:** `tools/content/` (README, backlog.json, WRITER.md, PUBLISH.md, validate.py, deploy.py), `tools/v4-build/authors.py`, `build_library.py`, `article.py`, `chrome.py`

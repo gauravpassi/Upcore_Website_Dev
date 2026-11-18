@@ -201,7 +201,10 @@
     {
       "id": "N02",
       "type": "new",
-      "status": "drafting",
+      "status": "in_review",
+      "branch": "content/how-to-review-ai-generated-code",
+      "preview": "https://upcore-website-5fsrfok2j-gauravpassis-projects.vercel.app/learn/how-to-review-ai-generated-code",
+      "drafted": "2026-11-18",
       "queue": 3,
       "week": 1,
       "score": 20,

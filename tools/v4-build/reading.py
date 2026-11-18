@@ -31,6 +31,8 @@ ARTICLES = {
         'What Copilot, Cursor and Claude Code do well, where they stop, and when you need a delivery process around them.'],
     '/compare/upcore-vs-building-in-house': ['Comparison', 'Build it in-house, or bring in Upcore?',
         'What building the process yourself involves, when that is the right call, and where an outside team saves time.'],
+    '/learn/how-to-review-ai-generated-code': ['Guide', 'How to review AI-generated code',
+        'How AI-written pull requests fail, what to automate first, and a review checklist for each level of risk.'],
     # Governance
     '/learn/ai-data-governance': ['Guide', 'AI Data Governance: Enterprise Checklist',
         'Data residency, access controls, audit logging and incident response, plus the questions every AI vendor must answer.'],
@@ -76,8 +78,8 @@ FURTHER_READING = {
     'home': ['/learn/what-is-ai-native-engineering', '/compare/ai-native-engineering-vs-ai-coding-tools',
              '/compare/upcore-vs-building-in-house', '/learn/ai-data-governance'],
     # Services
-    'aine': ['/learn/what-is-ai-native-engineering', '/compare/ai-native-engineering-vs-ai-coding-tools',
-             '/compare/upcore-vs-building-in-house'],
+    'aine': ['/learn/what-is-ai-native-engineering', '/learn/how-to-review-ai-generated-code',
+             '/compare/ai-native-engineering-vs-ai-coding-tools', '/compare/upcore-vs-building-in-house'],
     'gov': ['/learn/ai-data-governance', '/learn/hipaa-compliant-ai', '/compare/ai-agents-vs-copilot-financial-services',
             '/insights/human-in-the-loop'],
     'bpa': ['/insights/choosing-first-ai-agent', '/insights/human-in-the-loop', '/learn/how-ai-agents-work',

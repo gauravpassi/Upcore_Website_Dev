@@ -201,7 +201,7 @@
     {
       "id": "N02",
       "type": "new",
-      "status": "queued",
+      "status": "drafting",
       "queue": 3,
       "week": 1,
       "score": 20,

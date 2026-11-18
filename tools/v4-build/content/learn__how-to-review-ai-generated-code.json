@@ -1,0 +1,134 @@
+{
+ "file": "learn/how-to-review-ai-generated-code.html",
+ "path": "/learn/how-to-review-ai-generated-code",
+ "title": "How to Review AI-Generated Code: Tiered Checklist | Upcore",
+ "meta": "How to review AI-generated code: how AI-written pull requests fail, what to automate first, a checklist per risk tier and a PR template for AI changes.",
+ "robots": "",
+ "published": "2026-11-18",
+ "updated": "",
+ "date_label": "",
+ "author": "saswata-sengupta",
+ "reviewer": "",
+ "ai_assisted": true,
+ "backlog_id": "N02",
+ "sources": [
+  "https://www.veracode.com/press-release/ai-generated-code-poses-major-security-risks-in-nearly-half-of-all-development-tasks-veracode-research-reveals/",
+  "https://www.veracode.com/press-release/veracode-research-reveals-openais-gpt-5-models-lead-the-way-in-secure-code-while-wider-industry-progress-stalls/",
+  "https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen",
+  "https://docs.github.com/en/copilot/concepts/agents/code-review",
+  "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review",
+  "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets"
+ ],
+ "kind": "guide",
+ "eyebrow": "AI-Native Engineering",
+ "h1": "How to review AI-generated code: <span class=\"hl\">a risk-tiered checklist</span>",
+ "lead": "Coding agents produce code that looks finished and fails in places a skim misses. This guide catalogs how AI-written pull requests go wrong, splits checks into what to automate and what a person must read, and gives you a copy-paste checklist per risk tier and a pull request template for AI-authored changes.",
+ "stats": [
+  [
+   "45%",
+   "Of AI coding test cases introduced an OWASP Top 10 flaw (Veracode, 2025)"
+  ],
+  [
+   "21.7%",
+   "Average share of nonexistent packages suggested by open-source models (USENIX Security, 2025)"
+  ],
+  [
+   "86%",
+   "Of relevant cases where models failed to defend against cross-site scripting (Veracode, 2025)"
+  ]
+ ],
+ "sections": [
+  [
+   "short-answer",
+   "",
+   "<div class=\"ar-call\"><p class=\"ar-call-k\">Short answer</p><p>To review AI-generated code well, stop reading it like code from a colleague. Check the spec and the agent&rsquo;s plan before the diff, let automation clear the mechanical problems (build, tests, security scans, new dependencies) before a person opens the pull request, then spend human attention on the places AI-written code fails most: invented APIs and packages, missing or inverted permission checks, tests that only restate the implementation, changes outside the ticket and drift from your conventions. Scale the depth of review to the risk of the change, and send it back to the spec when the spec was the problem.</p></div>\n<p>This guide gives you a catalog of how AI-written code fails, a split between what to automate and what a person must read, a copy-paste checklist for low, medium and high-risk pull requests, a way to review the tests an agent wrote, and a pull request template for AI-authored changes. It assumes a team using GitHub Copilot, Cursor, Claude Code or a similar agent, with pull requests as the place code gets accepted.</p>"
+  ],
+  [
+   "how-ai-code-fails",
+   "How AI-written code fails differently",
+   "<p>Code from a coding agent compiles, reads cleanly and usually matches the request on the happy path. Its mistakes sit in places a skim does not catch, and they are different from the mistakes a tired colleague makes. Two published studies show the pattern.</p>\n<ul><li>In <a href=\"https://www.veracode.com/press-release/ai-generated-code-poses-major-security-risks-in-nearly-half-of-all-development-tasks-veracode-research-reveals/\">Veracode&rsquo;s 2025 GenAI Code Security Report</a> (July 2025), more than 100 language models completed 80 curated coding tasks, and in 45% of test cases they introduced a vulnerability in the OWASP Top 10. Models failed to defend against cross-site scripting (CWE-80) in 86% of relevant cases and log injection (CWE-117) in 88%. Veracode also found that larger models did not perform significantly better than smaller ones on security.</li>\n<li>In a <a href=\"https://www.usenix.org/conference/usenixsecurity25/presentation/spracklen\">study presented at USENIX Security 2025</a>, researchers generated 576,000 code samples with 16 popular models and found that, on average, at least 5.2% of the packages suggested by commercial models and 21.7% of those suggested by open-source models did not exist. They counted 205,474 unique hallucinated package names. An attacker who registers one of those names gets their code installed by anyone who trusts the suggestion.</li></ul>\n<p>Veracode&rsquo;s <a href=\"https://www.veracode.com/press-release/veracode-research-reveals-openais-gpt-5-models-lead-the-way-in-secure-code-while-wider-industry-progress-stalls/\">November 2025 update</a> reported that most providers&rsquo; newer models still scored in the 50-59% range on its security tests, with OpenAI&rsquo;s GPT-5 reasoning models the exception at 70-72%. The tools improve, but not fast enough to skip review.</p>\n<h3>The AI code failure catalog</h3>\n<p>These are the failure patterns to look for. The right-hand column says whether a machine can catch it reliably or whether it needs a person.</p>\n<div class=\"lx-table\"><table><thead><tr><th>Failure</th><th>What it looks like in a diff</th><th class=\"is-hi\">Who catches it</th></tr></thead><tbody>\n<tr><td>Invented packages</td><td>A new dependency with a plausible name that is not on the registry, or was published last week by an unknown account</td><td class=\"is-yes\">Automation: a dependency check on every lockfile change</td></tr>\n<tr><td>Invented or outdated APIs</td><td>A call to a method your library version does not have, or a deprecated signature copied from older code the model saw</td><td class=\"is-part\">Mostly automation (type check, build); a person for dynamic languages and config</td></tr>\n<tr><td>Missing or inverted permission checks</td><td>An endpoint without the authorization decorator its neighbors have, a <code>!</code> dropped from a role check, a tenant filter left off a query</td><td class=\"is-no\">A person, with a security scan as a backstop</td></tr>\n<tr><td>Unsafe input and output handling</td><td>User input reaching HTML, SQL, shell commands or log lines without the encoding your codebase uses elsewhere</td><td class=\"is-part\">SAST catches common cases; a person checks the ones your scanner has no rule for</td></tr>\n<tr><td>Tests that mirror the implementation</td><td>Tests written from the code rather than the requirement, so they assert whatever the code does, including its bugs</td><td class=\"is-no\">A person; mutation testing helps</td></tr>\n<tr><td>Scope creep</td><td>A &ldquo;small fix&rdquo; that also refactors a shared module, renames a function across 30 files or edits CI config</td><td class=\"is-part\">Automation flags paths outside the ticket; a person decides</td></tr>\n<tr><td>Convention drift</td><td>A second HTTP client, a new date library, error handling that swallows exceptions where your code re-raises them, a helper that duplicates one you already have</td><td class=\"is-part\">Architecture rules in CI catch the written ones; a person catches the rest</td></tr>\n<tr><td>Confident wrong logic</td><td>An off-by-one in pagination, time zones ignored, a retry loop without a limit, a cache that never expires</td><td class=\"is-no\">A person reading against the acceptance criteria</td></tr>\n</tbody></table></div>\n<p>The pattern behind the list: AI-written code fails where the correct answer depends on context the model did not have. Your authorization model, your conventions and your edge cases live in your codebase and your team&rsquo;s heads, not in the prompt.</p>"
+  ],
+  [
+   "automate-before-review",
+   "What to automate before a person reviews",
+   "<p>A reviewer&rsquo;s attention is the scarce resource. Nothing a machine can check reliably should reach a person unchecked. Make these checks required on the branch, so a pull request that fails them never asks for a human review.</p>\n<div class=\"lx-table\"><table><thead><tr><th>Check</th><th>What it catches</th><th>Make it blocking?</th></tr></thead><tbody>\n<tr><td>Build, type check, lint, format</td><td>Invented APIs in typed code, syntax and style noise</td><td class=\"is-yes\">Yes</td></tr>\n<tr><td>Full test suite, plus coverage on changed lines</td><td>Regressions; untested new code</td><td class=\"is-yes\">Yes, with a changed-line coverage floor</td></tr>\n<tr><td>Static security analysis (SAST)</td><td>Injection, cross-site scripting, unsafe deserialization, hardcoded secrets</td><td class=\"is-yes\">Yes for high and critical findings</td></tr>\n<tr><td>Dependency check on lockfile changes</td><td>Packages that do not exist, are days old, have few downloads, are not on your allowlist or carry known vulnerabilities</td><td class=\"is-yes\">Yes; new dependencies go to a named owner</td></tr>\n<tr><td>Secret scanning</td><td>Keys and tokens pasted into code or test fixtures</td><td class=\"is-yes\">Yes</td></tr>\n<tr><td>Architecture and convention rules</td><td>Forbidden imports, layer violations, unapproved libraries, API naming rules</td><td class=\"is-yes\">Yes for written rules</td></tr>\n<tr><td>Scope check</td><td>Files changed outside the paths the ticket or plan named; diff size over your limit</td><td class=\"is-part\">Warn, and raise the risk tier</td></tr>\n<tr><td>Pull request template completeness</td><td>Missing spec link, missing agent and plan, unchecked risk tier</td><td class=\"is-yes\">Yes</td></tr>\n<tr><td>AI review pass</td><td>Readability issues, obvious bugs, missed edge cases</td><td class=\"is-no\">No; advisory comments only</td></tr>\n</tbody></table></div>\n<h3>Where an AI reviewer fits</h3>\n<p>An AI reviewer is a useful first reader and a poor last one. As of November 2026, GitHub&rsquo;s documentation for <a href=\"https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review\">Copilot code review</a> says that by default Copilot leaves a &ldquo;Comment&rdquo; review, not an approval, so its reviews do not count toward required approvals; approvals are off by default and can be turned on at the enterprise, organization or repository level. GitHub&rsquo;s own <a href=\"https://docs.github.com/en/copilot/concepts/agents/code-review\">concept page</a> says Copilot is not guaranteed to spot every problem, tells you to supplement its feedback with a human review, and lists dependency management files such as <code>package.json</code> among the files it does not review. That last point matters: the invented-package problem has to be caught by a dependency check, not by the AI reviewer.</p>\n<p>Copilot code review reads repository instructions from <code>.github/copilot-instructions.md</code>, path-specific <code>.github/instructions/**/*.instructions.md</code> files and an <code>AGENTS.md</code> file, so the conventions your agents write against can be the same ones your AI reviewer checks against (<a href=\"https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review\">GitHub Docs</a>). Keep one source of truth for conventions and point every tool at it.</p>"
+  ],
+  [
+   "risk-tiered-checklist",
+   "The risk-tiered review checklist",
+   "<p>Not every AI-written pull request needs the same review. A test-only change and a change to your sign-in flow carry very different risk, and applying the strictest checklist to both trains reviewers to skim. Assign the tier from what the change touches, not from how big it is or who wrote it: a twelve-line migration can be riskier than a thousand lines of generated client code.</p>\n<div class=\"lx-cards\">\n<div class=\"lx-card\"><span class=\"lx-tag\">Low</span><h3>Read the diff against the ticket</h3><p>Documentation, copy, test-only changes, isolated UI and config with no runtime effect. One reviewer, focused on scope and conventions.</p></div>\n<div class=\"lx-card\"><span class=\"lx-tag\">Medium</span><h3>Read the plan, then the diff</h3><p>Feature code, business logic, internal APIs and non-breaking schema additions. One reviewer who knows the area reads the spec and plan first.</p></div>\n<div class=\"lx-card\"><span class=\"lx-tag\">High</span><h3>Two people, one of them the owner</h3><p>Authentication, authorization, payments, personal data, migrations, public APIs, infrastructure and CI/CD. The code owner approves, and someone runs it.</p></div>\n</div>\n<p>On GitHub, a ruleset can enforce the high tier: requiring review from code owners means a pull request that modifies content with a code owner must be approved by that owner before it merges, and requiring approval of the most recent reviewable push means someone other than the last person to push has to approve the final version (<a href=\"https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets\">GitHub Docs, available rules for rulesets</a>). Put your high-risk paths in <code>CODEOWNERS</code> and those two rules do most of the enforcement for you.</p>\n<h3>The copy-paste checklist</h3>\n<p>Paste this into your review guide or a saved reply. The tier definitions are a starting point; adjust the path lists to your own system.</p>\n<pre><code>## AI-authored PR review: LOW risk\nDocs, copy, tests only, isolated UI, config with no runtime effect\n- [ ] Automated checks green (build, tests, lint, SAST, secrets)\n- [ ] Diff matches the ticket; no files outside its scope\n- [ ] No new dependencies\n- [ ] Skim for convention drift (naming, helpers we already have)\n\n## AI-authored PR review: MEDIUM risk\nNew feature code, business logic, internal APIs, non-breaking schema additions\n- [ ] Everything in LOW\n- [ ] Spec and agent plan read BEFORE the diff; diff follows the plan\n- [ ] Every acceptance criterion maps to code and to a test\n- [ ] Tests assert behavior from the spec, not values copied from the code\n- [ ] Error paths: failures raise or return the way our code does, nothing swallowed\n- [ ] Inputs validated and outputs encoded at every boundary the change touches\n- [ ] Every called method and library version exists in our lockfile\n- [ ] New dependency (if any) approved by its owner and pinned\n- [ ] Logging carries no personal data, secrets or raw user input\n\n## AI-authored PR review: HIGH risk\nAuthentication, authorization, payments, personal data, migrations,\npublic APIs, infrastructure, CI/CD and the review policy itself\n- [ ] Everything in MEDIUM\n- [ ] Two human approvals, one from the code owner of the area\n- [ ] Authorization checked on every new or changed entry point, including the negative case\n- [ ] Queries scoped to the right tenant or user\n- [ ] Migration is reversible or has a written rollback; tested on production-sized data\n- [ ] Public contract changes are backward compatible or versioned\n- [ ] Behind a feature flag, with the metrics to watch named in the PR\n- [ ] Reviewer has run the change locally or in a preview environment</code></pre>\n<p>Notice what the checklist does not ask: whether the code is elegant, or whether you would have written it the same way. With an agent, rewriting is cheap. Spend review time on whether the change is correct and safe, and push style preferences into lint rules and agent instructions where they apply to every future change.</p>"
+  ],
+  [
+   "reviewing-ai-tests",
+   "Reviewing the tests AI wrote",
+   "<p>The tests an agent writes alongside its code are the weakest evidence in the pull request. When the same model writes the code and the tests from the same understanding, the tests confirm that understanding, including where it is wrong. A green test suite tells you the code does what the agent thought it should do. Your job is to check that against what the spec says it should do.</p>\n<ol class=\"lx-checks\">\n<li><p><strong>Read the test names before the test bodies.</strong> Each acceptance criterion in the spec should have at least one test you can find by name. Missing criteria are the gaps; extra tests for behavior nobody asked for are scope creep.</p></li>\n<li><p><strong>Look for expected values copied from the output.</strong> An assertion like <code>expect(total).toBe(1047.3)</code> with no explanation often means the agent ran the code and pasted the result. Expected values should come from the requirement or a worked example.</p></li>\n<li><p><strong>Check what is mocked.</strong> A test that mocks the function it claims to test, or mocks the database in a test about a query, proves nothing. Mocks belong at the boundaries you do not own.</p></li>\n<li><p><strong>Find the negative cases.</strong> For anything touching permissions or input, there should be a test where the wrong user is refused and bad input is rejected. Agents write the happy path first and often stop there.</p></li>\n<li><p><strong>Watch for weakened tests.</strong> Deleted assertions, new <code>skip</code> or <code>xfail</code> markers, loosened tolerances and regenerated snapshots are how an agent makes a failing test pass. Any change to an existing test needs a reason in the pull request.</p></li>\n<li><p><strong>Break the code on purpose.</strong> Flip a condition or delete a line in the new code and run the tests. If they still pass, they are not testing that line. Mutation testing tools such as Stryker, PIT and mutmut automate this for a changed file.</p></li>\n</ol>\n<p>A practical rule: for medium and high-risk changes, at least one test should be written or rewritten by a person, or by an agent from the acceptance criteria alone before it sees the implementation. That gives you one source of evidence that does not share the code&rsquo;s blind spots.</p>"
+  ],
+  [
+   "pr-template",
+   "A pull request template for AI-authored changes",
+   "<p>A good pull request template moves the questions a reviewer would otherwise have to ask into the description, before review starts. For AI-authored changes it also records how the change was made, which helps the reviewer and leaves a record for later. Save this as <code>.github/pull_request_template.md</code> (or your platform&rsquo;s equivalent) and make the template-completeness check blocking.</p>\n<pre><code>## What and why\nTicket / spec: &lt;link&gt;\nOne paragraph: what this changes and why.\n\n## How it was made\n- Agent and model: &lt;e.g. Claude Code, Copilot agent, Cursor&gt;\n- Plan: &lt;link to the approved plan, or paste it&gt;\n- Written by a person: &lt;files or \"none\"&gt;\n- Tests written from the acceptance criteria before the code: yes / no\n\n## Risk tier\n- [ ] Low   - docs, copy, tests, isolated UI, inert config\n- [ ] Medium - feature code, business logic, internal APIs\n- [ ] High  - auth, payments, personal data, migrations, public APIs, infra, CI\nWhy this tier: &lt;one line&gt;\n\n## Scope\nFiles outside the plan: &lt;list, or \"none\"&gt;\nNew dependencies: &lt;name, version, why, owner who approved, or \"none\"&gt;\nExisting tests changed or deleted: &lt;list with reason, or \"none\"&gt;\n\n## How to verify\nSteps a reviewer can run, and what they should see.\nMetrics to watch after release (high tier): &lt;list&gt;</code></pre>\n<p>The &ldquo;How it was made&rdquo; block is not there to single out AI work for suspicion. It tells the reviewer where to look: a plan to compare against, which parts a person wrote, and whether any test was written independently of the code. The &ldquo;Scope&rdquo; block surfaces the three things agents do quietly: touch files outside the plan, add dependencies and change existing tests.</p>\n<h3>Review the spec and plan before the diff</h3>\n<p>The cheapest place to catch a wrong change is before it is written. If the spec is vague, the agent fills the gaps with plausible guesses, and the reviewer then has to reverse-engineer those guesses from a diff. A two-minute read of the spec and the agent&rsquo;s plan (files to touch, interfaces, migrations, tests) tells you what the diff should contain. Then the review becomes a comparison, which is faster and more reliable than reading cold.</p>\n<p>This is why a governed delivery process puts a person at the plan, not only at the pull request. In Upcore&rsquo;s <a href=\"/ai-native-engineering\">AI-native engineering pipeline</a>, AI drafts an implementation plan covering files, interfaces, data migrations and tests, and an architect approves the plan before any build starts.</p>"
+  ],
+  [
+   "send-it-back",
+   "When to send it back instead of fixing it",
+   "<p>Reviewers fixing an agent&rsquo;s pull request line by line is a sign the problem is upstream. Send it back, and say where it should go back to.</p>\n<div class=\"lx-table\"><table><thead><tr><th>What you see</th><th>Send it back to</th><th>Why</th></tr></thead><tbody>\n<tr><td>The change does something reasonable that the ticket did not ask for, or misses a case nobody wrote down</td><td>The spec</td><td>The agent guessed. Fix the acceptance criteria and regenerate, or the next change guesses the same way</td></tr>\n<tr><td>The structure is wrong: logic in the wrong layer, a new pattern where an existing one fits</td><td>The plan</td><td>Comments on the diff will not move the design; a corrected plan will</td></tr>\n<tr><td>Correct logic, but it breaks a convention the team agreed</td><td>The agent instructions</td><td>Write the rule into your instructions file or an architecture check so it holds for every future change</td></tr>\n<tr><td>More than a few hundred lines, or several unrelated changes</td><td>The author, to split</td><td>Large diffs get skimmed. Smaller pull requests get read</td></tr>\n<tr><td>Tests were weakened or deleted to pass</td><td>The author, with the failing test restored</td><td>The failing test was the evidence; removing it hides the bug</td></tr>\n<tr><td>A small, local mistake in otherwise sound work</td><td>Nowhere: fix it in review</td><td>A suggested change is faster than another cycle</td></tr>\n</tbody></table></div>\n<p>Track where pull requests get sent back. If most go back to the spec, invest in spec templates. If most go back for convention drift, your agent instructions and architecture checks are the gap. That record turns review from a gate into feedback that improves the next batch of changes, which is the idea behind <a href=\"/learn/what-is-ai-native-engineering\">AI-native engineering</a>.</p>"
+  ],
+  [
+   "where-this-fits",
+   "Where this fits in a governed delivery process",
+   "<p>Everything above can be done with the tools you already have: a ruleset, a <code>CODEOWNERS</code> file, a pull request template, a dependency check and a review guide. Teams usually struggle with the parts around the review: specs good enough for an agent to follow, architecture rules written down as checks, risk scoring that decides which pull requests a person must read, and a record of every decision.</p>\n<p>AI coding tools write the code; they do not decide what is safe to merge. Our <a href=\"/compare/ai-native-engineering-vs-ai-coding-tools\">comparison of AI-native engineering and AI coding tools</a> covers where each stops. If you want the whole process installed in your Jira or Linear, GitHub and CI/CD, <a href=\"/ai-native-engineering\">Upcore&rsquo;s AI-native engineering service</a> sets it up with merge limits you choose, starting strict and loosening only as the pipeline proves itself on your own work.</p>"
+  ]
+ ],
+ "faq": [
+  [
+   "Should AI-generated code be reviewed differently from human code?",
+   "<p>The standard is the same: correct, safe and maintainable. The emphasis differs. AI-written code rarely has typos or obvious sloppiness, so reviewers who scan for those miss its real problems: invented dependencies, missing authorization, tests that restate the code and changes outside the ticket. Point attention there, and let automation handle the mechanical checks first.</p>"
+  ],
+  [
+   "Can an AI reviewer replace a human reviewer?",
+   "<p>Not for anything that matters. An AI reviewer is a good first reader for readability issues and obvious bugs, and it is fast. It lacks your context: the authorization model, conventions nobody wrote down and what the customer asked for. GitHub&rsquo;s own Copilot documentation tells teams to supplement Copilot&rsquo;s feedback with a human review.</p>"
+  ],
+  [
+   "How do I catch hallucinated packages?",
+   "<p>Automate it rather than relying on reviewers. Run a check on every lockfile change that confirms each new package exists on the registry, flags packages published recently or with little usage history, and compares against an allowlist. Route any new dependency to a named owner for approval, and pin versions so a later upload cannot change what gets installed.</p>"
+  ],
+  [
+   "Should pull requests disclose that AI wrote them?",
+   "<p>Yes, as a matter of process rather than blame. Recording the agent, the plan it followed and which parts a person wrote tells the reviewer what to compare against and where independent evidence exists. It also gives you data later: which kinds of changes agents handle well, and where review keeps finding the same problems.</p>"
+  ],
+  [
+   "How long should reviewing an AI pull request take?",
+   "<p>It depends on the tier, not the line count. A low-risk change with green checks can take minutes. A high-risk change deserves the time it takes to read the plan, check every entry point and run it. If reviews of medium-risk changes routinely take longer than writing the spec would have, the specs are probably too thin.</p>"
+  ]
+ ],
+ "related": [
+  [
+   "/learn/what-is-ai-native-engineering",
+   "Guide",
+   "What is AI-native engineering?",
+   "How it differs from AI-assisted coding, the building blocks of a governed delivery process and how to start."
+  ],
+  [
+   "/compare/ai-native-engineering-vs-ai-coding-tools",
+   "Comparison",
+   "AI-native engineering vs AI coding tools",
+   "What Copilot, Cursor and Claude Code do well, where they stop, and when you need a delivery process around them."
+  ],
+  [
+   "/compare/upcore-vs-building-in-house",
+   "Comparison",
+   "Build it in-house, or bring in Upcore?",
+   "What building the process yourself involves, when that is the right call, and where an outside team saves time."
+  ],
+  [
+   "/ai-native-engineering",
+   "Service",
+   "AI-Native Engineering",
+   "Nine stages from spec to production in your own tools, with merge limits you set and a record of every decision."
+  ]
+ ],
+ "aside": [
+  "AI-Native Engineering",
+  "/ai-native-engineering"
+ ]
+}
